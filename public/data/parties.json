@@ -1,0 +1,165 @@
+{
+  "class_compat_matrix": {
+    "classes": [
+      "Bureaucrats",
+      "Capitalists",
+      "Engineers",
+      "Scientists",
+      "Security",
+      "Proprietors",
+      "Managerial",
+      "Agricultural Workers",
+      "Industrial Workers",
+      "Service Workers",
+      "Skilled Tradesmen"
+    ],
+    "parties": [
+      "Liberty Now",
+      "People's Voice"
+    ],
+    "values": [
+      [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ]
+    ]
+  },
+  "goi_compat_matrix": {
+    "gois": [
+      "Founders",
+      "Capitalists",
+      "Security",
+      "Unionists"
+    ],
+    "parties": [
+      "Liberty Now",
+      "People's Voice"
+    ],
+    "values": [
+      [
+        0.6,
+        0.5,
+        0.4,
+        0.2999999999999999
+      ],
+      [
+        0.3,
+        0.4,
+        0.5,
+        0.6000000000000001
+      ]
+    ]
+  },
+  "parties": [
+    {
+      "class_compat": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "closest_goi": "Founders",
+      "establishment": 0.55,
+      "estimated_support": 0.3,
+      "founded": true,
+      "goi_compat": [
+        0.6,
+        0.5,
+        0.4,
+        0.2999999999999999
+      ],
+      "mad_index": 0.15,
+      "name": "Liberty Now",
+      "stance": {
+        "authority": 5.0,
+        "corporate": 4.0,
+        "expansion": 5.0,
+        "faith": 4.0,
+        "materialist": 4.0,
+        "technocratic": 5.0
+      },
+      "vote_share": 0.28,
+      "weighted_stance": {
+        "authority": 5.0,
+        "corporate": 4.0,
+        "expansion": 5.0,
+        "faith": 4.0,
+        "materialist": 4.0,
+        "technocratic": 5.0
+      }
+    },
+    {
+      "class_compat": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "closest_goi": "Unionists",
+      "establishment": 0.4,
+      "estimated_support": 0.25,
+      "founded": true,
+      "goi_compat": [
+        0.3,
+        0.4,
+        0.5,
+        0.6000000000000001
+      ],
+      "mad_index": 0.15,
+      "name": "People's Voice",
+      "stance": {
+        "authority": 3.0,
+        "corporate": 6.0,
+        "expansion": 3.0,
+        "faith": 4.0,
+        "materialist": 5.0,
+        "technocratic": 3.0
+      },
+      "vote_share": 0.22,
+      "weighted_stance": {
+        "authority": 3.0,
+        "corporate": 6.0,
+        "expansion": 3.0,
+        "faith": 4.0,
+        "materialist": 5.0,
+        "technocratic": 3.0
+      }
+    }
+  ]
+}

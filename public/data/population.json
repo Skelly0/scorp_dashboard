@@ -1,0 +1,174 @@
+{
+  "classes": [
+    {
+      "name": "Bureaucrats",
+      "political_weight": 3.0,
+      "pop": 970,
+      "share": 0.06112161310649023,
+      "tier": "Upper",
+      "worldview": {
+        "authority": 4.7,
+        "corporate": 4.4,
+        "expansion": 5.0,
+        "faith": 3.8,
+        "materialist": 3.5,
+        "technocratic": 4.1
+      }
+    },
+    {
+      "name": "Capitalists",
+      "political_weight": 5.0,
+      "pop": 220,
+      "share": 0.013862633900441084,
+      "tier": "Upper",
+      "worldview": {
+        "authority": 3.7,
+        "corporate": 3.4,
+        "expansion": 4.0,
+        "faith": 2.8,
+        "materialist": 2.5,
+        "technocratic": 3.1
+      }
+    },
+    {
+      "name": "Engineers",
+      "political_weight": 2.0,
+      "pop": 1115,
+      "share": 0.0702583490863264,
+      "tier": "Middle",
+      "worldview": {
+        "authority": 4.2,
+        "corporate": 3.9,
+        "expansion": 4.5,
+        "faith": 3.3,
+        "materialist": 3.0,
+        "technocratic": 3.6
+      }
+    },
+    {
+      "name": "Scientists",
+      "political_weight": 2.5,
+      "pop": 1790,
+      "share": 0.11279143037177064,
+      "tier": "Middle",
+      "worldview": {
+        "authority": 4.7,
+        "corporate": 4.4,
+        "expansion": 5.0,
+        "faith": 3.8,
+        "materialist": 3.5,
+        "technocratic": 4.1
+      }
+    },
+    {
+      "name": "Security",
+      "political_weight": 1.5,
+      "pop": 1040,
+      "share": 0.06553245116572148,
+      "tier": "Middle",
+      "worldview": {
+        "authority": 3.7,
+        "corporate": 3.4,
+        "expansion": 4.0,
+        "faith": 2.8,
+        "materialist": 2.5,
+        "technocratic": 3.1
+      }
+    },
+    {
+      "name": "Proprietors",
+      "political_weight": 1.5,
+      "pop": 295,
+      "share": 0.018588531821046,
+      "tier": "Middle",
+      "worldview": {
+        "authority": 4.2,
+        "corporate": 3.9,
+        "expansion": 4.5,
+        "faith": 3.3,
+        "materialist": 3.0,
+        "technocratic": 3.6
+      }
+    },
+    {
+      "name": "Managerial",
+      "political_weight": 2.5,
+      "pop": 295,
+      "share": 0.018588531821046,
+      "tier": "Middle",
+      "worldview": {
+        "authority": 4.7,
+        "corporate": 4.4,
+        "expansion": 5.0,
+        "faith": 3.8,
+        "materialist": 3.5,
+        "technocratic": 4.1
+      }
+    },
+    {
+      "name": "Agricultural Workers",
+      "political_weight": 0.8,
+      "pop": 1115,
+      "share": 0.0702583490863264,
+      "tier": "Lower",
+      "worldview": {
+        "authority": 3.7,
+        "corporate": 3.4,
+        "expansion": 4.0,
+        "faith": 2.8,
+        "materialist": 2.5,
+        "technocratic": 3.1
+      }
+    },
+    {
+      "name": "Industrial Workers",
+      "political_weight": 0.8,
+      "pop": 4170,
+      "share": 0.2627599243856333,
+      "tier": "Lower",
+      "worldview": {
+        "authority": 4.2,
+        "corporate": 3.9,
+        "expansion": 4.5,
+        "faith": 3.3,
+        "materialist": 3.0,
+        "technocratic": 3.6
+      }
+    },
+    {
+      "name": "Service Workers",
+      "political_weight": 0.7,
+      "pop": 3870,
+      "share": 0.2438563327032136,
+      "tier": "Lower",
+      "worldview": {
+        "authority": 4.7,
+        "corporate": 4.4,
+        "expansion": 5.0,
+        "faith": 3.8,
+        "materialist": 3.5,
+        "technocratic": 4.1
+      }
+    },
+    {
+      "name": "Skilled Tradesmen",
+      "political_weight": 0.9,
+      "pop": 990,
+      "share": 0.062381852551984876,
+      "tier": "Lower",
+      "worldview": {
+        "authority": 3.7,
+        "corporate": 3.4,
+        "expansion": 4.0,
+        "faith": 2.8,
+        "materialist": 2.5,
+        "technocratic": 3.1
+      }
+    }
+  ],
+  "tier_totals": {
+    "Lower": 0.6392564587271582,
+    "Middle": 0.2857592942659105,
+    "Upper": 0.07498424700693132
+  }
+}

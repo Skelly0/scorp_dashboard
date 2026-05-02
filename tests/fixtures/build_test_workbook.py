@@ -1,0 +1,362 @@
+"""Build a minimal test workbook that mirrors the live SCORP Colony schema.
+
+Used as a fixture by extractor tests. Not committed — regenerated on each test run.
+"""
+from __future__ import annotations
+
+from pathlib import Path
+
+import openpyxl
+from openpyxl.workbook.defined_name import DefinedName
+
+
+def build(out_path: Path) -> Path:
+    wb = openpyxl.Workbook()
+    wb.remove(wb.active)
+
+    # ---- Reference sheet ----
+    ref = wb.create_sheet("Reference")
+    ref["A1"] = "ClassTable"
+    # ClassTable: Name, Tier, StartingPop, PoliticalWeight (cols A-D from row 56-70 in real wb;
+    # we just need the shape — 15 rows, 11 live + 4 blank).
+    classes = [
+        ("Bureaucrats", "Upper", 970, 3.0),
+        ("Capitalists", "Upper", 220, 5.0),
+        ("Engineers", "Middle", 1115, 2.0),
+        ("Scientists", "Middle", 1790, 2.5),
+        ("Security", "Middle", 1040, 1.5),
+        ("Proprietors", "Middle", 295, 1.5),
+        ("Managerial", "Middle", 295, 2.5),
+        ("Agricultural Workers", "Lower", 1115, 0.8),
+        ("Industrial Workers", "Lower", 4170, 0.8),
+        ("Service Workers", "Lower", 3870, 0.7),
+        ("Skilled Tradesmen", "Lower", 990, 0.9),
+    ]
+    for i, (name, tier, pop, weight) in enumerate(classes, start=56):
+        ref.cell(row=i, column=1, value=name)
+        ref.cell(row=i, column=2, value=tier)
+        ref.cell(row=i, column=3, value=pop)
+        ref.cell(row=i, column=4, value=weight)
+    # 4 blank reserved slots (rows 67-70 already empty by default).
+
+    _add_name(wb, "ClassTable", "Reference!$A$56:$D$70")
+
+    # ---- Variable sheet ----
+    var = wb.create_sheet("Variable")
+    var["A1"], var["B1"] = "Var_SenatePageVisible", False
+    _add_name(wb, "Var_SenatePageVisible", "Variable!$B$1")
+
+    # ---- Politics sheet ----
+    pol = wb.create_sheet("Politics")
+    pol["B1"] = 0.42      # Stability
+    pol["E1"] = 0.38      # Crisis Factor
+    # Overton window B13:B18
+    overton = [5.0, 4.5, 5.0, 4.0, 4.0, 4.0]
+    for i, v in enumerate(overton, start=13):
+        pol.cell(row=i, column=2, value=v)
+    _add_name(wb, "OvertonExpn", "Politics!$B$13")
+    _add_name(wb, "OvertonAuth", "Politics!$B$14")
+    _add_name(wb, "OvertonCorp", "Politics!$B$15")
+    _add_name(wb, "OvertonTech", "Politics!$B$16")
+    _add_name(wb, "OvertonFaith", "Politics!$B$17")
+    _add_name(wb, "OvertonMat", "Politics!$B$18")
+
+    # ---- Colony sheet (Treasury + resources) ----
+    col = wb.create_sheet("Colony")
+    col["A1"], col["B1"] = "Money", 487
+    col["A2"], col["B2"] = "Money_Delta", -12
+    resources = [
+        ("Food", 0, -2),
+        ("Materials", 200, -4),
+        ("Ore", 100, 0),
+        ("Energy", 50, 0),
+        ("Housing", -500, 0),
+        ("He-3", 0, 1),
+        ("Water", 60, -1),
+    ]
+    for i, (name, current, delta) in enumerate(resources, start=4):
+        col.cell(row=i, column=1, value=name)
+        col.cell(row=i, column=2, value=current)
+        col.cell(row=i, column=3, value=delta)
+    _add_name(wb, "TreasuryMoney", "Colony!$B$1")
+    _add_name(wb, "TreasuryMoneyDelta", "Colony!$B$2")
+    _add_name(wb, "ResourceFlows", "Colony!$A$4:$C$10")
+
+    # ---- Popsim sheet ----
+    pop = wb.create_sheet("Popsim")
+    # Just enough to satisfy population total derivation. PopsimPop = B5:B19
+    for i, (name, _, p, _w) in enumerate(classes, start=5):
+        pop.cell(row=i, column=1, value=name)
+        pop.cell(row=i, column=2, value=p)
+    _add_name(wb, "PopsimPop", "Popsim!$B$5:$B$19")
+
+    # Popsim worldview block (cols B-G, rows 41-55, paired with class names in col A).
+    # We mirror class names from ClassTable into col A using a formula approximation —
+    # for the fixture, just write them directly.
+    for i, (name, _, _, _) in enumerate(classes, start=41):
+        pop.cell(row=i, column=1, value=name)
+        # Six axis values per class — make them deterministic but varied.
+        for axis in range(6):
+            pop.cell(row=i, column=2 + axis, value=4.0 + (i % 3) * 0.5 - axis * 0.3)
+    _add_name(wb, "PopsimWorldview", "Popsim!$B$41:$G$55")
+
+    # Popsim Wealth & Income block (rows 61-75: cols A name, B gross/cap, D income tax/cap,
+    # E wealth tax/cap, F effective rate, G disposable/cap, I wealth/cap, J total class income).
+    # Also Standard of Living rows 97-111, Social Privileges rows 79-93, Status rows 133-147,
+    # Satisfaction M151:M165. We won't reproduce real backend formulas — just write
+    # deterministic numbers so the extractor has something to read.
+    for i, (name, _, p, _w) in enumerate(classes, start=61):
+        pop.cell(row=i, column=1, value=name)
+        gross = 12.0 + (i - 61)
+        pop.cell(row=i, column=2, value=gross)
+        pop.cell(row=i, column=4, value=gross * 0.10)  # income tax/cap
+        pop.cell(row=i, column=5, value=gross * 0.02)  # wealth tax/cap
+        pop.cell(row=i, column=6, value=0.12)          # effective rate
+        pop.cell(row=i, column=7, value=gross * 0.88)  # disposable/cap
+        pop.cell(row=i, column=9, value=gross * 4)     # wealth/cap
+        pop.cell(row=i, column=10, value=gross * 0.88 * p)  # total class income (post-tax)
+    _add_name(wb, "PopsimGrossPerCap", "Popsim!$B$61:$B$75")
+    _add_name(wb, "PopsimDisposablePerCap", "Popsim!$G$61:$G$75")
+    _add_name(wb, "PopsimWealthPerCap", "Popsim!$I$61:$I$75")
+
+    # Standard of Living: rows 97-111, cols B (SoL), C (Expected SoL).
+    for i, _ in enumerate(classes, start=97):
+        pop.cell(row=i, column=1, value=classes[i - 97][0])
+        pop.cell(row=i, column=2, value=0.42 + (i - 97) * 0.01)
+        pop.cell(row=i, column=3, value=0.55)
+    _add_name(wb, "PopsimSoL", "Popsim!$B$97:$B$111")
+    _add_name(wb, "PopsimExpectedSoL", "Popsim!$C$97:$C$111")
+
+    # Social Privileges: rows 79-93, col B.
+    for i, _ in enumerate(classes, start=79):
+        pop.cell(row=i, column=1, value=classes[i - 79][0])
+        pop.cell(row=i, column=2, value=0.30 + (i - 79) * 0.02)
+    _add_name(wb, "PopsimSocialPrivileges", "Popsim!$B$79:$B$93")
+
+    # Status block: rows 133-147. C radicalisation, E abject poverty, G organisation, H literacy,
+    # J vote eligibility, L votes total, M vote share.
+    for i, _ in enumerate(classes, start=133):
+        pop.cell(row=i, column=1, value=classes[i - 133][0])
+        pop.cell(row=i, column=3, value=0.20 + (i - 133) * 0.01)  # radicalisation
+        pop.cell(row=i, column=5, value=0.10)                      # abject poverty
+        pop.cell(row=i, column=7, value=0.30)                      # organisation
+        pop.cell(row=i, column=8, value=0.65)                      # literacy
+        pop.cell(row=i, column=10, value=0.85)                     # vote eligibility
+        pop.cell(row=i, column=12, value=int(classes[i - 133][2] * 0.85))  # votes total
+        pop.cell(row=i, column=13, value=0.10)                     # vote share
+    _add_name(wb, "PopsimRadicalisation", "Popsim!$C$133:$C$147")
+    _add_name(wb, "PopsimAbjectPoverty", "Popsim!$E$133:$E$147")
+    _add_name(wb, "PopsimOrganisation", "Popsim!$G$133:$G$147")
+    _add_name(wb, "PopsimLiteracy", "Popsim!$H$133:$H$147")
+    _add_name(wb, "PopsimVotesTotal", "Popsim!$L$133:$L$147")
+    _add_name(wb, "PopsimVoteShare", "Popsim!$M$133:$M$147")
+
+    # Satisfaction M151:M165
+    for i, _ in enumerate(classes, start=151):
+        pop.cell(row=i, column=13, value=0.40)
+    _add_name(wb, "PopsimSatisfaction", "Popsim!$M$151:$M$165")
+
+    # ---- Wages & Welfare sheet ----
+    ww = wb.create_sheet("Wages & Welfare")
+    # AdditionalIncomeRange = H23:I37 — col H per-class total Additional Income, col I label.
+    # For test purposes, we fake the breakdown across cols B-E for rows 23-37,
+    # with the total in col F mirrored to H.
+    for i, _ in enumerate(classes, start=23):
+        ww.cell(row=i, column=1, value=classes[i - 23][0])
+        ww.cell(row=i, column=2, value=0.5)   # welfare
+        ww.cell(row=i, column=3, value=0.0)   # dividends
+        ww.cell(row=i, column=4, value=0.2)   # subsidies
+        ww.cell(row=i, column=5, value=0.0)   # other
+        ww.cell(row=i, column=6, value=0.7)   # total
+        ww.cell(row=i, column=8, value=0.7)   # mirror for AdditionalIncomeRange
+        ww.cell(row=i, column=9, value="total")
+    _add_name(wb, "AdditionalIncomeRange", "'Wages & Welfare'!$H$23:$I$37")
+    # Per-class breakdown read directly (cols B-E) — track via an aux range too.
+    _add_name(wb, "AdditionalIncomeBreakdown", "'Wages & Welfare'!$A$23:$F$37")
+
+    # Politics GoI block: rows 24-31 (8 slots, 4 live + 4 blank)
+    gois = [
+        ("Founders", "Bureaucrats", 0.30, 0.55, "Reformist"),
+        ("Capitalists", "Capitalists", 0.28, 0.50, "Pragmatic"),
+        ("Security", "Security", 0.20, 0.60, "Defensive"),
+        ("Unionists", "Industrial Workers", 0.22, 0.45, "Activist"),
+    ]
+    for i, (name, main_class, infl, appr, approach) in enumerate(gois, start=24):
+        pol.cell(row=i, column=1, value=name)
+        pol.cell(row=i, column=2, value=infl)        # GM-override influence
+        pol.cell(row=i, column=6, value=appr)        # Approval (col F)
+        pol.cell(row=i, column=9, value=int(8 * infl))  # Council seats (col I)
+        # Effective worldview cols K-P (11-16)
+        for axis in range(6):
+            pol.cell(row=i, column=11 + axis, value=4.0 + (i - 24) * 0.2 + axis * 0.1)
+        pol.cell(row=i, column=17, value=0.10 + (i - 24) * 0.05)  # Mad Index col Q
+        pol.cell(row=i, column=18, value=approach)                # Approach col R
+        pol.cell(row=i, column=19, value=infl)                    # Derived Influence col S
+        pol.cell(row=i, column=20, value=f"{i - 23} / 3 unlocked")  # Active Benefits col T
+    _add_name(wb, "GoINames", "Politics!$A$24:$A$31")
+    _add_name(wb, "GoIDerivedInfluence", "Politics!$S$24:$S$31")
+    _add_name(wb, "GoIApproval", "Politics!$F$24:$F$31")
+    _add_name(wb, "GoIEffectiveWorldview", "Politics!$K$24:$P$31")
+    _add_name(wb, "GoIMadIndex", "Politics!$Q$24:$Q$31")
+    _add_name(wb, "GoIApproach", "Politics!$R$24:$R$31")
+    _add_name(wb, "GoIActiveBenefits", "Politics!$T$24:$T$31")
+
+    # Sub-faction detail block (per spec §3.5: range deferred to extraction-time;
+    # for the fixture we put it at U24:Y36 so test asserts can pin it).
+    sub_factions = [
+        ("Founders", "Constitutional Loyalists", 0.40, 0.5, "Defend constitution"),
+        ("Founders", "Reformist Founders", 0.35, 0.6, "Modernise institutions"),
+        ("Founders", "Hardliner Founders", 0.25, 0.4, "Restore order"),
+        ("Capitalists", "Industrialists", 0.40, 0.5, "Heavy industry growth"),
+        ("Capitalists", "Extraction Cartels", 0.35, 0.4, "Mining priority"),
+    ]
+    for i, (parent, sf_name, infl, appr, goal) in enumerate(sub_factions, start=24):
+        pol.cell(row=i, column=21, value=parent)        # U
+        pol.cell(row=i, column=22, value=sf_name)       # V
+        pol.cell(row=i, column=23, value=infl)          # W influence
+        pol.cell(row=i, column=24, value=appr)          # X approval
+        pol.cell(row=i, column=25, value=goal)          # Y minor goal 1
+    _add_name(wb, "SubFactionsBlock", "Politics!$U$24:$Y$36")
+
+    # GoI Modifiers: PopCaptureBase B5:E15 (11 classes × 4 GoIs)
+    gm = wb.create_sheet("GoI Modifiers")
+    for i, (name, _, _, _) in enumerate(classes, start=5):
+        gm.cell(row=i, column=1, value=name)
+        for j in range(4):
+            gm.cell(row=i, column=2 + j, value=0.20 + (j * 0.10))
+    _add_name(wb, "PopCaptureBase", "'GoI Modifiers'!$B$5:$E$15")
+
+    # GoI Benefits: A4:D15
+    gb = wb.create_sheet("GoI Benefits")
+    benefits = [
+        ("Founders", 0.30, "Tax Holiday", "10% reduction"),
+        ("Founders", 0.45, "Free Press", "Public approval +"),
+        ("Founders", 0.60, "Constitutional Reform", "Stability +"),
+        ("Capitalists", 0.30, "Subsidy", "Industry yield +"),
+        ("Capitalists", 0.45, "Deregulation", "Crisis +"),
+        ("Capitalists", 0.60, "Charter", "New corp"),
+        ("Security", 0.30, "Patrol", "Security yield +"),
+        ("Security", 0.45, "Curfew", "Stability + / approval -"),
+        ("Security", 0.60, "Martial Law", "Big stab + / approval --"),
+        ("Unionists", 0.30, "Min Wage", "Bargain +"),
+        ("Unionists", 0.45, "Strike Right", "Bargain ++ / Crisis +"),
+        ("Unionists", 0.60, "Co-op Charter", "New worker co-op"),
+    ]
+    for i, (goi, thresh, name, desc) in enumerate(benefits, start=4):
+        gb.cell(row=i, column=1, value=goi)
+        gb.cell(row=i, column=2, value=thresh)
+        gb.cell(row=i, column=3, value=name)
+        gb.cell(row=i, column=4, value=desc)
+    _add_name(wb, "GoIBenefitsTable", "'GoI Benefits'!$A$4:$D$15")
+
+    # Parties sheet: 15 slots rows 4-18. Two seeded for tests; the rest blank.
+    pa = wb.create_sheet("Parties")
+    pa["A1"] = "Parties Master"
+    seeded = [
+        # name, founded, establishment, 6-axis stance, weighted stance(6), Mad, ClosestGoI, Compat[4], ClassCompat[15], Estimated, VoteShare
+        ("Liberty Now", True, 0.55, [5, 5, 4, 5, 4, 4]),
+        ("People's Voice", True, 0.40, [3, 3, 6, 3, 4, 5]),
+    ]
+    for slot, (name, founded, est, stance) in enumerate(seeded):
+        row = 4 + slot
+        pa.cell(row=row, column=1, value=name)
+        pa.cell(row=row, column=2, value=founded)
+        pa.cell(row=row, column=3, value=est)
+        for k, v in enumerate(stance):
+            pa.cell(row=row, column=4 + k, value=v)
+        # Weighted stance cols J-O (10-15) — same numbers for fixture
+        for k, v in enumerate(stance):
+            pa.cell(row=row, column=10 + k, value=v)
+        pa.cell(row=row, column=16, value=0.15)              # Mad Index P
+        pa.cell(row=row, column=17, value=["Founders", "Unionists"][slot])  # Closest GoI Q
+        # GoI compat R-Y (cols 18-21 for 4 live GoIs)
+        for j in range(4):
+            pa.cell(row=row, column=18 + j, value=0.6 - j * 0.1 if slot == 0 else 0.3 + j * 0.1)
+        # Class compat Z-AN (cols 26-40 for 15 class slots)
+        for j in range(15):
+            pa.cell(row=row, column=26 + j, value=0.5)
+        pa.cell(row=row, column=41, value=0.30 if slot == 0 else 0.25)  # Estimated Support AO
+        pa.cell(row=row, column=42, value=0.28 if slot == 0 else 0.22)  # Vote Share AP
+    _add_name(wb, "PartiesBlock", "Parties!$A$4:$AP$18")
+
+    # 11 map sheets, 40×40 each. Mostly empty terrain; a few seeded tiles.
+    map_sheets = ["Terrain", "Features", "Resources", "Slots", "Improvements",
+                  "Yield - Food", "Yield - Materials", "Yield - Ore",
+                  "Yield - Energy", "Yield - Housing", "Yield - Water"]
+    for sheet_name in map_sheets:
+        ms = wb.create_sheet(sheet_name)
+        for r in range(1, 41):
+            for c in range(1, 41):
+                if sheet_name == "Terrain":
+                    ms.cell(row=r, column=c, value="Crater Floor" if (r + c) % 2 == 0 else "Mare Plain")
+                elif sheet_name == "Slots":
+                    ms.cell(row=r, column=c, value=2)
+                elif sheet_name == "Features" and (r, c) == (5, 5):
+                    ms.cell(row=r, column=c, value="Lava Tube")
+                elif sheet_name == "Resources" and (r, c) == (10, 10):
+                    ms.cell(row=r, column=c, value="He-3")
+                elif sheet_name == "Improvements" and (r, c) == (10, 10):
+                    ms.cell(row=r, column=c, value="HE3-1")
+                elif sheet_name == "Yield - Energy" and (r, c) == (10, 10):
+                    ms.cell(row=r, column=c, value=-1)
+                else:
+                    ms.cell(row=r, column=c, value=0 if sheet_name.startswith("Yield") else "")
+
+    # Improvements manifest cols AO:AR (41-44) starting row 5.
+    imp = wb["Improvements"]
+    imp.cell(row=5, column=41, value="J10")           # Tile
+    imp.cell(row=5, column=42, value="Helium-3 Mine")  # Improvement Type
+    imp.cell(row=5, column=43, value="Corporate")      # Ownership Type
+    imp.cell(row=5, column=44, value="Lunar Extractives")  # Owner
+
+    # Lookup helper for terrain → palette colour.
+    pal = wb.create_sheet("MapPalette")
+    palette = [
+        ("Crater Floor", "#5a4a3a"),
+        ("Mare Plain", "#3c3a3a"),
+        ("Crater Rim", "#8a7560"),
+        ("Polar Ice Plain", "#c8d8e8"),
+        ("Empty", "#1a1a1a"),
+    ]
+    for i, (name, hex_) in enumerate(palette, start=1):
+        pal.cell(row=i, column=1, value=name)
+        pal.cell(row=i, column=2, value=hex_)
+    _add_name(wb, "TerrainPalette", "MapPalette!$A$1:$B$10")
+
+    # Coalitions sheet: 5 slots, rows 4-8.
+    # Cols: A name, B-P (15) party-membership flags, then derived aggregates.
+    co = wb.create_sheet("Coalitions")
+    co["A1"] = "Coalitions"
+    coalitions = [
+        ("Big Tent", [True, True] + [False] * 13, 2, 0.95, 0.50, "Reformist"),
+        ("Workers' Bloc", [False, True] + [False] * 13, 1, 0.40, 0.22, "Activist"),
+    ]
+    for slot, (name, flags, members, est, vote, approach) in enumerate(coalitions):
+        row = 4 + slot
+        co.cell(row=row, column=1, value=name)
+        for j, flag in enumerate(flags):
+            co.cell(row=row, column=2 + j, value=flag)
+        # Derived cols: Q=member count, R=total establishment, S=total vote share,
+        # T-Y=worldview centroid, Z=mad index, AA=approach
+        co.cell(row=row, column=17, value=members)
+        co.cell(row=row, column=18, value=est)
+        co.cell(row=row, column=19, value=vote)
+        for axis in range(6):
+            co.cell(row=row, column=20 + axis, value=4.0 + slot * 0.5)
+        co.cell(row=row, column=26, value=0.10)
+        co.cell(row=row, column=27, value=approach)
+    _add_name(wb, "CoalitionsBlock", "Coalitions!$A$4:$AA$8")
+
+    wb.save(out_path)
+    return out_path
+
+
+def _add_name(wb, name: str, attr_text: str) -> None:
+    wb.defined_names[name] = DefinedName(name, attr_text=attr_text)
+
+
+if __name__ == "__main__":
+    import sys
+    out = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("test_workbook.xlsx")
+    build(out)
+    print(f"Wrote {out}")

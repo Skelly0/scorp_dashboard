@@ -1,0 +1,19 @@
+[project]
+name = "scorp-dashboard"
+version = "0.1.0"
+description = "Player-facing dashboard for SCORP Colony — syncs Google Sheet to JSON for static frontend"
+requires-python = ">=3.11"
+dependencies = [
+    "openpyxl==3.1.5",
+    "requests==2.32.3",
+]
+
+[dependency-groups]
+dev = [
+    "pytest==8.3.3",
+    "pytest-cov==5.0.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["scripts"]

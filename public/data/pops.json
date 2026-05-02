@@ -1,0 +1,400 @@
+{
+  "classes": [
+    {
+      "additional_income": {
+        "dividends": 0.0,
+        "other": 0.0,
+        "subsidies": 0.2,
+        "total": 0.7,
+        "welfare": 0.5
+      },
+      "expected_sol": 0.55,
+      "income": {
+        "disposable_per_cap": 10.56,
+        "effective_tax_rate": 0.12,
+        "gross_per_cap": 12.0,
+        "income_tax_per_cap": 1.2,
+        "total_disposable": 10243.2,
+        "total_gross": 11640.0,
+        "wealth_tax_per_cap": 0.24
+      },
+      "name": "Bureaucrats",
+      "pop": 970,
+      "satisfaction": 0.4,
+      "social_privileges": 0.3,
+      "standard_of_living": 0.42,
+      "status": {
+        "abject_poverty": 0.1,
+        "literacy": 0.65,
+        "organisation": 0.3,
+        "radicalisation": 0.2,
+        "vote_share": 0.1,
+        "votes_total": 824.0
+      },
+      "wealth": {
+        "per_cap": 48.0,
+        "total": 46560.0
+      }
+    },
+    {
+      "additional_income": {
+        "dividends": 0.0,
+        "other": 0.0,
+        "subsidies": 0.2,
+        "total": 0.7,
+        "welfare": 0.5
+      },
+      "expected_sol": 0.55,
+      "income": {
+        "disposable_per_cap": 11.44,
+        "effective_tax_rate": 0.12,
+        "gross_per_cap": 13.0,
+        "income_tax_per_cap": 1.3,
+        "total_disposable": 2516.8,
+        "total_gross": 2860.0,
+        "wealth_tax_per_cap": 0.26
+      },
+      "name": "Capitalists",
+      "pop": 220,
+      "satisfaction": 0.4,
+      "social_privileges": 0.32,
+      "standard_of_living": 0.43,
+      "status": {
+        "abject_poverty": 0.1,
+        "literacy": 0.65,
+        "organisation": 0.3,
+        "radicalisation": 0.21,
+        "vote_share": 0.1,
+        "votes_total": 187.0
+      },
+      "wealth": {
+        "per_cap": 52.0,
+        "total": 11440.0
+      }
+    },
+    {
+      "additional_income": {
+        "dividends": 0.0,
+        "other": 0.0,
+        "subsidies": 0.2,
+        "total": 0.7,
+        "welfare": 0.5
+      },
+      "expected_sol": 0.55,
+      "income": {
+        "disposable_per_cap": 12.32,
+        "effective_tax_rate": 0.12,
+        "gross_per_cap": 14.0,
+        "income_tax_per_cap": 1.4,
+        "total_disposable": 13736.8,
+        "total_gross": 15610.0,
+        "wealth_tax_per_cap": 0.28
+      },
+      "name": "Engineers",
+      "pop": 1115,
+      "satisfaction": 0.4,
+      "social_privileges": 0.34,
+      "standard_of_living": 0.44,
+      "status": {
+        "abject_poverty": 0.1,
+        "literacy": 0.65,
+        "organisation": 0.3,
+        "radicalisation": 0.22,
+        "vote_share": 0.1,
+        "votes_total": 947.0
+      },
+      "wealth": {
+        "per_cap": 56.0,
+        "total": 62440.0
+      }
+    },
+    {
+      "additional_income": {
+        "dividends": 0.0,
+        "other": 0.0,
+        "subsidies": 0.2,
+        "total": 0.7,
+        "welfare": 0.5
+      },
+      "expected_sol": 0.55,
+      "income": {
+        "disposable_per_cap": 13.2,
+        "effective_tax_rate": 0.12,
+        "gross_per_cap": 15.0,
+        "income_tax_per_cap": 1.5,
+        "total_disposable": 23628.0,
+        "total_gross": 26850.0,
+        "wealth_tax_per_cap": 0.3
+      },
+      "name": "Scientists",
+      "pop": 1790,
+      "satisfaction": 0.4,
+      "social_privileges": 0.36,
+      "standard_of_living": 0.45,
+      "status": {
+        "abject_poverty": 0.1,
+        "literacy": 0.65,
+        "organisation": 0.3,
+        "radicalisation": 0.23,
+        "vote_share": 0.1,
+        "votes_total": 1521.0
+      },
+      "wealth": {
+        "per_cap": 60.0,
+        "total": 107400.0
+      }
+    },
+    {
+      "additional_income": {
+        "dividends": 0.0,
+        "other": 0.0,
+        "subsidies": 0.2,
+        "total": 0.7,
+        "welfare": 0.5
+      },
+      "expected_sol": 0.55,
+      "income": {
+        "disposable_per_cap": 14.08,
+        "effective_tax_rate": 0.12,
+        "gross_per_cap": 16.0,
+        "income_tax_per_cap": 1.6,
+        "total_disposable": 14643.2,
+        "total_gross": 16640.0,
+        "wealth_tax_per_cap": 0.32
+      },
+      "name": "Security",
+      "pop": 1040,
+      "satisfaction": 0.4,
+      "social_privileges": 0.38,
+      "standard_of_living": 0.46,
+      "status": {
+        "abject_poverty": 0.1,
+        "literacy": 0.65,
+        "organisation": 0.3,
+        "radicalisation": 0.24,
+        "vote_share": 0.1,
+        "votes_total": 884.0
+      },
+      "wealth": {
+        "per_cap": 64.0,
+        "total": 66560.0
+      }
+    },
+    {
+      "additional_income": {
+        "dividends": 0.0,
+        "other": 0.0,
+        "subsidies": 0.2,
+        "total": 0.7,
+        "welfare": 0.5
+      },
+      "expected_sol": 0.55,
+      "income": {
+        "disposable_per_cap": 14.96,
+        "effective_tax_rate": 0.12,
+        "gross_per_cap": 17.0,
+        "income_tax_per_cap": 1.7,
+        "total_disposable": 4413.2,
+        "total_gross": 5015.0,
+        "wealth_tax_per_cap": 0.34
+      },
+      "name": "Proprietors",
+      "pop": 295,
+      "satisfaction": 0.4,
+      "social_privileges": 0.4,
+      "standard_of_living": 0.47,
+      "status": {
+        "abject_poverty": 0.1,
+        "literacy": 0.65,
+        "organisation": 0.3,
+        "radicalisation": 0.25,
+        "vote_share": 0.1,
+        "votes_total": 250.0
+      },
+      "wealth": {
+        "per_cap": 68.0,
+        "total": 20060.0
+      }
+    },
+    {
+      "additional_income": {
+        "dividends": 0.0,
+        "other": 0.0,
+        "subsidies": 0.2,
+        "total": 0.7,
+        "welfare": 0.5
+      },
+      "expected_sol": 0.55,
+      "income": {
+        "disposable_per_cap": 15.84,
+        "effective_tax_rate": 0.12,
+        "gross_per_cap": 18.0,
+        "income_tax_per_cap": 1.8,
+        "total_disposable": 4672.8,
+        "total_gross": 5310.0,
+        "wealth_tax_per_cap": 0.36
+      },
+      "name": "Managerial",
+      "pop": 295,
+      "satisfaction": 0.4,
+      "social_privileges": 0.42,
+      "standard_of_living": 0.48,
+      "status": {
+        "abject_poverty": 0.1,
+        "literacy": 0.65,
+        "organisation": 0.3,
+        "radicalisation": 0.26,
+        "vote_share": 0.1,
+        "votes_total": 250.0
+      },
+      "wealth": {
+        "per_cap": 72.0,
+        "total": 21240.0
+      }
+    },
+    {
+      "additional_income": {
+        "dividends": 0.0,
+        "other": 0.0,
+        "subsidies": 0.2,
+        "total": 0.7,
+        "welfare": 0.5
+      },
+      "expected_sol": 0.55,
+      "income": {
+        "disposable_per_cap": 16.72,
+        "effective_tax_rate": 0.12,
+        "gross_per_cap": 19.0,
+        "income_tax_per_cap": 1.9,
+        "total_disposable": 18642.8,
+        "total_gross": 21185.0,
+        "wealth_tax_per_cap": 0.38
+      },
+      "name": "Agricultural Workers",
+      "pop": 1115,
+      "satisfaction": 0.4,
+      "social_privileges": 0.44,
+      "standard_of_living": 0.49,
+      "status": {
+        "abject_poverty": 0.1,
+        "literacy": 0.65,
+        "organisation": 0.3,
+        "radicalisation": 0.27,
+        "vote_share": 0.1,
+        "votes_total": 947.0
+      },
+      "wealth": {
+        "per_cap": 76.0,
+        "total": 84740.0
+      }
+    },
+    {
+      "additional_income": {
+        "dividends": 0.0,
+        "other": 0.0,
+        "subsidies": 0.2,
+        "total": 0.7,
+        "welfare": 0.5
+      },
+      "expected_sol": 0.55,
+      "income": {
+        "disposable_per_cap": 17.6,
+        "effective_tax_rate": 0.12,
+        "gross_per_cap": 20.0,
+        "income_tax_per_cap": 2.0,
+        "total_disposable": 73392.0,
+        "total_gross": 83400.0,
+        "wealth_tax_per_cap": 0.4
+      },
+      "name": "Industrial Workers",
+      "pop": 4170,
+      "satisfaction": 0.4,
+      "social_privileges": 0.46,
+      "standard_of_living": 0.5,
+      "status": {
+        "abject_poverty": 0.1,
+        "literacy": 0.65,
+        "organisation": 0.3,
+        "radicalisation": 0.28,
+        "vote_share": 0.1,
+        "votes_total": 3544.0
+      },
+      "wealth": {
+        "per_cap": 80.0,
+        "total": 333600.0
+      }
+    },
+    {
+      "additional_income": {
+        "dividends": 0.0,
+        "other": 0.0,
+        "subsidies": 0.2,
+        "total": 0.7,
+        "welfare": 0.5
+      },
+      "expected_sol": 0.55,
+      "income": {
+        "disposable_per_cap": 18.48,
+        "effective_tax_rate": 0.12,
+        "gross_per_cap": 21.0,
+        "income_tax_per_cap": 2.1,
+        "total_disposable": 71517.6,
+        "total_gross": 81270.0,
+        "wealth_tax_per_cap": 0.42
+      },
+      "name": "Service Workers",
+      "pop": 3870,
+      "satisfaction": 0.4,
+      "social_privileges": 0.48,
+      "standard_of_living": 0.51,
+      "status": {
+        "abject_poverty": 0.1,
+        "literacy": 0.65,
+        "organisation": 0.3,
+        "radicalisation": 0.29,
+        "vote_share": 0.1,
+        "votes_total": 3289.0
+      },
+      "wealth": {
+        "per_cap": 84.0,
+        "total": 325080.0
+      }
+    },
+    {
+      "additional_income": {
+        "dividends": 0.0,
+        "other": 0.0,
+        "subsidies": 0.2,
+        "total": 0.7,
+        "welfare": 0.5
+      },
+      "expected_sol": 0.55,
+      "income": {
+        "disposable_per_cap": 19.36,
+        "effective_tax_rate": 0.12,
+        "gross_per_cap": 22.0,
+        "income_tax_per_cap": 2.2,
+        "total_disposable": 19166.4,
+        "total_gross": 21780.0,
+        "wealth_tax_per_cap": 0.44
+      },
+      "name": "Skilled Tradesmen",
+      "pop": 990,
+      "satisfaction": 0.4,
+      "social_privileges": 0.5,
+      "standard_of_living": 0.52,
+      "status": {
+        "abject_poverty": 0.1,
+        "literacy": 0.65,
+        "organisation": 0.3,
+        "radicalisation": 0.3,
+        "vote_share": 0.1,
+        "votes_total": 841.0
+      },
+      "wealth": {
+        "per_cap": 88.0,
+        "total": 87120.0
+      }
+    }
+  ]
+}

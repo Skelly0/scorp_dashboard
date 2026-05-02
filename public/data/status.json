@@ -1,0 +1,55 @@
+{
+  "active_situations": [],
+  "crisis_factor": 0.38,
+  "overton": {
+    "authority": 4.5,
+    "corporate": 5.0,
+    "expansion": 5.0,
+    "faith": 4.0,
+    "materialist": 4.0,
+    "technocratic": 4.0
+  },
+  "population_total": 15870,
+  "resources": [
+    {
+      "current": 0.0,
+      "delta": -2.0,
+      "name": "Food"
+    },
+    {
+      "current": 200.0,
+      "delta": -4.0,
+      "name": "Materials"
+    },
+    {
+      "current": 100.0,
+      "delta": 0.0,
+      "name": "Ore"
+    },
+    {
+      "current": 50.0,
+      "delta": 0.0,
+      "name": "Energy"
+    },
+    {
+      "current": -500.0,
+      "delta": 0.0,
+      "name": "Housing"
+    },
+    {
+      "current": 0.0,
+      "delta": 1.0,
+      "name": "He-3"
+    },
+    {
+      "current": 60.0,
+      "delta": -1.0,
+      "name": "Water"
+    }
+  ],
+  "stability": 0.42,
+  "treasury": {
+    "delta": -12.0,
+    "money": 487.0
+  }
+}

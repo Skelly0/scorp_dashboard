@@ -1,0 +1,24 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local sync output (only the Action commits to public/data/)
+public/data/*.json.tmp

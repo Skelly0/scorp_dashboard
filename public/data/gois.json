@@ -1,0 +1,236 @@
+{
+  "gois": [
+    {
+      "active_benefits": {
+        "total": 3,
+        "unlocked": 1,
+        "unlocked_list": [
+          "Tax Holiday"
+        ]
+      },
+      "approach": "Reformist",
+      "approval": 0.55,
+      "derived_influence": 0.3,
+      "effective_worldview": {
+        "authority": 4.1,
+        "corporate": 4.2,
+        "expansion": 4.0,
+        "faith": 4.4,
+        "materialist": 4.5,
+        "technocratic": 4.3
+      },
+      "mad_index": 0.1,
+      "main_class": "Bureaucrats",
+      "name": "Founders",
+      "sub_factions": [
+        {
+          "approval": 0.5,
+          "influence": 0.4,
+          "minor_goals": [
+            "Defend constitution"
+          ],
+          "name": "Constitutional Loyalists"
+        },
+        {
+          "approval": 0.6,
+          "influence": 0.35,
+          "minor_goals": [
+            "Modernise institutions"
+          ],
+          "name": "Reformist Founders"
+        },
+        {
+          "approval": 0.4,
+          "influence": 0.25,
+          "minor_goals": [
+            "Restore order"
+          ],
+          "name": "Hardliner Founders"
+        }
+      ]
+    },
+    {
+      "active_benefits": {
+        "total": 3,
+        "unlocked": 2,
+        "unlocked_list": [
+          "Subsidy",
+          "Deregulation"
+        ]
+      },
+      "approach": "Pragmatic",
+      "approval": 0.5,
+      "derived_influence": 0.28,
+      "effective_worldview": {
+        "authority": 4.3,
+        "corporate": 4.4,
+        "expansion": 4.2,
+        "faith": 4.600000000000001,
+        "materialist": 4.7,
+        "technocratic": 4.5
+      },
+      "mad_index": 0.15,
+      "main_class": "Bureaucrats",
+      "name": "Capitalists",
+      "sub_factions": [
+        {
+          "approval": 0.5,
+          "influence": 0.4,
+          "minor_goals": [
+            "Heavy industry growth"
+          ],
+          "name": "Industrialists"
+        },
+        {
+          "approval": 0.4,
+          "influence": 0.35,
+          "minor_goals": [
+            "Mining priority"
+          ],
+          "name": "Extraction Cartels"
+        }
+      ]
+    },
+    {
+      "active_benefits": {
+        "total": 3,
+        "unlocked": 3,
+        "unlocked_list": [
+          "Patrol",
+          "Curfew",
+          "Martial Law"
+        ]
+      },
+      "approach": "Defensive",
+      "approval": 0.6,
+      "derived_influence": 0.2,
+      "effective_worldview": {
+        "authority": 4.5,
+        "corporate": 4.600000000000001,
+        "expansion": 4.4,
+        "faith": 4.800000000000001,
+        "materialist": 4.9,
+        "technocratic": 4.7
+      },
+      "mad_index": 0.2,
+      "main_class": "Bureaucrats",
+      "name": "Security",
+      "sub_factions": []
+    },
+    {
+      "active_benefits": {
+        "total": 3,
+        "unlocked": 4,
+        "unlocked_list": [
+          "Min Wage",
+          "Strike Right",
+          "Co-op Charter"
+        ]
+      },
+      "approach": "Activist",
+      "approval": 0.45,
+      "derived_influence": 0.22,
+      "effective_worldview": {
+        "authority": 4.699999999999999,
+        "corporate": 4.8,
+        "expansion": 4.6,
+        "faith": 5.0,
+        "materialist": 5.1,
+        "technocratic": 4.899999999999999
+      },
+      "mad_index": 0.25,
+      "main_class": "Bureaucrats",
+      "name": "Unionists",
+      "sub_factions": []
+    }
+  ],
+  "pop_capture_matrix": {
+    "classes": [
+      "Bureaucrats",
+      "Capitalists",
+      "Engineers",
+      "Scientists",
+      "Security",
+      "Proprietors",
+      "Managerial",
+      "Agricultural Workers",
+      "Industrial Workers",
+      "Service Workers",
+      "Skilled Tradesmen"
+    ],
+    "gois": [
+      "Founders",
+      "Capitalists",
+      "Security",
+      "Unionists"
+    ],
+    "values": [
+      [
+        0.2,
+        0.3,
+        0.4,
+        0.5
+      ],
+      [
+        0.2,
+        0.3,
+        0.4,
+        0.5
+      ],
+      [
+        0.2,
+        0.3,
+        0.4,
+        0.5
+      ],
+      [
+        0.2,
+        0.3,
+        0.4,
+        0.5
+      ],
+      [
+        0.2,
+        0.3,
+        0.4,
+        0.5
+      ],
+      [
+        0.2,
+        0.3,
+        0.4,
+        0.5
+      ],
+      [
+        0.2,
+        0.3,
+        0.4,
+        0.5
+      ],
+      [
+        0.2,
+        0.3,
+        0.4,
+        0.5
+      ],
+      [
+        0.2,
+        0.3,
+        0.4,
+        0.5
+      ],
+      [
+        0.2,
+        0.3,
+        0.4,
+        0.5
+      ],
+      [
+        0.2,
+        0.3,
+        0.4,
+        0.5
+      ]
+    ]
+  }
+}
