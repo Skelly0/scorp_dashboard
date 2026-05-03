@@ -123,6 +123,21 @@ def build(out_path: Path) -> Path:
     _add_name(wb, "PopsimGrossPerCap", "Popsim!$B$61:$B$75")
     _add_name(wb, "PopsimDisposablePerCap", "Popsim!$G$61:$G$75")
     _add_name(wb, "PopsimWealthPerCap", "Popsim!$I$61:$I$75")
+    # WealthIncomePerClass: full A:J × 15 rows. Extractor indexes within each row.
+    # Live workbook puts this at A62:J76; fixture data lives one row earlier.
+    _add_name(wb, "WealthIncomePerClass", "Popsim!$A$61:$J$75")
+
+    # WorkforceSupplyDemand: A name, B supply, C demand, D fill ratio, E unemployment.
+    # 14 rows in live workbook; seed deterministic data for first 11 classes.
+    for i, (name, _, p, _w) in enumerate(classes, start=24):
+        pop.cell(row=i, column=1, value=name)
+        supply = float(p)
+        demand = float(p) * 1.05
+        pop.cell(row=i, column=2, value=supply)
+        pop.cell(row=i, column=3, value=demand)
+        pop.cell(row=i, column=4, value=min(supply / demand, 1.0))
+        pop.cell(row=i, column=5, value=0.05 + (i - 24) * 0.01)
+    _add_name(wb, "WorkforceSupplyDemand", "Popsim!$A$24:$E$37")
 
     # Standard of Living: rows 97-111, cols B (SoL), C (Expected SoL).
     for i, _ in enumerate(classes, start=97):

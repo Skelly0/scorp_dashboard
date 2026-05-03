@@ -33,6 +33,8 @@ BASE_REQUIRED_RANGES: list[str] = [
     "PopsimVotesTotal",
     "PopsimVoteShare",
     "PopsimSatisfaction",
+    "WealthIncomePerClass",
+    "WorkforceSupplyDemand",
     # Wages & Welfare
     "AdditionalIncomeRange",
     # State of the Colony — headline metrics

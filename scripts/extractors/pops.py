@@ -25,12 +25,13 @@ def extract(wb) -> dict[str, Any]:
     sat = read_named_range(wb, "PopsimSatisfaction")
     add_income = _read_additional_income_breakdown(wb)
 
-    # Read tax/cap & effective-rate via direct cell access — these aren't named ranges
-    # but live at known offsets in the Wealth & Income block (rows 61-75).
-    income_tax = [coerce_number(wb["Popsim"].cell(row=61 + i, column=4).value) for i in range(15)]
-    wealth_tax = [coerce_number(wb["Popsim"].cell(row=61 + i, column=5).value) for i in range(15)]
-    effective_rate = [coerce_number(wb["Popsim"].cell(row=61 + i, column=6).value) for i in range(15)]
-    total_post_tax = [coerce_number(wb["Popsim"].cell(row=61 + i, column=10).value) for i in range(15)]
+    # WealthIncomePerClass: A:J × 15 rows. Column offsets within each row:
+    #   3=D income tax/cap, 4=E wealth tax/cap, 5=F effective rate, 9=J total post-tax.
+    wealth_income = read_named_range(wb, "WealthIncomePerClass")
+
+    # WorkforceSupplyDemand: A:E × 14 rows. Indexed by class name (col 0)
+    # because the row order isn't guaranteed to match ClassTable.
+    workforce_by_class = _index_workforce(read_named_range(wb, "WorkforceSupplyDemand"))
 
     out: list[dict[str, Any]] = []
     for i, row in enumerate(classes):
@@ -40,6 +41,7 @@ def extract(wb) -> dict[str, Any]:
             continue
         g = coerce_number(gross[i][0]) if i < len(gross) else None
         d = coerce_number(disposable[i][0]) if i < len(disposable) else None
+        wi_row = wealth_income[i] if i < len(wealth_income) else []
         out.append({
             "name": name,
             "pop": int(pop),
@@ -49,11 +51,11 @@ def extract(wb) -> dict[str, Any]:
             "income": {
                 "gross_per_cap": g,
                 "total_gross": (pop * g) if (pop is not None and g is not None) else None,
-                "income_tax_per_cap": income_tax[i],
-                "wealth_tax_per_cap": wealth_tax[i],
-                "effective_tax_rate": effective_rate[i],
+                "income_tax_per_cap": _at(wi_row, 3),
+                "wealth_tax_per_cap": _at(wi_row, 4),
+                "effective_tax_rate": _at(wi_row, 5),
                 "disposable_per_cap": d,
-                "total_disposable": total_post_tax[i],
+                "total_disposable": _at(wi_row, 9),
             },
             "wealth": {
                 "per_cap": coerce_number(wealth_pc[i][0]) if i < len(wealth_pc) else None,
@@ -68,10 +70,36 @@ def extract(wb) -> dict[str, Any]:
                 "votes_total": coerce_number(votes_total[i][0]) if i < len(votes_total) else None,
                 "vote_share": coerce_number(vote_share[i][0]) if i < len(vote_share) else None,
             },
+            "workforce": workforce_by_class.get(name, _empty_workforce()),
             "satisfaction": coerce_number(sat[i][0]) if i < len(sat) else None,
         })
 
     return {"classes": out}
+
+
+def _at(row, idx):
+    if idx >= len(row):
+        return None
+    return coerce_number(row[idx])
+
+
+def _empty_workforce():
+    return {"supply": None, "demand": None, "fill_ratio": None, "unemployment": None}
+
+
+def _index_workforce(rows) -> dict[str, dict[str, float | None]]:
+    out: dict[str, dict[str, float | None]] = {}
+    for r in rows:
+        if not r or not r[0]:
+            continue
+        name = r[0]
+        out[name] = {
+            "supply": coerce_number(r[1]) if len(r) > 1 else None,
+            "demand": coerce_number(r[2]) if len(r) > 2 else None,
+            "fill_ratio": coerce_number(r[3]) if len(r) > 3 else None,
+            "unemployment": coerce_number(r[4]) if len(r) > 4 else None,
+        }
+    return out
 
 
 def _additional_income_row(rows, i):

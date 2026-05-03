@@ -55,12 +55,6 @@
             <Bar label="SoL" value={current.standard_of_living} max={5} />
             <Bar label="Expected" value={current.expected_sol} max={5} />
             <Bar label="Privilege" value={current.social_privileges} max={1} />
-            <Bar
-              label="Satisfaction"
-              value={current.satisfaction}
-              max={1}
-              variant={current.satisfaction != null && current.satisfaction < 0.4 ? 'crit' : 'good'}
-            />
           </div>
         </div>
 
@@ -124,8 +118,29 @@
               <Bar label="Organisation" value={current.status?.organisation} max={1} />
             </div>
             <div>
-              <Bar label="Literacy" value={current.status?.literacy} max={1} variant="good" />
+              <Bar label="Education" value={current.status?.literacy} max={1} variant="good" />
               <Bar label="Vote Share" value={current.status?.vote_share} max={1} />
+            </div>
+          </div>
+        </div>
+
+        <div class="s-card md:col-span-2 xl:col-span-3">
+          <div class="s-card-header"><h3>Workforce</h3></div>
+          <div class="s-card-pad grid grid-cols-1 md:grid-cols-2 gap-x-6">
+            <dl class="kv">
+              <dt>Supply</dt>
+              <dd>{current.workforce?.supply != null ? Math.round(current.workforce.supply).toLocaleString() : '—'}</dd>
+              <dt>Demand</dt>
+              <dd>{current.workforce?.demand != null ? Math.round(current.workforce.demand).toLocaleString() : '—'}</dd>
+            </dl>
+            <div>
+              <Bar label="Fill Ratio" value={current.workforce?.fill_ratio} max={1} variant="good" />
+              <Bar
+                label="Unemployment"
+                value={current.workforce?.unemployment}
+                max={1}
+                variant={current.workforce?.unemployment != null && current.workforce.unemployment > 0.15 ? 'crit' : ''}
+              />
             </div>
           </div>
         </div>
