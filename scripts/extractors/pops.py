@@ -23,7 +23,7 @@ def extract(wb) -> dict[str, Any]:
     votes_total = read_named_range(wb, "PopsimVotesTotal")
     vote_share = read_named_range(wb, "PopsimVoteShare")
     sat = read_named_range(wb, "PopsimSatisfaction")
-    add_income = read_named_range(wb, "AdditionalIncomeBreakdown")
+    add_income = _read_additional_income_breakdown(wb)
 
     # Read tax/cap & effective-rate via direct cell access — these aren't named ranges
     # but live at known offsets in the Wealth & Income block (rows 61-75).
@@ -85,3 +85,17 @@ def _additional_income_row(rows, i):
         "other": coerce_number(r[4]) if len(r) > 4 else None,
         "total": coerce_number(r[5]) if len(r) > 5 else None,
     }
+
+
+def _read_additional_income_breakdown(wb):
+    """Read Wages & Welfare!A23:F37 directly (no named range exists for the
+    full 6-col breakdown; the live workbook only names the 2-col mirror).
+    Returns rows in the same shape `_additional_income_row` expects:
+    [class_name, welfare, dividends, subsidies, other, total]."""
+    if "Wages & Welfare" not in wb.sheetnames:
+        return []
+    ws = wb["Wages & Welfare"]
+    rows = []
+    for r in range(23, 38):  # 15 class slots
+        rows.append([ws.cell(row=r, column=c).value for c in range(1, 7)])
+    return rows

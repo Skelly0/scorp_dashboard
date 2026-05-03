@@ -1,6 +1,12 @@
 {
-  "active_situations": [],
-  "crisis_factor": 0.38,
+  "active_situations": [
+    {
+      "crisis_factor": null,
+      "description": "Description",
+      "name": "Name"
+    }
+  ],
+  "crisis_factor": 0.0,
   "overton": {
     "authority": 4.5,
     "corporate": 5.0,
@@ -9,47 +15,52 @@
     "materialist": 4.0,
     "technocratic": 4.0
   },
-  "population_total": 15870,
+  "population_total": 15000,
   "resources": [
     {
       "current": 0.0,
-      "delta": -2.0,
+      "delta": 179.75,
       "name": "Food"
     },
     {
-      "current": 200.0,
-      "delta": -4.0,
+      "current": 3000.0,
+      "delta": -32.25,
       "name": "Materials"
     },
     {
-      "current": 100.0,
-      "delta": 0.0,
+      "current": 1500.0,
+      "delta": 67.25,
       "name": "Ore"
     },
     {
-      "current": 50.0,
-      "delta": 0.0,
+      "current": 750.0,
+      "delta": 321.75,
       "name": "Energy"
     },
     {
-      "current": -500.0,
-      "delta": 0.0,
+      "current": 0.0,
+      "delta": 3625.0,
       "name": "Housing"
     },
     {
-      "current": 0.0,
-      "delta": 1.0,
-      "name": "He-3"
+      "current": 7500.0,
+      "delta": 57087.95,
+      "name": "Money"
     },
     {
-      "current": 60.0,
-      "delta": -1.0,
+      "current": 0.0,
+      "delta": 26.0,
+      "name": "Helium-3"
+    },
+    {
+      "current": 900.0,
+      "delta": 14.0,
       "name": "Water"
     }
   ],
-  "stability": 0.42,
+  "stability": 0.4,
   "treasury": {
-    "delta": -12.0,
-    "money": 487.0
+    "delta": 57087.95,
+    "money": 13650.0
   }
 }

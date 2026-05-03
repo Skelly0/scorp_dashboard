@@ -1,5 +1,11 @@
 {
-  "active": [],
+  "active": [
+    {
+      "crisis_factor": null,
+      "description": "Crisis Contribution",
+      "name": "Name"
+    }
+  ],
   "ended": [],
   "stability_modifiers": [],
   "tier_ladder": []

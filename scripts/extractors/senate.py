@@ -1,4 +1,8 @@
-"""Extract data for the Senate page (sheet-flag gated)."""
+"""Extract data for the Senate page (sheet-flag gated).
+
+Live workbook has no `CoalitionsBlock` or `PartiesBlock` named ranges; the
+extractor reads both sheets via direct cell references.
+"""
 from __future__ import annotations
 
 from typing import Any
@@ -18,9 +22,31 @@ def extract(wb) -> dict[str, Any]:
     }
 
 
+def _read_coalitions_block(wb):
+    """Read Coalitions!A4:AA8 directly (5 slots × 27 cols)."""
+    if "Coalitions" not in wb.sheetnames:
+        return []
+    ws = wb["Coalitions"]
+    rows = []
+    for r in range(4, 9):
+        rows.append([ws.cell(row=r, column=c).value for c in range(1, 28)])
+    return rows
+
+
+def _read_parties_block(wb):
+    """Read Parties!A4:AP18 directly (15 slots × 42 cols)."""
+    if "Parties" not in wb.sheetnames:
+        return []
+    ws = wb["Parties"]
+    rows = []
+    for r in range(4, 19):
+        rows.append([ws.cell(row=r, column=c).value for c in range(1, 43)])
+    return rows
+
+
 def _coalitions(wb) -> list[dict[str, Any]]:
-    block = read_named_range(wb, "CoalitionsBlock")
-    parties_block = read_named_range(wb, "PartiesBlock")
+    block = _read_coalitions_block(wb)
+    parties_block = _read_parties_block(wb)
     party_names = [r[0] for r in parties_block if r and r[0] and r[1] is True]
 
     out = []
@@ -53,7 +79,7 @@ def _coalitions(wb) -> list[dict[str, Any]]:
 
 
 def _goi_capture(wb) -> dict[str, Any]:
-    parties_block = read_named_range(wb, "PartiesBlock")
+    parties_block = _read_parties_block(wb)
     goi_names = [r[0] for r in read_named_range(wb, "GoINames") if r and r[0]]
 
     parties = []

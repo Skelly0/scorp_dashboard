@@ -3,145 +3,226 @@
     {
       "active_benefits": {
         "total": 3,
-        "unlocked": 1,
-        "unlocked_list": [
-          "Tax Holiday"
-        ]
+        "unlocked": 0,
+        "unlocked_list": []
       },
-      "approach": "Reformist",
-      "approval": 0.55,
-      "derived_influence": 0.3,
+      "approach": "Authoritarian",
+      "approval": 0.5,
+      "derived_influence": 0.2650032265,
       "effective_worldview": {
-        "authority": 4.1,
-        "corporate": 4.2,
-        "expansion": 4.0,
-        "faith": 4.4,
-        "materialist": 4.5,
-        "technocratic": 4.3
+        "authority": 2.81,
+        "corporate": 3.91,
+        "expansion": 3.755,
+        "faith": 5.255,
+        "materialist": 4.52,
+        "technocratic": 4.47
       },
-      "mad_index": 0.1,
-      "main_class": "Bureaucrats",
-      "name": "Founders",
+      "mad_index": -0.0375,
+      "main_class": "Security",
+      "name": "Administration",
       "sub_factions": [
         {
           "approval": 0.5,
-          "influence": 0.4,
+          "influence": 0.25,
           "minor_goals": [
-            "Defend constitution"
+            "Resist emergency powers",
+            "Codify the charter",
+            "Strengthen judicial review"
           ],
           "name": "Constitutional Loyalists"
         },
         {
-          "approval": 0.6,
-          "influence": 0.35,
+          "approval": 0.5,
+          "influence": 0.22,
           "minor_goals": [
-            "Modernise institutions"
+            "Public ombudsman office",
+            "Council vote transparency",
+            "Open-data initiative"
           ],
-          "name": "Reformist Founders"
+          "name": "Reformist Administrators"
         },
         {
-          "approval": 0.4,
-          "influence": 0.25,
+          "approval": 0.5,
+          "influence": 0.18,
           "minor_goals": [
-            "Restore order"
+            "Re-found the original charter",
+            "Memorial holidays for Earth",
+            "Anti-decadence policy"
           ],
-          "name": "Hardliner Founders"
+          "name": "Hardliner Administrators"
+        },
+        {
+          "approval": 0.5,
+          "influence": 0.2,
+          "minor_goals": [
+            "Expand surveillance corps",
+            "Curfews in unrest zones",
+            "Restrict assembly rights"
+          ],
+          "name": "Order Faction"
+        },
+        {
+          "approval": 0.5,
+          "influence": 0.15,
+          "minor_goals": [
+            "Build defensive bunker network",
+            "Stockpile munitions",
+            "Establish patrol corridors"
+          ],
+          "name": "Defence Faction"
         }
       ]
     },
     {
       "active_benefits": {
         "total": 3,
-        "unlocked": 2,
-        "unlocked_list": [
-          "Subsidy",
-          "Deregulation"
-        ]
+        "unlocked": 0,
+        "unlocked_list": []
       },
-      "approach": "Pragmatic",
+      "approach": "Marketist",
       "approval": 0.5,
-      "derived_influence": 0.28,
+      "derived_influence": 0.2036997204,
       "effective_worldview": {
-        "authority": 4.3,
-        "corporate": 4.4,
-        "expansion": 4.2,
-        "faith": 4.600000000000001,
-        "materialist": 4.7,
-        "technocratic": 4.5
+        "authority": 3.325,
+        "corporate": 7.0,
+        "expansion": 6.3,
+        "faith": 3.05,
+        "materialist": 2.325,
+        "technocratic": 4.05
       },
-      "mad_index": 0.15,
-      "main_class": "Bureaucrats",
-      "name": "Capitalists",
+      "mad_index": -0.0275,
+      "main_class": "Capitalists",
+      "name": "Corporate",
       "sub_factions": [
         {
           "approval": 0.5,
           "influence": 0.4,
           "minor_goals": [
-            "Heavy industry growth"
+            "Workforce flexibility act",
+            "Lower minimum wages",
+            "Capital tax exemptions"
           ],
           "name": "Industrialists"
         },
         {
-          "approval": 0.4,
+          "approval": 0.5,
           "influence": 0.35,
           "minor_goals": [
-            "Mining priority"
+            "Permit new lava-tube extraction",
+            "Strip-mine regulations",
+            "Override environmental zone"
           ],
           "name": "Extraction Cartels"
+        },
+        {
+          "approval": 0.5,
+          "influence": 0.25,
+          "minor_goals": [
+            "Public stock listings",
+            "Sovereign bond market",
+            "Foreign investment treaty"
+          ],
+          "name": "High Finance"
         }
       ]
     },
     {
       "active_benefits": {
         "total": 3,
-        "unlocked": 3,
+        "unlocked": 1,
         "unlocked_list": [
-          "Patrol",
-          "Curfew",
-          "Martial Law"
+          "Collective Bargaining"
         ]
       },
-      "approach": "Defensive",
-      "approval": 0.6,
-      "derived_influence": 0.2,
+      "approach": "Democratic",
+      "approval": 0.5,
+      "derived_influence": 0.3286728329,
       "effective_worldview": {
-        "authority": 4.5,
-        "corporate": 4.600000000000001,
-        "expansion": 4.4,
-        "faith": 4.800000000000001,
-        "materialist": 4.9,
-        "technocratic": 4.7
+        "authority": 6.05,
+        "corporate": 1.0,
+        "expansion": 3.65,
+        "faith": 4.35,
+        "materialist": 3.8,
+        "technocratic": 5.1
       },
-      "mad_index": 0.2,
-      "main_class": "Bureaucrats",
-      "name": "Security",
-      "sub_factions": []
+      "mad_index": -0.0075,
+      "main_class": "Industrial Workers",
+      "name": "Unions",
+      "sub_factions": [
+        {
+          "approval": 0.5,
+          "influence": 0.5,
+          "minor_goals": [
+            "Sectoral wage councils",
+            "Strike protection law",
+            "Mandatory worker representation"
+          ],
+          "name": "Labour Caucus"
+        },
+        {
+          "approval": 0.5,
+          "influence": 0.3,
+          "minor_goals": [
+            "Worker-buyout fund",
+            "Cooperative housing block",
+            "Transition tax credits"
+          ],
+          "name": "Co-op Movement"
+        },
+        {
+          "approval": 0.5,
+          "influence": 0.2,
+          "minor_goals": [
+            "Direct delegate councils",
+            "Recall mechanism for officials",
+            "Mass assemblies on policy"
+          ],
+          "name": "Syndicalists"
+        }
+      ]
     },
     {
       "active_benefits": {
         "total": 3,
-        "unlocked": 4,
-        "unlocked_list": [
-          "Min Wage",
-          "Strike Right",
-          "Co-op Charter"
-        ]
+        "unlocked": 0,
+        "unlocked_list": []
       },
-      "approach": "Activist",
-      "approval": 0.45,
-      "derived_influence": 0.22,
+      "approach": "Secular",
+      "approval": 0.5,
+      "derived_influence": 0.2026242203,
       "effective_worldview": {
-        "authority": 4.699999999999999,
-        "corporate": 4.8,
-        "expansion": 4.6,
-        "faith": 5.0,
-        "materialist": 5.1,
-        "technocratic": 4.899999999999999
+        "authority": 4.2,
+        "corporate": 4.5,
+        "expansion": 7.0,
+        "faith": 2.6,
+        "materialist": 3.7,
+        "technocratic": 1.9
       },
-      "mad_index": 0.25,
-      "main_class": "Bureaucrats",
-      "name": "Unionists",
-      "sub_factions": []
+      "mad_index": -0.0425,
+      "main_class": "Scientists",
+      "name": "Research",
+      "sub_factions": [
+        {
+          "approval": 0.5,
+          "influence": 0.6,
+          "minor_goals": [
+            "Survey distant lava tube",
+            "Pre-fab habitat shipment",
+            "Volunteer pioneer registry"
+          ],
+          "name": "Frontier Bloc"
+        },
+        {
+          "approval": 0.5,
+          "influence": 0.4,
+          "minor_goals": [
+            "AI ethics charter",
+            "High-energy computer fabrication",
+            "Researcher exchange programme"
+          ],
+          "name": "Scientific Vanguard"
+        }
+      ]
     }
   ],
   "pop_capture_matrix": {
@@ -153,83 +234,83 @@
       "Security",
       "Proprietors",
       "Managerial",
-      "Agricultural Workers",
+      "Botanists",
       "Industrial Workers",
-      "Service Workers",
-      "Skilled Tradesmen"
+      "Extraction Workers",
+      "Service Workers"
     ],
     "gois": [
-      "Founders",
-      "Capitalists",
-      "Security",
-      "Unionists"
+      "Administration",
+      "Corporate",
+      "Unions",
+      "Research"
     ],
     "values": [
       [
-        0.2,
-        0.3,
-        0.4,
-        0.5
+        11.0,
+        2.0,
+        1.0,
+        2.0
       ],
       [
-        0.2,
-        0.3,
-        0.4,
-        0.5
+        3.0,
+        12.0,
+        0.0,
+        3.0
       ],
       [
-        0.2,
-        0.3,
-        0.4,
-        0.5
+        5.0,
+        4.0,
+        3.0,
+        6.0
       ],
       [
-        0.2,
-        0.3,
-        0.4,
-        0.5
+        4.0,
+        2.0,
+        2.0,
+        10.0
       ],
       [
-        0.2,
-        0.3,
-        0.4,
-        0.5
+        14.0,
+        1.0,
+        1.0,
+        2.0
       ],
       [
-        0.2,
-        0.3,
-        0.4,
-        0.5
+        4.0,
+        6.0,
+        2.0,
+        2.0
       ],
       [
-        0.2,
-        0.3,
-        0.4,
-        0.5
+        5.0,
+        7.0,
+        2.0,
+        3.0
       ],
       [
-        0.2,
-        0.3,
-        0.4,
-        0.5
+        3.0,
+        2.0,
+        2.0,
+        8.0
       ],
       [
-        0.2,
-        0.3,
-        0.4,
-        0.5
+        2.0,
+        3.0,
+        10.0,
+        1.0
       ],
       [
-        0.2,
-        0.3,
-        0.4,
-        0.5
+        2.0,
+        4.0,
+        8.0,
+        2.0
       ],
       [
-        0.2,
-        0.3,
-        0.4,
-        0.5
+        2.0,
+        3.0,
+        6.0,
+        1.0
       ]
     ]
   }

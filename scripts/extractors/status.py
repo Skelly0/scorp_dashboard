@@ -18,8 +18,8 @@ OVERTON_AXES = [
 def extract(wb) -> dict[str, Any]:
     return {
         "treasury": _treasury(wb),
-        "stability": _scalar(wb, "Politics", "B1"),
-        "crisis_factor": _scalar(wb, "Politics", "E1"),
+        "stability": _scalar_named(wb, "Stability"),
+        "crisis_factor": _scalar_named(wb, "CrisisFactor"),
         "population_total": _population_total(wb),
         "resources": _resources(wb),
         "overton": _overton(wb),
@@ -28,16 +28,21 @@ def extract(wb) -> dict[str, Any]:
 
 
 def _treasury(wb) -> dict[str, Any]:
-    money = read_named_range(wb, "TreasuryMoney")
-    delta = read_named_range(wb, "TreasuryMoneyDelta")
-    return {
-        "money": coerce_number(money[0][0]) if money else None,
-        "delta": coerce_number(delta[0][0]) if delta else None,
-    }
-
-
-def _scalar(wb, sheet: str, cell: str) -> float | None:
-    return coerce_number(wb[sheet][cell].value)
+    """Read treasury balance from Colony!B3, derive delta from the Money row
+    in the resource table (Income/turn − Upkeep/turn at row 13)."""
+    money = None
+    delta = None
+    if "Colony" in wb.sheetnames:
+        ws = wb["Colony"]
+        money = coerce_number(ws["B3"].value)
+        # Find the Money row in the resource table (rows 8-15)
+        for r in range(8, 16):
+            if str(ws.cell(row=r, column=1).value or "").strip().lower() == "money":
+                income = coerce_number(ws.cell(row=r, column=3).value) or 0
+                upkeep = coerce_number(ws.cell(row=r, column=4).value) or 0
+                delta = income - upkeep
+                break
+    return {"money": money, "delta": delta}
 
 
 def _population_total(wb) -> int:
@@ -51,15 +56,23 @@ def _population_total(wb) -> int:
 
 
 def _resources(wb) -> list[dict[str, Any]]:
-    rows = read_named_range(wb, "ResourceFlows")
+    """Read Colony!A8:D15 — name / reserve / income/turn / upkeep/turn.
+    Delta = income − upkeep."""
+    if "Colony" not in wb.sheetnames:
+        return []
+    ws = wb["Colony"]
     out = []
-    for row in rows:
-        if not row or row[0] in (None, ""):
+    for r in range(8, 16):
+        name = ws.cell(row=r, column=1).value
+        if not name or name == "":
             continue
+        reserve = coerce_number(ws.cell(row=r, column=2).value)
+        income = coerce_number(ws.cell(row=r, column=3).value) or 0
+        upkeep = coerce_number(ws.cell(row=r, column=4).value) or 0
         out.append({
-            "name": row[0],
-            "current": coerce_number(row[1]),
-            "delta": coerce_number(row[2]),
+            "name": name,
+            "current": reserve,
+            "delta": income - upkeep,
         })
     return out
 
@@ -76,7 +89,8 @@ def _scalar_named(wb, name: str) -> float | None:
 
 
 def _active_situations(wb) -> list[dict[str, Any]]:
-    """Return [] if the Wave-2 Situations sheet doesn't exist yet."""
+    """Live Situations sheet layout: Name | Crisis Contribution | Description | Tier.
+    Returns [] if the sheet doesn't exist."""
     if "Situations" not in wb.sheetnames:
         return []
     out: list[dict[str, Any]] = []
@@ -84,8 +98,14 @@ def _active_situations(wb) -> list[dict[str, Any]]:
     for row in ws.iter_rows(min_row=2, values_only=True):
         if not row or row[0] in (None, ""):
             continue
-        name, desc, crisis = (row + (None, None, None))[:3]
+        # Tolerate both 3-col fixture and 4-col live layouts
+        padded = list(row) + [None, None, None, None]
+        name, crisis, desc, _tier = padded[:4]
         if crisis == "Ended":
             continue  # Status banner shows ongoing only.
-        out.append({"name": name, "description": desc, "crisis_factor": coerce_number(crisis)})
+        out.append({
+            "name": name,
+            "description": desc,
+            "crisis_factor": coerce_number(crisis),
+        })
     return out

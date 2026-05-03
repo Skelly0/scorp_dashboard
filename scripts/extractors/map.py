@@ -120,5 +120,23 @@ def _col_letter(n):
 
 
 def _palette(wb, named_range):
+    """Terrain palette. The live workbook doesn't expose a TerrainPalette named
+    range; the dashboard owns the colour mapping. We still try the named range
+    as a fallback so future backend additions Just Work."""
     rows = read_named_range(wb, named_range)
-    return {r[0]: r[1] for r in rows if r and r[0]}
+    if rows:
+        return {r[0]: r[1] for r in rows if r and r[0]}
+    return dict(TERRAIN_PALETTE)
+
+
+# Hardcoded fallback palette. Keep in sync with terrain types added to the live workbook.
+TERRAIN_PALETTE = {
+    "Crater Floor": "#5a4a3a",
+    "Mare Plain": "#3c3a3a",
+    "Crater Rim": "#8a7560",
+    "Polar Ice Plain": "#c8d8e8",
+    "Regolith Plain": "#6a5d4a",
+    "Lava Tube": "#2a2520",
+    "Highland Plateau": "#7a6a55",
+    "Empty": "#1a1a1a",
+}

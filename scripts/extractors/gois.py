@@ -1,4 +1,10 @@
-"""Extract data for the GoIs page."""
+"""Extract data for the GoIs page.
+
+Reads from the live workbook's slimmed Politics sheet (rows 4-11 = 8 GoI slots,
+4 live + 4 reserved blanks). Per-row data is read by column offset since the
+backend doesn't expose per-field named ranges. Sub-faction data is zipped from
+the 4 separate `SubFaction*` named ranges on the Sub-Factions sheet.
+"""
 from __future__ import annotations
 
 import re
@@ -8,47 +14,55 @@ from extractors._common import coerce_number, filter_blank_rows, read_named_rang
 
 WORLDVIEW_AXES = ["expansion", "authority", "corporate", "technocratic", "faith", "materialist"]
 
+# GoI block lives at Politics rows 4-11 (8 slots, 4 live + 4 reserved blank).
+GOI_BLOCK_FIRST_ROW = 4
+GOI_BLOCK_LAST_ROW = 11
+
+# Column offsets within the Politics GoI block.
+COL_NAME = 1            # A
+COL_INFLUENCE = 2       # B  (GM Override)
+COL_UNITY = 3           # C
+COL_EFFECTIVE_STANCE = 4  # D
+COL_VOTE_WEIGHT = 5     # E
+COL_APPROVAL = 6        # F
+COL_ACTIVE_BENEFITS = 8  # H  (text "0 / 3 benefits unlocked")
+COL_WORLDVIEW_FIRST = 11  # K..P  (Expn, Auth, Corp, Tech, Faith, Mat)
+COL_MAD_INDEX = 17      # Q
+COL_APPROACH = 18       # R
+COL_DERIVED_INFLUENCE = 19  # S
+
 
 def extract(wb) -> dict[str, Any]:
-    names = [r[0] for r in read_named_range(wb, "GoINames")]
-    derived = read_named_range(wb, "GoIDerivedInfluence")
-    approval = read_named_range(wb, "GoIApproval")
-    worldview = read_named_range(wb, "GoIEffectiveWorldview")
-    mad = read_named_range(wb, "GoIMadIndex")
-    approach = read_named_range(wb, "GoIApproach")
-    benefits_raw = read_named_range(wb, "GoIActiveBenefits")
-    sub_factions_block = read_named_range(wb, "SubFactionsBlock")
-    benefits_table = read_named_range(wb, "GoIBenefitsTable")
-    capture = read_named_range(wb, "PopCaptureBase")
     classes = filter_blank_rows(read_named_range(wb, "ClassTable"))
+    capture = read_named_range(wb, "PopCaptureBase")
+    benefits_table = read_named_range(wb, "GoIBenefitsTable")
 
-    # Determine which GoI rows are live (non-blank name).
-    live_indices = [i for i, n in enumerate(names) if n not in (None, "")]
-    live_names = [names[i] for i in live_indices]
+    # Read the GoI block directly from Politics by column offset.
+    rows = _read_politics_goi_rows(wb)
 
-    # Look up each live GoI's main_class via the sub-faction parent col is wrong;
-    # main_class is hard-coded on the design — derive it from the spec list.
-    # For accuracy at sync time, prefer to read from a dedicated named range if/when added.
-    # Until then, derive from the GoI Modifiers sheet's first column on a per-GoI basis.
+    # Determine live indices (rows where col A name resolves to a non-blank string).
+    live_indices = [i for i, r in enumerate(rows) if r["name"] not in (None, "")]
+    live_names = [rows[i]["name"] for i in live_indices]
+
     main_classes = _infer_main_classes(live_names, capture, classes)
 
+    sub_factions_by_goi = _sub_factions_by_goi(wb)
+
     out_gois: list[dict[str, Any]] = []
-    for live_pos, src_idx in enumerate(live_indices):
-        wv_row = worldview[src_idx] if src_idx < len(worldview) else [None] * 6
+    for src_idx in live_indices:
+        r = rows[src_idx]
         out_gois.append({
-            "name": names[src_idx],
-            "main_class": main_classes.get(names[src_idx]),
-            "derived_influence": coerce_number(derived[src_idx][0]) if src_idx < len(derived) else None,
-            "approval": coerce_number(approval[src_idx][0]) if src_idx < len(approval) else None,
-            "approach": approach[src_idx][0] if src_idx < len(approach) else None,
-            "mad_index": coerce_number(mad[src_idx][0]) if src_idx < len(mad) else None,
-            "effective_worldview": {axis: coerce_number(wv_row[i]) for i, axis in enumerate(WORLDVIEW_AXES)},
+            "name": r["name"],
+            "main_class": main_classes.get(r["name"]),
+            "derived_influence": r["derived_influence"],
+            "approval": r["approval"],
+            "approach": r["approach"],
+            "mad_index": r["mad_index"],
+            "effective_worldview": r["worldview"],
             "active_benefits": _parse_active_benefits(
-                benefits_raw[src_idx][0] if src_idx < len(benefits_raw) else None,
-                names[src_idx],
-                benefits_table,
+                r["active_benefits_text"], r["name"], benefits_table
             ),
-            "sub_factions": _sub_factions_for(names[src_idx], sub_factions_block),
+            "sub_factions": sub_factions_by_goi.get(r["name"], []),
         })
 
     return {
@@ -59,6 +73,29 @@ def extract(wb) -> dict[str, Any]:
             "values": _capture_values(capture, len(classes), live_indices),
         },
     }
+
+
+def _read_politics_goi_rows(wb):
+    """Read Politics GoI block rows 4-11 by column offset."""
+    if "Politics" not in wb.sheetnames:
+        return []
+    ws = wb["Politics"]
+    out = []
+    for row_num in range(GOI_BLOCK_FIRST_ROW, GOI_BLOCK_LAST_ROW + 1):
+        worldview = {
+            axis: coerce_number(ws.cell(row=row_num, column=COL_WORLDVIEW_FIRST + i).value)
+            for i, axis in enumerate(WORLDVIEW_AXES)
+        }
+        out.append({
+            "name": ws.cell(row=row_num, column=COL_NAME).value,
+            "approval": coerce_number(ws.cell(row=row_num, column=COL_APPROVAL).value),
+            "approach": ws.cell(row=row_num, column=COL_APPROACH).value,
+            "mad_index": coerce_number(ws.cell(row=row_num, column=COL_MAD_INDEX).value),
+            "derived_influence": coerce_number(ws.cell(row=row_num, column=COL_DERIVED_INFLUENCE).value),
+            "worldview": worldview,
+            "active_benefits_text": ws.cell(row=row_num, column=COL_ACTIVE_BENEFITS).value,
+        })
+    return out
 
 
 _BENEFIT_COUNT_RE = re.compile(r"(\d+)\s*/\s*(\d+)")
@@ -75,28 +112,46 @@ def _parse_active_benefits(text, goi_name, benefits_table):
     return {"unlocked": unlocked, "total": total, "unlocked_list": unlocked_list}
 
 
-def _sub_factions_for(goi_name, block):
-    """Filter sub-factions matching a parent GoI from the SubFactionsBlock.
+def _sub_factions_by_goi(wb):
+    """Zip the four SubFaction* named ranges into per-GoI lists.
 
-    TODO (deferred from Task 26): Pin the sub-faction range against the live workbook.
-    Spec §3.5 notes that backend CLAUDE.md and the actual built workbook disagreed
-    (CLAUDE.md said rows 32-44, workbook had 24-36 cols U-AC). When the live Sheet is
-    accessible, open it, locate the sub-faction names column, and update the
-    `SubFactionsBlock` named range to match. If `SubFactionsBlock` already exists in
-    the live workbook, prefer it. File an issue if the range diverges from the
-    fixture's `Politics!$U$24:$Y$36`.
+    SubFactionGoals = A5:E17 (GoI, Sub-faction, Goal Axis, Goal Δ, Description)
+    SubFactionInfluences = F5:F17
+    SubFactionMinorGoals = G5:I17 (3 cols)
+    SubFactionApprovals = J5:J17
     """
-    out = []
-    for r in block:
-        if not r or r[0] != goi_name:
+    goals = read_named_range(wb, "SubFactionGoals")
+    influences = read_named_range(wb, "SubFactionInfluences")
+    minor_goals = read_named_range(wb, "SubFactionMinorGoals")
+    approvals = read_named_range(wb, "SubFactionApprovals")
+
+    by_goi: dict[str, list[dict[str, Any]]] = {}
+    for i, gr in enumerate(goals):
+        if not gr or not gr[0]:
             continue
-        out.append({
-            "name": r[1] if len(r) > 1 else None,
-            "influence": coerce_number(r[2]) if len(r) > 2 else None,
-            "approval": coerce_number(r[3]) if len(r) > 3 else None,
-            "minor_goals": [r[4]] if (len(r) > 4 and r[4]) else [],
+        goi_name = gr[0]
+        sf_name = gr[1] if len(gr) > 1 else None
+        infl = (
+            coerce_number(influences[i][0])
+            if i < len(influences) and influences[i]
+            else None
+        )
+        appr = (
+            coerce_number(approvals[i][0])
+            if i < len(approvals) and approvals[i]
+            else None
+        )
+        mgs = []
+        if i < len(minor_goals) and minor_goals[i]:
+            mgs = [g for g in minor_goals[i] if g not in (None, "")]
+
+        by_goi.setdefault(goi_name, []).append({
+            "name": sf_name,
+            "influence": infl,
+            "approval": appr,
+            "minor_goals": mgs,
         })
-    return out
+    return by_goi
 
 
 def _infer_main_classes(live_names, capture_matrix, classes):
@@ -105,6 +160,9 @@ def _infer_main_classes(live_names, capture_matrix, classes):
         return {}
     out = {}
     for j, name in enumerate(live_names):
+        if j >= len(capture_matrix[0] if capture_matrix else []):
+            out[name] = None
+            continue
         best_i = max(range(len(capture_matrix)), key=lambda i: coerce_number(capture_matrix[i][j]) or 0)
         out[name] = classes[best_i][0] if best_i < len(classes) else None
     return out
@@ -116,6 +174,9 @@ def _capture_values(capture, n_classes, live_indices):
         if i >= len(capture):
             rows.append([None] * len(live_indices))
             continue
-        row = [coerce_number(capture[i][j]) for j in live_indices]
+        row = [
+            coerce_number(capture[i][j]) if j < len(capture[i]) else None
+            for j in live_indices
+        ]
         rows.append(row)
     return rows

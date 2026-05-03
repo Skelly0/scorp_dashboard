@@ -20,17 +20,6 @@ BASE_REQUIRED_RANGES: list[str] = [
     # Popsim
     "PopsimPop",
     "PopsimWorldview",
-    # Politics — Overton
-    "OvertonExpn",
-    "OvertonAuth",
-    "OvertonCorp",
-    "OvertonTech",
-    "OvertonFaith",
-    "OvertonMat",
-    # Colony — treasury + resources
-    "TreasuryMoney",
-    "TreasuryMoneyDelta",
-    "ResourceFlows",
     "PopsimGrossPerCap",
     "PopsimDisposablePerCap",
     "PopsimWealthPerCap",
@@ -44,25 +33,36 @@ BASE_REQUIRED_RANGES: list[str] = [
     "PopsimVotesTotal",
     "PopsimVoteShare",
     "PopsimSatisfaction",
-    "AdditionalIncomeBreakdown",
+    # Wages & Welfare
+    "AdditionalIncomeRange",
+    # State of the Colony — headline metrics
+    "Stability",
+    "CrisisFactor",
+    # Overton & Policy
+    "OvertonExpn",
+    "OvertonAuth",
+    "OvertonCorp",
+    "OvertonTech",
+    "OvertonFaith",
+    "OvertonMat",
+    # Politics — GoI dashboard (only the master name list is named; per-row
+    # data is read by column offset within the GoI block).
     "GoINames",
-    "GoIDerivedInfluence",
-    "GoIApproval",
-    "GoIEffectiveWorldview",
-    "GoIMadIndex",
-    "GoIApproach",
-    "GoIActiveBenefits",
-    "SubFactionsBlock",
+    # Sub-factions (4 separate ranges, no monolithic block)
+    "SubFactionGoals",
+    "SubFactionInfluences",
+    "SubFactionMinorGoals",
+    "SubFactionApprovals",
+    # GoI Benefits + Pop Capture
     "GoIBenefitsTable",
     "PopCaptureBase",
-    "PartiesBlock",
-    "TerrainPalette",
+    # Note: Treasury / Resources / Parties / Coalitions / Terrain palette
+    # are read via direct cell references (no named ranges in the live workbook).
 ]
 
 # Ranges only required when Senate page is enabled.
-SENATE_REQUIRED_RANGES: list[str] = [
-    "CoalitionsBlock",
-]
+# Coalitions data is read via direct ref Coalitions!A4:AA8 (no named range exists).
+SENATE_REQUIRED_RANGES: list[str] = []
 
 
 def validate(wb, *, senate_enabled: bool) -> None:

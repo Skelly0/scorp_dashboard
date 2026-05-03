@@ -9,7 +9,7 @@ AXES = ["expansion", "authority", "corporate", "technocratic", "faith", "materia
 
 
 def extract(wb) -> dict[str, Any]:
-    block = read_named_range(wb, "PartiesBlock")
+    block = _read_parties_block(wb)
     goi_names = [r[0] for r in read_named_range(wb, "GoINames") if r and r[0]]
     classes = filter_blank_rows(read_named_range(wb, "ClassTable"))
 
@@ -52,3 +52,19 @@ def extract(wb) -> dict[str, Any]:
             "values": [p["class_compat"] for p in parties_out],
         },
     }
+
+
+def _read_parties_block(wb):
+    """Read Parties!A4:AP18 directly (15 slots × 42 cols).
+
+    No named range exists in the live workbook; the layout is stable so we
+    read by direct cell reference.
+    """
+    if "Parties" not in wb.sheetnames:
+        return []
+    ws = wb["Parties"]
+    rows = []
+    for r in range(4, 19):  # rows 4-18 inclusive
+        row = [ws.cell(row=r, column=c).value for c in range(1, 43)]  # cols A-AP
+        rows.append(row)
+    return rows
