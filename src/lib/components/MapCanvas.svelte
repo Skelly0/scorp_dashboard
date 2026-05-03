@@ -31,29 +31,38 @@
     return { pos, neg: Math.abs(neg) };
   }
 
-  function tileColor(tile, layer, palettes, layerMax) {
+  function tileColor(tile, layer, palettes, layerMax, theme) {
     if (layer === 'terrain') {
       return palettes.terrain[tile.terrain] || '#1a1a1a';
     }
     const v = tile.yields?.[layer] ?? 0;
     if (v > 0 && layerMax.pos > 0) {
       const t = Math.max(0.15, v / layerMax.pos);  // floor at 15% so non-zero is always visible
-      return `color-mix(in srgb, #38d39f ${(t * 100).toFixed(1)}%, var(--bg))`;
+      return `color-mix(in srgb, #38d39f ${(t * 100).toFixed(1)}%, ${theme.bg})`;
     } else if (v < 0 && layerMax.neg > 0) {
       const t = Math.max(0.15, -v / layerMax.neg);
-      return `color-mix(in srgb, var(--crit) ${(t * 100).toFixed(1)}%, var(--bg))`;
+      return `color-mix(in srgb, ${theme.crit} ${(t * 100).toFixed(1)}%, ${theme.bg})`;
     }
-    return 'var(--bg)';
+    return theme.bg;
   }
 
   async function drawTerrain(mapData, layer, layerMax) {
     if (!mapData) return;
     await tick();
     if (!canvas) return;
+    // Canvas 2D `fillStyle` doesn't resolve CSS custom properties (var(--…)),
+    // so pre-resolve theme tokens against the live element. Without this, every
+    // color-mix() string is invalid and every tile renders as the previous
+    // valid fillStyle (or default black) — i.e. no per-yield gradient.
+    const styles = getComputedStyle(canvas);
+    const theme = {
+      bg: styles.getPropertyValue('--bg').trim() || '#0a0a0a',
+      crit: styles.getPropertyValue('--crit').trim() || '#ff4d4d',
+    };
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, width, height);
     for (const t of mapData.tiles) {
-      ctx.fillStyle = tileColor(t, layer, mapData.palettes, layerMax);
+      ctx.fillStyle = tileColor(t, layer, mapData.palettes, layerMax, theme);
       ctx.fillRect(t.x * TILE_SIZE, t.y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
     }
   }

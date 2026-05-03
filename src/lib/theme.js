@@ -4,14 +4,14 @@ export const THEMES = ['light', 'dark', 'schematic'];
 const VALID = new Set(THEMES);
 const KEY = 'theme';
 
-export const theme = writable('light');
+export const theme = writable('schematic');
 
 function readStored() {
   try {
     const t = localStorage.getItem(KEY);
-    return VALID.has(t) ? t : 'light';
+    return VALID.has(t) ? t : 'schematic';
   } catch {
-    return 'light';
+    return 'schematic';
   }
 }
 

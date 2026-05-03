@@ -34,7 +34,7 @@
   {:else if !$map}
     <p class="text-muted text-xs uppercase tracking-widest">Loading map…</p>
   {:else}
-    <Band num="01" title="Surface Grid" meta="40 × 40 · click to pin · hover to inspect" />
+    <Band num="01" title="Surface Grid" meta="40 × 40" />
 
     <div class="layer-tabs">
       {#each LAYERS as l}
