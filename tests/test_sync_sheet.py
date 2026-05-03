@@ -79,3 +79,32 @@ def test_run_sync_deletes_stale_senate_json_when_flag_off(tmp_path, fixture_work
     (out_dir / "senate.json").write_text('{"old": "data"}')
     run_sync(fixture_workbook_path, out_dir)
     assert not (out_dir / "senate.json").exists()
+
+
+def test_run_sync_writes_history_snapshot(tmp_path, fixture_workbook_path):
+    out_dir = tmp_path / "data"
+    out_dir.mkdir()
+    run_sync(fixture_workbook_path, out_dir)
+    # Fixture sets Var_Year = 12.
+    assert (out_dir / "history" / "year-012.json").exists()
+    index = json.loads((out_dir / "history" / "index.json").read_text())
+    assert index["years"] == [12]
+    meta = json.loads((out_dir / "meta.json").read_text())
+    assert meta["history_year"] == 12
+
+
+def test_run_sync_skips_history_when_year_missing(tmp_path, fixture_workbook_path):
+    """If the workbook predates Var_Year, sync still succeeds — history dir
+    just isn't created. Newer workbooks add the named range; older ones don't."""
+    import openpyxl
+    wb = openpyxl.load_workbook(fixture_workbook_path, data_only=True)
+    del wb.defined_names["Var_Year"]
+    stripped_path = tmp_path / "no_year.xlsx"
+    wb.save(stripped_path)
+
+    out_dir = tmp_path / "data"
+    out_dir.mkdir()
+    run_sync(stripped_path, out_dir)
+    assert not (out_dir / "history").exists()
+    meta = json.loads((out_dir / "meta.json").read_text())
+    assert meta["history_year"] is None

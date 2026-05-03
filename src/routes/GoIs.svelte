@@ -3,8 +3,11 @@
   import { meta } from '../lib/stores/meta.js';
   import { gois, goisError, loadGois } from '../lib/stores/gois.js';
   import { pageTitle } from '../lib/page-title.js';
+  import { goiColor } from '../lib/faction-colors.js';
+  import Band from '../lib/components/Band.svelte';
   import RadarChart from '../lib/components/RadarChart.svelte';
   import Heatmap from '../lib/components/Heatmap.svelte';
+  import Tag from '../lib/components/Tag.svelte';
 
   onMount(() => {
     pageTitle.set('GoIs');
@@ -14,63 +17,90 @@
   const AXES = ['expansion', 'authority', 'corporate', 'technocratic', 'faith', 'materialist'];
 </script>
 
-<section class="p-6">
-  <h2 class="font-mono text-xl font-extrabold uppercase tracking-wider mb-4 border-b-4 border-border pb-2">
-    Groups of Interest
-  </h2>
-
+<section class="px-6 py-5 max-w-[1600px]">
   {#if $goisError}
     <p class="text-crit">{$goisError}</p>
   {:else if !$gois}
-    <p class="text-muted">Loading…</p>
+    <p class="text-muted text-xs uppercase tracking-widest">Loading…</p>
   {:else}
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+    <Band num="01" title="Groups of Interest" meta={`${$gois.gois.length} GoIs`} />
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
       {#each $gois.gois as g}
-        <div class="border-4 border-border p-4">
-          <div class="flex justify-between items-baseline mb-2">
-            <h3 class="font-mono font-extrabold text-lg uppercase tracking-wider">{g.name}</h3>
-            <span class="text-xs text-muted">{g.main_class ?? '—'}</span>
+        <div class="s-card barred" style="--bar-color: {goiColor(g.name)}">
+          <div class="s-card-header">
+            <h3>
+              <span class="faction-bar" style="--bar-color: {goiColor(g.name)}"></span>
+              {g.name}
+            </h3>
+            <span class="meta">{g.main_class ?? '—'} · {g.approach ?? '—'}</span>
           </div>
-          <div class="grid grid-cols-3 gap-2 text-xs mb-3">
-            <div><div class="text-muted uppercase tracking-widest">Influence</div><div class="font-bold text-base">{(g.derived_influence * 100).toFixed(0)}%</div></div>
-            <div><div class="text-muted uppercase tracking-widest">Approval</div><div class="font-bold text-base">{(g.approval * 100).toFixed(0)}%</div></div>
-            <div><div class="text-muted uppercase tracking-widest">Mad Index</div><div class="font-bold text-base">{g.mad_index?.toFixed(2)}</div></div>
-          </div>
-          <div class="text-xs text-muted uppercase tracking-widest mb-2">{g.approach}</div>
-          <div class="flex gap-3 mb-3">
-            <RadarChart axes={AXES.map((a) => ({ label: a, value: g.effective_worldview[a] }))} size={140} />
-            <div class="flex-1 text-xs">
-              <div class="text-muted uppercase tracking-widest mb-1">Active Benefits</div>
-              <div class="font-bold mb-1">{g.active_benefits.unlocked} / {g.active_benefits.total} unlocked</div>
-              <ul class="list-disc list-inside">
-                {#each g.active_benefits.unlocked_list as b}
-                  <li>{b}</li>
-                {/each}
-              </ul>
+          <div class="s-card-pad grid grid-cols-[170px_1fr] gap-4">
+            <RadarChart
+              axes={AXES.map((a) => ({ label: a, value: g.effective_worldview?.[a] ?? 0 }))}
+              size={170}
+            />
+            <div class="flex flex-col gap-2">
+              <div class="grid grid-cols-3 gap-2">
+                <div>
+                  <div class="text-muted text-[9px] uppercase tracking-widest">Influence</div>
+                  <div class="font-extrabold text-lg tnum">
+                    {g.derived_influence != null ? Math.round(g.derived_influence * 100) + '%' : '—'}
+                  </div>
+                </div>
+                <div>
+                  <div class="text-muted text-[9px] uppercase tracking-widest">Approval</div>
+                  <div class="font-extrabold text-lg tnum">
+                    {g.approval != null ? Math.round(g.approval * 100) + '%' : '—'}
+                  </div>
+                </div>
+                <div>
+                  <div class="text-muted text-[9px] uppercase tracking-widest">MAD</div>
+                  <div class="font-extrabold text-lg tnum">{g.mad_index?.toFixed(2) ?? '—'}</div>
+                </div>
+              </div>
+
+              <div>
+                <div class="text-muted text-[9px] uppercase tracking-widest mb-1">
+                  Benefits {g.active_benefits?.unlocked ?? 0}/{g.active_benefits?.total ?? 0}
+                </div>
+                <div class="flex flex-wrap gap-1">
+                  {#each g.active_benefits?.unlocked_list ?? [] as b}
+                    <Tag variant="good">{b}</Tag>
+                  {/each}
+                </div>
+              </div>
+
+              {#if g.sub_factions?.length}
+                <div>
+                  <div class="text-muted text-[9px] uppercase tracking-widest mb-1">Sub-factions</div>
+                  <ul class="m-0 p-0 list-none text-[11px]">
+                    {#each g.sub_factions as s}
+                      <li class="flex justify-between border-b border-[var(--border-soft)] border-dashed py-1">
+                        <span>{s.name}</span>
+                        <span class="text-muted tnum">
+                          {s.influence != null ? Math.round(s.influence * 100) + '%' : '—'} ·
+                          ap {s.approval != null ? Math.round(s.approval * 100) + '%' : '—'}
+                        </span>
+                      </li>
+                    {/each}
+                  </ul>
+                </div>
+              {/if}
             </div>
           </div>
-          {#if g.sub_factions.length > 0}
-            <div class="text-xs">
-              <div class="text-muted uppercase tracking-widest mb-1">Sub-factions</div>
-              <ul class="space-y-1">
-                {#each g.sub_factions as s}
-                  <li class="flex justify-between border-b border-border/30 pb-1">
-                    <span>{s.name}</span>
-                    <span class="text-muted">{(s.influence * 100).toFixed(0)}% · approval {(s.approval * 100).toFixed(0)}%</span>
-                  </li>
-                {/each}
-              </ul>
-            </div>
-          {/if}
         </div>
       {/each}
     </div>
 
-    <h3 class="font-mono text-sm uppercase tracking-widest text-muted mb-2">Pop Capture Base</h3>
-    <Heatmap
-      rowLabels={$gois.pop_capture_matrix.classes}
-      colLabels={$gois.pop_capture_matrix.gois}
-      values={$gois.pop_capture_matrix.values}
-    />
+    {#if $gois.pop_capture_matrix?.classes?.length && $gois.pop_capture_matrix?.gois?.length}
+      <Band num="02" title="Pop Capture Matrix" meta="class × GoI · base capture %" />
+      <div class="s-card s-card-pad">
+        <Heatmap
+          rowLabels={$gois.pop_capture_matrix.classes}
+          colLabels={$gois.pop_capture_matrix.gois}
+          values={$gois.pop_capture_matrix.values}
+        />
+      </div>
+    {/if}
   {/if}
 </section>

@@ -45,11 +45,16 @@ def build(out_path: Path) -> Path:
     var = wb.create_sheet("Variable")
     var["A1"], var["B1"] = "Var_SenatePageVisible", False
     _add_name(wb, "Var_SenatePageVisible", "Variable!$B$1")
+    # Year mirror (Colony!H1 in live wb; named range so extractors don't read by addr).
+    var["A2"], var["B2"] = "Var_Year", 12
+    _add_name(wb, "Var_Year", "Variable!$B$2")
 
     # ---- Politics sheet ----
     pol = wb.create_sheet("Politics")
     pol["B1"] = 0.42      # Stability
     pol["E1"] = 0.38      # Crisis Factor
+    _add_name(wb, "Stability", "Politics!$B$1")
+    _add_name(wb, "CrisisFactor", "Politics!$E$1")
     # Overton window B13:B18
     overton = [5.0, 4.5, 5.0, 4.0, 4.0, 4.0]
     for i, v in enumerate(overton, start=13):
@@ -217,6 +222,14 @@ def build(out_path: Path) -> Path:
         pol.cell(row=i, column=24, value=appr)          # X approval
         pol.cell(row=i, column=25, value=goal)          # Y minor goal 1
     _add_name(wb, "SubFactionsBlock", "Politics!$U$24:$Y$36")
+    # Schema validator wants the four atomic SubFaction* ranges. The live wb places
+    # them on a separate sheet; for the fixture we expose narrow slices of the
+    # SubFactionsBlock so the validator passes — extractor tests that need full
+    # sub-faction data are responsible for their own setup.
+    _add_name(wb, "SubFactionGoals", "Politics!$U$24:$Y$36")
+    _add_name(wb, "SubFactionInfluences", "Politics!$W$24:$W$36")
+    _add_name(wb, "SubFactionMinorGoals", "Politics!$Y$24:$Y$36")
+    _add_name(wb, "SubFactionApprovals", "Politics!$X$24:$X$36")
 
     # GoI Modifiers: PopCaptureBase B5:E15 (11 classes × 4 GoIs)
     gm = wb.create_sheet("GoI Modifiers")

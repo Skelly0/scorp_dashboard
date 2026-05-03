@@ -17,6 +17,7 @@ OVERTON_AXES = [
 
 def extract(wb) -> dict[str, Any]:
     return {
+        "year": _year(wb),
         "treasury": _treasury(wb),
         "stability": _scalar_named(wb, "Stability"),
         "crisis_factor": _scalar_named(wb, "CrisisFactor"),
@@ -25,6 +26,18 @@ def extract(wb) -> dict[str, Any]:
         "overton": _overton(wb),
         "active_situations": _active_situations(wb),
     }
+
+
+def _year(wb) -> int | None:
+    """Year sits at Colony!H1; surfaced via the optional Var_Year named range.
+
+    Returned as int (years are whole numbers); None when the workbook predates
+    the Var_Year addition. The historical snapshot writer uses this as the
+    archival index, so a missing value just means history is paused — sync
+    itself still succeeds.
+    """
+    raw = _scalar_named(wb, "Var_Year")
+    return int(raw) if raw is not None else None
 
 
 def _treasury(wb) -> dict[str, Any]:

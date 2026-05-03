@@ -3,6 +3,7 @@
   import { meta } from '../lib/stores/meta.js';
   import { map, mapError, loadMap } from '../lib/stores/map.js';
   import { pageTitle } from '../lib/page-title.js';
+  import Band from '../lib/components/Band.svelte';
   import MapCanvas from '../lib/components/MapCanvas.svelte';
 
   let layer = 'terrain';
@@ -18,69 +19,87 @@
 
   const LAYERS = [
     { value: 'terrain', label: 'Terrain' },
-    { value: 'food', label: 'Food yield' },
-    { value: 'materials', label: 'Materials yield' },
-    { value: 'ore', label: 'Ore yield' },
-    { value: 'energy', label: 'Energy yield' },
-    { value: 'housing', label: 'Housing yield' },
-    { value: 'water', label: 'Water yield' },
+    { value: 'food', label: 'Food' },
+    { value: 'water', label: 'Water' },
+    { value: 'energy', label: 'Energy' },
+    { value: 'materials', label: 'Materials' },
+    { value: 'ore', label: 'Ore' },
+    { value: 'housing', label: 'Housing' },
   ];
 </script>
 
-<section class="p-6">
-  <div class="flex justify-between items-baseline mb-4 border-b-4 border-border pb-2">
-    <h2 class="font-mono text-xl font-extrabold uppercase tracking-wider">Map</h2>
-    <label class="font-mono text-xs uppercase tracking-widest">
-      Layer:
-      <select bind:value={layer} class="bg-bg text-fg border-2 border-border ml-2 px-2 py-1">
-        {#each LAYERS as l}
-          <option value={l.value}>{l.label}</option>
-        {/each}
-      </select>
-    </label>
-  </div>
-
+<section class="px-6 py-5 max-w-[1600px]">
   {#if $mapError}
     <p class="text-crit">{$mapError}</p>
   {:else if !$map}
-    <p class="text-muted">Loading map…</p>
+    <p class="text-muted text-xs uppercase tracking-widest">Loading map…</p>
   {:else}
-    <div class="flex gap-4 items-start">
+    <Band num="01" title="Surface Grid" meta="40 × 40 · click to pin · hover to inspect" />
+
+    <div class="layer-tabs">
+      {#each LAYERS as l}
+        <button
+          aria-pressed={layer === l.value}
+          on:click={() => (layer = l.value)}
+        >
+          {l.label}{l.value !== 'terrain' ? ' yield' : ''}
+        </button>
+      {/each}
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-3 items-start">
       <MapCanvas
         mapData={$map}
         {layer}
         on:hover={(e) => (hoverTile = e.detail)}
         on:pin={(e) => (pinnedTile = e.detail)}
       />
-      <aside class="border-4 border-border p-4 min-w-[220px] font-mono text-sm">
+
+      <aside class="s-card">
         {#if !t}
-          <p class="text-muted">Hover or arrow-key over a tile to inspect.</p>
+          <div class="s-card-pad">
+            <p class="text-muted text-xs uppercase tracking-widest">Hover or click a tile to inspect.</p>
+          </div>
         {:else}
-          <h3 class="text-xs uppercase tracking-widest text-muted mb-2">
-            Tile ({t.x}, {t.y})
-          </h3>
-          <dl class="space-y-1">
-            <div class="flex justify-between"><dt>Terrain</dt><dd>{t.terrain ?? '—'}</dd></div>
-            <div class="flex justify-between"><dt>Feature</dt><dd>{t.feature ?? '—'}</dd></div>
-            <div class="flex justify-between"><dt>Resource</dt><dd>{t.resource ?? '—'}</dd></div>
-            <div class="flex justify-between"><dt>Slots</dt><dd>{t.slots ?? '—'}</dd></div>
-          </dl>
-          {#if t.improvement}
-            <h4 class="mt-3 text-xs uppercase tracking-widest text-muted">Improvement</h4>
-            <dl class="space-y-1">
-              <div class="flex justify-between"><dt>Name</dt><dd>{t.improvement.name}</dd></div>
-              <div class="flex justify-between"><dt>Owner</dt><dd>{t.improvement.owner ?? '—'}</dd></div>
-              <div class="flex justify-between"><dt>Type</dt><dd>{t.improvement.ownership_type ?? '—'}</dd></div>
+          <div class="s-card-header">
+            <h3>Tile · ({String(t.x).padStart(2, '0')}, {String(t.y).padStart(2, '0')})</h3>
+            <span class="meta">{layer}</span>
+          </div>
+          <div class="s-card-pad">
+            <dl class="kv">
+              <dt>Terrain</dt><dd>{t.terrain ?? '—'}</dd>
+              <dt>Feature</dt><dd>{t.feature ?? '—'}</dd>
+              <dt>Resource</dt><dd>{t.resource ?? '—'}</dd>
+              <dt>Slots</dt><dd>{t.slots ?? '—'}</dd>
             </dl>
-          {/if}
-          <h4 class="mt-3 text-xs uppercase tracking-widest text-muted">Yields</h4>
-          <dl class="space-y-1">
-            {#each Object.entries(t.yields) as [k, v]}
-              <div class="flex justify-between"><dt class="capitalize">{k}</dt><dd class:text-crit={v < 0}>{v}</dd></div>
-            {/each}
-          </dl>
+            {#if t.improvement}
+              <div class="kv-section">
+                <h4>Improvement</h4>
+                <dl class="kv">
+                  <dt>Name</dt><dd>{t.improvement.name ?? '—'}</dd>
+                  <dt>Owner</dt><dd>{t.improvement.owner ?? '—'}</dd>
+                  <dt>Type</dt><dd>{t.improvement.ownership_type ?? '—'}</dd>
+                </dl>
+              </div>
+            {/if}
+            {#if t.yields}
+              <div class="kv-section">
+                <h4>Yields</h4>
+                <dl class="kv">
+                  {#each Object.entries(t.yields) as [k, v]}
+                    <dt class="capitalize">{k}</dt>
+                    <dd class={v < 0 ? 'crit' : v > 0 ? 'good' : ''}>{v > 0 ? '+' : ''}{v}</dd>
+                  {/each}
+                </dl>
+              </div>
+            {/if}
+          </div>
         {/if}
       </aside>
+    </div>
+
+    <div class="text-muted text-[10px] uppercase tracking-widest mt-3">
+      ▣ Improvement · ◆ Resource feature · Color = {layer === 'terrain' ? 'biome' : layer + ' magnitude'}
     </div>
   {/if}
 </section>

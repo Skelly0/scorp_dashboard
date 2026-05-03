@@ -1,5 +1,6 @@
 <script>
   import { meta } from '../stores/meta.js';
+  import { status } from '../stores/status.js';
   import ThemeToggle from './ThemeToggle.svelte';
   import SyncChip from './SyncChip.svelte';
   import { link, location } from 'svelte-spa-router';
@@ -17,13 +18,14 @@
 
   let menuOpen = false;
   $: pages = ALL_PAGES.filter((p) => !p.requiresSenate || $meta?.senate_visible);
+  $: yearLabel = $status?.year != null ? `Y-${String($status.year).padStart(2, '0')}` : '';
 </script>
 
 <nav class="border-b-4 border-border bg-bg">
   <div class="px-4 md:px-6 py-3 flex items-center justify-between">
     <div class="flex items-center gap-3 md:gap-6">
       <span class="font-mono font-bold uppercase tracking-widest text-accent text-sm md:text-base">
-        Colony ▌ T-43
+        Colony{#if yearLabel} ▌ {yearLabel}{/if}
       </span>
       <button
         class="md:hidden border-2 border-border px-2 py-1 text-xs uppercase tracking-widest"

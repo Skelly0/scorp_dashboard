@@ -46,3 +46,14 @@ def test_extract_active_situations_empty_when_no_situations_sheet(wb):
     """Wave 1: Situations sheet doesn't exist yet — extractor should return [] not crash."""
     result = extract(wb)
     assert result["active_situations"] == []
+
+
+def test_extract_returns_year(wb):
+    result = extract(wb)
+    assert result["year"] == 12
+
+
+def test_extract_year_none_when_named_range_missing(wb):
+    del wb.defined_names["Var_Year"]
+    result = extract(wb)
+    assert result["year"] is None

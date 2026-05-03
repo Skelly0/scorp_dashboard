@@ -1,18 +1,18 @@
 <script>
-  /** @type {{tier: string, active: boolean, consequence: string}[]} */
   export let tiers = [];
+
+  function tierClass(t) {
+    const n = Number(t.tier);
+    return Number.isFinite(n) ? `tier t-${Math.max(1, Math.min(5, n))}` : 'tier';
+  }
 </script>
 
-<ol class="font-mono text-sm space-y-1">
+<div class="ladder">
   {#each tiers as t}
-    <li
-      class="border-2 border-border p-2 flex justify-between"
-      class:bg-crit={t.active}
-      class:text-bg={t.active}
-    >
-      <span class="font-extrabold uppercase tracking-widest">Tier {t.tier}</span>
-      <span class="flex-1 mx-3 text-muted" class:text-bg={t.active}>{t.consequence}</span>
-      {#if t.active}<span class="font-extrabold uppercase tracking-widest">ACTIVE</span>{/if}
-    </li>
+    <div class={tierClass(t)} aria-current={t.active ? 'true' : undefined}>
+      <div class="lvl">T{t.tier}{#if t.label} · {t.label}{/if}</div>
+      <div class="desc">{t.description ?? t.consequence ?? ''}</div>
+      <div class="range">{t.range ?? (t.active ? 'ACTIVE' : '')}</div>
+    </div>
   {/each}
-</ol>
+</div>

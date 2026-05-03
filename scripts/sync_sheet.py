@@ -27,6 +27,7 @@ from extractors import pops as ex_pops
 from extractors import senate as ex_senate
 from extractors import situations as ex_situations
 from extractors import status as ex_status
+from history import write_snapshot as write_history_snapshot
 from notify_telegram import build_message, send as send_telegram
 from validate_schema import SchemaValidationError, validate
 
@@ -101,6 +102,7 @@ def run_sync(xlsx_path: Path, out_dir: Path) -> SyncResult:
     validate(wb, senate_enabled=senate_enabled)
 
     partial_failures: list[str] = []
+    status_data: dict[str, Any] | None = None
 
     extractors = [
         ("status", ex_status.extract),
@@ -117,6 +119,8 @@ def run_sync(xlsx_path: Path, out_dir: Path) -> SyncResult:
         try:
             data = fn(wb)
             write_json_atomic(out_dir / f"{page_name}.json", data)
+            if page_name == "status":
+                status_data = data
         except Exception as exc:  # noqa: BLE001 — keep going on per-page failure
             logger.error("Extractor %s failed: %s", page_name, exc)
             partial_failures.append(page_name)
@@ -134,12 +138,24 @@ def run_sync(xlsx_path: Path, out_dir: Path) -> SyncResult:
         if senate_path.exists():
             senate_path.unlink()
 
+    synced_at = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+
+    history_year: int | None = None
+    if status_data is not None:
+        try:
+            wrote = write_history_snapshot(out_dir, status_data.get("year"), status_data, synced_at)
+            if wrote:
+                history_year = status_data.get("year")
+        except Exception as exc:  # noqa: BLE001 — history is best-effort, never blocks sync
+            logger.error("History snapshot failed: %s", exc)
+
     meta = {
-        "synced_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
+        "synced_at": synced_at,
         "sheet_modified_time": _sheet_modified_time(wb),
         "senate_visible": senate_enabled,
         "schema_version": SCHEMA_VERSION,
         "partial_failures": partial_failures,
+        "history_year": history_year,
     }
     write_json_atomic(out_dir / "meta.json", meta)
 

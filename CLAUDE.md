@@ -4,13 +4,16 @@ Static Svelte SPA + Python sync pipeline that surfaces a player-facing read of t
 
 ## Architecture in one breath
 
-GitHub Action → openpyxl → per-page JSON in `public/data/` → git commit → Pages rebuild → Svelte SPA fetches.
+GitHub Action → openpyxl → per-page JSON in `public/data/` → git commit → Pages rebuild → Svelte SPA fetches. Each successful sync also writes a per-year snapshot to `public/data/history/year-NNN.json` so the frontend can render historical sparklines on Status.
 
 ## Layout
 
-- `scripts/` — Python sync (entry: `sync_sheet.py`; per-page extractors in `extractors/`)
+- `scripts/` — Python sync (entry: `sync_sheet.py`; per-page extractors in `extractors/`; per-year snapshots in `history.py`)
 - `src/` — Svelte SPA (one route per page, one store per page, shared components in `src/lib/components/`)
-- `public/data/` — JSON output (managed by the Action; don't hand-edit)
+- `src/lib/components/` — Mission-Brutalist primitives: `Band`, `KpiBlock`, `Sparkline`, `OvertonRow`, `Bar`, `Tag`. Plus updated `StatTile`, `SituationCard`, `TierLadder`, `Heatmap`. Existing: `RadarChart`, `MoonBackdrop`, `MoonLoader`, `MapCanvas`, `NavBar`, `SyncChip`, `ThemeToggle`.
+- `src/lib/faction-colors.js` — class & GoI accent palettes (cosmetic only — used for 4px left-bar and faction-bar swatches)
+- `src/lib/stores/history.js` — derived stores for treasury/stability/CF/population year-series
+- `public/data/` — JSON output (managed by the Action; don't hand-edit). `history/index.json` lists available years; `history/year-NNN.json` is the per-year frozen snapshot.
 - `tests/` — pytest, builds an in-memory fixture workbook (`tests/fixtures/build_test_workbook.py`)
 - `tests-e2e/` — Playwright + axe a11y tests
 - `.github/workflows/` — `sync.yml` (cron), `deploy-pages.yml` (build), `ci.yml` (PR tests)
@@ -26,6 +29,9 @@ GitHub Action → openpyxl → per-page JSON in `public/data/` → git commit �
 7. **Numeric coercion.** All cell reads go through `coerce_number` — handles blanks, formula errors, and floats uniformly. Output: `float | None`. Frontend renders `None` as `—`.
 8. **Blank-slot filtering.** Extensible blocks (15 class slots, 8 GoI slots, 15 party slots) reserve blanks for future growth. Always filter rows where col-A name is empty before serialising.
 9. **Failure notifications are best-effort.** `notify_telegram.send` swallows its own exceptions — never let notification failure mask the real error.
+10. **`Var_Year` is OPTIONAL but year-indexed history depends on it.** The named range points at `Colony!H1` in the live workbook and surfaces as `status.year` (int) in `status.json`. When present, sync writes/overwrites `public/data/history/year-NNN.json` (3-digit zero-padded) plus updates `public/data/history/index.json`. When absent, history is silently skipped — sync still succeeds. Year stays the same across many turns; we overwrite the same year file every sync until it ticks over.
+11. **History writes are idempotent within a year, frozen across years.** While Var_Year holds, every sync overwrites the same `year-NNN.json` with the latest snapshot. When the year increments, the prior file stops being touched and effectively becomes archival. Don't expect turn-level granularity — the index axis is *year*.
+12. **Design vocabulary is CSS classes in `global.css`, NOT Tailwind utilities.** `.band`, `.s-card`, `.s-card-pad`, `.s-card-header`, `.kpi-block`, `.stat-tile`, `.bar-row`, `.bar`, `.overton-row`, `.sit-card`, `.tier`, `.heatmap`, `.tbl`, `.kv`, `.layer-tabs`, `.s-chip`, `.s-tag`, `.faction-bar`, `.spark`. The `s-` prefix is used where the bare name might collide with Tailwind. Theme variables (`--bg-2`, `--accent-soft`, `--good`, `--crit-soft`, etc.) live on `:root[data-theme=…]`; *all three* themes must define every variable for cards to render correctly across themes.
 
 ## Common gotchas
 
@@ -38,6 +44,8 @@ GitHub Action → openpyxl → per-page JSON in `public/data/` → git commit �
 7. **Svelte 4 `{@const}` placement.** `{@const}` must be the immediate child of `{#if}/{:else}/{#each}/<svelte:fragment>` etc — NOT inside an arbitrary HTML element. If you need a derived value inside a div, compute it via `$:` reactive in the script block.
 8. **Tri-state theme system.** Three modes: `light` (Calm), `dark` (Cosmic), `schematic` (blueprint navy on cream). Adding/renaming one means touching FOUR places in lockstep: `THEMES` array in `src/lib/theme.js`, the `:root[data-theme=…]` block in `src/styles/global.css`, the pre-hydration validator in `index.html`, and the `THEMES` list in `tests-e2e/a11y.spec.js`. The toggle is a segmented pill (☀ ☾ ⊞), not a binary swap.
 9. **`MoonLoader` is the canonical loading state; `MoonBackdrop` is the always-on ambient layer.** Both live in `src/lib/components/`. The loader is foreground (role="status", labelled, full opacity); the backdrop is fixed-position, viewport-responsive, low-opacity, `aria-hidden`, sits at `z-0` behind a `z-10` content wrapper in `App.svelte`. Both share the same canvas component — pass `decorative` to suppress ARIA + sr-only label and to honour `prefers-reduced-motion`. The texture (`src/lib/assets/moon-equirect.png`) is a Vite-bundled asset (NOT in `public/`) so it gets hashed and cache-busted with the rest of the build.
+10. **Pre-existing fixture/extractor drift.** `tests/fixtures/build_test_workbook.py` lags behind a few extractors (notably `gois.py` reads Politics rows 4-11; the fixture writes the GoI block at rows 24-31 — and `status.py` reads `Colony!B3` for treasury but the fixture sets it at `B1`). 9 tests fail on `main` because of this. Don't try to "fix" it as a side project — patch only the pieces you actively need (e.g. when I added Var_Year I also added `Stability`/`CrisisFactor`/`SubFaction*` named ranges so `run_sync` could complete, but didn't fix the GoI block layout).
+11. **History sparkline minimum.** `Sparkline.svelte` only renders the line+area when `data.length >= 2`. With one sample it shows "single sample"; with zero, "no history". Don't pass empty arrays expecting an empty SVG.
 
 ## Where to read more
 

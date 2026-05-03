@@ -1,18 +1,20 @@
 <script>
   export let name;
-  export let description;
+  export let description = '';
   export let crisis_factor = null;
   export let ended = false;
 </script>
 
-<div class="border-4 border-border p-3" class:opacity-50={ended}>
-  <div class="flex justify-between items-baseline mb-1">
-    <h4 class="font-mono font-extrabold text-sm uppercase tracking-wider">{name}</h4>
+<div class="sit-card" class:ended>
+  <div class="flex justify-between items-baseline gap-2">
+    <h4>{ended ? '✓' : '⚠'} {name}</h4>
     {#if !ended && crisis_factor != null}
-      <span class="text-xs font-bold text-crit uppercase tracking-widest">+{crisis_factor.toFixed(2)} CRISIS</span>
+      <span class="cf">CF {crisis_factor.toFixed(2)}</span>
     {:else if ended}
-      <span class="text-xs uppercase tracking-widest text-muted">ENDED</span>
+      <span class="text-muted text-[10px] uppercase tracking-widest">Ended</span>
     {/if}
   </div>
-  <p class="text-sm">{description ?? ''}</p>
+  {#if description}
+    <p>{description}</p>
+  {/if}
 </div>
