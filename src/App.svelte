@@ -5,6 +5,7 @@
   import { meta, metaError, loadMeta } from './lib/stores/meta.js';
   import NavBar from './lib/components/NavBar.svelte';
   import MaintenanceBanner from './lib/components/MaintenanceBanner.svelte';
+  import MoonLoader from './lib/components/MoonLoader.svelte';
 
   import Status from './routes/Status.svelte';
   import Population from './routes/Population.svelte';
@@ -39,7 +40,10 @@
   {#if $metaError}
     <MaintenanceBanner metaError={$metaError} />
   {:else if !$meta}
-    <div class="p-8 text-muted">Loading…</div>
+    <div class="min-h-screen flex flex-col items-center justify-center gap-6">
+      <MoonLoader size={320} label="Loading colony data" />
+      <p class="text-muted text-xs uppercase tracking-widest">Synchronising colony record…</p>
+    </div>
   {:else}
     <NavBar />
     <Router {routes} />

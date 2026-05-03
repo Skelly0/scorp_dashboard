@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 const PAGES = ['/', '/#/map', '/#/population', '/#/pops', '/#/gois', '/#/parties', '/#/situations'];
-const THEMES = ['light', 'dark'];
+const THEMES = ['light', 'dark', 'schematic'];
 
 for (const theme of THEMES) {
   for (const path of PAGES) {

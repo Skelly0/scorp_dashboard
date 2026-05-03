@@ -1,6 +1,7 @@
 import { writable } from 'svelte/store';
 
-const VALID = new Set(['light', 'dark']);
+export const THEMES = ['light', 'dark', 'schematic'];
+const VALID = new Set(THEMES);
 const KEY = 'theme';
 
 export const theme = writable('light');
@@ -31,8 +32,12 @@ export function setTheme(value) {
   apply(value);
 }
 
-export function toggleTheme() {
+export function cycleTheme() {
   let current;
   theme.subscribe((v) => (current = v))();
-  setTheme(current === 'light' ? 'dark' : 'light');
+  const idx = THEMES.indexOf(current);
+  const next = THEMES[(idx + 1) % THEMES.length];
+  setTheme(next);
 }
+
+export const toggleTheme = cycleTheme;

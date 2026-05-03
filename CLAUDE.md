@@ -36,6 +36,8 @@ GitHub Action → openpyxl → per-page JSON in `public/data/` → git commit �
 5. **Sub-faction range disagreement.** CLAUDE.md (backend) says rows 32-44; built workbook has it at U24:AC36. Trust the live Sheet over the docs. The extractor reads `SubFactionsBlock` named range — keep that pinned to wherever the live data actually lives.
 6. **`partial_failures` in meta.json.** When an extractor crashes, sync continues without that page. Frontend reads `meta.partial_failures` and can show "this page failed to sync" — not implemented yet, just the data path is there.
 7. **Svelte 4 `{@const}` placement.** `{@const}` must be the immediate child of `{#if}/{:else}/{#each}/<svelte:fragment>` etc — NOT inside an arbitrary HTML element. If you need a derived value inside a div, compute it via `$:` reactive in the script block.
+8. **Tri-state theme system.** Three modes: `light` (Calm), `dark` (Cosmic), `schematic` (blueprint navy on cream). Adding/renaming one means touching FOUR places in lockstep: `THEMES` array in `src/lib/theme.js`, the `:root[data-theme=…]` block in `src/styles/global.css`, the pre-hydration validator in `index.html`, and the `THEMES` list in `tests-e2e/a11y.spec.js`. The toggle is a segmented pill (☀ ☾ ⊞), not a binary swap.
+9. **`MoonLoader` is the canonical loading state.** `src/lib/components/MoonLoader.svelte` reads `$theme` and adapts contour palette + spin speed automatically. The texture (`src/lib/assets/moon-equirect.png`) is a Vite-bundled asset (NOT in `public/`) so it gets hashed and cache-busted with the rest of the build.
 
 ## Where to read more
 

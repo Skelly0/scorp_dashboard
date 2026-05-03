@@ -4,6 +4,7 @@
   import { status, statusError, loadStatus } from '../lib/stores/status.js';
   import { pageTitle } from '../lib/page-title.js';
   import StatTile from '../lib/components/StatTile.svelte';
+  import MoonLoader from '../lib/components/MoonLoader.svelte';
 
   onMount(() => {
     pageTitle.set('Status');
@@ -22,7 +23,10 @@
   {#if $statusError}
     <p class="text-crit">Failed to load status: {$statusError}</p>
   {:else if !$status}
-    <p class="text-muted">Loading…</p>
+    <div class="flex flex-col items-center justify-center py-12 gap-4">
+      <MoonLoader size={220} label="Loading status" />
+      <p class="text-muted text-xs uppercase tracking-widest">Reading status panel…</p>
+    </div>
   {:else}
     <div class="grid grid-cols-1 md:grid-cols-4 gap-3 mb-6">
       <StatTile label="Treasury" value={$status.treasury?.money} delta={$status.treasury?.delta} />

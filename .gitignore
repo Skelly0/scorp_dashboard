@@ -11,6 +11,13 @@ node_modules/
 dist/
 .vite/
 
+# Playwright
+test-results/
+playwright-report/
+
+# Local scratch
+TRASH/
+
 # Editor
 .vscode/
 .idea/

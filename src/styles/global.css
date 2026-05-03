@@ -26,6 +26,18 @@
   --alert-fg: #0d0a05;
 }
 
+:root[data-theme='schematic'] {
+  --bg: #f4f1ea;
+  --fg: #0e3a8a;
+  --accent: #0e3a8a;
+  --border: #0e3a8a;
+  --muted: #3d5a96;
+  --crit: #a53a26;
+  --grid-line: #0e3a8a;
+  --alert-bg: #0e3a8a;
+  --alert-fg: #f4f1ea;
+}
+
 html,
 body {
   background: var(--bg);
