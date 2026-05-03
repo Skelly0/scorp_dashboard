@@ -15,36 +15,36 @@
     "materialist": 4.0,
     "technocratic": 4.0
   },
-  "population_total": 15000,
+  "population_total": 16620,
   "resources": [
     {
       "current": 0.0,
-      "delta": 239.5,
+      "delta": 289.5,
       "name": "Food"
     },
     {
       "current": 3000.0,
-      "delta": 712.5,
+      "delta": 727.5,
       "name": "Materials"
     },
     {
       "current": 1500.0,
-      "delta": 846.25,
+      "delta": 986.25,
       "name": "Ore"
     },
     {
       "current": 750.0,
-      "delta": 1145.0,
+      "delta": 1360.0,
       "name": "Energy"
     },
     {
       "current": 0.0,
-      "delta": 23000.0,
+      "delta": 39500.0,
       "name": "Housing"
     },
     {
       "current": 7500.0,
-      "delta": 57116.0,
+      "delta": 58905.2,
       "name": "Money"
     },
     {
@@ -60,7 +60,7 @@
   ],
   "stability": 0.2,
   "treasury": {
-    "delta": 57116.0,
+    "delta": 58905.2,
     "money": 13650.0
   }
 }

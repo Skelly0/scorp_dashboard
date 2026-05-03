@@ -474,14 +474,18 @@
     },
     {
       "feature": "Buried Ice",
-      "improvement": null,
+      "improvement": {
+        "name": "Solar Array Field",
+        "owner": null,
+        "ownership_type": null
+      },
       "resource": "Aluminum Deposit",
-      "slots": 2,
+      "slots": 1,
       "terrain": "Polar Ice Plain",
       "x": 27,
       "y": 0,
       "yields": {
-        "energy": 0.5,
+        "energy": 200.5,
         "food": 1.0,
         "housing": 100.0,
         "materials": 1.5,
@@ -525,7 +529,7 @@
       "yields": {
         "energy": 0.5,
         "food": 21.0,
-        "housing": 600.0,
+        "housing": 1100.0,
         "materials": 0,
         "ore": 0,
         "water": 21.5
@@ -1166,16 +1170,20 @@
     },
     {
       "feature": "Buried Ice",
-      "improvement": null,
+      "improvement": {
+        "name": "Pressure Dome",
+        "owner": null,
+        "ownership_type": null
+      },
       "resource": null,
-      "slots": 2,
+      "slots": 1,
       "terrain": "Polar Ice Plain",
       "x": 27,
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
-        "housing": 100.0,
+        "food": 11.0,
+        "housing": 10100.0,
         "materials": 0,
         "ore": 0,
         "water": 1.5
@@ -1217,7 +1225,7 @@
       "yields": {
         "energy": 15.5,
         "food": 16.0,
-        "housing": 600.0,
+        "housing": 1100.0,
         "materials": 15.0,
         "ore": 15.0,
         "water": 1.5
@@ -1238,7 +1246,7 @@
       "yields": {
         "energy": 0.5,
         "food": 1.0,
-        "housing": 2650.0,
+        "housing": 5150.0,
         "materials": 0.25,
         "ore": 0,
         "water": 1.0
@@ -1246,9 +1254,13 @@
     },
     {
       "feature": "Buried Ice",
-      "improvement": null,
+      "improvement": {
+        "name": "School",
+        "owner": null,
+        "ownership_type": null
+      },
       "resource": null,
-      "slots": 2,
+      "slots": 1,
       "terrain": "Polar Ice Plain",
       "x": 31,
       "y": 1,
@@ -1858,9 +1870,13 @@
     },
     {
       "feature": "Buried Ice",
-      "improvement": null,
+      "improvement": {
+        "name": "Financial District",
+        "owner": null,
+        "ownership_type": null
+      },
       "resource": null,
-      "slots": 3,
+      "slots": 2,
       "terrain": "Mare Plain",
       "x": 27,
       "y": 2,
@@ -1917,13 +1933,9 @@
     },
     {
       "feature": "Buried Ice",
-      "improvement": {
-        "name": "Research Lab",
-        "owner": null,
-        "ownership_type": null
-      },
+      "improvement": null,
       "resource": "Aluminum Deposit",
-      "slots": 2,
+      "slots": 3,
       "terrain": "Mare Plain",
       "x": 30,
       "y": 2,
@@ -2584,9 +2596,13 @@
     },
     {
       "feature": null,
-      "improvement": null,
+      "improvement": {
+        "name": "Research Lab",
+        "owner": null,
+        "ownership_type": null
+      },
       "resource": null,
-      "slots": 3,
+      "slots": 2,
       "terrain": "Mare Plain",
       "x": 29,
       "y": 3,
@@ -3859,16 +3875,20 @@
     },
     {
       "feature": null,
-      "improvement": null,
+      "improvement": {
+        "name": "Surface Hab Module",
+        "owner": null,
+        "ownership_type": null
+      },
       "resource": null,
-      "slots": 1,
+      "slots": 0,
       "terrain": "Geothermal Vent",
       "x": 24,
       "y": 5,
       "yields": {
         "energy": 2.5,
         "food": 0,
-        "housing": 0,
+        "housing": 2000.0,
         "materials": 0,
         "ore": 0.25,
         "water": 0
@@ -3876,26 +3896,34 @@
     },
     {
       "feature": null,
-      "improvement": null,
+      "improvement": {
+        "name": "Outpost",
+        "owner": null,
+        "ownership_type": null
+      },
       "resource": null,
-      "slots": 1,
+      "slots": 0,
       "terrain": "Geothermal Vent",
       "x": 25,
       "y": 5,
       "yields": {
-        "energy": 2.5,
-        "food": 0,
-        "housing": 0,
-        "materials": 0,
-        "ore": 0.25,
+        "energy": 17.5,
+        "food": 15.0,
+        "housing": 1000.0,
+        "materials": 15.0,
+        "ore": 15.25,
         "water": 0
       }
     },
     {
       "feature": null,
-      "improvement": null,
+      "improvement": {
+        "name": "Aluminium Extractor",
+        "owner": null,
+        "ownership_type": null
+      },
       "resource": "Aluminum Deposit",
-      "slots": 3,
+      "slots": 2,
       "terrain": "Mare Plain",
       "x": 26,
       "y": 5,
@@ -3904,7 +3932,7 @@
         "food": 0,
         "housing": 0,
         "materials": 1.75,
-        "ore": 0.75,
+        "ore": 125.75,
         "water": 0
       }
     },
@@ -4556,15 +4584,19 @@
     },
     {
       "feature": null,
-      "improvement": null,
+      "improvement": {
+        "name": "Vat Culture Lab",
+        "owner": null,
+        "ownership_type": null
+      },
       "resource": null,
-      "slots": 3,
+      "slots": 2,
       "terrain": "Mare Plain",
       "x": 25,
       "y": 6,
       "yields": {
         "energy": 0.5,
-        "food": 0,
+        "food": 25.0,
         "housing": 0,
         "materials": 0.25,
         "ore": 0.25,
