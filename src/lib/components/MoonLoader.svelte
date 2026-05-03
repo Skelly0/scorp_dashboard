@@ -5,6 +5,7 @@
 
   export let size = 320;
   export let label = 'Loading';
+  export let decorative = false;
 
   // Per-mood visual identity, ported from Wireframe Moon Loader.html.
   // ink/bg are read from the global theme, so the moon adapts automatically.
@@ -271,6 +272,12 @@
     ctx.stroke();
   }
 
+  function prefersReducedMotion() {
+    return typeof window !== 'undefined'
+      && window.matchMedia
+      && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
   function tick(now) {
     if (last === 0) last = now;
     const dt = (now - last) / 1000;
@@ -313,7 +320,9 @@
     await loadTexture();
     draw(0);
     last = 0;
-    rafId = requestAnimationFrame(tick);
+    if (!prefersReducedMotion()) {
+      rafId = requestAnimationFrame(tick);
+    }
   });
 
   onDestroy(() => {
@@ -325,8 +334,9 @@
 
 <div
   class="moon-loader"
-  role="status"
-  aria-label={label}
+  role={decorative ? undefined : 'status'}
+  aria-label={decorative ? undefined : label}
+  aria-hidden={decorative ? 'true' : undefined}
   style="--moon-size: {size}px; --ring-ink: {ringInk};"
 >
   <div class="whirl" aria-hidden="true">
@@ -363,7 +373,9 @@
     height={SIZE}
     class="globe"
   ></canvas>
-  <span class="sr-only">{label}</span>
+  {#if !decorative}
+    <span class="sr-only">{label}</span>
+  {/if}
 </div>
 
 <style>

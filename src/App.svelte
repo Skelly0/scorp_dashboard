@@ -6,6 +6,7 @@
   import NavBar from './lib/components/NavBar.svelte';
   import MaintenanceBanner from './lib/components/MaintenanceBanner.svelte';
   import MoonLoader from './lib/components/MoonLoader.svelte';
+  import MoonBackdrop from './lib/components/MoonBackdrop.svelte';
 
   import Status from './routes/Status.svelte';
   import Population from './routes/Population.svelte';
@@ -36,16 +37,21 @@
   };
 </script>
 
-<div class="min-h-screen bg-bg text-fg font-mono">
-  {#if $metaError}
-    <MaintenanceBanner metaError={$metaError} />
-  {:else if !$meta}
-    <div class="min-h-screen flex flex-col items-center justify-center gap-6">
-      <MoonLoader size={320} label="Loading colony data" />
-      <p class="text-muted text-xs uppercase tracking-widest">Synchronising colony record…</p>
-    </div>
-  {:else}
-    <NavBar />
-    <Router {routes} />
+<div class="relative min-h-screen bg-bg text-fg font-mono">
+  {#if !$metaError}
+    <MoonBackdrop />
   {/if}
+  <div class="relative z-10">
+    {#if $metaError}
+      <MaintenanceBanner metaError={$metaError} />
+    {:else if !$meta}
+      <div class="min-h-screen flex flex-col items-center justify-center gap-6">
+        <MoonLoader size={320} label="Loading colony data" />
+        <p class="text-muted text-xs uppercase tracking-widest">Synchronising colony record…</p>
+      </div>
+    {:else}
+      <NavBar />
+      <Router {routes} />
+    {/if}
+  </div>
 </div>
