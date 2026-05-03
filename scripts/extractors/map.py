@@ -66,8 +66,14 @@ def _read_grid(wb, sheet_name):
 
 
 def _cell_str(grid, x, y):
+    """Return cell as string, treating None / "" / "Empty" as None.
+
+    The live workbook fills empty Features/Resources/Improvements cells with the
+    string "Empty" rather than leaving them blank, so we have to normalise that
+    here — otherwise every tile renders a feature icon.
+    """
     v = grid[y][x]
-    if v is None or v == "":
+    if v is None or v == "" or v == "Empty":
         return None
     return str(v)
 
