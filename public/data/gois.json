@@ -8,7 +8,7 @@
       },
       "approach": "Authoritarian",
       "approval": 0.5,
-      "derived_influence": 0.2650032265,
+      "derived_influence": 0.235904083,
       "effective_worldview": {
         "authority": 2.81,
         "corporate": 3.91,
@@ -18,7 +18,7 @@
         "technocratic": 4.47
       },
       "mad_index": -0.0375,
-      "main_class": "Security",
+      "main_class": "Bureaucrats",
       "name": "Administration",
       "sub_factions": [
         {
@@ -81,7 +81,7 @@
       },
       "approach": "Marketist",
       "approval": 0.5,
-      "derived_influence": 0.2036997204,
+      "derived_influence": 0.2175415857,
       "effective_worldview": {
         "authority": 3.325,
         "corporate": 7.0,
@@ -136,7 +136,7 @@
       },
       "approach": "Democratic",
       "approval": 0.5,
-      "derived_influence": 0.3286728329,
+      "derived_influence": 0.3430546554,
       "effective_worldview": {
         "authority": 6.05,
         "corporate": 1.0,
@@ -189,7 +189,7 @@
       },
       "approach": "Secular",
       "approval": 0.5,
-      "derived_influence": 0.2026242203,
+      "derived_influence": 0.203499676,
       "effective_worldview": {
         "authority": 4.2,
         "corporate": 4.5,
@@ -271,9 +271,9 @@
         10.0
       ],
       [
-        14.0,
-        1.0,
-        1.0,
+        7.0,
+        4.0,
+        4.0,
         2.0
       ],
       [

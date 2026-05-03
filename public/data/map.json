@@ -491,14 +491,18 @@
     },
     {
       "feature": "Buried Ice",
-      "improvement": null,
+      "improvement": {
+        "name": "Solar Array Field",
+        "owner": null,
+        "ownership_type": null
+      },
       "resource": null,
-      "slots": 2,
+      "slots": 1,
       "terrain": "Polar Ice Plain",
       "x": 28,
       "y": 0,
       "yields": {
-        "energy": 0.5,
+        "energy": 200.5,
         "food": 1.0,
         "housing": 100.0,
         "materials": 0,
@@ -520,11 +524,11 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
-        "housing": 100.0,
+        "food": 21.0,
+        "housing": 600.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.5
+        "water": 21.5
       }
     },
     {
@@ -544,7 +548,7 @@
         "food": 1.0,
         "housing": 100.0,
         "materials": 1.5,
-        "ore": 0.5,
+        "ore": 125.5,
         "water": 1.5
       }
     },
@@ -1211,11 +1215,11 @@
       "x": 29,
       "y": 1,
       "yields": {
-        "energy": 0.5,
-        "food": 1.0,
-        "housing": 100.0,
-        "materials": 0,
-        "ore": 0,
+        "energy": 15.5,
+        "food": 16.0,
+        "housing": 600.0,
+        "materials": 15.0,
+        "ore": 15.0,
         "water": 1.5
       }
     },
@@ -1234,7 +1238,7 @@
       "yields": {
         "energy": 0.5,
         "food": 1.0,
-        "housing": 150.0,
+        "housing": 2650.0,
         "materials": 0.25,
         "ore": 0,
         "water": 1.0
@@ -1885,7 +1889,7 @@
         "energy": 0.5,
         "food": 0,
         "housing": 50.0,
-        "materials": 2.25,
+        "materials": 62.25,
         "ore": 0.25,
         "water": 0.5
       }
@@ -1904,7 +1908,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 0,
+        "food": 40.0,
         "housing": 50.0,
         "materials": 0.25,
         "ore": 0.25,
@@ -1913,9 +1917,13 @@
     },
     {
       "feature": "Buried Ice",
-      "improvement": null,
+      "improvement": {
+        "name": "Research Lab",
+        "owner": null,
+        "ownership_type": null
+      },
       "resource": "Aluminum Deposit",
-      "slots": 3,
+      "slots": 2,
       "terrain": "Mare Plain",
       "x": 30,
       "y": 2,
@@ -5126,13 +5134,9 @@
     },
     {
       "feature": "Buried Ice",
-      "improvement": {
-        "name": "Ice Mining Station",
-        "owner": null,
-        "ownership_type": null
-      },
+      "improvement": null,
       "resource": "Water Ice",
-      "slots": 2,
+      "slots": 3,
       "terrain": "Mare Plain",
       "x": 19,
       "y": 7,
@@ -5810,13 +5814,9 @@
     },
     {
       "feature": null,
-      "improvement": {
-        "name": "Algal Bioreactor",
-        "owner": null,
-        "ownership_type": null
-      },
+      "improvement": null,
       "resource": null,
-      "slots": 2,
+      "slots": 3,
       "terrain": "Mare Plain",
       "x": 19,
       "y": 8,
@@ -8993,13 +8993,9 @@
     },
     {
       "feature": null,
-      "improvement": {
-        "name": "Regolith Mine",
-        "owner": null,
-        "ownership_type": null
-      },
+      "improvement": null,
       "resource": null,
-      "slots": 2,
+      "slots": 3,
       "terrain": "Mare Plain",
       "x": 6,
       "y": 13,
@@ -9660,13 +9656,9 @@
     },
     {
       "feature": null,
-      "improvement": {
-        "name": "Helium-3 Mine",
-        "owner": null,
-        "ownership_type": null
-      },
+      "improvement": null,
       "resource": "Helium-3",
-      "slots": 2,
+      "slots": 3,
       "terrain": "Mare Plain",
       "x": 5,
       "y": 14,
@@ -11823,13 +11815,9 @@
     },
     {
       "feature": "Smooth Plain",
-      "improvement": {
-        "name": "Solar Array Field",
-        "owner": null,
-        "ownership_type": null
-      },
+      "improvement": null,
       "resource": null,
-      "slots": 2,
+      "slots": 3,
       "terrain": "Mare Plain",
       "x": 12,
       "y": 17,
@@ -13119,13 +13107,9 @@
     },
     {
       "feature": null,
-      "improvement": {
-        "name": "Command Center",
-        "owner": null,
-        "ownership_type": null
-      },
+      "improvement": null,
       "resource": null,
-      "slots": 2,
+      "slots": 3,
       "terrain": "Mare Plain",
       "x": 8,
       "y": 19,
@@ -13803,13 +13787,9 @@
     },
     {
       "feature": null,
-      "improvement": {
-        "name": "Hydroponic Bay",
-        "owner": null,
-        "ownership_type": null
-      },
+      "improvement": null,
       "resource": null,
-      "slots": 2,
+      "slots": 3,
       "terrain": "Mare Plain",
       "x": 8,
       "y": 20,
@@ -14504,13 +14484,9 @@
     },
     {
       "feature": "Cave System",
-      "improvement": {
-        "name": "Buried Habitat",
-        "owner": null,
-        "ownership_type": null
-      },
+      "improvement": null,
       "resource": "Phosphorus Deposit",
-      "slots": 2,
+      "slots": 3,
       "terrain": "Mare Plain",
       "x": 9,
       "y": 21,

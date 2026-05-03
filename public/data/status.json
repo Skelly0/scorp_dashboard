@@ -19,27 +19,27 @@
   "resources": [
     {
       "current": 0.0,
-      "delta": 164.5,
+      "delta": 239.5,
       "name": "Food"
     },
     {
       "current": 3000.0,
-      "delta": 637.5,
+      "delta": 712.5,
       "name": "Materials"
     },
     {
       "current": 1500.0,
-      "delta": 706.25,
+      "delta": 846.25,
       "name": "Ore"
     },
     {
       "current": 750.0,
-      "delta": 930.0,
+      "delta": 1145.0,
       "name": "Energy"
     },
     {
       "current": 0.0,
-      "delta": 19500.0,
+      "delta": 23000.0,
       "name": "Housing"
     },
     {
@@ -54,7 +54,7 @@
     },
     {
       "current": 900.0,
-      "delta": 144.5,
+      "delta": 164.5,
       "name": "Water"
     }
   ],
