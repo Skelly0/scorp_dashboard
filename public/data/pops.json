@@ -11,12 +11,12 @@
       "expected_sol": 21.0,
       "income": {
         "disposable_per_cap": 16.0,
-        "effective_tax_rate": null,
+        "effective_tax_rate": 0.36,
         "gross_per_cap": 25.0,
-        "income_tax_per_cap": null,
-        "total_disposable": null,
+        "income_tax_per_cap": 7.5,
+        "total_disposable": 16720.0,
         "total_gross": 26125.0,
-        "wealth_tax_per_cap": null
+        "wealth_tax_per_cap": 1.5
       },
       "name": "Bureaucrats",
       "pop": 1045,
@@ -34,6 +34,12 @@
       "wealth": {
         "per_cap": 100.0,
         "total": 104500.0
+      },
+      "workforce": {
+        "demand": 932.5,
+        "fill_ratio": 0.7849865952,
+        "supply": 732.0,
+        "unemployment": 0.0
       }
     },
     {
@@ -49,10 +55,10 @@
         "disposable_per_cap": 32.0,
         "effective_tax_rate": 0.36,
         "gross_per_cap": 50.0,
-        "income_tax_per_cap": 7.5,
-        "total_disposable": 16720.0,
+        "income_tax_per_cap": 15.0,
+        "total_disposable": 7600.0,
         "total_gross": 11875.0,
-        "wealth_tax_per_cap": 1.5
+        "wealth_tax_per_cap": 3.0
       },
       "name": "Capitalists",
       "pop": 237,
@@ -70,6 +76,12 @@
       "wealth": {
         "per_cap": 200.0,
         "total": 47500.0
+      },
+      "workforce": {
+        "demand": 225.0,
+        "fill_ratio": 0.7377777778,
+        "supply": 166.0,
+        "unemployment": 0.0
       }
     },
     {
@@ -83,12 +95,12 @@
       "expected_sol": 16.0,
       "income": {
         "disposable_per_cap": 16.72,
-        "effective_tax_rate": 0.36,
+        "effective_tax_rate": 0.24,
         "gross_per_cap": 22.0,
-        "income_tax_per_cap": 15.0,
-        "total_disposable": 7600.0,
+        "income_tax_per_cap": 4.84,
+        "total_disposable": 19060.8,
         "total_gross": 25080.0,
-        "wealth_tax_per_cap": 3.0
+        "wealth_tax_per_cap": 0.44
       },
       "name": "Engineers",
       "pop": 1140,
@@ -106,6 +118,12 @@
       "wealth": {
         "per_cap": 88.0,
         "total": 100320.0
+      },
+      "workforce": {
+        "demand": 1095.0,
+        "fill_ratio": 0.7287671233,
+        "supply": 798.0,
+        "unemployment": 0.0
       }
     },
     {
@@ -121,10 +139,10 @@
         "disposable_per_cap": 18.24,
         "effective_tax_rate": 0.24,
         "gross_per_cap": 24.0,
-        "income_tax_per_cap": 4.84,
-        "total_disposable": 19060.8,
+        "income_tax_per_cap": 5.28,
+        "total_disposable": 31190.4,
         "total_gross": 41040.0,
-        "wealth_tax_per_cap": 0.44
+        "wealth_tax_per_cap": 0.48
       },
       "name": "Scientists",
       "pop": 1710,
@@ -142,6 +160,12 @@
       "wealth": {
         "per_cap": 96.0,
         "total": 164160.0
+      },
+      "workforce": {
+        "demand": 1275.0,
+        "fill_ratio": 0.9388235294,
+        "supply": 1197.0,
+        "unemployment": 0.0
       }
     },
     {
@@ -157,10 +181,10 @@
         "disposable_per_cap": 13.68,
         "effective_tax_rate": 0.24,
         "gross_per_cap": 18.0,
-        "income_tax_per_cap": 5.28,
-        "total_disposable": 31190.4,
+        "income_tax_per_cap": 3.96,
+        "total_disposable": 12996.0,
         "total_gross": 17100.0,
-        "wealth_tax_per_cap": 0.48
+        "wealth_tax_per_cap": 0.36
       },
       "name": "Security",
       "pop": 950,
@@ -178,6 +202,12 @@
       "wealth": {
         "per_cap": 72.0,
         "total": 68400.0
+      },
+      "workforce": {
+        "demand": 750.0,
+        "fill_ratio": 0.8866666667,
+        "supply": 665.0,
+        "unemployment": 0.0
       }
     },
     {
@@ -193,10 +223,10 @@
         "disposable_per_cap": 15.2,
         "effective_tax_rate": 0.24,
         "gross_per_cap": 20.0,
-        "income_tax_per_cap": 3.96,
-        "total_disposable": 12996.0,
+        "income_tax_per_cap": 4.4,
+        "total_disposable": 4332.0,
         "total_gross": 5700.0,
-        "wealth_tax_per_cap": 0.36
+        "wealth_tax_per_cap": 0.4
       },
       "name": "Proprietors",
       "pop": 285,
@@ -214,6 +244,12 @@
       "wealth": {
         "per_cap": 80.0,
         "total": 22800.0
+      },
+      "workforce": {
+        "demand": 150.0,
+        "fill_ratio": 1.0,
+        "supply": 200.0,
+        "unemployment": 50.0
       }
     },
     {
@@ -229,10 +265,10 @@
         "disposable_per_cap": 21.28,
         "effective_tax_rate": 0.24,
         "gross_per_cap": 28.0,
-        "income_tax_per_cap": 4.4,
-        "total_disposable": 4332.0,
+        "income_tax_per_cap": 6.16,
+        "total_disposable": 7075.6,
         "total_gross": 9310.0,
-        "wealth_tax_per_cap": 0.4
+        "wealth_tax_per_cap": 0.56
       },
       "name": "Managerial",
       "pop": 332,
@@ -250,6 +286,12 @@
       "wealth": {
         "per_cap": 112.0,
         "total": 37240.0
+      },
+      "workforce": {
+        "demand": 525.0,
+        "fill_ratio": 0.4438095238,
+        "supply": 233.0,
+        "unemployment": 0.0
       }
     },
     {
@@ -265,10 +307,10 @@
         "disposable_per_cap": 19.0,
         "effective_tax_rate": 0.24,
         "gross_per_cap": 25.0,
-        "income_tax_per_cap": 6.16,
-        "total_disposable": 7075.6,
+        "income_tax_per_cap": 5.5,
+        "total_disposable": 10830.0,
         "total_gross": 14250.0,
-        "wealth_tax_per_cap": 0.56
+        "wealth_tax_per_cap": 0.5
       },
       "name": "Botanists",
       "pop": 570,
@@ -286,6 +328,12 @@
       "wealth": {
         "per_cap": 100.0,
         "total": 57000.0
+      },
+      "workforce": {
+        "demand": 975.0,
+        "fill_ratio": 0.4092307692,
+        "supply": 399.0,
+        "unemployment": 0.0
       }
     },
     {
@@ -299,12 +347,12 @@
       "expected_sol": 5.0,
       "income": {
         "disposable_per_cap": 10.2,
-        "effective_tax_rate": 0.24,
+        "effective_tax_rate": 0.15,
         "gross_per_cap": 12.0,
-        "income_tax_per_cap": 5.5,
-        "total_disposable": 10830.0,
+        "income_tax_per_cap": 1.8,
+        "total_disposable": 35190.0,
         "total_gross": 41400.0,
-        "wealth_tax_per_cap": 0.5
+        "wealth_tax_per_cap": 0.0
       },
       "name": "Industrial Workers",
       "pop": 3450,
@@ -322,6 +370,12 @@
       "wealth": {
         "per_cap": 48.0,
         "total": 165600.0
+      },
+      "workforce": {
+        "demand": 2100.0,
+        "fill_ratio": 1.0,
+        "supply": 2415.0,
+        "unemployment": 315.0
       }
     },
     {
@@ -337,8 +391,8 @@
         "disposable_per_cap": 11.05,
         "effective_tax_rate": 0.15,
         "gross_per_cap": 13.0,
-        "income_tax_per_cap": 1.8,
-        "total_disposable": 35190.0,
+        "income_tax_per_cap": 1.95,
+        "total_disposable": 40885.0,
         "total_gross": 48100.0,
         "wealth_tax_per_cap": 0.0
       },
@@ -358,6 +412,12 @@
       "wealth": {
         "per_cap": 52.0,
         "total": 192400.0
+      },
+      "workforce": {
+        "demand": 2700.0,
+        "fill_ratio": 0.9592592593,
+        "supply": 2590.0,
+        "unemployment": 0.0
       }
     },
     {
@@ -373,8 +433,8 @@
         "disposable_per_cap": 8.5,
         "effective_tax_rate": 0.15,
         "gross_per_cap": 10.0,
-        "income_tax_per_cap": 1.95,
-        "total_disposable": 40885.0,
+        "income_tax_per_cap": 1.5,
+        "total_disposable": 27200.0,
         "total_gross": 32000.0,
         "wealth_tax_per_cap": 0.0
       },
@@ -394,6 +454,12 @@
       "wealth": {
         "per_cap": 40.0,
         "total": 128000.0
+      },
+      "workforce": {
+        "demand": 2100.0,
+        "fill_ratio": 1.0,
+        "supply": 2240.0,
+        "unemployment": 140.0
       }
     }
   ]

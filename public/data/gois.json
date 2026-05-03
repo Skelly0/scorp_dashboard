@@ -17,7 +17,7 @@
         "materialist": 4.52,
         "technocratic": 4.47
       },
-      "mad_index": -0.0375,
+      "mad_index": -0.0525,
       "main_class": "Bureaucrats",
       "name": "Administration",
       "sub_factions": [
@@ -90,7 +90,7 @@
         "materialist": 2.325,
         "technocratic": 4.05
       },
-      "mad_index": -0.0275,
+      "mad_index": -0.0075,
       "main_class": "Capitalists",
       "name": "Corporate",
       "sub_factions": [
@@ -145,7 +145,7 @@
         "materialist": 3.8,
         "technocratic": 5.1
       },
-      "mad_index": -0.0075,
+      "mad_index": 0.04,
       "main_class": "Industrial Workers",
       "name": "Unions",
       "sub_factions": [
@@ -198,7 +198,7 @@
         "materialist": 3.7,
         "technocratic": 1.9
       },
-      "mad_index": -0.0425,
+      "mad_index": -0.02,
       "main_class": "Scientists",
       "name": "Research",
       "sub_factions": [
