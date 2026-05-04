@@ -13,6 +13,13 @@ on:
       - 'svelte.config.js'
       - 'tailwind.config.js'
       - 'postcss.config.js'
+  workflow_run:
+    # Sync's GITHUB_TOKEN-pushed commits don't trigger `push` workflows
+    # (anti-recursion). Chain a deploy off Sync's completion so new data
+    # actually reaches Pages.
+    workflows: ['Sync sheet → JSON']
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -27,6 +34,9 @@ concurrency:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    # For workflow_run, only deploy if the Sync actually succeeded.
+    # For push/workflow_dispatch, always run.
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
