@@ -8,7 +8,7 @@
       },
       "approach": "Authoritarian",
       "approval": 0.5,
-      "derived_influence": 0.2182028427,
+      "derived_influence": 0.0,
       "effective_worldview": {
         "authority": 2.81,
         "corporate": 3.91,
@@ -81,7 +81,7 @@
       },
       "approach": "Marketist",
       "approval": 0.5,
-      "derived_influence": 0.2183473862,
+      "derived_influence": 0.0,
       "effective_worldview": {
         "authority": 3.325,
         "corporate": 7.0,
@@ -129,14 +129,12 @@
     {
       "active_benefits": {
         "total": 3,
-        "unlocked": 1,
-        "unlocked_list": [
-          "Collective Bargaining"
-        ]
+        "unlocked": 0,
+        "unlocked_list": []
       },
       "approach": "Democratic",
       "approval": 0.5,
-      "derived_influence": 0.3752734281,
+      "derived_influence": 0.0,
       "effective_worldview": {
         "authority": 6.05,
         "corporate": 1.0,
@@ -189,7 +187,7 @@
       },
       "approach": "Secular",
       "approval": 0.5,
-      "derived_influence": 0.188176343,
+      "derived_influence": 0.0,
       "effective_worldview": {
         "authority": 4.2,
         "corporate": 4.5,

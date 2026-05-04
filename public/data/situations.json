@@ -2,11 +2,6 @@
   "active": [
     {
       "crisis_factor": null,
-      "description": "Crisis Contribution",
-      "name": "Name"
-    },
-    {
-      "crisis_factor": null,
       "description": 0.5,
       "name": "The Fall"
     }
