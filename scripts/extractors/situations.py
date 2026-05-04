@@ -25,7 +25,7 @@ def _situations_rows(wb):
         return []
     ws = wb["Situations"]
     out = []
-    for row in ws.iter_rows(min_row=2, values_only=True):
+    for row in ws.iter_rows(min_row=3, values_only=True):
         if not row or row[0] in (None, ""):
             continue
         name, desc, crisis = (list(row) + [None, None, None])[:3]

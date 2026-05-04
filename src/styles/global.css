@@ -385,6 +385,81 @@ body {
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
+.sit-card.sev-low { border-left-color: var(--good); }
+.sit-card.sev-low .cf { color: var(--good); }
+.sit-card.sev-warn { border-left-color: #e89020; }
+.sit-card.sev-warn .cf { color: #e89020; }
+.sit-card.sev-crit { border-left-color: var(--crit); background: var(--crit-soft); }
+.sit-meter {
+  margin-top: 8px;
+  height: 3px;
+  background: var(--border-soft);
+  position: relative;
+  overflow: hidden;
+}
+.sit-meter-fill {
+  height: 100%;
+  background: currentColor;
+  color: var(--crit);
+}
+.sit-card.sev-low .sit-meter-fill { color: var(--good); }
+.sit-card.sev-warn .sit-meter-fill { color: #e89020; }
+.sit-card.sev-crit .sit-meter-fill { color: var(--crit); }
+
+/* Crisis Index summary tile */
+.crisis-index {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 16px;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  margin-bottom: 10px;
+}
+.crisis-index .ci-num {
+  font-size: 36px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+.crisis-index .ci-meta {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+.crisis-index .ci-bar {
+  height: 6px;
+  background: var(--border-soft);
+  position: relative;
+  overflow: hidden;
+}
+.crisis-index .ci-bar-fill { height: 100%; }
+.crisis-index .ci-tier {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 2px solid currentColor;
+  font-variant-numeric: tabular-nums;
+}
+.crisis-index.sev-low { border-left: 4px solid var(--good); }
+.crisis-index.sev-low .ci-num,
+.crisis-index.sev-low .ci-tier,
+.crisis-index.sev-low .ci-bar-fill { color: var(--good); background-color: var(--good); }
+.crisis-index.sev-low .ci-num,
+.crisis-index.sev-low .ci-tier { background-color: transparent; }
+.crisis-index.sev-warn { border-left: 4px solid #e89020; }
+.crisis-index.sev-warn .ci-num,
+.crisis-index.sev-warn .ci-tier { color: #e89020; }
+.crisis-index.sev-warn .ci-bar-fill { background: #e89020; }
+.crisis-index.sev-crit { border-left: 4px solid var(--crit); background: var(--crit-soft); }
+.crisis-index.sev-crit .ci-num,
+.crisis-index.sev-crit .ci-tier { color: var(--crit); }
+.crisis-index.sev-crit .ci-bar-fill { background: var(--crit); }
 
 /* === Tier ladder =========================================================== */
 .ladder {

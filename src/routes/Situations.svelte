@@ -19,6 +19,18 @@
     $situations.ended.length === 0 &&
     $situations.stability_modifiers.length === 0 &&
     $situations.tier_ladder.length === 0;
+
+  $: totalCF = $situations
+    ? $situations.active.reduce((a, s) => a + (Number(s.crisis_factor) || 0), 0)
+    : 0;
+  $: ciSeverity = totalCF >= 0.6 ? 'crit' : totalCF >= 0.3 ? 'warn' : 'low';
+  $: ciTier =
+    totalCF >= 0.8 ? 'T5 · Collapse'
+    : totalCF >= 0.6 ? 'T4 · Crisis'
+    : totalCF >= 0.4 ? 'T3 · Elevated'
+    : totalCF >= 0.2 ? 'T2 · Watch'
+    : 'T1 · Calm';
+  $: ciPct = Math.max(0, Math.min(100, totalCF * 100));
 </script>
 
 <section class="px-6 py-5 max-w-[1600px]">
@@ -35,6 +47,21 @@
       </p>
     </div>
   {:else}
+    {#if $situations.active.length > 0}
+      <Band num="00" title="Crisis Index" meta={`${$situations.active.length} active · Σ CF`} />
+      <div class="crisis-index sev-{ciSeverity}">
+        <div>
+          <div class="ci-num">{totalCF.toFixed(2)}</div>
+          <div class="ci-meta">aggregate cf</div>
+        </div>
+        <div>
+          <div class="ci-bar"><div class="ci-bar-fill" style="width: {ciPct}%"></div></div>
+          <div class="ci-meta" style="margin-top:6px">0.00 ─────────── 1.00</div>
+        </div>
+        <div class="ci-tier">{ciTier}</div>
+      </div>
+    {/if}
+
     <div class="grid grid-cols-1 lg:grid-cols-7 gap-4">
       <div class="lg:col-span-4">
         <Band num="01" title="Active Situations" meta={`${$situations.active.length} active`} />
