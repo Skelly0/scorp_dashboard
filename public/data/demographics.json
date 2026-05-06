@@ -6,17 +6,17 @@
   },
   "housing": {
     "capacity": 21300.0,
-    "growth_mult": 0.3969591571,
+    "growth_mult": 1.202959026,
     "overcrowding_exp": 2.0,
     "pop": 16620,
     "ratio": 0.6300469484
   },
   "totals": {
-    "avg_satisfaction": 0.6547758297562875,
-    "effective_cdr": 0.01365824308,
-    "effective_growth_rate": 0.009,
-    "net_delta_pct": -0.4658243080000001,
+    "avg_satisfaction": 0.7183214727361762,
+    "effective_cdr": 0.01209386282,
+    "effective_growth_rate": 0.012,
+    "net_delta_pct": -0.00938628200000003,
     "pop": 16620,
-    "total_deaths": 227.0
+    "total_deaths": 201.0
   }
 }
