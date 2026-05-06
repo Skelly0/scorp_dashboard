@@ -24,6 +24,7 @@ def extract(wb) -> dict[str, Any]:
         "population_total": _population_total(wb),
         "resources": _resources(wb),
         "overton": _overton(wb),
+        "gov_approval": _scalar_named(wb, "EffectiveGovApproval"),
         "active_situations": _active_situations(wb),
     }
 

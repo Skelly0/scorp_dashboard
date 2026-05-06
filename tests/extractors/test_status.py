@@ -57,3 +57,14 @@ def test_extract_year_none_when_named_range_missing(wb):
     del wb.defined_names["Var_Year"]
     result = extract(wb)
     assert result["year"] is None
+
+
+def test_extract_returns_gov_approval(wb):
+    result = extract(wb)
+    assert result["gov_approval"] == 0.62
+
+
+def test_extract_gov_approval_none_when_range_missing(wb):
+    del wb.defined_names["EffectiveGovApproval"]
+    result = extract(wb)
+    assert result["gov_approval"] is None
