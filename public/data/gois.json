@@ -7,7 +7,7 @@
         "unlocked_list": []
       },
       "approach": "Idealist",
-      "approval": 0.4288822522,
+      "approval": 0.4744818659,
       "derived_influence": 0.2182028427,
       "effective_worldview": {
         "authority": 4.5,
@@ -22,34 +22,22 @@
       "name": "Administration",
       "sub_factions": [
         {
-          "approval": 0.5341024903,
+          "approval": 0.5351228915,
           "influence": 0.25,
           "minor_goals": [],
           "name": "Constitutional Loyalists"
         },
         {
-          "approval": 0.4031501094,
+          "approval": 0.4041705106,
           "influence": 0.22,
           "minor_goals": [],
           "name": "Reformist Administrators"
         },
         {
-          "approval": 0.4751739189,
+          "approval": 0.4761943201,
           "influence": 0.18,
           "minor_goals": [],
           "name": "Hardliner Administrators"
-        },
-        {
-          "approval": 0.2198167761,
-          "influence": 0.2,
-          "minor_goals": [],
-          "name": "Order Faction"
-        },
-        {
-          "approval": 0.5144596332,
-          "influence": 0.15,
-          "minor_goals": [],
-          "name": "Defence Faction"
         }
       ]
     },
@@ -60,7 +48,7 @@
         "unlocked_list": []
       },
       "approach": "Marketist",
-      "approval": 0.42555453,
+      "approval": 0.4265749312,
       "derived_influence": 0.2183473862,
       "effective_worldview": {
         "authority": 3.5,
@@ -75,19 +63,19 @@
       "name": "Corporate",
       "sub_factions": [
         {
-          "approval": 0.4869711967,
+          "approval": 0.4879915979,
           "influence": 0.4,
           "minor_goals": [],
           "name": "Industrialists"
         },
         {
-          "approval": 0.3900664348,
+          "approval": 0.391086836,
           "influence": 0.35,
           "minor_goals": [],
           "name": "Extraction Cartels"
         },
         {
-          "approval": 0.3769711967,
+          "approval": 0.3779915979,
           "influence": 0.25,
           "minor_goals": [],
           "name": "High Finance"
@@ -103,7 +91,7 @@
         ]
       },
       "approach": "Democratic",
-      "approval": 0.2500609943,
+      "approval": 0.2510813955,
       "derived_influence": 0.3752734281,
       "effective_worldview": {
         "authority": 5.5,
@@ -118,19 +106,19 @@
       "name": "Unions",
       "sub_factions": [
         {
-          "approval": 0.2323824229,
+          "approval": 0.2334028241,
           "influence": 0.5,
           "minor_goals": [],
           "name": "Labour Caucus"
         },
         {
-          "approval": 0.2913109943,
+          "approval": 0.2923313955,
           "influence": 0.3,
           "minor_goals": [],
           "name": "Co-op Movement"
         },
         {
-          "approval": 0.2323824229,
+          "approval": 0.2334028241,
           "influence": 0.2,
           "minor_goals": [],
           "name": "Syndicalists"
@@ -144,7 +132,7 @@
         "unlocked_list": []
       },
       "approach": "Secular",
-      "approval": 0.3431289418,
+      "approval": 0.344149343,
       "derived_influence": 0.188176343,
       "effective_worldview": {
         "authority": 4.0,
@@ -159,13 +147,13 @@
       "name": "Research",
       "sub_factions": [
         {
-          "approval": 0.4138432275,
+          "approval": 0.4148636287,
           "influence": 0.6,
           "minor_goals": [],
           "name": "Frontier Bloc"
         },
         {
-          "approval": 0.2370575132,
+          "approval": 0.2380779144,
           "influence": 0.4,
           "minor_goals": [],
           "name": "Scientific Vanguard"

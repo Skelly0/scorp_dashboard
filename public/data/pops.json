@@ -22,7 +22,7 @@
       "mortality_rate": 0.009578851444,
       "name": "Bureaucrats",
       "pop": 1045,
-      "satisfaction": 0.667593262,
+      "satisfaction": 0.6681486277,
       "social_privileges": 8.0,
       "standard_of_living": 17.2262849,
       "status": {
@@ -67,7 +67,7 @@
       "mortality_rate": 0.007824621733,
       "name": "Capitalists",
       "pop": 237,
-      "satisfaction": 0.711123017,
+      "satisfaction": 0.7114610158,
       "social_privileges": 13.0,
       "standard_of_living": 34.54619213,
       "status": {
@@ -112,7 +112,7 @@
       "mortality_rate": 0.008077028886,
       "name": "Engineers",
       "pop": 1140,
-      "satisfaction": 0.7185573665,
+      "satisfaction": 0.7189255684,
       "social_privileges": 8.0,
       "standard_of_living": 17.47849205,
       "status": {
@@ -157,7 +157,7 @@
       "mortality_rate": 0.007824621733,
       "name": "Scientists",
       "pop": 1710,
-      "satisfaction": 0.7650469687,
+      "satisfaction": 0.7653927879,
       "social_privileges": 9.0,
       "standard_of_living": 20.22622982,
       "status": {
@@ -202,7 +202,7 @@
       "mortality_rate": 0.009619236589,
       "name": "Security",
       "pop": 950,
-      "satisfaction": 0.7178727798,
+      "satisfaction": 0.7179679944,
       "social_privileges": 7.0,
       "standard_of_living": 14.29239418,
       "status": {
@@ -247,7 +247,7 @@
       "mortality_rate": 0.008834250344,
       "name": "Proprietors",
       "pop": 285,
-      "satisfaction": 0.7245297828,
+      "satisfaction": 0.7249039789,
       "social_privileges": 8.0,
       "standard_of_living": 16.9332102,
       "status": {
@@ -292,7 +292,7 @@
       "mortality_rate": 0.008077028886,
       "name": "Managerial",
       "pop": 332,
-      "satisfaction": 0.7080987884,
+      "satisfaction": 0.7084634154,
       "social_privileges": 8.0,
       "standard_of_living": 18.87081261,
       "status": {
@@ -337,7 +337,7 @@
       "mortality_rate": 0.008077028886,
       "name": "Botanists",
       "pop": 570,
-      "satisfaction": 0.6897263819,
+      "satisfaction": 0.6901721367,
       "social_privileges": 8.0,
       "standard_of_living": 18.21441994,
       "status": {
@@ -382,7 +382,7 @@
       "mortality_rate": 0.009843878955,
       "name": "Industrial Workers",
       "pop": 3450,
-      "satisfaction": 0.7364945464,
+      "satisfaction": 0.7370402031,
       "social_privileges": 5.0,
       "standard_of_living": 9.180657698,
       "status": {
@@ -427,7 +427,7 @@
       "mortality_rate": 0.009843878955,
       "name": "Extraction Workers",
       "pop": 3700,
-      "satisfaction": 0.7402258522,
+      "satisfaction": 0.7407715089,
       "social_privileges": 5.0,
       "standard_of_living": 9.45863666,
       "status": {
@@ -472,7 +472,7 @@
       "mortality_rate": 0.01009628611,
       "name": "Service Workers",
       "pop": 3200,
-      "satisfaction": 0.7322537412,
+      "satisfaction": 0.7327763269,
       "social_privileges": 5.0,
       "standard_of_living": 8.555081546,
       "status": {
