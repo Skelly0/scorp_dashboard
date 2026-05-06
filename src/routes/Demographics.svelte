@@ -139,5 +139,22 @@
         </div>
       </div>
     </div>
+    <Band num="04" title="Food Security" meta="cropsim signals" />
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <KpiBlock
+        label="Security Ratio"
+        value={$demographics.food.security_ratio?.toFixed(2) ?? '—'}
+        good={($demographics.food.security_ratio ?? 0) >= 1.0}
+        critical={($demographics.food.security_ratio ?? 1) < 0.95}
+      />
+      <KpiBlock
+        label="Food / Cap"
+        value={$demographics.food.per_cap?.toFixed(2) ?? '—'}
+      />
+      <KpiBlock
+        label="Variety Index"
+        value={$demographics.food.variety_index?.toFixed(2) ?? '—'}
+      />
+    </div>
   {/if}
 </section>
