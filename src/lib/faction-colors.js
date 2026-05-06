@@ -8,12 +8,12 @@ export const CLASS_COLORS = {
   Engineers: '#5ec3ff',
   Scientists: '#a89cff',
   Security: '#ff5544',
-  Proprietors: '#e89020',
+  Proprietors: '#9c8a2e',
   Managerial: '#c44dff',
-  'Agricultural Workers': '#7fc97f',
+  Botanists: '#7fc97f',
   'Industrial Workers': '#38d39f',
+  'Extraction Workers': '#ff8c42',
   'Service Workers': '#a89567',
-  'Skilled Tradesmen': '#ff8c42',
 };
 
 export const GOI_COLORS = {
