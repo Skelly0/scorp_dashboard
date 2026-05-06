@@ -3,12 +3,35 @@
   import { meta } from '../lib/stores/meta.js';
   import { map, mapError, loadMap } from '../lib/stores/map.js';
   import { pageTitle } from '../lib/page-title.js';
+  import { categorySlugFor } from '../lib/improvement-categories.js';
   import Band from '../lib/components/Band.svelte';
   import MapCanvas from '../lib/components/MapCanvas.svelte';
 
   let layer = 'terrain';
   let hoverTile = null;
   let pinnedTile = null;
+  let filters = { resource: null, feature: null, improvement: null };
+
+  $: activeFilterCount = (filters.resource ? 1 : 0) + (filters.feature ? 1 : 0) + (filters.improvement ? 1 : 0);
+
+  $: matchedTiles = $map ? $map.tiles.filter(t => tileMatchesFilters(t, filters)) : [];
+
+  function tileMatchesFilters(t, f) {
+    if (f.resource && t.resource !== f.resource) return false;
+    if (f.feature && t.feature !== f.feature) return false;
+    if (f.improvement) {
+      if (!t.improvement) return false;
+      return categorySlugFor(t.improvement.name) === f.improvement;
+    }
+    return true;
+  }
+
+  function clearFilter(kind) {
+    filters = { ...filters, [kind]: null };
+  }
+  function clearAllFilters() {
+    filters = { resource: null, feature: null, improvement: null };
+  }
 
   $: t = pinnedTile ?? hoverTile;
 
@@ -16,6 +39,19 @@
     pageTitle.set('Map');
     if ($meta?.synced_at) loadMap($meta.synced_at);
   });
+
+  function handlePageKey(e) {
+    if (e.key !== 'Escape') return;
+    if (activeFilterCount > 0) {
+      clearAllFilters();
+      e.preventDefault();
+      return;
+    }
+    if (pinnedTile) {
+      pinnedTile = null;
+      e.preventDefault();
+    }
+  }
 
   const THEMATIC_LAYERS = [
     { value: 'terrain', label: 'Terrain' },
@@ -34,7 +70,7 @@
   const LAYERS = [...THEMATIC_LAYERS, ...OVERLAY_TABS];
 </script>
 
-<section class="px-6 py-5 max-w-[1600px]">
+<section class="px-6 py-5 max-w-[1600px]" tabindex="-1" on:keydown={handlePageKey}>
   {#if $mapError}
     <p class="text-crit">{$mapError}</p>
   {:else if !$map}
