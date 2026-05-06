@@ -781,6 +781,33 @@ table.tbl th.num {
   text-align: center;
 }
 
+/* === Inspector enhancements (T16) ========================================= */
+.filter-link {
+  background: transparent;
+  border: 1px solid var(--border-soft);
+  color: var(--fg-dim);
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  cursor: pointer;
+  margin-top: 6px;
+}
+.filter-link:hover { color: var(--fg); border-color: var(--accent); }
+.kv .swatch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 12px;
+  font-size: 8px;
+  font-weight: 900;
+  border: 1px solid rgba(0,0,0,0.4);
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
 /* === Sparkline ============================================================= */
 .spark {
   display: block;

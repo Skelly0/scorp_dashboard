@@ -157,18 +157,41 @@
             <div class="s-card-pad">
               <dl class="kv">
                 <dt>Terrain</dt><dd>{t.terrain ?? '—'}</dd>
-                <dt>Feature</dt><dd>{t.feature ?? '—'}</dd>
-                <dt>Resource</dt><dd>{t.resource ?? '—'}</dd>
+                <dt>Feature</dt>
+                <dd>
+                  {#if t.feature}
+                    <span class="swatch" style="background: {$map.palettes.feature?.[t.feature] ?? '#fff'}; color:#1a1a1a;">{FEATURE_CODES[t.feature] ?? '?'}</span>
+                    {t.feature}
+                  {:else}—{/if}
+                </dd>
+                <dt>Resource</dt>
+                <dd>
+                  {#if t.resource}
+                    <span class="swatch" style="background: {$map.palettes.resource?.[t.resource] ?? '#fff'}; color:#1a1a1a;">{RESOURCE_CODES[t.resource] ?? '?'}</span>
+                    {t.resource}
+                  {:else}—{/if}
+                </dd>
                 <dt>Slots</dt><dd>{t.slots ?? '—'}</dd>
               </dl>
               {#if t.improvement}
+                {@const cat = CATEGORIES[categorySlugFor(t.improvement.name)] ?? CATEGORIES.other}
                 <div class="kv-section">
-                  <h4>Improvement</h4>
+                  <h4>
+                    <span style="color: {$map.palettes.improvement_category?.[cat.slug] ?? 'var(--accent)'}">{cat.icon}</span>
+                    Improvement
+                  </h4>
                   <dl class="kv">
                     <dt>Name</dt><dd>{t.improvement.name ?? '—'}</dd>
                     <dt>Owner</dt><dd>{t.improvement.owner ?? '—'}</dd>
                     <dt>Type</dt><dd>{t.improvement.ownership_type ?? '—'}</dd>
                   </dl>
+                  <button
+                    class="filter-link"
+                    on:click={() => {
+                      filters = { ...filters, improvement: cat.slug };
+                      layer = 'improvements';
+                    }}
+                  >Filter by {cat.icon} {cat.label}</button>
                 </div>
               {/if}
               {#if t.yields}
