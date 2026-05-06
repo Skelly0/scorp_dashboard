@@ -126,16 +126,6 @@
             dominant-baseline="central"
             class="map-glyph map-glyph--improvement"
           >▣</text>
-        {:else if t.feature}
-          <text
-            x={t.x * TILE_SIZE + TILE_SIZE / 2}
-            y={t.y * TILE_SIZE + TILE_SIZE / 2}
-            font-size={TILE_SIZE * 0.7}
-            font-weight="900"
-            text-anchor="middle"
-            dominant-baseline="central"
-            class="map-glyph map-glyph--feature"
-          >◆</text>
         {/if}
       {/each}
       <!-- Focus highlight -->
@@ -179,11 +169,6 @@
   .map-glyph--improvement {
     fill: var(--bg);
     stroke: var(--fg);
-    stroke-width: 2.5;
-  }
-  .map-glyph--feature {
-    fill: var(--accent);
-    stroke: var(--bg);
     stroke-width: 2.5;
   }
 </style>

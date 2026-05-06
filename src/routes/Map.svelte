@@ -105,7 +105,7 @@
     </div>
 
     <div class="text-muted text-[10px] uppercase tracking-widest mt-3">
-      ▣ Improvement · ◆ Resource feature · Color = {layer === 'terrain' ? 'biome' : layer + ' magnitude'}
+      ▣ Improvement · ↗ Resource · ↖ Feature · Color = {layer === 'terrain' ? 'biome' : (THEMATIC_LAYERS.some(t => t.value === layer) ? layer + ' magnitude' : layer)}
     </div>
   {/if}
 </section>
