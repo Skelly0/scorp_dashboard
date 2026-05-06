@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher, tick } from 'svelte';
   import { RESOURCE_CODES, FEATURE_CODES } from '../map-codes.js';
-  import { categoryFor } from '../improvement-categories.js';
+  import { categoryFor, categorySlugFor } from '../improvement-categories.js';
   import { goiColor, classColor } from '../faction-colors.js';
 
   /** @type {{tiles: any[], width: number, height: number, palettes: any}} */
@@ -10,6 +10,7 @@
   export let layer = 'terrain';
   /** active overlay tab name; controls overlay visibility/promotion (today equals `layer`). */
   export let tab = 'terrain';
+  export let filters = { resource: null, feature: null, improvement: null };
 
   const TILE_SIZE = 16;
   const dispatch = createEventDispatcher();
@@ -25,7 +26,32 @@
   $: improvementCatPal = mapData.palettes.improvement_category ?? {};
   // Recompute per-layer max for heatmap normalisation whenever map or layer changes.
   $: layerMax = computeLayerMax(mapData, layer);
-  $: drawTerrain(mapData, layer, layerMax);
+  $: anyFilterActive = !!(filters.resource || filters.feature || filters.improvement);
+  $: ringColor = (() => {
+    if (!anyFilterActive) return null;
+    if (filters.resource) return resourcePal[filters.resource] ?? '#ffb000';
+    if (filters.feature)  return featurePal[filters.feature]  ?? '#ffb000';
+    if (filters.improvement) return improvementCatPal[filters.improvement] ?? '#ffb000';
+    return '#ffb000';
+  })();
+  $: drawTerrain(mapData, layer, layerMax, filters);
+
+  function tileMatches(t, f) {
+    if (f.resource && t.resource !== f.resource) return false;
+    if (f.feature && t.feature !== f.feature) return false;
+    if (f.improvement) {
+      if (!t.improvement) return false;
+      return categorySlugFor(t.improvement.name) === f.improvement;
+    }
+    return true;
+  }
+
+  function bgWithAlpha(bg) {
+    // Resolve to #rrggbb form for the canvas alpha-tint trick. Falls back
+    // to a neutral rgba black if the theme bg isn't a pure 6-digit hex.
+    if (/^#[0-9a-f]{6}$/i.test(bg)) return bg + 'b3';
+    return 'rgba(0,0,0,0.7)';
+  }
 
   function computeLayerMax(mapData, layer) {
     if (!mapData || layer === 'terrain') return { pos: 0, neg: 0 };
@@ -54,7 +80,7 @@
     return theme.bg;
   }
 
-  async function drawTerrain(mapData, layer, layerMax) {
+  async function drawTerrain(mapData, layer, layerMax, filters) {
     if (!mapData) return;
     await tick();
     if (!canvas) return;
@@ -72,6 +98,15 @@
     for (const t of mapData.tiles) {
       ctx.fillStyle = tileColor(t, layer, mapData.palettes, layerMax, theme);
       ctx.fillRect(t.x * TILE_SIZE, t.y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+    }
+    // Dim non-matching tiles when a filter is active.
+    if (filters && (filters.resource || filters.feature || filters.improvement)) {
+      ctx.fillStyle = bgWithAlpha(theme.bg);
+      for (const t of mapData.tiles) {
+        if (!tileMatches(t, filters)) {
+          ctx.fillRect(t.x * TILE_SIZE, t.y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+        }
+      }
     }
   }
 
@@ -247,6 +282,21 @@
         stroke="var(--accent)"
         stroke-width="2"
       />
+      {#if anyFilterActive}
+        {#each mapData.tiles as t}
+          {#if tileMatches(t, filters)}
+            <rect
+              x={t.x * TILE_SIZE + 0.5}
+              y={t.y * TILE_SIZE + 0.5}
+              width={TILE_SIZE - 1}
+              height={TILE_SIZE - 1}
+              fill="none"
+              stroke={ringColor}
+              stroke-width="2"
+            />
+          {/if}
+        {/each}
+      {/if}
     </svg>
   </div>
 

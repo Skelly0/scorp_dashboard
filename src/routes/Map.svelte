@@ -94,6 +94,7 @@
         mapData={$map}
         {layer}
         tab={layer}
+        {filters}
         on:hover={(e) => (hoverTile = e.detail)}
         on:pin={(e) => (pinnedTile = e.detail)}
       />
