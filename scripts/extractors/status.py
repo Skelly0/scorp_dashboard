@@ -16,16 +16,18 @@ OVERTON_AXES = [
 
 
 def extract(wb) -> dict[str, Any]:
+    population_total = _population_total(wb)
     return {
         "year": _year(wb),
         "treasury": _treasury(wb),
         "stability": _scalar_named(wb, "Stability"),
         "crisis_factor": _scalar_named(wb, "CrisisFactor"),
-        "population_total": _population_total(wb),
+        "population_total": population_total,
         "resources": _resources(wb),
         "overton": _overton(wb),
-        "gov_approval": _scalar_named(wb, "EffectiveGovApproval"),
         "active_situations": _active_situations(wb),
+        "gov_approval": _scalar_named(wb, "EffectiveGovApproval"),
+        "demographics": _demographics_block(wb, population_total),
     }
 
 
@@ -139,6 +141,31 @@ def _net_delta_pct(effective_growth: float | None, cdr: float | None) -> float |
     if effective_growth is None or cdr is None:
         return None
     return (effective_growth - cdr) * 100
+
+
+def _demographics_block(wb, population_total: int) -> dict:
+    """Aggregate demographics scalars consumed by Status's Pulse row.
+
+    Soft-optional Var_* ranges return None when missing — _scalar_named
+    handles that (read_named_range returns [] for unknown names, so
+    _scalar_named short-circuits to None).
+    """
+    base = _scalar_named(wb, "Var_BaseGrowthRate")
+    elasticity = _scalar_named(wb, "Var_GrowthSatElasticity")
+    cdr = _scalar_named(wb, "EffectiveCDR")
+    capacity = _scalar_named(wb, "HousingCapacity")
+    effective_growth = base * elasticity if (base is not None and elasticity is not None) else None
+    return {
+        "base_growth_rate": base,
+        "sat_elasticity": elasticity,
+        "effective_growth_rate": effective_growth,
+        "effective_cdr": cdr,
+        "total_deaths": _scalar_named(wb, "TotalDeathsPerTurn"),
+        "net_delta_pct": _net_delta_pct(effective_growth, cdr),
+        "housing_capacity": capacity,
+        "housing_util": _housing_util(population_total, capacity),
+        "avg_satisfaction": _avg_satisfaction(wb),
+    }
 
 
 def _avg_satisfaction(wb) -> float | None:

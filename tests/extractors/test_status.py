@@ -113,3 +113,34 @@ def test_net_delta_pct_none_when_either_input_missing():
     assert _net_delta_pct(None, 0.012) is None
     assert _net_delta_pct(0.020, None) is None
     assert _net_delta_pct(None, None) is None
+
+
+def test_extract_demographics_block_shape(wb):
+    result = extract(wb)
+    demo = result["demographics"]
+    assert set(demo.keys()) == {
+        "base_growth_rate", "sat_elasticity", "effective_growth_rate",
+        "effective_cdr", "total_deaths", "net_delta_pct",
+        "housing_capacity", "housing_util", "avg_satisfaction",
+    }
+
+
+def test_extract_demographics_values_from_fixture(wb):
+    result = extract(wb)
+    demo = result["demographics"]
+    assert demo["base_growth_rate"] == 0.020
+    assert demo["sat_elasticity"] == 0.95
+    assert demo["effective_growth_rate"] == pytest.approx(0.020 * 0.95)
+    assert demo["effective_cdr"] == 0.0125
+    assert demo["total_deaths"] == 280
+    assert demo["housing_capacity"] == 16500
+    assert demo["avg_satisfaction"] == 0.40
+
+
+def test_extract_demographics_effective_growth_none_when_base_missing(wb):
+    del wb.defined_names["Var_BaseGrowthRate"]
+    result = extract(wb)
+    demo = result["demographics"]
+    assert demo["base_growth_rate"] is None
+    assert demo["effective_growth_rate"] is None
+    assert demo["net_delta_pct"] is None  # chains through
