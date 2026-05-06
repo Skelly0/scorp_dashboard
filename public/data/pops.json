@@ -8,7 +8,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 11.0,
+      "deaths_per_turn": 15.0,
       "expected_sol": 21.0,
       "income": {
         "disposable_per_cap": 16.0,
@@ -19,17 +19,17 @@
         "total_gross": 26125.0,
         "wealth_tax_per_cap": 1.5
       },
-      "mortality_rate": 0.01027486245,
+      "mortality_rate": 0.01389479908,
       "name": "Bureaucrats",
       "pop": 1045,
-      "satisfaction": 0.6617742079,
+      "satisfaction": 0.5980392032,
       "social_privileges": 8.0,
       "standard_of_living": 17.2262849,
       "status": {
         "abject_poverty": 0.5,
         "literacy": 0.85,
         "organisation": 0.49,
-        "radicalisation": 0.1199102157,
+        "radicalisation": 0.1939008261,
         "vote_share": 0.1541105539,
         "votes_total": 2735.0
       },
@@ -53,7 +53,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 2.0,
+      "deaths_per_turn": 3.0,
       "expected_sol": 36.0,
       "income": {
         "disposable_per_cap": 32.0,
@@ -64,10 +64,10 @@
         "total_gross": 11875.0,
         "wealth_tax_per_cap": 3.0
       },
-      "mortality_rate": 0.008393168271,
+      "mortality_rate": 0.01135016526,
       "name": "Capitalists",
       "pop": 237,
-      "satisfaction": 0.7109012975,
+      "satisfaction": 0.6657105018,
       "social_privileges": 13.0,
       "standard_of_living": 34.54619213,
       "status": {
@@ -98,7 +98,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 10.0,
+      "deaths_per_turn": 13.0,
       "expected_sol": 16.0,
       "income": {
         "disposable_per_cap": 16.72,
@@ -109,10 +109,10 @@
         "total_gross": 25080.0,
         "wealth_tax_per_cap": 0.44
       },
-      "mortality_rate": 0.008663915635,
+      "mortality_rate": 0.01171629962,
       "name": "Engineers",
       "pop": 1140,
-      "satisfaction": 0.712405008,
+      "satisfaction": 0.6510220515,
       "social_privileges": 8.0,
       "standard_of_living": 17.47849205,
       "status": {
@@ -143,7 +143,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 14.0,
+      "deaths_per_turn": 19.0,
       "expected_sol": 18.0,
       "income": {
         "disposable_per_cap": 18.24,
@@ -154,10 +154,10 @@
         "total_gross": 41040.0,
         "wealth_tax_per_cap": 0.48
       },
-      "mortality_rate": 0.008393168271,
+      "mortality_rate": 0.01135016526,
       "name": "Scientists",
       "pop": 1710,
-      "satisfaction": 0.7588606553,
+      "satisfaction": 0.6943243656,
       "social_privileges": 9.0,
       "standard_of_living": 20.22622982,
       "status": {
@@ -188,7 +188,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 10.0,
+      "deaths_per_turn": 13.0,
       "expected_sol": 12.0,
       "income": {
         "disposable_per_cap": 13.68,
@@ -199,17 +199,17 @@
         "total_gross": 17100.0,
         "wealth_tax_per_cap": 0.36
       },
-      "mortality_rate": 0.01031818203,
+      "mortality_rate": 0.01395338058,
       "name": "Security",
       "pop": 950,
-      "satisfaction": 0.7119616939,
+      "satisfaction": 0.6445421451,
       "social_privileges": 7.0,
       "standard_of_living": 14.29239418,
       "status": {
         "abject_poverty": 0.1,
         "literacy": 0.65,
         "organisation": 0.53,
-        "radicalisation": 0.0,
+        "radicalisation": 0.007990610329,
         "vote_share": 0.05499521046,
         "votes_total": 976.0
       },
@@ -233,7 +233,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 3.0,
+      "deaths_per_turn": 4.0,
       "expected_sol": 14.0,
       "income": {
         "disposable_per_cap": 15.2,
@@ -244,10 +244,10 @@
         "total_gross": 5700.0,
         "wealth_tax_per_cap": 0.4
       },
-      "mortality_rate": 0.009476157726,
+      "mortality_rate": 0.01281470271,
       "name": "Proprietors",
       "pop": 285,
-      "satisfaction": 0.7203395344,
+      "satisfaction": 0.6661445031,
       "social_privileges": 8.0,
       "standard_of_living": 16.9332102,
       "status": {
@@ -278,7 +278,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 3.0,
+      "deaths_per_turn": 4.0,
       "expected_sol": 16.0,
       "income": {
         "disposable_per_cap": 21.28,
@@ -289,10 +289,10 @@
         "total_gross": 9310.0,
         "wealth_tax_per_cap": 0.56
       },
-      "mortality_rate": 0.008663915635,
+      "mortality_rate": 0.01171629962,
       "name": "Managerial",
       "pop": 332,
-      "satisfaction": 0.7037170242,
+      "satisfaction": 0.6487847842,
       "social_privileges": 8.0,
       "standard_of_living": 18.87081261,
       "status": {
@@ -323,7 +323,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 5.0,
+      "deaths_per_turn": 7.0,
       "expected_sol": 16.0,
       "income": {
         "disposable_per_cap": 19.0,
@@ -334,10 +334,10 @@
         "total_gross": 14250.0,
         "wealth_tax_per_cap": 0.5
       },
-      "mortality_rate": 0.008663915635,
+      "mortality_rate": 0.01171629962,
       "name": "Botanists",
       "pop": 570,
-      "satisfaction": 0.6817319897,
+      "satisfaction": 0.6216381616,
       "social_privileges": 8.0,
       "standard_of_living": 18.21441994,
       "status": {
@@ -368,7 +368,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 36.0,
+      "deaths_per_turn": 49.0,
       "expected_sol": 5.0,
       "income": {
         "disposable_per_cap": 10.2,
@@ -379,17 +379,17 @@
         "total_gross": 41400.0,
         "wealth_tax_per_cap": 0.0
       },
-      "mortality_rate": 0.01055914718,
+      "mortality_rate": 0.01427924017,
       "name": "Industrial Workers",
       "pop": 3450,
-      "satisfaction": 0.7316480739,
+      "satisfaction": 0.6666091598,
       "social_privileges": 5.0,
       "standard_of_living": 9.180657698,
       "status": {
         "abject_poverty": 0.0,
         "literacy": 0.55,
         "organisation": 0.52,
-        "radicalisation": 0.005,
+        "radicalisation": 0.07899061033,
         "vote_share": 0.08902913168,
         "votes_total": 1580.0
       },
@@ -413,7 +413,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 39.0,
+      "deaths_per_turn": 53.0,
       "expected_sol": 5.0,
       "income": {
         "disposable_per_cap": 11.05,
@@ -424,10 +424,10 @@
         "total_gross": 48100.0,
         "wealth_tax_per_cap": 0.0
       },
-      "mortality_rate": 0.01055914718,
+      "mortality_rate": 0.01427924017,
       "name": "Extraction Workers",
       "pop": 3700,
-      "satisfaction": 0.734968306,
+      "satisfaction": 0.6699293919,
       "social_privileges": 5.0,
       "standard_of_living": 9.45863666,
       "status": {
@@ -458,7 +458,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 35.0,
+      "deaths_per_turn": 47.0,
       "expected_sol": 5.0,
       "income": {
         "disposable_per_cap": 8.5,
@@ -469,10 +469,10 @@
         "total_gross": 32000.0,
         "wealth_tax_per_cap": 0.0
       },
-      "mortality_rate": 0.01082989454,
+      "mortality_rate": 0.01464537453,
       "name": "Service Workers",
       "pop": 3200,
-      "satisfaction": 0.727974347,
+      "satisfaction": 0.6656897368,
       "social_privileges": 5.0,
       "standard_of_living": 8.555081546,
       "status": {
