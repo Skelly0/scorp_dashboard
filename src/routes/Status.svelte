@@ -8,6 +8,7 @@
     treasuryHistory,
     stabilityHistory,
     crisisFactorHistory,
+    govApprovalHistory,
   } from '../lib/stores/history.js';
   import { pageTitle } from '../lib/page-title.js';
   import Band from '../lib/components/Band.svelte';
@@ -27,6 +28,15 @@
 
   $: critical = $status && $status.crisis_factor != null && $status.stability != null
     && $status.crisis_factor >= $status.stability;
+
+  // net Δpop / turn — derived from extractor's net_delta_pct (% per year).
+  // Frontend converts back to absolute count for the KpiBlock delta slot.
+  $: netDeltaPop = (() => {
+    const pct = $status?.demographics?.net_delta_pct;
+    const pop = $status?.population_total;
+    if (pct == null || pop == null) return null;
+    return Math.round((pct / 100) * pop);
+  })();
 
   $: activeSituations = $status?.active_situations?.filter((s) => s.crisis_factor != null) ?? [];
 
@@ -51,7 +61,7 @@
   {:else}
     <Band num="01" title="Vital Signs" meta={$status.year != null ? `Year ${$status.year}` : ''} />
     <div class="grid grid-cols-12 gap-3">
-      <div class="col-span-12 md:col-span-5">
+      <div class="col-span-12 md:col-span-4">
         <KpiBlock
           label="Treasury"
           value={fmtMoney($status.treasury?.money)}
@@ -60,7 +70,7 @@
           history={$treasuryHistory.length >= 2 ? $treasuryHistory : null}
         />
       </div>
-      <div class="col-span-6 md:col-span-3">
+      <div class="col-span-6 md:col-span-2">
         <KpiBlock
           label="Stability"
           value={$status.stability?.toFixed(2) ?? '—'}
@@ -76,10 +86,19 @@
           critical={critical}
         />
       </div>
-      <div class="col-span-12 md:col-span-2">
+      <div class="col-span-6 md:col-span-2">
         <KpiBlock
           label="Population"
           value={$status.population_total?.toLocaleString() ?? '—'}
+          delta={fmtDeltaInt(netDeltaPop)}
+        />
+      </div>
+      <div class="col-span-6 md:col-span-2">
+        <KpiBlock
+          label="Gov Approval"
+          value={$status.gov_approval?.toFixed(2) ?? '—'}
+          history={$govApprovalHistory.length >= 2 ? $govApprovalHistory : null}
+          good
         />
       </div>
     </div>
