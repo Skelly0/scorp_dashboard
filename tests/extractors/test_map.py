@@ -43,3 +43,18 @@ def test_extract_includes_palette(wb):
     assert "palettes" in result
     assert "terrain" in result["palettes"]
     assert result["palettes"]["terrain"]["Crater Floor"] == "#5a4a3a"
+
+
+def test_extract_includes_resource_palette(wb):
+    result = extract(wb)
+    assert "resource" in result["palettes"]
+    pal = result["palettes"]["resource"]
+    # Must cover every resource type the live workbook can emit.
+    assert pal["Helium-3"] == "#ffd166"
+    assert pal["Iron Deposit"] == "#c97064"
+    assert pal["Aluminum Deposit"] == "#b8c5d6"
+    assert pal["Phosphorus Deposit"] == "#d6a8e0"
+    assert pal["Rare Earths"] == "#7ed4a8"
+    assert pal["Heavy Metals"] == "#6a7e9c"
+    assert pal["Oxygen Bound Soil"] == "#5fc3e8"
+    assert pal["Water Ice"] == "#ffffff"

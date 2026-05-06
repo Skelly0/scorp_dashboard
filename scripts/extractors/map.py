@@ -52,7 +52,10 @@ def extract(wb) -> dict[str, Any]:
         "width": WIDTH,
         "height": HEIGHT,
         "tiles": tiles,
-        "palettes": {"terrain": _palette(wb, "TerrainPalette")},
+        "palettes": {
+            "terrain": _palette(wb, "TerrainPalette", TERRAIN_PALETTE),
+            "resource": _palette(wb, "ResourcePalette", RESOURCE_PALETTE),
+        },
     }
 
 
@@ -125,14 +128,16 @@ def _col_letter(n):
     return s
 
 
-def _palette(wb, named_range):
-    """Terrain palette. The live workbook doesn't expose a TerrainPalette named
-    range; the dashboard owns the colour mapping. We still try the named range
-    as a fallback so future backend additions Just Work."""
+def _palette(wb, named_range, fallback):
+    """Try the named range first; fall back to the supplied dict.
+
+    Lets the GM optionally drive palette colours from the workbook without
+    requiring it. Mirrors the existing TerrainPalette pattern.
+    """
     rows = read_named_range(wb, named_range)
     if rows:
         return {r[0]: r[1] for r in rows if r and r[0]}
-    return dict(TERRAIN_PALETTE)
+    return dict(fallback)
 
 
 # Hardcoded fallback palette. Keep in sync with terrain types added to the live workbook.
@@ -145,4 +150,15 @@ TERRAIN_PALETTE = {
     "Lava Tube": "#2a2520",
     "Highland Plateau": "#7a6a55",
     "Empty": "#1a1a1a",
+}
+
+RESOURCE_PALETTE = {
+    "Helium-3": "#ffd166",
+    "Iron Deposit": "#c97064",
+    "Aluminum Deposit": "#b8c5d6",
+    "Phosphorus Deposit": "#d6a8e0",
+    "Rare Earths": "#7ed4a8",
+    "Heavy Metals": "#6a7e9c",
+    "Oxygen Bound Soil": "#5fc3e8",
+    "Water Ice": "#ffffff",
 }
