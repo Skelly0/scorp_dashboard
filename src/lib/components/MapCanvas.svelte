@@ -1,6 +1,8 @@
 <script>
   import { createEventDispatcher, tick } from 'svelte';
   import { RESOURCE_CODES, FEATURE_CODES } from '../map-codes.js';
+  import { categoryFor } from '../improvement-categories.js';
+  import { goiColor, classColor } from '../faction-colors.js';
 
   /** @type {{tiles: any[], width: number, height: number, palettes: any}} */
   export let mapData;
@@ -20,6 +22,7 @@
   $: viewBox = `0 0 ${width} ${height}`;
   $: resourcePal = mapData.palettes.resource ?? {};
   $: featurePal  = mapData.palettes.feature  ?? {};
+  $: improvementCatPal = mapData.palettes.improvement_category ?? {};
   // Recompute per-layer max for heatmap normalisation whenever map or layer changes.
   $: layerMax = computeLayerMax(mapData, layer);
   $: drawTerrain(mapData, layer, layerMax);
@@ -97,6 +100,14 @@
     return mapData.tiles[y * mapData.width + x] ?? null;
   }
 
+  function ownerColor(owner) {
+    if (!owner) return null;
+    // Try GoI palette first; fall back to class palette. Both are realistic owner kinds.
+    const c = goiColor(owner);
+    if (c !== 'var(--accent)') return c;
+    return classColor(owner);
+  }
+
   function handleClick(e) {
     handleMove(e);
     dispatch('pin', tileAt(focused.x, focused.y));
@@ -122,15 +133,30 @@
            so icons stay legible against any terrain colour or theme. -->
       {#each mapData.tiles as t}
         {#if t.improvement}
-          <text
-            x={t.x * TILE_SIZE + TILE_SIZE / 2}
-            y={t.y * TILE_SIZE + TILE_SIZE / 2}
-            font-size={TILE_SIZE * 0.85}
-            font-weight="900"
-            text-anchor="middle"
-            dominant-baseline="central"
-            class="map-glyph map-glyph--improvement"
-          >▣</text>
+          {#if tab === 'improvements'}
+            {@const cat = categoryFor(t.improvement)}
+            {@const fill = ownerColor(t.improvement.owner) ?? improvementCatPal[cat.slug] ?? '#ffffff'}
+            <text
+              x={t.x * TILE_SIZE + TILE_SIZE / 2}
+              y={t.y * TILE_SIZE + TILE_SIZE / 2}
+              font-size={TILE_SIZE * 0.85}
+              font-weight="900"
+              text-anchor="middle"
+              dominant-baseline="central"
+              class="map-glyph map-glyph--improvement"
+              fill={fill}
+            >{cat.icon}</text>
+          {:else}
+            <text
+              x={t.x * TILE_SIZE + TILE_SIZE / 2}
+              y={t.y * TILE_SIZE + TILE_SIZE / 2}
+              font-size={TILE_SIZE * 0.85}
+              font-weight="900"
+              text-anchor="middle"
+              dominant-baseline="central"
+              class="map-glyph map-glyph--improvement"
+            >▣</text>
+          {/if}
         {/if}
       {/each}
       <!-- Resource overlay (top-right). Chip-style on Resources tab; dot-style elsewhere. -->
