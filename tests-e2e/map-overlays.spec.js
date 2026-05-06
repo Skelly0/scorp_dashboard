@@ -74,3 +74,31 @@ test.describe('Filter persistence', () => {
     await expect(page.locator('.filter-chip')).toHaveCount(2);
   });
 });
+
+test.describe('Clear filters', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/#/map');
+    await page.waitForLoadState('networkidle');
+    await page.getByRole('button', { name: 'Resources' }).click();
+    await page.locator('.roster-row').first().click();
+  });
+
+  test('per-chip ✕ clears that filter', async ({ page }) => {
+    await page.locator('.filter-chip button[aria-label*="Clear"]').first().click();
+    await expect(page.locator('.filter-strip')).toBeHidden();
+  });
+
+  test('Clear all pill clears every filter', async ({ page }) => {
+    await page.getByRole('button', { name: 'Features' }).click();
+    await page.locator('.roster-row').first().click();
+    await expect(page.locator('.filter-chip')).toHaveCount(2);
+    await page.locator('.clear-all').click();
+    await expect(page.locator('.filter-strip')).toBeHidden();
+  });
+
+  test('Esc clears all filters', async ({ page }) => {
+    await page.locator('section').first().focus();
+    await page.keyboard.press('Escape');
+    await expect(page.locator('.filter-strip')).toBeHidden();
+  });
+});
