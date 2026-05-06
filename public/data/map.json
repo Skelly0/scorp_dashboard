@@ -1,6 +1,37 @@
 {
   "height": 40,
   "palettes": {
+    "feature": {
+      "Boulder Field": "#6e6058",
+      "Buried Ice": "#b3d9ff",
+      "Cave System": "#2d3a4a",
+      "Crashed Probe": "#ff8c42",
+      "Hollow Rocks": "#a89567",
+      "Magnetic Anomaly": "#a89cff",
+      "Mineral Vein": "#c4a484",
+      "Recent Meteorite Strikes": "#d97a5b",
+      "Smooth Plain": "#8a9da6"
+    },
+    "improvement_category": {
+      "agri": "#38d39f",
+      "civic": "#5ec3ff",
+      "energy": "#ffb000",
+      "habitat": "#7ed4a8",
+      "military": "#ff5544",
+      "mining": "#a06840",
+      "other": "#888888",
+      "science": "#a89cff"
+    },
+    "resource": {
+      "Aluminum Deposit": "#b8c5d6",
+      "Heavy Metals": "#6a7e9c",
+      "Helium-3": "#ffd166",
+      "Iron Deposit": "#c97064",
+      "Oxygen Bound Soil": "#5fc3e8",
+      "Phosphorus Deposit": "#d6a8e0",
+      "Rare Earths": "#7ed4a8",
+      "Water Ice": "#ffffff"
+    },
     "terrain": {
       "Crater Floor": "#5a4a3a",
       "Crater Rim": "#8a7560",
