@@ -8,52 +8,39 @@ from __future__ import annotations
 
 from typing import Any
 
-from extractors._common import coerce_number, read_named_range
-from extractors.status import _avg_satisfaction, _net_delta_pct
+from extractors._common import (
+    avg_satisfaction,
+    net_delta_pct,
+    population_total,
+    scalar_named,
+)
 
 
 def extract(wb) -> dict[str, Any]:
-    pop_total = _population_total(wb)
-    base = _scalar(wb, "Var_BaseGrowthRate")
-    elasticity = _scalar(wb, "Var_GrowthSatElasticity")
-    cdr = _scalar(wb, "EffectiveCDR")
+    pop_total = population_total(wb)
+    base = scalar_named(wb, "Var_BaseGrowthRate")
+    elasticity = scalar_named(wb, "Var_GrowthSatElasticity")
+    cdr = scalar_named(wb, "EffectiveCDR")
     effective_growth = base * elasticity if (base is not None and elasticity is not None) else None
     return {
         "totals": {
             "pop": pop_total,
             "effective_cdr": cdr,
-            "total_deaths": _scalar(wb, "TotalDeathsPerTurn"),
+            "total_deaths": scalar_named(wb, "TotalDeathsPerTurn"),
             "effective_growth_rate": effective_growth,
-            "net_delta_pct": _net_delta_pct(effective_growth, cdr),
-            "avg_satisfaction": _avg_satisfaction(wb),
+            "net_delta_pct": net_delta_pct(effective_growth, cdr),
+            "avg_satisfaction": avg_satisfaction(wb),
         },
         "housing": {
-            "capacity": _scalar(wb, "HousingCapacity"),
+            "capacity": scalar_named(wb, "HousingCapacity"),
             "pop": pop_total,
-            "ratio": _scalar(wb, "HousingRatio"),
-            "overcrowding_exp": _scalar(wb, "Var_HousingOvercrowdingExp"),
-            "growth_mult": _scalar(wb, "HousingGrowthMult"),
+            "ratio": scalar_named(wb, "HousingRatio"),
+            "overcrowding_exp": scalar_named(wb, "Var_HousingOvercrowdingExp"),
+            "growth_mult": scalar_named(wb, "HousingGrowthMult"),
         },
         "food": {
-            "security_ratio": _scalar(wb, "FoodSecurityRatio"),
-            "per_cap": _scalar(wb, "FoodPerCap"),
-            "variety_index": _scalar(wb, "FoodVarietyIndex"),
+            "security_ratio": scalar_named(wb, "FoodSecurityRatio"),
+            "per_cap": scalar_named(wb, "FoodPerCap"),
+            "variety_index": scalar_named(wb, "FoodVarietyIndex"),
         },
     }
-
-
-def _scalar(wb, name: str) -> float | None:
-    rows = read_named_range(wb, name)
-    if not rows or not rows[0]:
-        return None
-    return coerce_number(rows[0][0])
-
-
-def _population_total(wb) -> int:
-    rows = read_named_range(wb, "PopsimPop")
-    total = 0.0
-    for row in rows:
-        v = coerce_number(row[0])
-        if v is not None:
-            total += v
-    return int(total)

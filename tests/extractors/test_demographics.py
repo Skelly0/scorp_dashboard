@@ -82,3 +82,23 @@ def test_housing_capacity_zero_means_ratio_passthrough(wb):
     assert result["housing"]["capacity"] == 0
     # ratio comes straight from HousingRatio cell - we don't recompute on the fly.
     assert result["housing"]["ratio"] == 0.96
+
+
+def test_housing_both_soft_optionals_missing(wb):
+    """Both HousingGrowthMult and Var_HousingOvercrowdingExp missing → both None;
+    rest of housing block unaffected."""
+    del wb.defined_names["HousingGrowthMult"]
+    del wb.defined_names["Var_HousingOvercrowdingExp"]
+    result = extract(wb)
+    assert result["housing"]["growth_mult"] is None
+    assert result["housing"]["overcrowding_exp"] is None
+    assert result["housing"]["capacity"] == 16500
+    assert result["housing"]["ratio"] == 0.96
+
+
+def test_effective_growth_rate_none_when_base_growth_rate_missing(wb):
+    """Soft-optional Var_BaseGrowthRate absent → effective_growth_rate and net_delta_pct chain to None."""
+    del wb.defined_names["Var_BaseGrowthRate"]
+    result = extract(wb)
+    assert result["totals"]["effective_growth_rate"] is None
+    assert result["totals"]["net_delta_pct"] is None

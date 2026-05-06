@@ -54,3 +54,52 @@ def coerce_number(value: Any) -> float | None:
         return float(value)
     except (TypeError, ValueError):
         return None
+
+
+def scalar_named(wb, name: str) -> float | None:
+    """Read a single-cell named range as a coerced float; None when the range
+    is missing, empty, or holds a formula error."""
+    rows = read_named_range(wb, name)
+    if not rows or not rows[0]:
+        return None
+    return coerce_number(rows[0][0])
+
+
+def population_total(wb) -> int:
+    """Sum the PopsimPop named range, coercing each cell. Returns int (rounded
+    via float→int truncation), or 0 when the range is missing/empty."""
+    rows = read_named_range(wb, "PopsimPop")
+    total = 0.0
+    for row in rows:
+        v = coerce_number(row[0])
+        if v is not None:
+            total += v
+    return int(total)
+
+
+def avg_satisfaction(wb) -> float | None:
+    """Population-weighted mean of PopsimSatisfaction.
+
+    Returns None when total population is zero or both ranges are
+    missing — guards against div-by-zero on early-game / depopulated
+    workbooks. Skips rows where either value is None.
+    """
+    sats = read_named_range(wb, "PopsimSatisfaction")
+    pops = read_named_range(wb, "PopsimPop")
+    weighted_sum = 0.0
+    total_pop = 0.0
+    for i in range(min(len(sats), len(pops))):
+        sat = coerce_number(sats[i][0]) if sats[i] else None
+        pop = coerce_number(pops[i][0]) if pops[i] else None
+        if sat is None or pop is None:
+            continue
+        weighted_sum += sat * pop
+        total_pop += pop
+    return weighted_sum / total_pop if total_pop > 0 else None
+
+
+def net_delta_pct(effective_growth: float | None, cdr: float | None) -> float | None:
+    """Net population change as a percentage. None when either input is missing."""
+    if effective_growth is None or cdr is None:
+        return None
+    return (effective_growth - cdr) * 100

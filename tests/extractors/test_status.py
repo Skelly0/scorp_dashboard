@@ -74,18 +74,18 @@ def test_extract_gov_approval_none_when_range_missing(wb):
 
 def test_avg_satisfaction_population_weighted(wb):
     """Weighted mean across PopsimSatisfaction × PopsimPop."""
-    from extractors.status import _avg_satisfaction
+    from extractors._common import avg_satisfaction
     # Fixture: all sat = 0.40, all pops varied. Weighted mean = 0.40.
-    assert _avg_satisfaction(wb) == 0.40
+    assert avg_satisfaction(wb) == 0.40
 
 
 def test_avg_satisfaction_returns_none_when_total_pop_zero(wb):
     """Guard against division by zero when every pop cell is zero/None."""
-    from extractors.status import _avg_satisfaction
+    from extractors._common import avg_satisfaction
     pop_sheet = wb["Popsim"]
     for row in range(5, 20):  # PopsimPop range B5:B19
         pop_sheet.cell(row=row, column=2, value=0)
-    assert _avg_satisfaction(wb) is None
+    assert avg_satisfaction(wb) is None
 
 
 def test_housing_util_normal_case():
@@ -103,16 +103,16 @@ def test_housing_util_returns_none_when_capacity_zero():
 
 
 def test_net_delta_pct_normal():
-    from extractors.status import _net_delta_pct
+    from extractors._common import net_delta_pct
     # growth=0.02, cdr=0.012 → (0.02 - 0.012) * 100 = 0.8
-    assert _net_delta_pct(0.020, 0.012) == pytest.approx(0.8)
+    assert net_delta_pct(0.020, 0.012) == pytest.approx(0.8)
 
 
 def test_net_delta_pct_none_when_either_input_missing():
-    from extractors.status import _net_delta_pct
-    assert _net_delta_pct(None, 0.012) is None
-    assert _net_delta_pct(0.020, None) is None
-    assert _net_delta_pct(None, None) is None
+    from extractors._common import net_delta_pct
+    assert net_delta_pct(None, 0.012) is None
+    assert net_delta_pct(0.020, None) is None
+    assert net_delta_pct(None, None) is None
 
 
 def test_extract_demographics_block_shape(wb):

@@ -3,7 +3,13 @@ from __future__ import annotations
 
 from typing import Any
 
-from extractors._common import coerce_number, read_named_range
+from extractors._common import (
+    avg_satisfaction,
+    coerce_number,
+    net_delta_pct,
+    population_total,
+    scalar_named,
+)
 
 OVERTON_AXES = [
     ("expansion", "OvertonExpn"),
@@ -16,18 +22,18 @@ OVERTON_AXES = [
 
 
 def extract(wb) -> dict[str, Any]:
-    population_total = _population_total(wb)
+    pop_total = population_total(wb)
     return {
         "year": _year(wb),
         "treasury": _treasury(wb),
-        "stability": _scalar_named(wb, "Stability"),
-        "crisis_factor": _scalar_named(wb, "CrisisFactor"),
-        "population_total": population_total,
+        "stability": scalar_named(wb, "Stability"),
+        "crisis_factor": scalar_named(wb, "CrisisFactor"),
+        "population_total": pop_total,
         "resources": _resources(wb),
         "overton": _overton(wb),
         "active_situations": _active_situations(wb),
-        "gov_approval": _scalar_named(wb, "EffectiveGovApproval"),
-        "demographics": _demographics_block(wb, population_total),
+        "gov_approval": scalar_named(wb, "EffectiveGovApproval"),
+        "demographics": _demographics_block(wb, pop_total),
     }
 
 
@@ -39,7 +45,7 @@ def _year(wb) -> int | None:
     archival index, so a missing value just means history is paused — sync
     itself still succeeds.
     """
-    raw = _scalar_named(wb, "Var_Year")
+    raw = scalar_named(wb, "Var_Year")
     return int(raw) if raw is not None else None
 
 
@@ -59,16 +65,6 @@ def _treasury(wb) -> dict[str, Any]:
                 delta = income - upkeep
                 break
     return {"money": money, "delta": delta}
-
-
-def _population_total(wb) -> int:
-    rows = read_named_range(wb, "PopsimPop")
-    total = 0.0
-    for row in rows:
-        v = coerce_number(row[0])
-        if v is not None:
-            total += v
-    return int(total)
 
 
 def _resources(wb) -> list[dict[str, Any]]:
@@ -94,14 +90,7 @@ def _resources(wb) -> list[dict[str, Any]]:
 
 
 def _overton(wb) -> dict[str, float | None]:
-    return {key: _scalar_named(wb, name) for key, name in OVERTON_AXES}
-
-
-def _scalar_named(wb, name: str) -> float | None:
-    rows = read_named_range(wb, name)
-    if not rows or not rows[0]:
-        return None
-    return coerce_number(rows[0][0])
+    return {key: scalar_named(wb, name) for key, name in OVERTON_AXES}
 
 
 def _active_situations(wb) -> list[dict[str, Any]]:
@@ -136,54 +125,26 @@ def _housing_util(pop: float | None, capacity: float | None) -> float | None:
     return pop / capacity
 
 
-def _net_delta_pct(effective_growth: float | None, cdr: float | None) -> float | None:
-    """Net population change as a percentage. None when either input is missing."""
-    if effective_growth is None or cdr is None:
-        return None
-    return (effective_growth - cdr) * 100
-
-
-def _demographics_block(wb, population_total: int) -> dict:
+def _demographics_block(wb, pop_total: int) -> dict:
     """Aggregate demographics scalars consumed by Status's Pulse row.
 
-    Soft-optional Var_* ranges return None when missing — _scalar_named
+    Soft-optional Var_* ranges return None when missing — scalar_named
     handles that (read_named_range returns [] for unknown names, so
-    _scalar_named short-circuits to None).
+    scalar_named short-circuits to None).
     """
-    base = _scalar_named(wb, "Var_BaseGrowthRate")
-    elasticity = _scalar_named(wb, "Var_GrowthSatElasticity")
-    cdr = _scalar_named(wb, "EffectiveCDR")
-    capacity = _scalar_named(wb, "HousingCapacity")
+    base = scalar_named(wb, "Var_BaseGrowthRate")
+    elasticity = scalar_named(wb, "Var_GrowthSatElasticity")
+    cdr = scalar_named(wb, "EffectiveCDR")
+    capacity = scalar_named(wb, "HousingCapacity")
     effective_growth = base * elasticity if (base is not None and elasticity is not None) else None
     return {
         "base_growth_rate": base,
         "sat_elasticity": elasticity,
         "effective_growth_rate": effective_growth,
         "effective_cdr": cdr,
-        "total_deaths": _scalar_named(wb, "TotalDeathsPerTurn"),
-        "net_delta_pct": _net_delta_pct(effective_growth, cdr),
+        "total_deaths": scalar_named(wb, "TotalDeathsPerTurn"),
+        "net_delta_pct": net_delta_pct(effective_growth, cdr),
         "housing_capacity": capacity,
-        "housing_util": _housing_util(population_total, capacity),
-        "avg_satisfaction": _avg_satisfaction(wb),
+        "housing_util": _housing_util(pop_total, capacity),
+        "avg_satisfaction": avg_satisfaction(wb),
     }
-
-
-def _avg_satisfaction(wb) -> float | None:
-    """Population-weighted mean of PopsimSatisfaction.
-
-    Returns None when total population is zero or both ranges are
-    missing — guards against div-by-zero on early-game / depopulated
-    workbooks. Skips rows where either value is None.
-    """
-    sats = read_named_range(wb, "PopsimSatisfaction")
-    pops = read_named_range(wb, "PopsimPop")
-    weighted_sum = 0.0
-    total_pop = 0.0
-    for i in range(min(len(sats), len(pops))):
-        sat = coerce_number(sats[i][0]) if sats[i] else None
-        pop = coerce_number(pops[i][0]) if pops[i] else None
-        if sat is None or pop is None:
-            continue
-        weighted_sum += sat * pop
-        total_pop += pop
-    return weighted_sum / total_pop if total_pop > 0 else None
