@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher, tick } from 'svelte';
-  import { RESOURCE_CODES } from '../map-codes.js';
+  import { RESOURCE_CODES, FEATURE_CODES } from '../map-codes.js';
 
   /** @type {{tiles: any[], width: number, height: number, palettes: any}} */
   export let mapData;
@@ -169,18 +169,41 @@
           {/if}
         {/if}
       {/each}
-      <!-- Feature corner dots (top-left, square). -->
+      <!-- Feature overlay (top-left). Chip-style on Features tab; dot-style elsewhere. -->
       {#each mapData.tiles as t}
         {#if t.feature}
-          <rect
-            x={t.x * TILE_SIZE + 1.5}
-            y={t.y * TILE_SIZE + 1.5}
-            width="5"
-            height="5"
-            fill={featurePal[t.feature] ?? '#ffffff'}
-            stroke="rgba(0,0,0,0.6)"
-            stroke-width="0.5"
-          />
+          {#if tab === 'features'}
+            <g>
+              <rect
+                x={t.x * TILE_SIZE + 1}
+                y={t.y * TILE_SIZE + 1}
+                width="10"
+                height="8"
+                fill={featurePal[t.feature] ?? '#ffffff'}
+                stroke="rgba(0,0,0,0.6)"
+                stroke-width="0.5"
+              />
+              <text
+                x={t.x * TILE_SIZE + 6}
+                y={t.y * TILE_SIZE + 5.2}
+                font-size="6"
+                font-weight="900"
+                text-anchor="middle"
+                dominant-baseline="central"
+                fill="#1a1a1a"
+              >{FEATURE_CODES[t.feature] ?? '?'}</text>
+            </g>
+          {:else}
+            <rect
+              x={t.x * TILE_SIZE + 1.5}
+              y={t.y * TILE_SIZE + 1.5}
+              width="5"
+              height="5"
+              fill={featurePal[t.feature] ?? '#ffffff'}
+              stroke="rgba(0,0,0,0.6)"
+              stroke-width="0.5"
+            />
+          {/if}
         {/if}
       {/each}
       <!-- Focus highlight -->
