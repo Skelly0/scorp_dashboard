@@ -68,3 +68,19 @@ def test_extract_gov_approval_none_when_range_missing(wb):
     del wb.defined_names["EffectiveGovApproval"]
     result = extract(wb)
     assert result["gov_approval"] is None
+
+
+def test_avg_satisfaction_population_weighted(wb):
+    """Weighted mean across PopsimSatisfaction × PopsimPop."""
+    from extractors.status import _avg_satisfaction
+    # Fixture: all sat = 0.40, all pops varied. Weighted mean = 0.40.
+    assert _avg_satisfaction(wb) == 0.40
+
+
+def test_avg_satisfaction_returns_none_when_total_pop_zero(wb):
+    """Guard against division by zero when every pop cell is zero/None."""
+    from extractors.status import _avg_satisfaction
+    pop_sheet = wb["Popsim"]
+    for row in range(5, 20):  # PopsimPop range B5:B19
+        pop_sheet.cell(row=row, column=2, value=0)
+    assert _avg_satisfaction(wb) is None

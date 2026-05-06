@@ -123,3 +123,24 @@ def _active_situations(wb) -> list[dict[str, Any]]:
             "crisis_factor": coerce_number(crisis),
         })
     return out
+
+
+def _avg_satisfaction(wb) -> float | None:
+    """Population-weighted mean of PopsimSatisfaction.
+
+    Returns None when total population is zero or both ranges are
+    missing — guards against div-by-zero on early-game / depopulated
+    workbooks. Skips rows where either value is None.
+    """
+    sats = read_named_range(wb, "PopsimSatisfaction")
+    pops = read_named_range(wb, "PopsimPop")
+    weighted_sum = 0.0
+    total_pop = 0.0
+    for i in range(min(len(sats), len(pops))):
+        sat = coerce_number(sats[i][0]) if sats[i] else None
+        pop = coerce_number(pops[i][0]) if pops[i] else None
+        if sat is None or pop is None:
+            continue
+        weighted_sum += sat * pop
+        total_pop += pop
+    return weighted_sum / total_pop if total_pop > 0 else None
