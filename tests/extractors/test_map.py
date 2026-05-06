@@ -73,3 +73,17 @@ def test_extract_includes_feature_palette(wb):
     assert pal["Magnetic Anomaly"] == "#a89cff"
     assert pal["Hollow Rocks"] == "#a89567"
     assert pal["Crashed Probe"] == "#ff8c42"
+
+
+def test_extract_includes_improvement_category_palette(wb):
+    result = extract(wb)
+    assert "improvement_category" in result["palettes"]
+    pal = result["palettes"]["improvement_category"]
+    assert pal["energy"] == "#ffb000"
+    assert pal["mining"] == "#a06840"
+    assert pal["habitat"] == "#7ed4a8"
+    assert pal["civic"] == "#5ec3ff"
+    assert pal["military"] == "#ff5544"
+    assert pal["agri"] == "#38d39f"
+    assert pal["science"] == "#a89cff"
+    assert pal["other"] == "#888888"

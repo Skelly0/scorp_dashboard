@@ -56,6 +56,7 @@ def extract(wb) -> dict[str, Any]:
             "terrain": _palette(wb, "TerrainPalette", TERRAIN_PALETTE),
             "resource": _palette(wb, "ResourcePalette", RESOURCE_PALETTE),
             "feature": _palette(wb, "FeaturePalette", FEATURE_PALETTE),
+            "improvement_category": _palette(wb, "ImprovementCategoryPalette", IMPROVEMENT_CATEGORY_PALETTE),
         },
     }
 
@@ -142,8 +143,9 @@ def _palette(wb, named_range, fallback):
 
 
 # Hardcoded fallback palettes. Keep in sync with the terrain / resource / feature
-# types added to the live workbook. Each can be overridden by the matching named
-# range (TerrainPalette / ResourcePalette / FeaturePalette).
+# types and the improvement-category slug taxonomy used by the live workbook.
+# Each can be overridden by the matching named range (TerrainPalette /
+# ResourcePalette / FeaturePalette / ImprovementCategoryPalette).
 TERRAIN_PALETTE = {
     "Crater Floor": "#5a4a3a",
     "Mare Plain": "#3c3a3a",
@@ -176,4 +178,15 @@ FEATURE_PALETTE = {
     "Magnetic Anomaly": "#a89cff",
     "Hollow Rocks": "#a89567",
     "Crashed Probe": "#ff8c42",
+}
+
+IMPROVEMENT_CATEGORY_PALETTE = {
+    "energy": "#ffb000",
+    "mining": "#a06840",
+    "habitat": "#7ed4a8",
+    "civic": "#5ec3ff",
+    "military": "#ff5544",
+    "agri": "#38d39f",
+    "science": "#a89cff",
+    "other": "#888888",
 }
