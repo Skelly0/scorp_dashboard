@@ -1,11 +1,6 @@
 {
   "active_situations": [
     {
-      "crisis_factor": null,
-      "description": "Description",
-      "name": "Name"
-    },
-    {
       "crisis_factor": 0.5,
       "description": "Earth go boom",
       "name": "The Fall"

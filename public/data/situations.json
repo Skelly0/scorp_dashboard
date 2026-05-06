@@ -1,8 +1,8 @@
 {
   "active": [
     {
-      "crisis_factor": null,
-      "description": 0.5,
+      "crisis_factor": 0.5,
+      "description": "Earth go boom",
       "name": "The Fall"
     }
   ],
