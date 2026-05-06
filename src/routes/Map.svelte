@@ -17,7 +17,7 @@
     if ($meta?.synced_at) loadMap($meta.synced_at);
   });
 
-  const LAYERS = [
+  const THEMATIC_LAYERS = [
     { value: 'terrain', label: 'Terrain' },
     { value: 'food', label: 'Food' },
     { value: 'water', label: 'Water' },
@@ -26,6 +26,12 @@
     { value: 'ore', label: 'Ore' },
     { value: 'housing', label: 'Housing' },
   ];
+  const OVERLAY_TABS = [
+    { value: 'resources', label: 'Resources' },
+    { value: 'features', label: 'Features' },
+    { value: 'improvements', label: 'Improvements' },
+  ];
+  const LAYERS = [...THEMATIC_LAYERS, ...OVERLAY_TABS];
 </script>
 
 <section class="px-6 py-5 max-w-[1600px]">
@@ -42,7 +48,7 @@
           aria-pressed={layer === l.value}
           on:click={() => (layer = l.value)}
         >
-          {l.label}{l.value !== 'terrain' ? ' yield' : ''}
+          {l.label}{THEMATIC_LAYERS.some(t => t.value === l.value) && l.value !== 'terrain' ? ' yield' : ''}
         </button>
       {/each}
     </div>
