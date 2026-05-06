@@ -163,6 +163,7 @@ body {
   background: var(--bg);
   position: relative;
   min-height: 130px;
+  height: 100%;
 }
 .kpi-block .kpi-label {
   font-size: 10px;
