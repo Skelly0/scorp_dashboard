@@ -5,6 +5,19 @@
   export let mapData;
   /** active heatmap layer name, e.g. "terrain" | "food" | "energy" | ... */
   export let layer = 'terrain';
+  /** active overlay tab name; controls overlay visibility/promotion (today equals `layer`). */
+  export let tab = 'terrain';
+
+  const RESOURCE_CODES = {
+    'Helium-3': 'He',
+    'Iron Deposit': 'Fe',
+    'Aluminum Deposit': 'Al',
+    'Phosphorus Deposit': 'P',
+    'Rare Earths': 'RE',
+    'Heavy Metals': 'HM',
+    'Oxygen Bound Soil': 'O₂',
+    'Water Ice': 'W',
+  };
 
   const TILE_SIZE = 16;
   const dispatch = createEventDispatcher();
@@ -130,17 +143,40 @@
           >▣</text>
         {/if}
       {/each}
-      <!-- Resource corner dots (top-right). -->
+      <!-- Resource overlay (top-right). Chip-style on Resources tab; dot-style elsewhere. -->
       {#each mapData.tiles as t}
         {#if t.resource}
-          <circle
-            cx={t.x * TILE_SIZE + TILE_SIZE - 4}
-            cy={t.y * TILE_SIZE + 4}
-            r="2.5"
-            fill={resourcePal[t.resource] ?? '#ffffff'}
-            stroke="rgba(0,0,0,0.6)"
-            stroke-width="0.5"
-          />
+          {#if tab === 'resources'}
+            <g>
+              <rect
+                x={t.x * TILE_SIZE + TILE_SIZE - 11}
+                y={t.y * TILE_SIZE + 1}
+                width="10"
+                height="8"
+                fill={resourcePal[t.resource] ?? '#ffffff'}
+                stroke="rgba(0,0,0,0.6)"
+                stroke-width="0.5"
+              />
+              <text
+                x={t.x * TILE_SIZE + TILE_SIZE - 6}
+                y={t.y * TILE_SIZE + 5.2}
+                font-size="6"
+                font-weight="900"
+                text-anchor="middle"
+                dominant-baseline="central"
+                fill="#1a1a1a"
+              >{RESOURCE_CODES[t.resource] ?? '?'}</text>
+            </g>
+          {:else}
+            <circle
+              cx={t.x * TILE_SIZE + TILE_SIZE - 4}
+              cy={t.y * TILE_SIZE + 4}
+              r="2.5"
+              fill={resourcePal[t.resource] ?? '#ffffff'}
+              stroke="rgba(0,0,0,0.6)"
+              stroke-width="0.5"
+            />
+          {/if}
         {/if}
       {/each}
       <!-- Feature corner dots (top-left, square). -->
