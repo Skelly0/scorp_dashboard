@@ -5,6 +5,7 @@
   export let value;
   export let prefix = '';
   export let suffix = '';
+  export let subtitle = null;
   export let delta = null;
   export let critical = false;
   export let good = false;
@@ -20,6 +21,9 @@
 <div class="kpi-block" class:critical>
   <div class="kpi-label">{label}</div>
   <div class={numClass}>{prefix}{displayValue}{suffix}</div>
+  {#if subtitle}
+    <div class="kpi-subtitle">{subtitle}</div>
+  {/if}
   <div class="kpi-foot">
     {#if delta != null}
       <span class={deltaClass}>{deltaSign} {delta > 0 ? '+' : ''}{delta}</span>
