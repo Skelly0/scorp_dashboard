@@ -102,10 +102,15 @@
 
   function ownerColor(owner) {
     if (!owner) return null;
-    // Try GoI palette first; fall back to class palette. Both are realistic owner kinds.
-    const c = goiColor(owner);
+    // Try GoI palette first; fall back to class palette. Both helpers
+    // return 'var(--accent)' on miss — that string doesn't resolve in SVG
+    // presentation attributes (gotcha #14), so we filter it out and let
+    // the caller's ?? chain fall through to the category-palette colour.
+    const g = goiColor(owner);
+    if (g !== 'var(--accent)') return g;
+    const c = classColor(owner);
     if (c !== 'var(--accent)') return c;
-    return classColor(owner);
+    return null;
   }
 
   function handleClick(e) {
