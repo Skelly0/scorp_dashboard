@@ -13,6 +13,7 @@ GitHub Action → openpyxl → per-page JSON in `public/data/` → git commit �
 - `src/lib/components/` — Mission-Brutalist primitives: `Band`, `KpiBlock`, `Sparkline`, `OvertonRow`, `Bar`, `Tag`. Plus updated `StatTile`, `SituationCard`, `TierLadder`, `Heatmap`. Existing: `RadarChart`, `MoonBackdrop`, `MoonLoader`, `MapCanvas`, `NavBar`, `SyncChip`, `ThemeToggle`.
 - `src/lib/faction-colors.js` — class & GoI accent palettes (cosmetic only — used for 4px left-bar and faction-bar swatches)
 - `src/lib/stores/history.js` — derived stores for treasury/stability/CF/population year-series
+- `src/lib/stores/workforce.js` — derived from `$pops`; aggregates colony-wide demand/supply/fill, top-2 unemployed and short classes, mismatch flag
 - `public/data/` — JSON output (managed by the Action; don't hand-edit). `history/index.json` lists available years; `history/year-NNN.json` is the per-year frozen snapshot.
 - `tests/` — pytest, builds an in-memory fixture workbook (`tests/fixtures/build_test_workbook.py`)
 - `tests-e2e/` — Playwright + axe a11y tests
@@ -53,11 +54,14 @@ GitHub Action → openpyxl → per-page JSON in `public/data/` → git commit �
 13. **Situations sheet layout: title row at 1, header row at 2, data starts row 3.** Unlike most extractors that use `min_row=2`, `extractors/situations.py` uses `min_row=3` because the live `Situations` sheet has a banner/title at row 1 *and* a "Name | Crisis Contribution | …" header at row 2. If you ever rebuild this extractor or add new sheets that share this convention, mirror the offset.
 14. **Canvas 2D `fillStyle` does NOT resolve `var(--…)` custom properties** — neither standalone nor nested inside `color-mix()`. The assignment is silently ignored, leaving the previous valid fillStyle in place (or default black). Always pre-resolve theme tokens via `getComputedStyle(canvasOrRoot).getPropertyValue('--…').trim()` and substitute concrete strings before handing to canvas. `MoonLoader.svelte` and `MapCanvas.svelte` both do this. Note: canvas redraws are NOT currently triggered by theme changes — they only fire on data/layer changes — so a theme flip leaves stale colours baked in until the next redraw. Default theme is `schematic` (set in `src/lib/theme.js` and `index.html`'s `data-theme` attribute).
 15. **Filter ring colour priority is fixed.** When multiple filters are active on the Map, the ring uses the *resource → feature → improvement* priority (resource always wins). This is deterministic by design — multiple highlight colours per match would smear into noise. If you reorder priorities, update `MapCanvas.svelte:ringColor` AND the spec at `docs/superpowers/specs/2026-05-06-map-overlays-and-filtering-design.md` Section 6.2 in lockstep.
+16. **Demographics band ordering.** `01 Pop Dynamics → 02 Class Vitals → 03 Workforce → 04 Housing → 05 Food Security`. The Workforce band is rendered by `WorkforceBand.svelte` and is null-safe — it renders nothing when `$workforce` is null (i.e. before `pops.json` has loaded). If you renumber, update both `Demographics.svelte` and the spec at `docs/superpowers/specs/2026-05-06-demographics-workforce-rework-design.md`.
 
 ## Where to read more
 
 - Spec: `docs/superpowers/specs/2026-05-01-scorp-dashboard-design.md`
 - Spec (v3 demographics): `docs/superpowers/specs/2026-05-06-demographics-page-and-status-vitals-design.md`
+- Spec (workforce rework): `docs/superpowers/specs/2026-05-06-demographics-workforce-rework-design.md`
 - Plan: `docs/superpowers/plans/2026-05-01-scorp-dashboard-implementation.md`
 - Plan (v3 demographics): `docs/superpowers/plans/2026-05-06-demographics-page-and-status-vitals.md`
+- Plan (workforce rework): `docs/superpowers/plans/2026-05-06-demographics-workforce-rework.md`
 - Backend: `../scorp_colony/CLAUDE.md`
