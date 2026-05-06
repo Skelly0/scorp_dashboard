@@ -23,7 +23,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -40,7 +40,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -57,7 +57,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -74,7 +74,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -91,7 +91,7 @@
       "y": 0,
       "yields": {
         "energy": 1.0,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -142,7 +142,7 @@
       "y": 0,
       "yields": {
         "energy": 1.0,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -159,7 +159,7 @@
       "y": 0,
       "yields": {
         "energy": 1.0,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -176,7 +176,7 @@
       "y": 0,
       "yields": {
         "energy": 1.0,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -193,7 +193,7 @@
       "y": 0,
       "yields": {
         "energy": 1.0,
-        "food": 2.5,
+        "food": 1.5,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -210,7 +210,7 @@
       "y": 0,
       "yields": {
         "energy": 1.0,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -227,7 +227,7 @@
       "y": 0,
       "yields": {
         "energy": 1.0,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -244,7 +244,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -261,7 +261,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -278,7 +278,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -295,7 +295,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -312,7 +312,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -329,7 +329,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -346,7 +346,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -363,7 +363,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -380,7 +380,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.5,
+        "food": 0.5,
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0,
@@ -397,7 +397,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -414,7 +414,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 25.0,
         "materials": 0.25,
         "ore": 0.25,
@@ -431,7 +431,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 25.0,
         "materials": 1.75,
         "ore": 0.75,
@@ -448,7 +448,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -465,7 +465,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 100.0,
         "materials": 0,
         "ore": 0,
@@ -486,7 +486,7 @@
       "y": 0,
       "yields": {
         "energy": 200.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 100.0,
         "materials": 1.5,
         "ore": 0.5,
@@ -507,7 +507,7 @@
       "y": 0,
       "yields": {
         "energy": 200.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 100.0,
         "materials": 0,
         "ore": 0,
@@ -528,7 +528,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 21.0,
+        "food": 20.0,
         "housing": 1100.0,
         "materials": 0,
         "ore": 0,
@@ -549,7 +549,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 100.0,
         "materials": 1.5,
         "ore": 125.5,
@@ -566,7 +566,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 100.0,
         "materials": 0,
         "ore": 0,
@@ -583,7 +583,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 100.0,
         "materials": 0,
         "ore": 0,
@@ -600,7 +600,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -617,7 +617,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 1.0,
         "ore": 1.0,
@@ -634,7 +634,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -651,7 +651,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -668,7 +668,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.5,
+        "food": 0.5,
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0,
@@ -685,7 +685,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -702,7 +702,7 @@
       "y": 0,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -719,7 +719,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -736,7 +736,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -753,7 +753,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -770,7 +770,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -787,7 +787,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -804,7 +804,7 @@
       "y": 1,
       "yields": {
         "energy": 1.0,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -838,7 +838,7 @@
       "y": 1,
       "yields": {
         "energy": 1.0,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -855,7 +855,7 @@
       "y": 1,
       "yields": {
         "energy": 1.0,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -872,7 +872,7 @@
       "y": 1,
       "yields": {
         "energy": 1.0,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -889,7 +889,7 @@
       "y": 1,
       "yields": {
         "energy": 1.0,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -906,7 +906,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -923,7 +923,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -940,7 +940,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -957,7 +957,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -974,7 +974,7 @@
       "y": 1,
       "yields": {
         "energy": 3.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -991,7 +991,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1008,7 +1008,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1025,7 +1025,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1042,7 +1042,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.5,
+        "food": 0.5,
         "housing": 25.0,
         "materials": 0.75,
         "ore": 0.25,
@@ -1059,7 +1059,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1076,7 +1076,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1093,7 +1093,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.5,
+        "food": 0.5,
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0,
@@ -1110,7 +1110,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 25.0,
         "materials": 0.25,
         "ore": 0.25,
@@ -1127,7 +1127,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1144,7 +1144,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1161,7 +1161,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 100.0,
         "materials": 0,
         "ore": 0,
@@ -1182,7 +1182,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 11.0,
+        "food": 10.0,
         "housing": 10100.0,
         "materials": 0,
         "ore": 0,
@@ -1203,7 +1203,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 100.0,
         "materials": 0,
         "ore": 0,
@@ -1224,7 +1224,7 @@
       "y": 1,
       "yields": {
         "energy": 15.5,
-        "food": 16.0,
+        "food": 15.0,
         "housing": 1100.0,
         "materials": 15.0,
         "ore": 15.0,
@@ -1245,7 +1245,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 5150.0,
         "materials": 0.25,
         "ore": 0,
@@ -1266,7 +1266,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 100.0,
         "materials": 0,
         "ore": 0,
@@ -1283,7 +1283,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 100.0,
         "materials": 0,
         "ore": 0,
@@ -1300,7 +1300,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1317,7 +1317,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1334,7 +1334,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1351,7 +1351,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.5,
+        "food": 0.5,
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0,
@@ -1368,7 +1368,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.5,
+        "food": 0.5,
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0,
@@ -1402,7 +1402,7 @@
       "y": 1,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1436,7 +1436,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1453,7 +1453,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1470,7 +1470,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1487,7 +1487,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1504,7 +1504,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 2.0,
         "ore": 0,
@@ -1521,7 +1521,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1538,7 +1538,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1555,7 +1555,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1572,7 +1572,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1589,7 +1589,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1606,7 +1606,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -1623,7 +1623,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 1.0,
         "ore": 1.0,
@@ -1640,7 +1640,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -2009,7 +2009,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -2026,7 +2026,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -2043,7 +2043,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -2060,7 +2060,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -2077,7 +2077,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -2094,7 +2094,7 @@
       "y": 2,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -2727,7 +2727,7 @@
       "y": 3,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -2744,7 +2744,7 @@
       "y": 3,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -2761,7 +2761,7 @@
       "y": 3,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -2778,7 +2778,7 @@
       "y": 3,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -3407,7 +3407,7 @@
       "y": 4,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -3424,7 +3424,7 @@
       "y": 4,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -3441,7 +3441,7 @@
       "y": 4,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -3458,7 +3458,7 @@
       "y": 4,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -4133,7 +4133,7 @@
       "y": 5,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
@@ -4150,7 +4150,7 @@
       "y": 5,
       "yields": {
         "energy": 0.5,
-        "food": 1.0,
+        "food": 0,
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
