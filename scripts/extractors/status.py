@@ -134,6 +134,13 @@ def _housing_util(pop: float | None, capacity: float | None) -> float | None:
     return pop / capacity
 
 
+def _net_delta_pct(effective_growth: float | None, cdr: float | None) -> float | None:
+    """Net population change as a percentage. None when either input is missing."""
+    if effective_growth is None or cdr is None:
+        return None
+    return (effective_growth - cdr) * 100
+
+
 def _avg_satisfaction(wb) -> float | None:
     """Population-weighted mean of PopsimSatisfaction.
 

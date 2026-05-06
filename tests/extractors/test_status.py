@@ -1,6 +1,8 @@
 """Tests for the Status page extractor."""
 from __future__ import annotations
 
+import pytest
+
 from extractors.status import extract
 
 
@@ -98,3 +100,16 @@ def test_housing_util_returns_none_when_capacity_zero():
     assert _housing_util(15870, 0) is None
     assert _housing_util(15870, None) is None
     assert _housing_util(0, 16500) == 0.0  # zero pop OK; zero capacity not.
+
+
+def test_net_delta_pct_normal():
+    from extractors.status import _net_delta_pct
+    # growth=0.02, cdr=0.012 → (0.02 - 0.012) * 100 = 0.8
+    assert _net_delta_pct(0.020, 0.012) == pytest.approx(0.8)
+
+
+def test_net_delta_pct_none_when_either_input_missing():
+    from extractors.status import _net_delta_pct
+    assert _net_delta_pct(None, 0.012) is None
+    assert _net_delta_pct(0.020, None) is None
+    assert _net_delta_pct(None, None) is None
