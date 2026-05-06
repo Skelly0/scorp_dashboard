@@ -1,8 +1,8 @@
 {
-  "avg_satisfaction": 0.653748480688914,
-  "crisis_factor": 0.2627126697,
+  "avg_satisfaction": 0.6547758297562875,
+  "crisis_factor": 0.2623848985,
   "effective_cdr": 0.01365824308,
-  "gov_approval": 0.1917913489,
+  "gov_approval": 0.2206579453,
   "housing_util": 0.780281690140845,
   "net_delta_pct": -0.4658243080000001,
   "overton": {
@@ -56,8 +56,8 @@
       "name": "Water"
     }
   ],
-  "stability": 0.04347698305,
-  "synced_at": "2026-05-06T23:00:14Z",
+  "stability": 0.0572074574,
+  "synced_at": "2026-05-06T23:27:22Z",
   "total_deaths": 227.0,
   "treasury": {
     "delta": 58245.2,
