@@ -6,69 +6,49 @@
         "unlocked": 0,
         "unlocked_list": []
       },
-      "approach": "Authoritarian",
-      "approval": 0.5,
-      "derived_influence": 0.0,
+      "approach": "Idealist",
+      "approval": 0.4288822522,
+      "derived_influence": 0.2182028427,
       "effective_worldview": {
-        "authority": 2.81,
-        "corporate": 3.91,
-        "expansion": 3.755,
-        "faith": 5.255,
-        "materialist": 4.52,
-        "technocratic": 4.47
+        "authority": 4.5,
+        "corporate": 4.0,
+        "expansion": 3.5,
+        "faith": 4.5,
+        "materialist": 5.5,
+        "technocratic": 4.5
       },
-      "mad_index": -0.0525,
+      "mad_index": -0.065,
       "main_class": "Bureaucrats",
       "name": "Administration",
       "sub_factions": [
         {
-          "approval": 0.5,
+          "approval": 0.5341024903,
           "influence": 0.25,
-          "minor_goals": [
-            "Resist emergency powers",
-            "Codify the charter",
-            "Strengthen judicial review"
-          ],
+          "minor_goals": [],
           "name": "Constitutional Loyalists"
         },
         {
-          "approval": 0.5,
+          "approval": 0.4031501094,
           "influence": 0.22,
-          "minor_goals": [
-            "Public ombudsman office",
-            "Council vote transparency",
-            "Open-data initiative"
-          ],
+          "minor_goals": [],
           "name": "Reformist Administrators"
         },
         {
-          "approval": 0.5,
+          "approval": 0.4751739189,
           "influence": 0.18,
-          "minor_goals": [
-            "Re-found the original charter",
-            "Memorial holidays for Earth",
-            "Anti-decadence policy"
-          ],
+          "minor_goals": [],
           "name": "Hardliner Administrators"
         },
         {
-          "approval": 0.5,
+          "approval": 0.2198167761,
           "influence": 0.2,
-          "minor_goals": [
-            "Expand surveillance corps",
-            "Curfews in unrest zones",
-            "Restrict assembly rights"
-          ],
+          "minor_goals": [],
           "name": "Order Faction"
         },
         {
-          "approval": 0.5,
+          "approval": 0.5144596332,
           "influence": 0.15,
-          "minor_goals": [
-            "Build defensive bunker network",
-            "Stockpile munitions",
-            "Establish patrol corridors"
-          ],
+          "minor_goals": [],
           "name": "Defence Faction"
         }
       ]
@@ -80,48 +60,36 @@
         "unlocked_list": []
       },
       "approach": "Marketist",
-      "approval": 0.5,
-      "derived_influence": 0.0,
+      "approval": 0.42555453,
+      "derived_influence": 0.2183473862,
       "effective_worldview": {
-        "authority": 3.325,
-        "corporate": 7.0,
-        "expansion": 6.3,
-        "faith": 3.05,
-        "materialist": 2.325,
-        "technocratic": 4.05
+        "authority": 3.5,
+        "corporate": 6.5,
+        "expansion": 5.5,
+        "faith": 3.0,
+        "materialist": 2.5,
+        "technocratic": 4.0
       },
-      "mad_index": -0.0075,
+      "mad_index": -0.03,
       "main_class": "Capitalists",
       "name": "Corporate",
       "sub_factions": [
         {
-          "approval": 0.5,
+          "approval": 0.4869711967,
           "influence": 0.4,
-          "minor_goals": [
-            "Workforce flexibility act",
-            "Lower minimum wages",
-            "Capital tax exemptions"
-          ],
+          "minor_goals": [],
           "name": "Industrialists"
         },
         {
-          "approval": 0.5,
+          "approval": 0.3900664348,
           "influence": 0.35,
-          "minor_goals": [
-            "Permit new lava-tube extraction",
-            "Strip-mine regulations",
-            "Override environmental zone"
-          ],
+          "minor_goals": [],
           "name": "Extraction Cartels"
         },
         {
-          "approval": 0.5,
+          "approval": 0.3769711967,
           "influence": 0.25,
-          "minor_goals": [
-            "Public stock listings",
-            "Sovereign bond market",
-            "Foreign investment treaty"
-          ],
+          "minor_goals": [],
           "name": "High Finance"
         }
       ]
@@ -129,52 +97,42 @@
     {
       "active_benefits": {
         "total": 3,
-        "unlocked": 0,
-        "unlocked_list": []
+        "unlocked": 1,
+        "unlocked_list": [
+          "Collective Bargaining"
+        ]
       },
       "approach": "Democratic",
-      "approval": 0.5,
-      "derived_influence": 0.0,
+      "approval": 0.2500609943,
+      "derived_influence": 0.3752734281,
       "effective_worldview": {
-        "authority": 6.05,
-        "corporate": 1.0,
-        "expansion": 3.65,
-        "faith": 4.35,
-        "materialist": 3.8,
-        "technocratic": 5.1
+        "authority": 5.5,
+        "corporate": 2.5,
+        "expansion": 4.5,
+        "faith": 4.5,
+        "materialist": 3.0,
+        "technocratic": 5.5
       },
-      "mad_index": 0.04,
+      "mad_index": -0.025,
       "main_class": "Industrial Workers",
       "name": "Unions",
       "sub_factions": [
         {
-          "approval": 0.5,
+          "approval": 0.2323824229,
           "influence": 0.5,
-          "minor_goals": [
-            "Sectoral wage councils",
-            "Strike protection law",
-            "Mandatory worker representation"
-          ],
+          "minor_goals": [],
           "name": "Labour Caucus"
         },
         {
-          "approval": 0.5,
+          "approval": 0.2913109943,
           "influence": 0.3,
-          "minor_goals": [
-            "Worker-buyout fund",
-            "Cooperative housing block",
-            "Transition tax credits"
-          ],
+          "minor_goals": [],
           "name": "Co-op Movement"
         },
         {
-          "approval": 0.5,
+          "approval": 0.2323824229,
           "influence": 0.2,
-          "minor_goals": [
-            "Direct delegate councils",
-            "Recall mechanism for officials",
-            "Mass assemblies on policy"
-          ],
+          "minor_goals": [],
           "name": "Syndicalists"
         }
       ]
@@ -186,38 +144,30 @@
         "unlocked_list": []
       },
       "approach": "Secular",
-      "approval": 0.5,
-      "derived_influence": 0.0,
+      "approval": 0.3431289418,
+      "derived_influence": 0.188176343,
       "effective_worldview": {
-        "authority": 4.2,
+        "authority": 4.0,
         "corporate": 4.5,
-        "expansion": 7.0,
-        "faith": 2.6,
-        "materialist": 3.7,
-        "technocratic": 1.9
+        "expansion": 5.5,
+        "faith": 2.5,
+        "materialist": 4.5,
+        "technocratic": 2.0
       },
-      "mad_index": -0.02,
+      "mad_index": -0.035,
       "main_class": "Scientists",
       "name": "Research",
       "sub_factions": [
         {
-          "approval": 0.5,
+          "approval": 0.4138432275,
           "influence": 0.6,
-          "minor_goals": [
-            "Survey distant lava tube",
-            "Pre-fab habitat shipment",
-            "Volunteer pioneer registry"
-          ],
+          "minor_goals": [],
           "name": "Frontier Bloc"
         },
         {
-          "approval": 0.5,
+          "approval": 0.2370575132,
           "influence": 0.4,
-          "minor_goals": [
-            "AI ethics charter",
-            "High-energy computer fabrication",
-            "Researcher exchange programme"
-          ],
+          "minor_goals": [],
           "name": "Scientific Vanguard"
         }
       ]

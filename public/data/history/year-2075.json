@@ -1,5 +1,10 @@
 {
-  "crisis_factor": 0.5,
+  "avg_satisfaction": 0.73007961572855,
+  "crisis_factor": 0.2362825838,
+  "effective_cdr": 0.009386281588,
+  "gov_approval": 0.3449120424,
+  "housing_util": 0.4073529411764706,
+  "net_delta_pct": -0.038628158799999986,
   "overton": {
     "authority": 4.5,
     "corporate": 5.0,
@@ -8,7 +13,7 @@
     "materialist": 4.0,
     "technocratic": 4.0
   },
-  "population_total": 33240,
+  "population_total": 16620,
   "resources": [
     {
       "current": 0.0,
@@ -51,8 +56,9 @@
       "name": "Water"
     }
   ],
-  "stability": 0.2,
-  "synced_at": "2026-05-06T06:35:59Z",
+  "stability": 0.1309533417,
+  "synced_at": "2026-05-06T09:24:07Z",
+  "total_deaths": 156.0,
   "treasury": {
     "delta": 58905.2,
     "money": 13650.0
