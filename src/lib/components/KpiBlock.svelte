@@ -17,7 +17,7 @@
   $: displayValue = value == null ? '—' : value;
 </script>
 
-<div class="kpi-block">
+<div class="kpi-block" class:critical>
   <div class="kpi-label">{label}</div>
   <div class={numClass}>{prefix}{displayValue}{suffix}</div>
   <div class="kpi-foot">
