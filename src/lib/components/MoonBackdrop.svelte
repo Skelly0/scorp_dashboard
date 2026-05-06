@@ -2,9 +2,10 @@
   import { theme } from '../theme.js';
   import MoonLoader from './MoonLoader.svelte';
 
-  // Per-theme opacity — dark needs a touch more presence to read against the
-  // near-black bg; light/schematic float quietly behind cream paper.
-  const OPACITY = { light: 0.22, dark: 0.32, schematic: 0.20 };
+  // Per-theme opacity. Light + schematic sit on cream paper, where the contour
+  // ink starts at moderate alpha; without enough backdrop opacity the gradient
+  // washes out. Dark already reads well against near-black at lower opacity.
+  const OPACITY = { light: 0.38, dark: 0.32, schematic: 0.38 };
 
   let innerWidth = 1024;
   let innerHeight = 768;
