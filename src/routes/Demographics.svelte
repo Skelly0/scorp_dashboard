@@ -5,9 +5,10 @@
   import {
     demographics, demographicsError, loadDemographics,
   } from '../lib/stores/demographics.js';
+  import { workforce } from '../lib/stores/workforce.js';
   import {
-    deathsHistory, cdrHistory, netDeltaHistory,
-    housingUtilHistory, avgSatHistory,
+    loadHistory,
+    avgSatHistory, populationDeltaHistory,
   } from '../lib/stores/history.js';
   import { pageTitle } from '../lib/page-title.js';
   import { classColor } from '../lib/faction-colors.js';
@@ -15,12 +16,14 @@
   import KpiBlock from '../lib/components/KpiBlock.svelte';
   import Bar from '../lib/components/Bar.svelte';
   import MoonLoader from '../lib/components/MoonLoader.svelte';
+  import WorkforceBand from '../lib/components/WorkforceBand.svelte';
 
   onMount(() => {
     pageTitle.set('Demographics');
     if ($meta?.synced_at) {
       loadPops($meta.synced_at);
       loadDemographics($meta.synced_at);
+      loadHistory($meta.synced_at);
     }
   });
 
@@ -28,6 +31,41 @@
   $: ready = $demographics && $pops;
   $: housingCritical = $demographics?.housing?.ratio != null
     && $demographics.housing.ratio > 1.0;
+
+  // Available housing: capacity − pop, with % free subtitle.
+  $: availableHousing = (() => {
+    const cap = $demographics?.housing?.capacity;
+    const pop = $demographics?.housing?.pop;
+    if (cap == null || pop == null || cap === 0) return { value: null, subtitle: null };
+    const free = cap - pop;
+    const pct = Math.round((free / cap) * 100);
+    return { value: free.toLocaleString(), subtitle: `${pct}% free` };
+  })();
+
+  // Predicted growth: pop × (effective_growth × housing_growth_mult − cdr), rounded, signed.
+  $: predictedGrowth = (() => {
+    const t = $demographics?.totals;
+    const h = $demographics?.housing;
+    if (!t) return null;
+    const g = t.effective_growth_rate;
+    const cdr = t.effective_cdr;
+    if (g == null || cdr == null) return null;
+    const mult = h?.growth_mult ?? 1.0;
+    const delta = Math.round(t.pop * (g * mult - cdr));
+    return delta;
+  })();
+
+  $: predictedGrowthDisplay = predictedGrowth == null
+    ? null
+    : (predictedGrowth >= 0 ? '+' : '') + predictedGrowth.toLocaleString() + ' / turn';
+
+  // Workforce fill from derived store.
+  $: workforceFill = $workforce?.fillRatio;
+  $: workforceFillDisplay = workforceFill == null
+    ? null
+    : (workforceFill * 100).toFixed(1) + '%';
+  $: workforceFillCritical = workforceFill != null && workforceFill < 0.85;
+  $: workforceFillGood = workforceFill != null && workforceFill >= 1.0;
 </script>
 
 <section class="px-6 py-5 max-w-[1600px]">
@@ -46,30 +84,28 @@
         value={$demographics.totals.pop?.toLocaleString() ?? '—'}
       />
       <KpiBlock
-        label="Effective CDR"
-        value={$demographics.totals.effective_cdr?.toFixed(4) ?? '—'}
-        history={$cdrHistory.length >= 2 ? $cdrHistory : null}
-      />
-      <KpiBlock
-        label="Net Δ%"
-        value={$demographics.totals.net_delta_pct != null
-          ? ($demographics.totals.net_delta_pct >= 0 ? '+' : '')
-            + $demographics.totals.net_delta_pct.toFixed(2) + '%'
-          : '—'}
-        history={$netDeltaHistory.length >= 2 ? $netDeltaHistory : null}
-      />
-      <KpiBlock
-        label="Total Deaths"
-        value={$demographics.totals.total_deaths != null
-          ? Math.round($demographics.totals.total_deaths).toLocaleString()
-          : '—'}
-        history={$deathsHistory.length >= 2 ? $deathsHistory : null}
-      />
-      <KpiBlock
         label="Avg Satisfaction"
         value={$demographics.totals.avg_satisfaction?.toFixed(2) ?? '—'}
         history={$avgSatHistory.length >= 2 ? $avgSatHistory : null}
         good
+      />
+      <KpiBlock
+        label="Available Housing"
+        value={availableHousing.value}
+        subtitle={availableHousing.subtitle}
+      />
+      <KpiBlock
+        label="Predicted Growth"
+        value={predictedGrowthDisplay}
+        history={$populationDeltaHistory.length >= 2 ? $populationDeltaHistory : null}
+        critical={predictedGrowth != null && predictedGrowth < 0}
+        good={predictedGrowth != null && predictedGrowth > 0}
+      />
+      <KpiBlock
+        label="Workforce Fill"
+        value={workforceFillDisplay}
+        critical={workforceFillCritical}
+        good={workforceFillGood}
       />
     </div>
     <Band num="02" title="Class Vitals" meta={`${$pops.classes.length} classes`} />
@@ -81,12 +117,16 @@
             <th class="num">Pop</th>
             <th class="num">Mortality</th>
             <th class="num">Deaths/turn</th>
+            <th class="num">Demand</th>
+            <th class="num">Fill %</th>
             <th class="num">Unemployed</th>
             <th class="num">Satisfaction</th>
           </tr>
         </thead>
         <tbody>
           {#each $pops.classes as c}
+            {@const fill = c.workforce?.fill_ratio}
+            {@const fillDim = fill != null && fill < 0.85}
             <tr>
               <td>
                 <span class="faction-bar" style="--bar-color: {classColor(c.name)}"></span>
@@ -95,6 +135,8 @@
               <td class="num">{c.pop?.toLocaleString() ?? '—'}</td>
               <td class="num">{c.mortality_rate != null ? (c.mortality_rate * 100).toFixed(2) + '%' : '—'}</td>
               <td class="num">{c.deaths_per_turn != null ? Math.round(c.deaths_per_turn).toLocaleString() : '—'}</td>
+              <td class="num">{c.workforce?.demand != null ? Math.round(c.workforce.demand).toLocaleString() : '—'}</td>
+              <td class="num" class:text-crit={fillDim}>{fill != null ? (fill * 100).toFixed(0) + '%' : '—'}</td>
               <td class="num">{c.unemployed_count != null ? Math.round(c.unemployed_count).toLocaleString() : '—'}</td>
               <td class="num">{c.satisfaction?.toFixed(2) ?? '—'}</td>
             </tr>
@@ -102,7 +144,8 @@
         </tbody>
       </table>
     </div>
-    <Band num="03" title="Housing" meta={housingCritical ? 'OVERCROWDED' : 'capacity'} />
+    <WorkforceBand bandNum="03" />
+    <Band num="04" title="Housing" meta={housingCritical ? 'OVERCROWDED' : 'capacity'} />
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
       <div class="s-card">
         <div class="s-card-header">
@@ -139,7 +182,7 @@
         </div>
       </div>
     </div>
-    <Band num="04" title="Food Security" meta="cropsim signals" />
+    <Band num="05" title="Food Security" meta="cropsim signals" />
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
       <KpiBlock
         label="Security Ratio"
