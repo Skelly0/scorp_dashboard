@@ -38,3 +38,39 @@ test.describe('Map overlay system', () => {
     await expect(page.locator('.roster-row').first()).toBeVisible();
   });
 });
+
+test.describe('Filter persistence', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/#/map');
+    await page.waitForLoadState('networkidle');
+  });
+
+  test('filter survives tab switch', async ({ page }) => {
+    await page.getByRole('button', { name: 'Resources' }).click();
+    await page.locator('.roster-row').first().click();
+    await expect(page.locator('.filter-strip')).toBeVisible();
+
+    // Switch to Food layer (a thematic tab)
+    await page.getByRole('button', { name: /Food yield/ }).click();
+
+    // Filter strip + chip still visible
+    await expect(page.locator('.filter-strip')).toBeVisible();
+    await expect(page.locator('.filter-chip')).toHaveCount(1);
+  });
+
+  test('two filters intersect (count drops or stays equal)', async ({ page }) => {
+    await page.getByRole('button', { name: 'Resources' }).click();
+    await page.locator('.roster-row').first().click();
+    const singleMatchText = await page.locator('.filter-strip').innerText();
+    const singleCount = parseInt(singleMatchText.match(/(\d+) matches/)?.[1] ?? '0', 10);
+
+    await page.getByRole('button', { name: 'Features' }).click();
+    await page.locator('.roster-row').first().click();
+
+    const intersectionText = await page.locator('.filter-strip').innerText();
+    const intersectionCount = parseInt(intersectionText.match(/(\d+) matches/)?.[1] ?? '999', 10);
+
+    expect(intersectionCount).toBeLessThanOrEqual(singleCount);
+    await expect(page.locator('.filter-chip')).toHaveCount(2);
+  });
+});
