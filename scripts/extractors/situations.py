@@ -21,6 +21,12 @@ def extract(wb) -> dict[str, Any]:
 
 
 def _situations_rows(wb):
+    """Read the Situations sheet's data rows.
+
+    Live layout (CLAUDE.md gotcha #13): banner row 1, header row 2, data row 3+.
+    Columns: Name | Crisis Contribution | Description | Tier.
+    The 4-col live layout is canonical; padding tolerates any narrower fixture.
+    """
     if "Situations" not in wb.sheetnames:
         return []
     ws = wb["Situations"]
@@ -28,7 +34,8 @@ def _situations_rows(wb):
     for row in ws.iter_rows(min_row=3, values_only=True):
         if not row or row[0] in (None, ""):
             continue
-        name, desc, crisis = (list(row) + [None, None, None])[:3]
+        padded = list(row) + [None, None, None, None]
+        name, crisis, desc, _tier = padded[:4]
         out.append({"name": name, "description": desc, "crisis_factor_raw": crisis})
     return out
 

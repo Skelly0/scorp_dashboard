@@ -19,13 +19,17 @@ def test_extract_returns_empty_when_sheets_missing(wb):
 
 def test_extract_reads_situations_sheet_when_present(wb):
     ws = wb.create_sheet("Situations")
-    ws["A1"], ws["B1"], ws["C1"] = "Name", "Description", "Crisis Factor"
-    ws["A2"], ws["B2"], ws["C2"] = "The Fall", "Earth has fallen", 0.05
-    ws["A3"], ws["B3"], ws["C3"] = "Old Crisis", "Resolved already", "Ended"
+    # Live layout (CLAUDE.md gotcha #13): banner row 1, header row 2, data row 3+.
+    # Columns: Name | Crisis Contribution | Description | Tier.
+    ws["A1"] = "Active Situations"
+    ws["A2"], ws["B2"], ws["C2"], ws["D2"] = "Name", "Crisis Contribution", "Description", "Tier"
+    ws["A3"], ws["B3"], ws["C3"], ws["D3"] = "The Fall", 0.05, "Earth has fallen", "T2"
+    ws["A4"], ws["B4"], ws["C4"], ws["D4"] = "Old Crisis", "Ended", "Resolved already", None
     result = extract(wb)
     assert len(result["active"]) == 1
     assert result["active"][0]["name"] == "The Fall"
     assert result["active"][0]["crisis_factor"] == 0.05
+    assert result["active"][0]["description"] == "Earth has fallen"
     assert len(result["ended"]) == 1
     assert result["ended"][0]["name"] == "Old Crisis"
 

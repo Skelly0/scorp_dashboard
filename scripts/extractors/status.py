@@ -100,10 +100,11 @@ def _active_situations(wb) -> list[dict[str, Any]]:
         return []
     out: list[dict[str, Any]] = []
     ws = wb["Situations"]
-    for row in ws.iter_rows(min_row=2, values_only=True):
+    # Live layout (CLAUDE.md gotcha #13): banner row 1, header row 2, data row 3+.
+    # Columns: Name | Crisis Contribution | Description | Tier.
+    for row in ws.iter_rows(min_row=3, values_only=True):
         if not row or row[0] in (None, ""):
             continue
-        # Tolerate both 3-col fixture and 4-col live layouts
         padded = list(row) + [None, None, None, None]
         name, crisis, desc, _tier = padded[:4]
         if crisis == "Ended":
