@@ -3,7 +3,8 @@
   import { meta } from '../lib/stores/meta.js';
   import { map, mapError, loadMap } from '../lib/stores/map.js';
   import { pageTitle } from '../lib/page-title.js';
-  import { categorySlugFor } from '../lib/improvement-categories.js';
+  import { categorySlugFor, CATEGORIES } from '../lib/improvement-categories.js';
+  import { RESOURCE_CODES, FEATURE_CODES } from '../lib/map-codes.js';
   import Band from '../lib/components/Band.svelte';
   import MapCanvas from '../lib/components/MapCanvas.svelte';
 
@@ -88,6 +89,34 @@
         </button>
       {/each}
     </div>
+
+    {#if activeFilterCount > 0}
+      <div class="filter-strip">
+        {#if filters.resource}
+          <span class="filter-chip">
+            <span class="swatch" style="background: {$map.palettes.resource[filters.resource] ?? '#fff'}; color:#1a1a1a;">{RESOURCE_CODES[filters.resource] ?? '?'}</span>
+            {filters.resource}
+            <button aria-label="Clear resource filter" on:click={() => clearFilter('resource')}>✕</button>
+          </span>
+        {/if}
+        {#if filters.feature}
+          <span class="filter-chip">
+            <span class="swatch" style="background: {$map.palettes.feature[filters.feature] ?? '#fff'}; color:#1a1a1a;">{FEATURE_CODES[filters.feature] ?? '?'}</span>
+            {filters.feature}
+            <button aria-label="Clear feature filter" on:click={() => clearFilter('feature')}>✕</button>
+          </span>
+        {/if}
+        {#if filters.improvement}
+          <span class="filter-chip">
+            <span class="swatch" style="background: {$map.palettes.improvement_category[filters.improvement] ?? '#fff'}; color:#1a1a1a;">{CATEGORIES[filters.improvement]?.icon ?? '?'}</span>
+            {CATEGORIES[filters.improvement]?.label ?? filters.improvement}
+            <button aria-label="Clear improvement filter" on:click={() => clearFilter('improvement')}>✕</button>
+          </span>
+        {/if}
+        <span>· {matchedTiles.length} matches</span>
+        <button class="clear-all" on:click={clearAllFilters}>Clear all</button>
+      </div>
+    {/if}
 
     <div class="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-3 items-start">
       <MapCanvas

@@ -666,6 +666,65 @@ table.tbl th.num {
   color: var(--alert-fg);
 }
 
+/* === Active filter strip ================================================== */
+.filter-strip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 6px 8px;
+  border: 1px solid var(--border-soft);
+  border-top: none;
+  margin-bottom: 8px;
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  background: var(--bg-2);
+  border: 1px solid var(--border-soft);
+  color: var(--fg);
+  font-weight: 700;
+}
+.filter-chip .swatch {
+  width: 12px;
+  height: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: 900;
+  border: 1px solid rgba(0,0,0,0.4);
+}
+.filter-chip button {
+  background: transparent;
+  border: none;
+  color: var(--fg-dim);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0 0 0 4px;
+}
+.filter-chip button:hover { color: var(--crit); }
+.filter-strip .clear-all {
+  background: transparent;
+  border: 1px solid var(--border-soft);
+  color: var(--fg-dim);
+  padding: 3px 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-left: auto;
+}
+.filter-strip .clear-all:hover { color: var(--crit); border-color: var(--crit); }
+
 /* === Sparkline ============================================================= */
 .spark {
   display: block;
