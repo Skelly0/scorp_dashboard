@@ -72,5 +72,35 @@
         good
       />
     </div>
+    <Band num="02" title="Class Vitals" meta={`${$pops.classes.length} classes`} />
+    <div class="s-card">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th class="num">Pop</th>
+            <th class="num">Mortality</th>
+            <th class="num">Deaths/turn</th>
+            <th class="num">Unemployed</th>
+            <th class="num">Satisfaction</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each $pops.classes as c}
+            <tr>
+              <td>
+                <span class="faction-bar" style="--bar-color: {classColor(c.name)}"></span>
+                {c.name}
+              </td>
+              <td class="num">{c.pop?.toLocaleString() ?? '—'}</td>
+              <td class="num">{c.mortality_rate != null ? (c.mortality_rate * 100).toFixed(2) + '%' : '—'}</td>
+              <td class="num">{c.deaths_per_turn != null ? Math.round(c.deaths_per_turn).toLocaleString() : '—'}</td>
+              <td class="num">{c.unemployed_count != null ? Math.round(c.unemployed_count).toLocaleString() : '—'}</td>
+              <td class="num">{c.satisfaction?.toFixed(2) ?? '—'}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </div>
   {/if}
 </section>
