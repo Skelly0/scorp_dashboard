@@ -58,3 +58,18 @@ def test_extract_includes_resource_palette(wb):
     assert pal["Heavy Metals"] == "#6a7e9c"
     assert pal["Oxygen Bound Soil"] == "#5fc3e8"
     assert pal["Water Ice"] == "#ffffff"
+
+
+def test_extract_includes_feature_palette(wb):
+    result = extract(wb)
+    assert "feature" in result["palettes"]
+    pal = result["palettes"]["feature"]
+    assert pal["Buried Ice"] == "#b3d9ff"
+    assert pal["Mineral Vein"] == "#c4a484"
+    assert pal["Smooth Plain"] == "#8a9da6"
+    assert pal["Boulder Field"] == "#6e6058"
+    assert pal["Cave System"] == "#2d3a4a"
+    assert pal["Recent Meteorite Strikes"] == "#d97a5b"
+    assert pal["Magnetic Anomaly"] == "#a89cff"
+    assert pal["Hollow Rocks"] == "#a89567"
+    assert pal["Crashed Probe"] == "#ff8c42"
