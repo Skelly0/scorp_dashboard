@@ -281,6 +281,9 @@ body {
 .kpi-block.critical {
   border-color: var(--crit);
 }
+.s-card.critical {
+  border-color: var(--crit);
+}
 
 /* === Overton dual-bar (window range + value marker) ======================== */
 .overton-row {

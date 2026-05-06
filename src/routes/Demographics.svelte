@@ -102,5 +102,42 @@
         </tbody>
       </table>
     </div>
+    <Band num="03" title="Housing" meta={housingCritical ? 'OVERCROWDED' : 'capacity'} />
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div class="s-card">
+        <div class="s-card-header">
+          <h3>Utilization</h3>
+        </div>
+        <div class="s-card-pad">
+          <Bar
+            label="Pop / Capacity"
+            value={$demographics.housing.ratio}
+            max={1}
+            variant={housingCritical ? 'crit overflow' : ''}
+            format="pct"
+          />
+          <dl class="kv mt-2">
+            <dt>Pop</dt><dd>{$demographics.housing.pop?.toLocaleString() ?? '—'}</dd>
+            <dt>Capacity</dt><dd>{$demographics.housing.capacity?.toLocaleString() ?? '—'}</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="s-card" class:critical={housingCritical}>
+        <div class="s-card-header">
+          <h3>Modifiers</h3>
+        </div>
+        <div class="s-card-pad">
+          <dl class="kv">
+            <dt>Housing Ratio</dt>
+            <dd>{$demographics.housing.ratio?.toFixed(3) ?? '—'}</dd>
+            <dt>Growth Mult</dt>
+            <dd>{$demographics.housing.growth_mult?.toFixed(3) ?? '—'}</dd>
+            <dt>Overcrowding Exp</dt>
+            <dd>{$demographics.housing.overcrowding_exp?.toFixed(2) ?? '—'}</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
   {/if}
 </section>
