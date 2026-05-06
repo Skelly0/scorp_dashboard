@@ -39,3 +39,27 @@ export const crisisFactorHistory = derived(history, ($h) =>
 export const populationHistory = derived(history, ($h) =>
   $h ? $h.snapshots.map((s) => s?.population_total).filter((v) => v != null) : []
 );
+
+export const govApprovalHistory = derived(history, ($h) =>
+  $h ? $h.snapshots.map((s) => s?.gov_approval).filter((v) => v != null) : []
+);
+
+export const deathsHistory = derived(history, ($h) =>
+  $h ? $h.snapshots.map((s) => s?.total_deaths).filter((v) => v != null) : []
+);
+
+export const cdrHistory = derived(history, ($h) =>
+  $h ? $h.snapshots.map((s) => s?.effective_cdr).filter((v) => v != null) : []
+);
+
+export const netDeltaHistory = derived(history, ($h) =>
+  $h ? $h.snapshots.map((s) => s?.net_delta_pct).filter((v) => v != null) : []
+);
+
+export const housingUtilHistory = derived(history, ($h) =>
+  $h ? $h.snapshots.map((s) => s?.housing_util).filter((v) => v != null) : []
+);
+
+export const avgSatHistory = derived(history, ($h) =>
+  $h ? $h.snapshots.map((s) => s?.avg_satisfaction).filter((v) => v != null) : []
+);

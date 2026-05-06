@@ -1,6 +1,8 @@
 """Tests for the Pops Detailed page extractor."""
 from __future__ import annotations
 
+import pytest
+
 from extractors.pops import extract
 
 
@@ -51,3 +53,37 @@ def test_extract_living_standards_block(wb):
     assert b["standard_of_living"] == 0.42
     assert b["expected_sol"] == 0.55
     assert b["social_privileges"] == 0.30
+
+
+def test_pops_per_class_mortality_present(wb):
+    from extractors.pops import extract
+    result = extract(wb)
+    assert len(result["classes"]) > 0
+    first = result["classes"][0]
+    assert "mortality_rate" in first
+    assert "deaths_per_turn" in first
+    assert "unemployed_count" in first
+
+
+def test_pops_mortality_values_from_fixture(wb):
+    from extractors.pops import extract
+    result = extract(wb)
+    # First class: mortality 0.010, pop 970 -> deaths ~ 9 (int)
+    first = result["classes"][0]
+    assert first["mortality_rate"] == pytest.approx(0.010)
+    assert first["deaths_per_turn"] == 9  # int(970 * 0.010)
+
+
+def test_pops_handles_short_mortality_range(wb):
+    """If MortalityRates has fewer rows than ClassTable, missing rows surface as None - no IndexError."""
+    from openpyxl.workbook.defined_name import DefinedName
+    # Override MortalityRates to point at 5 rows of empty cells far away
+    wb.defined_names["MortalityRates"] = DefinedName(
+        "MortalityRates", attr_text="Popsim!$X$200:$X$204"
+    )
+    from extractors.pops import extract
+    result = extract(wb)
+    # All classes should still extract; mortality_rate is None for all
+    # (the 5 cells are empty by default)
+    for cls in result["classes"]:
+        assert cls["mortality_rate"] is None

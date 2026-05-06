@@ -108,3 +108,16 @@ def test_run_sync_skips_history_when_year_missing(tmp_path, fixture_workbook_pat
     assert not (out_dir / "history").exists()
     meta = json.loads((out_dir / "meta.json").read_text())
     assert meta["history_year"] is None
+
+
+def test_run_sync_writes_demographics_json(fixture_workbook_path, tmp_path):
+    from sync_sheet import run_sync
+    out_dir = tmp_path / "data"
+    out_dir.mkdir()
+    run_sync(fixture_workbook_path, out_dir)
+    assert (out_dir / "demographics.json").exists()
+    import json
+    payload = json.loads((out_dir / "demographics.json").read_text())
+    assert "totals" in payload
+    assert "housing" in payload
+    assert "food" in payload

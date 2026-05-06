@@ -3,7 +3,13 @@ from __future__ import annotations
 
 from typing import Any
 
-from extractors._common import coerce_number, read_named_range
+from extractors._common import (
+    avg_satisfaction,
+    coerce_number,
+    net_delta_pct,
+    population_total,
+    scalar_named,
+)
 
 OVERTON_AXES = [
     ("expansion", "OvertonExpn"),
@@ -16,15 +22,18 @@ OVERTON_AXES = [
 
 
 def extract(wb) -> dict[str, Any]:
+    pop_total = population_total(wb)
     return {
         "year": _year(wb),
         "treasury": _treasury(wb),
-        "stability": _scalar_named(wb, "Stability"),
-        "crisis_factor": _scalar_named(wb, "CrisisFactor"),
-        "population_total": _population_total(wb),
+        "stability": scalar_named(wb, "Stability"),
+        "crisis_factor": scalar_named(wb, "CrisisFactor"),
+        "population_total": pop_total,
         "resources": _resources(wb),
         "overton": _overton(wb),
         "active_situations": _active_situations(wb),
+        "gov_approval": scalar_named(wb, "EffectiveGovApproval"),
+        "demographics": _demographics_block(wb, pop_total),
     }
 
 
@@ -36,7 +45,7 @@ def _year(wb) -> int | None:
     archival index, so a missing value just means history is paused — sync
     itself still succeeds.
     """
-    raw = _scalar_named(wb, "Var_Year")
+    raw = scalar_named(wb, "Var_Year")
     return int(raw) if raw is not None else None
 
 
@@ -56,16 +65,6 @@ def _treasury(wb) -> dict[str, Any]:
                 delta = income - upkeep
                 break
     return {"money": money, "delta": delta}
-
-
-def _population_total(wb) -> int:
-    rows = read_named_range(wb, "PopsimPop")
-    total = 0.0
-    for row in rows:
-        v = coerce_number(row[0])
-        if v is not None:
-            total += v
-    return int(total)
 
 
 def _resources(wb) -> list[dict[str, Any]]:
@@ -91,14 +90,7 @@ def _resources(wb) -> list[dict[str, Any]]:
 
 
 def _overton(wb) -> dict[str, float | None]:
-    return {key: _scalar_named(wb, name) for key, name in OVERTON_AXES}
-
-
-def _scalar_named(wb, name: str) -> float | None:
-    rows = read_named_range(wb, name)
-    if not rows or not rows[0]:
-        return None
-    return coerce_number(rows[0][0])
+    return {key: scalar_named(wb, name) for key, name in OVERTON_AXES}
 
 
 def _active_situations(wb) -> list[dict[str, Any]]:
@@ -122,3 +114,37 @@ def _active_situations(wb) -> list[dict[str, Any]]:
             "crisis_factor": coerce_number(crisis),
         })
     return out
+
+
+def _housing_util(pop: float | None, capacity: float | None) -> float | None:
+    """Returns pop/capacity ratio (0..∞). None when capacity is missing or 0."""
+    if capacity in (None, 0):
+        return None
+    if pop is None:
+        return None
+    return pop / capacity
+
+
+def _demographics_block(wb, pop_total: int) -> dict:
+    """Aggregate demographics scalars consumed by Status's Pulse row.
+
+    Soft-optional Var_* ranges return None when missing — scalar_named
+    handles that (read_named_range returns [] for unknown names, so
+    scalar_named short-circuits to None).
+    """
+    base = scalar_named(wb, "Var_BaseGrowthRate")
+    elasticity = scalar_named(wb, "Var_GrowthSatElasticity")
+    cdr = scalar_named(wb, "EffectiveCDR")
+    capacity = scalar_named(wb, "HousingCapacity")
+    effective_growth = base * elasticity if (base is not None and elasticity is not None) else None
+    return {
+        "base_growth_rate": base,
+        "sat_elasticity": elasticity,
+        "effective_growth_rate": effective_growth,
+        "effective_cdr": cdr,
+        "total_deaths": scalar_named(wb, "TotalDeathsPerTurn"),
+        "net_delta_pct": net_delta_pct(effective_growth, cdr),
+        "housing_capacity": capacity,
+        "housing_util": _housing_util(pop_total, capacity),
+        "avg_satisfaction": avg_satisfaction(wb),
+    }

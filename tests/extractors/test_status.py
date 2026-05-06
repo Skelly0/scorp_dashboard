@@ -1,6 +1,8 @@
 """Tests for the Status page extractor."""
 from __future__ import annotations
 
+import pytest
+
 from extractors.status import extract
 
 
@@ -57,3 +59,88 @@ def test_extract_year_none_when_named_range_missing(wb):
     del wb.defined_names["Var_Year"]
     result = extract(wb)
     assert result["year"] is None
+
+
+def test_extract_returns_gov_approval(wb):
+    result = extract(wb)
+    assert result["gov_approval"] == 0.62
+
+
+def test_extract_gov_approval_none_when_range_missing(wb):
+    del wb.defined_names["EffectiveGovApproval"]
+    result = extract(wb)
+    assert result["gov_approval"] is None
+
+
+def test_avg_satisfaction_population_weighted(wb):
+    """Weighted mean across PopsimSatisfaction × PopsimPop."""
+    from extractors._common import avg_satisfaction
+    # Fixture: all sat = 0.40, all pops varied. Weighted mean = 0.40.
+    assert avg_satisfaction(wb) == 0.40
+
+
+def test_avg_satisfaction_returns_none_when_total_pop_zero(wb):
+    """Guard against division by zero when every pop cell is zero/None."""
+    from extractors._common import avg_satisfaction
+    pop_sheet = wb["Popsim"]
+    for row in range(5, 20):  # PopsimPop range B5:B19
+        pop_sheet.cell(row=row, column=2, value=0)
+    assert avg_satisfaction(wb) is None
+
+
+def test_housing_util_normal_case():
+    """pop / capacity returns ratio in 0..∞ range."""
+    from extractors.status import _housing_util
+    assert _housing_util(15870, 16500) == 15870 / 16500
+
+
+def test_housing_util_returns_none_when_capacity_zero():
+    """Div-by-zero guard."""
+    from extractors.status import _housing_util
+    assert _housing_util(15870, 0) is None
+    assert _housing_util(15870, None) is None
+    assert _housing_util(0, 16500) == 0.0  # zero pop OK; zero capacity not.
+
+
+def test_net_delta_pct_normal():
+    from extractors._common import net_delta_pct
+    # growth=0.02, cdr=0.012 → (0.02 - 0.012) * 100 = 0.8
+    assert net_delta_pct(0.020, 0.012) == pytest.approx(0.8)
+
+
+def test_net_delta_pct_none_when_either_input_missing():
+    from extractors._common import net_delta_pct
+    assert net_delta_pct(None, 0.012) is None
+    assert net_delta_pct(0.020, None) is None
+    assert net_delta_pct(None, None) is None
+
+
+def test_extract_demographics_block_shape(wb):
+    result = extract(wb)
+    demo = result["demographics"]
+    assert set(demo.keys()) == {
+        "base_growth_rate", "sat_elasticity", "effective_growth_rate",
+        "effective_cdr", "total_deaths", "net_delta_pct",
+        "housing_capacity", "housing_util", "avg_satisfaction",
+    }
+
+
+def test_extract_demographics_values_from_fixture(wb):
+    result = extract(wb)
+    demo = result["demographics"]
+    assert demo["base_growth_rate"] == 0.020
+    assert demo["sat_elasticity"] == 0.95
+    assert demo["effective_growth_rate"] == pytest.approx(0.020 * 0.95)
+    assert demo["effective_cdr"] == 0.0125
+    assert demo["total_deaths"] == 280
+    assert demo["housing_capacity"] == 16500
+    assert demo["avg_satisfaction"] == 0.40
+
+
+def test_extract_demographics_effective_growth_none_when_base_missing(wb):
+    del wb.defined_names["Var_BaseGrowthRate"]
+    result = extract(wb)
+    demo = result["demographics"]
+    assert demo["base_growth_rate"] is None
+    assert demo["effective_growth_rate"] is None
+    assert demo["net_delta_pct"] is None  # chains through

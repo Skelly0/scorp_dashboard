@@ -23,6 +23,9 @@ def extract(wb) -> dict[str, Any]:
     votes_total = read_named_range(wb, "PopsimVotesTotal")
     vote_share = read_named_range(wb, "PopsimVoteShare")
     sat = read_named_range(wb, "PopsimSatisfaction")
+    mortality_rates = read_named_range(wb, "MortalityRates")
+    deaths_per_turn = read_named_range(wb, "DeathsPerTurn")
+    unemployed_count = read_named_range(wb, "PopsimUnemployed")
     add_income = _read_additional_income_breakdown(wb)
 
     # WealthIncomePerClass: A:J × 15 rows. Column offsets within each row:
@@ -72,6 +75,9 @@ def extract(wb) -> dict[str, Any]:
             },
             "workforce": workforce_by_class.get(name, _empty_workforce()),
             "satisfaction": coerce_number(sat[i][0]) if i < len(sat) else None,
+            "mortality_rate": coerce_number(mortality_rates[i][0]) if i < len(mortality_rates) else None,
+            "deaths_per_turn": coerce_number(deaths_per_turn[i][0]) if i < len(deaths_per_turn) else None,
+            "unemployed_count": coerce_number(unemployed_count[i][0]) if i < len(unemployed_count) else None,
         })
 
     return {"classes": out}

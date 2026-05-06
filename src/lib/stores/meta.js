@@ -4,7 +4,7 @@ import { fetchMeta } from '../data.js';
 export const meta = writable(null);
 export const metaError = writable(null);
 
-const EXPECTED_SCHEMA_VERSION = 2;
+const EXPECTED_SCHEMA_VERSION = 3;
 
 export async function loadMeta() {
   try {

@@ -48,6 +48,15 @@ def build(out_path: Path) -> Path:
     # Year mirror (Colony!H1 in live wb; named range so extractors don't read by addr).
     var["A2"], var["B2"] = "Var_Year", 12
     _add_name(wb, "Var_Year", "Variable!$B$2")
+    # v3 tuning knobs (soft-optional in validator; extractors check presence).
+    var["A3"], var["B3"] = "Var_BaseDeathRate", 0.012
+    _add_name(wb, "Var_BaseDeathRate", "Variable!$B$3")
+    var["A4"], var["B4"] = "Var_HousingOvercrowdingExp", 1.5
+    _add_name(wb, "Var_HousingOvercrowdingExp", "Variable!$B$4")
+    var["A5"], var["B5"] = "Var_BaseGrowthRate", 0.020
+    _add_name(wb, "Var_BaseGrowthRate", "Variable!$B$5")
+    var["A6"], var["B6"] = "Var_GrowthSatElasticity", 0.95
+    _add_name(wb, "Var_GrowthSatElasticity", "Variable!$B$6")
 
     # ---- Politics sheet ----
     pol = wb.create_sheet("Politics")
@@ -65,6 +74,8 @@ def build(out_path: Path) -> Path:
     _add_name(wb, "OvertonTech", "Politics!$B$16")
     _add_name(wb, "OvertonFaith", "Politics!$B$17")
     _add_name(wb, "OvertonMat", "Politics!$B$18")
+    pol["B2"] = 0.62  # Effective Gov Approval
+    _add_name(wb, "EffectiveGovApproval", "Politics!$B$2")
 
     # ---- Colony sheet (Treasury + resources) ----
     col = wb.create_sheet("Colony")
@@ -86,6 +97,9 @@ def build(out_path: Path) -> Path:
     _add_name(wb, "TreasuryMoney", "Colony!$B$1")
     _add_name(wb, "TreasuryMoneyDelta", "Colony!$B$2")
     _add_name(wb, "ResourceFlows", "Colony!$A$4:$C$10")
+    col["A12"], col["B12"], col["C12"], col["I12"] = "Housing", "capacity", 16500, 0.96
+    _add_name(wb, "HousingCapacity", "Colony!$C$12")
+    _add_name(wb, "HousingRatio", "Colony!$I$12")
 
     # ---- Popsim sheet ----
     pop = wb.create_sheet("Popsim")
@@ -138,6 +152,12 @@ def build(out_path: Path) -> Path:
         pop.cell(row=i, column=4, value=min(supply / demand, 1.0))
         pop.cell(row=i, column=5, value=0.05 + (i - 24) * 0.01)
     _add_name(wb, "WorkforceSupplyDemand", "Popsim!$A$24:$E$37")
+
+    # PopsimUnemployed: raw count (separate from WorkforceSupplyDemand col E ratio).
+    # Live wb places at E25:E39; fixture uses col K to avoid overlap.
+    for i, (name, _, p, _w) in enumerate(classes, start=24):
+        pop.cell(row=i, column=11, value=int(p * (0.05 + (i - 24) * 0.005)))
+    _add_name(wb, "PopsimUnemployed", "Popsim!$K$24:$K$37")
 
     # Standard of Living: rows 97-111, cols B (SoL), C (Expected SoL).
     for i, _ in enumerate(classes, start=97):
@@ -193,6 +213,36 @@ def build(out_path: Path) -> Path:
     _add_name(wb, "AdditionalIncomeRange", "'Wages & Welfare'!$H$23:$I$37")
     # Per-class breakdown read directly (cols B-E) — track via an aux range too.
     _add_name(wb, "AdditionalIncomeBreakdown", "'Wages & Welfare'!$A$23:$F$37")
+
+    # ---- Mortality sheet (v3) ----
+    mort = wb.create_sheet("Mortality")
+    # Per-class mortality rates and deaths/turn; rows 13-23 (11 classes).
+    # Live workbook spans 13-27 (15 slots); fixture only fills 11.
+    for i, (name, _, p, _w) in enumerate(classes, start=13):
+        mort.cell(row=i, column=1, value=name)
+        rate = 0.010 + (i - 13) * 0.001  # 0.010 .. 0.020
+        mort.cell(row=i, column=6, value=rate)         # F mortality rate
+        mort.cell(row=i, column=7, value=int(p * rate))  # G deaths/turn
+    mort["A30"], mort["B30"] = "Total deaths/turn", 280  # round figure
+    mort["A31"], mort["B31"] = "Effective CDR", 0.0125
+    _add_name(wb, "MortalityRates", "Mortality!$F$13:$F$27")
+    _add_name(wb, "DeathsPerTurn", "Mortality!$G$13:$G$27")
+    _add_name(wb, "TotalDeathsPerTurn", "Mortality!$B$30")
+    _add_name(wb, "EffectiveCDR", "Mortality!$B$31")
+
+    # ---- Housing sheet (v3, just for HousingGrowthMult) ----
+    hou = wb.create_sheet("Housing")
+    hou["A12"], hou["B12"] = "Housing growth mult", 0.92
+    _add_name(wb, "HousingGrowthMult", "Housing!$B$12")
+
+    # ---- Cropsim sheet (v3 food security) ----
+    cs = wb.create_sheet("Cropsim")
+    cs["A26"], cs["B26"] = "Food security ratio", 1.05
+    cs["A27"], cs["B27"] = "Food per cap", 1.20
+    cs["A28"], cs["B28"] = "Food variety index", 0.78
+    _add_name(wb, "FoodSecurityRatio", "Cropsim!$B$26")
+    _add_name(wb, "FoodPerCap", "Cropsim!$B$27")
+    _add_name(wb, "FoodVarietyIndex", "Cropsim!$B$28")
 
     # Politics GoI block: rows 24-31 (8 slots, 4 live + 4 blank)
     gois = [

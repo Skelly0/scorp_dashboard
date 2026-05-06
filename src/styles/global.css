@@ -261,6 +261,30 @@ body {
 .bar.crit > span { background: var(--crit); }
 .bar.good > span { background: var(--good); }
 
+/* v3 — bar overflow indicator (housing util > 100%). Width still capped
+   at 100% so layout is stable; stripes signal "overflow exists" without
+   conveying magnitude (the numeric percentage label does that). */
+.bar.overflow span {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--crit-soft) 0,
+    var(--crit-soft) 6px,
+    var(--crit) 6px,
+    var(--crit) 12px
+  );
+}
+
+/* v3 — KpiBlock critical border treatment. Set by routes (e.g.
+   Demographics.svelte when housing_util > 1.0). Mirrors the existing
+   `critical` prop pattern but applies to the wrapper border, not just
+   the number colour. */
+.kpi-block.critical {
+  border-color: var(--crit);
+}
+.s-card.critical {
+  border-color: var(--crit);
+}
+
 /* === Overton dual-bar (window range + value marker) ======================== */
 .overton-row {
   display: grid;
