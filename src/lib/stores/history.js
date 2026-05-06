@@ -63,3 +63,12 @@ export const housingUtilHistory = derived(history, ($h) =>
 export const avgSatHistory = derived(history, ($h) =>
   $h ? $h.snapshots.map((s) => s?.avg_satisfaction).filter((v) => v != null) : []
 );
+
+// Year-over-year population delta. data[i] = pop[i] - pop[i-1].
+// First entry is dropped (no prior reference).
+export const populationDeltaHistory = derived(history, ($h) => {
+  if (!$h) return [];
+  const pops = $h.snapshots.map((s) => s?.population_total).filter((v) => v != null);
+  if (pops.length < 2) return [];
+  return pops.slice(1).map((v, i) => v - pops[i]);
+});
