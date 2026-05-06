@@ -17,12 +17,12 @@
   "resources": [
     {
       "current": 0.0,
-      "delta": -22.2175,
+      "delta": 125.0,
       "name": "Food"
     },
     {
       "current": 3000.0,
-      "delta": -48.66,
+      "delta": 1.25,
       "name": "Materials"
     },
     {
@@ -32,7 +32,7 @@
     },
     {
       "current": 750.0,
-      "delta": -290.396875,
+      "delta": -214.0,
       "name": "Energy"
     },
     {
@@ -52,12 +52,12 @@
     },
     {
       "current": 900.0,
-      "delta": -66.38,
+      "delta": -29.0,
       "name": "Water"
     }
   ],
   "stability": 0.1369554504,
-  "synced_at": "2026-05-06T11:54:03Z",
+  "synced_at": "2026-05-06T14:29:51Z",
   "total_deaths": 168.0,
   "treasury": {
     "delta": 58245.2,
