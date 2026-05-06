@@ -7,6 +7,7 @@
   import { RESOURCE_CODES, FEATURE_CODES } from '../lib/map-codes.js';
   import Band from '../lib/components/Band.svelte';
   import MapCanvas from '../lib/components/MapCanvas.svelte';
+  import RosterPanel from '../lib/components/RosterPanel.svelte';
 
   let layer = 'terrain';
   let hoverTile = null;
@@ -128,46 +129,62 @@
         on:pin={(e) => (pinnedTile = e.detail)}
       />
 
-      <aside class="s-card">
-        {#if !t}
-          <div class="s-card-pad">
-            <p class="text-muted text-xs uppercase tracking-widest">Hover or click a tile to inspect.</p>
-          </div>
-        {:else}
-          <div class="s-card-header">
-            <h3>Tile · ({String(t.x).padStart(2, '0')}, {String(t.y).padStart(2, '0')})</h3>
-            <span class="meta">{layer}</span>
-          </div>
-          <div class="s-card-pad">
-            <dl class="kv">
-              <dt>Terrain</dt><dd>{t.terrain ?? '—'}</dd>
-              <dt>Feature</dt><dd>{t.feature ?? '—'}</dd>
-              <dt>Resource</dt><dd>{t.resource ?? '—'}</dd>
-              <dt>Slots</dt><dd>{t.slots ?? '—'}</dd>
-            </dl>
-            {#if t.improvement}
-              <div class="kv-section">
-                <h4>Improvement</h4>
-                <dl class="kv">
-                  <dt>Name</dt><dd>{t.improvement.name ?? '—'}</dd>
-                  <dt>Owner</dt><dd>{t.improvement.owner ?? '—'}</dd>
-                  <dt>Type</dt><dd>{t.improvement.ownership_type ?? '—'}</dd>
-                </dl>
-              </div>
-            {/if}
-            {#if t.yields}
-              <div class="kv-section">
-                <h4>Yields</h4>
-                <dl class="kv">
-                  {#each Object.entries(t.yields) as [k, v]}
-                    <dt class="capitalize">{k}</dt>
-                    <dd class={v < 0 ? 'crit' : v > 0 ? 'good' : ''}>{v > 0 ? '+' : ''}{v}</dd>
-                  {/each}
-                </dl>
-              </div>
-            {/if}
+      <aside class="flex flex-col gap-3">
+        {#if layer === 'resources' || layer === 'features' || layer === 'improvements'}
+          <div class="s-card">
+            <RosterPanel
+              mapData={$map}
+              kind={layer === 'resources' ? 'resource' : layer === 'features' ? 'feature' : 'improvement'}
+              {filters}
+              on:toggle-filter={(e) => {
+                const { kind, value } = e.detail;
+                filters = { ...filters, [kind]: filters[kind] === value ? null : value };
+              }}
+              on:pin={(e) => (pinnedTile = e.detail)}
+            />
           </div>
         {/if}
+        <div class="s-card">
+          {#if !t}
+            <div class="s-card-pad">
+              <p class="text-muted text-xs uppercase tracking-widest">Hover or click a tile to inspect.</p>
+            </div>
+          {:else}
+            <div class="s-card-header">
+              <h3>Tile · ({String(t.x).padStart(2, '0')}, {String(t.y).padStart(2, '0')})</h3>
+              <span class="meta">{layer}</span>
+            </div>
+            <div class="s-card-pad">
+              <dl class="kv">
+                <dt>Terrain</dt><dd>{t.terrain ?? '—'}</dd>
+                <dt>Feature</dt><dd>{t.feature ?? '—'}</dd>
+                <dt>Resource</dt><dd>{t.resource ?? '—'}</dd>
+                <dt>Slots</dt><dd>{t.slots ?? '—'}</dd>
+              </dl>
+              {#if t.improvement}
+                <div class="kv-section">
+                  <h4>Improvement</h4>
+                  <dl class="kv">
+                    <dt>Name</dt><dd>{t.improvement.name ?? '—'}</dd>
+                    <dt>Owner</dt><dd>{t.improvement.owner ?? '—'}</dd>
+                    <dt>Type</dt><dd>{t.improvement.ownership_type ?? '—'}</dd>
+                  </dl>
+                </div>
+              {/if}
+              {#if t.yields}
+                <div class="kv-section">
+                  <h4>Yields</h4>
+                  <dl class="kv">
+                    {#each Object.entries(t.yields) as [k, v]}
+                      <dt class="capitalize">{k}</dt>
+                      <dd class={v < 0 ? 'crit' : v > 0 ? 'good' : ''}>{v > 0 ? '+' : ''}{v}</dd>
+                    {/each}
+                  </dl>
+                </div>
+              {/if}
+            </div>
+          {/if}
+        </div>
       </aside>
     </div>
 
