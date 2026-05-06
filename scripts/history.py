@@ -29,12 +29,20 @@ def write_snapshot(out_dir: Path, year: int | None, status_data: dict[str, Any],
     snapshot = {
         "year": year,
         "synced_at": synced_at,
+        # Existing v2 keys — shapes preserved verbatim:
         "treasury": status_data.get("treasury"),
         "stability": status_data.get("stability"),
         "crisis_factor": status_data.get("crisis_factor"),
         "population_total": status_data.get("population_total"),
         "resources": status_data.get("resources", []),
         "overton": status_data.get("overton", {}),
+        # v3 additions — None when status didn't provide them:
+        "gov_approval": status_data.get("gov_approval"),
+        "total_deaths": status_data.get("demographics", {}).get("total_deaths"),
+        "effective_cdr": status_data.get("demographics", {}).get("effective_cdr"),
+        "net_delta_pct": status_data.get("demographics", {}).get("net_delta_pct"),
+        "housing_util": status_data.get("demographics", {}).get("housing_util"),
+        "avg_satisfaction": status_data.get("demographics", {}).get("avg_satisfaction"),
     }
     _write_json_atomic(history_dir / f"year-{year:03d}.json", snapshot)
     _update_index(history_dir, year)

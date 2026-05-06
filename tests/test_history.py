@@ -79,3 +79,71 @@ def test_index_recovers_from_corrupt_existing_file(tmp_path: Path):
     assert wrote is True
     index = json.loads((history_dir / "index.json").read_text())
     assert index["years"] == [5]
+
+
+def test_snapshot_preserves_treasury_dict_shape(tmp_path):
+    """Critical regression guard: treasury must remain a dict, not be flattened
+    to a scalar — frontend treasuryHistory store reads s?.treasury?.money."""
+    from history import write_snapshot
+    status_data = {
+        "treasury": {"money": 487, "delta": -12},
+        "stability": 0.42,
+        "crisis_factor": 0.38,
+        "population_total": 15870,
+        "resources": [],
+        "overton": {},
+        "gov_approval": 0.62,
+        "demographics": {
+            "total_deaths": 280,
+            "effective_cdr": 0.0125,
+            "net_delta_pct": 0.8,
+            "housing_util": 0.96,
+            "avg_satisfaction": 0.40,
+        },
+    }
+    write_snapshot(tmp_path, year=12, status_data=status_data, synced_at="2026-05-06T00:00:00Z")
+    import json
+    snap = json.loads((tmp_path / "history" / "year-012.json").read_text())
+    assert snap["treasury"] == {"money": 487, "delta": -12}, "treasury must stay as dict"
+
+
+def test_snapshot_includes_v3_demographics_fields(tmp_path):
+    from history import write_snapshot
+    status_data = {
+        "treasury": {"money": 0, "delta": 0},
+        "stability": 0.5, "crisis_factor": 0.0,
+        "population_total": 100, "resources": [], "overton": {},
+        "gov_approval": 0.62,
+        "demographics": {
+            "total_deaths": 280,
+            "effective_cdr": 0.0125,
+            "net_delta_pct": 0.8,
+            "housing_util": 0.96,
+            "avg_satisfaction": 0.40,
+        },
+    }
+    write_snapshot(tmp_path, year=12, status_data=status_data, synced_at="2026-05-06T00:00:00Z")
+    import json
+    snap = json.loads((tmp_path / "history" / "year-012.json").read_text())
+    assert snap["gov_approval"] == 0.62
+    assert snap["total_deaths"] == 280
+    assert snap["effective_cdr"] == 0.0125
+    assert snap["net_delta_pct"] == 0.8
+    assert snap["housing_util"] == 0.96
+    assert snap["avg_satisfaction"] == 0.40
+
+
+def test_snapshot_v3_fields_default_none_when_absent(tmp_path):
+    """When status_data lacks the v3 demographics block (old workbook),
+    snapshot writes None — derived stores filter on != null."""
+    from history import write_snapshot
+    status_data = {
+        "treasury": {"money": 0, "delta": 0},
+        "stability": 0.5, "crisis_factor": 0.0,
+        "population_total": 100, "resources": [], "overton": {},
+    }
+    write_snapshot(tmp_path, year=12, status_data=status_data, synced_at="2026-05-06T00:00:00Z")
+    import json
+    snap = json.loads((tmp_path / "history" / "year-012.json").read_text())
+    assert snap["gov_approval"] is None
+    assert snap["total_deaths"] is None
