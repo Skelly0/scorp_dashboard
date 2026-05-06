@@ -15,6 +15,8 @@
   $: width = mapData.width * TILE_SIZE;
   $: height = mapData.height * TILE_SIZE;
   $: viewBox = `0 0 ${width} ${height}`;
+  $: resourcePal = mapData.palettes.resource ?? {};
+  $: featurePal  = mapData.palettes.feature  ?? {};
   // Recompute per-layer max for heatmap normalisation whenever map or layer changes.
   $: layerMax = computeLayerMax(mapData, layer);
   $: drawTerrain(mapData, layer, layerMax);
@@ -126,6 +128,33 @@
             dominant-baseline="central"
             class="map-glyph map-glyph--improvement"
           >▣</text>
+        {/if}
+      {/each}
+      <!-- Resource corner dots (top-right). -->
+      {#each mapData.tiles as t}
+        {#if t.resource}
+          <circle
+            cx={t.x * TILE_SIZE + TILE_SIZE - 4}
+            cy={t.y * TILE_SIZE + 4}
+            r="2.5"
+            fill={resourcePal[t.resource] ?? '#ffffff'}
+            stroke="rgba(0,0,0,0.6)"
+            stroke-width="0.5"
+          />
+        {/if}
+      {/each}
+      <!-- Feature corner dots (top-left, square). -->
+      {#each mapData.tiles as t}
+        {#if t.feature}
+          <rect
+            x={t.x * TILE_SIZE + 1.5}
+            y={t.y * TILE_SIZE + 1.5}
+            width="5"
+            height="5"
+            fill={featurePal[t.feature] ?? '#ffffff'}
+            stroke="rgba(0,0,0,0.6)"
+            stroke-width="0.5"
+          />
         {/if}
       {/each}
       <!-- Focus highlight -->
