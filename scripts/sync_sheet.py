@@ -19,6 +19,7 @@ from typing import Any
 import openpyxl
 import requests
 
+from extractors import demographics as ex_demographics
 from extractors import gois as ex_gois
 from extractors import map as ex_map
 from extractors import parties as ex_parties
@@ -108,6 +109,7 @@ def run_sync(xlsx_path: Path, out_dir: Path) -> SyncResult:
         ("status", ex_status.extract),
         ("population", ex_population.extract),
         ("pops", ex_pops.extract),
+        ("demographics", ex_demographics.extract),
         ("gois", ex_gois.extract),
         ("parties", ex_parties.extract),
         ("map", ex_map.extract),
