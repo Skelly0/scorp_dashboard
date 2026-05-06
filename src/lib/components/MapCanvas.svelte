@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher, tick } from 'svelte';
+  import { RESOURCE_CODES } from '../map-codes.js';
 
   /** @type {{tiles: any[], width: number, height: number, palettes: any}} */
   export let mapData;
@@ -7,17 +8,6 @@
   export let layer = 'terrain';
   /** active overlay tab name; controls overlay visibility/promotion (today equals `layer`). */
   export let tab = 'terrain';
-
-  const RESOURCE_CODES = {
-    'Helium-3': 'He',
-    'Iron Deposit': 'Fe',
-    'Aluminum Deposit': 'Al',
-    'Phosphorus Deposit': 'P',
-    'Rare Earths': 'RE',
-    'Heavy Metals': 'HM',
-    'Oxygen Bound Soil': 'O₂',
-    'Water Ice': 'W',
-  };
 
   const TILE_SIZE = 16;
   const dispatch = createEventDispatcher();
