@@ -7,7 +7,7 @@
         "unlocked_list": []
       },
       "approach": "Idealist",
-      "approval": 0.4714051582,
+      "approval": 0.2313119257,
       "derived_influence": 0.2182028427,
       "effective_worldview": {
         "authority": 4.5,
@@ -17,24 +17,24 @@
         "materialist": 5.5,
         "technocratic": 4.5
       },
-      "mad_index": -0.065,
+      "mad_index": -0.075,
       "main_class": "Bureaucrats",
       "name": "Administration",
       "sub_factions": [
         {
-          "approval": 0.5320461838,
+          "approval": 0.3496830207,
           "influence": 0.25,
           "minor_goals": [],
           "name": "Constitutional Loyalists"
         },
         {
-          "approval": 0.4010938029,
+          "approval": 0.2208606554,
           "influence": 0.22,
           "minor_goals": [],
           "name": "Reformist Administrators"
         },
         {
-          "approval": 0.4731176124,
+          "approval": 0.07968140184,
           "influence": 0.18,
           "minor_goals": [],
           "name": "Hardliner Administrators"
@@ -48,7 +48,7 @@
         "unlocked_list": []
       },
       "approach": "Marketist",
-      "approval": 0.4234982235,
+      "approval": 0.2029776166,
       "derived_influence": 0.2183473862,
       "effective_worldview": {
         "authority": 3.5,
@@ -58,24 +58,24 @@
         "materialist": 2.5,
         "technocratic": 4.0
       },
-      "mad_index": -0.03,
+      "mad_index": -0.065,
       "main_class": "Capitalists",
       "name": "Corporate",
       "sub_factions": [
         {
-          "approval": 0.4849148902,
+          "approval": 0.2590568659,
           "influence": 0.4,
           "minor_goals": [],
           "name": "Industrialists"
         },
         {
-          "approval": 0.3880101283,
+          "approval": 0.2053159899,
           "influence": 0.35,
           "minor_goals": [],
           "name": "Extraction Cartels"
         },
         {
-          "approval": 0.3749148902,
+          "approval": 0.1099770951,
           "influence": 0.25,
           "minor_goals": [],
           "name": "High Finance"
@@ -91,7 +91,7 @@
         ]
       },
       "approach": "Democratic",
-      "approval": 0.2480046878,
+      "approval": 0.24682201,
       "derived_influence": 0.3752734281,
       "effective_worldview": {
         "authority": 5.5,
@@ -101,24 +101,24 @@
         "materialist": 3.0,
         "technocratic": 5.5
       },
-      "mad_index": -0.025,
+      "mad_index": -0.0375,
       "main_class": "Industrial Workers",
       "name": "Unions",
       "sub_factions": [
         {
-          "approval": 0.2303261164,
+          "approval": 0.2629715401,
           "influence": 0.5,
           "minor_goals": [],
           "name": "Labour Caucus"
         },
         {
-          "approval": 0.2892546878,
+          "approval": 0.2892727767,
           "influence": 0.3,
           "minor_goals": [],
           "name": "Co-op Movement"
         },
         {
-          "approval": 0.2303261164,
+          "approval": 0.1427720345,
           "influence": 0.2,
           "minor_goals": [],
           "name": "Syndicalists"
@@ -132,7 +132,7 @@
         "unlocked_list": []
       },
       "approach": "Secular",
-      "approval": 0.3410726353,
+      "approval": 0.1865929784,
       "derived_influence": 0.188176343,
       "effective_worldview": {
         "authority": 4.0,
@@ -142,19 +142,19 @@
         "materialist": 4.5,
         "technocratic": 2.0
       },
-      "mad_index": -0.035,
+      "mad_index": -0.0875,
       "main_class": "Scientists",
       "name": "Research",
       "sub_factions": [
         {
-          "approval": 0.411786921,
-          "influence": 0.6,
+          "approval": 0.2029821152,
+          "influence": 0.5,
           "minor_goals": [],
           "name": "Frontier Bloc"
         },
         {
-          "approval": 0.2350012067,
-          "influence": 0.4,
+          "approval": 0.1592777504,
+          "influence": 0.3,
           "minor_goals": [],
           "name": "Scientific Vanguard"
         }

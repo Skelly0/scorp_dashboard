@@ -7,7 +7,7 @@
       "share": 0.06287605294825512,
       "tier": "Upper",
       "worldview": {
-        "authority": 6.75,
+        "authority": 4.5,
         "corporate": 4.0,
         "expansion": 3.5,
         "faith": 4.5,
@@ -22,7 +22,7 @@
       "share": 0.014259927797833935,
       "tier": "Upper",
       "worldview": {
-        "authority": 5.25,
+        "authority": 3.5,
         "corporate": 6.5,
         "expansion": 5.5,
         "faith": 3.0,
@@ -37,7 +37,7 @@
       "share": 0.06859205776173286,
       "tier": "Middle",
       "worldview": {
-        "authority": 6.0,
+        "authority": 4.0,
         "corporate": 4.5,
         "expansion": 5.0,
         "faith": 3.0,
@@ -52,7 +52,7 @@
       "share": 0.10288808664259928,
       "tier": "Middle",
       "worldview": {
-        "authority": 6.0,
+        "authority": 4.0,
         "corporate": 4.5,
         "expansion": 5.5,
         "faith": 2.5,
@@ -67,7 +67,7 @@
       "share": 0.057160048134777375,
       "tier": "Middle",
       "worldview": {
-        "authority": 3.0,
+        "authority": 2.0,
         "corporate": 4.0,
         "expansion": 4.5,
         "faith": 4.5,
@@ -82,7 +82,7 @@
       "share": 0.017148014440433214,
       "tier": "Middle",
       "worldview": {
-        "authority": 7.5,
+        "authority": 5.0,
         "corporate": 5.5,
         "expansion": 4.5,
         "faith": 4.0,
@@ -97,7 +97,7 @@
       "share": 0.019975932611311673,
       "tier": "Middle",
       "worldview": {
-        "authority": 6.0,
+        "authority": 4.0,
         "corporate": 6.0,
         "expansion": 5.0,
         "faith": 3.0,
@@ -112,7 +112,7 @@
       "share": 0.03429602888086643,
       "tier": "Middle",
       "worldview": {
-        "authority": 6.75,
+        "authority": 4.5,
         "corporate": 4.0,
         "expansion": 4.0,
         "faith": 3.0,
@@ -127,7 +127,7 @@
       "share": 0.2075812274368231,
       "tier": "Lower",
       "worldview": {
-        "authority": 8.25,
+        "authority": 5.5,
         "corporate": 2.5,
         "expansion": 4.5,
         "faith": 4.5,
@@ -142,7 +142,7 @@
       "share": 0.2226233453670277,
       "tier": "Lower",
       "worldview": {
-        "authority": 8.25,
+        "authority": 5.5,
         "corporate": 2.5,
         "expansion": 5.0,
         "faith": 4.5,
@@ -157,7 +157,7 @@
       "share": 0.19253910950661854,
       "tier": "Lower",
       "worldview": {
-        "authority": 8.25,
+        "authority": 5.5,
         "corporate": 3.5,
         "expansion": 3.5,
         "faith": 4.5,
