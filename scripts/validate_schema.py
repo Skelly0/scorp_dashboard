@@ -60,11 +60,37 @@ BASE_REQUIRED_RANGES: list[str] = [
     "PopCaptureBase",
     # Note: Treasury / Resources / Parties / Coalitions / Terrain palette
     # are read via direct cell references (no named ranges in the live workbook).
+    # v3 — Status colony vitals
+    "EffectiveGovApproval",
+    "TotalDeathsPerTurn",
+    "EffectiveCDR",
+    # v3 — Per-class mortality (consumed by pops.py + demographics.py)
+    "MortalityRates",
+    "DeathsPerTurn",
+    "PopsimUnemployed",
+    # v3 — Housing
+    "HousingCapacity",
+    "HousingRatio",
+    # v3 — Food security
+    "FoodSecurityRatio",
+    "FoodPerCap",
+    "FoodVarietyIndex",
 ]
 
 # Ranges only required when Senate page is enabled.
 # Coalitions data is read via direct ref Coalitions!A4:AA8 (no named range exists).
 SENATE_REQUIRED_RANGES: list[str] = []
+
+# Soft-optional v3 ranges. Validator does NOT require these — extractors
+# read them via _scalar_named (which returns None for missing names) so
+# the dashboard degrades gracefully if the GM removes a tuning knob.
+SOFT_OPTIONAL_V3_RANGES: list[str] = [
+    "Var_BaseGrowthRate",
+    "Var_GrowthSatElasticity",
+    "Var_BaseDeathRate",
+    "HousingGrowthMult",
+    "Var_HousingOvercrowdingExp",
+]
 
 
 def validate(wb, *, senate_enabled: bool) -> None:

@@ -47,3 +47,20 @@ def test_senate_required_lists_coalitions_named_range():
     # Document the contract: coalitions data lives behind a named range
     # (or, if not, a sheet name string starting with "Coalitions").
     assert any("Coalition" in r for r in SENATE_REQUIRED_RANGES)
+
+
+NEW_HARD_REQUIRED = [
+    "EffectiveGovApproval", "TotalDeathsPerTurn", "EffectiveCDR",
+    "MortalityRates", "DeathsPerTurn", "PopsimUnemployed",
+    "HousingCapacity", "HousingRatio",
+    "FoodSecurityRatio", "FoodPerCap", "FoodVarietyIndex",
+]
+
+
+@pytest.mark.parametrize("missing_name", NEW_HARD_REQUIRED)
+def test_validator_rejects_missing_v3_range(wb, missing_name):
+    """Each new hard-required range must be present; removing one fails validation."""
+    del wb.defined_names[missing_name]
+    with pytest.raises(SchemaValidationError) as excinfo:
+        validate(wb, senate_enabled=False)
+    assert missing_name in str(excinfo.value)
