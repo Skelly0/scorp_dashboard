@@ -16,6 +16,7 @@
   import Map from './routes/Map.svelte';
   import Senate from './routes/Senate.svelte';
   import Situations from './routes/Situations.svelte';
+  import Demographics from './routes/Demographics.svelte';
   import EmptyPage from './routes/EmptyPage.svelte';
   import NotFound from './routes/NotFound.svelte';
 
@@ -29,6 +30,7 @@
     '/map': Map,
     '/population': Population,
     '/pops': Pops,
+    '/demographics': Demographics,
     '/gois': GoIs,
     '/parties': Parties,
     '/senate': Senate,

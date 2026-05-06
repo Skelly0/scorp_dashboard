@@ -10,6 +10,7 @@
     { path: '/map', label: 'Map' },
     { path: '/population', label: 'Population' },
     { path: '/pops', label: 'Pops' },
+    { path: '/demographics', label: 'Demographics' },
     { path: '/gois', label: 'GoIs' },
     { path: '/parties', label: 'Parties' },
     { path: '/senate', label: 'Senate', requiresSenate: true },
