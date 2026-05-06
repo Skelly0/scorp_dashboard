@@ -125,6 +125,15 @@ def _active_situations(wb) -> list[dict[str, Any]]:
     return out
 
 
+def _housing_util(pop: float | None, capacity: float | None) -> float | None:
+    """Returns pop/capacity ratio (0..∞). None when capacity is missing or 0."""
+    if capacity in (None, 0):
+        return None
+    if pop is None:
+        return None
+    return pop / capacity
+
+
 def _avg_satisfaction(wb) -> float | None:
     """Population-weighted mean of PopsimSatisfaction.
 

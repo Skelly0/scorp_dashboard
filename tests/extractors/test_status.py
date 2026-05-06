@@ -84,3 +84,17 @@ def test_avg_satisfaction_returns_none_when_total_pop_zero(wb):
     for row in range(5, 20):  # PopsimPop range B5:B19
         pop_sheet.cell(row=row, column=2, value=0)
     assert _avg_satisfaction(wb) is None
+
+
+def test_housing_util_normal_case():
+    """pop / capacity returns ratio in 0..∞ range."""
+    from extractors.status import _housing_util
+    assert _housing_util(15870, 16500) == 15870 / 16500
+
+
+def test_housing_util_returns_none_when_capacity_zero():
+    """Div-by-zero guard."""
+    from extractors.status import _housing_util
+    assert _housing_util(15870, 0) is None
+    assert _housing_util(15870, None) is None
+    assert _housing_util(0, 16500) == 0.0  # zero pop OK; zero capacity not.
