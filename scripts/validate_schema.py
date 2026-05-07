@@ -67,6 +67,7 @@ BASE_REQUIRED_RANGES: list[str] = [
     # v3 — Per-class mortality (consumed by pops.py + demographics.py)
     "MortalityRates",
     "DeathsPerTurn",
+    "ClassBirths",
     "PopsimUnemployed",
     # v3 — Housing
     "HousingCapacity",

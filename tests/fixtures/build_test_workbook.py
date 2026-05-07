@@ -231,10 +231,12 @@ def build(out_path: Path) -> Path:
         rate = 0.010 + (i - 13) * 0.001  # 0.010 .. 0.020
         mort.cell(row=i, column=6, value=rate)         # F mortality rate
         mort.cell(row=i, column=7, value=int(p * rate))  # G deaths/turn
+        mort.cell(row=i, column=8, value=int(p * rate) + 4)  # H births/turn (deaths + 4 for variety)
     mort["A30"], mort["B30"] = "Total deaths/turn", 280  # round figure
     mort["A31"], mort["B31"] = "Effective CDR", 0.0125
     _add_name(wb, "MortalityRates", "Mortality!$F$13:$F$27")
     _add_name(wb, "DeathsPerTurn", "Mortality!$G$13:$G$27")
+    _add_name(wb, "ClassBirths", "Mortality!$H$13:$H$27")
     _add_name(wb, "TotalDeathsPerTurn", "Mortality!$B$30")
     _add_name(wb, "EffectiveCDR", "Mortality!$B$31")
 

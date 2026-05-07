@@ -62,16 +62,18 @@ def test_pops_per_class_mortality_present(wb):
     first = result["classes"][0]
     assert "mortality_rate" in first
     assert "deaths_per_turn" in first
+    assert "births_per_turn" in first
     assert "unemployed_count" in first
 
 
 def test_pops_mortality_values_from_fixture(wb):
     from extractors.pops import extract
     result = extract(wb)
-    # First class: mortality 0.010, pop 970 -> deaths ~ 9 (int)
+    # First class: mortality 0.010, pop 970 -> deaths ~ 9 (int), births = deaths + 4 = 13
     first = result["classes"][0]
     assert first["mortality_rate"] == pytest.approx(0.010)
     assert first["deaths_per_turn"] == 9  # int(970 * 0.010)
+    assert first["births_per_turn"] == 13  # deaths + 4 in fixture
 
 
 def test_pops_mobility_in_out_present(wb):
