@@ -7237,7 +7237,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 77.3269264,
+        "housing": 77.38165822,
         "materials": 0.75,
         "ore": 2.25,
         "water": 0
@@ -7933,7 +7933,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 38.18349709,
+        "housing": 38.51960907,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -7952,11 +7952,11 @@
       "x": 23,
       "y": 11,
       "yields": {
-        "energy": 11.46142749,
-        "food": 11.46142749,
-        "housing": 764.0951661,
-        "materials": 11.71142749,
-        "ore": 11.71142749,
+        "energy": 11.48609731,
+        "food": 11.48609731,
+        "housing": 765.7398203,
+        "materials": 11.73609731,
+        "ore": 11.73609731,
         "water": 0
       }
     },
@@ -8608,7 +8608,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 217.9399577,
+        "housing": 217.9295105,
         "materials": 0.25,
         "ore": 0.5,
         "water": 0
@@ -9954,7 +9954,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 34.85493227,
+        "housing": 34.87648559,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -10640,11 +10640,11 @@
       "x": 19,
       "y": 15,
       "yields": {
-        "energy": 11.46142749,
-        "food": 11.46142749,
-        "housing": 764.0951661,
-        "materials": 11.71142749,
-        "ore": 11.71142749,
+        "energy": 11.48609731,
+        "food": 11.48609731,
+        "housing": 765.7398203,
+        "materials": 11.73609731,
+        "ore": 11.73609731,
         "water": 0
       }
     },
