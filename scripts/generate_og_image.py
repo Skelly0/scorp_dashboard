@@ -18,12 +18,12 @@ from PIL import Image, ImageDraw, ImageFont
 
 SIZE = (1200, 630)
 
-BG = (10, 8, 5)
-GRID = (243, 160, 0, 38)
-FRAME = (243, 160, 0)
-ACCENT = (255, 176, 0)
-DIM = (201, 184, 138)
-MUTED = (138, 111, 63)
+BG = (244, 241, 234)
+GRID = (14, 58, 138, 46)
+FRAME = (14, 58, 138)
+ACCENT = (14, 58, 138)
+DIM = (61, 90, 150)
+MUTED = (118, 145, 186)
 
 CONSOLAS = "C:/Windows/Fonts/consola.ttf"
 CONSOLAS_BOLD = "C:/Windows/Fonts/consolab.ttf"
@@ -74,10 +74,10 @@ def render(out_path: Path) -> None:
     draw_glyph(draw, pad_l, pad_t, glyph_size)
 
     f_meta = font(CONSOLAS_BOLD, 32)
-    draw.text((pad_l + glyph_size + 18, pad_t + 4), "SCORP", font=f_meta, fill=ACCENT)
+    draw.text((pad_l + glyph_size + 18, pad_t + 4), "SCORP 2.5", font=f_meta, fill=ACCENT)
 
     f_meta_dim = font(CONSOLAS, 18)
-    draw.text((pad_l + glyph_size + 18, pad_t + 44), "COLONY 2.5", font=f_meta_dim, fill=MUTED)
+    draw.text((pad_l + glyph_size + 18, pad_t + 44), "COLONY", font=f_meta_dim, fill=MUTED)
 
     title_x = pad_l
     title_y = 200
