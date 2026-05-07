@@ -38,7 +38,7 @@ test.describe('Demographics page — workforce rework', () => {
   test('Class Vitals has Demand and Fill % columns', async ({ page }) => {
     await expect(page.locator('th', { hasText: 'Demand' })).toBeVisible();
     await expect(page.locator('th', { hasText: 'Fill %' })).toBeVisible();
-    // Total expected column count: Class, Pop, Mortality, Growth/turn, Deaths/turn,
+    // Total expected column count: Class, Pop, Mortality, Births/turn, Deaths/turn,
     // Mobility In, Mobility Out, Demand, Fill %, Unemployed, Satisfaction = 11.
     const headers = await page.locator('table.tbl thead th').count();
     expect(headers).toBe(11);

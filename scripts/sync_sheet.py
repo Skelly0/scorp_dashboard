@@ -34,7 +34,7 @@ from validate_schema import SchemaValidationError, validate
 
 logger = logging.getLogger(__name__)
 
-SCHEMA_VERSION = 4
+SCHEMA_VERSION = 5
 EXPORT_URL = "https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=xlsx"
 RETRY_BACKOFFS = [5, 15, 45]  # seconds
 

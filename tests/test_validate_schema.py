@@ -51,7 +51,7 @@ def test_validate_with_senate_enabled_passes_when_base_ranges_present(wb):
 
 NEW_HARD_REQUIRED = [
     "EffectiveGovApproval", "TotalDeathsPerTurn", "EffectiveCDR",
-    "MortalityRates", "DeathsPerTurn", "PopsimUnemployed",
+    "MortalityRates", "DeathsPerTurn", "ClassBirths", "PopsimUnemployed",
     "HousingCapacity", "HousingRatio",
     "FoodSecurityRatio", "FoodPerCap", "FoodVarietyIndex",
 ]
