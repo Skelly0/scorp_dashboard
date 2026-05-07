@@ -8,8 +8,8 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 23.0,
-      "expected_sol": null,
+      "deaths_per_turn": 21.0,
+      "expected_sol": 21.0,
       "income": {
         "disposable_per_cap": 16.0,
         "effective_tax_rate": 0.36,
@@ -21,12 +21,12 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.02168671841,
+      "mortality_rate": 0.02048109481,
       "name": "Bureaucrats",
       "pop": 1045,
-      "satisfaction": null,
+      "satisfaction": 0.6135219604,
       "social_privileges": 8.0,
-      "standard_of_living": 13.53493814,
+      "standard_of_living": 14.27320749,
       "status": {
         "abject_poverty": 0.0,
         "literacy": null,
@@ -41,8 +41,8 @@
         "total": 104500.0
       },
       "workforce": {
-        "demand": 1040.5,
-        "fill_ratio": 0.7035079289,
+        "demand": 900.5,
+        "fill_ratio": 0.8128817324,
         "supply": 732.0,
         "unemployment": 0.0
       }
@@ -56,7 +56,7 @@
         "welfare": 0.0
       },
       "deaths_per_turn": 5.0,
-      "expected_sol": null,
+      "expected_sol": 36.0,
       "income": {
         "disposable_per_cap": 32.0,
         "effective_tax_rate": 0.36,
@@ -68,10 +68,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.02168671841,
+      "mortality_rate": 0.02048109481,
       "name": "Capitalists",
       "pop": 237,
-      "satisfaction": null,
+      "satisfaction": 0.649635509,
       "social_privileges": 13.0,
       "standard_of_living": 27.14343668,
       "status": {
@@ -88,8 +88,8 @@
         "total": 47500.0
       },
       "workforce": {
-        "demand": 275.0,
-        "fill_ratio": 0.6036363636,
+        "demand": 418.5,
+        "fill_ratio": 0.3966547192,
         "supply": 166.0,
         "unemployment": 0.0
       }
@@ -102,8 +102,8 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 25.0,
-      "expected_sol": null,
+      "deaths_per_turn": 23.0,
+      "expected_sol": 16.0,
       "income": {
         "disposable_per_cap": 16.72,
         "effective_tax_rate": 0.24,
@@ -115,10 +115,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.02168671841,
+      "mortality_rate": 0.02048109481,
       "name": "Engineers",
       "pop": 1140,
-      "satisfaction": null,
+      "satisfaction": 0.6325102699,
       "social_privileges": 8.0,
       "standard_of_living": 13.73310089,
       "status": {
@@ -129,16 +129,16 @@
         "vote_share": 0.0,
         "votes_total": null
       },
-      "unemployed_count": 0.0,
+      "unemployed_count": 380.5,
       "wealth": {
         "per_cap": 88.0,
         "total": 100320.0
       },
       "workforce": {
-        "demand": 1215.0,
-        "fill_ratio": 0.6567901235,
+        "demand": 417.5,
+        "fill_ratio": 1.0,
         "supply": 798.0,
-        "unemployment": 0.0
+        "unemployment": 380.5
       }
     },
     {
@@ -149,8 +149,8 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 37.0,
-      "expected_sol": null,
+      "deaths_per_turn": 35.0,
+      "expected_sol": 18.0,
       "income": {
         "disposable_per_cap": 18.24,
         "effective_tax_rate": 0.24,
@@ -162,10 +162,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.02168671841,
+      "mortality_rate": 0.02048109481,
       "name": "Scientists",
       "pop": 1710,
-      "satisfaction": null,
+      "satisfaction": 0.665927515,
       "social_privileges": 9.0,
       "standard_of_living": 15.89203771,
       "status": {
@@ -196,8 +196,8 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 21.0,
-      "expected_sol": null,
+      "deaths_per_turn": 20.0,
+      "expected_sol": 12.0,
       "income": {
         "disposable_per_cap": 13.68,
         "effective_tax_rate": 0.24,
@@ -209,10 +209,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.02233731997,
+      "mortality_rate": 0.02109552765,
       "name": "Security",
       "pop": 950,
-      "satisfaction": null,
+      "satisfaction": 0.646597869,
       "social_privileges": 7.0,
       "standard_of_living": 11.22973828,
       "status": {
@@ -229,8 +229,8 @@
         "total": 68400.0
       },
       "workforce": {
-        "demand": 900.0,
-        "fill_ratio": 0.7388888889,
+        "demand": 950.0,
+        "fill_ratio": 0.7,
         "supply": 665.0,
         "unemployment": 0.0
       }
@@ -244,7 +244,7 @@
         "welfare": 0.0
       },
       "deaths_per_turn": 6.0,
-      "expected_sol": null,
+      "expected_sol": 14.0,
       "income": {
         "disposable_per_cap": 15.2,
         "effective_tax_rate": 0.24,
@@ -256,10 +256,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.02168671841,
+      "mortality_rate": 0.02048109481,
       "name": "Proprietors",
       "pop": 285,
-      "satisfaction": null,
+      "satisfaction": 0.6270787938,
       "social_privileges": 8.0,
       "standard_of_living": 13.30466516,
       "status": {
@@ -276,8 +276,8 @@
         "total": 22800.0
       },
       "workforce": {
-        "demand": 450.0,
-        "fill_ratio": 0.4444444444,
+        "demand": 951.0,
+        "fill_ratio": 0.2103049422,
         "supply": 200.0,
         "unemployment": 0.0
       }
@@ -291,7 +291,7 @@
         "welfare": 0.0
       },
       "deaths_per_turn": 7.0,
-      "expected_sol": null,
+      "expected_sol": 16.0,
       "income": {
         "disposable_per_cap": 21.28,
         "effective_tax_rate": 0.24,
@@ -303,10 +303,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.02168671841,
+      "mortality_rate": 0.02048109481,
       "name": "Managerial",
       "pop": 332,
-      "satisfaction": null,
+      "satisfaction": 0.6299195386,
       "social_privileges": 8.0,
       "standard_of_living": 14.82706705,
       "status": {
@@ -323,8 +323,8 @@
         "total": 37240.0
       },
       "workforce": {
-        "demand": 575.0,
-        "fill_ratio": 0.4052173913,
+        "demand": 950.0,
+        "fill_ratio": 0.2452631579,
         "supply": 233.0,
         "unemployment": 0.0
       }
@@ -338,7 +338,7 @@
         "welfare": 0.0
       },
       "deaths_per_turn": 12.0,
-      "expected_sol": null,
+      "expected_sol": 16.0,
       "income": {
         "disposable_per_cap": 19.0,
         "effective_tax_rate": 0.24,
@@ -350,10 +350,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.02168671841,
+      "mortality_rate": 0.02048109481,
       "name": "Botanists",
       "pop": 570,
-      "satisfaction": null,
+      "satisfaction": 0.6217307768,
       "social_privileges": 8.0,
       "standard_of_living": 14.31132995,
       "status": {
@@ -370,8 +370,8 @@
         "total": 57000.0
       },
       "workforce": {
-        "demand": 1725.0,
-        "fill_ratio": 0.2313043478,
+        "demand": 950.0,
+        "fill_ratio": 0.42,
         "supply": 399.0,
         "unemployment": 0.0
       }
@@ -384,7 +384,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 75.0,
+      "deaths_per_turn": 71.0,
       "expected_sol": 9.0,
       "income": {
         "disposable_per_cap": 10.2,
@@ -397,10 +397,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.02168671841,
+      "mortality_rate": 0.02048109481,
       "name": "Industrial Workers",
       "pop": 3450,
-      "satisfaction": null,
+      "satisfaction": 0.5989353254,
       "social_privileges": 5.0,
       "standard_of_living": 7.213373906,
       "status": {
@@ -411,16 +411,16 @@
         "vote_share": 0.0,
         "votes_total": null
       },
-      "unemployed_count": 0.0,
+      "unemployed_count": 1465.0,
       "wealth": {
         "per_cap": 48.0,
         "total": 165600.0
       },
       "workforce": {
-        "demand": 2620.0,
-        "fill_ratio": 0.9217557252,
+        "demand": 950.0,
+        "fill_ratio": 1.0,
         "supply": 2415.0,
-        "unemployment": 0.0
+        "unemployment": 1465.0
       }
     },
     {
@@ -431,7 +431,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 80.0,
+      "deaths_per_turn": 76.0,
       "expected_sol": 9.0,
       "income": {
         "disposable_per_cap": 11.05,
@@ -444,10 +444,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.02168671841,
+      "mortality_rate": 0.02048109481,
       "name": "Extraction Workers",
       "pop": 3700,
-      "satisfaction": null,
+      "satisfaction": 0.6044388269,
       "social_privileges": 5.0,
       "standard_of_living": 7.431785948,
       "status": {
@@ -458,16 +458,16 @@
         "vote_share": 0.0,
         "votes_total": null
       },
-      "unemployed_count": 0.0,
+      "unemployed_count": 1640.0,
       "wealth": {
         "per_cap": 52.0,
         "total": 192400.0
       },
       "workforce": {
-        "demand": 2700.0,
-        "fill_ratio": 0.9592592593,
+        "demand": 950.0,
+        "fill_ratio": 1.0,
         "supply": 2590.0,
-        "unemployment": 0.0
+        "unemployment": 1640.0
       }
     },
     {
@@ -478,7 +478,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "deaths_per_turn": 69.0,
+      "deaths_per_turn": 66.0,
       "expected_sol": 9.0,
       "income": {
         "disposable_per_cap": 8.5,
@@ -491,10 +491,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.02168671841,
+      "mortality_rate": 0.02048109481,
       "name": "Service Workers",
       "pop": 3200,
-      "satisfaction": null,
+      "satisfaction": 0.6416069061,
       "social_privileges": 5.0,
       "standard_of_living": 6.721849786,
       "status": {
@@ -505,16 +505,16 @@
         "vote_share": 0.0,
         "votes_total": null
       },
-      "unemployed_count": 590.0,
+      "unemployed_count": 0.0,
       "wealth": {
         "per_cap": 40.0,
         "total": 128000.0
       },
       "workforce": {
-        "demand": 1650.0,
-        "fill_ratio": 1.0,
+        "demand": 2250.0,
+        "fill_ratio": 0.9955555556,
         "supply": 2240.0,
-        "unemployment": 590.0
+        "unemployment": 0.0
       }
     }
   ]
