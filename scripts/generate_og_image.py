@@ -334,8 +334,11 @@ def render_animated(out_path: Path, n_frames: int = 30, frame_ms: int = 100) -> 
     master = frames[len(frames) // 2].quantize(colors=32, method=Image.Quantize.MEDIANCUT)
     quantized = [f.quantize(palette=master, dither=Image.Dither.NONE) for f in frames]
     print("encoding GIF...", flush=True)
-    # disposal=1 (overlay) lets the encoder skip pixels unchanged from the
-    # prior frame — most of the card is static so this slims the file a lot.
+    # disposal=2 (restore to BG between frames). disposal=1 (overlay) is
+    # tempting because most pixels don't change, but PIL's optimize+quantize
+    # combo collides palette indices when computing the transparent overlay
+    # mask — static text/grid pixels disappear in non-frame-0 frames. Full
+    # redraw is reliable across all renderers.
     quantized[0].save(
         out_path,
         format="GIF",
@@ -343,8 +346,8 @@ def render_animated(out_path: Path, n_frames: int = 30, frame_ms: int = 100) -> 
         append_images=quantized[1:],
         duration=frame_ms,
         loop=0,
-        optimize=True,
-        disposal=1,
+        optimize=False,
+        disposal=2,
     )
 
 
