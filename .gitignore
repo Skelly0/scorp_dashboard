@@ -18,6 +18,9 @@ playwright-report/
 # Local scratch
 TRASH/
 
+# Claude Code worktrees + local config
+.claude/
+
 # Editor
 .vscode/
 .idea/
