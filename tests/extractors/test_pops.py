@@ -74,6 +74,27 @@ def test_pops_mortality_values_from_fixture(wb):
     assert first["deaths_per_turn"] == 9  # int(970 * 0.010)
 
 
+def test_pops_mobility_in_out_present(wb):
+    result = extract(wb)
+    first = result["classes"][0]
+    # Fixture seeds row 24 → in=2, out=1; row 25 → in=3, out=2; ...
+    assert first["mobility_in"] == 2
+    assert first["mobility_out"] == 1
+    second = result["classes"][1]
+    assert second["mobility_in"] == 3
+    assert second["mobility_out"] == 2
+
+
+def test_pops_mobility_optional_when_range_missing(wb):
+    """Removing the soft-optional mobility ranges should not break extraction."""
+    del wb.defined_names["PopsimMobilityIn"]
+    del wb.defined_names["PopsimMobilityOut"]
+    result = extract(wb)
+    for cls in result["classes"]:
+        assert cls["mobility_in"] is None
+        assert cls["mobility_out"] is None
+
+
 def test_pops_handles_short_mortality_range(wb):
     """If MortalityRates has fewer rows than ClassTable, missing rows surface as None - no IndexError."""
     from openpyxl.workbook.defined_name import DefinedName

@@ -59,6 +59,14 @@
     ? null
     : (predictedGrowth >= 0 ? '+' : '') + predictedGrowth.toLocaleString() + ' / turn';
 
+  // Per-class growth/turn uses the same colony-wide growth × housing-mult as the
+  // Predicted Growth KPI; deaths are per-class, so the row sums match the aggregate.
+  $: effGrowth = (() => {
+    const g = $demographics?.totals?.effective_growth_rate;
+    const mult = $demographics?.housing?.growth_mult ?? 1.0;
+    return g == null ? null : g * mult;
+  })();
+
   // Workforce fill from derived store.
   $: workforceFill = $workforce?.fillRatio;
   $: workforceFillDisplay = workforceFill == null
@@ -116,7 +124,10 @@
             <th>Class</th>
             <th class="num">Pop</th>
             <th class="num">Mortality</th>
+            <th class="num">Growth/turn</th>
             <th class="num">Deaths/turn</th>
+            <th class="num">Mobility In</th>
+            <th class="num">Mobility Out</th>
             <th class="num">Demand</th>
             <th class="num">Fill %</th>
             <th class="num">Unemployed</th>
@@ -127,6 +138,9 @@
           {#each $pops.classes as c}
             {@const fill = c.workforce?.fill_ratio}
             {@const fillDim = fill != null && fill < 0.85}
+            {@const growth = (effGrowth != null && c.pop != null && c.deaths_per_turn != null)
+              ? Math.round(c.pop * effGrowth - c.deaths_per_turn)
+              : null}
             <tr>
               <td>
                 <span class="faction-bar" style="--bar-color: {classColor(c.name)}"></span>
@@ -134,7 +148,10 @@
               </td>
               <td class="num">{c.pop?.toLocaleString() ?? '—'}</td>
               <td class="num">{c.mortality_rate != null ? (c.mortality_rate * 100).toFixed(2) + '%' : '—'}</td>
+              <td class="num" class:text-crit={growth != null && growth < 0}>{growth != null ? (growth >= 0 ? '+' : '') + growth.toLocaleString() : '—'}</td>
               <td class="num">{c.deaths_per_turn != null ? Math.round(c.deaths_per_turn).toLocaleString() : '—'}</td>
+              <td class="num">{c.mobility_in != null ? Math.round(c.mobility_in).toLocaleString() : '—'}</td>
+              <td class="num">{c.mobility_out != null ? Math.round(c.mobility_out).toLocaleString() : '—'}</td>
               <td class="num">{c.workforce?.demand != null ? Math.round(c.workforce.demand).toLocaleString() : '—'}</td>
               <td class="num" class:text-crit={fillDim}>{fill != null ? (fill * 100).toFixed(0) + '%' : '—'}</td>
               <td class="num">{c.unemployed_count != null ? Math.round(c.unemployed_count).toLocaleString() : '—'}</td>

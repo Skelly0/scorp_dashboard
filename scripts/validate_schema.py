@@ -90,6 +90,10 @@ SOFT_OPTIONAL_V3_RANGES: list[str] = [
     "Var_BaseDeathRate",
     "HousingGrowthMult",
     "Var_HousingOvercrowdingExp",
+    # Per-class mobility (Popsim cols F & G in the live workbook). Soft-optional so
+    # the dashboard degrades to "—" cells if the GM hasn't named the ranges yet.
+    "PopsimMobilityIn",
+    "PopsimMobilityOut",
 ]
 
 

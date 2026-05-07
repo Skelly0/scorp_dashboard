@@ -38,9 +38,10 @@ test.describe('Demographics page — workforce rework', () => {
   test('Class Vitals has Demand and Fill % columns', async ({ page }) => {
     await expect(page.locator('th', { hasText: 'Demand' })).toBeVisible();
     await expect(page.locator('th', { hasText: 'Fill %' })).toBeVisible();
-    // Total expected column count: Class, Pop, Mortality, Deaths/turn, Demand, Fill %, Unemployed, Satisfaction = 8.
+    // Total expected column count: Class, Pop, Mortality, Growth/turn, Deaths/turn,
+    // Mobility In, Mobility Out, Demand, Fill %, Unemployed, Satisfaction = 11.
     const headers = await page.locator('table.tbl thead th').count();
-    expect(headers).toBe(8);
+    expect(headers).toBe(11);
   });
 
   test('Workforce band renders between Class Vitals and Housing', async ({ page }) => {

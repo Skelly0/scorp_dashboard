@@ -25,6 +25,8 @@ def extract(wb) -> dict[str, Any]:
     sat = read_named_range(wb, "PopsimSatisfaction")
     mortality_rates = read_named_range(wb, "MortalityRates")
     deaths_per_turn = read_named_range(wb, "DeathsPerTurn")
+    mobility_in = read_named_range(wb, "PopsimMobilityIn")
+    mobility_out = read_named_range(wb, "PopsimMobilityOut")
     unemployed_count = read_named_range(wb, "PopsimUnemployed")
     add_income = _read_additional_income_breakdown(wb)
 
@@ -77,6 +79,8 @@ def extract(wb) -> dict[str, Any]:
             "satisfaction": coerce_number(sat[i][0]) if i < len(sat) else None,
             "mortality_rate": coerce_number(mortality_rates[i][0]) if i < len(mortality_rates) else None,
             "deaths_per_turn": coerce_number(deaths_per_turn[i][0]) if i < len(deaths_per_turn) else None,
+            "mobility_in": coerce_number(mobility_in[i][0]) if i < len(mobility_in) else None,
+            "mobility_out": coerce_number(mobility_out[i][0]) if i < len(mobility_out) else None,
             "unemployed_count": coerce_number(unemployed_count[i][0]) if i < len(unemployed_count) else None,
         })
 

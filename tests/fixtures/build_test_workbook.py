@@ -158,6 +158,14 @@ def build(out_path: Path) -> Path:
     for i, (name, _, p, _w) in enumerate(classes, start=24):
         pop.cell(row=i, column=11, value=int(p * (0.05 + (i - 24) * 0.005)))
     _add_name(wb, "PopsimUnemployed", "Popsim!$K$24:$K$37")
+    # Mobility In/Out — fixture only; live workbook puts these on Popsim cols F/G
+    # (same table as growth/death). Names are soft-optional in validate_schema so a
+    # workbook without them still syncs; the frontend renders "—".
+    for i, (_, _, _, _) in enumerate(classes, start=24):
+        pop.cell(row=i, column=12, value=2 + (i - 24))   # L: mobility in
+        pop.cell(row=i, column=13, value=1 + (i - 24))   # M: mobility out
+    _add_name(wb, "PopsimMobilityIn", "Popsim!$L$24:$L$37")
+    _add_name(wb, "PopsimMobilityOut", "Popsim!$M$24:$M$37")
 
     # Standard of Living: rows 97-111, cols B (SoL), C (Expected SoL).
     for i, _ in enumerate(classes, start=97):
