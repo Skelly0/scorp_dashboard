@@ -19,6 +19,8 @@
         "total_gross": 26125.0,
         "wealth_tax_per_cap": 1.5
       },
+      "mobility_in": null,
+      "mobility_out": null,
       "mortality_rate": 0.01087419059,
       "name": "Bureaucrats",
       "pop": 1045,
@@ -64,6 +66,8 @@
         "total_gross": 11875.0,
         "wealth_tax_per_cap": 3.0
       },
+      "mobility_in": null,
+      "mobility_out": null,
       "mortality_rate": 0.01021514873,
       "name": "Capitalists",
       "pop": 237,
@@ -109,6 +113,8 @@
         "total_gross": 25080.0,
         "wealth_tax_per_cap": 0.44
       },
+      "mobility_in": null,
+      "mobility_out": null,
       "mortality_rate": 0.01054466966,
       "name": "Engineers",
       "pop": 1140,
@@ -154,6 +160,8 @@
         "total_gross": 41040.0,
         "wealth_tax_per_cap": 0.48
       },
+      "mobility_in": null,
+      "mobility_out": null,
       "mortality_rate": 0.01021514873,
       "name": "Scientists",
       "pop": 1710,
@@ -199,6 +207,8 @@
         "total_gross": 17100.0,
         "wealth_tax_per_cap": 0.36
       },
+      "mobility_in": null,
+      "mobility_out": null,
       "mortality_rate": 0.01255804252,
       "name": "Security",
       "pop": 950,
@@ -244,6 +254,8 @@
         "total_gross": 5700.0,
         "wealth_tax_per_cap": 0.4
       },
+      "mobility_in": null,
+      "mobility_out": null,
       "mortality_rate": 0.01153323244,
       "name": "Proprietors",
       "pop": 285,
@@ -289,6 +301,8 @@
         "total_gross": 9310.0,
         "wealth_tax_per_cap": 0.56
       },
+      "mobility_in": null,
+      "mobility_out": null,
       "mortality_rate": 0.01054466966,
       "name": "Managerial",
       "pop": 332,
@@ -334,6 +348,8 @@
         "total_gross": 14250.0,
         "wealth_tax_per_cap": 0.5
       },
+      "mobility_in": null,
+      "mobility_out": null,
       "mortality_rate": 0.01054466966,
       "name": "Botanists",
       "pop": 570,
@@ -379,6 +395,8 @@
         "total_gross": 41400.0,
         "wealth_tax_per_cap": 0.0
       },
+      "mobility_in": null,
+      "mobility_out": null,
       "mortality_rate": 0.01285131615,
       "name": "Industrial Workers",
       "pop": 3450,
@@ -424,6 +442,8 @@
         "total_gross": 48100.0,
         "wealth_tax_per_cap": 0.0
       },
+      "mobility_in": null,
+      "mobility_out": null,
       "mortality_rate": 0.01285131615,
       "name": "Extraction Workers",
       "pop": 3700,
@@ -469,6 +489,8 @@
         "total_gross": 32000.0,
         "wealth_tax_per_cap": 0.0
       },
+      "mobility_in": null,
+      "mobility_out": null,
       "mortality_rate": 0.01318083708,
       "name": "Service Workers",
       "pop": 3200,
