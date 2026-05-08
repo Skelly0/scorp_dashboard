@@ -5,6 +5,24 @@ from typing import Any
 
 from extractors._common import coerce_number, filter_blank_rows, read_named_range
 
+# Column order of PopsimSatisfactionFullTable (no headers in the named range
+# itself — these are the implicit column meanings). Order is contractual: the
+# frontend renders them in this order, and the workbook column layout MUST
+# match. New sources go on the right.
+SATISFACTION_SOURCES = (
+    "food",
+    "housing",
+    "employment",
+    "ownership",
+    "services",
+    "faith",
+    "entertainment",
+    "tax",
+    "wages",
+    "safety",
+    "situations",
+)
+
 
 def extract(wb) -> dict[str, Any]:
     classes = filter_blank_rows(read_named_range(wb, "ClassTable"))
@@ -23,6 +41,7 @@ def extract(wb) -> dict[str, Any]:
     votes_total = read_named_range(wb, "PopsimVotesTotal")
     vote_share = read_named_range(wb, "PopsimVoteShare")
     sat = read_named_range(wb, "PopsimSatisfaction")
+    sat_full = read_named_range(wb, "PopsimSatisfactionFullTable")
     mortality_rates = read_named_range(wb, "MortalityRates")
     deaths_per_turn = read_named_range(wb, "DeathsPerTurn")
     births_per_turn = read_named_range(wb, "ClassBirths")
@@ -78,6 +97,7 @@ def extract(wb) -> dict[str, Any]:
             },
             "workforce": workforce_by_class.get(name, _empty_workforce()),
             "satisfaction": coerce_number(sat[i][0]) if i < len(sat) else None,
+            "satisfaction_breakdown": _satisfaction_breakdown_row(sat_full, i),
             "mortality_rate": coerce_number(mortality_rates[i][0]) if i < len(mortality_rates) else None,
             "deaths_per_turn": coerce_number(deaths_per_turn[i][0]) if i < len(deaths_per_turn) else None,
             "births_per_turn": coerce_number(births_per_turn[i][0]) if i < len(births_per_turn) else None,
@@ -93,6 +113,13 @@ def _at(row, idx):
     if idx >= len(row):
         return None
     return coerce_number(row[idx])
+
+
+def _satisfaction_breakdown_row(table, i):
+    """Return a 1:1 source→value dict for class index `i`. Missing rows or
+    short rows yield None per source — frontend renders `—`."""
+    row = table[i] if i < len(table) else []
+    return {key: _at(row, idx) for idx, key in enumerate(SATISFACTION_SOURCES)}
 
 
 def _empty_workforce():

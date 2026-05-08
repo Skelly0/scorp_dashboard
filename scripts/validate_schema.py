@@ -112,6 +112,10 @@ SOFT_OPTIONAL_V3_RANGES: list[str] = [
     # v6 — Improvement catalog (read by extractors/catalog.py via read_named_range;
     # missing → returns empty improvements list, frontend hides the catalog UI).
     "ImprovementsCatalog",
+    # v8 — Per-class satisfaction-source breakdown (rows: classes; cols: 11
+    # sources in extractors/pops.py:SATISFACTION_SOURCES order). Soft-optional:
+    # missing → frontend renders "—" for every source in the per-class drilldown.
+    "PopsimSatisfactionFullTable",
 ]
 
 
