@@ -24,12 +24,12 @@
         {
           "approval": 0.4002646355,
           "effective_worldview": {
-            "authority": 4.5,
+            "authority": 4.85,
             "corporate": 4.0,
-            "expansion": 3.5,
-            "faith": 4.5,
-            "materialist": 5.5,
-            "technocratic": 4.5
+            "expansion": 3.85,
+            "faith": 4.15,
+            "materialist": 4.45,
+            "technocratic": 4.15
           },
           "goal": "Establish a constitution",
           "influence": 0.25,
@@ -40,12 +40,12 @@
         {
           "approval": 0.2864160925,
           "effective_worldview": {
-            "authority": 4.5,
+            "authority": 5.549999999999999,
             "corporate": 4.0,
-            "expansion": 3.5,
-            "faith": 4.5,
-            "materialist": 5.5,
-            "technocratic": 4.5
+            "expansion": 3.85,
+            "faith": 4.15,
+            "materialist": 4.45,
+            "technocratic": 4.85
           },
           "goal": "Expand civilian oversight",
           "influence": 0.22,
@@ -56,12 +56,12 @@
         {
           "approval": 0.3692087381,
           "effective_worldview": {
-            "authority": 4.5,
+            "authority": 2.75,
             "corporate": 4.0,
-            "expansion": 3.5,
-            "faith": 4.5,
-            "materialist": 5.5,
-            "technocratic": 4.5
+            "expansion": 3.85,
+            "faith": 5.549999999999999,
+            "materialist": 4.45,
+            "technocratic": 3.4499999999999997
           },
           "goal": "Implement martial law",
           "influence": 0.18,
@@ -95,12 +95,12 @@
         {
           "approval": 0.2755956493,
           "effective_worldview": {
-            "authority": 3.5,
-            "corporate": 6.5,
-            "expansion": 5.5,
-            "faith": 3.0,
-            "materialist": 2.5,
-            "technocratic": 4.0
+            "authority": 3.85,
+            "corporate": 6.1499999999999995,
+            "expansion": 5.15,
+            "faith": 3.7,
+            "materialist": 4.25,
+            "technocratic": 3.3
           },
           "goal": "Reject labour regulations",
           "influence": 0.4,
@@ -111,11 +111,11 @@
         {
           "approval": 0.2750056953,
           "effective_worldview": {
-            "authority": 3.5,
-            "corporate": 6.5,
-            "expansion": 5.5,
+            "authority": 3.15,
+            "corporate": 6.1499999999999995,
+            "expansion": 5.85,
             "faith": 3.0,
-            "materialist": 2.5,
+            "materialist": 4.949999999999999,
             "technocratic": 4.0
           },
           "goal": "Open new mining territory",
@@ -127,12 +127,12 @@
         {
           "approval": 0.05609313415,
           "effective_worldview": {
-            "authority": 3.5,
-            "corporate": 6.5,
-            "expansion": 5.5,
-            "faith": 3.0,
-            "materialist": 2.5,
-            "technocratic": 4.0
+            "authority": 5.300000000000001,
+            "corporate": 6.699999999999999,
+            "expansion": 3.4499999999999997,
+            "faith": 3.5999999999999996,
+            "materialist": 5.1,
+            "technocratic": 5.699999999999999
           },
           "goal": "Enshrine private ownership of land",
           "influence": 0.25,
@@ -168,12 +168,12 @@
         {
           "approval": 0.4215801843,
           "effective_worldview": {
-            "authority": 5.5,
-            "corporate": 2.5,
-            "expansion": 4.5,
-            "faith": 4.5,
-            "materialist": 3.0,
-            "technocratic": 5.5
+            "authority": 3.75,
+            "corporate": 2.45,
+            "expansion": 3.85,
+            "faith": 4.15,
+            "materialist": 3.7,
+            "technocratic": 5.15
           },
           "goal": "Enshrine collective bargaining",
           "influence": 0.5,
@@ -184,12 +184,12 @@
         {
           "approval": 0.3769598277,
           "effective_worldview": {
-            "authority": 5.5,
-            "corporate": 2.5,
-            "expansion": 4.5,
-            "faith": 4.5,
+            "authority": 3.0500000000000003,
+            "corporate": 2.15,
+            "expansion": 4.3,
+            "faith": 4.15,
             "materialist": 3.0,
-            "technocratic": 5.5
+            "technocratic": 5.85
           },
           "goal": "Convert improvements to co-ops",
           "influence": 0.3,
@@ -200,12 +200,12 @@
         {
           "approval": 0.4079209079,
           "effective_worldview": {
-            "authority": 5.5,
-            "corporate": 2.5,
-            "expansion": 4.5,
-            "faith": 4.5,
-            "materialist": 3.0,
-            "technocratic": 5.5
+            "authority": 4.45,
+            "corporate": 2.15,
+            "expansion": 3.4499999999999997,
+            "faith": 4.15,
+            "materialist": 3.7,
+            "technocratic": 5.85
           },
           "goal": "Establish labour regulations",
           "influence": 0.2,
@@ -240,11 +240,11 @@
           "approval": 0.2653033382,
           "effective_worldview": {
             "authority": 4.0,
-            "corporate": 4.5,
-            "expansion": 5.5,
-            "faith": 2.5,
-            "materialist": 4.5,
-            "technocratic": 2.0
+            "corporate": 4.85,
+            "expansion": 6.55,
+            "faith": 3.55,
+            "materialist": 4.85,
+            "technocratic": 2.6999999999999997
           },
           "goal": "Found a third outpost",
           "influence": 0.4,
@@ -255,12 +255,12 @@
         {
           "approval": 0.2126561272,
           "effective_worldview": {
-            "authority": 4.0,
-            "corporate": 4.5,
-            "expansion": 5.5,
-            "faith": 2.5,
-            "materialist": 4.5,
-            "technocratic": 2.0
+            "authority": 5.3999999999999995,
+            "corporate": 4.15,
+            "expansion": 5.15,
+            "faith": 2.15,
+            "materialist": 4.85,
+            "technocratic": 1.3
           },
           "goal": "Create a second legislative chamber composed of appointed experts in their fields",
           "influence": 0.3,
@@ -271,12 +271,12 @@
         {
           "approval": 0.2801377598,
           "effective_worldview": {
-            "authority": 4.0,
-            "corporate": 4.5,
-            "expansion": 5.5,
-            "faith": 2.5,
-            "materialist": 4.5,
-            "technocratic": 2.0
+            "authority": 2.6,
+            "corporate": 4.15,
+            "expansion": 5.15,
+            "faith": 2.15,
+            "materialist": 4.15,
+            "technocratic": 2.6999999999999997
           },
           "goal": "Create a public database.",
           "influence": 0.3,
