@@ -7,7 +7,7 @@
         "unlocked_list": []
       },
       "approach": "Idealist",
-      "approval": 0.315011596,
+      "approval": 0.3151326194,
       "derived_influence": 0.2150529465,
       "effective_worldview": {
         "authority": 4.5,
@@ -22,7 +22,7 @@
       "name": "Administration",
       "sub_factions": [
         {
-          "approval": 0.3704745924,
+          "approval": 0.3705956158,
           "effective_worldview": null,
           "goal": "Establish a constitution",
           "influence": 0.4,
@@ -31,7 +31,7 @@
           "national_share": 0.08960344422
         },
         {
-          "approval": 0.2169818433,
+          "approval": 0.2171028667,
           "effective_worldview": {
             "authority": 5.0,
             "corporate": 4.0,
@@ -47,7 +47,7 @@
           "national_share": 0.06720258316
         },
         {
-          "approval": 0.3390906868,
+          "approval": 0.3392117102,
           "effective_worldview": {
             "authority": 3.0,
             "corporate": 3.5,
@@ -71,7 +71,7 @@
         "unlocked_list": []
       },
       "approach": "Marketist",
-      "approval": 0.1772853771,
+      "approval": 0.1774064005,
       "derived_influence": 0.2151954034,
       "effective_worldview": {
         "authority": 3.5,
@@ -86,7 +86,7 @@
       "name": "Corporate",
       "sub_factions": [
         {
-          "approval": 0.2263439468,
+          "approval": 0.2264649702,
           "effective_worldview": null,
           "goal": "Reject labour regulations",
           "influence": 0.4,
@@ -95,7 +95,7 @@
           "national_share": 0.08966279997
         },
         {
-          "approval": 0.2070119446,
+          "approval": 0.2071329681,
           "effective_worldview": null,
           "goal": "Open new mining territory",
           "influence": 0.35,
@@ -104,7 +104,7 @@
           "national_share": 0.07845494997
         },
         {
-          "approval": 0.05717447096,
+          "approval": 0.05729549439,
           "effective_worldview": {
             "authority": 3.5,
             "corporate": 6.5,
@@ -130,7 +130,7 @@
         ]
       },
       "approach": "Democratic",
-      "approval": 0.3461384878,
+      "approval": 0.3462595112,
       "derived_influence": 0.3698561185,
       "effective_worldview": {
         "authority": 5.5,
@@ -145,7 +145,7 @@
       "name": "Unions",
       "sub_factions": [
         {
-          "approval": 0.3532128188,
+          "approval": 0.3533338422,
           "effective_worldview": {
             "authority": 5.0,
             "corporate": 2.5,
@@ -161,7 +161,7 @@
           "national_share": 0.1926292026
         },
         {
-          "approval": 0.3221337183,
+          "approval": 0.3222547418,
           "effective_worldview": {
             "authority": 5.5,
             "corporate": 1.5,
@@ -177,7 +177,7 @@
           "national_share": 0.1155775216
         },
         {
-          "approval": 0.3644598144,
+          "approval": 0.3645808378,
           "effective_worldview": null,
           "goal": "Establish labour regulations",
           "influence": 0.2,
@@ -194,7 +194,7 @@
         "unlocked_list": []
       },
       "approach": "Secular",
-      "approval": 0.09471641301,
+      "approval": 0.09480775145,
       "derived_influence": 0.1998955316,
       "effective_worldview": {
         "authority": 4.0,
@@ -209,7 +209,7 @@
       "name": "Research",
       "sub_factions": [
         {
-          "approval": 0.18544203,
+          "approval": 0.1855562031,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 4.5,
@@ -225,7 +225,7 @@
           "national_share": 0.1041099902
         },
         {
-          "approval": 0.006651326666,
+          "approval": 0.006765499715,
           "effective_worldview": {
             "authority": 4.5,
             "corporate": 4.5,

@@ -7237,7 +7237,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 70.73231017,
+        "housing": 66.87593134,
         "materials": 0.75,
         "ore": 2.25,
         "water": 0
@@ -7911,8 +7911,8 @@
       "y": 11,
       "yields": {
         "energy": 0,
-        "food": 9.592592593,
-        "housing": 9592.592593,
+        "food": 8.111111111,
+        "housing": 8111.111111,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -7933,7 +7933,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 37.13548327,
+        "housing": 36.85553016,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -7952,11 +7952,11 @@
       "x": 23,
       "y": 11,
       "yields": {
-        "energy": 10.09532571,
-        "food": 10.09532571,
-        "housing": 673.0217137,
-        "materials": 10.34532571,
-        "ore": 10.34532571,
+        "energy": 10.04538802,
+        "food": 10.04538802,
+        "housing": 669.6925346,
+        "materials": 10.29538802,
+        "ore": 10.29538802,
         "water": 0
       }
     },
@@ -7975,7 +7975,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 4977.777778,
+        "housing": 4148.148148,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -7983,16 +7983,20 @@
     },
     {
       "feature": null,
-      "improvement": null,
+      "improvement": {
+        "name": "Recreational Facility",
+        "owner": null,
+        "ownership_type": null
+      },
       "resource": "Heavy Metals",
-      "slots": 3,
+      "slots": 2,
       "terrain": "Mare Plain",
       "x": 25,
       "y": 11,
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 0,
+        "housing": 33.5741653,
         "materials": 0.5,
         "ore": 1.25,
         "water": 0
@@ -8608,7 +8612,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 224.6112801,
+        "housing": 224.5122198,
         "materials": 0.25,
         "ore": 0.5,
         "water": 0
@@ -9954,7 +9958,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 35.23434066,
+        "housing": 29.60539524,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -10621,7 +10625,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 1991.111111,
+        "housing": 1659.259259,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -10640,11 +10644,11 @@
       "x": 19,
       "y": 15,
       "yields": {
-        "energy": 10.09532571,
-        "food": 10.09532571,
-        "housing": 673.0217137,
-        "materials": 10.34532571,
-        "ore": 10.34532571,
+        "energy": 10.04538802,
+        "food": 10.04538802,
+        "housing": 669.6925346,
+        "materials": 10.29538802,
+        "ore": 10.29538802,
         "water": 0
       }
     },
