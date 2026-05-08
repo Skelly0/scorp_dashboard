@@ -7,6 +7,15 @@
   import { categorySlugFor, CATEGORIES } from '../lib/improvement-categories.js';
   import { RESOURCE_CODES, FEATURE_CODES } from '../lib/map-codes.js';
   import { CLASS_COLORS, classColor } from '../lib/faction-colors.js';
+  import {
+    ZOOM_MIN,
+    ZOOM_MAX,
+    ZOOM_DEFAULT,
+    stepZoom,
+    resetZoom,
+    readZoom,
+    writeZoom,
+  } from '../lib/map-zoom.js';
   import Band from '../lib/components/Band.svelte';
   import MapCanvas from '../lib/components/MapCanvas.svelte';
   import RosterPanel from '../lib/components/RosterPanel.svelte';
@@ -14,6 +23,8 @@
 
   let layer = 'terrain';
   let lastSubByCategory = { yield: 'food', upkeep: 'food', workforce: 'Engineers' };
+  let zoom = ZOOM_DEFAULT;   // overwritten in onMount once localStorage is available
+  let zoomReady = false;     // gates the persistence reactive so we don't overwrite stored value with the default on first tick
   let hoverTile = null;
   let pinnedTile = null;
   let filters = { resource: null, feature: null, improvement: null };
@@ -76,7 +87,11 @@
   onMount(() => {
     pageTitle.set('Map');
     if ($meta?.synced_at) loadMap($meta.synced_at);
+    zoom = readZoom();
+    zoomReady = true;
   });
+
+  $: if (zoomReady) writeZoom(zoom);
 
   function handlePageKey(e) {
     if (e.key !== 'Escape') return;
@@ -149,6 +164,27 @@
       <button aria-pressed={layer === 'resources'} on:click={() => selectLayer('resources')}>Resources</button>
       <button aria-pressed={layer === 'features'} on:click={() => selectLayer('features')}>Features</button>
       <button aria-pressed={layer === 'improvements'} on:click={() => selectLayer('improvements')}>Improvements</button>
+
+      <div class="s-zoom" role="group" aria-label="Map zoom">
+        <button
+          type="button"
+          aria-label="Zoom out"
+          disabled={zoom <= ZOOM_MIN}
+          on:click={() => { zoom = stepZoom(zoom, -1); }}
+        >−</button>
+        <button
+          type="button"
+          aria-label="Reset zoom to {Math.round(ZOOM_DEFAULT * 100)} percent"
+          aria-pressed={zoom === ZOOM_DEFAULT}
+          on:click={() => { zoom = resetZoom(); }}
+        >{Math.round(zoom * 100)}%</button>
+        <button
+          type="button"
+          aria-label="Zoom in"
+          disabled={zoom >= ZOOM_MAX}
+          on:click={() => { zoom = stepZoom(zoom, +1); }}
+        >+</button>
+      </div>
     </div>
 
     {#if activeFilterCount > 0}
@@ -185,9 +221,14 @@
         {layer}
         tab={parsedLayer.category}
         {filters}
+        {zoom}
         redrawKey={$theme}
         on:hover={(e) => (hoverTile = e.detail)}
         on:pin={(e) => (pinnedTile = e.detail)}
+        on:zoomstep={(e) => {
+          if (e.detail.reset) zoom = resetZoom();
+          else zoom = stepZoom(zoom, e.detail.delta);
+        }}
       />
 
       <aside class="flex flex-col gap-3">
