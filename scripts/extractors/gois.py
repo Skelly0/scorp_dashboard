@@ -115,8 +115,8 @@ def _parse_active_benefits(text, goi_name, benefits_table):
     return {"unlocked": unlocked, "total": total, "unlocked_list": unlocked_list}
 
 
-def _subfaction_worldviews_by_pair(wb):
-    """Read SubFactionDetail and return {(goi, sf_name): {axis: value}} map.
+def _subfaction_worldviews_by_row(wb):
+    """Read SubFactionDetail and return a list of worldview dicts in row order.
 
     SubFactionDetail layout (16 cols on the Sub-Faction Detail sheet):
       0: GoI, 1: Sub-faction, 2: Influence, 3: Goal Axis, 4: Goal Δ,
@@ -126,34 +126,31 @@ def _subfaction_worldviews_by_pair(wb):
       12-14: Minor Goals (mirror — ignored),
       15: National Share (mirror — ignored).
 
-    Defensive zip: keyed by (GoI, sub-faction) name pair, NOT row index.
-    Backend invariant promises row alignment with SubFactionGoals, but a single
-    inserted row would silently corrupt every downstream worldview, so we never
-    rely on positional correspondence across two separate sheets.
+    Row-index zip: the live workbook's Sub-Faction Detail is a derived
+    INDEX-formula mirror of Sub-Factions, so row N of Detail corresponds to
+    row N of SubFactionGoals (per backend convention). Names in the Detail
+    sheet may diverge if the GM hand-edits them, but the worldview values
+    (cols F-K) are still positionally aligned. Caller is responsible for
+    asserting row-count parity (see _sub_factions_by_goi).
     """
     rows = read_named_range(wb, "SubFactionDetail")
     if not rows:
-        return {}
-    out: dict[tuple[str, str], dict[str, float | None]] = {}
+        return []
+    out: list[dict[str, float | None]] = []
     for r in rows:
         if not r or len(r) < 11:
             continue
-        goi_name, sf_name = r[0], r[1]
-        if not goi_name or not sf_name:
-            continue
-        # Skip header row if the named range is configured to include it.
-        # Real GoI names won't be the literal "GoI" header label.
+        goi_name = r[0]
+        # Skip header row if the named range includes it. Real GoI names
+        # won't be the literal "GoI" header label.
         if isinstance(goi_name, str) and goi_name.strip().lower() == "goi":
             continue
-        out[(goi_name, sf_name)] = {
+        if not goi_name:
+            continue
+        out.append({
             axis: coerce_number(r[5 + i])
             for i, axis in enumerate(WORLDVIEW_AXES)
-        }
-    if out:
-        _log.info(
-            "SubFactionDetail name pairs detected: %s",
-            sorted(out.keys()),
-        )
+        })
     return out
 
 
@@ -164,8 +161,11 @@ def _sub_factions_by_goi(wb):
       A: GoI, B: SF name, C: Goal Axis, D: Goal Δ, E: Goal text,
       F: Influence, G-I: Minor Goals, J: Approval, L: National Share.
 
-    SubFactionDetail (separate sheet) is keyed by (GoI, SF name) pair so silent
-    row drift between the two sheets cannot misalign worldviews.
+    Names come exclusively from SubFactionGoals (the GM-input sheet); the
+    Sub-Faction Detail sheet is treated as a positional mirror, supplying
+    only the per-axis effective worldview by row index. Both sheets are
+    expected to have the same number of populated sub-faction rows; we warn
+    if they diverge.
     """
     goals = read_named_range(wb, "SubFactionGoals")
     influences = read_named_range(wb, "SubFactionInfluences")
@@ -173,9 +173,10 @@ def _sub_factions_by_goi(wb):
     approvals = read_named_range(wb, "SubFactionApprovals")
     goals_text = read_named_range(wb, "SubFactionGoal")
     national_shares = read_named_range(wb, "SubFactionNationalShare")
-    detail_map = _subfaction_worldviews_by_pair(wb)
+    worldviews = _subfaction_worldviews_by_row(wb)
 
     by_goi: dict[str, list[dict[str, Any]]] = {}
+    sf_idx = 0  # index into `worldviews` (counts populated sub-factions in order)
     for i, gr in enumerate(goals):
         if not gr or not gr[0]:
             continue
@@ -206,14 +207,8 @@ def _sub_factions_by_goi(wb):
             if i < len(national_shares) and national_shares[i]
             else None
         )
-        worldview = detail_map.get((goi_name, sf_name))
-        if worldview is None and detail_map:
-            # The Detail sheet has data, but no row matches this (goi, sf) pair.
-            _log.warning(
-                "SubFactionDetail has no matching row for (%s, %s); "
-                "effective_worldview will be null for this sub-faction",
-                goi_name, sf_name,
-            )
+        worldview = worldviews[sf_idx] if sf_idx < len(worldviews) else None
+        sf_idx += 1
 
         by_goi.setdefault(goi_name, []).append({
             "name": sf_name,
@@ -224,6 +219,17 @@ def _sub_factions_by_goi(wb):
             "national_share": nat_share,
             "effective_worldview": worldview,
         })
+
+    # Warn (don't fail) if row counts diverge — that indicates a structural
+    # break the GM should be aware of, not a per-sync transient.
+    if worldviews and sf_idx != len(worldviews):
+        _log.warning(
+            "SubFactionDetail has %d populated rows but SubFactionGoals has "
+            "%d; worldviews after the shorter list will be misaligned or "
+            "missing — check that both sheets cover the same sub-factions",
+            len(worldviews), sf_idx,
+        )
+
     return by_goi
 
 
