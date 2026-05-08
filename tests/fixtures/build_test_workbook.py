@@ -234,11 +234,13 @@ def build(out_path: Path) -> Path:
         mort.cell(row=i, column=8, value=int(p * rate) + 4)  # H births/turn (deaths + 4 for variety)
     mort["A30"], mort["B30"] = "Total deaths/turn", 280  # round figure
     mort["A31"], mort["B31"] = "Effective CDR", 0.0125
+    mort["A32"], mort["B32"] = "Total births/turn", 320  # round figure: net = +40
     _add_name(wb, "MortalityRates", "Mortality!$F$13:$F$27")
     _add_name(wb, "DeathsPerTurn", "Mortality!$G$13:$G$27")
     _add_name(wb, "ClassBirths", "Mortality!$H$13:$H$27")
     _add_name(wb, "TotalDeathsPerTurn", "Mortality!$B$30")
     _add_name(wb, "EffectiveCDR", "Mortality!$B$31")
+    _add_name(wb, "TotalBirths", "Mortality!$B$32")
 
     # ---- Housing sheet (v3, just for HousingGrowthMult) ----
     hou = wb.create_sheet("Housing")

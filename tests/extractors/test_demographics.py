@@ -15,7 +15,7 @@ def test_totals_block_shape(wb):
     result = extract(wb)
     totals = result["totals"]
     assert set(totals.keys()) == {
-        "pop", "effective_cdr", "total_deaths",
+        "pop", "effective_cdr", "total_births", "total_deaths",
         "effective_growth_rate", "net_delta_pct", "avg_satisfaction",
     }
 
@@ -25,9 +25,19 @@ def test_totals_values(wb):
     totals = result["totals"]
     assert totals["pop"] == 15870  # sum of fixture's class populations
     assert totals["effective_cdr"] == 0.0125
+    assert totals["total_births"] == 320
     assert totals["total_deaths"] == 280
     assert totals["effective_growth_rate"] == pytest.approx(0.020 * 0.95)
     assert totals["avg_satisfaction"] == 0.40
+
+
+def test_total_births_soft_optional_when_missing(wb):
+    """Removing TotalBirths should make it None, not crash — Predicted Growth
+    tile then renders '—' on the frontend."""
+    del wb.defined_names["TotalBirths"]
+    result = extract(wb)
+    assert result["totals"]["total_births"] is None
+    assert result["totals"]["total_deaths"] == 280  # other fields unaffected
 
 
 def test_housing_block_shape(wb):

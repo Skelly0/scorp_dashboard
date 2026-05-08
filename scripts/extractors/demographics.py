@@ -26,6 +26,7 @@ def extract(wb) -> dict[str, Any]:
         "totals": {
             "pop": pop_total,
             "effective_cdr": cdr,
+            "total_births": scalar_named(wb, "TotalBirths"),
             "total_deaths": scalar_named(wb, "TotalDeathsPerTurn"),
             "effective_growth_rate": effective_growth,
             "net_delta_pct": net_delta_pct(effective_growth, cdr),
