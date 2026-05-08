@@ -24,7 +24,7 @@
       "worldview": {
         "authority": 3.5,
         "corporate": 6.5,
-        "expansion": 5.5,
+        "expansion": 6.0,
         "faith": 3.0,
         "materialist": 2.5,
         "technocratic": 4.0
@@ -67,7 +67,7 @@
       "share": 0.057160048134777375,
       "tier": "Middle",
       "worldview": {
-        "authority": 2.0,
+        "authority": 5.0,
         "corporate": 4.0,
         "expansion": 4.5,
         "faith": 4.5,
@@ -157,7 +157,7 @@
       "share": 0.19253910950661854,
       "tier": "Lower",
       "worldview": {
-        "authority": 5.5,
+        "authority": 5.0,
         "corporate": 3.5,
         "expansion": 3.5,
         "faith": 4.5,

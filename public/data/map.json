@@ -9435,9 +9435,9 @@
         "ownership_type": null
       },
       "resource": null,
-      "slots": 2,
+      "slots": 3,
       "staffing": 0.8296296296,
-      "terrain": "Mare Plain",
+      "terrain": "Lava Tube",
       "upkeep": null,
       "workforce": null,
       "x": 24,
@@ -9445,9 +9445,9 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 4148.148148,
+        "housing": 4348.148148,
         "materials": 0.25,
-        "ore": 0.25,
+        "ore": 0.5,
         "water": 0
       }
     },
