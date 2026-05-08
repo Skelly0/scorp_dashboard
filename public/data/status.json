@@ -6,19 +6,19 @@
       "name": "The Fall"
     }
   ],
-  "crisis_factor": 0.2547344049,
+  "crisis_factor": 0.2501080118,
   "demographics": {
-    "avg_satisfaction": 0.6697671377814681,
-    "base_growth_rate": 0.04,
-    "effective_cdr": 0.01089049338,
-    "effective_growth_rate": 0.012,
-    "housing_capacity": 17807.0,
-    "housing_util": 0.9333408210254395,
-    "net_delta_pct": 0.11095066200000006,
-    "sat_elasticity": 0.3,
-    "total_deaths": 181.0
+    "avg_satisfaction": 0.6846503509559266,
+    "base_growth_rate": 0.05,
+    "effective_cdr": 0.00980746089,
+    "effective_growth_rate": 0.016,
+    "housing_capacity": 17765.0,
+    "housing_util": 0.9355474247115114,
+    "net_delta_pct": 0.619253911,
+    "sat_elasticity": 0.32,
+    "total_deaths": 163.0
   },
-  "gov_approval": 0.3235332888,
+  "gov_approval": 0.3241676999,
   "overton": {
     "authority": 4.5,
     "corporate": 3.5,
@@ -31,32 +31,32 @@
   "resources": [
     {
       "current": 0.0,
-      "delta": 70.52686081,
+      "delta": 67.53766868,
       "name": "Food"
     },
     {
       "current": 3000.0,
-      "delta": -30.689316559999995,
+      "delta": -36.25730263,
       "name": "Materials"
     },
     {
       "current": 1500.0,
-      "delta": 143.9222858,
+      "delta": 137.7733015,
       "name": "Ore"
     },
     {
       "current": 750.0,
-      "delta": -208.67634729999997,
+      "delta": -248.88634449999995,
       "name": "Energy"
     },
     {
       "current": 0.0,
-      "delta": 17807.0,
+      "delta": 17765.0,
       "name": "Housing"
     },
     {
       "current": 7500.0,
-      "delta": 46449.5193,
+      "delta": 45423.867889999994,
       "name": "Money"
     },
     {
@@ -66,13 +66,13 @@
     },
     {
       "current": 900.0,
-      "delta": -48.67901235,
+      "delta": -50.7881137,
       "name": "Water"
     }
   ],
-  "stability": 0.1038341917,
+  "stability": 0.1041675342,
   "treasury": {
-    "delta": 46449.5193,
+    "delta": 45423.867889999994,
     "money": 13650.0
   },
   "year": 2075
