@@ -321,30 +321,20 @@
              so icons stay legible against any terrain colour or theme. -->
         {#each mapData.tiles as t}
           {#if t.improvement}
-            {#if tab === 'improvements'}
-              {@const cat = categoryFor(t.improvement, $catalog)}
-              {@const fill = ownerColor(t.improvement.owner) ?? improvementCatPal[cat.slug] ?? '#ffffff'}
-              <text
-                x={t.x * BASE_TILE + BASE_TILE / 2}
-                y={t.y * BASE_TILE + BASE_TILE / 2}
-                font-size={BASE_TILE * 0.85}
-                font-weight="900"
-                text-anchor="middle"
-                dominant-baseline="central"
-                class="map-glyph map-glyph--improvement"
-                fill={fill}
-              >{cat.icon}</text>
-            {:else}
-              <text
-                x={t.x * BASE_TILE + BASE_TILE / 2}
-                y={t.y * BASE_TILE + BASE_TILE / 2}
-                font-size={BASE_TILE * 0.85}
-                font-weight="900"
-                text-anchor="middle"
-                dominant-baseline="central"
-                class="map-glyph map-glyph--improvement"
-              >▣</text>
-            {/if}
+            {@const cat = categoryFor(t.improvement, $catalog)}
+            {@const fill = tab === 'improvements'
+              ? (ownerColor(t.improvement.owner) ?? improvementCatPal[cat.slug] ?? '#ffffff')
+              : null}
+            <text
+              x={t.x * BASE_TILE + BASE_TILE / 2}
+              y={t.y * BASE_TILE + BASE_TILE / 2}
+              font-size={BASE_TILE * 0.85}
+              font-weight="900"
+              text-anchor="middle"
+              dominant-baseline="central"
+              class="map-glyph map-glyph--improvement"
+              fill={fill}
+            >{cat.icon}</text>
           {/if}
         {/each}
         <!-- Resource overlay (top-right). Chip-style on Resources tab; dot-style elsewhere. -->

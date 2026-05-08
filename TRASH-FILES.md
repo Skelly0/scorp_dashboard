@@ -6,3 +6,5 @@
 - `verify_growth_col.mjs` — moved to TRASH/ — one-off Node Playwright script that confirmed the new Growth/turn column rendered correctly between Mortality and Deaths/turn. Safe to delete.
 - `verify_mobility.mjs` — moved to TRASH/ — one-off Node Playwright script that confirmed the new Mobility In / Mobility Out columns render between Deaths/turn and Demand with values populated. Safe to delete.
 - `mobility-cols.png` — moved to TRASH/ — screenshot from `verify_mobility.mjs` showing the populated Mobility columns. Safe to delete.
+- `test-map-icons.mjs` — moved to TRASH/ — one-off Node Playwright script that confirmed improvement icons render in every map mode (terrain, yields, resources, features, improvements) after the all-modes change. Safe to delete.
+- `test-map-icons.py` — moved to TRASH/ — abandoned Python variant of the same check; Python Playwright wasn't installed. Safe to delete.
