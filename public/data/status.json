@@ -6,9 +6,9 @@
       "name": "The Fall"
     }
   ],
-  "crisis_factor": 0.2474908814,
+  "crisis_factor": 0.2474433953,
   "demographics": {
-    "avg_satisfaction": 0.698762354946059,
+    "avg_satisfaction": 0.6989121229012184,
     "base_growth_rate": 0.04,
     "effective_cdr": 0.008303249097,
     "effective_growth_rate": 0.012,
@@ -18,7 +18,7 @@
     "sat_elasticity": 0.3,
     "total_deaths": 138.0
   },
-  "gov_approval": 0.252965085,
+  "gov_approval": 0.2477446108,
   "overton": {
     "authority": 4.5,
     "corporate": 3.5,
@@ -70,7 +70,7 @@
       "name": "Water"
     }
   ],
-  "stability": 0.06670078533,
+  "stability": 0.06442945594,
   "treasury": {
     "delta": 46449.5193,
     "money": 13650.0
