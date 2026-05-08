@@ -7,7 +7,7 @@
         "unlocked_list": []
       },
       "approach": "Idealist",
-      "approval": 0.3535797274,
+      "approval": 0.3534786127,
       "derived_influence": 0.2182028427,
       "effective_worldview": {
         "authority": 4.5,
@@ -22,7 +22,7 @@
       "name": "Administration",
       "sub_factions": [
         {
-          "approval": 0.4007201232,
+          "approval": 0.4006190086,
           "effective_worldview": {
             "authority": 4.85,
             "corporate": 4.0,
@@ -38,7 +38,7 @@
           "national_share": 0.06290615082
         },
         {
-          "approval": 0.2868645235,
+          "approval": 0.2867634089,
           "effective_worldview": {
             "authority": 5.549999999999999,
             "corporate": 4.0,
@@ -54,7 +54,7 @@
           "national_share": 0.05535741272
         },
         {
-          "approval": 0.3696477601,
+          "approval": 0.3695466455,
           "effective_worldview": {
             "authority": 2.75,
             "corporate": 4.0,
@@ -78,7 +78,7 @@
         "unlocked_list": []
       },
       "approach": "Marketist",
-      "approval": 0.2239426997,
+      "approval": 0.2246722291,
       "derived_influence": 0.2183473862,
       "effective_worldview": {
         "authority": 3.5,
@@ -93,7 +93,7 @@
       "name": "Corporate",
       "sub_factions": [
         {
-          "approval": 0.2723864657,
+          "approval": 0.2731159951,
           "effective_worldview": {
             "authority": 5.25,
             "corporate": 6.1499999999999995,
@@ -109,7 +109,7 @@
           "national_share": 0.1007165145
         },
         {
-          "approval": 0.2878758992,
+          "approval": 0.2886054286,
           "effective_worldview": {
             "authority": 4.550000000000001,
             "corporate": 6.1499999999999995,
@@ -125,7 +125,7 @@
           "national_share": 0.08812695019
         },
         {
-          "approval": 0.05692619479,
+          "approval": 0.05765572413,
           "effective_worldview": {
             "authority": 3.9,
             "corporate": 6.699999999999999,
@@ -151,7 +151,7 @@
         ]
       },
       "approach": "Democratic",
-      "approval": 0.4044656585,
+      "approval": 0.4040550553,
       "derived_influence": 0.3752734281,
       "effective_worldview": {
         "authority": 5.5,
@@ -166,7 +166,7 @@
       "name": "Unions",
       "sub_factions": [
         {
-          "approval": 0.4181729825,
+          "approval": 0.4177623793,
           "effective_worldview": {
             "authority": 3.5999999999999996,
             "corporate": 2.45,
@@ -182,7 +182,7 @@
           "national_share": 0.2163767124
         },
         {
-          "approval": 0.3783900842,
+          "approval": 0.377979481,
           "effective_worldview": {
             "authority": 3.0500000000000003,
             "corporate": 2.15,
@@ -198,7 +198,7 @@
           "national_share": 0.1298260274
         },
         {
-          "approval": 0.4093107098,
+          "approval": 0.4089001066,
           "effective_worldview": {
             "authority": 4.45,
             "corporate": 2.15,
@@ -222,7 +222,7 @@
         "unlocked_list": []
       },
       "approach": "Secular",
-      "approval": 0.2527886102,
+      "approval": 0.252689263,
       "derived_influence": 0.188176343,
       "effective_worldview": {
         "authority": 4.0,
@@ -237,7 +237,7 @@
       "name": "Research",
       "sub_factions": [
         {
-          "approval": 0.2640644911,
+          "approval": 0.2639651438,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 4.85,
@@ -253,7 +253,7 @@
           "national_share": 0.08679959818
         },
         {
-          "approval": 0.21153054,
+          "approval": 0.2114311927,
           "effective_worldview": {
             "authority": 5.3999999999999995,
             "corporate": 4.15,
@@ -269,7 +269,7 @@
           "national_share": 0.06509969864
         },
         {
-          "approval": 0.2790121726,
+          "approval": 0.2789128253,
           "effective_worldview": {
             "authority": 2.6,
             "corporate": 4.15,
