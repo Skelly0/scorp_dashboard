@@ -3,6 +3,9 @@
 
   /** @type {{label: string, value: number | null}[]} */
   export let axes = [];
+  /** Optional ghost overlay polygon (e.g. parent worldview behind sub-faction). */
+  /** @type {{label: string, value: number | null}[] | null} */
+  export let overlay = null;
   export let size = 160;
   export let scaleMin = 1;
   export let scaleMax = 7;
@@ -15,6 +18,30 @@
   $: pathD = dataPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ') + ' Z';
   $: gridLevels = [0.25, 0.5, 0.75, 1].map((f) => polarPoints(axes.map(() => scaleMin + (scaleMax - scaleMin) * f), { cx, cy, radius, scaleMin, scaleMax }));
   $: spokes = polarPoints(axes.map(() => scaleMax), { cx, cy, radius, scaleMin, scaleMax });
+
+  $: overlayValid = (() => {
+    if (!overlay) return false;
+    if (overlay.length !== axes.length) {
+      console.warn('[RadarChart] overlay/axes length mismatch — overlay ignored');
+      return false;
+    }
+    for (let i = 0; i < axes.length; i++) {
+      if (overlay[i].label !== axes[i].label) {
+        console.warn(
+          `[RadarChart] overlay/axes label mismatch at index ${i} ` +
+          `(axes='${axes[i].label}', overlay='${overlay[i].label}') — overlay ignored`,
+        );
+        return false;
+      }
+    }
+    return true;
+  })();
+  $: overlayPoints = overlayValid
+    ? polarPoints(overlay.map((a) => a.value), { cx, cy, radius, scaleMin, scaleMax })
+    : null;
+  $: overlayPathD = overlayPoints
+    ? overlayPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ') + ' Z'
+    : null;
 </script>
 
 <svg width={size} height={size} viewBox="0 0 {size} {size}" class="font-mono">
@@ -32,6 +59,17 @@
   {#each spokes as p}
     <line x1={cx} y1={cy} x2={p.x} y2={p.y} stroke="var(--border)" stroke-opacity="0.25" stroke-width="1" />
   {/each}
+  <!-- overlay (ghost) shape — drawn first so primary renders on top -->
+  {#if overlayPathD}
+    <path
+      d={overlayPathD}
+      fill="none"
+      stroke="var(--radar-overlay)"
+      stroke-width="1.5"
+      stroke-dasharray="3 2"
+      stroke-opacity="0.85"
+    />
+  {/if}
   <!-- data shape -->
   <path d={pathD} fill="var(--accent)" fill-opacity="0.25" stroke="var(--accent)" stroke-width="2" />
   <!-- axis labels -->

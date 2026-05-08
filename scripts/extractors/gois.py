@@ -7,12 +7,15 @@ the 4 separate `SubFaction*` named ranges on the Sub-Factions sheet.
 """
 from __future__ import annotations
 
+import logging
 import re
 from typing import Any
 
 from extractors._common import coerce_number, filter_blank_rows, read_named_range
 
 WORLDVIEW_AXES = ["expansion", "authority", "corporate", "technocratic", "faith", "materialist"]
+
+_log = logging.getLogger(__name__)
 
 # GoI block lives at Politics rows 4-11 (8 slots, 4 live + 4 reserved blank).
 GOI_BLOCK_FIRST_ROW = 4
@@ -112,18 +115,56 @@ def _parse_active_benefits(text, goi_name, benefits_table):
     return {"unlocked": unlocked, "total": total, "unlocked_list": unlocked_list}
 
 
-def _sub_factions_by_goi(wb):
-    """Zip the four SubFaction* named ranges into per-GoI lists.
+def _subfaction_worldviews_by_pair(wb):
+    """Read SubFactionDetail and return {(goi, sf_name): {axis: value}} map.
 
-    SubFactionGoals = A5:E17 (GoI, Sub-faction, Goal Axis, Goal Δ, Description)
-    SubFactionInfluences = F5:F17
-    SubFactionMinorGoals = G5:I17 (3 cols)
-    SubFactionApprovals = J5:J17
+    SubFactionDetail layout (16 cols on the Sub-Faction Detail sheet):
+      0: GoI, 1: Sub-faction, 2: Influence, 3: Goal Axis, 4: Goal Δ,
+      5-10: Expansion/Authority/Corporate/Technocratic/Faith/Materialist
+            (effective stance — base + Δ if axis matches),
+      11: Approval (mirror — ignored; SubFactionApprovals is authoritative),
+      12-14: Minor Goals (mirror — ignored),
+      15: National Share (mirror — ignored).
+
+    Defensive zip: keyed by (GoI, sub-faction) name pair, NOT row index.
+    Backend invariant promises row alignment with SubFactionGoals, but a single
+    inserted row would silently corrupt every downstream worldview, so we never
+    rely on positional correspondence across two separate sheets.
+    """
+    rows = read_named_range(wb, "SubFactionDetail")
+    if not rows:
+        return {}
+    out: dict[tuple[str, str], dict[str, float | None]] = {}
+    for r in rows:
+        if not r or len(r) < 11:
+            continue
+        goi_name, sf_name = r[0], r[1]
+        if not goi_name or not sf_name:
+            continue
+        out[(goi_name, sf_name)] = {
+            axis: coerce_number(r[5 + i])
+            for i, axis in enumerate(WORLDVIEW_AXES)
+        }
+    return out
+
+
+def _sub_factions_by_goi(wb):
+    """Zip the SubFaction* named ranges into per-GoI lists.
+
+    Sub-Factions sheet layout (live wb):
+      A: GoI, B: SF name, C: Goal Axis, D: Goal Δ, E: Goal text,
+      F: Influence, G-I: Minor Goals, J: Approval, L: National Share.
+
+    SubFactionDetail (separate sheet) is keyed by (GoI, SF name) pair so silent
+    row drift between the two sheets cannot misalign worldviews.
     """
     goals = read_named_range(wb, "SubFactionGoals")
     influences = read_named_range(wb, "SubFactionInfluences")
     minor_goals = read_named_range(wb, "SubFactionMinorGoals")
     approvals = read_named_range(wb, "SubFactionApprovals")
+    goals_text = read_named_range(wb, "SubFactionGoal")
+    national_shares = read_named_range(wb, "SubFactionNationalShare")
+    detail_map = _subfaction_worldviews_by_pair(wb)
 
     by_goi: dict[str, list[dict[str, Any]]] = {}
     for i, gr in enumerate(goals):
@@ -144,12 +185,35 @@ def _sub_factions_by_goi(wb):
         mgs = []
         if i < len(minor_goals) and minor_goals[i]:
             mgs = [g for g in minor_goals[i] if g not in (None, "")]
+        goal_text = (
+            goals_text[i][0]
+            if i < len(goals_text) and goals_text[i]
+            else None
+        )
+        if goal_text == "":
+            goal_text = None
+        nat_share = (
+            coerce_number(national_shares[i][0])
+            if i < len(national_shares) and national_shares[i]
+            else None
+        )
+        worldview = detail_map.get((goi_name, sf_name))
+        if worldview is None and detail_map:
+            # The Detail sheet has data, but no row matches this (goi, sf) pair.
+            _log.warning(
+                "SubFactionDetail has no matching row for (%s, %s); "
+                "effective_worldview will be null for this sub-faction",
+                goi_name, sf_name,
+            )
 
         by_goi.setdefault(goi_name, []).append({
             "name": sf_name,
             "influence": infl,
             "approval": appr,
             "minor_goals": mgs,
+            "goal": goal_text,
+            "national_share": nat_share,
+            "effective_worldview": worldview,
         })
     return by_goi
 

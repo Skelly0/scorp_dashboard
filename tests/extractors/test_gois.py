@@ -1,6 +1,8 @@
 """Tests for the GoIs page extractor."""
 from __future__ import annotations
 
+import openpyxl
+
 from extractors.gois import extract
 
 
@@ -42,3 +44,58 @@ def test_extract_pop_capture_matrix_shape(wb):
     assert len(matrix["gois"]) == 4
     assert len(matrix["values"]) == 11
     assert all(len(row) == 4 for row in matrix["values"])
+
+
+def test_extract_includes_subfaction_goal(wb):
+    result = extract(wb)
+    founders = next(g for g in result["gois"] if g["name"] == "Founders")
+    loyalists = next(s for s in founders["sub_factions"]
+                     if s["name"] == "Constitutional Loyalists")
+    assert loyalists["goal"] == "Defend the founding charter against revisionism."
+
+
+def test_extract_includes_subfaction_national_share(wb):
+    result = extract(wb)
+    founders = next(g for g in result["gois"] if g["name"] == "Founders")
+    loyalists = next(s for s in founders["sub_factions"]
+                     if s["name"] == "Constitutional Loyalists")
+    assert loyalists["national_share"] == 0.20
+    # All live sub-factions in the fixture should have a numeric national_share.
+    all_sfs = [s for g in result["gois"] for s in g["sub_factions"]]
+    assert all(isinstance(s["national_share"], float) for s in all_sfs)
+
+
+def test_extract_includes_subfaction_effective_worldview(wb):
+    result = extract(wb)
+    founders = next(g for g in result["gois"] if g["name"] == "Founders")
+    hardliners = next(s for s in founders["sub_factions"]
+                      if s["name"] == "Hardliner Founders")
+    ew = hardliners["effective_worldview"]
+    assert isinstance(ew, dict)
+    assert ew == {
+        "expansion": 4.0,
+        "authority": 6.0,
+        "corporate": 4.0,
+        "technocratic": 4.0,
+        "faith": 4.5,
+        "materialist": 4.5,
+    }
+
+
+def test_extract_handles_missing_subfaction_ranges(fixture_workbook_path):
+    """When SubFactionGoal/NationalShare/Detail are absent, extraction still
+    works — fields default to None for the affected sub-factions."""
+    wb = openpyxl.load_workbook(fixture_workbook_path, data_only=True)
+    # Remove the three new ranges to simulate an older workbook.
+    for nm in ("SubFactionGoal", "SubFactionNationalShare", "SubFactionDetail"):
+        if nm in wb.defined_names:
+            del wb.defined_names[nm]
+
+    result = extract(wb)
+    all_sfs = [s for g in result["gois"] for s in g["sub_factions"]]
+    # Fixture has 5 live sub-factions across Founders + Capitalists.
+    assert len(all_sfs) == 5, "removing names should not drop sub-factions"
+    for sf in all_sfs:
+        assert sf["goal"] is None
+        assert sf["national_share"] is None
+        assert sf["effective_worldview"] is None
