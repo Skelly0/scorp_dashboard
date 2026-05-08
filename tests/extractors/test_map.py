@@ -1,7 +1,44 @@
-"""Tests for the Map page extractor."""
+"""Tests for the Map page extractor and the soft-fail helper in _common."""
 from __future__ import annotations
 
+import openpyxl
+import pytest
+
+from extractors._common import read_grid_optional
 from extractors.map import extract
+
+
+def _wb_with(sheet_name: str, values: list[list]) -> openpyxl.Workbook:
+    wb = openpyxl.Workbook()
+    # remove the default sheet so the workbook only has what the test asks for
+    default = wb.active
+    wb.remove(default)
+    ws = wb.create_sheet(sheet_name)
+    for r_idx, row in enumerate(values, start=1):
+        for c_idx, v in enumerate(row, start=1):
+            ws.cell(row=r_idx, column=c_idx, value=v)
+    return wb
+
+
+def test_read_grid_optional_returns_grid_when_sheet_exists():
+    wb = _wb_with("Staffing Efficiency", [[0.5, 0.7], [0.0, 1.0]])
+    grid = read_grid_optional(wb, "Staffing Efficiency", width=2, height=2)
+    assert grid == [[0.5, 0.7], [0.0, 1.0]]
+
+
+def test_read_grid_optional_returns_none_when_sheet_missing():
+    wb = openpyxl.Workbook()
+    wb.remove(wb.active)
+    wb.create_sheet("Some Other Sheet")
+    grid = read_grid_optional(wb, "Staffing Efficiency", width=2, height=2)
+    assert grid is None
+
+
+def test_read_grid_optional_pads_short_rows_with_none():
+    """A sheet that's smaller than width x height fills missing cells with None."""
+    wb = _wb_with("X", [[1, 2], [3]])  # second row has only 1 value
+    grid = read_grid_optional(wb, "X", width=3, height=2)
+    assert grid == [[1, 2, None], [3, None, None]]
 
 
 def test_extract_dimensions(wb):
@@ -87,3 +124,98 @@ def test_extract_includes_improvement_category_palette(wb):
     assert pal["agri"] == "#38d39f"
     assert pal["science"] == "#a89cff"
     assert pal["other"] == "#888888"
+
+
+def test_staffing_present_when_sheet_exists(wb):
+    out = extract(wb)
+    assert out["available_categories"]["staffing"] is True
+    # Tile (9, 9) was seeded with 0.76 in the fixture (1-indexed row 10, col 10)
+    tile = next(t for t in out["tiles"] if t["x"] == 9 and t["y"] == 9)
+    assert tile["staffing"] == pytest.approx(0.76)
+
+
+def test_staffing_absent_when_sheet_missing(wb):
+    wb.remove(wb["Staffing Efficiency"])
+    out = extract(wb)
+    assert out["available_categories"]["staffing"] is False
+    for tile in out["tiles"]:
+        assert tile["staffing"] is None
+
+
+def test_upkeep_present_when_all_sheets_exist(wb):
+    out = extract(wb)
+    assert out["available_categories"]["upkeep"] is True
+    tile = next(t for t in out["tiles"] if t["x"] == 9 and t["y"] == 9)
+    assert tile["upkeep"]["food"] == pytest.approx(1.5)
+    assert tile["upkeep"]["water"] == pytest.approx(1.5)
+
+
+def test_upkeep_absent_when_all_sheets_missing(wb):
+    for r in ["Food", "Water", "Energy", "Materials", "Ore", "Housing"]:
+        wb.remove(wb[f"Upkeep - {r}"])
+    out = extract(wb)
+    assert out["available_categories"]["upkeep"] is False
+    for tile in out["tiles"]:
+        assert tile["upkeep"] is None
+
+
+def test_upkeep_partially_populated_when_some_sheets_missing(wb):
+    """Mixed: 4 of 6 upkeep sheets present → upkeep is a dict with only those 4 keys."""
+    wb.remove(wb["Upkeep - Ore"])
+    wb.remove(wb["Upkeep - Housing"])
+    out = extract(wb)
+    assert out["available_categories"]["upkeep"] is True
+    tile = next(t for t in out["tiles"] if t["x"] == 9 and t["y"] == 9)
+    assert "ore" not in tile["upkeep"]
+    assert "housing" not in tile["upkeep"]
+    assert "food" in tile["upkeep"]
+
+
+def test_workforce_present_when_classtable_and_sheets_exist(wb):
+    out = extract(wb)
+    assert out["available_categories"]["workforce"] is True
+    tile = next(t for t in out["tiles"] if t["x"] == 9 and t["y"] == 9)
+    assert tile["workforce"] is not None
+    assert tile["workforce"].get("Engineers") == 12
+    # zero entries are dropped — value at (9, 10) seeded with 0 should not appear
+    tile_zero = next(t for t in out["tiles"] if t["x"] == 9 and t["y"] == 10)
+    assert "Engineers" not in (tile_zero["workforce"] or {})
+
+
+def test_workforce_absent_when_all_workforce_sheets_missing(wb):
+    workforce_sheets = [s for s in wb.sheetnames if s.startswith("Workforce - ")]
+    for s in workforce_sheets:
+        wb.remove(wb[s])
+    out = extract(wb)
+    assert out["available_categories"]["workforce"] is False
+    for tile in out["tiles"]:
+        assert tile["workforce"] is None
+
+
+def test_workforce_skips_unknown_class_sheets(wb):
+    """A workforce sheet for a class NOT in ClassTable is silently ignored."""
+    wb.create_sheet("Workforce - Phantom Class")
+    out = extract(wb)
+    tile = next(t for t in out["tiles"] if t["x"] == 9 and t["y"] == 9)
+    assert "Phantom Class" not in (tile["workforce"] or {})
+
+
+def test_missing_sheets_reported_in_map_output(wb):
+    wb.remove(wb["Staffing Efficiency"])
+    wb.remove(wb["Upkeep - Ore"])
+    out = extract(wb)
+    sheets_missed = {f["sheet"] for f in out["missing_sheets"]}
+    assert "Staffing Efficiency" in sheets_missed
+    assert "Upkeep - Ore" in sheets_missed
+    for f in out["missing_sheets"]:
+        assert f["kind"] == "missing_sheet"
+
+
+def test_missing_sheets_includes_truncated_workforce_class(wb):
+    """The fixture pre-truncates one Workforce sheet to 31 chars; extractor looks
+    for the full name and should record it as missing."""
+    out = extract(wb)
+    missing = {f["sheet"] for f in out["missing_sheets"]}
+    # The truncated class is "Agricultural Workers" — full sheet name is missing
+    # because the fixture stored it under the 31-char-truncated form.
+    assert "Workforce - Agricultural Workers" in missing

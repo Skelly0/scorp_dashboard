@@ -3,8 +3,10 @@
   import { meta } from '../lib/stores/meta.js';
   import { map, mapError, loadMap } from '../lib/stores/map.js';
   import { pageTitle } from '../lib/page-title.js';
+  import { theme } from '../lib/theme.js';
   import { categorySlugFor, CATEGORIES } from '../lib/improvement-categories.js';
   import { RESOURCE_CODES, FEATURE_CODES } from '../lib/map-codes.js';
+  import { CLASS_COLORS, classColor } from '../lib/faction-colors.js';
   import {
     ZOOM_MIN,
     ZOOM_MAX,
@@ -17,17 +19,51 @@
   import Band from '../lib/components/Band.svelte';
   import MapCanvas from '../lib/components/MapCanvas.svelte';
   import RosterPanel from '../lib/components/RosterPanel.svelte';
+  import LayerMenu from '../lib/components/LayerMenu.svelte';
 
   let layer = 'terrain';
+  let lastSubByCategory = { yield: 'food', upkeep: 'food', workforce: 'Engineers' };
   let zoom = ZOOM_DEFAULT;   // overwritten in onMount once localStorage is available
   let zoomReady = false;     // gates the persistence reactive so we don't overwrite stored value with the default on first tick
   let hoverTile = null;
   let pinnedTile = null;
   let filters = { resource: null, feature: null, improvement: null };
 
-  $: activeFilterCount = (filters.resource ? 1 : 0) + (filters.feature ? 1 : 0) + (filters.improvement ? 1 : 0);
+  const YIELD_OPTIONS = [
+    { key: 'food',     label: 'Food' },
+    { key: 'water',    label: 'Water' },
+    { key: 'energy',   label: 'Energy' },
+    { key: 'materials',label: 'Materials' },
+    { key: 'ore',      label: 'Ore' },
+    { key: 'housing',  label: 'Housing' },
+  ];
+  const UPKEEP_OPTIONS = YIELD_OPTIONS;  // same set of resources
 
+  $: parsedLayer = (() => {
+    if (!layer || !layer.includes(':')) return { category: layer, key: null };
+    const [category, ...rest] = layer.split(':');
+    return { category, key: rest.join(':') };
+  })();
+
+  $: if (parsedLayer.category && parsedLayer.key) {
+    lastSubByCategory[parsedLayer.category] = parsedLayer.key;
+  }
+
+  $: workforceOptions = (() => {
+    if (!$map) return [];
+    const present = new Set();
+    for (const tile of $map.tiles) {
+      if (tile.workforce) for (const k of Object.keys(tile.workforce)) present.add(k);
+    }
+    return [...present].sort().map((k) => ({ key: k, label: k }));
+  })();
+
+  $: activeFilterCount = (filters.resource ? 1 : 0) + (filters.feature ? 1 : 0) + (filters.improvement ? 1 : 0);
   $: matchedTiles = $map ? $map.tiles.filter(t => tileMatchesFilters(t, filters)) : [];
+
+  function selectLayer(layerId) {
+    layer = layerId;
+  }
 
   function tileMatchesFilters(t, f) {
     if (f.resource && t.resource !== f.resource) return false;
@@ -69,22 +105,6 @@
       e.preventDefault();
     }
   }
-
-  const THEMATIC_LAYERS = [
-    { value: 'terrain', label: 'Terrain' },
-    { value: 'food', label: 'Food' },
-    { value: 'water', label: 'Water' },
-    { value: 'energy', label: 'Energy' },
-    { value: 'materials', label: 'Materials' },
-    { value: 'ore', label: 'Ore' },
-    { value: 'housing', label: 'Housing' },
-  ];
-  const OVERLAY_TABS = [
-    { value: 'resources', label: 'Resources' },
-    { value: 'features', label: 'Features' },
-    { value: 'improvements', label: 'Improvements' },
-  ];
-  const LAYERS = [...THEMATIC_LAYERS, ...OVERLAY_TABS];
 </script>
 
 <section class="px-6 py-5 max-w-[1600px]" tabindex="-1" on:keydown={handlePageKey}>
@@ -96,14 +116,54 @@
     <Band num="01" title="Surface Grid" meta="40 × 40" />
 
     <div class="layer-tabs">
-      {#each LAYERS as l}
+      <button
+        aria-pressed={layer === 'terrain'}
+        on:click={() => selectLayer('terrain')}
+      >Terrain</button>
+
+      <LayerMenu
+        label="Yields"
+        category="yield"
+        options={YIELD_OPTIONS}
+        activeKey={parsedLayer.category === 'yield' ? parsedLayer.key : null}
+        defaultKey={lastSubByCategory.yield}
+        on:select={(e) => selectLayer(e.detail.layerId)}
+      />
+
+      {#if $map?.available_categories?.upkeep}
+        <LayerMenu
+          label="Upkeep"
+          category="upkeep"
+          options={UPKEEP_OPTIONS}
+          activeKey={parsedLayer.category === 'upkeep' ? parsedLayer.key : null}
+          defaultKey={lastSubByCategory.upkeep}
+          on:select={(e) => selectLayer(e.detail.layerId)}
+        />
+      {/if}
+
+      {#if $map?.available_categories?.workforce}
+        <LayerMenu
+          label="Workforce"
+          category="workforce"
+          options={workforceOptions}
+          activeKey={parsedLayer.category === 'workforce' ? parsedLayer.key : null}
+          defaultKey={lastSubByCategory.workforce}
+          on:select={(e) => selectLayer(e.detail.layerId)}
+        />
+      {/if}
+
+      {#if $map?.available_categories?.staffing}
         <button
-          aria-pressed={layer === l.value}
-          on:click={() => (layer = l.value)}
-        >
-          {l.label}{THEMATIC_LAYERS.some(lyr => lyr.value === l.value) && l.value !== 'terrain' ? ' yield' : ''}
-        </button>
-      {/each}
+          aria-pressed={layer === 'staffing'}
+          on:click={() => selectLayer('staffing')}
+        >Staffing</button>
+      {/if}
+
+      <span class="layer-tabs-divider" aria-hidden="true"></span>
+
+      <button aria-pressed={layer === 'resources'} on:click={() => selectLayer('resources')}>Resources</button>
+      <button aria-pressed={layer === 'features'} on:click={() => selectLayer('features')}>Features</button>
+      <button aria-pressed={layer === 'improvements'} on:click={() => selectLayer('improvements')}>Improvements</button>
 
       <div class="s-zoom" role="group" aria-label="Map zoom">
         <button
@@ -159,9 +219,10 @@
       <MapCanvas
         mapData={$map}
         {layer}
-        tab={layer}
+        tab={parsedLayer.category}
         {filters}
         {zoom}
+        redrawKey={$theme}
         on:hover={(e) => (hoverTile = e.detail)}
         on:pin={(e) => (pinnedTile = e.detail)}
         on:zoomstep={(e) => {
@@ -235,15 +296,50 @@
                   >Filter by {cat.icon} {cat.label}</button>
                 </div>
               {/if}
-              {#if t.yields}
+              {#if t.yields && Object.values(t.yields).some((v) => v !== 0 && v != null)}
                 <div class="kv-section">
                   <h4>Yields</h4>
                   <dl class="kv">
-                    {#each Object.entries(t.yields) as [k, v]}
+                    {#each Object.entries(t.yields).filter(([_, v]) => v !== 0 && v != null) as [k, v]}
                       <dt class="capitalize">{k}</dt>
                       <dd class={v < 0 ? 'crit' : v > 0 ? 'good' : ''}>{v > 0 ? '+' : ''}{v}</dd>
                     {/each}
                   </dl>
+                </div>
+              {/if}
+
+              {#if t.upkeep && Object.values(t.upkeep).some((v) => v != null && v !== 0)}
+                <div class="kv-section">
+                  <h4>Upkeep</h4>
+                  <dl class="kv">
+                    {#each Object.entries(t.upkeep).filter(([_, v]) => v != null && v !== 0) as [k, v]}
+                      <dt class="capitalize">{k}</dt>
+                      <dd class="crit">{v}</dd>
+                    {/each}
+                  </dl>
+                </div>
+              {/if}
+
+              {#if t.workforce && Object.keys(t.workforce).length > 0}
+                <div class="kv-section">
+                  <h4>Workforce</h4>
+                  {#each Object.entries(t.workforce).sort(([, a], [, b]) => b - a) as [name, count]}
+                    <div class="workforce-row">
+                      <span class="swatch" style="background: {classColor(name)}"></span>
+                      <span class="name">{name}</span>
+                      <span class="count">{count}</span>
+                    </div>
+                  {/each}
+                </div>
+              {/if}
+
+              {#if t.staffing != null}
+                <div class="kv-section">
+                  <h4>Staffing Efficiency</h4>
+                  <div class="staff-meter">
+                    <div class="staff-meter-fill" style="width: {(t.staffing * 100).toFixed(0)}%"></div>
+                  </div>
+                  <div class="staff-meter-pct">{(t.staffing * 100).toFixed(0)}%</div>
                 </div>
               {/if}
             </div>
@@ -253,7 +349,13 @@
     </div>
 
     <div class="text-muted text-[10px] uppercase tracking-widest mt-3">
-      ▣ Improvement · ↗ Resource · ↖ Feature · Color = {layer === 'terrain' ? 'biome' : (THEMATIC_LAYERS.some(lyr => lyr.value === layer) ? layer + ' magnitude' : layer)}
+      ▣ Improvement · ↗ Resource · ↖ Feature · Color =
+      {#if layer === 'terrain'}biome
+      {:else if parsedLayer.category === 'yield'}{parsedLayer.key} yield magnitude
+      {:else if parsedLayer.category === 'upkeep'}{parsedLayer.key} upkeep magnitude
+      {:else if parsedLayer.category === 'workforce'}{parsedLayer.key} count
+      {:else if parsedLayer.category === 'staffing'}staffing efficiency (red→amber→green)
+      {:else}{layer}{/if}
     </div>
   {/if}
 </section>

@@ -95,6 +95,11 @@ SOFT_OPTIONAL_V3_RANGES: list[str] = [
     # the dashboard degrades to "—" cells if the GM hasn't named the ranges yet.
     "PopsimMobilityIn",
     "PopsimMobilityOut",
+    # v5 — Sub-faction enrichment (read by extractors/gois.py via read_named_range,
+    # which returns [] when missing — so the dashboard degrades gracefully).
+    "SubFactionGoal",
+    "SubFactionNationalShare",
+    "SubFactionDetail",
 ]
 
 

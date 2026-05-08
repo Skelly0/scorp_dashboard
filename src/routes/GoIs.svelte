@@ -8,6 +8,7 @@
   import RadarChart from '../lib/components/RadarChart.svelte';
   import Heatmap from '../lib/components/Heatmap.svelte';
   import Tag from '../lib/components/Tag.svelte';
+  import SubFactionPanel from '../lib/components/SubFactionPanel.svelte';
 
   onMount(() => {
     pageTitle.set('GoIs');
@@ -15,14 +16,52 @@
   });
 
   const AXES = ['expansion', 'authority', 'corporate', 'technocratic', 'faith', 'materialist'];
+
+  /** @type {{goi: string, sf: string} | null} */
+  let selected = null;
+
+  function toggleSelect(goiName, sfName) {
+    if (selected && selected.goi === goiName && selected.sf === sfName) {
+      selected = null;
+    } else {
+      selected = { goi: goiName, sf: sfName };
+    }
+  }
+
+  $: selectedParent = selected
+    ? ($gois?.gois.find((g) => g.name === selected.goi) ?? null)
+    : null;
+  $: selectedSf = selected && selectedParent
+    ? (selectedParent.sub_factions.find((s) => s.name === selected.sf) ?? null)
+    : null;
+
+  function handleKeydown(e) {
+    if (e.key === 'Escape' && selected) {
+      selected = null;
+    }
+  }
+
+  // Auto-dismiss stale selections after a sync (sub-faction renamed/removed
+  // in a refreshed gois.json). Re-derive locally to avoid a reactive cycle
+  // through selectedParent/selectedSf.
+  $: {
+    if (selected && $gois) {
+      const parent = $gois.gois.find((g) => g.name === selected.goi) ?? null;
+      const sf = parent ? parent.sub_factions.find((s) => s.name === selected.sf) ?? null : null;
+      if (!parent || !sf) selected = null;
+    }
+  }
 </script>
 
-<section class="px-6 py-5 max-w-[1600px]">
+<svelte:window on:keydown={handleKeydown} />
+
+<section class="px-6 py-5 max-w-[1600px] gois-page">
   {#if $goisError}
     <p class="text-crit">{$goisError}</p>
   {:else if !$gois}
     <p class="text-muted text-xs uppercase tracking-widest">Loading…</p>
   {:else}
+    <div class="gois-main">
     <Band num="01" title="Groups of Interest" meta={`${$gois.gois.length} GoIs`} />
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
       {#each $gois.gois as g}
@@ -75,12 +114,21 @@
                   <div class="text-muted text-[9px] uppercase tracking-widest mb-1">Sub-factions</div>
                   <ul class="m-0 p-0 list-none text-[11px]">
                     {#each g.sub_factions as s}
-                      <li class="flex justify-between border-b border-[var(--border-soft)] border-dashed py-1">
-                        <span>{s.name}</span>
-                        <span class="text-muted tnum">
-                          {s.influence != null ? Math.round(s.influence * 100) + '%' : '—'} ·
-                          ap {s.approval != null ? Math.round(s.approval * 100) + '%' : '—'}
-                        </span>
+                      {@const isActive = selected && selected.goi === g.name && selected.sf === s.name}
+                      <li>
+                        <button
+                          type="button"
+                          class="w-full flex justify-between border-b border-[var(--border-soft)] border-dashed py-1 text-left"
+                          class:s-rail-row-active={isActive}
+                          aria-pressed={Boolean(isActive)}
+                          on:click={() => toggleSelect(g.name, s.name)}
+                        >
+                          <span>{s.name}</span>
+                          <span class="text-muted tnum">
+                            {s.influence != null ? Math.round(s.influence * 100) + '%' : '—'} ·
+                            ap {s.approval != null ? Math.round(s.approval * 100) + '%' : '—'}
+                          </span>
+                        </button>
                       </li>
                     {/each}
                   </ul>
@@ -102,5 +150,48 @@
         />
       </div>
     {/if}
+    </div>
+    <!-- Desktop sticky rail (≥1280px via CSS) -->
+    <aside class="s-rail gois-rail-desktop">
+      <SubFactionPanel
+        subfaction={selectedSf}
+        parent={selectedParent}
+        on:close={() => (selected = null)}
+      />
+    </aside>
+
+    <!-- Mobile bottom sheet (<1280px via CSS) -->
+    {#if selected && selectedSf}
+      <div
+        class="s-sheet-backdrop gois-sheet-mobile"
+        on:click={() => (selected = null)}
+        role="presentation"
+      ></div>
+      <div class="s-sheet gois-sheet-mobile">
+        <SubFactionPanel
+          subfaction={selectedSf}
+          parent={selectedParent}
+          on:close={() => (selected = null)}
+        />
+      </div>
+    {/if}
   {/if}
 </section>
+
+<style>
+  .gois-page { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 1280px) {
+    .gois-page { grid-template-columns: 1fr 360px; }
+  }
+  .gois-main { min-width: 0; }
+
+  .gois-rail-desktop { display: none; }
+  @media (min-width: 1280px) {
+    .gois-rail-desktop { display: block; }
+  }
+
+  .gois-sheet-mobile { display: block; }
+  @media (min-width: 1280px) {
+    .gois-sheet-mobile { display: none; }
+  }
+</style>

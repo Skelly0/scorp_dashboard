@@ -29,6 +29,7 @@
   --alert-bg: #1a140a;
   --alert-fg: #f3ead4;
   --scanline: rgba(26, 20, 10, 0.025);
+  --radar-overlay: rgba(74, 58, 32, 0.55); /* warm desaturated brown — contrasts vs. orange accent */
 }
 
 :root[data-theme='dark'] {
@@ -51,6 +52,7 @@
   --alert-bg: #f3a000;
   --alert-fg: #0a0805;
   --scanline: rgba(255, 176, 0, 0.04);
+  --radar-overlay: rgba(243, 233, 210, 0.45); /* dim cream — distinct from amber accent on near-black */
 }
 
 :root[data-theme='schematic'] {
@@ -73,6 +75,7 @@
   --alert-bg: #0e3a8a;
   --alert-fg: #f4f1ea;
   --scanline: rgba(14, 58, 138, 0.03);
+  --radar-overlay: rgba(165, 58, 38, 0.55); /* warm crit red — contrasts vs. navy accent */
 }
 
 html,
@@ -654,8 +657,10 @@ table.tbl th.num {
   gap: 0;
   border: 1px solid var(--border-soft);
   margin-bottom: 8px;
+  position: relative; /* anchor for popup z-index stacking */
 }
-.layer-tabs button {
+.layer-tabs button,
+.layer-tabs .layer-menu-trigger {
   background: transparent;
   border: none;
   border-right: 1px solid var(--border-soft);
@@ -667,10 +672,117 @@ table.tbl th.num {
   padding: 8px 10px;
   cursor: pointer;
 }
-.layer-tabs > button:last-of-type { border-right: none; }
-.layer-tabs button[aria-pressed="true"] {
+.layer-tabs > button:last-child,
+.layer-tabs > .layer-menu:last-child .layer-menu-trigger { border-right: none; }
+.layer-tabs button[aria-pressed="true"],
+.layer-tabs .layer-menu-trigger[aria-pressed="true"] {
   background: var(--accent);
   color: var(--alert-fg);
+}
+.layer-tabs-divider {
+  display: inline-block;
+  width: 1px;
+  align-self: stretch;
+  background: var(--border-soft);
+  margin: 0 4px;
+}
+
+/* Popup-menu anchor: the LayerMenu wraps the trigger + popup in a span
+   that we want to behave like a flex item identical to a tab button. */
+.layer-tabs .layer-menu {
+  position: relative;
+  display: inline-flex;
+  border-right: 1px solid var(--border-soft);
+}
+.layer-tabs .layer-menu .layer-menu-trigger {
+  border-right: none; /* the wrapping .layer-menu owns the separator */
+}
+.layer-menu-trigger .caret {
+  margin-left: 4px;
+  opacity: 0.6;
+}
+.layer-menu-trigger[aria-pressed="true"] .caret { opacity: 1; }
+
+.layer-menu-popup {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  z-index: 5;
+  background: var(--bg-2);
+  border: 1px solid var(--accent);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+}
+.layer-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px;
+  background: transparent;
+  border: none;
+  color: var(--fg);
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: left;
+}
+.layer-menu-item:hover,
+.layer-menu-item:focus {
+  background: var(--bg);
+  outline: none;
+}
+.layer-menu-item.active { color: var(--accent); }
+.layer-menu-item .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  flex-shrink: 0;
+}
+.layer-menu-item.active .dot { background: var(--accent); }
+
+/* === Map inspect — workforce rows + staffing meter ====================== */
+.workforce-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  padding: 3px 0;
+}
+.workforce-row .swatch {
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.workforce-row .name { flex: 1; color: var(--fg); }
+.workforce-row .count {
+  color: var(--fg-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.staff-meter {
+  height: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  margin-top: 6px;
+  overflow: hidden;
+}
+.staff-meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--crit) 0%, var(--accent) 50%, var(--good) 100%);
+}
+.staff-meter-pct {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--accent);
+  margin-top: 4px;
+  text-align: right;
 }
 
 /* === Resizable map viewport (Map page) ===================================== */
@@ -886,3 +998,133 @@ table.tbl th.num {
 /* === Misc helpers ========================================================== */
 .tnum { font-variant-numeric: tabular-nums; }
 .uppercase-track { text-transform: uppercase; letter-spacing: 0.18em; }
+
+/* === Sub-faction rail / bottom sheet ====================================== */
+.s-rail {
+  position: sticky;
+  /* Top offset matches the rendered nav. Verified from NavBar.svelte. */
+  top: var(--nav-h, 48px);
+  align-self: start;
+  background: var(--bg-2);
+  border: 2px solid var(--border);
+  padding: 16px;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+}
+
+.s-rail-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  gap: 8px;
+}
+.s-rail-empty-icon { font-size: 32px; opacity: 0.4; }
+
+.s-rail-panel { display: flex; flex-direction: column; gap: 14px; }
+
+.s-rail-header {
+  display: grid;
+  grid-template-columns: 4px 1fr auto;
+  gap: 10px;
+  align-items: start;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.s-rail-titles { min-width: 0; }
+.s-rail-name {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.s-rail-parent {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.s-rail-close {
+  background: transparent;
+  border: 1px solid var(--border-soft);
+  color: var(--fg);
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+.s-rail-close:hover { background: var(--accent-soft); }
+.s-rail-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.s-rail-section { display: flex; flex-direction: column; gap: 6px; }
+.s-rail-section-label {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.s-rail-goal {
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 32ch;
+}
+.s-rail-goal-empty { color: var(--muted); }
+
+.s-rail-radar { align-items: center; }
+.s-rail-radar-note { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+.s-rail-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  border-top: 1px solid var(--border-soft);
+  padding-top: 10px;
+}
+.s-rail-kpi { display: flex; flex-direction: column; gap: 2px; }
+.s-rail-kpi-label {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.s-rail-kpi-value { font-size: 18px; font-weight: 800; }
+
+/* Mobile bottom sheet (reuses the panel content via the same component) */
+.s-sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 50;
+}
+.s-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  background: var(--bg-2);
+  border-top: 2px solid var(--border);
+  padding: 16px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Active-row highlight on the GoI cards' sub-faction list */
+.s-rail-row-active {
+  background: var(--accent-soft);
+  border-left: 2px solid var(--accent);
+  padding-left: 6px;
+  margin-left: -8px;
+}

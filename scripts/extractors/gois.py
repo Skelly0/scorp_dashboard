@@ -7,12 +7,15 @@ the 4 separate `SubFaction*` named ranges on the Sub-Factions sheet.
 """
 from __future__ import annotations
 
+import logging
 import re
 from typing import Any
 
 from extractors._common import coerce_number, filter_blank_rows, read_named_range
 
 WORLDVIEW_AXES = ["expansion", "authority", "corporate", "technocratic", "faith", "materialist"]
+
+_log = logging.getLogger(__name__)
 
 # GoI block lives at Politics rows 4-11 (8 slots, 4 live + 4 reserved blank).
 GOI_BLOCK_FIRST_ROW = 4
@@ -112,20 +115,68 @@ def _parse_active_benefits(text, goi_name, benefits_table):
     return {"unlocked": unlocked, "total": total, "unlocked_list": unlocked_list}
 
 
-def _sub_factions_by_goi(wb):
-    """Zip the four SubFaction* named ranges into per-GoI lists.
+def _subfaction_worldviews_by_row(wb):
+    """Read SubFactionDetail and return a list of worldview dicts in row order.
 
-    SubFactionGoals = A5:E17 (GoI, Sub-faction, Goal Axis, Goal Δ, Description)
-    SubFactionInfluences = F5:F17
-    SubFactionMinorGoals = G5:I17 (3 cols)
-    SubFactionApprovals = J5:J17
+    SubFactionDetail layout (16 cols on the Sub-Faction Detail sheet):
+      0: GoI, 1: Sub-faction, 2: Influence, 3: Goal Axis, 4: Goal Δ,
+      5-10: Expansion/Authority/Corporate/Technocratic/Faith/Materialist
+            (effective stance — base + Δ if axis matches),
+      11: Approval (mirror — ignored; SubFactionApprovals is authoritative),
+      12-14: Minor Goals (mirror — ignored),
+      15: National Share (mirror — ignored).
+
+    Row-index zip: the live workbook's Sub-Faction Detail is a derived
+    INDEX-formula mirror of Sub-Factions, so row N of Detail corresponds to
+    row N of SubFactionGoals (per backend convention). Names in the Detail
+    sheet may diverge if the GM hand-edits them, but the worldview values
+    (cols F-K) are still positionally aligned. Caller is responsible for
+    asserting row-count parity (see _sub_factions_by_goi).
+    """
+    rows = read_named_range(wb, "SubFactionDetail")
+    if not rows:
+        return []
+    out: list[dict[str, float | None]] = []
+    for r in rows:
+        if not r or len(r) < 11:
+            continue
+        goi_name = r[0]
+        # Skip header row if the named range includes it. Real GoI names
+        # won't be the literal "GoI" header label.
+        if isinstance(goi_name, str) and goi_name.strip().lower() == "goi":
+            continue
+        if not goi_name:
+            continue
+        out.append({
+            axis: coerce_number(r[5 + i])
+            for i, axis in enumerate(WORLDVIEW_AXES)
+        })
+    return out
+
+
+def _sub_factions_by_goi(wb):
+    """Zip the SubFaction* named ranges into per-GoI lists.
+
+    Sub-Factions sheet layout (live wb):
+      A: GoI, B: SF name, C: Goal Axis, D: Goal Δ, E: Goal text,
+      F: Influence, G-I: Minor Goals, J: Approval, L: National Share.
+
+    Names come exclusively from SubFactionGoals (the GM-input sheet); the
+    Sub-Faction Detail sheet is treated as a positional mirror, supplying
+    only the per-axis effective worldview by row index. Both sheets are
+    expected to have the same number of populated sub-faction rows; we warn
+    if they diverge.
     """
     goals = read_named_range(wb, "SubFactionGoals")
     influences = read_named_range(wb, "SubFactionInfluences")
     minor_goals = read_named_range(wb, "SubFactionMinorGoals")
     approvals = read_named_range(wb, "SubFactionApprovals")
+    goals_text = read_named_range(wb, "SubFactionGoal")
+    national_shares = read_named_range(wb, "SubFactionNationalShare")
+    worldviews = _subfaction_worldviews_by_row(wb)
 
     by_goi: dict[str, list[dict[str, Any]]] = {}
+    sf_idx = 0  # index into `worldviews` (counts populated sub-factions in order)
     for i, gr in enumerate(goals):
         if not gr or not gr[0]:
             continue
@@ -144,13 +195,41 @@ def _sub_factions_by_goi(wb):
         mgs = []
         if i < len(minor_goals) and minor_goals[i]:
             mgs = [g for g in minor_goals[i] if g not in (None, "")]
+        goal_text = (
+            goals_text[i][0]
+            if i < len(goals_text) and goals_text[i]
+            else None
+        )
+        if goal_text == "":
+            goal_text = None
+        nat_share = (
+            coerce_number(national_shares[i][0])
+            if i < len(national_shares) and national_shares[i]
+            else None
+        )
+        worldview = worldviews[sf_idx] if sf_idx < len(worldviews) else None
+        sf_idx += 1
 
         by_goi.setdefault(goi_name, []).append({
             "name": sf_name,
             "influence": infl,
             "approval": appr,
             "minor_goals": mgs,
+            "goal": goal_text,
+            "national_share": nat_share,
+            "effective_worldview": worldview,
         })
+
+    # Warn (don't fail) if row counts diverge — that indicates a structural
+    # break the GM should be aware of, not a per-sync transient.
+    if worldviews and sf_idx != len(worldviews):
+        _log.warning(
+            "SubFactionDetail has %d populated rows but SubFactionGoals has "
+            "%d; worldviews after the shorter list will be misaligned or "
+            "missing — check that both sheets cover the same sub-factions",
+            len(worldviews), sf_idx,
+        )
+
     return by_goi
 
 

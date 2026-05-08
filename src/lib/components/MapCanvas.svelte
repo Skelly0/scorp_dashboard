@@ -2,7 +2,7 @@
   import { createEventDispatcher, tick } from 'svelte';
   import { RESOURCE_CODES, FEATURE_CODES } from '../map-codes.js';
   import { categoryFor, categorySlugFor } from '../improvement-categories.js';
-  import { goiColor, classColor } from '../faction-colors.js';
+  import { goiColor, classColor, CLASS_COLORS } from '../faction-colors.js';
   import { ZOOM_DEFAULT, clampZoom } from '../map-zoom.js';
 
   /** @type {{tiles: any[], width: number, height: number, palettes: any}} */
@@ -13,6 +13,18 @@
   export let tab = 'terrain';
   export let filters = { resource: null, feature: null, improvement: null };
   export let zoom = ZOOM_DEFAULT;
+  /** Bumping this triggers a redraw — Map.svelte sets it to the current theme name. */
+  export let redrawKey = '';
+
+  function parseLayer(layer) {
+    if (!layer) return { category: null, key: null };
+    if (layer.includes(':')) {
+      const [category, ...rest] = layer.split(':');
+      return { category, key: rest.join(':') };
+    }
+    // 'terrain', 'staffing', 'resources', 'features', 'improvements'
+    return { category: layer, key: null };
+  }
 
   const BASE_TILE = 16;          // drawing-coordinate size; never changes.
   const dispatch = createEventDispatcher();
@@ -48,7 +60,7 @@
     if (filters.improvement) return improvementCatPal[filters.improvement] ?? '#ffb000';
     return '#ffb000';
   })();
-  $: drawTerrain(mapData, layer, layerMax, filters, displayScale);
+  $: drawTerrain(mapData, layer, layerMax, filters, displayScale, redrawKey);
 
   function tileMatches(t, f) {
     if (f.resource && t.resource !== f.resource) return false;
@@ -68,33 +80,110 @@
   }
 
   function computeLayerMax(mapData, layer) {
-    if (!mapData || layer === 'terrain') return { pos: 0, neg: 0 };
-    let pos = 0;
-    let neg = 0;
-    for (const t of mapData.tiles) {
-      const v = t.yields?.[layer] ?? 0;
-      if (v > pos) pos = v;
-      if (v < neg) neg = v;
+    if (!mapData) return { pos: 0, neg: 0, max: 0 };
+    const { category, key } = parseLayer(layer);
+
+    if (category === 'yield' && key) {
+      let pos = 0, neg = 0;
+      for (const t of mapData.tiles) {
+        const v = t.yields?.[key] ?? 0;
+        if (v > pos) pos = v;
+        if (v < neg) neg = v;
+      }
+      return { pos, neg: Math.abs(neg), max: 0 };
     }
-    return { pos, neg: Math.abs(neg) };
+    if (category === 'upkeep' && key) {
+      let max = 0;
+      for (const t of mapData.tiles) {
+        const v = t.upkeep?.[key] ?? 0;
+        if (v > max) max = v;
+      }
+      return { pos: 0, neg: 0, max };
+    }
+    if (category === 'workforce' && key) {
+      let max = 0;
+      for (const t of mapData.tiles) {
+        const v = t.workforce?.[key] ?? 0;
+        if (v > max) max = v;
+      }
+      return { pos: 0, neg: 0, max };
+    }
+    if (category === 'staffing') {
+      return { pos: 0, neg: 0, max: 1 };  // 0..1 scalar; max is fixed
+    }
+    return { pos: 0, neg: 0, max: 0 };
   }
 
   function tileColor(tile, layer, palettes, layerMax, theme) {
-    if (layer === 'terrain') {
-      return palettes.terrain[tile.terrain] || '#1a1a1a';
+    const { category, key } = parseLayer(layer);
+
+    if (category === 'terrain' || category === null) {
+      return palettes.terrain[tile.terrain] || theme.bg;
     }
-    const v = tile.yields?.[layer] ?? 0;
-    if (v > 0 && layerMax.pos > 0) {
-      const t = Math.max(0.15, v / layerMax.pos);  // floor at 15% so non-zero is always visible
-      return `color-mix(in srgb, #38d39f ${(t * 100).toFixed(1)}%, ${theme.bg})`;
-    } else if (v < 0 && layerMax.neg > 0) {
-      const t = Math.max(0.15, -v / layerMax.neg);
-      return `color-mix(in srgb, ${theme.crit} ${(t * 100).toFixed(1)}%, ${theme.bg})`;
+
+    // YIELD: existing diverging green/red.
+    if (category === 'yield' && key) {
+      const v = tile.yields?.[key] ?? 0;
+      if (v > 0 && layerMax.pos > 0) {
+        const t = Math.max(0.15, v / layerMax.pos);
+        return `color-mix(in srgb, ${theme.good} ${(t * 100).toFixed(1)}%, ${theme.bg})`;
+      }
+      if (v < 0 && layerMax.neg > 0) {
+        const t = Math.max(0.15, -v / layerMax.neg);
+        return `color-mix(in srgb, ${theme.crit} ${(t * 100).toFixed(1)}%, ${theme.bg})`;
+      }
+      return theme.bg;
     }
+
+    // UPKEEP: single red gradient 0 → max.
+    if (category === 'upkeep' && key) {
+      const v = tile.upkeep?.[key] ?? 0;
+      if (v > 0 && layerMax.max > 0) {
+        const t = Math.max(0.15, v / layerMax.max);
+        return `color-mix(in srgb, ${theme.crit} ${(t * 100).toFixed(1)}%, ${theme.bg})`;
+      }
+      return theme.bg;
+    }
+
+    // WORKFORCE: single class-accent gradient.
+    if (category === 'workforce' && key) {
+      const v = tile.workforce?.[key] ?? 0;
+      if (v > 0 && layerMax.max > 0) {
+        const swatch = resolveClassColor(key, theme);
+        const t = Math.max(0.15, v / layerMax.max);
+        return `color-mix(in srgb, ${swatch} ${(t * 100).toFixed(1)}%, ${theme.bg})`;
+      }
+      return theme.bg;
+    }
+
+    // STAFFING: red → amber → green diverging at 0.5.
+    if (category === 'staffing') {
+      const v = tile.staffing;
+      if (v == null) return theme.bg;
+      if (v < 0.5) {
+        const t = v * 2;  // 0 → 1 across the lower half
+        return `color-mix(in srgb, ${theme.amber} ${(t * 100).toFixed(1)}%, ${theme.crit})`;
+      } else {
+        const t = (v - 0.5) * 2;  // 0 → 1 across the upper half
+        return `color-mix(in srgb, ${theme.good} ${(t * 100).toFixed(1)}%, ${theme.amber})`;
+      }
+    }
+
     return theme.bg;
   }
 
-  async function drawTerrain(mapData, layer, layerMax, filters, displayScale) {
+  function resolveClassColor(name, theme) {
+    const c = CLASS_COLORS[name];
+    // CLASS_COLORS values are concrete hex. For unknown classes the helper
+    // returns 'var(--accent)', which canvas fillStyle cannot resolve — substitute
+    // the pre-resolved amber token instead.
+    return c ?? theme.amber;
+  }
+
+  // displayScale and _redrawKey are reactive deps; the body reads displayScale from
+  // closure scope (it's a $: reactive at module level), and _redrawKey just keeps
+  // the canvas in sync with theme flips even when none of the data inputs changed.
+  async function drawTerrain(mapData, layer, layerMax, filters, displayScale, _redrawKey) {
     if (!mapData) return;
     await tick();
     if (!canvas) return;
@@ -111,8 +200,10 @@
     // not resolve var(--…)).
     const styles = getComputedStyle(canvas);
     const theme = {
-      bg: styles.getPropertyValue('--bg').trim() || '#0a0a0a',
-      crit: styles.getPropertyValue('--crit').trim() || '#ff4d4d',
+      bg:    styles.getPropertyValue('--bg').trim()    || '#0a0a0a',
+      crit:  styles.getPropertyValue('--crit').trim()  || '#ff4d4d',
+      good:  styles.getPropertyValue('--good').trim()  || '#38d39f',
+      amber: styles.getPropertyValue('--accent').trim()|| '#ffb000',
     };
 
     const ctx = canvas.getContext('2d');
@@ -354,19 +445,42 @@
     </div>
   </div>
 
-  {#if layer !== 'terrain'}
+  {#if layer !== 'terrain' && layer !== 'resources' && layer !== 'features' && layer !== 'improvements'}
+    {@const parsed = parseLayer(layer)}
     <div class="font-mono text-xs uppercase tracking-widest text-muted mt-2 flex items-center gap-3">
-      <span class="capitalize">{layer} yield —</span>
-      {#if layerMax.pos > 0}
-        <span>0 to <strong class="text-fg">+{layerMax.pos.toFixed(1)}</strong></span>
-        <span class="inline-block w-4 h-3 border border-border" style="background: #38d39f"></span>
-      {/if}
-      {#if layerMax.neg > 0}
-        <span>0 to <strong class="text-fg">-{layerMax.neg.toFixed(1)}</strong></span>
-        <span class="inline-block w-4 h-3 border border-border" style="background: var(--crit)"></span>
-      {/if}
-      {#if layerMax.pos === 0 && layerMax.neg === 0}
-        <span>(no tiles produce or consume {layer})</span>
+      {#if parsed.category === 'yield'}
+        <span class="capitalize">{parsed.key} yield —</span>
+        {#if layerMax.pos > 0}
+          <span>0 to <strong class="text-fg">+{layerMax.pos.toFixed(1)}</strong></span>
+          <span class="inline-block w-4 h-3 border border-border" style="background: var(--good)"></span>
+        {/if}
+        {#if layerMax.neg > 0}
+          <span>0 to <strong class="text-fg">-{layerMax.neg.toFixed(1)}</strong></span>
+          <span class="inline-block w-4 h-3 border border-border" style="background: var(--crit)"></span>
+        {/if}
+        {#if layerMax.pos === 0 && layerMax.neg === 0}
+          <span>(no tiles produce or consume {parsed.key})</span>
+        {/if}
+      {:else if parsed.category === 'upkeep'}
+        <span class="capitalize">{parsed.key} upkeep —</span>
+        {#if layerMax.max > 0}
+          <span>0 to <strong class="text-fg">{layerMax.max.toFixed(1)}</strong></span>
+          <span class="inline-block w-4 h-3 border border-border" style="background: var(--crit)"></span>
+        {:else}
+          <span>(no tiles consume {parsed.key})</span>
+        {/if}
+      {:else if parsed.category === 'workforce'}
+        <span>{parsed.key} —</span>
+        {#if layerMax.max > 0}
+          <span>0 to <strong class="text-fg">{layerMax.max}</strong></span>
+          <span class="inline-block w-4 h-3 border border-border" style="background: {CLASS_COLORS[parsed.key] ?? 'var(--accent)'}"></span>
+        {:else}
+          <span>(no tiles employ {parsed.key})</span>
+        {/if}
+      {:else if parsed.category === 'staffing'}
+        <span>Staffing —</span>
+        <span>0% to 100%</span>
+        <span class="inline-block w-12 h-3 border border-border" style="background: linear-gradient(90deg, var(--crit) 0%, var(--accent) 50%, var(--good) 100%)"></span>
       {/if}
     </div>
   {/if}
