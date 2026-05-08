@@ -97,11 +97,14 @@ SOFT_OPTIONAL_V3_RANGES: list[str] = [
     "PopsimMobilityOut",
     # v5 — Sub-faction enrichment (read by extractors/gois.py via read_named_range,
     # which returns [] when missing — so the dashboard degrades gracefully).
-    # `SubFactionDetail` was used briefly for the per-axis worldview mirror; that
-    # mirror was retired once the extractor switched to computing effective
-    # worldview locally from PopsimWorldview + Sub-Factions cols C/D.
+    # `SubFactionStances` is the per-sub-faction 6-axis effective stance
+    # (Expn/Auth/Corp/Tech/Faith/Mat) on Sub-Factions cols N:S. Soft-optional
+    # so the radar simply hides when the GM hasn't filled the range yet.
+    # `SubFactionDetail` was used briefly for the per-axis worldview mirror;
+    # that mirror was retired and stances now read directly from this range.
     "SubFactionGoal",
     "SubFactionNationalShare",
+    "SubFactionStances",
 ]
 
 

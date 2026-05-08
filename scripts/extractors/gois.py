@@ -49,7 +49,7 @@ def extract(wb) -> dict[str, Any]:
 
     main_classes = _infer_main_classes(live_names, capture, classes)
 
-    sub_factions_by_goi = _sub_factions_by_goi(wb, main_classes)
+    sub_factions_by_goi = _sub_factions_by_goi(wb)
 
     out_gois: list[dict[str, Any]] = []
     for src_idx in live_indices:
@@ -115,56 +115,34 @@ def _parse_active_benefits(text, goi_name, benefits_table):
     return {"unlocked": unlocked, "total": total, "unlocked_list": unlocked_list}
 
 
-def _compute_effective_worldview(main_class, goal_axis, goal_delta,
-                                 popsim_worldview, class_name_to_idx):
-    """Compute the per-axis effective worldview for one sub-faction.
+def _stance_row_to_worldview(row):
+    """Map a 6-col SubFactionStances row to a {axis: value | None} dict.
 
-    Replaces the legacy SubFactionDetail mirror sheet. The math:
-      base[axis] = PopsimWorldview row for parent GoI's main pop class
-      effective[axis] = clamp(1, 7, base + goal_delta) if axis == goal_axis
-                      = base otherwise
-
-    Returns a {axis: value | None} dict, or None when the main class can't
-    be resolved (graceful degradation — the panel hides the radar).
+    Returns None when the row is empty/all-None — the frontend treats that
+    as "no stance" and hides the radar (graceful degradation when the GM
+    hasn't filled the row yet, or the SubFactionStances range is missing).
     """
-    if not main_class or main_class not in class_name_to_idx:
+    if not row:
         return None
-    class_idx = class_name_to_idx[main_class]
-    if class_idx >= len(popsim_worldview):
-        return None
-    base_row = popsim_worldview[class_idx]
-    if not base_row or len(base_row) < len(WORLDVIEW_AXES):
-        return None
-
-    delta = coerce_number(goal_delta) or 0.0
-    goal_axis_norm = (
-        goal_axis.strip().lower() if isinstance(goal_axis, str) else ""
-    )
-
     out: dict[str, float | None] = {}
     for i, axis in enumerate(WORLDVIEW_AXES):
-        base = coerce_number(base_row[i])
-        if base is None:
-            out[axis] = None
-            continue
-        value = base + delta if goal_axis_norm == axis else base
-        if goal_axis_norm == axis:
-            value = max(1.0, min(7.0, value))
-        out[axis] = value
+        out[axis] = coerce_number(row[i]) if i < len(row) else None
+    if all(v is None for v in out.values()):
+        return None
     return out
 
 
-def _sub_factions_by_goi(wb, main_classes):
+def _sub_factions_by_goi(wb):
     """Zip the SubFaction* named ranges into per-GoI lists.
 
-    Sub-Factions sheet layout (live wb):
+    Sub-Factions sheet layout (live wb, all ranges row-aligned at rows 6-17):
       A: GoI, B: SF name, C: Goal Axis, D: Goal Δ, E: Goal text,
-      F: Influence, G-I: Minor Goals, J: Approval, L: National Share.
+      F: Influence, G-I: Minor Goals, J: Approval, L: National Share,
+      N-S: 6-axis effective stance (Expn, Auth, Corp, Tech, Faith, Mat).
 
-    Names + goal_axis + goal_delta all come from SubFactionGoals (the GM
-    input). The per-axis effective worldview is computed locally using
-    PopsimWorldview baselines for each parent GoI's main pop class —
-    no separate Sub-Faction Detail sheet needed.
+    The per-axis effective worldview is read directly from SubFactionStances
+    (row-aligned with SubFactionGoals). Missing or empty rows yield None,
+    and the panel hides the radar in that case.
     """
     goals = read_named_range(wb, "SubFactionGoals")
     influences = read_named_range(wb, "SubFactionInfluences")
@@ -172,16 +150,7 @@ def _sub_factions_by_goi(wb, main_classes):
     approvals = read_named_range(wb, "SubFactionApprovals")
     goals_text = read_named_range(wb, "SubFactionGoal")
     national_shares = read_named_range(wb, "SubFactionNationalShare")
-
-    # PopsimWorldview is row-aligned with the FULL (unfiltered) ClassTable
-    # — both have 15 slots in the live wb. Build name→row-index off the
-    # unfiltered table so the lookup matches PopsimWorldview's positions.
-    classes_full = read_named_range(wb, "ClassTable")
-    popsim_worldview = read_named_range(wb, "PopsimWorldview")
-    class_name_to_idx = {
-        row[0]: i for i, row in enumerate(classes_full)
-        if row and row[0]
-    }
+    stances = read_named_range(wb, "SubFactionStances")
 
     by_goi: dict[str, list[dict[str, Any]]] = {}
     for i, gr in enumerate(goals):
@@ -189,8 +158,6 @@ def _sub_factions_by_goi(wb, main_classes):
             continue
         goi_name = gr[0]
         sf_name = gr[1] if len(gr) > 1 else None
-        goal_axis = gr[2] if len(gr) > 2 else None
-        goal_delta = gr[3] if len(gr) > 3 else None
         infl = (
             coerce_number(influences[i][0])
             if i < len(influences) and influences[i]
@@ -216,12 +183,8 @@ def _sub_factions_by_goi(wb, main_classes):
             if i < len(national_shares) and national_shares[i]
             else None
         )
-        worldview = _compute_effective_worldview(
-            main_class=main_classes.get(goi_name),
-            goal_axis=goal_axis,
-            goal_delta=goal_delta,
-            popsim_worldview=popsim_worldview,
-            class_name_to_idx=class_name_to_idx,
+        worldview = _stance_row_to_worldview(
+            stances[i] if i < len(stances) else None
         )
 
         by_goi.setdefault(goi_name, []).append({
