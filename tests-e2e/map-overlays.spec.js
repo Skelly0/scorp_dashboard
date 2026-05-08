@@ -6,12 +6,15 @@ test.describe('Map overlay system', () => {
     await page.waitForLoadState('networkidle');
   });
 
-  test('shows ten layer tabs', async ({ page }) => {
-    const tabs = page.locator('.layer-tabs button');
-    await expect(tabs).toHaveCount(10);
-    await expect(tabs.nth(7)).toHaveText(/Resources/);
-    await expect(tabs.nth(8)).toHaveText(/Features/);
-    await expect(tabs.nth(9)).toHaveText(/Improvements/);
+  test('shows the core layer tabs and overlay buttons', async ({ page }) => {
+    // Post-refactor: tab strip composed of single buttons + LayerMenu triggers.
+    // Required tabs: Terrain, Yields (menu), Resources/Features/Improvements.
+    // Optional tabs (gated on available_categories): Upkeep, Workforce, Staffing.
+    await expect(page.getByRole('button', { name: /^Terrain$/ })).toBeVisible();
+    await expect(page.getByRole('button', { name: /^Yields/ })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Resources' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Features' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Improvements' })).toBeVisible();
   });
 
   test('Resources tab shows roster + chips', async ({ page }) => {
@@ -50,8 +53,9 @@ test.describe('Filter persistence', () => {
     await page.locator('.roster-row').first().click();
     await expect(page.locator('.filter-strip')).toBeVisible();
 
-    // Switch to Food layer (a thematic tab)
-    await page.getByRole('button', { name: /Food yield/ }).click();
+    // Switch to a Yields sub-layer via the LayerMenu dropdown.
+    await page.getByRole('button', { name: /^Yields/ }).click();
+    await page.getByRole('menuitem', { name: 'Food' }).click();
 
     // Filter strip + chip still visible
     await expect(page.locator('.filter-strip')).toBeVisible();
