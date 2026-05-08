@@ -78,27 +78,30 @@ def build(out_path: Path) -> Path:
     _add_name(wb, "EffectiveGovApproval", "Politics!$B$2")
 
     # ---- Colony sheet (Treasury + resources) ----
+    # Live layout (status.py): treasury money at B3; resource table at A8:D15
+    # with name | reserve | income/turn | upkeep/turn (delta = income - upkeep).
+    # Money sits in the resource table at row 13 — _treasury finds it by name
+    # for the per-turn delta. HousingCapacity moved out of the resource band
+    # (was at C12, now at C20) so it doesn't get scanned as a stray resource row.
     col = wb.create_sheet("Colony")
-    col["A1"], col["B1"] = "Money", 487
-    col["A2"], col["B2"] = "Money_Delta", -12
+    col["B3"] = 487  # Treasury money — direct read at Colony!B3
     resources = [
-        ("Food", 0, -2),
-        ("Materials", 200, -4),
-        ("Ore", 100, 0),
-        ("Energy", 50, 0),
-        ("Housing", -500, 0),
-        ("He-3", 0, 1),
-        ("Water", 60, -1),
+        ("Food", 0, 0, 2),         # delta = -2
+        ("Materials", 200, 0, 4),  # delta = -4
+        ("Ore", 100, 0, 0),        # delta =  0
+        ("Energy", 50, 0, 0),      # delta =  0
+        ("Housing", -500, 0, 0),   # delta =  0
+        ("Money", 487, 0, 12),     # delta = -12 (also the treasury delta source)
+        ("He-3", 0, 1, 0),         # delta = +1
+        ("Water", 60, 0, 1),       # delta = -1
     ]
-    for i, (name, current, delta) in enumerate(resources, start=4):
+    for i, (name, reserve, income, upkeep) in enumerate(resources, start=8):
         col.cell(row=i, column=1, value=name)
-        col.cell(row=i, column=2, value=current)
-        col.cell(row=i, column=3, value=delta)
-    _add_name(wb, "TreasuryMoney", "Colony!$B$1")
-    _add_name(wb, "TreasuryMoneyDelta", "Colony!$B$2")
-    _add_name(wb, "ResourceFlows", "Colony!$A$4:$C$10")
-    col["A12"], col["B12"], col["C12"] = "Housing", "capacity", 16500
-    _add_name(wb, "HousingCapacity", "Colony!$C$12")
+        col.cell(row=i, column=2, value=reserve)
+        col.cell(row=i, column=3, value=income)
+        col.cell(row=i, column=4, value=upkeep)
+    col["A20"], col["B20"], col["C20"] = "Housing", "capacity", 16500
+    _add_name(wb, "HousingCapacity", "Colony!$C$20")
 
     # ---- Popsim sheet ----
     pop = wb.create_sheet("Popsim")

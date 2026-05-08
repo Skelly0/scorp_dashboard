@@ -87,7 +87,7 @@ def test_avg_satisfaction_zero_pop_guard(wb):
 
 def test_housing_capacity_zero_yields_none_ratio(wb):
     """When capacity is 0, ratio is None (no div-by-zero); pop unchanged."""
-    wb["Colony"]["C12"] = 0
+    wb["Colony"]["C20"] = 0
     result = extract(wb)
     assert result["housing"]["capacity"] == 0
     assert result["housing"]["ratio"] is None

@@ -27,9 +27,12 @@ def test_extract_returns_resource_flow_strip(wb):
     result = extract(wb)
     resources = result["resources"]
     names = [r["name"] for r in resources]
-    assert names == ["Food", "Materials", "Ore", "Energy", "Housing", "He-3", "Water"]
+    # Money sits in the resource table at row 13 in the live layout — _resources
+    # iterates rows 8-15 unfiltered, so it surfaces alongside the rest. The
+    # frontend treasury card and the resource flow strip are separate consumers.
+    assert names == ["Food", "Materials", "Ore", "Energy", "Housing", "Money", "He-3", "Water"]
     assert resources[0] == {"name": "Food", "current": 0, "delta": -2}
-    assert resources[6] == {"name": "Water", "current": 60, "delta": -1}
+    assert resources[7] == {"name": "Water", "current": 60, "delta": -1}
 
 
 def test_extract_returns_overton_window(wb):
