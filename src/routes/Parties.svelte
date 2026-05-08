@@ -7,13 +7,12 @@
   import Band from '../lib/components/Band.svelte';
   import RadarChart from '../lib/components/RadarChart.svelte';
   import Heatmap from '../lib/components/Heatmap.svelte';
+  import { WORLDVIEW_AXES as AXES, AXIS_HIGH_LABELS } from '../lib/worldview.js';
 
   onMount(() => {
     pageTitle.set('Parties');
     if ($meta?.synced_at) loadParties($meta.synced_at);
   });
-
-  const AXES = ['expansion', 'authority', 'corporate', 'technocratic', 'faith', 'materialist'];
 </script>
 
 <section class="px-6 py-5 max-w-[1600px]">
@@ -51,7 +50,7 @@
               </div>
             </div>
             <RadarChart
-              axes={AXES.map((a) => ({ label: a, value: p.stance?.[a] ?? 0 }))}
+              axes={AXES.map((a) => ({ label: AXIS_HIGH_LABELS[a], value: p.stance?.[a] ?? 0 }))}
               size={140}
             />
           </div>

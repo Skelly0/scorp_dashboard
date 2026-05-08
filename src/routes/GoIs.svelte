@@ -9,13 +9,12 @@
   import Heatmap from '../lib/components/Heatmap.svelte';
   import Tag from '../lib/components/Tag.svelte';
   import SubFactionPanel from '../lib/components/SubFactionPanel.svelte';
+  import { WORLDVIEW_AXES as AXES, AXIS_HIGH_LABELS } from '../lib/worldview.js';
 
   onMount(() => {
     pageTitle.set('GoIs');
     if ($meta?.synced_at) loadGois($meta.synced_at);
   });
-
-  const AXES = ['expansion', 'authority', 'corporate', 'technocratic', 'faith', 'materialist'];
 
   /** @type {{goi: string, sf: string} | null} */
   let selected = null;
@@ -75,7 +74,7 @@
           </div>
           <div class="s-card-pad grid grid-cols-[170px_1fr] gap-4">
             <RadarChart
-              axes={AXES.map((a) => ({ label: a, value: g.effective_worldview?.[a] ?? 0 }))}
+              axes={AXES.map((a) => ({ label: AXIS_HIGH_LABELS[a], value: g.effective_worldview?.[a] ?? 0 }))}
               size={170}
             />
             <div class="flex flex-col gap-2">
