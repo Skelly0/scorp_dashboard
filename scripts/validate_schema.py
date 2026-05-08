@@ -102,6 +102,9 @@ SOFT_OPTIONAL_V3_RANGES: list[str] = [
     # worldview locally from PopsimWorldview + Sub-Factions cols C/D.
     "SubFactionGoal",
     "SubFactionNationalShare",
+    # v6 — Improvement catalog (read by extractors/catalog.py via read_named_range;
+    # missing → returns empty improvements list, frontend hides the catalog UI).
+    "ImprovementsCatalog",
 ]
 
 

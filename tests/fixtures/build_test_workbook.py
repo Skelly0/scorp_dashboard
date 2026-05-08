@@ -493,6 +493,64 @@ def build(out_path: Path) -> Path:
         co.cell(row=row, column=27, value=approach)
     _add_name(wb, "CoalitionsBlock", "Coalitions!$A$4:$AA$8")
 
+    # ---- ImprovementsCatalog sheet (soft-optional, v6) ----
+    cat = wb.create_sheet("ImprovementsCatalog")
+    headers = [
+        "Name", "Category",
+        "Mat Cost", "Ore Cost", "Eng Cost", "$ Cost",
+        "Yield: Food", "Yield: Materials", "Yield: Ore", "Yield: Energy",
+        "Yield: Housing", "Yield: Money", "Yield: Helium 3", "Yield: Water",
+        "Yield: Stability", "Yield: Satisfaction All", "Yield: Research",
+        "Upkeep: Energy", "Upkeep: Materials", "Upkeep: Money",
+        "Upkeep: Ore", "Upkeep: Water",
+        "Workforce: Bureaucrats", "Workforce: Capitalists", "Workforce: Engineers",
+        "Workforce: Scientists", "Workforce: Security", "Workforce: Proprietors",
+        "Workforce: Managerial", "Workforce: Botanists",
+        "Workforce: Industrial Workers", "Workforce: Extraction Workers",
+        "Workforce: Service Workers",
+        "Split: Greens", "Split: Cereal", "Split: Vat Protein", "Split: Algal Paste",
+        "Terrain Compatibility (notes)", "Ownership Options (notes)",
+    ]
+    for j, h in enumerate(headers, start=1):
+        cat.cell(row=1, column=j, value=h)
+
+    # Row 2: a normal Energy improvement (Solar Array Field).
+    solar = ["Solar Array Field", "Energy",
+             100, 0, 50, 200,
+             0, 0, 0, 200, 0, 0, 0, 0, 0, 0, 0,
+             0, 1, 0, 0, 0,
+             0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0,
+             None, None, None, None,
+             "Mare Plain · Highlands", "Public · Private"]
+    for j, v in enumerate(solar, start=1):
+        cat.cell(row=2, column=j, value=v)
+
+    # Row 3: blank-category Hydroponic Farm (forces categorizer regex fallback downstream).
+    farm = ["Hydroponic Farm", None,
+            150, 0, 100, 250,
+            500, 0, 0, 0, 0, 0, 0, -50, 0, 0, 0,
+            10, 5, 0, 0, 20,
+            0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0,
+            0.6, 0.0, 0.4, 0.0,
+            "Mare Plain", "Public"]
+    for j, v in enumerate(farm, start=1):
+        cat.cell(row=3, column=j, value=v)
+
+    # Row 4: unknown-category row (forces stdout warning + slug → 'other').
+    weird = ["Heat Pump", "Power",
+             50, 0, 25, 80,
+             0, 0, 0, -10, 0, 0, 0, 0, 0, 0, 0,
+             5, 0, 0, 0, 0,
+             0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+             None, None, None, None,
+             None, None]
+    for j, v in enumerate(weird, start=1):
+        cat.cell(row=4, column=j, value=v)
+
+    # Row 5: blank-name (must be skipped by extractor — convention 8).
+
+    _add_name(wb, "ImprovementsCatalog", "ImprovementsCatalog!$A$1:$AM$5")
+
     wb.save(out_path)
     return out_path
 
