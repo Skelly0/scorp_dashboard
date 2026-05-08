@@ -3,6 +3,7 @@
   import { RESOURCE_CODES, FEATURE_CODES } from '../map-codes.js';
   import { categoryFor, categorySlugFor } from '../improvement-categories.js';
   import { goiColor, classColor } from '../faction-colors.js';
+  import { ZOOM_DEFAULT, clampZoom } from '../map-zoom.js';
 
   /** @type {{tiles: any[], width: number, height: number, palettes: any}} */
   export let mapData;
@@ -11,16 +12,29 @@
   /** active overlay tab name; controls overlay visibility/promotion (today equals `layer`). */
   export let tab = 'terrain';
   export let filters = { resource: null, feature: null, improvement: null };
+  export let zoom = ZOOM_DEFAULT;
 
-  const TILE_SIZE = 16;
+  const BASE_TILE = 16;          // drawing-coordinate size; never changes.
   const dispatch = createEventDispatcher();
 
   let canvas;
   let focused = { x: 0, y: 0 };
+  let viewportClientWidth = 0;
 
-  $: width = mapData.width * TILE_SIZE;
-  $: height = mapData.height * TILE_SIZE;
-  $: viewBox = `0 0 ${width} ${height}`;
+  $: nativeMapW = mapData.width * BASE_TILE;
+  $: nativeMapH = mapData.height * BASE_TILE;
+  $: fitScale = viewportClientWidth > 0
+    ? viewportClientWidth / nativeMapW
+    : 1;
+  $: displayScale = (() => {
+    const z = clampZoom(zoom);
+    const raw = fitScale * z;
+    // Hard floor protects against pathological narrow viewports.
+    return Math.max(0.25, raw);
+  })();
+  $: contentCssW = nativeMapW * displayScale;
+  $: contentCssH = nativeMapH * displayScale;
+  $: viewBox = `0 0 ${nativeMapW} ${nativeMapH}`; // unchanged shape, BASE_TILE coords
   $: resourcePal = mapData.palettes.resource ?? {};
   $: featurePal  = mapData.palettes.feature  ?? {};
   $: improvementCatPal = mapData.palettes.improvement_category ?? {};
@@ -34,7 +48,7 @@
     if (filters.improvement) return improvementCatPal[filters.improvement] ?? '#ffb000';
     return '#ffb000';
   })();
-  $: drawTerrain(mapData, layer, layerMax, filters);
+  $: drawTerrain(mapData, layer, layerMax, filters, displayScale);
 
   function tileMatches(t, f) {
     if (f.resource && t.resource !== f.resource) return false;
@@ -80,31 +94,43 @@
     return theme.bg;
   }
 
-  async function drawTerrain(mapData, layer, layerMax, filters) {
+  async function drawTerrain(mapData, layer, layerMax, filters, displayScale) {
     if (!mapData) return;
     await tick();
     if (!canvas) return;
-    // Canvas 2D `fillStyle` doesn't resolve CSS custom properties (var(--…)),
-    // so pre-resolve theme tokens against the live element. Without this, every
-    // color-mix() string is invalid and every tile renders as the previous
-    // valid fillStyle (or default black) — i.e. no per-yield gradient.
+
+    const dpr = window.devicePixelRatio || 1;
+    const cssW = mapData.width * BASE_TILE * displayScale;
+    const cssH = mapData.height * BASE_TILE * displayScale;
+
+    // Backing store sized to logical-pixel × DPR for crisp rendering.
+    canvas.width = Math.round(cssW * dpr);
+    canvas.height = Math.round(cssH * dpr);
+
+    // Pre-resolve theme tokens (CLAUDE.md gotcha #14 — canvas fillStyle does
+    // not resolve var(--…)).
     const styles = getComputedStyle(canvas);
     const theme = {
       bg: styles.getPropertyValue('--bg').trim() || '#0a0a0a',
       crit: styles.getPropertyValue('--crit').trim() || '#ff4d4d',
     };
+
     const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, width, height);
+    // One transform handles both display-scale and DPR; drawing code stays in
+    // BASE_TILE coordinates regardless of zoom.
+    ctx.setTransform(displayScale * dpr, 0, 0, displayScale * dpr, 0, 0);
+    ctx.clearRect(0, 0, mapData.width * BASE_TILE, mapData.height * BASE_TILE);
+
     for (const t of mapData.tiles) {
       ctx.fillStyle = tileColor(t, layer, mapData.palettes, layerMax, theme);
-      ctx.fillRect(t.x * TILE_SIZE, t.y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      ctx.fillRect(t.x * BASE_TILE, t.y * BASE_TILE, BASE_TILE, BASE_TILE);
     }
-    // Dim non-matching tiles when a filter is active.
+
     if (filters && (filters.resource || filters.feature || filters.improvement)) {
       ctx.fillStyle = bgWithAlpha(theme.bg);
       for (const t of mapData.tiles) {
         if (!tileMatches(t, filters)) {
-          ctx.fillRect(t.x * TILE_SIZE, t.y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+          ctx.fillRect(t.x * BASE_TILE, t.y * BASE_TILE, BASE_TILE, BASE_TILE);
         }
       }
     }
@@ -119,6 +145,27 @@
   }
 
   function handleKey(e) {
+    // Don't intercept browser zoom or any modifier-prefixed shortcuts.
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+    // Zoom shortcuts.
+    if (e.key === '+' || e.key === '=') {
+      dispatch('zoomstep', { delta: +1 });
+      e.preventDefault();
+      return;
+    }
+    if (e.key === '-' || e.key === '_') {
+      dispatch('zoomstep', { delta: -1 });
+      e.preventDefault();
+      return;
+    }
+    if (e.key === '0') {
+      dispatch('zoomstep', { reset: true });
+      e.preventDefault();
+      return;
+    }
+
+    // Existing arrow + Enter/Space behaviour follows.
     let { x, y } = focused;
     if (e.key === 'ArrowLeft') x = Math.max(0, x - 1);
     else if (e.key === 'ArrowRight') x = Math.min(mapData.width - 1, x + 1);
@@ -155,149 +202,156 @@
 </script>
 
 <div class="map-canvas-wrap">
-  <div class="relative inline-block border-4 border-border" style="width: {width}px; height: {height}px;">
-    <canvas
-      bind:this={canvas}
-      {width}
-      {height}
-      role="application"
-      aria-label="Colony map: {mapData.width} by {mapData.height} grid"
-      tabindex="0"
-      on:mousemove={handleMove}
-      on:click={handleClick}
-      on:keydown={handleKey}
-      class="block w-full h-full cursor-crosshair focus:outline focus:outline-2 focus:outline-accent"
-    ></canvas>
-    <svg {viewBox} class="absolute inset-0 pointer-events-none w-full h-full">
-      <!-- Improvement / feature icons. Stroke renders behind fill via paint-order
-           so icons stay legible against any terrain colour or theme. -->
-      {#each mapData.tiles as t}
-        {#if t.improvement}
-          {#if tab === 'improvements'}
-            {@const cat = categoryFor(t.improvement)}
-            {@const fill = ownerColor(t.improvement.owner) ?? improvementCatPal[cat.slug] ?? '#ffffff'}
-            <text
-              x={t.x * TILE_SIZE + TILE_SIZE / 2}
-              y={t.y * TILE_SIZE + TILE_SIZE / 2}
-              font-size={TILE_SIZE * 0.85}
-              font-weight="900"
-              text-anchor="middle"
-              dominant-baseline="central"
-              class="map-glyph map-glyph--improvement"
-              fill={fill}
-            >{cat.icon}</text>
-          {:else}
-            <text
-              x={t.x * TILE_SIZE + TILE_SIZE / 2}
-              y={t.y * TILE_SIZE + TILE_SIZE / 2}
-              font-size={TILE_SIZE * 0.85}
-              font-weight="900"
-              text-anchor="middle"
-              dominant-baseline="central"
-              class="map-glyph map-glyph--improvement"
-            >▣</text>
+  <div
+    class="map-viewport relative border-4 border-border focus:outline focus:outline-2 focus:outline-accent"
+    bind:clientWidth={viewportClientWidth}
+    tabindex="0"
+    on:keydown={handleKey}
+  >
+    <div
+      class="map-content relative"
+      style="width: {contentCssW}px; height: {contentCssH}px;"
+    >
+      <canvas
+        bind:this={canvas}
+        style="width: 100%; height: 100%;"
+        role="application"
+        aria-label="Colony map: {mapData.width} by {mapData.height} grid"
+        on:mousemove={handleMove}
+        on:click={handleClick}
+        class="block w-full h-full cursor-crosshair"
+      ></canvas>
+      <svg {viewBox} class="absolute inset-0 pointer-events-none w-full h-full">
+        <!-- Improvement / feature icons. Stroke renders behind fill via paint-order
+             so icons stay legible against any terrain colour or theme. -->
+        {#each mapData.tiles as t}
+          {#if t.improvement}
+            {#if tab === 'improvements'}
+              {@const cat = categoryFor(t.improvement)}
+              {@const fill = ownerColor(t.improvement.owner) ?? improvementCatPal[cat.slug] ?? '#ffffff'}
+              <text
+                x={t.x * BASE_TILE + BASE_TILE / 2}
+                y={t.y * BASE_TILE + BASE_TILE / 2}
+                font-size={BASE_TILE * 0.85}
+                font-weight="900"
+                text-anchor="middle"
+                dominant-baseline="central"
+                class="map-glyph map-glyph--improvement"
+                fill={fill}
+              >{cat.icon}</text>
+            {:else}
+              <text
+                x={t.x * BASE_TILE + BASE_TILE / 2}
+                y={t.y * BASE_TILE + BASE_TILE / 2}
+                font-size={BASE_TILE * 0.85}
+                font-weight="900"
+                text-anchor="middle"
+                dominant-baseline="central"
+                class="map-glyph map-glyph--improvement"
+              >▣</text>
+            {/if}
           {/if}
-        {/if}
-      {/each}
-      <!-- Resource overlay (top-right). Chip-style on Resources tab; dot-style elsewhere. -->
-      {#each mapData.tiles as t}
-        {#if t.resource}
-          {#if tab === 'resources'}
-            <g>
-              <rect
-                x={t.x * TILE_SIZE + TILE_SIZE - 11}
-                y={t.y * TILE_SIZE + 1}
-                width="10"
-                height="8"
+        {/each}
+        <!-- Resource overlay (top-right). Chip-style on Resources tab; dot-style elsewhere. -->
+        {#each mapData.tiles as t}
+          {#if t.resource}
+            {#if tab === 'resources'}
+              <g>
+                <rect
+                  x={t.x * BASE_TILE + BASE_TILE - 11}
+                  y={t.y * BASE_TILE + 1}
+                  width="10"
+                  height="8"
+                  fill={resourcePal[t.resource] ?? '#ffffff'}
+                  stroke="rgba(0,0,0,0.6)"
+                  stroke-width="0.5"
+                />
+                <text
+                  x={t.x * BASE_TILE + BASE_TILE - 6}
+                  y={t.y * BASE_TILE + 5.2}
+                  font-size="6"
+                  font-weight="900"
+                  text-anchor="middle"
+                  dominant-baseline="central"
+                  fill="#1a1a1a"
+                >{RESOURCE_CODES[t.resource] ?? '?'}</text>
+              </g>
+            {:else}
+              <circle
+                cx={t.x * BASE_TILE + BASE_TILE - 4}
+                cy={t.y * BASE_TILE + 4}
+                r="2.5"
                 fill={resourcePal[t.resource] ?? '#ffffff'}
                 stroke="rgba(0,0,0,0.6)"
                 stroke-width="0.5"
               />
-              <text
-                x={t.x * TILE_SIZE + TILE_SIZE - 6}
-                y={t.y * TILE_SIZE + 5.2}
-                font-size="6"
-                font-weight="900"
-                text-anchor="middle"
-                dominant-baseline="central"
-                fill="#1a1a1a"
-              >{RESOURCE_CODES[t.resource] ?? '?'}</text>
-            </g>
-          {:else}
-            <circle
-              cx={t.x * TILE_SIZE + TILE_SIZE - 4}
-              cy={t.y * TILE_SIZE + 4}
-              r="2.5"
-              fill={resourcePal[t.resource] ?? '#ffffff'}
-              stroke="rgba(0,0,0,0.6)"
-              stroke-width="0.5"
-            />
+            {/if}
           {/if}
-        {/if}
-      {/each}
-      <!-- Feature overlay (top-left). Chip-style on Features tab; dot-style elsewhere. -->
-      {#each mapData.tiles as t}
-        {#if t.feature}
-          {#if tab === 'features'}
-            <g>
+        {/each}
+        <!-- Feature overlay (top-left). Chip-style on Features tab; dot-style elsewhere. -->
+        {#each mapData.tiles as t}
+          {#if t.feature}
+            {#if tab === 'features'}
+              <g>
+                <rect
+                  x={t.x * BASE_TILE + 1}
+                  y={t.y * BASE_TILE + 1}
+                  width="10"
+                  height="8"
+                  fill={featurePal[t.feature] ?? '#ffffff'}
+                  stroke="rgba(0,0,0,0.6)"
+                  stroke-width="0.5"
+                />
+                <text
+                  x={t.x * BASE_TILE + 6}
+                  y={t.y * BASE_TILE + 5.2}
+                  font-size="6"
+                  font-weight="900"
+                  text-anchor="middle"
+                  dominant-baseline="central"
+                  fill="#1a1a1a"
+                >{FEATURE_CODES[t.feature] ?? '?'}</text>
+              </g>
+            {:else}
               <rect
-                x={t.x * TILE_SIZE + 1}
-                y={t.y * TILE_SIZE + 1}
-                width="10"
-                height="8"
+                x={t.x * BASE_TILE + 1.5}
+                y={t.y * BASE_TILE + 1.5}
+                width="5"
+                height="5"
                 fill={featurePal[t.feature] ?? '#ffffff'}
                 stroke="rgba(0,0,0,0.6)"
                 stroke-width="0.5"
               />
-              <text
-                x={t.x * TILE_SIZE + 6}
-                y={t.y * TILE_SIZE + 5.2}
-                font-size="6"
-                font-weight="900"
-                text-anchor="middle"
-                dominant-baseline="central"
-                fill="#1a1a1a"
-              >{FEATURE_CODES[t.feature] ?? '?'}</text>
-            </g>
-          {:else}
-            <rect
-              x={t.x * TILE_SIZE + 1.5}
-              y={t.y * TILE_SIZE + 1.5}
-              width="5"
-              height="5"
-              fill={featurePal[t.feature] ?? '#ffffff'}
-              stroke="rgba(0,0,0,0.6)"
-              stroke-width="0.5"
-            />
-          {/if}
-        {/if}
-      {/each}
-      <!-- Focus highlight -->
-      <rect
-        x={focused.x * TILE_SIZE}
-        y={focused.y * TILE_SIZE}
-        width={TILE_SIZE}
-        height={TILE_SIZE}
-        fill="none"
-        stroke="var(--accent)"
-        stroke-width="2"
-      />
-      {#if anyFilterActive}
-        {#each mapData.tiles as t}
-          {#if tileMatches(t, filters)}
-            <rect
-              x={t.x * TILE_SIZE + 0.5}
-              y={t.y * TILE_SIZE + 0.5}
-              width={TILE_SIZE - 1}
-              height={TILE_SIZE - 1}
-              fill="none"
-              stroke={ringColor}
-              stroke-width="2"
-            />
+            {/if}
           {/if}
         {/each}
-      {/if}
-    </svg>
+        <!-- Focus highlight -->
+        <rect
+          x={focused.x * BASE_TILE}
+          y={focused.y * BASE_TILE}
+          width={BASE_TILE}
+          height={BASE_TILE}
+          fill="none"
+          stroke="var(--accent)"
+          stroke-width="2"
+        />
+        {#if anyFilterActive}
+          {#each mapData.tiles as t}
+            {#if tileMatches(t, filters)}
+              <rect
+                x={t.x * BASE_TILE + 0.5}
+                y={t.y * BASE_TILE + 0.5}
+                width={BASE_TILE - 1}
+                height={BASE_TILE - 1}
+                fill="none"
+                stroke={ringColor}
+                stroke-width="2"
+              />
+            {/if}
+          {/each}
+        {/if}
+      </svg>
+    </div>
   </div>
 
   {#if layer !== 'terrain'}

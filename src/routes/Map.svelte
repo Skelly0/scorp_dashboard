@@ -5,11 +5,22 @@
   import { pageTitle } from '../lib/page-title.js';
   import { categorySlugFor, CATEGORIES } from '../lib/improvement-categories.js';
   import { RESOURCE_CODES, FEATURE_CODES } from '../lib/map-codes.js';
+  import {
+    ZOOM_MIN,
+    ZOOM_MAX,
+    ZOOM_DEFAULT,
+    stepZoom,
+    resetZoom,
+    readZoom,
+    writeZoom,
+  } from '../lib/map-zoom.js';
   import Band from '../lib/components/Band.svelte';
   import MapCanvas from '../lib/components/MapCanvas.svelte';
   import RosterPanel from '../lib/components/RosterPanel.svelte';
 
   let layer = 'terrain';
+  let zoom = ZOOM_DEFAULT;   // overwritten in onMount once localStorage is available
+  let zoomReady = false;     // gates the persistence reactive so we don't overwrite stored value with the default on first tick
   let hoverTile = null;
   let pinnedTile = null;
   let filters = { resource: null, feature: null, improvement: null };
@@ -40,7 +51,11 @@
   onMount(() => {
     pageTitle.set('Map');
     if ($meta?.synced_at) loadMap($meta.synced_at);
+    zoom = readZoom();
+    zoomReady = true;
   });
+
+  $: if (zoomReady) writeZoom(zoom);
 
   function handlePageKey(e) {
     if (e.key !== 'Escape') return;
@@ -86,9 +101,30 @@
           aria-pressed={layer === l.value}
           on:click={() => (layer = l.value)}
         >
-          {l.label}{THEMATIC_LAYERS.some(t => t.value === l.value) && l.value !== 'terrain' ? ' yield' : ''}
+          {l.label}{THEMATIC_LAYERS.some(lyr => lyr.value === l.value) && l.value !== 'terrain' ? ' yield' : ''}
         </button>
       {/each}
+
+      <div class="s-zoom" role="group" aria-label="Map zoom">
+        <button
+          type="button"
+          aria-label="Zoom out"
+          disabled={zoom <= ZOOM_MIN}
+          on:click={() => { zoom = stepZoom(zoom, -1); }}
+        >−</button>
+        <button
+          type="button"
+          aria-label="Reset zoom to {Math.round(ZOOM_DEFAULT * 100)} percent"
+          aria-pressed={zoom === ZOOM_DEFAULT}
+          on:click={() => { zoom = resetZoom(); }}
+        >{Math.round(zoom * 100)}%</button>
+        <button
+          type="button"
+          aria-label="Zoom in"
+          disabled={zoom >= ZOOM_MAX}
+          on:click={() => { zoom = stepZoom(zoom, +1); }}
+        >+</button>
+      </div>
     </div>
 
     {#if activeFilterCount > 0}
@@ -125,8 +161,13 @@
         {layer}
         tab={layer}
         {filters}
+        {zoom}
         on:hover={(e) => (hoverTile = e.detail)}
         on:pin={(e) => (pinnedTile = e.detail)}
+        on:zoomstep={(e) => {
+          if (e.detail.reset) zoom = resetZoom();
+          else zoom = stepZoom(zoom, e.detail.delta);
+        }}
       />
 
       <aside class="flex flex-col gap-3">
@@ -212,7 +253,7 @@
     </div>
 
     <div class="text-muted text-[10px] uppercase tracking-widest mt-3">
-      ▣ Improvement · ↗ Resource · ↖ Feature · Color = {layer === 'terrain' ? 'biome' : (THEMATIC_LAYERS.some(t => t.value === layer) ? layer + ' magnitude' : layer)}
+      ▣ Improvement · ↗ Resource · ↖ Feature · Color = {layer === 'terrain' ? 'biome' : (THEMATIC_LAYERS.some(lyr => lyr.value === layer) ? layer + ' magnitude' : layer)}
     </div>
   {/if}
 </section>

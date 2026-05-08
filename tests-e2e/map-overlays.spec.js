@@ -7,7 +7,9 @@ test.describe('Map overlay system', () => {
   });
 
   test('shows ten layer tabs', async ({ page }) => {
-    const tabs = page.locator('.layer-tabs button');
+    // Scope to immediate-child buttons so the `.s-zoom` segmented control
+    // (added inside `.layer-tabs` for the resize feature) doesn't inflate the count.
+    const tabs = page.locator('.layer-tabs > button');
     await expect(tabs).toHaveCount(10);
     await expect(tabs.nth(7)).toHaveText(/Resources/);
     await expect(tabs.nth(8)).toHaveText(/Features/);
