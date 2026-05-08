@@ -100,6 +100,9 @@ SOFT_OPTIONAL_V3_RANGES: list[str] = [
     "SubFactionGoal",
     "SubFactionNationalShare",
     "SubFactionDetail",
+    # v6 — Improvement catalog (read by extractors/catalog.py via read_named_range;
+    # missing → returns empty improvements list, frontend hides the catalog UI).
+    "ImprovementsCatalog",
 ]
 
 
