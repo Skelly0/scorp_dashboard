@@ -112,7 +112,7 @@
           : '—'}
       />
       <StatTile
-        label="Deaths / turn"
+        label="Deaths / year"
         value={$status.demographics?.total_deaths != null
           ? Math.round($status.demographics.total_deaths).toLocaleString()
           : '—'}
@@ -132,7 +132,7 @@
       />
     </div>
 
-    <Band num="03" title="Resource Flows" meta="per-turn net" />
+    <Band num="03" title="Resource Flows" meta="per-year net" />
     <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
       {#each $status.resources as r}
         <StatTile

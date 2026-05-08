@@ -309,6 +309,17 @@ def build(out_path: Path) -> Path:
          "Prioritise extraction over downstream value.", 0.35,
          "", "", "", 0.4, 0.20),
     ]
+    # 6-axis effective stance per sub-faction (Expn, Auth, Corp, Tech, Faith,
+    # Mat) — sourced from the live wb's Sub-Factions cols N:S. Distinct values
+    # make it obvious in tests that the worldview comes straight from this
+    # range and not from any baseline computation.
+    sf_stances = {
+        "Constitutional Loyalists": (4.0, 4.5, 4.0, 4.5, 5.0, 5.5),
+        "Reformist Founders":       (3.5, 5.0, 4.0, 4.0, 4.5, 5.0),
+        "Hardliner Founders":       (5.0, 6.2, 4.4, 4.1, 3.8, 3.5),
+        "Industrialists":           (5.5, 3.5, 6.5, 4.0, 3.0, 2.5),
+        "Extraction Cartels":       (6.5, 3.0, 6.5, 4.5, 3.5, 2.0),
+    }
     for i, (parent, sf_name, goal_axis, goal_delta, goal_text, infl,
             m1, m2, m3, appr, nat_share) in enumerate(sub_factions, start=24):
         pol.cell(row=i, column=21, value=parent)       # U  (live col A)
@@ -324,6 +335,10 @@ def build(out_path: Path) -> Path:
         # Col AE (live col K) intentionally blank — live wb has Raw Nat. Weight
         # there, derived; no named range exposes it.
         pol.cell(row=i, column=32, value=nat_share)    # AF (live col L)
+        stance = sf_stances.get(sf_name)
+        if stance is not None:
+            for k, v in enumerate(stance):
+                pol.cell(row=i, column=33 + k, value=v)  # AG..AL (live col N..S)
     _add_name(wb, "SubFactionsBlock", "Politics!$U$24:$AF$36")
     _add_name(wb, "SubFactionGoals", "Politics!$U$24:$Y$36")        # A:E
     _add_name(wb, "SubFactionGoal", "Politics!$Y$24:$Y$36")          # E
@@ -331,6 +346,7 @@ def build(out_path: Path) -> Path:
     _add_name(wb, "SubFactionMinorGoals", "Politics!$AA$24:$AC$36") # G:I
     _add_name(wb, "SubFactionApprovals", "Politics!$AD$24:$AD$36")  # J
     _add_name(wb, "SubFactionNationalShare", "Politics!$AF$24:$AF$36")  # L
+    _add_name(wb, "SubFactionStances", "Politics!$AG$24:$AL$36")    # N:S
 
     # GoI Modifiers: PopCaptureBase B5:E15 (11 classes × 4 GoIs)
     gm = wb.create_sheet("GoI Modifiers")

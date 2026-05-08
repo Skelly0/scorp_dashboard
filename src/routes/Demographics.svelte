@@ -57,7 +57,7 @@
 
   $: predictedGrowthDisplay = predictedGrowth == null
     ? null
-    : (predictedGrowth >= 0 ? '+' : '') + predictedGrowth.toLocaleString() + ' / turn';
+    : (predictedGrowth >= 0 ? '+' : '') + predictedGrowth.toLocaleString() + ' / year';
 
   // Workforce fill from derived store.
   $: workforceFill = $workforce?.fillRatio;
@@ -116,8 +116,8 @@
             <th>Class</th>
             <th class="num">Pop</th>
             <th class="num">Mortality</th>
-            <th class="num">Births/turn</th>
-            <th class="num">Deaths/turn</th>
+            <th class="num">Births/year</th>
+            <th class="num">Deaths/year</th>
             <th class="num">Mobility In</th>
             <th class="num">Mobility Out</th>
             <th class="num">Demand</th>

@@ -6,13 +6,12 @@
   import { classColor } from '../lib/faction-colors.js';
   import Band from '../lib/components/Band.svelte';
   import RadarChart from '../lib/components/RadarChart.svelte';
+  import { WORLDVIEW_AXES as AXES, AXIS_HIGH_LABELS } from '../lib/worldview.js';
 
   onMount(() => {
     pageTitle.set('Population');
     if ($meta?.synced_at) loadPopulation($meta.synced_at);
   });
-
-  const AXES = ['expansion', 'authority', 'corporate', 'technocratic', 'faith', 'materialist'];
 
   $: totalPop = $population?.classes.reduce((a, c) => a + (c.pop ?? 0), 0) ?? 0;
 </script>
@@ -71,7 +70,7 @@
           </div>
           <div style="padding: 4px 8px 12px;">
             <RadarChart
-              axes={AXES.map((a) => ({ label: a, value: c.worldview?.[a] ?? 0 }))}
+              axes={AXES.map((a) => ({ label: AXIS_HIGH_LABELS[a], value: c.worldview?.[a] ?? 0 }))}
               size={170}
             />
           </div>

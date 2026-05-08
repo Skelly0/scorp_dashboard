@@ -1,6 +1,7 @@
 <script>
   import RadarChart from './RadarChart.svelte';
   import { goiColor } from '../faction-colors.js';
+  import { WORLDVIEW_AXES as AXES, AXIS_HIGH_LABELS } from '../worldview.js';
   import { createEventDispatcher } from 'svelte';
 
   /** @type {{name: string, goal: string|null, influence: number|null,
@@ -11,8 +12,6 @@
   export let parent = null;
 
   const dispatch = createEventDispatcher();
-
-  const AXES = ['expansion', 'authority', 'corporate', 'technocratic', 'faith', 'materialist'];
 
   function close() { dispatch('close'); }
 
@@ -28,10 +27,10 @@
   $: hasParentWorldview = parent?.effective_worldview &&
     AXES.every((a) => parent.effective_worldview[a] != null);
   $: subfactionAxes = hasSubfactionWorldview
-    ? AXES.map((a) => ({ label: a, value: subfaction.effective_worldview[a] }))
+    ? AXES.map((a) => ({ label: AXIS_HIGH_LABELS[a], value: subfaction.effective_worldview[a] }))
     : null;
   $: parentAxes = hasParentWorldview
-    ? AXES.map((a) => ({ label: a, value: parent.effective_worldview[a] }))
+    ? AXES.map((a) => ({ label: AXIS_HIGH_LABELS[a], value: parent.effective_worldview[a] }))
     : null;
 </script>
 
