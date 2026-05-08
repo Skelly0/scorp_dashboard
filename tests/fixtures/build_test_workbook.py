@@ -453,6 +453,38 @@ def build(out_path: Path) -> Path:
     imp.cell(row=5, column=43, value="Corporate")      # Ownership Type
     imp.cell(row=5, column=44, value="Lunar Extractives")  # Owner
 
+    # === New optional sheets for Map page (staffing + upkeep + workforce) ===
+    # Spec: docs/superpowers/specs/2026-05-07-map-staffing-and-layer-dropdowns-design.md
+    # All sheets are 40x40 sheet-keyed reads (no named ranges). Soft-fails on absence.
+
+    # Staffing Efficiency: 40x40 grid of 0.0-1.0 floats. Seed a couple of cells.
+    staffing_ws = wb.create_sheet("Staffing Efficiency")
+    staffing_ws.cell(row=10, column=10, value=0.76)
+    staffing_ws.cell(row=11, column=10, value=0.42)
+    staffing_ws.cell(row=12, column=10, value=1.0)
+
+    # Upkeep - <Resource>: 6 sheets of positive floats. Seed one cell per sheet.
+    UPKEEP_RESOURCES = ["Food", "Water", "Energy", "Materials", "Ore", "Housing"]
+    for resource in UPKEEP_RESOURCES:
+        ws = wb.create_sheet(f"Upkeep - {resource}")
+        ws.cell(row=10, column=10, value=1.5)
+
+    # Workforce - <Class>: one sheet per class in ClassTable.
+    # Names sourced from the fixture's ClassTable (rows 56-66 of Reference) — the spec
+    # mandates ClassTable is the source of truth for workforce sheet names; do NOT
+    # hardcode a parallel list that can drift.
+    # Excel's 31-char sheet-name limit means class names >=20 chars produce
+    # truncated sheet names — openpyxl truncates silently. Pre-truncating here
+    # makes that explicit. The extractor in Task 5 looks up the FULL name from
+    # ClassTable, so a truncated sheet naturally exercises the soft-fail path
+    # for that class. Today only "Agricultural Workers" hits this in the fixture.
+    workforce_classes = [name for (name, _tier, _pop, _weight) in classes]
+    for cls in workforce_classes:
+        sheet_name = f"Workforce - {cls}"[:31]
+        ws = wb.create_sheet(sheet_name)
+        ws.cell(row=10, column=10, value=12)  # 12 workers on tile (9, 9) — note 1-indexed
+        ws.cell(row=11, column=10, value=0)   # explicit zero to validate drop-zero behaviour
+
     # Lookup helper for terrain → palette colour.
     pal = wb.create_sheet("MapPalette")
     palette = [

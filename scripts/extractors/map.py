@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from extractors._common import coerce_number, read_named_range
+from extractors._common import coerce_number, read_named_range, read_grid_optional
 
 WIDTH = 40
 HEIGHT = 40
@@ -17,6 +17,15 @@ YIELD_SHEETS = {
     "water": "Yield - Water",
 }
 
+UPKEEP_SHEETS = {
+    "food": "Upkeep - Food",
+    "materials": "Upkeep - Materials",
+    "ore": "Upkeep - Ore",
+    "energy": "Upkeep - Energy",
+    "housing": "Upkeep - Housing",
+    "water": "Upkeep - Water",
+}
+
 
 def extract(wb) -> dict[str, Any]:
     terrain = _read_grid(wb, "Terrain")
@@ -25,6 +34,32 @@ def extract(wb) -> dict[str, Any]:
     slots = _read_grid(wb, "Slots")
     improvements = _read_grid(wb, "Improvements")
     yields = {key: _read_grid(wb, sheet) for key, sheet in YIELD_SHEETS.items()}
+
+    missing_sheets: list[dict[str, str]] = []
+
+    def _track(sheet_name: str, grid):
+        if grid is None:
+            missing_sheets.append({"kind": "missing_sheet", "sheet": sheet_name})
+        return grid
+
+    staffing_grid = _track("Staffing Efficiency", read_grid_optional(wb, "Staffing Efficiency", WIDTH, HEIGHT))
+    upkeep_grids = {
+        key: _track(sheet, read_grid_optional(wb, sheet, WIDTH, HEIGHT))
+        for key, sheet in UPKEEP_SHEETS.items()
+    }
+    upkeep_present = {key: g for key, g in upkeep_grids.items() if g is not None}
+
+    # Workforce: read class names from ClassTable (same source pops.py uses) and
+    # try to read a Workforce - <name> sheet for each. Missing → silent skip on
+    # tile data, but recorded in missing_sheets so the frontend can surface it.
+    classtable = read_named_range(wb, "ClassTable")
+    class_names = [row[0] for row in classtable if row and row[0] not in (None, "")]
+    workforce_grids = {}
+    for name in class_names:
+        sheet_name = f"Workforce - {name}"
+        grid = _track(sheet_name, read_grid_optional(wb, sheet_name, WIDTH, HEIGHT))
+        if grid is not None:
+            workforce_grids[name] = grid
 
     manifest = _read_improvement_manifest(wb)
 
@@ -37,6 +72,22 @@ def extract(wb) -> dict[str, Any]:
             slots_v = _cell_int(slots, x, y)
             imp_id = _cell_str(improvements, x, y)
             tile_yields = {key: coerce_number(grid[y][x]) or 0 for key, grid in yields.items()}
+            tile_staffing = coerce_number(staffing_grid[y][x]) if staffing_grid is not None else None
+            tile_upkeep = (
+                {key: coerce_number(g[y][x]) for key, g in upkeep_present.items()}
+                if upkeep_present
+                else None
+            )
+            if workforce_grids:
+                tile_workforce: dict[str, int] | None = {}
+                for name, grid in workforce_grids.items():
+                    v = coerce_number(grid[y][x])
+                    if v is not None and v >= 1:
+                        tile_workforce[name] = int(v)
+                if not tile_workforce:
+                    tile_workforce = None
+            else:
+                tile_workforce = None
             tiles.append({
                 "x": x,
                 "y": y,
@@ -46,6 +97,9 @@ def extract(wb) -> dict[str, Any]:
                 "slots": slots_v,
                 "improvement": _improvement_for(imp_id, x, y, manifest),
                 "yields": tile_yields,
+                "staffing": tile_staffing,
+                "upkeep": tile_upkeep,
+                "workforce": tile_workforce,
             })
 
     return {
@@ -58,6 +112,12 @@ def extract(wb) -> dict[str, Any]:
             "feature": _palette(wb, "FeaturePalette", FEATURE_PALETTE),
             "improvement_category": _palette(wb, "ImprovementCategoryPalette", IMPROVEMENT_CATEGORY_PALETTE),
         },
+        "available_categories": {
+            "staffing":  staffing_grid is not None,
+            "upkeep":    bool(upkeep_present),
+            "workforce": bool(workforce_grids),
+        },
+        "missing_sheets": missing_sheets,
     }
 
 
