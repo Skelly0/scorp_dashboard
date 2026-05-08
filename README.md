@@ -45,14 +45,14 @@ npm run test:e2e
    - `sync.yml` runs hourly + on demand → writes JSON → commits.
    - `deploy-pages.yml` fires on `main` pushes (path-filtered) → builds → publishes.
 
-## Pages (8)
+## Pages (7)
 
 | Page | Route | Notes |
 |---|---|---|
 | Status | `/` | Treasury, Stab/Crisis, resources, Overton, situations banner |
 | Map | `/#/map` | 40×40 interactive, terrain base + icons + heatmap toggle |
 | Population | `/#/population` | 11 classes, table + per-class worldview radars |
-| Pops Detailed | `/#/pops` | Per-class drilldown — income, wealth, status, satisfaction |
+| Demographics | `/#/demographics` | Pop/housing/food vitals + Class Vitals table with click-to-drilldown per-class detail (income, wealth, status, workforce) |
 | GoIs | `/#/gois` | 4 panels + sub-factions + PopCapture matrix |
 | Parties | `/#/parties` | Founded parties + GoI/Class compat heatmaps |
 | Senate | `/#/senate` | **Sheet-flag gated.** Coalitions + GoI capture % |
