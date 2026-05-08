@@ -46,7 +46,8 @@ def test_housing_block_shape(wb):
     assert set(housing.keys()) == {"capacity", "pop", "ratio", "overcrowding_exp", "growth_mult"}
     assert housing["capacity"] == 16500
     assert housing["pop"] == 15870
-    assert housing["ratio"] == 0.96
+    # ratio is derived: pop / capacity = 15870 / 16500
+    assert housing["ratio"] == pytest.approx(15870 / 16500)
     assert housing["overcrowding_exp"] == 1.5
     assert housing["growth_mult"] == 0.92
 
@@ -84,14 +85,13 @@ def test_avg_satisfaction_zero_pop_guard(wb):
     assert result["totals"]["pop"] == 0
 
 
-def test_housing_capacity_zero_means_ratio_passthrough(wb):
-    """When capacity is 0 in the workbook, ratio is whatever the workbook says (we
-    don't second-guess HousingRatio); pop is still emitted unchanged."""
+def test_housing_capacity_zero_yields_none_ratio(wb):
+    """When capacity is 0, ratio is None (no div-by-zero); pop unchanged."""
     wb["Colony"]["C12"] = 0
     result = extract(wb)
     assert result["housing"]["capacity"] == 0
-    # ratio comes straight from HousingRatio cell - we don't recompute on the fly.
-    assert result["housing"]["ratio"] == 0.96
+    assert result["housing"]["ratio"] is None
+    assert result["housing"]["pop"] == 15870
 
 
 def test_housing_both_soft_optionals_missing(wb):
@@ -103,7 +103,7 @@ def test_housing_both_soft_optionals_missing(wb):
     assert result["housing"]["growth_mult"] is None
     assert result["housing"]["overcrowding_exp"] is None
     assert result["housing"]["capacity"] == 16500
-    assert result["housing"]["ratio"] == 0.96
+    assert result["housing"]["ratio"] == pytest.approx(15870 / 16500)
 
 
 def test_effective_growth_rate_none_when_base_growth_rate_missing(wb):

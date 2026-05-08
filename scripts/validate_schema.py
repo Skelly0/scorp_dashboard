@@ -69,9 +69,9 @@ BASE_REQUIRED_RANGES: list[str] = [
     "DeathsPerTurn",
     "ClassBirths",
     "PopsimUnemployed",
-    # v3 — Housing
+    # v3 — Housing (ratio is derived from pop/capacity in the extractor;
+    # HousingRatio named range is no longer read)
     "HousingCapacity",
-    "HousingRatio",
     # v3 — Food security
     "FoodSecurityRatio",
     "FoodPerCap",

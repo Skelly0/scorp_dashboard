@@ -22,6 +22,16 @@ def extract(wb) -> dict[str, Any]:
     elasticity = scalar_named(wb, "Var_GrowthSatElasticity")
     cdr = scalar_named(wb, "EffectiveCDR")
     effective_growth = base * elasticity if (base is not None and elasticity is not None) else None
+    capacity = scalar_named(wb, "HousingCapacity")
+    # Ratio is derived from pop/capacity rather than read from HousingRatio:
+    # the GM's named-range cell has drifted to 0 in the live workbook even with
+    # real pop+capacity, so pop and capacity are treated as the authoritative
+    # inputs.
+    ratio = (
+        pop_total / capacity
+        if (capacity not in (None, 0) and pop_total is not None)
+        else None
+    )
     return {
         "totals": {
             "pop": pop_total,
@@ -33,9 +43,9 @@ def extract(wb) -> dict[str, Any]:
             "avg_satisfaction": avg_satisfaction(wb),
         },
         "housing": {
-            "capacity": scalar_named(wb, "HousingCapacity"),
+            "capacity": capacity,
             "pop": pop_total,
-            "ratio": scalar_named(wb, "HousingRatio"),
+            "ratio": ratio,
             "overcrowding_exp": scalar_named(wb, "Var_HousingOvercrowdingExp"),
             "growth_mult": scalar_named(wb, "HousingGrowthMult"),
         },

@@ -97,9 +97,8 @@ def build(out_path: Path) -> Path:
     _add_name(wb, "TreasuryMoney", "Colony!$B$1")
     _add_name(wb, "TreasuryMoneyDelta", "Colony!$B$2")
     _add_name(wb, "ResourceFlows", "Colony!$A$4:$C$10")
-    col["A12"], col["B12"], col["C12"], col["I12"] = "Housing", "capacity", 16500, 0.96
+    col["A12"], col["B12"], col["C12"] = "Housing", "capacity", 16500
     _add_name(wb, "HousingCapacity", "Colony!$C$12")
-    _add_name(wb, "HousingRatio", "Colony!$I$12")
 
     # ---- Popsim sheet ----
     pop = wb.create_sheet("Popsim")
