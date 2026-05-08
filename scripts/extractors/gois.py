@@ -141,10 +141,19 @@ def _subfaction_worldviews_by_pair(wb):
         goi_name, sf_name = r[0], r[1]
         if not goi_name or not sf_name:
             continue
+        # Skip header row if the named range is configured to include it.
+        # Real GoI names won't be the literal "GoI" header label.
+        if isinstance(goi_name, str) and goi_name.strip().lower() == "goi":
+            continue
         out[(goi_name, sf_name)] = {
             axis: coerce_number(r[5 + i])
             for i, axis in enumerate(WORLDVIEW_AXES)
         }
+    if out:
+        _log.info(
+            "SubFactionDetail name pairs detected: %s",
+            sorted(out.keys()),
+        )
     return out
 
 
