@@ -3,11 +3,17 @@
   import { meta } from '../lib/stores/meta.js';
   import { map, mapError, loadMap } from '../lib/stores/map.js';
   import { pageTitle } from '../lib/page-title.js';
-  import { categorySlugFor, CATEGORIES } from '../lib/improvement-categories.js';
+  import { getCategorySlug, categoryFor, CATEGORIES } from '../lib/improvement-categories.js';
+  import { catalog } from '../lib/stores/catalog.js';
   import { RESOURCE_CODES, FEATURE_CODES } from '../lib/map-codes.js';
   import Band from '../lib/components/Band.svelte';
   import MapCanvas from '../lib/components/MapCanvas.svelte';
   import RosterPanel from '../lib/components/RosterPanel.svelte';
+  import CatalogModal from '../lib/components/CatalogModal.svelte';
+  import ImprovementCard from '../lib/components/ImprovementCard.svelte';
+  import { resolveImprovementRow } from '../lib/stores/catalog.js';
+
+  let catalogOpen = false;
 
   let layer = 'terrain';
   let hoverTile = null;
@@ -23,7 +29,7 @@
     if (f.feature && t.feature !== f.feature) return false;
     if (f.improvement) {
       if (!t.improvement) return false;
-      return categorySlugFor(t.improvement.name) === f.improvement;
+      return getCategorySlug(t.improvement.name, $catalog) === f.improvement;
     }
     return true;
   }
@@ -36,6 +42,7 @@
   }
 
   $: t = pinnedTile ?? hoverTile;
+  $: nameplate = t?.improvement ? resolveImprovementRow(t.improvement.name, $catalog) : null;
 
   onMount(() => {
     pageTitle.set('Map');
@@ -80,15 +87,26 @@
   {:else}
     <Band num="01" title="Surface Grid" meta="40 × 40" />
 
-    <div class="layer-tabs">
-      {#each LAYERS as l}
+    <div class="flex items-center gap-3 mb-2">
+      <div class="layer-tabs">
+        {#each LAYERS as l}
+          <button
+            aria-pressed={layer === l.value}
+            on:click={() => (layer = l.value)}
+          >
+            {l.label}{THEMATIC_LAYERS.some(t => t.value === l.value) && l.value !== 'terrain' ? ' yield' : ''}
+          </button>
+        {/each}
+      </div>
+      {#if $catalog && $catalog.improvements.length > 0}
         <button
-          aria-pressed={layer === l.value}
-          on:click={() => (layer = l.value)}
+          class="s-chip ml-auto"
+          on:click={() => (catalogOpen = true)}
+          aria-label="Open improvement catalog"
         >
-          {l.label}{THEMATIC_LAYERS.some(t => t.value === l.value) && l.value !== 'terrain' ? ' yield' : ''}
+          ⌬ Catalog
         </button>
-      {/each}
+      {/if}
     </div>
 
     {#if activeFilterCount > 0}
@@ -136,6 +154,7 @@
               mapData={$map}
               kind={layer === 'resources' ? 'resource' : layer === 'features' ? 'feature' : 'improvement'}
               {filters}
+              catalog={$catalog}
               on:toggle-filter={(e) => {
                 const { kind, value } = e.detail;
                 filters = { ...filters, [kind]: filters[kind] === value ? null : value };
@@ -174,7 +193,7 @@
                 <dt>Slots</dt><dd>{t.slots ?? '—'}</dd>
               </dl>
               {#if t.improvement}
-                {@const cat = CATEGORIES[categorySlugFor(t.improvement.name)] ?? CATEGORIES.other}
+                {@const cat = categoryFor(t.improvement, $catalog) ?? CATEGORIES.other}
                 <div class="kv-section">
                   <h4>
                     <span style="color: {$map.palettes.improvement_category?.[cat.slug] ?? 'var(--accent)'}">{cat.icon}</span>
@@ -193,6 +212,12 @@
                     }}
                   >Filter by {cat.icon} {cat.label}</button>
                 </div>
+                {#if nameplate}
+                  <div class="kv-section">
+                    <h4>Nameplate stats</h4>
+                    <ImprovementCard imp={nameplate} compact={true} />
+                  </div>
+                {/if}
               {/if}
               {#if t.yields}
                 <div class="kv-section">
@@ -214,5 +239,9 @@
     <div class="text-muted text-[10px] uppercase tracking-widest mt-3">
       ▣ Improvement · ↗ Resource · ↖ Feature · Color = {layer === 'terrain' ? 'biome' : (THEMATIC_LAYERS.some(t => t.value === layer) ? layer + ' magnitude' : layer)}
     </div>
+
+    {#if catalogOpen}
+      <CatalogModal on:close={() => (catalogOpen = false)} />
+    {/if}
   {/if}
 </section>

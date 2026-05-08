@@ -1,7 +1,8 @@
 <script>
   import { createEventDispatcher, tick } from 'svelte';
   import { RESOURCE_CODES, FEATURE_CODES } from '../map-codes.js';
-  import { categoryFor, categorySlugFor } from '../improvement-categories.js';
+  import { categoryFor, getCategorySlug } from '../improvement-categories.js';
+  import { catalog } from '../stores/catalog.js';
   import { goiColor, classColor } from '../faction-colors.js';
 
   /** @type {{tiles: any[], width: number, height: number, palettes: any}} */
@@ -35,13 +36,16 @@
     return '#ffb000';
   })();
   $: drawTerrain(mapData, layer, layerMax, filters);
+  // Redraw when the catalog arrives so tile colours reflect catalog-derived slugs,
+  // not stale regex-derived slugs (gotcha 14 in CLAUDE.md).
+  $: if ($catalog) { drawTerrain(mapData, layer, layerMax, filters); }
 
   function tileMatches(t, f) {
     if (f.resource && t.resource !== f.resource) return false;
     if (f.feature && t.feature !== f.feature) return false;
     if (f.improvement) {
       if (!t.improvement) return false;
-      return categorySlugFor(t.improvement.name) === f.improvement;
+      return getCategorySlug(t.improvement.name, $catalog) === f.improvement;
     }
     return true;
   }
@@ -174,7 +178,7 @@
       {#each mapData.tiles as t}
         {#if t.improvement}
           {#if tab === 'improvements'}
-            {@const cat = categoryFor(t.improvement)}
+            {@const cat = categoryFor(t.improvement, $catalog)}
             {@const fill = ownerColor(t.improvement.owner) ?? improvementCatPal[cat.slug] ?? '#ffffff'}
             <text
               x={t.x * TILE_SIZE + TILE_SIZE / 2}

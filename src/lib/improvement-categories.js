@@ -1,5 +1,8 @@
-// Maps improvement names → { slug, icon, label } via keyword rules.
-// Backend may later add `improvement.category` directly; if present, prefer that.
+// Maps improvement names → { slug, icon, label }.
+// Catalog is the source of truth (when loaded); the keyword regex below is the
+// fallback for names not present in the catalog. See gotcha 18 in CLAUDE.md.
+
+import { resolveImprovementRow } from './stores/catalog.js';
 
 export const CATEGORIES = {
   energy:   { slug: 'energy',   icon: '☀', label: 'Energy' },
@@ -12,7 +15,7 @@ export const CATEGORIES = {
   other:    { slug: 'other',    icon: '⌬', label: 'Other' },
 };
 
-const RULES = [
+const REGEX_RULES = [
   [/solar|reactor/, 'energy'],
   [/extract|mining|station/, 'mining'],
   [/dome|habitat|hab module/, 'habitat'],
@@ -22,17 +25,29 @@ const RULES = [
   [/lab|research/, 'science'],
 ];
 
-export function categorySlugFor(name) {
+function regexCategorySlug(name) {
   const n = (name || '').toLowerCase();
-  for (const [re, slug] of RULES) {
+  for (const [re, slug] of REGEX_RULES) {
     if (re.test(n)) return slug;
   }
   return 'other';
 }
 
-export function categoryFor(improvement) {
+export function getCategorySlug(name, catalog) {
+  if (!name) return 'other';
+  const row = resolveImprovementRow(name, catalog);
+  if (row && row.category) return row.category;
+  return regexCategorySlug(name);
+}
+
+export function categoryFor(improvement, catalog) {
   if (!improvement) return null;
-  // Prefer backend-supplied category when present.
-  const slug = improvement.category ?? categorySlugFor(improvement.name);
+  const slug = improvement.category ?? getCategorySlug(improvement.name, catalog);
   return CATEGORIES[slug] ?? CATEGORIES.other;
+}
+
+// Legacy alias kept temporarily so a stale import surfaces a clear error
+// rather than a silent miscategorization.
+export function categorySlugFor() {
+  throw new Error('categorySlugFor is removed; use getCategorySlug(name, catalog).');
 }
