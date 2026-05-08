@@ -6569,7 +6569,7 @@
         "housing": 50.0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 20.5
+        "water": 18.82098765
       }
     },
     {
@@ -7214,9 +7214,9 @@
       "x": 21,
       "y": 10,
       "yields": {
-        "energy": 200.0,
+        "energy": 165.4109589,
         "food": 0,
-        "housing": 50.0,
+        "housing": 41.35273973,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -7237,7 +7237,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 77.38165822,
+        "housing": 70.73231017,
         "materials": 0.75,
         "ore": 2.25,
         "water": 0
@@ -7257,8 +7257,8 @@
       "y": 10,
       "yields": {
         "energy": 0,
-        "food": 20.0,
-        "housing": 1050.0,
+        "food": 18.32098765,
+        "housing": 966.0493827,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -7279,9 +7279,9 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 50.0,
+        "housing": 43.76630195,
         "materials": 1.75,
-        "ore": 125.75,
+        "ore": 110.1657549,
         "water": 0
       }
     },
@@ -7911,8 +7911,8 @@
       "y": 11,
       "yields": {
         "energy": 0,
-        "food": 9.96031746,
-        "housing": 9960.31746,
+        "food": 9.592592593,
+        "housing": 9592.592593,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -7933,7 +7933,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 38.51960907,
+        "housing": 37.13548327,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -7952,11 +7952,11 @@
       "x": 23,
       "y": 11,
       "yields": {
-        "energy": 11.48609731,
-        "food": 11.48609731,
-        "housing": 765.7398203,
-        "materials": 11.73609731,
-        "ore": 11.73609731,
+        "energy": 10.09532571,
+        "food": 10.09532571,
+        "housing": 673.0217137,
+        "materials": 10.34532571,
+        "ore": 10.34532571,
         "water": 0
       }
     },
@@ -8608,7 +8608,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 217.9295105,
+        "housing": 224.6112801,
         "materials": 0.25,
         "ore": 0.5,
         "water": 0
@@ -8629,8 +8629,8 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 50.0,
-        "materials": 62.25,
+        "housing": 45.59992284,
+        "materials": 56.96990741,
         "ore": 0.25,
         "water": 0
       }
@@ -8649,8 +8649,8 @@
       "y": 12,
       "yields": {
         "energy": 0,
-        "food": 18.25,
-        "housing": 222.8125,
+        "food": 10.31588835,
+        "housing": 212.8948604,
         "materials": 0.25,
         "ore": 0.5,
         "water": 0
@@ -8669,9 +8669,9 @@
       "x": 24,
       "y": 12,
       "yields": {
-        "energy": 200.0,
+        "energy": 165.4109589,
         "food": 0,
-        "housing": 50.0,
+        "housing": 41.35273973,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -9338,7 +9338,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 47.1,
+        "housing": 44.44047236,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -9954,7 +9954,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 34.87648559,
+        "housing": 35.23434066,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -10640,11 +10640,11 @@
       "x": 19,
       "y": 15,
       "yields": {
-        "energy": 11.48609731,
-        "food": 11.48609731,
-        "housing": 765.7398203,
-        "materials": 11.73609731,
-        "ore": 11.73609731,
+        "energy": 10.09532571,
+        "food": 10.09532571,
+        "housing": 673.0217137,
+        "materials": 10.34532571,
+        "ore": 10.34532571,
         "water": 0
       }
     },
@@ -10663,9 +10663,9 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 250.0,
+        "housing": 243.766302,
         "materials": 1.75,
-        "ore": 126.0,
+        "ore": 110.4157549,
         "water": 0
       }
     },
@@ -11329,8 +11329,8 @@
       "y": 16,
       "yields": {
         "energy": 0,
-        "food": 16.94444444,
-        "housing": 33.88888889,
+        "food": 13.68809765,
+        "housing": 27.3761953,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -11349,9 +11349,9 @@
       "x": 20,
       "y": 16,
       "yields": {
-        "energy": 200.0,
+        "energy": 165.4109589,
         "food": 0,
-        "housing": 50.0,
+        "housing": 41.35273973,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
