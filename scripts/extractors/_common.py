@@ -103,3 +103,26 @@ def net_delta_pct(effective_growth: float | None, cdr: float | None) -> float | 
     if effective_growth is None or cdr is None:
         return None
     return (effective_growth - cdr) * 100
+
+
+def read_grid_optional(wb, sheet_name: str, width: int, height: int) -> list[list[Any]] | None:
+    """Read a fixed-size grid by sheet name. Returns None if the sheet is absent.
+
+    Used by `extractors/map.py` for soft-fail-friendly per-sheet reads (Upkeep,
+    Workforce, Staffing). Existing yield sheets continue to use the
+    `_read_grid` helper inside map.py — that one throws on missing sheet, which
+    is the current contract for those mandatory sheets.
+
+    The grid is always rectangular: short rows are padded with None.
+    """
+    if sheet_name not in wb.sheetnames:
+        return None
+    ws = wb[sheet_name]
+    grid: list[list[Any]] = []
+    for row in ws.iter_rows(min_row=1, max_row=height, min_col=1, max_col=width, values_only=True):
+        # iter_rows pads to max_col with None already, but be explicit for short sheets.
+        padded = list(row) + [None] * max(0, width - len(row))
+        grid.append(padded[:width])
+    while len(grid) < height:
+        grid.append([None] * width)
+    return grid

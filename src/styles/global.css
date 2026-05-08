@@ -657,8 +657,10 @@ table.tbl th.num {
   gap: 0;
   border: 1px solid var(--border-soft);
   margin-bottom: 8px;
+  position: relative; /* anchor for popup z-index stacking */
 }
-.layer-tabs button {
+.layer-tabs button,
+.layer-tabs .layer-menu-trigger {
   background: transparent;
   border: none;
   border-right: 1px solid var(--border-soft);
@@ -670,10 +672,117 @@ table.tbl th.num {
   padding: 8px 10px;
   cursor: pointer;
 }
-.layer-tabs button:last-child { border-right: none; }
-.layer-tabs button[aria-pressed="true"] {
+.layer-tabs > button:last-child,
+.layer-tabs > .layer-menu:last-child .layer-menu-trigger { border-right: none; }
+.layer-tabs button[aria-pressed="true"],
+.layer-tabs .layer-menu-trigger[aria-pressed="true"] {
   background: var(--accent);
   color: var(--alert-fg);
+}
+.layer-tabs-divider {
+  display: inline-block;
+  width: 1px;
+  align-self: stretch;
+  background: var(--border-soft);
+  margin: 0 4px;
+}
+
+/* Popup-menu anchor: the LayerMenu wraps the trigger + popup in a span
+   that we want to behave like a flex item identical to a tab button. */
+.layer-tabs .layer-menu {
+  position: relative;
+  display: inline-flex;
+  border-right: 1px solid var(--border-soft);
+}
+.layer-tabs .layer-menu .layer-menu-trigger {
+  border-right: none; /* the wrapping .layer-menu owns the separator */
+}
+.layer-menu-trigger .caret {
+  margin-left: 4px;
+  opacity: 0.6;
+}
+.layer-menu-trigger[aria-pressed="true"] .caret { opacity: 1; }
+
+.layer-menu-popup {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  z-index: 5;
+  background: var(--bg-2);
+  border: 1px solid var(--accent);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+}
+.layer-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px;
+  background: transparent;
+  border: none;
+  color: var(--fg);
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: left;
+}
+.layer-menu-item:hover,
+.layer-menu-item:focus {
+  background: var(--bg);
+  outline: none;
+}
+.layer-menu-item.active { color: var(--accent); }
+.layer-menu-item .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  flex-shrink: 0;
+}
+.layer-menu-item.active .dot { background: var(--accent); }
+
+/* === Map inspect — workforce rows + staffing meter ====================== */
+.workforce-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  padding: 3px 0;
+}
+.workforce-row .swatch {
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.workforce-row .name { flex: 1; color: var(--fg); }
+.workforce-row .count {
+  color: var(--fg-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.staff-meter {
+  height: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  margin-top: 6px;
+  overflow: hidden;
+}
+.staff-meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--crit) 0%, var(--accent) 50%, var(--good) 100%);
+}
+.staff-meter-pct {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--accent);
+  margin-top: 4px;
+  text-align: right;
 }
 
 /* === Active filter strip ================================================== */
