@@ -785,6 +785,67 @@ table.tbl th.num {
   text-align: right;
 }
 
+/* === Resizable map viewport (Map page) ===================================== */
+.map-viewport {
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+  /* Match existing border-4 border-border via Tailwind utility on the
+     element; nothing to add here for the border itself. */
+  background: var(--bg-2);
+}
+
+.map-content {
+  position: relative;
+  /* width/height inline-styled to displayedCssPx in the component. */
+}
+
+.s-zoom {
+  display: inline-flex;
+  align-items: stretch;
+  margin-left: auto;        /* push to the right end of the .layer-tabs flex row */
+  border: 1px solid var(--border);
+  background: var(--bg);
+  /* No --font-mono token exists in the theme blocks — use the same literal
+     stack as Tailwind's font-mono utility used throughout the app. */
+  font-family: ui-monospace, "JetBrains Mono", "IBM Plex Mono", Consolas, monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.layer-tabs .s-zoom button {
+  background: transparent;
+  color: var(--fg);
+  border: none;
+  border-right: 1px solid var(--border);
+  padding: 4px 10px;
+  min-width: 28px;
+  cursor: pointer;
+  line-height: 1;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.layer-tabs .s-zoom button:last-child {
+  border-right: none;
+}
+
+.layer-tabs .s-zoom button:hover:not(:disabled) {
+  background: var(--accent-soft);
+  color: var(--bg);
+}
+
+.layer-tabs .s-zoom button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.layer-tabs .s-zoom button[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--bg);
+}
+
 /* === Active filter strip ================================================== */
 .filter-strip {
   display: flex;
