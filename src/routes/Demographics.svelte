@@ -42,17 +42,15 @@
     return { value: free.toLocaleString(), subtitle: `${pct}% free` };
   })();
 
-  // Predicted growth: pop × (effective_growth × housing_growth_mult − cdr), rounded, signed.
+  // Predicted growth: TotalBirths − TotalDeaths from the workbook (authoritative
+  // per-turn tally). Renders '—' if either input is missing.
   $: predictedGrowth = (() => {
     const t = $demographics?.totals;
-    const h = $demographics?.housing;
     if (!t) return null;
-    const g = t.effective_growth_rate;
-    const cdr = t.effective_cdr;
-    if (g == null || cdr == null) return null;
-    const mult = h?.growth_mult ?? 1.0;
-    const delta = Math.round(t.pop * (g * mult - cdr));
-    return delta;
+    const b = t.total_births;
+    const d = t.total_deaths;
+    if (b == null || d == null) return null;
+    return Math.round(b - d);
   })();
 
   $: predictedGrowthDisplay = predictedGrowth == null

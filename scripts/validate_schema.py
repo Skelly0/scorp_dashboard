@@ -91,6 +91,10 @@ SOFT_OPTIONAL_V3_RANGES: list[str] = [
     "Var_BaseDeathRate",
     "HousingGrowthMult",
     "Var_HousingOvercrowdingExp",
+    # Authoritative whole-colony births tally per turn. Demographics' Predicted
+    # Growth tile reads (TotalBirths − TotalDeathsPerTurn); when missing the
+    # tile renders "—" rather than falling back to a derived rate estimate.
+    "TotalBirths",
     # Per-class mobility (Popsim cols F & G in the live workbook). Soft-optional so
     # the dashboard degrades to "—" cells if the GM hasn't named the ranges yet.
     "PopsimMobilityIn",
