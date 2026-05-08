@@ -67,4 +67,45 @@ test.describe('Map zoom controls', () => {
     await page.keyboard.press('0');
     await expect(reset).toHaveText('100%');
   });
+
+  test('rendered content width scales linearly with zoom (no feedback loop)', async ({ page }) => {
+    // Regression for the "zoom in goes enormous" bug: when the grid track
+    // hosting <MapCanvas> uses `1fr` (= minmax(auto, 1fr)) instead of
+    // `minmax(0, 1fr)`, the column expands to fit its widest item, which
+    // grows .map-viewport's clientWidth, which feeds back into fitScale,
+    // which makes contentCssW even bigger. After a few ResizeObserver
+    // ticks the content goes "enormous". Linear scaling proves the loop
+    // is broken.
+    const content = page.locator('.map-content');
+    const reset = page.getByRole('group', { name: /map zoom/i })
+      .getByRole('button', { name: /reset zoom/i });
+    const zoomIn = page.getByRole('group', { name: /map zoom/i })
+      .getByRole('button', { name: /zoom in/i });
+
+    await expect(reset).toHaveText('100%');
+    const w100 = (await content.boundingBox()).width;
+
+    await zoomIn.click();
+    await expect(reset).toHaveText('125%');
+    // Allow layout + ResizeObserver to settle; if a feedback loop exists
+    // it amplifies across ticks, so we wait a beat before measuring.
+    await page.waitForTimeout(150);
+    const w125 = (await content.boundingBox()).width;
+
+    // Within ±2% of the expected linear scaling. A feedback loop blows
+    // through this floor by an order of magnitude.
+    const ratio = w125 / w100;
+    expect(ratio).toBeGreaterThan(1.225);
+    expect(ratio).toBeLessThan(1.275);
+
+    // And after stepping to the cap (200%), content should be ~2× the
+    // 100% width — never more.
+    for (let i = 0; i < 3; i++) await zoomIn.click();
+    await expect(reset).toHaveText('200%');
+    await page.waitForTimeout(150);
+    const w200 = (await content.boundingBox()).width;
+    const fullRatio = w200 / w100;
+    expect(fullRatio).toBeGreaterThan(1.95);
+    expect(fullRatio).toBeLessThan(2.05);
+  });
 });

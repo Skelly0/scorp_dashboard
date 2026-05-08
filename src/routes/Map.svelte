@@ -233,7 +233,7 @@
       </div>
     {/if}
 
-    <div class="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-3 items-start">
+    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] gap-3 items-start">
       <MapCanvas
         mapData={$map}
         {layer}
