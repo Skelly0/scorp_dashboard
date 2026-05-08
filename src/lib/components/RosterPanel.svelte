@@ -1,24 +1,26 @@
 <script>
   import { createEventDispatcher } from 'svelte';
-  import { CATEGORIES, categorySlugFor } from '../improvement-categories.js';
+  import { CATEGORIES, getCategorySlug } from '../improvement-categories.js';
   import { RESOURCE_CODES, FEATURE_CODES } from '../map-codes.js';
 
   /** @type {{tiles: any[], palettes: any}} */
   export let mapData;
   /** "resource" | "feature" | "improvement" */
   export let kind;
+  /** Catalog store value — passed in from Map.svelte. May be null. */
+  export let catalog = null;
   /** Current filters object — used to indicate selected state on rows. */
   export let filters;
 
   const dispatch = createEventDispatcher();
 
-  $: rows = buildRows(mapData, kind);
+  $: rows = buildRows(mapData, kind, catalog);
 
-  function buildRows(map, kind) {
+  function buildRows(map, kind, cat) {
     if (!map) return [];
     if (kind === 'resource') return aggregateByField(map.tiles, 'resource');
     if (kind === 'feature')  return aggregateByField(map.tiles, 'feature');
-    if (kind === 'improvement') return groupImprovements(map.tiles);
+    if (kind === 'improvement') return groupImprovements(map.tiles, cat);
     return [];
   }
   function aggregateByField(tiles, field) {
@@ -31,11 +33,11 @@
       .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
       .map(([name, count]) => ({ name, count }));
   }
-  function groupImprovements(tiles) {
+  function groupImprovements(tiles, cat) {
     const groups = new Map();
     for (const t of tiles) {
       if (!t.improvement) continue;
-      const slug = categorySlugFor(t.improvement.name);
+      const slug = getCategorySlug(t.improvement.name, cat);
       if (!groups.has(slug)) groups.set(slug, []);
       groups.get(slug).push({ tile: t });
     }

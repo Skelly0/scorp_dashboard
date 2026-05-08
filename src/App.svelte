@@ -3,6 +3,7 @@
   import Router from 'svelte-spa-router';
   import { initTheme } from './lib/theme.js';
   import { meta, metaError, loadMeta } from './lib/stores/meta.js';
+  import { loadCatalog } from './lib/stores/catalog.js';
   import NavBar from './lib/components/NavBar.svelte';
   import MaintenanceBanner from './lib/components/MaintenanceBanner.svelte';
   import MoonLoader from './lib/components/MoonLoader.svelte';
@@ -22,7 +23,11 @@
 
   onMount(async () => {
     initTheme();
-    await loadMeta();
+    const data = await loadMeta();
+    if (data) {
+      // Catalog is fire-and-forget — categorizer regex is the load-time fallback.
+      loadCatalog(data.synced_at);
+    }
   });
 
   const routes = {
