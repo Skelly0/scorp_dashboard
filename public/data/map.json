@@ -136,7 +136,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -156,7 +156,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -176,7 +176,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -196,7 +196,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -216,7 +216,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -236,7 +236,7 @@
         "housing": 0,
         "materials": 0,
         "ore": 0.25,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -276,7 +276,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -296,7 +296,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -316,7 +316,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -336,7 +336,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -356,7 +356,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -376,7 +376,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -396,7 +396,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -416,7 +416,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -436,7 +436,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -456,7 +456,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -476,7 +476,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -496,7 +496,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -516,7 +516,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.5
+        "water": 10.0
       }
     },
     {
@@ -536,7 +536,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -556,7 +556,7 @@
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -576,7 +576,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.5
+        "water": 10.0
       }
     },
     {
@@ -596,7 +596,7 @@
         "housing": 25.0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -616,7 +616,7 @@
         "housing": 25.0,
         "materials": 1.75,
         "ore": 0.75,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -636,7 +636,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -656,7 +656,7 @@
         "housing": 100.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.5
+        "water": 10.0
       }
     },
     {
@@ -676,7 +676,7 @@
         "housing": 100.0,
         "materials": 1.5,
         "ore": 0.5,
-        "water": 1.5
+        "water": 10.0
       }
     },
     {
@@ -696,7 +696,7 @@
         "housing": 100.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.5
+        "water": 10.0
       }
     },
     {
@@ -716,7 +716,7 @@
         "housing": 100.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.5
+        "water": 10.0
       }
     },
     {
@@ -736,7 +736,7 @@
         "housing": 100.0,
         "materials": 1.5,
         "ore": 0.5,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -756,7 +756,7 @@
         "housing": 100.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.5
+        "water": 10.0
       }
     },
     {
@@ -776,7 +776,7 @@
         "housing": 100.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.5
+        "water": 10.0
       }
     },
     {
@@ -796,7 +796,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -816,7 +816,7 @@
         "housing": 50.0,
         "materials": 1.0,
         "ore": 1.0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -836,7 +836,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -856,7 +856,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.5
+        "water": 10.0
       }
     },
     {
@@ -876,7 +876,7 @@
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0,
-        "water": 1.5
+        "water": 10.0
       }
     },
     {
@@ -916,7 +916,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -956,7 +956,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -976,7 +976,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -996,7 +996,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -1016,7 +1016,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -1036,7 +1036,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -1056,7 +1056,7 @@
         "housing": 0,
         "materials": 0,
         "ore": 0.25,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -1076,7 +1076,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -1096,7 +1096,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -1116,7 +1116,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -1136,7 +1136,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -1156,7 +1156,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -1176,7 +1176,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -1196,7 +1196,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -1476,7 +1476,7 @@
         "housing": 100.0,
         "materials": 0,
         "ore": 0,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -1496,7 +1496,7 @@
         "housing": 100.0,
         "materials": 0,
         "ore": 0,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -1516,7 +1516,7 @@
         "housing": 100.0,
         "materials": 0,
         "ore": 0,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -1536,7 +1536,7 @@
         "housing": 150.0,
         "materials": 0.25,
         "ore": 0,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -1556,7 +1556,7 @@
         "housing": 100.0,
         "materials": 0,
         "ore": 0,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -1616,7 +1616,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -1636,7 +1636,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -1656,7 +1656,7 @@
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -1676,7 +1676,7 @@
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -1696,7 +1696,7 @@
         "housing": 0,
         "materials": 0.5,
         "ore": 1.5,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -1716,7 +1716,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -2416,7 +2416,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -2456,7 +2456,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -2476,7 +2476,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -2496,7 +2496,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -2516,7 +2516,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -3256,7 +3256,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -3276,7 +3276,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -3296,7 +3296,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -3316,7 +3316,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -4096,7 +4096,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -4116,7 +4116,7 @@
         "housing": 50.0,
         "materials": 0,
         "ore": 0,
-        "water": 1.0
+        "water": 5.0
       }
     },
     {
@@ -5316,7 +5316,7 @@
         "housing": -25.0,
         "materials": 0.5,
         "ore": 0.5,
-        "water": 2.0
+        "water": 30.0
       }
     },
     {
@@ -5496,7 +5496,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.5,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -6112,8 +6112,8 @@
       "y": 7,
       "yields": {
         "energy": 0,
-        "food": 1.0,
-        "housing": 125.0,
+        "food": 0,
+        "housing": 50.0,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -6216,7 +6216,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -6996,7 +6996,7 @@
         "housing": 200.0,
         "materials": 0.25,
         "ore": 0.5,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -7656,7 +7656,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -7796,7 +7796,7 @@
         "housing": 50.0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 18.7118863
+        "water": 51.15532488
       }
     },
     {
@@ -8548,16 +8548,16 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.8270547945,
+      "staffing": 0.6580381471,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
       "x": 21,
       "y": 10,
       "yields": {
-        "energy": 165.4109589,
+        "energy": 131.6076294,
         "food": 0,
-        "housing": 41.35273973,
+        "housing": 32.90190736,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -8572,7 +8572,7 @@
       },
       "resource": "Iron Deposit",
       "slots": 2,
-      "staffing": 0.6577612276,
+      "staffing": 0.68440297,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -8581,7 +8581,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 65.77612276,
+        "housing": 68.440297,
         "materials": 0.75,
         "ore": 2.25,
         "water": 0
@@ -8596,7 +8596,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.9105943152,
+      "staffing": 0.9231064975,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -8604,8 +8604,8 @@
       "y": 10,
       "yields": {
         "energy": 0,
-        "food": 18.2118863,
-        "housing": 960.5943152,
+        "food": 0,
+        "housing": 973.1064975,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -8620,7 +8620,7 @@
       },
       "resource": "Aluminum Deposit",
       "slots": 2,
-      "staffing": 0.8715700909,
+      "staffing": 0.8086646024,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -8629,9 +8629,9 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 43.57850455,
+        "housing": 40.43323012,
         "materials": 1.75,
-        "ore": 109.6962614,
+        "ore": 101.8330753,
         "water": 0
       }
     },
@@ -9364,7 +9364,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.8070198105,
+      "staffing": 0.814067395,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -9372,8 +9372,8 @@
       "y": 11,
       "yields": {
         "energy": 0,
-        "food": 8.070198105,
-        "housing": 8070.198105,
+        "food": 8.14067395,
+        "housing": 8140.67395,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -9388,7 +9388,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.7255316158,
+      "staffing": 0.7281192023,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -9397,7 +9397,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 36.27658079,
+        "housing": 36.40596011,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -9412,18 +9412,18 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6626926254,
+      "staffing": 0.72781895,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
       "x": 23,
       "y": 11,
       "yields": {
-        "energy": 9.940389381,
-        "food": 9.940389381,
-        "housing": 662.6926254,
-        "materials": 10.19038938,
-        "ore": 10.19038938,
+        "energy": 10.91728425,
+        "food": 10.91728425,
+        "housing": 727.81895,
+        "materials": 11.16728425,
+        "ore": 11.16728425,
         "water": 0
       }
     },
@@ -9460,7 +9460,7 @@
       },
       "resource": "Heavy Metals",
       "slots": 2,
-      "staffing": 0.671483306,
+      "staffing": 0.746605243,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -9469,7 +9469,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 33.5741653,
+        "housing": 37.33026215,
         "materials": 0.5,
         "ore": 1.25,
         "water": 0
@@ -10184,7 +10184,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.4879096219,
+      "staffing": 0.9223071358,
       "terrain": "Lava Tube",
       "upkeep": null,
       "workforce": null,
@@ -10193,7 +10193,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 224.3954811,
+        "housing": 246.1153568,
         "materials": 0.25,
         "ore": 0.5,
         "water": 0
@@ -10208,7 +10208,7 @@
       },
       "resource": "Rare Earths",
       "slots": 2,
-      "staffing": 0.9060319767,
+      "staffing": 0.9196078431,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -10217,8 +10217,8 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 45.30159884,
-        "materials": 56.6119186,
+        "housing": 45.98039216,
+        "materials": 57.42647059,
         "ore": 0.25,
         "water": 0
       }
@@ -10232,7 +10232,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.25,
+      "staffing": 0.4797677722,
       "terrain": "Lava Tube",
       "upkeep": null,
       "workforce": null,
@@ -10240,8 +10240,8 @@
       "y": 12,
       "yields": {
         "energy": 0,
-        "food": 10.0,
-        "housing": 212.5,
+        "food": 19.19071089,
+        "housing": 223.9883886,
         "materials": 0.25,
         "ore": 0.5,
         "water": 0
@@ -10250,22 +10250,22 @@
     {
       "feature": null,
       "improvement": {
-        "name": "Solar Array Field",
+        "name": "Fission Reactor",
         "owner": null,
         "ownership_type": null
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.8270547945,
+      "staffing": 0.6544389606,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
       "x": 24,
       "y": 12,
       "yields": {
-        "energy": 165.4109589,
+        "energy": 392.6633764,
         "food": 0,
-        "housing": 41.35273973,
+        "housing": 32.72194803,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -10993,22 +10993,26 @@
     },
     {
       "feature": null,
-      "improvement": null,
+      "improvement": {
+        "name": "Solar Array Field",
+        "owner": null,
+        "ownership_type": null
+      },
       "resource": null,
-      "slots": 4,
-      "staffing": null,
+      "slots": 3,
+      "staffing": 0.6580381471,
       "terrain": "Lava Tube",
       "upkeep": null,
       "workforce": null,
       "x": 21,
       "y": 13,
       "yields": {
-        "energy": 0,
+        "energy": 131.6076294,
         "food": 0,
-        "housing": 200.0,
+        "housing": 232.9019074,
         "materials": 0.25,
         "ore": 0.5,
-        "water": 0
+        "water": 71.15532488
       }
     },
     {
@@ -11040,7 +11044,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.7018335834,
+      "staffing": 0.6291130387,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -11049,7 +11053,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 35.09167917,
+        "housing": 31.45565194,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -11272,7 +11276,7 @@
         "housing": 0,
         "materials": 2.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -11732,7 +11736,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -11764,7 +11768,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.5912018733,
+      "staffing": 0.7028092481,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -11773,7 +11777,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 29.56009366,
+        "housing": 35.14046241,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -11788,7 +11792,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.7018335834,
+      "staffing": 0.6291130387,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -11797,7 +11801,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 35.09167917,
+        "housing": 31.45565194,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -11805,10 +11809,14 @@
     },
     {
       "feature": null,
-      "improvement": null,
-      "resource": "Rare Earths",
-      "slots": 4,
-      "staffing": null,
+      "improvement": {
+        "name": "Ice Mining Station",
+        "owner": null,
+        "ownership_type": null
+      },
+      "resource": "Water Ice",
+      "slots": 3,
+      "staffing": 0.9231064975,
       "terrain": "Lava Tube",
       "upkeep": null,
       "workforce": null,
@@ -11817,8 +11825,8 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 200.0,
-        "materials": 2.25,
+        "housing": 1123.106498,
+        "materials": 0.25,
         "ore": 0.5,
         "water": 0
       }
@@ -12460,7 +12468,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -12576,18 +12584,18 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6626926254,
+      "staffing": 0.72781895,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
       "x": 19,
       "y": 15,
       "yields": {
-        "energy": 9.940389381,
-        "food": 9.940389381,
-        "housing": 662.6926254,
-        "materials": 10.19038938,
-        "ore": 10.19038938,
+        "energy": 10.91728425,
+        "food": 10.91728425,
+        "housing": 727.81895,
+        "materials": 11.16728425,
+        "ore": 11.16728425,
         "water": 0
       }
     },
@@ -12600,7 +12608,7 @@
       },
       "resource": "Aluminum Deposit",
       "slots": 3,
-      "staffing": 0.8715700909,
+      "staffing": 0.8086646024,
       "terrain": "Lava Tube",
       "upkeep": null,
       "workforce": null,
@@ -12609,9 +12617,9 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 243.5785045,
+        "housing": 240.4332301,
         "materials": 1.75,
-        "ore": 109.9462614,
+        "ore": 102.0830753,
         "water": 0
       }
     },
@@ -13372,7 +13380,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.5,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -13384,7 +13392,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.4549922203,
+      "staffing": 0.5589952102,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -13392,8 +13400,8 @@
       "y": 16,
       "yields": {
         "energy": 0,
-        "food": 11.37480551,
-        "housing": 22.74961101,
+        "food": 13.97488025,
+        "housing": 27.94976051,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -13408,16 +13416,16 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.8270547945,
+      "staffing": 0.6580381471,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
       "x": 20,
       "y": 16,
       "yields": {
-        "energy": 165.4109589,
+        "energy": 131.6076294,
         "food": 0,
-        "housing": 41.35273973,
+        "housing": 32.90190736,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -13560,7 +13568,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -14160,7 +14168,7 @@
         "housing": 50.0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -14180,7 +14188,7 @@
         "housing": 50.0,
         "materials": 0.25,
         "ore": 0.5,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -16160,7 +16168,7 @@
         "housing": 200.0,
         "materials": 0.25,
         "ore": 0.5,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -16620,7 +16628,7 @@
         "housing": 0,
         "materials": 0.5,
         "ore": 1.5,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -17240,7 +17248,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -17340,7 +17348,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -18040,7 +18048,7 @@
         "housing": 50.0,
         "materials": 0.75,
         "ore": 2.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -18060,7 +18068,7 @@
         "housing": 0,
         "materials": 0.75,
         "ore": 2.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -18080,7 +18088,7 @@
         "housing": 0,
         "materials": 0.75,
         "ore": 2.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -18880,7 +18888,7 @@
         "housing": 50.0,
         "materials": 0.75,
         "ore": 2.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -18920,7 +18928,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -19520,7 +19528,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.5,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -20280,7 +20288,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -20320,7 +20328,7 @@
         "housing": 50.0,
         "materials": 0.75,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -21140,7 +21148,7 @@
         "housing": 50.0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -21160,7 +21168,7 @@
         "housing": 50.0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -21240,7 +21248,7 @@
         "housing": 50.0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -21740,7 +21748,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -21860,7 +21868,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -22000,7 +22008,7 @@
         "housing": 50.0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -22640,7 +22648,7 @@
         "housing": 0,
         "materials": 0.5,
         "ore": 0.75,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -22660,7 +22668,7 @@
         "housing": 50.0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -22680,7 +22688,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -23420,7 +23428,7 @@
         "housing": 0,
         "materials": 0.5,
         "ore": 0.75,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -23440,7 +23448,7 @@
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0.75,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -23460,7 +23468,7 @@
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0.75,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -23480,7 +23488,7 @@
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0.75,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -23500,7 +23508,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -23580,7 +23588,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.5,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -24240,7 +24248,7 @@
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0.75,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -24260,7 +24268,7 @@
         "housing": 50.0,
         "materials": 0.5,
         "ore": 1.5,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -24280,7 +24288,7 @@
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0.75,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -24300,7 +24308,7 @@
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0.75,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -24360,7 +24368,7 @@
         "housing": 0,
         "materials": 0.5,
         "ore": 0.75,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -25040,7 +25048,7 @@
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0.75,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -25060,7 +25068,7 @@
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0.75,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -25080,7 +25088,7 @@
         "housing": 50.0,
         "materials": 0.5,
         "ore": 0.75,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -25860,7 +25868,7 @@
         "housing": 50.0,
         "materials": 0.75,
         "ore": 1.75,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -26060,7 +26068,7 @@
         "housing": 0,
         "materials": 0.5,
         "ore": 1.5,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -26840,7 +26848,7 @@
         "housing": 0,
         "materials": 0.5,
         "ore": 1.5,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -26960,7 +26968,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -27740,7 +27748,7 @@
         "housing": 0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -27760,7 +27768,7 @@
         "housing": 50.0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -28540,7 +28548,7 @@
         "housing": 50.0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -29780,7 +29788,7 @@
         "housing": 50.0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -29800,7 +29808,7 @@
         "housing": 50.0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -30600,7 +30608,7 @@
         "housing": 100.0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
@@ -31400,7 +31408,7 @@
         "housing": 100.0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 0.5
+        "water": 5.0
       }
     },
     {
