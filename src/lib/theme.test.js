@@ -12,10 +12,10 @@ describe('theme store', () => {
     expect(THEMES).toEqual(['light', 'dark', 'schematic']);
   });
 
-  it('defaults to light when no preference is stored', () => {
+  it('defaults to schematic when no preference is stored', () => {
     initTheme();
-    expect(get(theme)).toBe('light');
-    expect(document.documentElement.dataset.theme).toBe('light');
+    expect(get(theme)).toBe('schematic');
+    expect(document.documentElement.dataset.theme).toBe('schematic');
   });
 
   it('reads stored preference on init', () => {
@@ -43,30 +43,30 @@ describe('theme store', () => {
   it('setTheme rejects invalid values', () => {
     initTheme();
     setTheme('pink');
-    expect(get(theme)).toBe('light');
+    expect(get(theme)).toBe('schematic');
   });
 
-  it('cycleTheme rotates light -> dark -> schematic -> light', () => {
+  it('cycleTheme rotates schematic -> light -> dark -> schematic', () => {
     initTheme();
+    cycleTheme();
+    expect(get(theme)).toBe('light');
     cycleTheme();
     expect(get(theme)).toBe('dark');
     cycleTheme();
     expect(get(theme)).toBe('schematic');
-    cycleTheme();
-    expect(get(theme)).toBe('light');
   });
 
   it('toggleTheme is an alias for cycleTheme', () => {
     initTheme();
     toggleTheme();
-    expect(get(theme)).toBe('dark');
+    expect(get(theme)).toBe('light');
     toggleTheme();
-    expect(get(theme)).toBe('schematic');
+    expect(get(theme)).toBe('dark');
   });
 
   it('ignores invalid stored values', () => {
     localStorage.setItem('theme', 'pink');
     initTheme();
-    expect(get(theme)).toBe('light');
+    expect(get(theme)).toBe('schematic');
   });
 });
