@@ -136,21 +136,30 @@ def _subfaction_worldviews_by_row(wb):
     rows = read_named_range(wb, "SubFactionDetail")
     if not rows:
         return []
+    _log.info(
+        "SubFactionDetail raw row count from named range: %d", len(rows)
+    )
     out: list[dict[str, float | None]] = []
-    for r in rows:
+    skipped = []
+    for idx, r in enumerate(rows):
         if not r or len(r) < 11:
+            skipped.append((idx, "row too short or empty"))
             continue
         goi_name = r[0]
         # Skip header row if the named range includes it. Real GoI names
         # won't be the literal "GoI" header label.
         if isinstance(goi_name, str) and goi_name.strip().lower() == "goi":
+            skipped.append((idx, f"header row (col A == {goi_name!r})"))
             continue
         if not goi_name:
+            skipped.append((idx, f"col A is blank/None ({goi_name!r})"))
             continue
         out.append({
             axis: coerce_number(r[5 + i])
             for i, axis in enumerate(WORLDVIEW_AXES)
         })
+    if skipped:
+        _log.info("SubFactionDetail skipped rows: %s", skipped)
     return out
 
 
