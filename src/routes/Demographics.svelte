@@ -17,6 +17,7 @@
   import Bar from '../lib/components/Bar.svelte';
   import MoonLoader from '../lib/components/MoonLoader.svelte';
   import WorkforceBand from '../lib/components/WorkforceBand.svelte';
+  import ClassDetail from '../lib/components/ClassDetail.svelte';
 
   onMount(() => {
     pageTitle.set('Demographics');
@@ -64,7 +65,49 @@
     : (workforceFill * 100).toFixed(1) + '%';
   $: workforceFillCritical = workforceFill != null && workforceFill < 0.85;
   $: workforceFillGood = workforceFill != null && workforceFill >= 1.0;
+
+  // Per-class drilldown selection.
+  let selected = null; // class name string | null
+  let detailWrapper;
+  let scrolledFor = null; // last class name we scrolled to; prevents re-scroll on data refresh
+
+  $: current = selected
+    ? $pops?.classes.find((c) => c.name === selected) ?? null
+    : null;
+
+  // Clear stale selection when the class disappears across a sync.
+  $: if (selected && $pops && !$pops.classes.some((c) => c.name === selected)) {
+    selected = null;
+  }
+
+  // Pull the detail band into view only when the *selected class* changes (not on every $pops refresh).
+  $: if (current && detailWrapper && current.name !== scrolledFor) {
+    scrolledFor = current.name;
+    Promise.resolve().then(() => {
+      detailWrapper?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    });
+  }
+  $: if (!current) scrolledFor = null;
+
+  function toggleSelected(name) {
+    selected = selected === name ? null : name;
+  }
+
+  function handleRowKeydown(e, name) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleSelected(name);
+    }
+  }
+
+  function handleWindowKeydown(e) {
+    if (e.key === 'Escape' && selected != null) {
+      selected = null;
+    }
+  }
 </script>
+
+<svelte:window on:keydown={handleWindowKeydown} />
 
 <section class="px-6 py-5 max-w-[1600px]">
   {#if errorMsg}
@@ -128,7 +171,15 @@
           {#each $pops.classes as c}
             {@const fill = c.workforce?.fill_ratio}
             {@const fillDim = fill != null && fill < 0.85}
-            <tr>
+            <tr
+              role="button"
+              tabindex="0"
+              aria-pressed={selected === c.name}
+              class:selected-row={selected === c.name}
+              style={selected === c.name ? `--row-accent: ${classColor(c.name)};` : ''}
+              on:click={() => toggleSelected(c.name)}
+              on:keydown={(e) => handleRowKeydown(e, c.name)}
+            >
               <td>
                 <span class="faction-bar" style="--bar-color: {classColor(c.name)}"></span>
                 {c.name}
@@ -148,6 +199,12 @@
         </tbody>
       </table>
     </div>
+    {#if current}
+      <Band title={`${current.name} · Detail`} meta="per-class drilldown" />
+      <div bind:this={detailWrapper} aria-live="polite">
+        <ClassDetail cls={current} />
+      </div>
+    {/if}
     <WorkforceBand bandNum="03" />
     <Band num="04" title="Housing" meta={housingCritical ? 'OVERCROWDED' : 'capacity'} />
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -205,3 +262,19 @@
     </div>
   {/if}
 </section>
+
+<style>
+  tr[role='button'] {
+    cursor: pointer;
+  }
+  tr[role='button']:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+  }
+  .selected-row {
+    background: var(--accent-soft);
+    box-shadow: inset 4px 0 0 var(--row-accent, var(--accent));
+    outline: 1px solid var(--accent);
+    outline-offset: -1px;
+  }
+</style>

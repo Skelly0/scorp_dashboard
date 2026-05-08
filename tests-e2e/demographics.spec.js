@@ -73,3 +73,60 @@ test.describe('Demographics page — workforce rework', () => {
     }
   });
 });
+
+test.describe('Demographics — class drilldown', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/#/demographics');
+    await expect(page.locator('text=Pop Dynamics')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('table.tbl tbody tr').first()).toBeVisible();
+  });
+
+  test('clicking a class row opens the detail band with that class name', async ({ page }) => {
+    const firstRow = page.locator('table.tbl tbody tr').first();
+    const className = (await firstRow.locator('td').first().innerText()).trim();
+    await firstRow.click();
+    await expect(page.locator('.band-title', { hasText: className })).toBeVisible();
+    await expect(page.locator('text=per-class drilldown')).toBeVisible();
+  });
+
+  test('clicking the same row a second time collapses the detail band', async ({ page }) => {
+    const firstRow = page.locator('table.tbl tbody tr').first();
+    await firstRow.click();
+    await expect(page.locator('text=per-class drilldown')).toBeVisible();
+    await firstRow.click();
+    await expect(page.locator('text=per-class drilldown')).toHaveCount(0);
+  });
+
+  test('Escape collapses the detail band', async ({ page }) => {
+    const firstRow = page.locator('table.tbl tbody tr').first();
+    await firstRow.click();
+    await expect(page.locator('text=per-class drilldown')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(page.locator('text=per-class drilldown')).toHaveCount(0);
+  });
+
+  test('Living Standards card uses KV not bars', async ({ page }) => {
+    await page.locator('table.tbl tbody tr').first().click();
+    const card = page.locator('.s-card', { hasText: 'Living Standards' });
+    await expect(card).toBeVisible();
+    await expect(card.locator('dt', { hasText: 'SoL' })).toBeVisible();
+    await expect(card.locator('dt', { hasText: 'Expected' })).toBeVisible();
+    await expect(card.locator('dt', { hasText: 'Privilege' })).toBeVisible();
+    await expect(card.locator('.bar-row')).toHaveCount(0);
+  });
+
+  test('Status and per-class Workforce cards present in detail', async ({ page }) => {
+    await page.locator('table.tbl tbody tr').first().click();
+    await expect(page.locator('.s-card', { hasText: 'Status' })).toBeVisible();
+    await expect(
+      page.locator('.s-card', { hasText: 'Workforce' }).filter({ hasText: 'Fill Ratio' })
+    ).toBeVisible();
+  });
+
+  test('row aria-pressed reflects selection', async ({ page }) => {
+    const firstRow = page.locator('table.tbl tbody tr').first();
+    await expect(firstRow).toHaveAttribute('aria-pressed', 'false');
+    await firstRow.click();
+    await expect(firstRow).toHaveAttribute('aria-pressed', 'true');
+  });
+});

@@ -11,7 +11,6 @@
 
   import Status from './routes/Status.svelte';
   import Population from './routes/Population.svelte';
-  import Pops from './routes/Pops.svelte';
   import GoIs from './routes/GoIs.svelte';
   import Parties from './routes/Parties.svelte';
   import Map from './routes/Map.svelte';
@@ -34,7 +33,6 @@
     '/': Status,
     '/map': Map,
     '/population': Population,
-    '/pops': Pops,
     '/demographics': Demographics,
     '/gois': GoIs,
     '/parties': Parties,

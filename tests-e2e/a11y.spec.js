@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-const PAGES = ['/', '/#/map', '/#/population', '/#/pops', '/#/demographics', '/#/gois', '/#/parties', '/#/situations'];
+const PAGES = ['/', '/#/map', '/#/population', '/#/demographics', '/#/gois', '/#/parties', '/#/situations'];
 const THEMES = ['light', 'dark', 'schematic'];
 
 for (const theme of THEMES) {
@@ -54,6 +54,26 @@ for (const theme of THEMES) {
     await page.waitForSelector('.gois-main li button', { timeout: 10_000 });
     await page.locator('.gois-main li button').first().click();
     await page.waitForSelector('.s-sheet .s-rail-name');
+    const results = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa'])
+      .analyze();
+    expect(results.violations).toEqual([]);
+  });
+}
+
+// Demographics with class detail open — not reachable from a default page-load
+// scan, so we sweep it explicitly per theme.
+for (const theme of THEMES) {
+  test(`a11y: ${theme} theme — /#/demographics with class detail open`, async ({ page }) => {
+    await page.goto('/');
+    await page.evaluate((t) => {
+      localStorage.setItem('theme', t);
+    }, theme);
+    await page.goto('/#/demographics');
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('table.tbl tbody tr', { timeout: 10_000 });
+    await page.locator('table.tbl tbody tr').first().click();
+    await page.waitForSelector('text=per-class drilldown');
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa'])
       .analyze();
