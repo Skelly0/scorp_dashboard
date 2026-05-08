@@ -97,10 +97,10 @@
           "effective_worldview": {
             "authority": 3.5,
             "corporate": 6.5,
-            "expansion": 4.5,
-            "faith": 2.5,
-            "materialist": 3.5,
-            "technocratic": 3.5
+            "expansion": 5.5,
+            "faith": 3.0,
+            "materialist": 2.5,
+            "technocratic": 4.0
           },
           "goal": "Reject labour regulations",
           "influence": 0.4,
@@ -111,12 +111,12 @@
         {
           "approval": 0.2071329681,
           "effective_worldview": {
-            "authority": 5.0,
-            "corporate": 2.5,
-            "expansion": 4.0,
-            "faith": 4.5,
-            "materialist": 3.5,
-            "technocratic": 5.0
+            "authority": 3.0,
+            "corporate": 6.5,
+            "expansion": 6.5,
+            "faith": 3.5,
+            "materialist": 2.0,
+            "technocratic": 4.5
           },
           "goal": "Open new mining territory",
           "influence": 0.35,
@@ -127,17 +127,17 @@
         {
           "approval": 0.05729549439,
           "effective_worldview": {
-            "authority": 5.5,
-            "corporate": 1.5,
-            "expansion": 3.5,
-            "faith": 4.0,
-            "materialist": 4.5,
-            "technocratic": 5.0
+            "authority": 3.5,
+            "corporate": 6.5,
+            "expansion": 4.5,
+            "faith": 2.5,
+            "materialist": 3.5,
+            "technocratic": 3.5
           },
           "goal": "Restart speculation markets",
           "influence": 0.25,
           "minor_goals": [],
-          "name": "High Finance",
+          "name": "Federation of Small Businesses",
           "national_share": 0.05603924998
         }
       ]
@@ -168,12 +168,12 @@
         {
           "approval": 0.3533338422,
           "effective_worldview": {
-            "authority": 6.5,
-            "corporate": 1.0,
-            "expansion": 3.0,
+            "authority": 5.0,
+            "corporate": 2.5,
+            "expansion": 4.0,
             "faith": 4.5,
             "materialist": 3.5,
-            "technocratic": 5.5
+            "technocratic": 5.0
           },
           "goal": "Enshrine collective bargaining",
           "influence": 0.5,
@@ -184,12 +184,12 @@
         {
           "approval": 0.3222547418,
           "effective_worldview": {
-            "authority": 4.0,
-            "corporate": 4.5,
-            "expansion": 6.5,
-            "faith": 3.0,
-            "materialist": 3.5,
-            "technocratic": 3.5
+            "authority": 5.5,
+            "corporate": 1.5,
+            "expansion": 3.5,
+            "faith": 4.0,
+            "materialist": 4.5,
+            "technocratic": 5.0
           },
           "goal": "Convert improvements to co-ops",
           "influence": 0.3,
@@ -200,12 +200,12 @@
         {
           "approval": 0.3645808378,
           "effective_worldview": {
-            "authority": 4.5,
-            "corporate": 4.5,
-            "expansion": 6.5,
-            "faith": 2.0,
-            "materialist": 4.0,
-            "technocratic": 1.5
+            "authority": 6.5,
+            "corporate": 1.0,
+            "expansion": 3.0,
+            "faith": 4.5,
+            "materialist": 3.5,
+            "technocratic": 5.5
           },
           "goal": "Establish labour regulations",
           "influence": 0.2,
@@ -238,7 +238,14 @@
       "sub_factions": [
         {
           "approval": 0.1855562031,
-          "effective_worldview": null,
+          "effective_worldview": {
+            "authority": 4.0,
+            "corporate": 4.5,
+            "expansion": 6.5,
+            "faith": 3.0,
+            "materialist": 3.5,
+            "technocratic": 3.5
+          },
           "goal": "Found a third outpost",
           "influence": 0.5,
           "minor_goals": [],
@@ -247,7 +254,14 @@
         },
         {
           "approval": 0.006765499715,
-          "effective_worldview": null,
+          "effective_worldview": {
+            "authority": 4.5,
+            "corporate": 4.5,
+            "expansion": 6.5,
+            "faith": 2.0,
+            "materialist": 4.0,
+            "technocratic": 1.5
+          },
           "goal": "Create a second legislative chamber composed of appointed experts in their fields",
           "influence": 0.3,
           "minor_goals": [],
