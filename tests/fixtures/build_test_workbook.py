@@ -285,82 +285,52 @@ def build(out_path: Path) -> Path:
     _add_name(wb, "GoIApproach", "Politics!$R$4:$R$11")
     _add_name(wb, "GoIActiveBenefits", "Politics!$T$4:$T$11")
 
-    # Sub-faction detail block (per spec §3.5: range deferred to extraction-time;
-    # for the fixture we put it at U24:AA36 so test asserts can pin it).
+    # Sub-faction block — mirrors live wb's `Sub-Factions` sheet col-for-col
+    # (A:L) so per-column named-range slices line up. Parked here on Politics
+    # at cols U-AF (offset 21..32) instead of a dedicated sheet for fixture
+    # economy; the extractor reads via named ranges so the sheet difference
+    # is invisible.
     sub_factions = [
-        # parent, sf_name, infl, appr, minor_goal, goal_text, national_share
-        ("Founders", "Constitutional Loyalists", 0.40, 0.5, "Defend constitution",
-         "Defend the founding charter against revisionism.", 0.20),
-        ("Founders", "Reformist Founders", 0.35, 0.6, "Modernise institutions",
-         "Modernise the constitutional framework.", 0.18),
-        ("Founders", "Hardliner Founders", 0.25, 0.4, "Restore order",
-         "Restore lost civic order through firm institutions.", 0.12),
-        ("Capitalists", "Industrialists", 0.40, 0.5, "Heavy industry growth",
-         "Expand heavy industry above all else.", 0.30),
-        ("Capitalists", "Extraction Cartels", 0.35, 0.4, "Mining priority",
-         "Prioritise extraction over downstream value.", 0.20),
+        # parent, sf_name, goal_axis, goal_delta, goal_text, infl,
+        # m1, m2, m3, approval, national_share
+        ("Founders", "Constitutional Loyalists", "authority", 1.0,
+         "Defend the founding charter against revisionism.", 0.40,
+         "", "", "", 0.5, 0.20),
+        ("Founders", "Reformist Founders", "technocratic", 1.0,
+         "Modernise the constitutional framework.", 0.35,
+         "", "", "", 0.6, 0.18),
+        ("Founders", "Hardliner Founders", "authority", 1.5,
+         "Restore lost civic order through firm institutions.", 0.25,
+         "", "", "", 0.4, 0.12),
+        ("Capitalists", "Industrialists", "corporate", 1.5,
+         "Expand heavy industry above all else.", 0.40,
+         "", "", "", 0.5, 0.30),
+        ("Capitalists", "Extraction Cartels", "expansion", 1.0,
+         "Prioritise extraction over downstream value.", 0.35,
+         "", "", "", 0.4, 0.20),
     ]
-    for i, (parent, sf_name, infl, appr, minor_goal, goal_text, nat_share) in enumerate(
-        sub_factions, start=24
-    ):
-        pol.cell(row=i, column=21, value=parent)         # U
-        pol.cell(row=i, column=22, value=sf_name)        # V
-        pol.cell(row=i, column=23, value=infl)           # W influence
-        pol.cell(row=i, column=24, value=appr)           # X approval
-        pol.cell(row=i, column=25, value=minor_goal)     # Y minor goal 1
-        pol.cell(row=i, column=26, value=goal_text)      # Z goal text (NEW)
-        pol.cell(row=i, column=27, value=nat_share)      # AA national share (NEW)
-    _add_name(wb, "SubFactionsBlock", "Politics!$U$24:$Y$36")
-    # Schema validator wants the four atomic SubFaction* ranges. The live wb places
-    # them on a separate sheet; for the fixture we expose narrow slices of the
-    # SubFactionsBlock so the validator passes — extractor tests that need full
-    # sub-faction data are responsible for their own setup.
-    _add_name(wb, "SubFactionGoals", "Politics!$U$24:$Y$36")
-    _add_name(wb, "SubFactionInfluences", "Politics!$W$24:$W$36")
-    _add_name(wb, "SubFactionMinorGoals", "Politics!$Y$24:$Y$36")
-    _add_name(wb, "SubFactionApprovals", "Politics!$X$24:$X$36")
-    # Note: in the live workbook these names live on the dedicated `Sub-Factions`
-    # sheet (cols E and L). The fixture parks them on `Politics` cols Z/AA so we
-    # don't have to invent a new fixture sheet just for two columns. The
-    # extractor reads by name only, so the topology divergence is invisible to
-    # tests — but real-world drift between fixture and live wb is also masked.
-    # If the fixture is ever rebuilt to mirror the live sheet topology, move
-    # these ranges to the new `Sub-Factions` fixture sheet at that point.
-    _add_name(wb, "SubFactionGoal", "Politics!$Z$24:$Z$36")
-    _add_name(wb, "SubFactionNationalShare", "Politics!$AA$24:$AA$36")
-
-    # ---- Sub-Faction Detail sheet (mirrors live wb's derived 13×16 block) ----
-    sfd = wb.create_sheet("Sub-Faction Detail")
-    # Row 4 = header (matches live wb convention; data starts row 5).
-    sfd_headers = [
-        "GoI", "Sub-faction", "Influence", "Goal Axis", "Goal Δ",
-        "Expansion", "Authority", "Corporate", "Technocratic", "Faith", "Materialist",
-        "Approval", "Minor Goal 1", "Minor Goal 2", "Minor Goal 3", "National Share",
-    ]
-    for c, hdr in enumerate(sfd_headers, start=1):
-        sfd.cell(row=4, column=c, value=hdr)
-    # Data rows: align to the same (GoI, sub-faction) pairs as `sub_factions` above.
-    # Per-axis values are arbitrary but distinct so tests can pin specific cells.
-    sfd_rows = [
-        # (goi, sf_name, infl, axis, delta, exp, auth, corp, tech, faith, mat, appr,
-        #  m1, m2, m3, nat_share)
-        ("Founders", "Constitutional Loyalists", 0.40, "authority", 1.0,
-         4.0, 5.5, 4.0, 4.0, 4.5, 4.5, 0.5, "", "", "", 0.20),
-        ("Founders", "Reformist Founders", 0.35, "technocratic", 1.0,
-         4.0, 4.0, 4.0, 5.5, 4.5, 4.5, 0.6, "", "", "", 0.18),
-        ("Founders", "Hardliner Founders", 0.25, "authority", 1.5,
-         4.0, 6.0, 4.0, 4.0, 4.5, 4.5, 0.4, "", "", "", 0.12),
-        ("Capitalists", "Industrialists", 0.40, "corporate", 1.5,
-         5.5, 3.5, 6.5, 4.0, 3.0, 2.5, 0.5, "", "", "", 0.30),
-        ("Capitalists", "Extraction Cartels", 0.35, "expansion", 1.0,
-         6.5, 3.5, 5.5, 4.0, 3.0, 2.5, 0.4, "", "", "", 0.20),
-    ]
-    for i, row_vals in enumerate(sfd_rows, start=5):
-        for c, val in enumerate(row_vals, start=1):
-            sfd.cell(row=i, column=c, value=val)
-    # 13-row reservation total to mirror the live wb (rows 5..17). Remaining rows
-    # are blank by default and will be filtered by name-pair lookup misses.
-    _add_name(wb, "SubFactionDetail", "'Sub-Faction Detail'!$A$5:$P$17")
+    for i, (parent, sf_name, goal_axis, goal_delta, goal_text, infl,
+            m1, m2, m3, appr, nat_share) in enumerate(sub_factions, start=24):
+        pol.cell(row=i, column=21, value=parent)       # U  (live col A)
+        pol.cell(row=i, column=22, value=sf_name)      # V  (live col B)
+        pol.cell(row=i, column=23, value=goal_axis)    # W  (live col C)
+        pol.cell(row=i, column=24, value=goal_delta)   # X  (live col D)
+        pol.cell(row=i, column=25, value=goal_text)    # Y  (live col E)
+        pol.cell(row=i, column=26, value=infl)         # Z  (live col F)
+        pol.cell(row=i, column=27, value=m1)           # AA (live col G)
+        pol.cell(row=i, column=28, value=m2)           # AB (live col H)
+        pol.cell(row=i, column=29, value=m3)           # AC (live col I)
+        pol.cell(row=i, column=30, value=appr)         # AD (live col J)
+        # Col AE (live col K) intentionally blank — live wb has Raw Nat. Weight
+        # there, derived; no named range exposes it.
+        pol.cell(row=i, column=32, value=nat_share)    # AF (live col L)
+    _add_name(wb, "SubFactionsBlock", "Politics!$U$24:$AF$36")
+    _add_name(wb, "SubFactionGoals", "Politics!$U$24:$Y$36")        # A:E
+    _add_name(wb, "SubFactionGoal", "Politics!$Y$24:$Y$36")          # E
+    _add_name(wb, "SubFactionInfluences", "Politics!$Z$24:$Z$36")   # F
+    _add_name(wb, "SubFactionMinorGoals", "Politics!$AA$24:$AC$36") # G:I
+    _add_name(wb, "SubFactionApprovals", "Politics!$AD$24:$AD$36")  # J
+    _add_name(wb, "SubFactionNationalShare", "Politics!$AF$24:$AF$36")  # L
 
     # GoI Modifiers: PopCaptureBase B5:E15 (11 classes × 4 GoIs)
     gm = wb.create_sheet("GoI Modifiers")

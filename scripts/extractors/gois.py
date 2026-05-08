@@ -49,7 +49,7 @@ def extract(wb) -> dict[str, Any]:
 
     main_classes = _infer_main_classes(live_names, capture, classes)
 
-    sub_factions_by_goi = _sub_factions_by_goi(wb)
+    sub_factions_by_goi = _sub_factions_by_goi(wb, main_classes)
 
     out_gois: list[dict[str, Any]] = []
     for src_idx in live_indices:
@@ -115,66 +115,56 @@ def _parse_active_benefits(text, goi_name, benefits_table):
     return {"unlocked": unlocked, "total": total, "unlocked_list": unlocked_list}
 
 
-def _subfaction_worldviews_by_row(wb):
-    """Read SubFactionDetail and return a list of worldview dicts in row order.
+def _compute_effective_worldview(main_class, goal_axis, goal_delta,
+                                 popsim_worldview, class_name_to_idx):
+    """Compute the per-axis effective worldview for one sub-faction.
 
-    SubFactionDetail layout (16 cols on the Sub-Faction Detail sheet):
-      0: GoI, 1: Sub-faction, 2: Influence, 3: Goal Axis, 4: Goal Δ,
-      5-10: Expansion/Authority/Corporate/Technocratic/Faith/Materialist
-            (effective stance — base + Δ if axis matches),
-      11: Approval (mirror — ignored; SubFactionApprovals is authoritative),
-      12-14: Minor Goals (mirror — ignored),
-      15: National Share (mirror — ignored).
+    Replaces the legacy SubFactionDetail mirror sheet. The math:
+      base[axis] = PopsimWorldview row for parent GoI's main pop class
+      effective[axis] = clamp(1, 7, base + goal_delta) if axis == goal_axis
+                      = base otherwise
 
-    Row-index zip: the live workbook's Sub-Faction Detail is a derived
-    INDEX-formula mirror of Sub-Factions, so row N of Detail corresponds to
-    row N of SubFactionGoals (per backend convention). Names in the Detail
-    sheet may diverge if the GM hand-edits them, but the worldview values
-    (cols F-K) are still positionally aligned. Caller is responsible for
-    asserting row-count parity (see _sub_factions_by_goi).
+    Returns a {axis: value | None} dict, or None when the main class can't
+    be resolved (graceful degradation — the panel hides the radar).
     """
-    rows = read_named_range(wb, "SubFactionDetail")
-    if not rows:
-        return []
-    _log.info(
-        "SubFactionDetail raw row count from named range: %d", len(rows)
+    if not main_class or main_class not in class_name_to_idx:
+        return None
+    class_idx = class_name_to_idx[main_class]
+    if class_idx >= len(popsim_worldview):
+        return None
+    base_row = popsim_worldview[class_idx]
+    if not base_row or len(base_row) < len(WORLDVIEW_AXES):
+        return None
+
+    delta = coerce_number(goal_delta) or 0.0
+    goal_axis_norm = (
+        goal_axis.strip().lower() if isinstance(goal_axis, str) else ""
     )
-    out: list[dict[str, float | None]] = []
-    skipped = []
-    for idx, r in enumerate(rows):
-        if not r or len(r) < 11:
-            skipped.append((idx, "row too short or empty"))
+
+    out: dict[str, float | None] = {}
+    for i, axis in enumerate(WORLDVIEW_AXES):
+        base = coerce_number(base_row[i])
+        if base is None:
+            out[axis] = None
             continue
-        goi_name = r[0]
-        # Skip header row if the named range includes it. Real GoI names
-        # won't be the literal "GoI" header label.
-        if isinstance(goi_name, str) and goi_name.strip().lower() == "goi":
-            skipped.append((idx, f"header row (col A == {goi_name!r})"))
-            continue
-        if not goi_name:
-            skipped.append((idx, f"col A is blank/None ({goi_name!r})"))
-            continue
-        out.append({
-            axis: coerce_number(r[5 + i])
-            for i, axis in enumerate(WORLDVIEW_AXES)
-        })
-    if skipped:
-        _log.info("SubFactionDetail skipped rows: %s", skipped)
+        value = base + delta if goal_axis_norm == axis else base
+        if goal_axis_norm == axis:
+            value = max(1.0, min(7.0, value))
+        out[axis] = value
     return out
 
 
-def _sub_factions_by_goi(wb):
+def _sub_factions_by_goi(wb, main_classes):
     """Zip the SubFaction* named ranges into per-GoI lists.
 
     Sub-Factions sheet layout (live wb):
       A: GoI, B: SF name, C: Goal Axis, D: Goal Δ, E: Goal text,
       F: Influence, G-I: Minor Goals, J: Approval, L: National Share.
 
-    Names come exclusively from SubFactionGoals (the GM-input sheet); the
-    Sub-Faction Detail sheet is treated as a positional mirror, supplying
-    only the per-axis effective worldview by row index. Both sheets are
-    expected to have the same number of populated sub-faction rows; we warn
-    if they diverge.
+    Names + goal_axis + goal_delta all come from SubFactionGoals (the GM
+    input). The per-axis effective worldview is computed locally using
+    PopsimWorldview baselines for each parent GoI's main pop class —
+    no separate Sub-Faction Detail sheet needed.
     """
     goals = read_named_range(wb, "SubFactionGoals")
     influences = read_named_range(wb, "SubFactionInfluences")
@@ -182,15 +172,25 @@ def _sub_factions_by_goi(wb):
     approvals = read_named_range(wb, "SubFactionApprovals")
     goals_text = read_named_range(wb, "SubFactionGoal")
     national_shares = read_named_range(wb, "SubFactionNationalShare")
-    worldviews = _subfaction_worldviews_by_row(wb)
+
+    # PopsimWorldview is row-aligned with the FULL (unfiltered) ClassTable
+    # — both have 15 slots in the live wb. Build name→row-index off the
+    # unfiltered table so the lookup matches PopsimWorldview's positions.
+    classes_full = read_named_range(wb, "ClassTable")
+    popsim_worldview = read_named_range(wb, "PopsimWorldview")
+    class_name_to_idx = {
+        row[0]: i for i, row in enumerate(classes_full)
+        if row and row[0]
+    }
 
     by_goi: dict[str, list[dict[str, Any]]] = {}
-    sf_idx = 0  # index into `worldviews` (counts populated sub-factions in order)
     for i, gr in enumerate(goals):
         if not gr or not gr[0]:
             continue
         goi_name = gr[0]
         sf_name = gr[1] if len(gr) > 1 else None
+        goal_axis = gr[2] if len(gr) > 2 else None
+        goal_delta = gr[3] if len(gr) > 3 else None
         infl = (
             coerce_number(influences[i][0])
             if i < len(influences) and influences[i]
@@ -216,8 +216,13 @@ def _sub_factions_by_goi(wb):
             if i < len(national_shares) and national_shares[i]
             else None
         )
-        worldview = worldviews[sf_idx] if sf_idx < len(worldviews) else None
-        sf_idx += 1
+        worldview = _compute_effective_worldview(
+            main_class=main_classes.get(goi_name),
+            goal_axis=goal_axis,
+            goal_delta=goal_delta,
+            popsim_worldview=popsim_worldview,
+            class_name_to_idx=class_name_to_idx,
+        )
 
         by_goi.setdefault(goi_name, []).append({
             "name": sf_name,
@@ -228,16 +233,6 @@ def _sub_factions_by_goi(wb):
             "national_share": nat_share,
             "effective_worldview": worldview,
         })
-
-    # Warn (don't fail) if row counts diverge — that indicates a structural
-    # break the GM should be aware of, not a per-sync transient.
-    if worldviews and sf_idx != len(worldviews):
-        _log.warning(
-            "SubFactionDetail has %d populated rows but SubFactionGoals has "
-            "%d; worldviews after the shorter list will be misaligned or "
-            "missing — check that both sheets cover the same sub-factions",
-            len(worldviews), sf_idx,
-        )
 
     return by_goi
 

@@ -97,9 +97,11 @@ SOFT_OPTIONAL_V3_RANGES: list[str] = [
     "PopsimMobilityOut",
     # v5 — Sub-faction enrichment (read by extractors/gois.py via read_named_range,
     # which returns [] when missing — so the dashboard degrades gracefully).
+    # `SubFactionDetail` was used briefly for the per-axis worldview mirror; that
+    # mirror was retired once the extractor switched to computing effective
+    # worldview locally from PopsimWorldview + Sub-Factions cols C/D.
     "SubFactionGoal",
     "SubFactionNationalShare",
-    "SubFactionDetail",
 ]
 
 
