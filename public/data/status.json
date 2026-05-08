@@ -10,13 +10,13 @@
   "demographics": {
     "avg_satisfaction": 0.6975120765494734,
     "base_growth_rate": 0.04,
-    "effective_cdr": 0.01125150421,
+    "effective_cdr": 0.008303249097,
     "effective_growth_rate": 0.012,
     "housing_capacity": 20433.0,
     "housing_util": 0.8133901042431361,
-    "net_delta_pct": 0.07484957899999994,
+    "net_delta_pct": 0.3696750903,
     "sat_elasticity": 0.3,
-    "total_deaths": 187.0
+    "total_deaths": 138.0
   },
   "gov_approval": 0.2528499954,
   "overton": {
