@@ -9,7 +9,7 @@
         "welfare": 0.0
       },
       "births_per_turn": 81.0,
-      "deaths_per_turn": 9.0,
+      "deaths_per_turn": 10.0,
       "expected_sol": 21.0,
       "income": {
         "disposable_per_cap": 16.0,
@@ -22,10 +22,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.009,
+      "mortality_rate": 0.00918,
       "name": "Bureaucrats",
       "pop": 1045,
-      "satisfaction": 0.6621917888,
+      "satisfaction": 0.662191988,
       "social_privileges": 8.0,
       "standard_of_living": 14.27320749,
       "status": {
@@ -73,7 +73,7 @@
       "mortality_rate": 0.009,
       "name": "Capitalists",
       "pop": 237,
-      "satisfaction": 0.6766220758,
+      "satisfaction": 0.6766221974,
       "social_privileges": 13.0,
       "standard_of_living": 27.14343668,
       "status": {
@@ -105,7 +105,7 @@
         "welfare": 0.0
       },
       "births_per_turn": 89.0,
-      "deaths_per_turn": 10.0,
+      "deaths_per_turn": 12.0,
       "expected_sol": 16.0,
       "income": {
         "disposable_per_cap": 16.72,
@@ -118,10 +118,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.009,
+      "mortality_rate": 0.0108,
       "name": "Engineers",
       "pop": 1140,
-      "satisfaction": 0.6920681538,
+      "satisfaction": 0.6920682861,
       "social_privileges": 8.0,
       "standard_of_living": 13.73310089,
       "status": {
@@ -153,7 +153,7 @@
         "welfare": 0.0
       },
       "births_per_turn": 135.0,
-      "deaths_per_turn": 15.0,
+      "deaths_per_turn": 18.0,
       "expected_sol": 18.0,
       "income": {
         "disposable_per_cap": 18.24,
@@ -166,10 +166,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.009,
+      "mortality_rate": 0.01035,
       "name": "Scientists",
       "pop": 1710,
-      "satisfaction": 0.7049579828,
+      "satisfaction": 0.7049581072,
       "social_privileges": 9.0,
       "standard_of_living": 15.89203771,
       "status": {
@@ -217,7 +217,7 @@
       "mortality_rate": 0.00927,
       "name": "Security",
       "pop": 950,
-      "satisfaction": 0.7097613269,
+      "satisfaction": 0.7097613615,
       "social_privileges": 7.0,
       "standard_of_living": 11.22973828,
       "status": {
@@ -262,10 +262,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.009,
+      "mortality_rate": 0.00918,
       "name": "Proprietors",
       "pop": 285,
-      "satisfaction": 0.668143832,
+      "satisfaction": 0.6681439663,
       "social_privileges": 8.0,
       "standard_of_living": 13.30466516,
       "status": {
@@ -310,10 +310,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.009,
+      "mortality_rate": 0.00855,
       "name": "Managerial",
       "pop": 332,
-      "satisfaction": 0.6734642234,
+      "satisfaction": 0.6734643545,
       "social_privileges": 8.0,
       "standard_of_living": 14.82706705,
       "status": {
@@ -358,10 +358,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.009,
+      "mortality_rate": 0.00945,
       "name": "Botanists",
       "pop": 570,
-      "satisfaction": 0.649704767,
+      "satisfaction": 0.6497049271,
       "social_privileges": 8.0,
       "standard_of_living": 14.31132995,
       "status": {
@@ -393,7 +393,7 @@
         "welfare": 0.0
       },
       "births_per_turn": 271.0,
-      "deaths_per_turn": 31.0,
+      "deaths_per_turn": 43.0,
       "expected_sol": 9.0,
       "income": {
         "disposable_per_cap": 10.2,
@@ -406,10 +406,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.009,
+      "mortality_rate": 0.0126,
       "name": "Industrial Workers",
       "pop": 3450,
-      "satisfaction": 0.6958456149,
+      "satisfaction": 0.6958458105,
       "social_privileges": 5.0,
       "standard_of_living": 7.213373906,
       "status": {
@@ -441,7 +441,7 @@
         "welfare": 0.0
       },
       "births_per_turn": 292.0,
-      "deaths_per_turn": 33.0,
+      "deaths_per_turn": 50.0,
       "expected_sol": 9.0,
       "income": {
         "disposable_per_cap": 11.05,
@@ -454,10 +454,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.009,
+      "mortality_rate": 0.0135,
       "name": "Extraction Workers",
       "pop": 3700,
-      "satisfaction": 0.7170082495,
+      "satisfaction": 0.7170084452,
       "social_privileges": 5.0,
       "standard_of_living": 7.431785948,
       "status": {
@@ -489,7 +489,7 @@
         "welfare": 0.0
       },
       "births_per_turn": 252.0,
-      "deaths_per_turn": 29.0,
+      "deaths_per_turn": 32.0,
       "expected_sol": 9.0,
       "income": {
         "disposable_per_cap": 8.5,
@@ -502,10 +502,10 @@
       },
       "mobility_in": 0.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.009,
+      "mortality_rate": 0.0099,
       "name": "Service Workers",
       "pop": 3200,
-      "satisfaction": 0.6978041189,
+      "satisfaction": 0.6978043062,
       "social_privileges": 5.0,
       "standard_of_living": 6.721849786,
       "status": {

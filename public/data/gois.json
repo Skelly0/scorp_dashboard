@@ -7,7 +7,7 @@
         "unlocked_list": []
       },
       "approach": "Idealist",
-      "approval": 0.315011148,
+      "approval": 0.315011596,
       "derived_influence": 0.2150529465,
       "effective_worldview": {
         "authority": 4.5,
@@ -22,22 +22,45 @@
       "name": "Administration",
       "sub_factions": [
         {
-          "approval": 0.3704741445,
+          "approval": 0.3704745924,
+          "effective_worldview": null,
+          "goal": "Establish a constitution",
           "influence": 0.4,
           "minor_goals": [],
-          "name": "Statebuilders"
+          "name": "Statebuilders",
+          "national_share": 0.08960344422
         },
         {
-          "approval": 0.2169813953,
+          "approval": 0.2169818433,
+          "effective_worldview": {
+            "authority": 5.0,
+            "corporate": 4.0,
+            "expansion": 3.5,
+            "faith": 4.5,
+            "materialist": 5.0,
+            "technocratic": 4.0
+          },
+          "goal": "Expand civilian oversight",
           "influence": 0.3,
           "minor_goals": [],
-          "name": "Reformist Administrators"
+          "name": "Reformist Administrators",
+          "national_share": 0.06720258316
         },
         {
-          "approval": 0.3390902389,
+          "approval": 0.3390906868,
+          "effective_worldview": {
+            "authority": 3.0,
+            "corporate": 3.5,
+            "expansion": 2.0,
+            "faith": 6.0,
+            "materialist": 6.5,
+            "technocratic": 5.5
+          },
+          "goal": "Implement martial law",
           "influence": 0.3,
           "minor_goals": [],
-          "name": "Hardliner Administrators"
+          "name": "Hardliner Administrators",
+          "national_share": 0.06720258316
         }
       ]
     },
@@ -48,7 +71,7 @@
         "unlocked_list": []
       },
       "approach": "Marketist",
-      "approval": 0.1772848679,
+      "approval": 0.1772853771,
       "derived_influence": 0.2151954034,
       "effective_worldview": {
         "authority": 3.5,
@@ -63,22 +86,38 @@
       "name": "Corporate",
       "sub_factions": [
         {
-          "approval": 0.2263434376,
+          "approval": 0.2263439468,
+          "effective_worldview": null,
+          "goal": "Reject labour regulations",
           "influence": 0.4,
           "minor_goals": [],
-          "name": "Industrialists"
+          "name": "Industrialists",
+          "national_share": 0.08966279997
         },
         {
-          "approval": 0.2070114355,
+          "approval": 0.2070119446,
+          "effective_worldview": null,
+          "goal": "Open new mining territory",
           "influence": 0.35,
           "minor_goals": [],
-          "name": "Extraction Cartels"
+          "name": "Extraction Cartels",
+          "national_share": 0.07845494997
         },
         {
-          "approval": 0.05717396178,
+          "approval": 0.05717447096,
+          "effective_worldview": {
+            "authority": 3.5,
+            "corporate": 6.5,
+            "expansion": 4.5,
+            "faith": 2.5,
+            "materialist": 3.5,
+            "technocratic": 3.5
+          },
+          "goal": "Restart speculation markets",
           "influence": 0.25,
           "minor_goals": [],
-          "name": "High Finance"
+          "name": "High Finance",
+          "national_share": 0.05603924998
         }
       ]
     },
@@ -91,7 +130,7 @@
         ]
       },
       "approach": "Democratic",
-      "approval": 0.3461380398,
+      "approval": 0.3461384878,
       "derived_influence": 0.3698561185,
       "effective_worldview": {
         "authority": 5.5,
@@ -106,22 +145,45 @@
       "name": "Unions",
       "sub_factions": [
         {
-          "approval": 0.3532123709,
+          "approval": 0.3532128188,
+          "effective_worldview": {
+            "authority": 5.0,
+            "corporate": 2.5,
+            "expansion": 4.0,
+            "faith": 4.5,
+            "materialist": 3.5,
+            "technocratic": 5.0
+          },
+          "goal": "Enshrine collective bargaining",
           "influence": 0.5,
           "minor_goals": [],
-          "name": "Labour Caucus"
+          "name": "Labour Caucus",
+          "national_share": 0.1926292026
         },
         {
-          "approval": 0.3221332704,
+          "approval": 0.3221337183,
+          "effective_worldview": {
+            "authority": 5.5,
+            "corporate": 1.5,
+            "expansion": 3.5,
+            "faith": 4.0,
+            "materialist": 4.5,
+            "technocratic": 5.0
+          },
+          "goal": "Convert improvements to co-ops",
           "influence": 0.3,
           "minor_goals": [],
-          "name": "Co-op Movement"
+          "name": "Co-op Movement",
+          "national_share": 0.1155775216
         },
         {
-          "approval": 0.3644593664,
+          "approval": 0.3644598144,
+          "effective_worldview": null,
+          "goal": "Establish labour regulations",
           "influence": 0.2,
           "minor_goals": [],
-          "name": "Agitators"
+          "name": "Agitators",
+          "national_share": 0.07705168105
         }
       ]
     },
@@ -132,7 +194,7 @@
         "unlocked_list": []
       },
       "approach": "Secular",
-      "approval": 0.09471613863,
+      "approval": 0.09471641301,
       "derived_influence": 0.1998955316,
       "effective_worldview": {
         "authority": 4.0,
@@ -147,22 +209,45 @@
       "name": "Research",
       "sub_factions": [
         {
-          "approval": 0.185441687,
+          "approval": 0.18544203,
+          "effective_worldview": {
+            "authority": 4.0,
+            "corporate": 4.5,
+            "expansion": 6.5,
+            "faith": 3.0,
+            "materialist": 3.5,
+            "technocratic": 3.5
+          },
+          "goal": "Found a third outpost",
           "influence": 0.5,
           "minor_goals": [],
-          "name": "Frontier Bloc"
+          "name": "Frontier Bloc",
+          "national_share": 0.1041099902
         },
         {
-          "approval": 0.006650983685,
+          "approval": 0.006651326666,
+          "effective_worldview": {
+            "authority": 4.5,
+            "corporate": 4.5,
+            "expansion": 6.5,
+            "faith": 2.0,
+            "materialist": 4.0,
+            "technocratic": 1.5
+          },
+          "goal": "Create a second legislative chamber composed of appointed experts in their fields",
           "influence": 0.3,
           "minor_goals": [],
-          "name": "Scientific Vanguard"
+          "name": "Scientific Vanguard",
+          "national_share": 0.0624659941
         },
         {
           "approval": 0.0,
+          "effective_worldview": null,
+          "goal": "Create a public database.",
           "influence": 0.2,
           "minor_goals": [],
-          "name": "Intellectual Liberty Movement"
+          "name": "Intellectual Liberty Movement",
+          "national_share": 0.04164399607
         }
       ]
     }
