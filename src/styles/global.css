@@ -1441,16 +1441,13 @@ table.tbl th.num {
 
 /* === Tech page — branch grid ============================================== */
 .tech-grid {
-  /* gotcha #22: minmax(0, 1fr) — bare 1fr can trigger a feedback loop with
-     content-driven resizing. */
+  /* Wide columns keep effect chips readable. The min() wrapper lets the grid
+     collapse to one phone-width column instead of forcing horizontal scroll. */
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 520px), 1fr));
   gap: 10px;
   align-items: start;
 }
-@media (max-width: 1280px) { .tech-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 900px)  { .tech-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 600px)  { .tech-grid { grid-template-columns: 1fr; } }
 .tech-grid-col {
   display: flex;
   flex-direction: column;

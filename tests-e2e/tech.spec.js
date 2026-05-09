@@ -172,3 +172,27 @@ test('Tech page keeps effect text inside green effect chips', async ({ page }) =
 
   expect(overflowingChips).toEqual([]);
 });
+
+test('Tech page gives effect chips enough width at dashboard size', async ({ page }) => {
+  await mockTechData(page);
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto('/');
+  await page.evaluate(() => localStorage.setItem('theme', 'light'));
+  await page.goto('/#/tech');
+  await page.waitForSelector('.tech-effect-chip.pos');
+
+  const wrappedTargets = await page.locator('.tech-effect-target').evaluateAll((targets) =>
+    targets
+      .filter((target) => {
+        const styles = getComputedStyle(target);
+        const lineHeight = Number.parseFloat(styles.lineHeight);
+        const singleLineHeight = Number.isFinite(lineHeight)
+          ? lineHeight
+          : Number.parseFloat(styles.fontSize) * 1.5;
+        return target.getBoundingClientRect().height > singleLineHeight * 1.35;
+      })
+      .map((target) => target.textContent.replace(/\s+/g, ' ').trim())
+  );
+
+  expect(wrappedTargets).toEqual([]);
+});
