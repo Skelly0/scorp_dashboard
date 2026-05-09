@@ -1,8 +1,8 @@
 {
-  "avg_satisfaction": 0.6989828050913044,
+  "avg_satisfaction": 0.688820688281087,
   "crisis_factor": 0.0,
   "effective_cdr": 0.01113043478,
-  "gov_approval": 0.3342220612,
+  "gov_approval": 0.3937632262,
   "housing_util": 1.0209630344796972,
   "net_delta_pct": -0.1530434780000001,
   "overton": {
@@ -17,51 +17,67 @@
   "resources": [
     {
       "current": 1000.0,
-      "delta": 827.4077733,
-      "name": "Food"
+      "delta": -169.8172267,
+      "income": 827.4077733,
+      "name": "Food",
+      "upkeep": 997.225
     },
     {
       "current": 2500.0,
-      "delta": 312.20534399999997,
-      "name": "Materials"
+      "delta": 29.83034447,
+      "income": 1087.205344,
+      "name": "Materials",
+      "upkeep": 1057.375
     },
     {
       "current": 3825.0,
-      "delta": 164.15741400000002,
-      "name": "Ore"
+      "delta": 164.157414,
+      "income": 939.157414,
+      "name": "Ore",
+      "upkeep": 775.0
     },
     {
-      "current": 3750.0,
-      "delta": 331.6862289999999,
-      "name": "Energy"
+      "current": 1000.0,
+      "delta": 425.0787447,
+      "income": 5058.172495,
+      "name": "Energy",
+      "upkeep": 4633.09375
     },
     {
       "current": 90111.0,
-      "delta": 90111.0,
-      "name": "Housing"
+      "delta": -1889.0,
+      "income": 90111.0,
+      "name": "Housing",
+      "upkeep": 92000.0
     },
     {
       "current": 125000.0,
       "delta": 288037.6547,
-      "name": "Money"
+      "income": 393287.6547,
+      "name": "Money",
+      "upkeep": 105250.0
     },
     {
       "current": 0.0,
-      "delta": 0,
-      "name": "Helium-3"
+      "delta": 0.0,
+      "income": 0,
+      "name": "Helium-3",
+      "upkeep": 0
     },
     {
       "current": 250.0,
-      "delta": 106.77559910000002,
-      "name": "Water"
+      "delta": 4.425599129,
+      "income": 571.7755991,
+      "name": "Water",
+      "upkeep": 567.35
     }
   ],
-  "stability": 0.1152197241,
-  "synced_at": "2026-05-09T21:53:35Z",
+  "stability": 0.08092703455,
+  "synced_at": "2026-05-09T22:54:20Z",
   "total_deaths": 1024.0,
   "treasury": {
     "delta": 288037.6547,
-    "money": 226436.0
+    "money": 223686.0
   },
   "year": 2075
 }

@@ -2,7 +2,7 @@
   "active_situations": [],
   "crisis_factor": 0.0,
   "demographics": {
-    "avg_satisfaction": 0.6914781490842663,
+    "avg_satisfaction": 0.688820688281087,
     "base_growth_rate": 0.03,
     "effective_cdr": 0.01113043478,
     "effective_growth_rate": 0.0096,
@@ -10,10 +10,10 @@
     "housing_util": 1.0209630344796972,
     "net_delta_pct": -0.1530434780000001,
     "sat_elasticity": 0.32,
-    "total_births": 2684.0,
+    "total_births": 2682.0,
     "total_deaths": 1024.0
   },
-  "gov_approval": 0.3342220612,
+  "gov_approval": 0.3937632262,
   "overton": {
     "authority": 3.0,
     "corporate": 3.5,
@@ -46,9 +46,9 @@
       "upkeep": 775.0
     },
     {
-      "current": 3750.0,
-      "delta": -101.4075211,
-      "income": 4531.686229,
+      "current": 1000.0,
+      "delta": 425.0787447,
+      "income": 5058.172495,
       "name": "Energy",
       "upkeep": 4633.09375
     },
@@ -81,10 +81,10 @@
       "upkeep": 567.35
     }
   ],
-  "stability": 0.1152197241,
+  "stability": 0.08092703455,
   "treasury": {
     "delta": 288037.6547,
-    "money": 226436.0
+    "money": 223686.0
   },
   "year": 2075
 }
