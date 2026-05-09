@@ -262,14 +262,48 @@ def build(out_path: Path) -> Path:
     hou["A12"], hou["B12"] = "Housing growth mult", 0.92
     _add_name(wb, "HousingGrowthMult", "Housing!$B$12")
 
-    # ---- Cropsim sheet (v3 food security) ----
+    # ---- Cropsim sheet (v9 food economy) ----
     cs = wb.create_sheet("Cropsim")
-    cs["A26"], cs["B26"] = "Food security ratio", 1.05
-    cs["A27"], cs["B27"] = "Food per cap", 1.20
-    cs["A28"], cs["B28"] = "Food variety index", 0.78
-    _add_name(wb, "FoodSecurityRatio", "Cropsim!$B$26")
-    _add_name(wb, "FoodPerCap", "Cropsim!$B$27")
-    _add_name(wb, "FoodVarietyIndex", "Cropsim!$B$28")
+    cs["A1"] = "CROPSIM - FOOD ECONOMICS"
+    cs["A3"] = "FOOD PRODUCTION BY TYPE"
+    cs["A4"], cs["B4"], cs["C4"] = "Food Type", "Total Units", "Calorie Mult"
+    crops = [
+        ("Greens", 50.0, 1.0),
+        ("Cereal Substitutes", 60.0, 1.1),
+        ("Vat Protein", 45.0, 1.3),
+        ("Algal Paste", 30.0, 1.2),
+        ("Fruits", 3.5275, 1.0),
+    ]
+    for i, (name, units, mult) in enumerate(crops, start=5):
+        cs.cell(row=i, column=1, value=name)
+        cs.cell(row=i, column=2, value=units)
+        cs.cell(row=i, column=3, value=mult)
+    _add_name(wb, "CropsimProductionTable", "Cropsim!$A$4:$C$9")
+
+    cs["A11"] = "FOOD DEMAND BY CLASS"
+    cs["A12"], cs["B12"], cs["C12"], cs["D12"] = "Class", "Pop", "Per-Cap Demand", "Total Demand"
+    total_demand = 0.0
+    for i, (name, _tier, p, _w) in enumerate(classes, start=13):
+        per_cap = 0.015 if name == "Industrial Workers" else 0.01
+        demand = p * per_cap
+        total_demand += demand
+        cs.cell(row=i, column=1, value=name)
+        cs.cell(row=i, column=2, value=p)
+        cs.cell(row=i, column=3, value=per_cap)
+        cs.cell(row=i, column=4, value=demand)
+    _add_name(wb, "CropsimDemandTable", "Cropsim!$A$12:$D$23")
+
+    total_supply = sum(units for _name, units, _mult in crops)
+    cs["A24"] = "AGGREGATES"
+    cs["A25"], cs["B25"] = "Total Food Supply", total_supply
+    cs["A26"], cs["B26"] = "Total Food Demand", total_demand
+    cs["A27"], cs["B27"] = "Food security ratio", 1.05
+    cs["A28"], cs["B28"] = "Food per cap", 1.20
+    cs["A29"], cs["B29"] = "Food variety index", 0.78
+    _add_name(wb, "CropsimAggregateTable", "Cropsim!$A$25:$B$29")
+    _add_name(wb, "FoodSecurityRatio", "Cropsim!$B$27")
+    _add_name(wb, "FoodPerCap", "Cropsim!$B$28")
+    _add_name(wb, "FoodVarietyIndex", "Cropsim!$B$29")
 
     # Politics GoI block: rows 4-11 (8 slots, 4 live + 4 blank)
     gois = [

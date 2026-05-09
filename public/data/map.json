@@ -9000,7 +9000,7 @@
       },
       "resource": "Iron Deposit",
       "slots": 2,
-      "staffing": 0.6258179153,
+      "staffing": 0.6309514635,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -9009,14 +9009,14 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 312.9089577,
+        "housing": 315.4757317,
         "materials": 0.75,
         "ore": 2.25,
         "water": 0
       }
     },
     {
-      "control": "Administration",
+      "control": "Unions",
       "feature": "Buried Ice",
       "improvement": {
         "name": "Ice Mining Station",
@@ -9856,7 +9856,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.7127596517,
+      "staffing": 0.7527711632,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -9865,7 +9865,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 178.1899129,
+        "housing": 188.1927908,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -9881,23 +9881,23 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6699511869,
+      "staffing": 0.6810618216,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
       "x": 23,
       "y": 11,
       "yields": {
-        "energy": 70.34487463,
-        "food": 50.24633902,
-        "housing": 3349.755935,
-        "materials": 100.742678,
-        "ore": 50.49633902,
+        "energy": 71.51149126,
+        "food": 51.07963662,
+        "housing": 3405.309108,
+        "materials": 102.4092732,
+        "ore": 51.32963662,
         "water": 0
       }
     },
     {
-      "control": "Administration",
+      "control": "Unions",
       "feature": "Smooth Plain",
       "improvement": {
         "name": "Buried Habitat",
@@ -9922,7 +9922,7 @@
       }
     },
     {
-      "control": "Administration",
+      "control": "Unions",
       "feature": null,
       "improvement": {
         "name": "Recreational Facility",
@@ -10691,7 +10691,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.9098013263,
+      "staffing": 0.925269736,
       "terrain": "Lava Tube",
       "upkeep": null,
       "workforce": null,
@@ -10700,7 +10700,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 427.4503316,
+        "housing": 431.317434,
         "materials": 0.25,
         "ore": 0.5,
         "water": 0
@@ -10757,7 +10757,7 @@
       }
     },
     {
-      "control": "Administration",
+      "control": "Research",
       "feature": null,
       "improvement": {
         "name": "Fission Reactor",
@@ -10766,16 +10766,16 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.5506001082,
+      "staffing": 0.5456430396,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
       "x": 24,
       "y": 12,
       "yields": {
-        "energy": 2312.520454,
+        "energy": 2291.700766,
         "food": 0,
-        "housing": 137.6500271,
+        "housing": 136.4107599,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -11588,7 +11588,7 @@
       }
     },
     {
-      "control": "Administration",
+      "control": "Research",
       "feature": null,
       "improvement": {
         "name": "Research Lab",
@@ -11597,7 +11597,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6592329472,
+      "staffing": 0.6424800786,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -11606,7 +11606,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 164.8082368,
+        "housing": 160.6200196,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -12357,7 +12357,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.7005729884,
+      "staffing": 0.7059237815,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -12366,14 +12366,14 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 175.1432471,
+        "housing": 176.4809454,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
       }
     },
     {
-      "control": "Administration",
+      "control": "Research",
       "feature": null,
       "improvement": {
         "name": "Research Lab",
@@ -12382,7 +12382,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6592329472,
+      "staffing": 0.6424800786,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -12391,7 +12391,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 164.8082368,
+        "housing": 160.6200196,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -13213,18 +13213,18 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6699511869,
+      "staffing": 0.6810618216,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
       "x": 19,
       "y": 15,
       "yields": {
-        "energy": 70.34487463,
-        "food": 50.24633902,
-        "housing": 3349.755935,
-        "materials": 100.742678,
-        "ore": 50.49633902,
+        "energy": 71.51149126,
+        "food": 51.07963662,
+        "housing": 3405.309108,
+        "materials": 102.4092732,
+        "ore": 51.32963662,
         "water": 0
       }
     },
@@ -14065,7 +14065,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.7212779446,
+      "staffing": 0.7117768964,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -14073,8 +14073,8 @@
       "y": 16,
       "yields": {
         "energy": 0,
-        "food": 270.4792292,
-        "housing": 180.3194862,
+        "food": 266.9163362,
+        "housing": 177.9442241,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
