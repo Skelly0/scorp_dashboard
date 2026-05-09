@@ -1,10 +1,10 @@
 {
-  "avg_satisfaction": 0.6353079567840761,
+  "avg_satisfaction": 0.6989828050913044,
   "crisis_factor": 0.0,
-  "effective_cdr": 0.01029347826,
+  "effective_cdr": 0.01113043478,
   "gov_approval": 0.3342220612,
-  "housing_util": 1.0195035460992907,
-  "net_delta_pct": -0.06934782600000015,
+  "housing_util": 1.0209630344796972,
+  "net_delta_pct": -0.1530434780000001,
   "overton": {
     "authority": 3.0,
     "corporate": 3.5,
@@ -17,32 +17,32 @@
   "resources": [
     {
       "current": 1000.0,
-      "delta": 829.1996137,
+      "delta": 827.4077733,
       "name": "Food"
     },
     {
       "current": 2500.0,
-      "delta": 311.9090100000001,
+      "delta": 312.20534399999997,
       "name": "Materials"
     },
     {
       "current": 3825.0,
-      "delta": 166.50924680000003,
+      "delta": 164.15741400000002,
       "name": "Ore"
     },
     {
       "current": 3750.0,
-      "delta": 349.4804039999999,
+      "delta": 331.6862289999999,
       "name": "Energy"
     },
     {
-      "current": 90240.0,
-      "delta": 90240.0,
+      "current": 90111.0,
+      "delta": 90111.0,
       "name": "Housing"
     },
     {
       "current": 125000.0,
-      "delta": 287077.1441,
+      "delta": 288037.6547,
       "name": "Money"
     },
     {
@@ -52,16 +52,16 @@
     },
     {
       "current": 250.0,
-      "delta": -43.01742919999998,
+      "delta": 106.77559910000002,
       "name": "Water"
     }
   ],
   "stability": 0.1152197241,
-  "synced_at": "2026-05-09T20:53:18Z",
-  "total_deaths": 947.0,
+  "synced_at": "2026-05-09T21:53:35Z",
+  "total_deaths": 1024.0,
   "treasury": {
-    "delta": 287077.1441,
-    "money": 226565.0
+    "delta": 288037.6547,
+    "money": 226436.0
   },
   "year": 2075
 }

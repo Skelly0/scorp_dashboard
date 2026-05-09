@@ -2,7 +2,7 @@
   "active_situations": [],
   "crisis_factor": 0.0,
   "demographics": {
-    "avg_satisfaction": 0.6989828050913044,
+    "avg_satisfaction": 0.6914781490842663,
     "base_growth_rate": 0.03,
     "effective_cdr": 0.01113043478,
     "effective_growth_rate": 0.0096,
@@ -10,7 +10,7 @@
     "housing_util": 1.0209630344796972,
     "net_delta_pct": -0.1530434780000001,
     "sat_elasticity": 0.32,
-    "total_births": 2689.0,
+    "total_births": 2684.0,
     "total_deaths": 1024.0
   },
   "gov_approval": 0.3342220612,
