@@ -15,7 +15,7 @@
   });
 </script>
 
-<section class="px-6 py-5 max-w-[1600px]">
+<section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
   {#if $partiesError}
     <p class="text-crit">{$partiesError}</p>
   {:else if !$parties}
@@ -34,7 +34,7 @@
             <h3>{p.name}</h3>
             <span class="meta">{p.closest_goi ?? '—'}</span>
           </div>
-          <div class="s-card-pad grid grid-cols-[1fr_140px] gap-3">
+          <div class="s-card-pad party-card-body">
             <div class="flex flex-col gap-2">
               <div>
                 <div class="text-muted text-[9px] uppercase tracking-widest">Establishment</div>
@@ -49,10 +49,12 @@
                 <div class="font-extrabold text-base tnum">{p.mad_index?.toFixed(2) ?? '—'}</div>
               </div>
             </div>
-            <RadarChart
-              axes={AXES.map((a) => ({ label: AXIS_HIGH_LABELS[a], value: p.stance?.[a] ?? 0 }))}
-              size={140}
-            />
+            <div class="party-radar-frame">
+              <RadarChart
+                axes={AXES.map((a) => ({ label: AXIS_HIGH_LABELS[a], value: p.stance?.[a] ?? 0 }))}
+                size={140}
+              />
+            </div>
           </div>
         </div>
       {/each}
@@ -81,3 +83,13 @@
     {/if}
   {/if}
 </section>
+
+<style>
+  .party-card-body { display: grid; grid-template-columns: minmax(0, 1fr) 140px; gap: 12px; }
+  .party-radar-frame { display: grid; }
+  .party-radar-frame :global(svg) { max-width: min(140px, 45vw); height: auto; justify-self: center; }
+
+  @media (max-width: 399px) {
+    .party-card-body { grid-template-columns: 1fr; }
+  }
+</style>

@@ -28,7 +28,8 @@
   }
 </script>
 
-<div class="overflow-x-auto">
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<div class="heatmap-scroll" tabindex="0" role="region" aria-label="Heatmap">
   <div
     class="heatmap"
     style="grid-template-columns: {rowHeadWidth}px repeat({colLabels.length}, minmax({minCellWidth}px, 1fr));"

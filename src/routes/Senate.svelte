@@ -21,7 +21,7 @@
   }));
 </script>
 
-<section class="px-6 py-5 max-w-[1600px]">
+<section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
   {#if $senateError}
     <p class="text-crit">{$senateError}</p>
   {:else if !$senate}
@@ -38,7 +38,8 @@
     {#if coalitions.length === 0}
       <p class="text-muted text-xs uppercase tracking-widest">No coalitions formed.</p>
     {:else}
-      <div class="s-card">
+      <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+      <div class="s-card tbl-scroll" tabindex="0" role="region" aria-label="Coalitions table">
         <table class="tbl">
           <thead>
             <tr>

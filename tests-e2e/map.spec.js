@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Map page — staffing & dropdowns', () => {
+  test.skip(({ isMobile }) => isMobile, 'Desktop map dropdown coverage runs in desktop projects.');
+
   test.beforeEach(async ({ page }) => {
     await page.goto('/#/map');
     await page.waitForLoadState('networkidle');
@@ -37,5 +39,29 @@ test.describe('Map page — staffing & dropdowns', () => {
     await expect(page.getByRole('menu')).toBeVisible();
     await page.keyboard.press('Escape');
     await expect(page.getByRole('menu')).toHaveCount(0);
+  });
+});
+
+test.describe('Map mobile inspector sheet', () => {
+  test.use({ viewport: { width: 390, height: 844 }, hasTouch: true });
+
+  test.beforeEach(async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/#/map');
+    await page.waitForLoadState('networkidle');
+    await expect(page.locator('canvas[role=application]')).toBeVisible();
+  });
+
+  test('tapping a tile opens a dismissable bottom sheet', async ({ page }) => {
+    const canvas = page.locator('canvas[role=application]');
+    const box = await canvas.boundingBox();
+    expect(box).not.toBeNull();
+
+    await page.touchscreen.tap(box.x + box.width / 2, box.y + box.height / 2);
+    await expect(page.locator('.map-inspector-sheet')).toBeVisible();
+    await expect(page.locator('.map-inspector-sheet', { hasText: /Tile/ })).toBeVisible();
+
+    await page.locator('.s-sheet-backdrop').click();
+    await expect(page.locator('.map-inspector-sheet')).toHaveCount(0);
   });
 });

@@ -23,6 +23,27 @@ export function stepZoom(current, delta) {
   return clampZoom(snapped + delta * ZOOM_STEP);
 }
 
+export function scaleZoom(current, ratio) {
+  if (typeof ratio !== 'number' || !Number.isFinite(ratio) || ratio <= 0) {
+    return clampZoom(current);
+  }
+  return clampZoom(clampZoom(current) * ratio);
+}
+
+export function pinchMathStep(currentDistance, previousDistance, currentZoom) {
+  if (
+    typeof currentDistance !== 'number' ||
+    typeof previousDistance !== 'number' ||
+    !Number.isFinite(currentDistance) ||
+    !Number.isFinite(previousDistance) ||
+    currentDistance <= 0 ||
+    previousDistance <= 0
+  ) {
+    return clampZoom(currentZoom);
+  }
+  return scaleZoom(currentZoom, currentDistance / previousDistance);
+}
+
 export function resetZoom() {
   return ZOOM_DEFAULT;
 }

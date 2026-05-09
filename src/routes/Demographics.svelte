@@ -109,7 +109,7 @@
 
 <svelte:window on:keydown={handleWindowKeydown} />
 
-<section class="px-6 py-5 max-w-[1600px]">
+<section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
   {#if errorMsg}
     <p class="text-crit">Failed to load demographics: {errorMsg}</p>
   {:else if !ready}
@@ -151,19 +151,20 @@
     </div>
     <Band num="02" title="Class Vitals" meta={`${$pops.classes.length} classes`} />
     <div class="s-card">
-      <table class="tbl">
+      <p class="tbl-hint sm:hidden">Tap a row for full vitals.</p>
+      <table class="tbl tbl-trim-mobile">
         <thead>
           <tr>
             <th>Class</th>
             <th class="num">Pop</th>
-            <th class="num">Mortality</th>
-            <th class="num">Births/year</th>
-            <th class="num">Deaths/year</th>
-            <th class="num">Mobility In</th>
-            <th class="num">Mobility Out</th>
-            <th class="num">Demand</th>
+            <th class="num hide-narrow">Mortality</th>
+            <th class="num hide-narrow">Births/year</th>
+            <th class="num hide-narrow">Deaths/year</th>
+            <th class="num hide-narrow">Mobility In</th>
+            <th class="num hide-narrow">Mobility Out</th>
+            <th class="num hide-narrow">Demand</th>
             <th class="num">Fill %</th>
-            <th class="num">Unemployed</th>
+            <th class="num hide-narrow">Unemployed</th>
             <th class="num">Satisfaction</th>
           </tr>
         </thead>
@@ -185,14 +186,14 @@
                 {c.name}
               </td>
               <td class="num">{c.pop?.toLocaleString() ?? '—'}</td>
-              <td class="num">{c.mortality_rate != null ? (c.mortality_rate * 100).toFixed(2) + '%' : '—'}</td>
-              <td class="num">{c.births_per_turn != null ? Math.round(c.births_per_turn).toLocaleString() : '—'}</td>
-              <td class="num">{c.deaths_per_turn != null ? Math.round(c.deaths_per_turn).toLocaleString() : '—'}</td>
-              <td class="num">{c.mobility_in != null ? Math.round(c.mobility_in).toLocaleString() : '—'}</td>
-              <td class="num">{c.mobility_out != null ? Math.round(c.mobility_out).toLocaleString() : '—'}</td>
-              <td class="num">{c.workforce?.demand != null ? Math.round(c.workforce.demand).toLocaleString() : '—'}</td>
+              <td class="num hide-narrow">{c.mortality_rate != null ? (c.mortality_rate * 100).toFixed(2) + '%' : '—'}</td>
+              <td class="num hide-narrow">{c.births_per_turn != null ? Math.round(c.births_per_turn).toLocaleString() : '—'}</td>
+              <td class="num hide-narrow">{c.deaths_per_turn != null ? Math.round(c.deaths_per_turn).toLocaleString() : '—'}</td>
+              <td class="num hide-narrow">{c.mobility_in != null ? Math.round(c.mobility_in).toLocaleString() : '—'}</td>
+              <td class="num hide-narrow">{c.mobility_out != null ? Math.round(c.mobility_out).toLocaleString() : '—'}</td>
+              <td class="num hide-narrow">{c.workforce?.demand != null ? Math.round(c.workforce.demand).toLocaleString() : '—'}</td>
               <td class="num" class:text-crit={fillDim}>{fill != null ? (fill * 100).toFixed(0) + '%' : '—'}</td>
-              <td class="num">{c.unemployed_count != null ? Math.round(c.unemployed_count).toLocaleString() : '—'}</td>
+              <td class="num hide-narrow">{c.unemployed_count != null ? Math.round(c.unemployed_count).toLocaleString() : '—'}</td>
               <td class="num">{c.satisfaction?.toFixed(2) ?? '—'}</td>
             </tr>
           {/each}

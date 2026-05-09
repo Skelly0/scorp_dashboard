@@ -20,22 +20,28 @@
   let menuOpen = false;
   $: pages = ALL_PAGES.filter((p) => !p.requiresSenate || $meta?.senate_visible);
   $: yearLabel = $status?.year != null ? `Y-${String($status.year).padStart(2, '0')}` : '';
+  $: currentLabel = pages.find((p) => p.path === $location)?.label ?? '';
 </script>
 
 <nav class="border-b-4 border-border bg-bg">
-  <div class="px-4 md:px-6 py-3 flex items-center justify-between">
-    <div class="flex items-center gap-3 md:gap-6">
-      <span class="font-mono font-bold uppercase tracking-widest text-accent text-sm md:text-base whitespace-nowrap">
-        Colony{#if yearLabel}<span class="inline-block mx-2 md:mx-3 opacity-70">▌</span>{yearLabel}{/if}
+  <div class="grid gap-y-3 px-4 py-3 md:flex md:items-center md:justify-between md:px-6">
+    <div class="flex min-w-0 w-full items-center gap-3 md:w-auto md:flex-1 md:gap-6">
+      <span class="shrink-0 font-mono font-bold uppercase tracking-widest text-accent text-sm md:text-base whitespace-nowrap">
+        Colony{#if yearLabel}<span class="narrow-hide"><span class="inline-block mx-2 md:mx-3 opacity-70">|</span>{yearLabel}</span>{/if}
       </span>
       <button
-        class="md:hidden border-2 border-border px-2 py-1 text-xs uppercase tracking-widest"
+        class="md:hidden shrink-0 border-2 border-border px-3 py-2 min-h-[44px] min-w-[44px] text-xs uppercase tracking-widest"
         on:click={() => (menuOpen = !menuOpen)}
         aria-label="Toggle nav"
         aria-expanded={menuOpen}
       >
-        {menuOpen ? '✕' : '☰'}
+        {menuOpen ? 'x' : '☰'}
       </button>
+      {#if currentLabel}
+        <span class="md:hidden min-w-0 flex-1 max-w-[7rem] sm:max-w-[10rem] text-xs uppercase tracking-widest text-muted truncate">
+          {currentLabel}
+        </span>
+      {/if}
       <ul class="hidden md:flex gap-3 font-mono text-xs uppercase tracking-widest">
         {#each pages as p}
           <li>
@@ -53,7 +59,7 @@
         {/each}
       </ul>
     </div>
-    <div class="flex items-center gap-2 md:gap-3">
+    <div class="flex max-w-full shrink-0 items-center justify-end gap-2 justify-self-end md:justify-self-auto md:gap-3">
       <SyncChip />
       <ThemeToggle />
     </div>
@@ -66,7 +72,7 @@
             href={p.path}
             use:link
             on:click={() => (menuOpen = false)}
-            class="block px-4 py-2 border-b border-border/30"
+            class="flex items-center min-h-[44px] px-4 py-3 border-b border-border/30"
             class:bg-border={$location === p.path}
             class:text-bg={$location === p.path}
           >

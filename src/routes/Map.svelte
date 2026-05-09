@@ -4,15 +4,15 @@
   import { map, mapError, loadMap } from '../lib/stores/map.js';
   import { pageTitle } from '../lib/page-title.js';
   import { theme } from '../lib/theme.js';
-  import { getCategorySlug, categoryFor, CATEGORIES } from '../lib/improvement-categories.js';
+  import { getCategorySlug, CATEGORIES } from '../lib/improvement-categories.js';
   import { catalog } from '../lib/stores/catalog.js';
   import { RESOURCE_CODES, FEATURE_CODES } from '../lib/map-codes.js';
-  import { CLASS_COLORS, classColor } from '../lib/faction-colors.js';
   import {
     ZOOM_MIN,
     ZOOM_MAX,
     ZOOM_DEFAULT,
     stepZoom,
+    scaleZoom,
     resetZoom,
     readZoom,
     writeZoom,
@@ -22,7 +22,8 @@
   import RosterPanel from '../lib/components/RosterPanel.svelte';
   import LayerMenu from '../lib/components/LayerMenu.svelte';
   import CatalogModal from '../lib/components/CatalogModal.svelte';
-  import ImprovementCard from '../lib/components/ImprovementCard.svelte';
+  import MapInspector from '../lib/components/MapInspector.svelte';
+  import MapBottomSheet from '../lib/components/MapBottomSheet.svelte';
   import { resolveImprovementRow } from '../lib/stores/catalog.js';
 
   let catalogOpen = false;
@@ -33,6 +34,7 @@
   let zoomReady = false;     // gates the persistence reactive so we don't overwrite stored value with the default on first tick
   let hoverTile = null;
   let pinnedTile = null;
+  let isMobileInspector = false;
   let filters = { resource: null, feature: null, improvement: null };
 
   const YIELD_OPTIONS = [
@@ -87,6 +89,10 @@
   function clearAllFilters() {
     filters = { resource: null, feature: null, improvement: null };
   }
+  function filterByImprovementCategory(slug) {
+    filters = { ...filters, improvement: slug };
+    layer = 'improvements';
+  }
 
   $: t = pinnedTile ?? hoverTile;
   $: nameplate = t?.improvement ? resolveImprovementRow(t.improvement.name, $catalog) : null;
@@ -96,6 +102,18 @@
     if ($meta?.synced_at) loadMap($meta.synced_at);
     zoom = readZoom();
     zoomReady = true;
+
+    const inspectorMedia = window.matchMedia('(max-width: 767px)');
+    const updateInspectorViewport = () => {
+      isMobileInspector = inspectorMedia.matches;
+    };
+
+    updateInspectorViewport();
+    inspectorMedia.addEventListener('change', updateInspectorViewport);
+
+    return () => {
+      inspectorMedia.removeEventListener('change', updateInspectorViewport);
+    };
   });
 
   $: if (zoomReady) writeZoom(zoom);
@@ -114,7 +132,7 @@
   }
 </script>
 
-<section class="px-6 py-5 max-w-[1600px]" tabindex="-1" on:keydown={handlePageKey}>
+<section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]" tabindex="-1" on:keydown={handlePageKey}>
   {#if $mapError}
     <p class="text-crit">{$mapError}</p>
   {:else if !$map}
@@ -233,7 +251,7 @@
       </div>
     {/if}
 
-    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] gap-3 items-start">
+    <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_300px] gap-3 items-start">
       <MapCanvas
         mapData={$map}
         {layer}
@@ -245,6 +263,7 @@
         on:pin={(e) => (pinnedTile = e.detail)}
         on:zoomstep={(e) => {
           if (e.detail.reset) zoom = resetZoom();
+          else if (e.detail.mode === 'scale') zoom = scaleZoom(zoom, e.detail.delta);
           else zoom = stepZoom(zoom, e.detail.delta);
         }}
       />
@@ -265,113 +284,34 @@
             />
           </div>
         {/if}
-        <div class="s-card">
-          {#if !t}
-            <div class="s-card-pad">
-              <p class="text-muted text-xs uppercase tracking-widest">Hover or click a tile to inspect.</p>
-            </div>
-          {:else}
-            <div class="s-card-header">
-              <h3>Tile · ({String(t.x).padStart(2, '0')}, {String(t.y).padStart(2, '0')})</h3>
-              <span class="meta">{layer}</span>
-            </div>
-            <div class="s-card-pad">
-              <dl class="kv">
-                <dt>Terrain</dt><dd>{t.terrain ?? '—'}</dd>
-                <dt>Feature</dt>
-                <dd>
-                  {#if t.feature}
-                    <span class="swatch" style="background: {$map.palettes.feature?.[t.feature] ?? '#fff'}; color:#1a1a1a;">{FEATURE_CODES[t.feature] ?? '?'}</span>
-                    {t.feature}
-                  {:else}—{/if}
-                </dd>
-                <dt>Resource</dt>
-                <dd>
-                  {#if t.resource}
-                    <span class="swatch" style="background: {$map.palettes.resource?.[t.resource] ?? '#fff'}; color:#1a1a1a;">{RESOURCE_CODES[t.resource] ?? '?'}</span>
-                    {t.resource}
-                  {:else}—{/if}
-                </dd>
-                <dt>Slots</dt><dd>{t.slots ?? '—'}</dd>
-              </dl>
-              {#if t.improvement}
-                {@const cat = categoryFor(t.improvement, $catalog) ?? CATEGORIES.other}
-                <div class="kv-section">
-                  <h4>
-                    <span style="color: {$map.palettes.improvement_category?.[cat.slug] ?? 'var(--accent)'}">{cat.icon}</span>
-                    Improvement
-                  </h4>
-                  <dl class="kv">
-                    <dt>Name</dt><dd>{t.improvement.name ?? '—'}</dd>
-                    <dt>Owner</dt><dd>{t.improvement.owner ?? '—'}</dd>
-                    <dt>Type</dt><dd>{t.improvement.ownership_type ?? '—'}</dd>
-                  </dl>
-                  <button
-                    class="filter-link"
-                    on:click={() => {
-                      filters = { ...filters, improvement: cat.slug };
-                      layer = 'improvements';
-                    }}
-                  >Filter by {cat.icon} {cat.label}</button>
-                </div>
-                {#if nameplate}
-                  <div class="kv-section">
-                    <h4>Nameplate stats</h4>
-                    <ImprovementCard imp={nameplate} compact={true} />
-                  </div>
-                {/if}
-              {/if}
-              {#if t.yields && Object.values(t.yields).some((v) => v !== 0 && v != null)}
-                <div class="kv-section">
-                  <h4>Yields</h4>
-                  <dl class="kv">
-                    {#each Object.entries(t.yields).filter(([_, v]) => v !== 0 && v != null) as [k, v]}
-                      <dt class="capitalize">{k}</dt>
-                      <dd class={v < 0 ? 'crit' : v > 0 ? 'good' : ''}>{v > 0 ? '+' : ''}{v}</dd>
-                    {/each}
-                  </dl>
-                </div>
-              {/if}
-
-              {#if t.upkeep && Object.values(t.upkeep).some((v) => v != null && v !== 0)}
-                <div class="kv-section">
-                  <h4>Upkeep</h4>
-                  <dl class="kv">
-                    {#each Object.entries(t.upkeep).filter(([_, v]) => v != null && v !== 0) as [k, v]}
-                      <dt class="capitalize">{k}</dt>
-                      <dd class="crit">{v}</dd>
-                    {/each}
-                  </dl>
-                </div>
-              {/if}
-
-              {#if t.workforce && Object.keys(t.workforce).length > 0}
-                <div class="kv-section">
-                  <h4>Workforce</h4>
-                  {#each Object.entries(t.workforce).sort(([, a], [, b]) => b - a) as [name, count]}
-                    <div class="workforce-row">
-                      <span class="swatch" style="background: {classColor(name)}"></span>
-                      <span class="name">{name}</span>
-                      <span class="count">{count}</span>
-                    </div>
-                  {/each}
-                </div>
-              {/if}
-
-              {#if t.staffing != null}
-                <div class="kv-section">
-                  <h4>Staffing Efficiency</h4>
-                  <div class="staff-meter">
-                    <div class="staff-meter-fill" style="width: {(t.staffing * 100).toFixed(0)}%"></div>
-                  </div>
-                  <div class="staff-meter-pct">{(t.staffing * 100).toFixed(0)}%</div>
-                </div>
-              {/if}
-            </div>
-          {/if}
+        <div class="s-card hidden md:block">
+          <MapInspector
+            tile={t}
+            mapData={$map}
+            catalog={$catalog}
+            {layer}
+            {nameplate}
+            on:filter-category={(e) => filterByImprovementCategory(e.detail.slug)}
+          />
         </div>
       </aside>
     </div>
+
+    {#if pinnedTile && isMobileInspector}
+      <MapBottomSheet on:dismiss={() => (pinnedTile = null)}>
+        <MapInspector
+          tile={pinnedTile}
+          mapData={$map}
+          catalog={$catalog}
+          {layer}
+          {nameplate}
+          on:filter-category={(e) => {
+            filterByImprovementCategory(e.detail.slug);
+            pinnedTile = null;
+          }}
+        />
+      </MapBottomSheet>
+    {/if}
 
     <div class="text-muted text-[10px] uppercase tracking-widest mt-3">
       ▣ Improvement · ↗ Resource · ↖ Feature · Color =

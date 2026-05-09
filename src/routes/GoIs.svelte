@@ -54,7 +54,7 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-<section class="px-6 py-5 max-w-[1600px] gois-page">
+<section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px] gois-page">
   {#if $goisError}
     <p class="text-crit">{$goisError}</p>
   {:else if !$gois}
@@ -72,11 +72,13 @@
             </h3>
             <span class="meta">{g.main_class ?? '—'} · {g.approach ?? '—'}</span>
           </div>
-          <div class="s-card-pad grid grid-cols-[170px_1fr] gap-4">
-            <RadarChart
-              axes={AXES.map((a) => ({ label: AXIS_HIGH_LABELS[a], value: g.effective_worldview?.[a] ?? 0 }))}
-              size={170}
-            />
+          <div class="s-card-pad goi-card-body">
+            <div class="goi-radar-frame">
+              <RadarChart
+                axes={AXES.map((a) => ({ label: AXIS_HIGH_LABELS[a], value: g.effective_worldview?.[a] ?? 0 }))}
+                size={170}
+              />
+            </div>
             <div class="flex flex-col gap-2">
               <div class="grid grid-cols-3 gap-2">
                 <div>
@@ -117,7 +119,7 @@
                       <li>
                         <button
                           type="button"
-                          class="w-full flex justify-between border-b border-[var(--border-soft)] border-dashed py-1 text-left"
+                          class="w-full flex justify-between border-b border-[var(--border-soft)] border-dashed py-1 text-left goi-subfaction-button"
                           class:s-rail-row-active={isActive}
                           aria-pressed={Boolean(isActive)}
                           on:click={() => toggleSelect(g.name, s.name)}
@@ -183,14 +185,29 @@
     .gois-page { grid-template-columns: 1fr 360px; }
   }
   .gois-main { min-width: 0; }
+  .goi-card-body { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 16px; }
+  .goi-radar-frame { display: grid; }
+  .goi-radar-frame :global(svg) { max-width: min(170px, 50vw); height: auto; justify-self: center; }
 
   .gois-rail-desktop { display: none; }
   @media (min-width: 1280px) {
     .gois-rail-desktop { display: block; }
   }
 
+  @media (max-width: 479px) {
+    .goi-card-body { grid-template-columns: 1fr; }
+  }
+
   .gois-sheet-mobile { display: block; }
   @media (min-width: 1280px) {
     .gois-sheet-mobile { display: none; }
+  }
+
+  @media (pointer: coarse) {
+    .goi-subfaction-button {
+      min-height: 44px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
   }
 </style>

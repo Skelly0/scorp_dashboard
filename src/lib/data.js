@@ -1,4 +1,5 @@
 const BASE = './data';
+const OPTIONAL_PAGES = new Set(['senate', 'tech']);
 
 export async function fetchMeta() {
   const bust = Math.random().toString(36).slice(2);
@@ -12,6 +13,7 @@ export async function fetchPage(name, syncedAt) {
   const r = await fetch(url);
   if (r.status === 404) return null;
   if (!r.ok) throw new Error(`${name}.json fetch failed: ${r.status}`);
+  if (OPTIONAL_PAGES.has(name) && r.headers.get('Content-Type')?.includes('text/html')) return null;
   return r.json();
 }
 

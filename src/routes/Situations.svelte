@@ -33,7 +33,7 @@
   $: ciPct = Math.max(0, Math.min(100, totalCF * 100));
 </script>
 
-<section class="px-6 py-5 max-w-[1600px]">
+<section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
   {#if $situationsError}
     <p class="text-crit">{$situationsError}</p>
   {:else if !$situations}

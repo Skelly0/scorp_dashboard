@@ -4,7 +4,7 @@
   import { categoryFor, getCategorySlug } from '../improvement-categories.js';
   import { catalog } from '../stores/catalog.js';
   import { goiColor, classColor, CLASS_COLORS } from '../faction-colors.js';
-  import { ZOOM_DEFAULT, clampZoom } from '../map-zoom.js';
+  import { ZOOM_DEFAULT, clampZoom, pinchMathStep } from '../map-zoom.js';
 
   /** @type {{tiles: any[], width: number, height: number, palettes: any}} */
   export let mapData;
@@ -33,6 +33,9 @@
   let canvas;
   let focused = { x: 0, y: 0 };
   let viewportClientWidth = 0;
+  let pinchPreviousDistance = null;
+  let gesturePreviousScale = null;
+  let touchPinchActive = false;
 
   $: nativeMapW = mapData.width * BASE_TILE;
   $: nativeMapH = mapData.height * BASE_TILE;
@@ -273,6 +276,76 @@
     dispatch('hover', tileAt(x, y));
   }
 
+  function touchDistance(touches) {
+    if (!touches || touches.length < 2) return null;
+    const a = typeof touches.item === 'function' ? touches.item(0) : touches[0];
+    const b = typeof touches.item === 'function' ? touches.item(1) : touches[1];
+    if (!a || !b) return null;
+    return Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+  }
+
+  function dispatchScaleFromDistances(currentDistance, previousDistance) {
+    const currentZoom = clampZoom(zoom);
+    const nextZoom = pinchMathStep(currentDistance, previousDistance, currentZoom);
+    if (nextZoom === currentZoom) return;
+    dispatch('zoomstep', { mode: 'scale', delta: nextZoom / currentZoom });
+  }
+
+  function handleTouchStart(e) {
+    if (e.touches.length !== 2) {
+      pinchPreviousDistance = null;
+      touchPinchActive = false;
+      return;
+    }
+    pinchPreviousDistance = touchDistance(e.touches);
+    touchPinchActive = pinchPreviousDistance !== null;
+    e.preventDefault();
+  }
+
+  function handleTouchMove(e) {
+    if (e.touches.length !== 2) {
+      pinchPreviousDistance = null;
+      touchPinchActive = false;
+      return;
+    }
+    e.preventDefault();
+    const currentDistance = touchDistance(e.touches);
+    dispatchScaleFromDistances(currentDistance, pinchPreviousDistance);
+    pinchPreviousDistance = currentDistance;
+    touchPinchActive = currentDistance !== null;
+  }
+
+  function handleTouchEnd(e) {
+    pinchPreviousDistance = e.touches.length === 2 ? touchDistance(e.touches) : null;
+    touchPinchActive = pinchPreviousDistance !== null;
+  }
+
+  function handleGestureStart(e) {
+    if (touchPinchActive) {
+      gesturePreviousScale = null;
+      e.preventDefault();
+      return;
+    }
+    gesturePreviousScale = typeof e.scale === 'number' && Number.isFinite(e.scale) && e.scale > 0
+      ? e.scale
+      : 1;
+    e.preventDefault();
+  }
+
+  function handleGestureChange(e) {
+    e.preventDefault();
+    if (touchPinchActive) return;
+    const currentScale = typeof e.scale === 'number' && Number.isFinite(e.scale) && e.scale > 0
+      ? e.scale
+      : null;
+    dispatchScaleFromDistances(currentScale, gesturePreviousScale);
+    gesturePreviousScale = currentScale;
+  }
+
+  function handleGestureEnd() {
+    gesturePreviousScale = null;
+  }
+
   function tileAt(x, y) {
     return mapData.tiles[y * mapData.width + x] ?? null;
   }
@@ -302,6 +375,13 @@
     bind:clientWidth={viewportClientWidth}
     tabindex="0"
     on:keydown={handleKey}
+    on:touchstart|nonpassive={handleTouchStart}
+    on:touchmove|nonpassive={handleTouchMove}
+    on:touchend={handleTouchEnd}
+    on:touchcancel={handleTouchEnd}
+    on:gesturestart|nonpassive={handleGestureStart}
+    on:gesturechange|nonpassive={handleGestureChange}
+    on:gestureend={handleGestureEnd}
   >
     <div
       class="map-content relative"

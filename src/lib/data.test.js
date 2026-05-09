@@ -37,6 +37,15 @@ describe('data fetcher', () => {
     expect(data).toBeNull();
   });
 
+  it('fetchPage returns null for optional pages served the app-shell HTML fallback', async () => {
+    global.fetch = vi.fn(async () => new Response(
+      '<!DOCTYPE html><html><body><div id="app"></div></body></html>',
+      { status: 200, headers: { 'Content-Type': 'text/html' } },
+    ));
+    const data = await fetchPage('tech', 'x');
+    expect(data).toBeNull();
+  });
+
   it('fetchPage throws on non-404 errors', async () => {
     global.fetch = vi.fn(async () => new Response('boom', { status: 500 }));
     await expect(fetchPage('status', 'x')).rejects.toThrow();

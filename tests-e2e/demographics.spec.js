@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Demographics page — workforce rework', () => {
+  test.skip(({ isMobile }) => isMobile, 'Desktop demographics coverage runs in desktop projects.');
+
   test.beforeEach(async ({ page }) => {
     await page.goto('/#/demographics');
     // Wait for the loader to clear and the first band to render.
@@ -75,6 +77,8 @@ test.describe('Demographics page — workforce rework', () => {
 });
 
 test.describe('Demographics — class drilldown', () => {
+  test.skip(({ isMobile }) => isMobile, 'Desktop demographics coverage runs in desktop projects.');
+
   test.beforeEach(async ({ page }) => {
     await page.goto('/#/demographics');
     await expect(page.locator('text=Pop Dynamics')).toBeVisible({ timeout: 10000 });
@@ -128,5 +132,37 @@ test.describe('Demographics — class drilldown', () => {
     await expect(firstRow).toHaveAttribute('aria-pressed', 'false');
     await firstRow.click();
     await expect(firstRow).toHaveAttribute('aria-pressed', 'true');
+  });
+});
+
+test.describe('Demographics mobile table trim', () => {
+  test.use({ viewport: { width: 390, height: 844 }, hasTouch: true });
+
+  test.beforeEach(async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/#/demographics');
+    await expect(page.locator('text=Pop Dynamics')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('table.tbl tbody tr').first()).toBeVisible();
+  });
+
+  test('shows trimmed vitals on mobile and opens full drilldown on tap', async ({ page }) => {
+    await expect(page.locator('.tbl-hint')).toBeVisible();
+
+    await expect(page.locator('th', { hasText: 'Class' })).toBeVisible();
+    await expect(page.locator('th', { hasText: 'Pop' })).toBeVisible();
+    await expect(page.locator('th', { hasText: 'Fill %' })).toBeVisible();
+    await expect(page.locator('th', { hasText: 'Satisfaction' })).toBeVisible();
+
+    await expect(page.locator('th', { hasText: 'Mortality' })).toBeHidden();
+    await expect(page.locator('th', { hasText: 'Births/year' })).toBeHidden();
+    await expect(page.locator('th', { hasText: 'Deaths/year' })).toBeHidden();
+    await expect(page.locator('th', { hasText: 'Mobility In' })).toBeHidden();
+    await expect(page.locator('th', { hasText: 'Mobility Out' })).toBeHidden();
+    await expect(page.locator('th', { hasText: 'Demand' })).toBeHidden();
+    await expect(page.locator('th', { hasText: 'Unemployed' })).toBeHidden();
+
+    await page.locator('table.tbl tbody tr').first().tap();
+    await expect(page.locator('text=per-class drilldown')).toBeVisible();
+    await expect(page.locator('.s-card', { hasText: 'Workforce' }).filter({ hasText: 'Demand' })).toBeVisible();
   });
 });
