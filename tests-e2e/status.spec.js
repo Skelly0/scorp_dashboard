@@ -8,8 +8,7 @@ test.describe('Status page vital signs', () => {
       timeout: 10_000,
     });
 
-    const vitalSigns = page.locator('.grid').first();
-    await expect(vitalSigns.locator('.kpi-label', { hasText: 'Government Revenue' })).toBeVisible();
-    await expect(vitalSigns.locator('.kpi-label', { hasText: /^Treasury$/ })).toHaveCount(0);
+    await expect(page.locator('.kpi-label', { hasText: /^Government Revenue$/ })).toBeVisible();
+    await expect(page.locator('.kpi-label', { hasText: /^Treasury$/ })).toHaveCount(0);
   });
 });
