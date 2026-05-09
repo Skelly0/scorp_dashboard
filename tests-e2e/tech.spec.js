@@ -3,16 +3,115 @@ import AxeBuilder from '@axe-core/playwright';
 
 const THEMES = ['light', 'dark', 'schematic'];
 
-// The Tech page is data-conditional:
-//   - When public/data/tech.json has techs (named range present), the
-//     6-branch tree grid renders with .tech-card state classes.
-//   - When tech.json is empty (named range not yet added), the empty-state
-//     band renders with the "TechTable" callout.
-// Both paths are valid; this spec covers whichever is current and asserts
-// the page is accessible in either shape across all three themes.
+const mockTechPayload = {
+  branches: ['Agriculture', 'Industry', 'Terraforming', 'Social', 'Defense', 'Logistics'],
+  techs: [
+    {
+      name: 'Stacked Nutrient Loops',
+      branch: 'Agriculture',
+      tier: 1,
+      cost_rp: 12,
+      researched: true,
+      available: false,
+      prereqs: [],
+      effects: [
+        {
+          type: 'yield',
+          type_raw: 'Yield',
+          target: 'SuperdenseHydroponicGreensOutputMultiplier',
+          mag: 0.18,
+        },
+        {
+          type: 'workforce',
+          type_raw: 'Workforce',
+          target: 'VacuumHardenedHorticultureSupportCrew',
+          mag: -0.08,
+        },
+      ],
+      description: 'Compact farms tuned for tight colony infrastructure.',
+    },
+    {
+      name: 'Basalt Spur Gearing',
+      branch: 'Industry',
+      tier: 1,
+      cost_rp: 10,
+      researched: false,
+      available: true,
+      prereqs: [],
+      effects: [],
+      description: '',
+    },
+    {
+      name: 'Shade Sail Protocols',
+      branch: 'Terraforming',
+      tier: 1,
+      cost_rp: 10,
+      researched: false,
+      available: true,
+      prereqs: [],
+      effects: [],
+      description: '',
+    },
+    {
+      name: 'Commons Ledger',
+      branch: 'Social',
+      tier: 1,
+      cost_rp: 10,
+      researched: false,
+      available: true,
+      prereqs: [],
+      effects: [],
+      description: '',
+    },
+    {
+      name: 'Dustline Forts',
+      branch: 'Defense',
+      tier: 1,
+      cost_rp: 10,
+      researched: false,
+      available: true,
+      prereqs: [],
+      effects: [],
+      description: '',
+    },
+    {
+      name: 'Crawler Dispatch',
+      branch: 'Logistics',
+      tier: 1,
+      cost_rp: 10,
+      researched: false,
+      available: true,
+      prereqs: [],
+      effects: [],
+      description: '',
+    },
+  ],
+};
+
+async function mockTechData(page, payload = mockTechPayload) {
+  await page.route('**/data/meta.json?*', async (route) => {
+    await route.fulfill({
+      json: {
+        history_year: 2075,
+        partial_failures: [],
+        schema_version: 8,
+        senate_visible: false,
+        synced_at: 'playwright-tech-overflow',
+      },
+    });
+  });
+  await page.route('**/data/tech.json?*', async (route) => {
+    await route.fulfill({ json: payload });
+  });
+}
+
+// The committed public data may omit optional tech.json, and Vite preview can
+// serve the SPA fallback HTML for that URL. Mocking keeps these layout checks
+// deterministic and exercises the populated tree path every run.
 
 for (const theme of THEMES) {
   test(`Tech page renders (${theme})`, async ({ page }) => {
+    await mockTechData(page);
     await page.goto('/');
     await page.evaluate((t) => localStorage.setItem('theme', t), theme);
     await page.goto('/#/tech');
@@ -37,6 +136,7 @@ for (const theme of THEMES) {
   });
 
   test(`Tech page axe a11y (${theme})`, async ({ page }) => {
+    await mockTechData(page);
     await page.goto('/');
     await page.evaluate((t) => localStorage.setItem('theme', t), theme);
     await page.goto('/#/tech');
@@ -48,3 +148,27 @@ for (const theme of THEMES) {
     expect(results.violations).toEqual([]);
   });
 }
+
+test('Tech page keeps effect text inside green effect chips', async ({ page }) => {
+  await mockTechData(page);
+  await page.setViewportSize({ width: 380, height: 900 });
+  await page.goto('/');
+  await page.evaluate(() => localStorage.setItem('theme', 'light'));
+  await page.goto('/#/tech');
+  await page.waitForSelector('.tech-effect-chip.pos');
+
+  const overflowingChips = await page.locator('.tech-effect-chip').evaluateAll((chips) =>
+    chips
+      .filter((chip) => {
+        const chipBox = chip.getBoundingClientRect();
+        const childrenOverflow = [...chip.children].some((child) => {
+          const childBox = child.getBoundingClientRect();
+          return childBox.left < chipBox.left - 1 || childBox.right > chipBox.right + 1;
+        });
+        return chip.scrollWidth > chip.clientWidth + 1 || childrenOverflow;
+      })
+      .map((chip) => chip.textContent.replace(/\s+/g, ' ').trim())
+  );
+
+  expect(overflowingChips).toEqual([]);
+});
