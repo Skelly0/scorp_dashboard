@@ -76,6 +76,25 @@
     }
   ],
   "palettes": {
+    "control": {
+      "Administration": "#5ec3ff",
+      "Botanists": "#7fc97f",
+      "Bureaucrats": "#ffb000",
+      "Capitalists": "#ffd84d",
+      "Corporations": "#ffd84d",
+      "Engineers": "#5ec3ff",
+      "Extraction Workers": "#ff8c42",
+      "Faithful": "#c44dff",
+      "Founders": "#ffb000",
+      "Industrial Workers": "#38d39f",
+      "Managerial": "#c44dff",
+      "Proprietors": "#9c8a2e",
+      "Scientists": "#a89cff",
+      "Security": "#ff5544",
+      "Service Workers": "#a89567",
+      "Technocracy": "#5ec3ff",
+      "Unionists": "#38d39f"
+    },
     "feature": {
       "Boulder Field": "#6e6058",
       "Buried Ice": "#b3d9ff",
@@ -9000,7 +9019,7 @@
       },
       "resource": "Iron Deposit",
       "slots": 2,
-      "staffing": 0.6309514635,
+      "staffing": 0.6310754828,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -9009,7 +9028,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 315.4757317,
+        "housing": 315.5377414,
         "materials": 0.75,
         "ore": 2.25,
         "water": 0
@@ -9041,7 +9060,7 @@
       }
     },
     {
-      "control": "Corporations",
+      "control": "Unions",
       "feature": "Smooth Plain",
       "improvement": {
         "name": "Aluminium Extractor",
@@ -9856,7 +9875,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.7527711632,
+      "staffing": 0.7419824283,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -9865,7 +9884,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 188.1927908,
+        "housing": 185.4956071,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -9881,23 +9900,23 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6810618216,
+      "staffing": 0.678338909,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
       "x": 23,
       "y": 11,
       "yields": {
-        "energy": 71.51149126,
-        "food": 51.07963662,
-        "housing": 3405.309108,
-        "materials": 102.4092732,
-        "ore": 51.32963662,
+        "energy": 71.22558544,
+        "food": 50.87541817,
+        "housing": 3391.694545,
+        "materials": 102.0008363,
+        "ore": 51.12541817,
         "water": 0
       }
     },
     {
-      "control": "Unions",
+      "control": "Administration",
       "feature": "Smooth Plain",
       "improvement": {
         "name": "Buried Habitat",
@@ -9922,7 +9941,7 @@
       }
     },
     {
-      "control": "Unions",
+      "control": "Administration",
       "feature": null,
       "improvement": {
         "name": "Recreational Facility",
@@ -9931,7 +9950,7 @@
       },
       "resource": "Heavy Metals",
       "slots": 2,
-      "staffing": 0.7458243411,
+      "staffing": 0.7469253101,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -9940,7 +9959,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 186.4560853,
+        "housing": 186.7313275,
         "materials": 0.5,
         "ore": 1.25,
         "water": 0
@@ -10691,7 +10710,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.925269736,
+      "staffing": 0.9358008894,
       "terrain": "Lava Tube",
       "upkeep": null,
       "workforce": null,
@@ -10700,7 +10719,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 431.317434,
+        "housing": 433.9502223,
         "materials": 0.25,
         "ore": 0.5,
         "water": 0
@@ -12357,7 +12376,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.7059237815,
+      "staffing": 0.7061242268,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
@@ -12366,7 +12385,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 176.4809454,
+        "housing": 176.5310567,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -13213,18 +13232,18 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6810618216,
+      "staffing": 0.678338909,
       "terrain": "Mare Plain",
       "upkeep": null,
       "workforce": null,
       "x": 19,
       "y": 15,
       "yields": {
-        "energy": 71.51149126,
-        "food": 51.07963662,
-        "housing": 3405.309108,
-        "materials": 102.4092732,
-        "ore": 51.32963662,
+        "energy": 71.22558544,
+        "food": 50.87541817,
+        "housing": 3391.694545,
+        "materials": 102.0008363,
+        "ore": 51.12541817,
         "water": 0
       }
     },
