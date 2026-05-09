@@ -2,7 +2,7 @@
   "active_situations": [],
   "crisis_factor": 0.0,
   "demographics": {
-    "avg_satisfaction": 0.688820688281087,
+    "avg_satisfaction": 0.6878413014075543,
     "base_growth_rate": 0.03,
     "effective_cdr": 0.01113043478,
     "effective_growth_rate": 0.0096,
@@ -10,10 +10,10 @@
     "housing_util": 1.0209630344796972,
     "net_delta_pct": -0.1530434780000001,
     "sat_elasticity": 0.32,
-    "total_births": 2682.0,
+    "total_births": 2653.0,
     "total_deaths": 1024.0
   },
-  "gov_approval": 0.3937632262,
+  "gov_approval": 0.3937616767,
   "overton": {
     "authority": 3.0,
     "corporate": 3.5,
@@ -81,7 +81,7 @@
       "upkeep": 567.35
     }
   ],
-  "stability": 0.08092703455,
+  "stability": 0.08092536982,
   "treasury": {
     "delta": 288037.6547,
     "money": 223686.0

@@ -380,7 +380,7 @@
       "available": true,
       "branch": "Civic",
       "cost_rp": 180,
-      "description": "Remote diagnostics let one hospital serve more people with less staff.",
+      "description": "Diagnostics powered by artificial intelligence let one hospital serve more people with less staff.",
       "effects": [
         {
           "mag": -0.2,
@@ -395,7 +395,7 @@
           "type_raw": "Yield"
         }
       ],
-      "name": "Tele-medicine",
+      "name": "Diagnostic Artificial Intelligence",
       "prereqs": [],
       "researched": false,
       "tier": 1
@@ -404,7 +404,7 @@
       "available": false,
       "branch": "Civic",
       "cost_rp": 400,
-      "description": "Networked classrooms scale education without proportional staff growth.",
+      "description": "Artificial Intelligence help scale education without proportional staff growth.",
       "effects": [
         {
           "mag": -0.25,
@@ -425,9 +425,9 @@
           "type_raw": "Workforce"
         }
       ],
-      "name": "Distance Learning",
+      "name": "Educational Intelligence",
       "prereqs": [
-        "Tele-medicine"
+        "Diagnostic Artificial Intelligence"
       ],
       "researched": false,
       "tier": 2
@@ -459,7 +459,7 @@
       ],
       "name": "Algorithmic Governance",
       "prereqs": [
-        "Distance Learning",
+        "Educational Intelligence",
         "Lab Methodology"
       ],
       "researched": false,
