@@ -1,11 +1,5 @@
 {
-  "active": [
-    {
-      "crisis_factor": 0.5,
-      "description": "Earth go boom",
-      "name": "The Fall"
-    }
-  ],
+  "active": [],
   "ended": [],
   "stability_modifiers": [],
   "tier_ladder": []
