@@ -97,6 +97,39 @@ def test_pops_mobility_optional_when_range_missing(wb):
         assert cls["mobility_out"] is None
 
 
+def test_pops_satisfaction_breakdown_present(wb):
+    """Per-class satisfaction_breakdown dict surfaces all 11 sources."""
+    result = extract(wb)
+    first = result["classes"][0]
+    bd = first["satisfaction_breakdown"]
+    expected_keys = {
+        "food", "housing", "employment", "ownership", "services",
+        "faith", "entertainment", "tax", "wages", "safety", "situations",
+    }
+    assert set(bd) == expected_keys
+
+
+def test_pops_satisfaction_breakdown_values(wb):
+    """Fixture seeds value = 0.30 + class_idx*0.05 + source_idx*0.01.
+    Spot-check first and last sources for two classes."""
+    result = extract(wb)
+    first = result["classes"][0]
+    assert first["satisfaction_breakdown"]["food"] == pytest.approx(0.30)
+    assert first["satisfaction_breakdown"]["situations"] == pytest.approx(0.40)
+    second = result["classes"][1]
+    assert second["satisfaction_breakdown"]["food"] == pytest.approx(0.35)
+    assert second["satisfaction_breakdown"]["situations"] == pytest.approx(0.45)
+
+
+def test_pops_satisfaction_breakdown_optional_when_range_missing(wb):
+    """Removing the soft-optional table should leave all sources as None."""
+    del wb.defined_names["PopsimSatisfactionFullTable"]
+    result = extract(wb)
+    for cls in result["classes"]:
+        bd = cls["satisfaction_breakdown"]
+        assert all(v is None for v in bd.values())
+
+
 def test_pops_handles_short_mortality_range(wb):
     """If MortalityRates has fewer rows than ClassTable, missing rows surface as None - no IndexError."""
     from openpyxl.workbook.defined_name import DefinedName

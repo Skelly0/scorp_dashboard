@@ -203,6 +203,22 @@ def build(out_path: Path) -> Path:
         pop.cell(row=i, column=13, value=0.40)
     _add_name(wb, "PopsimSatisfaction", "Popsim!$M$151:$M$165")
 
+    # PopsimSatisfactionFullTable A151:K165 — 15 rows × 11 source cols, no headers.
+    # Column order matches extractors/pops.py:SATISFACTION_SOURCES exactly:
+    # food, housing, employment, ownership, services, faith,
+    # entertainment, tax, wages, safety, situations.
+    # Soft-optional in validate_schema; missing → frontend renders "—".
+    # Seed deterministic values so tests can assert per-cell math:
+    #   value = 0.30 + class_idx*0.05 + source_idx*0.01
+    # Cols A-K live alongside the existing PopsimSatisfaction range at col M
+    # (no overlap — cols 1..11 vs col 13).
+    for class_idx in range(len(classes)):
+        row = 151 + class_idx
+        for source_idx in range(11):
+            pop.cell(row=row, column=1 + source_idx,
+                     value=0.30 + class_idx * 0.05 + source_idx * 0.01)
+    _add_name(wb, "PopsimSatisfactionFullTable", "Popsim!$A$151:$K$165")
+
     # ---- Wages & Welfare sheet ----
     ww = wb.create_sheet("Wages & Welfare")
     # AdditionalIncomeRange = H23:I37 — col H per-class total Additional Income, col I label.

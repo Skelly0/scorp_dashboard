@@ -23,7 +23,7 @@
       "tier": "Upper",
       "worldview": {
         "authority": 3.5,
-        "corporate": 6.5,
+        "corporate": 1.0,
         "expansion": 6.0,
         "faith": 3.0,
         "materialist": 2.5,
@@ -38,7 +38,7 @@
       "tier": "Middle",
       "worldview": {
         "authority": 4.0,
-        "corporate": 4.5,
+        "corporate": 3.5,
         "expansion": 5.0,
         "faith": 3.0,
         "materialist": 3.5,
@@ -53,7 +53,7 @@
       "tier": "Middle",
       "worldview": {
         "authority": 4.0,
-        "corporate": 4.5,
+        "corporate": 4.0,
         "expansion": 5.5,
         "faith": 2.5,
         "materialist": 4.5,
@@ -98,7 +98,7 @@
       "tier": "Middle",
       "worldview": {
         "authority": 4.0,
-        "corporate": 6.0,
+        "corporate": 2.0,
         "expansion": 5.0,
         "faith": 3.0,
         "materialist": 2.5,
@@ -128,7 +128,7 @@
       "tier": "Lower",
       "worldview": {
         "authority": 5.5,
-        "corporate": 2.5,
+        "corporate": 5.5,
         "expansion": 4.5,
         "faith": 4.5,
         "materialist": 3.0,
@@ -143,7 +143,7 @@
       "tier": "Lower",
       "worldview": {
         "authority": 5.5,
-        "corporate": 2.5,
+        "corporate": 6.0,
         "expansion": 5.0,
         "faith": 4.5,
         "materialist": 3.0,
@@ -158,7 +158,7 @@
       "tier": "Lower",
       "worldview": {
         "authority": 5.0,
-        "corporate": 3.5,
+        "corporate": 5.0,
         "expansion": 3.5,
         "faith": 4.5,
         "materialist": 3.0,

@@ -12,8 +12,29 @@
    *   additional_income: object|null,
    *   status: object|null,
    *   workforce: object|null,
+   *   satisfaction: number|null,
+   *   satisfaction_breakdown: object|null,
    * }} */
   export let cls;
+
+  // Two-column split of the 11 satisfaction sources. Order MUST match
+  // extractors/pops.py:SATISFACTION_SOURCES — a row in PopsimSatisfactionFullTable
+  // is laid out left-to-right in this same sequence.
+  const SAT_LEFT = [
+    ['Food', 'food'],
+    ['Housing', 'housing'],
+    ['Employment', 'employment'],
+    ['Ownership', 'ownership'],
+    ['Services', 'services'],
+    ['Faith', 'faith'],
+  ];
+  const SAT_RIGHT = [
+    ['Entertainment', 'entertainment'],
+    ['Tax', 'tax'],
+    ['Wages', 'wages'],
+    ['Safety', 'safety'],
+    ['Situations', 'situations'],
+  ];
 
   $: critRad = cls?.status?.radicalisation > 0.5;
 
@@ -128,6 +149,43 @@
             : ''}
         />
       </div>
+    </div>
+  </div>
+
+  <div class="s-card md:col-span-2 xl:col-span-3">
+    <div class="s-card-header">
+      <h3>Satisfaction · sources</h3>
+      <span class="text-muted text-[10px] tracking-widest">
+        OVERALL {num(cls.satisfaction)}
+      </span>
+    </div>
+    <div class="s-card-pad grid grid-cols-1 md:grid-cols-2 gap-x-6">
+      <table class="tbl">
+        <thead>
+          <tr><th>Source</th><th class="num">Value</th></tr>
+        </thead>
+        <tbody>
+          {#each SAT_LEFT as [label, key]}
+            <tr>
+              <td>{label}</td>
+              <td class="num">{num(cls.satisfaction_breakdown?.[key])}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+      <table class="tbl">
+        <thead>
+          <tr><th>Source</th><th class="num">Value</th></tr>
+        </thead>
+        <tbody>
+          {#each SAT_RIGHT as [label, key]}
+            <tr>
+              <td>{label}</td>
+              <td class="num">{num(cls.satisfaction_breakdown?.[key])}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

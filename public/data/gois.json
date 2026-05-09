@@ -7,7 +7,7 @@
         "unlocked_list": []
       },
       "approach": "Idealist",
-      "approval": 0.3540304658,
+      "approval": 0.3553455092,
       "derived_influence": 0.2201199153,
       "effective_worldview": {
         "authority": 4.5,
@@ -22,7 +22,7 @@
       "name": "Administration",
       "sub_factions": [
         {
-          "approval": 0.4011775684,
+          "approval": 0.4024926118,
           "effective_worldview": {
             "authority": 4.85,
             "corporate": 4.0,
@@ -38,7 +38,7 @@
           "national_share": 0.06361568696
         },
         {
-          "approval": 0.2873151571,
+          "approval": 0.2886302005,
           "effective_worldview": {
             "authority": 5.549999999999999,
             "corporate": 4.0,
@@ -54,7 +54,7 @@
           "national_share": 0.05598180452
         },
         {
-          "approval": 0.3700893117,
+          "approval": 0.3714043551,
           "effective_worldview": {
             "authority": 2.75,
             "corporate": 4.0,
@@ -77,26 +77,26 @@
         "unlocked": 0,
         "unlocked_list": []
       },
-      "approach": "Marketist",
-      "approval": 0.2261883633,
+      "approach": "Communal",
+      "approval": 0.367628852,
       "derived_influence": 0.2296341507,
       "effective_worldview": {
         "authority": 3.5,
-        "corporate": 6.5,
+        "corporate": 1.0,
         "expansion": 6.0,
         "faith": 3.0,
         "materialist": 2.5,
         "technocratic": 4.0
       },
-      "mad_index": 0.0,
+      "mad_index": -0.005,
       "main_class": "Capitalists",
       "name": "Corporate",
       "sub_factions": [
         {
-          "approval": 0.2746922778,
+          "approval": 0.4151670861,
           "effective_worldview": {
             "authority": 5.25,
-            "corporate": 6.1499999999999995,
+            "corporate": 2.05,
             "expansion": 5.300000000000001,
             "faith": 3.7,
             "materialist": 4.25,
@@ -109,10 +109,10 @@
           "national_share": 0.1061845529
         },
         {
-          "approval": 0.2901270309,
+          "approval": 0.3255970773,
           "effective_worldview": {
             "authority": 4.550000000000001,
-            "corporate": 6.1499999999999995,
+            "corporate": 1.0,
             "expansion": 6.0,
             "faith": 3.0,
             "materialist": 4.949999999999999,
@@ -125,10 +125,10 @@
           "national_share": 0.09291148382
         },
         {
-          "approval": 0.05906796567,
+          "approval": 0.3504121618,
           "effective_worldview": {
             "authority": 3.9,
-            "corporate": 6.699999999999999,
+            "corporate": 3.2,
             "expansion": 3.4499999999999997,
             "faith": 3.5999999999999996,
             "materialist": 5.1,
@@ -151,25 +151,25 @@
         ]
       },
       "approach": "Democratic",
-      "approval": 0.402390788,
+      "approval": 0.2930808851,
       "derived_influence": 0.3571787599,
       "effective_worldview": {
         "authority": 5.5,
-        "corporate": 2.5,
+        "corporate": 5.5,
         "expansion": 4.5,
         "faith": 4.5,
         "materialist": 3.0,
         "technocratic": 5.5
       },
-      "mad_index": -0.0375,
+      "mad_index": -0.025,
       "main_class": "Industrial Workers",
       "name": "Unions",
       "sub_factions": [
         {
-          "approval": 0.4159075704,
+          "approval": 0.322658892,
           "effective_worldview": {
             "authority": 3.5999999999999996,
-            "corporate": 2.45,
+            "corporate": 5.0,
             "expansion": 3.85,
             "faith": 4.15,
             "materialist": 3.7,
@@ -182,10 +182,10 @@
           "national_share": 0.2064526706
         },
         {
-          "approval": 0.3764422414,
+          "approval": 0.2256119304,
           "effective_worldview": {
             "authority": 3.0500000000000003,
-            "corporate": 2.15,
+            "corporate": 6.0,
             "expansion": 4.3,
             "faith": 4.15,
             "materialist": 3.0,
@@ -198,10 +198,10 @@
           "national_share": 0.1238716024
         },
         {
-          "approval": 0.4075216517,
+          "approval": 0.3203392999,
           "effective_worldview": {
             "authority": 4.45,
-            "corporate": 2.15,
+            "corporate": 6.2,
             "expansion": 3.4499999999999997,
             "faith": 4.15,
             "materialist": 3.7,
@@ -222,25 +222,25 @@
         "unlocked_list": []
       },
       "approach": "Secular",
-      "approval": 0.2535931188,
+      "approval": 0.2680987428,
       "derived_influence": 0.1930671741,
       "effective_worldview": {
         "authority": 4.0,
-        "corporate": 4.5,
+        "corporate": 4.0,
         "expansion": 5.5,
         "faith": 2.5,
         "materialist": 4.5,
         "technocratic": 2.0
       },
-      "mad_index": -0.03,
+      "mad_index": -0.0375,
       "main_class": "Scientists",
       "name": "Research",
       "sub_factions": [
         {
-          "approval": 0.264898713,
+          "approval": 0.3076625003,
           "effective_worldview": {
             "authority": 4.0,
-            "corporate": 4.85,
+            "corporate": 3.3,
             "expansion": 6.55,
             "faith": 3.55,
             "materialist": 4.85,
@@ -253,10 +253,10 @@
           "national_share": 0.08927570879
         },
         {
-          "approval": 0.2123152397,
+          "approval": 0.2079820882,
           "effective_worldview": {
             "authority": 5.3999999999999995,
-            "corporate": 4.15,
+            "corporate": 4.0,
             "expansion": 5.15,
             "faith": 2.15,
             "materialist": 4.85,
@@ -269,10 +269,10 @@
           "national_share": 0.06695678159
         },
         {
-          "approval": 0.2797968723,
+          "approval": 0.2754637208,
           "effective_worldview": {
             "authority": 2.6,
-            "corporate": 4.15,
+            "corporate": 4.0,
             "expansion": 5.15,
             "faith": 2.15,
             "materialist": 4.15,
