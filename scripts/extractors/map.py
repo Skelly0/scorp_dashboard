@@ -214,6 +214,11 @@ TERRAIN_PALETTE = {
     "Regolith Plain": "#6a5d4a",
     "Lava Tube": "#2a2520",
     "Highland Plateau": "#7a6a55",
+    "Highland": "#8a7050",
+    "Mountain": "#5c5a5e",
+    "Ancient Site": "#4a6a6a",
+    "Geothermal Vent": "#b85a3a",
+    "Shattered Terrain": "#7a5550",
     "Empty": "#1a1a1a",
 }
 
