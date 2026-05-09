@@ -662,6 +662,10 @@ table.tbl th.num {
   text-align: left;
   padding-left: 8px;
   justify-content: flex-start;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: var(--bg);
 }
 .heatmap-value {
   display: inline-block;
@@ -812,6 +816,8 @@ table.tbl th.num {
   width: 100%;
   max-width: 100%;
   overflow: auto;
+  touch-action: pan-x pan-y;
+  overscroll-behavior: contain;
   /* Match existing border-4 border-border via Tailwind utility on the
      element; nothing to add here for the border itself. */
   background: var(--bg-2);
@@ -866,6 +872,36 @@ table.tbl th.num {
 .layer-tabs .s-zoom button[aria-pressed="true"] {
   background: var(--accent);
   color: var(--bg);
+}
+
+@media (max-width: 767px) {
+  .layer-tabs {
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+  .layer-tabs > button,
+  .layer-tabs .layer-menu,
+  .layer-tabs .s-zoom {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+  .layer-tabs .s-zoom {
+    margin-left: 0;
+  }
+  .layer-menu-popup {
+    position: fixed;
+    top: max(72px, env(safe-area-inset-top));
+    left: max(12px, env(safe-area-inset-left));
+    right: max(12px, env(safe-area-inset-right));
+    z-index: 50;
+    min-width: 0;
+    max-height: min(420px, calc(100vh - 112px));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 /* === Active filter strip ================================================== */
@@ -1141,6 +1177,16 @@ table.tbl th.num {
   padding: 16px;
   max-height: 80vh;
   overflow-y: auto;
+}
+
+.map-inspector-sheet {
+  padding-top: 52px;
+}
+
+.map-sheet-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
 }
 
 /* Active-row highlight on the GoI cards' sub-faction list */
@@ -1478,6 +1524,112 @@ table.tbl th.num {
   color: var(--fg-dim);
   line-height: 1.4;
   overflow-wrap: anywhere;
+}
+
+/* === Mobile friendliness =================================================== */
+.narrow-hide { display: inline; }
+
+.kpi-block .kpi-num {
+  font-size: clamp(2rem, 9vw, 56px);
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.stat-tile .val {
+  font-size: clamp(1.5rem, 6.5vw, 32px);
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.heatmap-scroll,
+.tbl-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.heatmap-scroll .heatmap {
+  min-width: max-content;
+}
+
+.tbl-scroll > table.tbl {
+  min-width: 640px;
+}
+
+.tbl-hint {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 639px) {
+  .tbl-trim-mobile .hide-narrow {
+    display: none;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .s-chip,
+  button.s-tag,
+  a.s-tag,
+  .s-tag[role="button"],
+  .layer-tabs button,
+  .layer-tabs .layer-menu-trigger,
+  .tier,
+  .cat-close,
+  .s-rail-close,
+  .roster-row,
+  .roster-section-header {
+    min-height: 44px;
+  }
+
+  .s-chip,
+  .layer-tabs button,
+  .layer-tabs .layer-menu-trigger,
+  .cat-close {
+    padding: 10px 14px;
+  }
+
+  .filter-chip button {
+    padding: 10px;
+    margin: -10px;
+    min-width: 32px;
+    min-height: 32px;
+  }
+}
+
+@media (max-width: 380px) {
+  .narrow-hide { display: none; }
+
+  .overton-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 10px 0;
+  }
+  .overton-axis-left { text-align: left; }
+  .overton-axis-right {
+    text-align: right;
+    grid-column: 1;
+  }
+  .overton-track { grid-column: 1; }
+  .overton-value {
+    grid-column: 1;
+    text-align: right;
+  }
+
+  .tier {
+    grid-template-columns: 60px minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 420px) {
+  .tech-effect-chip {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
 }
 
 /* === Tech page — branch grid ============================================== */

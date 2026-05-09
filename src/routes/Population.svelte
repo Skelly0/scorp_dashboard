@@ -16,7 +16,7 @@
   $: totalPop = $population?.classes.reduce((a, c) => a + (c.pop ?? 0), 0) ?? 0;
 </script>
 
-<section class="px-6 py-5 max-w-[1600px]">
+<section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
   {#if $populationError}
     <p class="text-crit">{$populationError}</p>
   {:else if !$population}
@@ -27,7 +27,8 @@
       title="Class Roster"
       meta={`${$population.classes.length} classes · ${totalPop.toLocaleString()} pop`}
     />
-    <div class="s-card">
+    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+    <div class="s-card tbl-scroll" tabindex="0" role="region" aria-label="Class roster table">
       <table class="tbl">
         <thead>
           <tr>
@@ -61,7 +62,7 @@
     </div>
 
     <Band num="02" title="Worldview by Class" meta="6-axis radar · scale 0–6" />
-    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
       {#each $population.classes as c}
         <div class="s-card barred" style="--bar-color: {classColor(c.name)}">
           <div class="s-card-header">

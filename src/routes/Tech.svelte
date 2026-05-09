@@ -17,7 +17,7 @@
   );
 </script>
 
-<section class="px-6 py-5 max-w-[1600px]">
+<section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
   {#if $techError}
     <p class="text-crit">{$techError}</p>
   {:else if !$tech}

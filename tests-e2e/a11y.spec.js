@@ -3,6 +3,10 @@ import AxeBuilder from '@axe-core/playwright';
 
 const PAGES = ['/', '/#/map', '/#/population', '/#/demographics', '/#/cropsim', '/#/gois', '/#/tech', '/#/parties', '/#/situations'];
 const THEMES = ['light', 'dark', 'schematic'];
+const VIEWPORTS = [
+  { name: 'desktop', size: { width: 1280, height: 900 } },
+  { name: 'mobile', size: { width: 390, height: 844 } },
+];
 
 async function gotoWithTheme(page, theme, path) {
   await page.addInitScript((t) => {
@@ -14,14 +18,17 @@ async function gotoWithTheme(page, theme, path) {
 }
 
 for (const theme of THEMES) {
-  for (const path of PAGES) {
-    test(`a11y: ${theme} theme — ${path}`, async ({ page }) => {
-      await gotoWithTheme(page, theme, path);
-      const results = await new AxeBuilder({ page })
-        .withTags(['wcag2a', 'wcag2aa'])
-        .analyze();
-      expect(results.violations).toEqual([]);
-    });
+  for (const viewport of VIEWPORTS) {
+    for (const path of PAGES) {
+      test(`a11y: ${theme} theme — ${viewport.name} — ${path}`, async ({ page }) => {
+        await page.setViewportSize(viewport.size);
+        await gotoWithTheme(page, theme, path);
+        const results = await new AxeBuilder({ page })
+          .withTags(['wcag2a', 'wcag2aa'])
+          .analyze();
+        expect(results.violations).toEqual([]);
+      });
+    }
   }
 }
 
