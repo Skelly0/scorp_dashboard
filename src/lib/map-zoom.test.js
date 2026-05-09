@@ -7,6 +7,8 @@ import {
   ZOOM_STORAGE_KEY,
   clampZoom,
   stepZoom,
+  scaleZoom,
+  pinchMathStep,
   resetZoom,
   readZoom,
   writeZoom,
@@ -44,6 +46,43 @@ describe('stepZoom', () => {
   it('snaps an off-grid current value onto the grid before stepping', () => {
     // 1.13 → snap to nearest grid point (1.25), then add ZOOM_STEP → 1.5.
     expect(stepZoom(1.13, +1)).toBeCloseTo(1.5, 10);
+  });
+});
+
+describe('scaleZoom', () => {
+  it('multiplies the current zoom by a finite ratio without snapping to the step grid', () => {
+    expect(scaleZoom(1.25, 1.2)).toBeCloseTo(1.5, 10);
+    expect(scaleZoom(1.5, 0.9)).toBeCloseTo(1.35, 10);
+  });
+  it('clamps scaled values to the zoom bounds', () => {
+    expect(scaleZoom(ZOOM_MAX, 2)).toBeCloseTo(ZOOM_MAX, 10);
+    expect(scaleZoom(ZOOM_MIN, 0.5)).toBeCloseTo(ZOOM_MIN, 10);
+  });
+  it('returns the clamped current zoom for invalid ratios', () => {
+    expect(scaleZoom(1.25, 0)).toBeCloseTo(1.25, 10);
+    expect(scaleZoom(1.25, -1)).toBeCloseTo(1.25, 10);
+    expect(scaleZoom(1.25, NaN)).toBeCloseTo(1.25, 10);
+    expect(scaleZoom(1.25, Infinity)).toBeCloseTo(1.25, 10);
+    expect(scaleZoom(99, 0)).toBeCloseTo(ZOOM_MAX, 10);
+  });
+});
+
+describe('pinchMathStep', () => {
+  it('doubles zoom when pinch distance doubles', () => {
+    expect(pinchMathStep(200, 100, 1)).toBeCloseTo(2, 10);
+  });
+  it('halves zoom when pinch distance halves', () => {
+    expect(pinchMathStep(100, 200, 1.5)).toBeCloseTo(0.75, 10);
+  });
+  it('clamps pinch-scaled zoom to bounds', () => {
+    expect(pinchMathStep(300, 100, 1)).toBeCloseTo(ZOOM_MAX, 10);
+    expect(pinchMathStep(25, 100, 1)).toBeCloseTo(ZOOM_MIN, 10);
+  });
+  it('returns the clamped current zoom for zero or invalid distances', () => {
+    expect(pinchMathStep(0, 100, 1.25)).toBeCloseTo(1.25, 10);
+    expect(pinchMathStep(100, 0, 1.25)).toBeCloseTo(1.25, 10);
+    expect(pinchMathStep(NaN, 100, 1.25)).toBeCloseTo(1.25, 10);
+    expect(pinchMathStep(100, Infinity, 99)).toBeCloseTo(ZOOM_MAX, 10);
   });
 });
 

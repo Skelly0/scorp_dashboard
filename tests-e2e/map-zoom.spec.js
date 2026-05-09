@@ -108,4 +108,44 @@ test.describe('Map zoom controls', () => {
     expect(fullRatio).toBeGreaterThan(1.95);
     expect(fullRatio).toBeLessThan(2.05);
   });
+
+  test('touch pinch suppresses overlapping Safari gesture zoom dispatch', async ({ page }) => {
+    const reset = page.getByRole('group', { name: /map zoom/i })
+      .getByRole('button', { name: /reset zoom/i });
+    const viewport = page.locator('.map-viewport');
+
+    await expect(reset).toHaveText('100%');
+
+    await viewport.evaluate((node) => {
+      const makeTouches = (distance) => ({
+        length: 2,
+        0: { clientX: 0, clientY: 0 },
+        1: { clientX: distance, clientY: 0 },
+        item(index) {
+          return this[index] ?? null;
+        },
+      });
+
+      const dispatchTouch = (type, distance) => {
+        const event = new Event(type, { bubbles: true, cancelable: true });
+        Object.defineProperty(event, 'touches', { value: makeTouches(distance) });
+        node.dispatchEvent(event);
+      };
+
+      const dispatchGesture = (type, scale) => {
+        const event = new Event(type, { bubbles: true, cancelable: true });
+        Object.defineProperty(event, 'scale', { value: scale });
+        node.dispatchEvent(event);
+      };
+
+      dispatchTouch('touchstart', 100);
+      dispatchGesture('gesturestart', 1);
+      dispatchTouch('touchmove', 150);
+      dispatchGesture('gesturechange', 1.5);
+      dispatchTouch('touchend', 0);
+      dispatchGesture('gestureend', 1.5);
+    });
+
+    await expect(reset).toHaveText('150%');
+  });
 });
