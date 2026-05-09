@@ -116,7 +116,7 @@ test.describe('Clear filters', () => {
 });
 
 test.describe('Improvement category mapping', () => {
-  test('inspector shows the placed improvement type separately from ownership type', async ({ page }) => {
+  test('inspector shows Control and hides ownership type', async ({ page }) => {
     await page.goto('/#/map');
     await page.waitForLoadState('networkidle');
 
@@ -126,7 +126,9 @@ test.describe('Improvement category mapping', () => {
     const inspector = page.locator('aside .s-card').last();
     await expect(inspector).toContainText('Improvement Type');
     await expect(inspector).toContainText('Solar Array Field');
-    await expect(inspector).toContainText('Ownership Type');
+    await expect(inspector.locator('dt', { hasText: /^Control$/ })).toBeVisible();
+    await expect(inspector.locator('dt', { hasText: /^Owner$/ })).toHaveCount(0);
+    await expect(inspector.locator('dt', { hasText: /^Ownership Type$/ })).toHaveCount(0);
   });
 
   test('inspector renders the right category icon', async ({ page }) => {

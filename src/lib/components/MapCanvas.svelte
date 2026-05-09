@@ -277,15 +277,15 @@
     return mapData.tiles[y * mapData.width + x] ?? null;
   }
 
-  function ownerColor(owner) {
-    if (!owner) return null;
+  function controlColor(control) {
+    if (!control) return null;
     // Try GoI palette first; fall back to class palette. Both helpers
     // return 'var(--accent)' on miss — that string doesn't resolve in SVG
     // presentation attributes (gotcha #14), so we filter it out and let
     // the caller's ?? chain fall through to the category-palette colour.
-    const g = goiColor(owner);
+    const g = goiColor(control);
     if (g !== 'var(--accent)') return g;
-    const c = classColor(owner);
+    const c = classColor(control);
     if (c !== 'var(--accent)') return c;
     return null;
   }
@@ -323,7 +323,7 @@
           {#if t.improvement}
             {@const cat = categoryFor(t.improvement, $catalog)}
             {@const fill = tab === 'improvements'
-              ? (ownerColor(t.improvement.owner) ?? improvementCatPal[cat.slug] ?? '#ffffff')
+              ? (controlColor(t.control ?? t.improvement.owner) ?? improvementCatPal[cat.slug] ?? '#ffffff')
               : null}
             <text
               x={t.x * BASE_TILE + BASE_TILE / 2}
