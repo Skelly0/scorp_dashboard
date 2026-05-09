@@ -91,6 +91,17 @@
   $: t = pinnedTile ?? hoverTile;
   $: nameplate = t?.improvement ? resolveImprovementRow(t.improvement.name, $catalog) : null;
 
+  function truncateDecimal(value, places = 2) {
+    const n = Number(value);
+    if (!Number.isFinite(n)) return value;
+    const factor = 10 ** places;
+    return Math.trunc(n * factor) / factor;
+  }
+
+  function formatYieldValue(value) {
+    return `${value > 0 ? '+' : ''}${truncateDecimal(value, 2)}`;
+  }
+
   onMount(() => {
     pageTitle.set('Map');
     if ($meta?.synced_at) loadMap($meta.synced_at);
@@ -326,7 +337,7 @@
                   <dl class="kv">
                     {#each Object.entries(t.yields).filter(([_, v]) => v !== 0 && v != null) as [k, v]}
                       <dt class="capitalize">{k}</dt>
-                      <dd class={v < 0 ? 'crit' : v > 0 ? 'good' : ''}>{v > 0 ? '+' : ''}{v}</dd>
+                      <dd class={v < 0 ? 'crit' : v > 0 ? 'good' : ''}>{formatYieldValue(v)}</dd>
                     {/each}
                   </dl>
                 </div>

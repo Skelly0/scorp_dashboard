@@ -42,3 +42,69 @@ test.describe('Map page — staffing & dropdowns', () => {
     await expect(page.getByRole('menu')).toHaveCount(0);
   });
 });
+
+test.describe('Map page — detail values', () => {
+  test('truncates yield decimals in the tile detail box', async ({ page }) => {
+    await page.route('**/data/map.json*', async (route) => {
+      await route.fulfill({
+        json: {
+          available_categories: { staffing: false, upkeep: false, workforce: false },
+          height: 1,
+          width: 2,
+          missing_sheets: [],
+          palettes: {
+            terrain: { Plain: '#333333' },
+            resource: {},
+            feature: {},
+            improvement_category: {},
+          },
+          tiles: [
+            {
+              x: 0,
+              y: 0,
+              terrain: 'Plain',
+              feature: null,
+              resource: null,
+              slots: 0,
+              improvement: null,
+              yields: {
+                food: 1.239,
+                water: -2.987,
+                energy: 0,
+              },
+              upkeep: {},
+              workforce: {},
+              staffing: null,
+            },
+            {
+              x: 1,
+              y: 0,
+              terrain: 'Plain',
+              feature: null,
+              resource: null,
+              slots: 0,
+              improvement: null,
+              yields: {},
+              upkeep: {},
+              workforce: {},
+              staffing: null,
+            },
+          ],
+        },
+      });
+    });
+
+    await page.goto('/#/map');
+    await page.waitForLoadState('networkidle');
+
+    const canvas = page.locator('canvas[role=application]');
+    await expect(canvas).toBeVisible();
+    await canvas.click({ position: { x: 10, y: 10 } });
+
+    const yieldValues = page
+      .locator('.kv-section')
+      .filter({ has: page.getByRole('heading', { name: 'Yields' }) })
+      .locator('dd');
+    await expect(yieldValues).toHaveText(['+1.23', '-2.98']);
+  });
+});
