@@ -62,7 +62,7 @@
     <div class="grid grid-cols-12 gap-3">
       <div class="col-span-12 md:col-span-4">
         <KpiBlock
-          label="Treasury"
+          label="Government Revenue"
           value={fmtMoney($status.treasury?.money)}
           prefix="₡ "
           delta={fmtDeltaInt($status.treasury?.delta)}
@@ -105,9 +105,9 @@
     <Band num="02" title="Pulse" meta="population vitals" />
     <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
       <StatTile
-        label="Growth Rate %"
-        value={$status.demographics?.effective_growth_rate != null
-          ? ($status.demographics.effective_growth_rate * 100).toFixed(2) + '%'
+        label="Births / year"
+        value={$status.demographics?.total_births != null
+          ? Math.round($status.demographics.total_births).toLocaleString()
           : '—'}
       />
       <StatTile

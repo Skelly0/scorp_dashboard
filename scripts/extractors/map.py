@@ -33,6 +33,7 @@ def extract(wb) -> dict[str, Any]:
     resources = _read_grid(wb, "Resources")
     slots = _read_grid(wb, "Slots")
     improvements = _read_grid(wb, "Improvements")
+    control = _read_grid(wb, "Control")
     yields = {key: _read_grid(wb, sheet) for key, sheet in YIELD_SHEETS.items()}
 
     missing_sheets: list[dict[str, str]] = []
@@ -71,6 +72,7 @@ def extract(wb) -> dict[str, Any]:
             resource_v = _cell_str(resources, x, y)
             slots_v = _cell_int(slots, x, y)
             imp_id = _cell_str(improvements, x, y)
+            control_v = _cell_str(control, x, y)
             tile_yields = {key: coerce_number(grid[y][x]) or 0 for key, grid in yields.items()}
             tile_staffing = coerce_number(staffing_grid[y][x]) if staffing_grid is not None else None
             tile_upkeep = (
@@ -96,6 +98,7 @@ def extract(wb) -> dict[str, Any]:
                 "resource": resource_v or None,
                 "slots": slots_v,
                 "improvement": _improvement_for(imp_id, x, y, manifest),
+                "control": control_v or None,
                 "yields": tile_yields,
                 "staffing": tile_staffing,
                 "upkeep": tile_upkeep,

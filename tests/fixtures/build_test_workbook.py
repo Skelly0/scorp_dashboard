@@ -426,8 +426,9 @@ def build(out_path: Path) -> Path:
         pa.cell(row=row, column=42, value=0.28 if slot == 0 else 0.22)  # Vote Share AP
     _add_name(wb, "PartiesBlock", "Parties!$A$4:$AP$18")
 
-    # 11 map sheets, 40×40 each. Mostly empty terrain; a few seeded tiles.
+    # 12 map sheets, 40×40 each. Mostly empty terrain; a few seeded tiles.
     map_sheets = ["Terrain", "Features", "Resources", "Slots", "Improvements",
+                  "Control",
                   "Yield - Food", "Yield - Materials", "Yield - Ore",
                   "Yield - Energy", "Yield - Housing", "Yield - Water"]
     for sheet_name in map_sheets:
@@ -444,6 +445,8 @@ def build(out_path: Path) -> Path:
                     ms.cell(row=r, column=c, value="He-3")
                 elif sheet_name == "Improvements" and (r, c) == (10, 10):
                     ms.cell(row=r, column=c, value="HE3-1")
+                elif sheet_name == "Control" and (r, c) == (10, 10):
+                    ms.cell(row=r, column=c, value="Founders")
                 elif sheet_name == "Yield - Energy" and (r, c) == (10, 10):
                     ms.cell(row=r, column=c, value=-1)
                 else:

@@ -72,6 +72,7 @@ def test_extract_seeded_he3_tile(wb):
     assert tile["improvement"]["name"] == "Helium-3 Mine"
     assert tile["improvement"]["owner"] == "Lunar Extractives"
     assert tile["improvement"]["ownership_type"] == "Corporate"
+    assert tile["control"] == "Founders"
     assert tile["yields"]["energy"] == -1
 
 
