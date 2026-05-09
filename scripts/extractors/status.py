@@ -82,8 +82,10 @@ def _treasury_live(wb) -> dict[str, Any]:
         for r in range(8, 16):
             if str(ws.cell(row=r, column=1).value or "").strip().lower() == "money":
                 income = coerce_number(ws.cell(row=r, column=3).value) or 0
-                upkeep = coerce_number(ws.cell(row=r, column=4).value) or 0
-                delta = income - upkeep
+                improvement_upkeep = coerce_number(ws.cell(row=r, column=4).value) or 0
+                operating_upkeep = coerce_number(ws.cell(row=r, column=5).value) or 0
+                net = coerce_number(ws.cell(row=r, column=6).value)
+                delta = net if net is not None else income - improvement_upkeep - operating_upkeep
                 break
     return {"money": money, "delta": delta}
 
@@ -105,13 +107,29 @@ def _resources_from_rows(rows: list[list[Any]]) -> list[dict[str, Any]]:
         padded = list(row) + [None, None, None, None]
         current = coerce_number(padded[1])
         income = coerce_number(padded[2])
-        upkeep = coerce_number(padded[3])
-        delta = (income or 0) - (upkeep or 0) if upkeep is not None else income
-        out.append({
+        first_upkeep = coerce_number(padded[3])
+        second_upkeep = coerce_number(padded[4])
+        net = coerce_number(padded[5])
+        has_live_upkeep_shape = second_upkeep is not None or net is not None
+        upkeep = (
+            (first_upkeep or 0) + (second_upkeep or 0)
+            if has_live_upkeep_shape
+            else first_upkeep
+        )
+        delta = (
+            net
+            if net is not None
+            else (income or 0) - (upkeep or 0) if upkeep is not None else income
+        )
+        resource = {
             "name": row[0],
             "current": current,
             "delta": delta,
-        })
+        }
+        if upkeep is not None:
+            resource["income"] = income or 0
+            resource["upkeep"] = upkeep
+        out.append(resource)
     return out
 
 
@@ -127,11 +145,16 @@ def _resources_live(wb) -> list[dict[str, Any]]:
             continue
         reserve = coerce_number(ws.cell(row=r, column=2).value)
         income = coerce_number(ws.cell(row=r, column=3).value) or 0
-        upkeep = coerce_number(ws.cell(row=r, column=4).value) or 0
+        improvement_upkeep = coerce_number(ws.cell(row=r, column=4).value) or 0
+        operating_upkeep = coerce_number(ws.cell(row=r, column=5).value) or 0
+        upkeep = improvement_upkeep + operating_upkeep
+        net = coerce_number(ws.cell(row=r, column=6).value)
         out.append({
             "name": name,
             "current": reserve,
-            "delta": income - upkeep,
+            "income": income,
+            "upkeep": upkeep,
+            "delta": net if net is not None else income - upkeep,
         })
     return out
 

@@ -239,7 +239,13 @@ body {
   display: flex;
   gap: 6px;
   align-items: baseline;
+  flex-wrap: wrap;
+  row-gap: 3px;
+  font-variant-numeric: tabular-nums;
 }
+.stat-tile .flow-detail { white-space: nowrap; }
+.stat-tile .flow-detail.good { color: var(--good); }
+.stat-tile .flow-detail.crit { color: var(--crit); }
 
 /* === Bars ================================================================== */
 .bar-row {

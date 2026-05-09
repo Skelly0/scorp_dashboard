@@ -47,6 +47,38 @@
     if (d == null) return null;
     return Math.round(d);
   }
+  function fmtSignedFlow(n) {
+    if (n == null) return null;
+    const rounded = Math.round(n);
+    return `${rounded > 0 ? '+' : ''}${rounded.toLocaleString()}`;
+  }
+  function fmtUpkeep(n) {
+    if (n == null) return null;
+    const rounded = Math.round(n);
+    if (rounded === 0) return '0';
+    return rounded > 0
+      ? `-${rounded.toLocaleString()}`
+      : `+${Math.abs(rounded).toLocaleString()}`;
+  }
+  function resourceFlowDetails(resource) {
+    const details = [];
+    const income = resource?.income;
+    const upkeep = resource?.upkeep;
+
+    if (income != null) {
+      details.push({
+        text: fmtSignedFlow(income),
+        tone: income > 0 ? 'good' : null,
+      });
+    }
+    if (upkeep != null) {
+      details.push({
+        text: fmtUpkeep(upkeep),
+        tone: upkeep > 0 ? 'crit' : null,
+      });
+    }
+    return details;
+  }
 </script>
 
 <section class="px-6 py-5 max-w-[1600px]">
@@ -131,13 +163,13 @@
       />
     </div>
 
-    <Band num="03" title="Resource Flows" meta="per-year net" />
+    <Band num="03" title="Resource Flows" meta="per-year gross/net" />
     <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
       {#each $status.resources as r}
         <StatTile
           label={r.name}
           value={r.current != null ? Math.round(r.current).toLocaleString() : '—'}
-          delta={fmtDeltaInt(r.delta)}
+          details={resourceFlowDetails(r)}
         />
       {/each}
     </div>

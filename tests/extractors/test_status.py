@@ -56,23 +56,48 @@ def test_extract_resource_flow_accepts_live_four_column_shape(wb):
 
     result = extract(wb)
 
-    assert result["resources"][0] == {"name": "Food", "current": 0, "delta": -2}
+    assert result["resources"][0] == {
+        "name": "Food",
+        "current": 0,
+        "income": 5,
+        "upkeep": 7,
+        "delta": -2,
+    }
+
+
+def test_extract_resource_flow_accepts_live_six_column_shape(wb):
+    col = wb["Colony"]
+    col.cell(row=4, column=3, value=20)
+    col.cell(row=4, column=4, value=7)
+    col.cell(row=4, column=5, value=3)
+    col.cell(row=4, column=6, value=10)
+    set_name(wb, "ResourceFlows", "Colony!$A$4:$F$10")
+
+    result = extract(wb)
+
+    assert result["resources"][0] == {
+        "name": "Food",
+        "current": 0,
+        "income": 20,
+        "upkeep": 10,
+        "delta": 10,
+    }
 
 
 def test_extract_resource_flow_falls_back_when_named_range_is_blank(wb):
     col = wb["Colony"]
     for row in range(8, 16):
-        for column in range(1, 5):
+        for column in range(1, 7):
             col.cell(row=row, column=column).value = None
-    col["A8"], col["B8"], col["C8"], col["D8"] = "Money", 900, 40, 10
-    col["A9"], col["B9"], col["C9"], col["D9"] = "Food", 100, 5, 7
+    col["A8"], col["B8"], col["C8"], col["D8"], col["E8"], col["F8"] = "Money", 900, 40, 10, 2, 28
+    col["A9"], col["B9"], col["C9"], col["D9"], col["E9"], col["F9"] = "Food", 100, 5, 7, 3, -5
     set_name(wb, "ResourceFlows", "Colony!$Z$1:$AB$3")
 
     result = extract(wb)
 
     assert result["resources"] == [
-        {"name": "Money", "current": 900, "delta": 30},
-        {"name": "Food", "current": 100, "delta": -2},
+        {"name": "Money", "current": 900, "income": 40, "upkeep": 12, "delta": 28},
+        {"name": "Food", "current": 100, "income": 5, "upkeep": 10, "delta": -5},
     ]
 
 

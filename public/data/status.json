@@ -2,16 +2,16 @@
   "active_situations": [],
   "crisis_factor": 0.0,
   "demographics": {
-    "avg_satisfaction": 0.6414894993782608,
+    "avg_satisfaction": 0.6989828050913044,
     "base_growth_rate": 0.03,
-    "effective_cdr": 0.00902173913,
+    "effective_cdr": 0.01113043478,
     "effective_growth_rate": 0.0096,
-    "housing_capacity": 90267.0,
-    "housing_util": 1.01919859970975,
-    "net_delta_pct": 0.05782608699999997,
+    "housing_capacity": 90111.0,
+    "housing_util": 1.0209630344796972,
+    "net_delta_pct": -0.1530434780000001,
     "sat_elasticity": 0.32,
-    "total_births": 328.0,
-    "total_deaths": 830.0
+    "total_births": 2689.0,
+    "total_deaths": 1024.0
   },
   "gov_approval": 0.3342220612,
   "overton": {
@@ -26,49 +26,65 @@
   "resources": [
     {
       "current": 1000.0,
-      "delta": 829.6080506,
-      "name": "Food"
+      "delta": -169.8172267,
+      "income": 827.4077733,
+      "name": "Food",
+      "upkeep": 997.225
     },
     {
       "current": 2500.0,
-      "delta": 312.72588399999995,
-      "name": "Materials"
+      "delta": 29.83034447,
+      "income": 1087.205344,
+      "name": "Materials",
+      "upkeep": 1057.375
     },
     {
       "current": 3825.0,
-      "delta": 166.9176837,
-      "name": "Ore"
+      "delta": 164.157414,
+      "income": 939.157414,
+      "name": "Ore",
+      "upkeep": 775.0
     },
     {
       "current": 3750.0,
-      "delta": 350.05221600000004,
-      "name": "Energy"
+      "delta": -101.4075211,
+      "income": 4531.686229,
+      "name": "Energy",
+      "upkeep": 4633.09375
     },
     {
-      "current": 90267.0,
-      "delta": 90267.0,
-      "name": "Housing"
+      "current": 90111.0,
+      "delta": -1889.0,
+      "income": 90111.0,
+      "name": "Housing",
+      "upkeep": 92000.0
     },
     {
       "current": 125000.0,
-      "delta": 286784.9129,
-      "name": "Money"
+      "delta": 288037.6547,
+      "income": 393287.6547,
+      "name": "Money",
+      "upkeep": 105250.0
     },
     {
       "current": 0.0,
-      "delta": 0,
-      "name": "Helium-3"
+      "delta": 0.0,
+      "income": 0,
+      "name": "Helium-3",
+      "upkeep": 0
     },
     {
       "current": 250.0,
-      "delta": -43.01742919999998,
-      "name": "Water"
+      "delta": 4.425599129,
+      "income": 571.7755991,
+      "name": "Water",
+      "upkeep": 567.35
     }
   ],
   "stability": 0.1152197241,
   "treasury": {
-    "delta": 286784.9129,
-    "money": 226592.0
+    "delta": 288037.6547,
+    "money": 226436.0
   },
   "year": 2075
 }
