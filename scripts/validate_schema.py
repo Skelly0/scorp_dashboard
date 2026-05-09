@@ -112,6 +112,10 @@ SOFT_OPTIONAL_V3_RANGES: list[str] = [
     # v6 — Improvement catalog (read by extractors/catalog.py via read_named_range;
     # missing → returns empty improvements list, frontend hides the catalog UI).
     "ImprovementsCatalog",
+    # v8 — Tech research tree (read by extractors/tech.py via read_named_range;
+    # missing → returns empty techs+branches lists, frontend renders an empty
+    # state band on the /tech page).
+    "TechTable",
 ]
 
 

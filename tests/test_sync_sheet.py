@@ -61,7 +61,7 @@ def test_run_sync_writes_status_and_meta(tmp_path, fixture_workbook_path):
     assert (out_dir / "meta.json").exists()
     meta = json.loads((out_dir / "meta.json").read_text())
     assert meta["senate_visible"] is False
-    assert meta["schema_version"] == 7
+    assert meta["schema_version"] == 8
     assert "synced_at" in meta
 
 
@@ -121,3 +121,16 @@ def test_run_sync_writes_demographics_json(fixture_workbook_path, tmp_path):
     assert "totals" in payload
     assert "housing" in payload
     assert "food" in payload
+
+
+def test_run_sync_writes_tech_json(fixture_workbook_path, tmp_path):
+    out_dir = tmp_path / "data"
+    out_dir.mkdir()
+    run_sync(fixture_workbook_path, out_dir)
+    assert (out_dir / "tech.json").exists()
+    payload = json.loads((out_dir / "tech.json").read_text())
+    assert "techs" in payload
+    assert "branches" in payload
+    # Fixture seeds 4 named techs across Agriculture (3) + Industry (1).
+    assert len(payload["techs"]) == 4
+    assert payload["branches"] == ["Agriculture", "Industry"]

@@ -568,6 +568,69 @@ def build(out_path: Path) -> Path:
 
     _add_name(wb, "ImprovementsCatalog", "ImprovementsCatalog!$A$1:$AM$5")
 
+    # ---- Tech & Institutions sheet (soft-optional, v8) ----
+    # Mirrors the live workbook's R1 banner / R2 author note / R3 header / R4+ data layout.
+    # The named range TechTable starts at R3 and covers the data table only.
+    tech = wb.create_sheet("Tech & Institutions")
+    tech["A1"] = "TECH & INSTITUTIONS"
+    tech["F2"] = "These are kinda just examples"
+
+    tech_headers = [
+        "Name", "Branch", "Tier", "Cost (RP)",
+        "Prereq 1", "Prereq 2",
+        "Researched", "Available",
+        "Effect 1 - Target", "Type", "Mag",
+        "Effect 2 - Target", "Type", "Mag",
+        "Effect 3 - Target", "Type", "Mag",
+        "Description",
+    ]
+    for j, h in enumerate(tech_headers, start=1):
+        tech.cell(row=3, column=j, value=h)
+
+    # R4: Tier-1 Agriculture, available, no prereqs, 2 effects.
+    r4 = ["Hydroponic Optimization", "Agriculture", 1, 100,
+          None, None, False, True,
+          "Hydroponic Bay", "Yield",     0.20,
+          "Hydroponic Bay", "Workforce", -0.10,
+          None, None, None,
+          "Refined nutrient cycles boost output and reduce labour."]
+    for j, v in enumerate(r4, start=1):
+        tech.cell(row=4, column=j, value=v)
+
+    # R5: Tier-2 Agriculture, locked, 1 prereq (R4 above), 1 effect.
+    r5 = ["Aeroponic Refinement", "Agriculture", 2, 220,
+          "Hydroponic Optimization", None, False, False,
+          "Aeroponic Tower", "Yield", 0.25,
+          None, None, None,
+          None, None, None,
+          "Mist-based root culture lifts tower yield."]
+    for j, v in enumerate(r5, start=1):
+        tech.cell(row=5, column=j, value=v)
+
+    # R6: Tier-1 Industry, RESEARCHED (so a 'researched' card is in the fixture), 3 effects.
+    r6 = ["Standardized Tooling", "Industry", 1, 120,
+          None, None, True, True,
+          "Manufacturing Plant",  "Yield",     0.15,
+          "3D Printing Workshop", "Workforce", -0.10,
+          "Materials Refinery",   "Upkeep",    -0.10,
+          "Common parts streamline factory throughput."]
+    for j, v in enumerate(r6, start=1):
+        tech.cell(row=6, column=j, value=v)
+
+    # R7: Tier-3 cross-branch prereqs (Industry + Science). Locked.
+    r7 = ["Synthetic Biomes", "Agriculture", 3, 480,
+          "Aeroponic Refinement", "Materials Science", False, False,
+          "Vat Culture Lab", "Yield",     0.30,
+          "Algal Bioreactor","Workforce", -0.20,
+          None, None, None,
+          "Designer microbiomes vastly improve vat food production."]
+    for j, v in enumerate(r7, start=1):
+        tech.cell(row=7, column=j, value=v)
+
+    # R8: blank-name row (must be skipped by extractor — convention 8).
+
+    _add_name(wb, "TechTable", "'Tech & Institutions'!$A$3:$R$8")
+
     wb.save(out_path)
     return out_path
 

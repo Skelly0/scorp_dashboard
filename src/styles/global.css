@@ -1293,3 +1293,163 @@ table.tbl th.num {
   .cat-grid { grid-template-columns: 1fr; }
   .cat-search { font-size: 14px; }
 }
+
+/* === Tech page — branch progress strip ===================================== */
+.tech-progress-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.tech-progress-cell {
+  background: var(--bg-2);
+  border: 1px solid var(--border-soft);
+  padding: 8px 10px;
+}
+.tech-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.tech-progress-bar {
+  height: 4px;
+  background: var(--accent-soft);
+  position: relative;
+}
+.tech-progress-bar > div {
+  height: 100%;
+  background: var(--good);
+  transition: width 200ms ease;
+}
+
+/* === Tech page — card and chips =========================================== */
+.tech-card {
+  background: var(--bg);
+  border: 1px solid var(--border-soft);
+  border-left: 4px solid var(--border-soft);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+}
+.tech-card.researched {
+  border-left-color: var(--good);
+  background: var(--good-soft);
+}
+.tech-card.available {
+  border-left-color: var(--accent);
+}
+.tech-card.locked {
+  opacity: 0.55;
+}
+.tech-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  gap: 6px;
+}
+.tech-card-tier { font-weight: 700; color: var(--fg); }
+.tech-card-cost { color: var(--fg-dim); }
+.tech-card-badge { font-size: 12px; line-height: 1; }
+.tech-card-title {
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+.tech-card-effects {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.tech-effect-chip {
+  display: grid;
+  /* Type column wide enough for "WORKFORCE" at 10px uppercase letter-spacing
+     0.16em without overflowing into the target column. */
+  grid-template-columns: 56px 96px minmax(0, 1fr);
+  gap: 6px;
+  align-items: baseline;
+  padding: 3px 6px;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-2);
+  font-size: 11px;
+}
+.tech-effect-chip.pos     { border-color: var(--good); color: var(--good); }
+.tech-effect-chip.neg     { border-color: var(--crit); color: var(--crit); }
+.tech-effect-chip.neutral { /* keeps the muted default */ }
+.tech-effect-mag    { font-weight: 700; }
+.tech-effect-type   { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.tech-effect-target { color: var(--fg); }
+.tech-card-prereqs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.tech-prereq-chip {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 10px;
+  padding: 2px 6px;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-2);
+  color: var(--fg-dim);
+  letter-spacing: 0.04em;
+}
+.tech-prereq-chip.unmet {
+  background: var(--crit-soft);
+  border-color: var(--crit);
+  color: var(--crit);
+}
+.tech-prereq-branch { opacity: 0.7; font-style: italic; }
+.tech-card-desc {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* === Tech page — branch grid ============================================== */
+.tech-grid {
+  /* gotcha #22: minmax(0, 1fr) — bare 1fr can trigger a feedback loop with
+     content-driven resizing. */
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+  align-items: start;
+}
+@media (max-width: 1280px) { .tech-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 900px)  { .tech-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px)  { .tech-grid { grid-template-columns: 1fr; } }
+.tech-grid-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.tech-grid-col-title {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+.tech-tier-label {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 2px 0;
+  margin-top: 4px;
+  border-top: 1px dashed var(--border-soft);
+}
+.tech-tier-label:first-child { margin-top: 0; border-top: 0; }

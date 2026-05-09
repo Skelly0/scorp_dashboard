@@ -11,6 +11,7 @@
     { path: '/population', label: 'Population' },
     { path: '/demographics', label: 'Demographics' },
     { path: '/gois', label: 'GoIs' },
+    { path: '/tech', label: 'Tech' },
     { path: '/parties', label: 'Parties' },
     { path: '/senate', label: 'Senate', requiresSenate: true },
     { path: '/situations', label: 'Situations' },
