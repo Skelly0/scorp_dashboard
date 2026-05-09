@@ -121,3 +121,16 @@ def test_run_sync_writes_demographics_json(fixture_workbook_path, tmp_path):
     assert "totals" in payload
     assert "housing" in payload
     assert "food" in payload
+
+
+def test_run_sync_writes_tech_json(fixture_workbook_path, tmp_path):
+    out_dir = tmp_path / "data"
+    out_dir.mkdir()
+    run_sync(fixture_workbook_path, out_dir)
+    assert (out_dir / "tech.json").exists()
+    payload = json.loads((out_dir / "tech.json").read_text())
+    assert "techs" in payload
+    assert "branches" in payload
+    # Fixture seeds 4 named techs across Agriculture (3) + Industry (1).
+    assert len(payload["techs"]) == 4
+    assert payload["branches"] == ["Agriculture", "Industry"]

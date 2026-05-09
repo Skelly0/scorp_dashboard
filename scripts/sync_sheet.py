@@ -29,6 +29,7 @@ from extractors import pops as ex_pops
 from extractors import senate as ex_senate
 from extractors import situations as ex_situations
 from extractors import status as ex_status
+from extractors import tech as ex_tech
 from history import write_snapshot as write_history_snapshot
 from notify_telegram import build_message, send as send_telegram
 from validate_schema import SchemaValidationError, validate
@@ -116,6 +117,7 @@ def run_sync(xlsx_path: Path, out_dir: Path) -> SyncResult:
         ("map", ex_map.extract),
         ("catalog", ex_catalog.extract),
         ("situations", ex_situations.extract),
+        ("tech", ex_tech.extract),
         # Phase 2 extractors registered here as they land.
     ]
 

@@ -116,6 +116,10 @@ SOFT_OPTIONAL_V3_RANGES: list[str] = [
     # sources in extractors/pops.py:SATISFACTION_SOURCES order). Soft-optional:
     # missing → frontend renders "—" for every source in the per-class drilldown.
     "PopsimSatisfactionFullTable",
+    # v8 — Tech research tree (read by extractors/tech.py via read_named_range;
+    # missing → returns empty techs+branches lists, frontend renders an empty
+    # state band on the /tech page).
+    "TechTable",
 ]
 
 

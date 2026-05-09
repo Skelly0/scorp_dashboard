@@ -17,6 +17,7 @@
   import Senate from './routes/Senate.svelte';
   import Situations from './routes/Situations.svelte';
   import Demographics from './routes/Demographics.svelte';
+  import Tech from './routes/Tech.svelte';
   import EmptyPage from './routes/EmptyPage.svelte';
   import NotFound from './routes/NotFound.svelte';
 
@@ -35,6 +36,7 @@
     '/population': Population,
     '/demographics': Demographics,
     '/gois': GoIs,
+    '/tech': Tech,
     '/parties': Parties,
     '/senate': Senate,
     '/situations': Situations,
