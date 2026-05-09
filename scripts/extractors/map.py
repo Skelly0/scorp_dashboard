@@ -1,4 +1,4 @@
-"""Extract data for the Map page (40×40 tile grid, 11-layer composition)."""
+"""Extract data for the Map page (40×40 tile grid, layered composition)."""
 from __future__ import annotations
 
 from typing import Any
@@ -114,6 +114,7 @@ def extract(wb) -> dict[str, Any]:
             "resource": _palette(wb, "ResourcePalette", RESOURCE_PALETTE),
             "feature": _palette(wb, "FeaturePalette", FEATURE_PALETTE),
             "improvement_category": _palette(wb, "ImprovementCategoryPalette", IMPROVEMENT_CATEGORY_PALETTE),
+            "control": _palette(wb, "ControlPalette", CONTROL_PALETTE),
         },
         "available_categories": {
             "staffing":  staffing_grid is not None,
@@ -257,4 +258,24 @@ IMPROVEMENT_CATEGORY_PALETTE = {
     "agri": "#38d39f",
     "science": "#a89cff",
     "other": "#888888",
+}
+
+CONTROL_PALETTE = {
+    "Administration": "#5ec3ff",
+    "Corporations": "#ffd84d",
+    "Founders": "#ffb000",
+    "Capitalists": "#ffd84d",
+    "Security": "#ff5544",
+    "Unionists": "#38d39f",
+    "Faithful": "#c44dff",
+    "Technocracy": "#5ec3ff",
+    "Bureaucrats": "#ffb000",
+    "Engineers": "#5ec3ff",
+    "Scientists": "#a89cff",
+    "Proprietors": "#9c8a2e",
+    "Managerial": "#c44dff",
+    "Botanists": "#7fc97f",
+    "Industrial Workers": "#38d39f",
+    "Extraction Workers": "#ff8c42",
+    "Service Workers": "#a89567",
 }
