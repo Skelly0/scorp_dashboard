@@ -1,19 +1,19 @@
 {
   "active_situations": [],
-  "crisis_factor": -0.2709459881,
+  "crisis_factor": -0.2611092013,
   "demographics": {
-    "avg_satisfaction": 0.7397186716728011,
+    "avg_satisfaction": 0.7037840944120448,
     "base_growth_rate": 0.03,
-    "effective_cdr": 0.008952380952,
+    "effective_cdr": 0.01325490196,
     "effective_growth_rate": 0.0096,
-    "housing_capacity": 88099.0,
-    "housing_util": 1.0130648475011068,
-    "net_delta_pct": 0.06476190479999984,
+    "housing_capacity": 89715.0,
+    "housing_util": 0.9948169202474503,
+    "net_delta_pct": -0.36549019600000016,
     "sat_elasticity": 0.32,
-    "total_births": 5381.0,
-    "total_deaths": 799.0
+    "total_births": 2896.0,
+    "total_deaths": 1183.0
   },
-  "gov_approval": 0.3703611684,
+  "gov_approval": 0.3690640206,
   "overton": {
     "authority": 3.0,
     "corporate": 3.5,
@@ -45,8 +45,8 @@
       "name": "Energy"
     },
     {
-      "current": 88099.0,
-      "delta": 88099.0,
+      "current": 89715.0,
+      "delta": 89715.0,
       "name": "Housing"
     },
     {
@@ -65,10 +65,10 @@
       "name": "Water"
     }
   ],
-  "stability": 0.1330698591,
+  "stability": 0.1324213021,
   "treasury": {
     "delta": 269710.4338,
-    "money": 224424.0
+    "money": 226040.0
   },
   "year": 2075
 }
