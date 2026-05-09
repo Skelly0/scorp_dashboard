@@ -94,7 +94,7 @@ async function mockTechData(page, payload = mockTechPayload) {
       json: {
         history_year: 2075,
         partial_failures: [],
-        schema_version: 8,
+        schema_version: 9,
         senate_visible: false,
         synced_at: 'playwright-tech-overflow',
       },

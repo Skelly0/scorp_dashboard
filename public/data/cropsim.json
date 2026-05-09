@@ -1,0 +1,123 @@
+{
+  "demand": [
+    {
+      "class_name": "Bureaucrats",
+      "per_cap_demand": 0.01,
+      "pop": 5225.0,
+      "share": 0.06174298375184638,
+      "total_demand": 52.25
+    },
+    {
+      "class_name": "Capitalists",
+      "per_cap_demand": 0.01,
+      "pop": 2025.0,
+      "share": 0.023929098966026588,
+      "total_demand": 20.25
+    },
+    {
+      "class_name": "Engineers",
+      "per_cap_demand": 0.01,
+      "pop": 5700.0,
+      "share": 0.0673559822747415,
+      "total_demand": 57.0
+    },
+    {
+      "class_name": "Scientists",
+      "per_cap_demand": 0.01,
+      "pop": 8550.0,
+      "share": 0.10103397341211226,
+      "total_demand": 85.5
+    },
+    {
+      "class_name": "Security",
+      "per_cap_demand": 0.01,
+      "pop": 4750.0,
+      "share": 0.056129985228951254,
+      "total_demand": 47.5
+    },
+    {
+      "class_name": "Proprietors",
+      "per_cap_demand": 0.01,
+      "pop": 3600.0,
+      "share": 0.04254062038404727,
+      "total_demand": 36.0
+    },
+    {
+      "class_name": "Managerial",
+      "per_cap_demand": 0.01,
+      "pop": 3100.0,
+      "share": 0.03663220088626293,
+      "total_demand": 31.0
+    },
+    {
+      "class_name": "Botanists",
+      "per_cap_demand": 0.01,
+      "pop": 7300.0,
+      "share": 0.0862629246676514,
+      "total_demand": 73.0
+    },
+    {
+      "class_name": "Industrial Workers",
+      "per_cap_demand": 0.015,
+      "pop": 17250.0,
+      "share": 0.30576070901033975,
+      "total_demand": 258.75
+    },
+    {
+      "class_name": "Extraction Workers",
+      "per_cap_demand": 0.01,
+      "pop": 18500.0,
+      "share": 0.21861152141802068,
+      "total_demand": 185.0
+    },
+    {
+      "class_name": "Service Workers",
+      "per_cap_demand": 0.01,
+      "pop": 16000.0,
+      "share": 0.18906942392909898,
+      "total_demand": 160.0
+    }
+  ],
+  "metrics": {
+    "balance": -11.279101999999966,
+    "demand_classes": 11,
+    "per_cap": 0.01098645918,
+    "production_types": 5,
+    "security_ratio": 0.9866716668,
+    "total_demand": 846.25,
+    "total_supply": 834.970898,
+    "variety_index": 0.03490833731
+  },
+  "production": [
+    {
+      "calorie_mult": 1.0,
+      "food_type": "Greens",
+      "share": 0.2254608610323087,
+      "total_units": 188.2532576
+    },
+    {
+      "calorie_mult": 1.1,
+      "food_type": "Cereal Substitutes",
+      "share": 0.326094219873038,
+      "total_units": 272.2791836
+    },
+    {
+      "calorie_mult": 1.3,
+      "food_type": "Vat Protein",
+      "share": 0.326094219873038,
+      "total_units": 272.2791836
+    },
+    {
+      "calorie_mult": 1.2,
+      "food_type": "Algal Paste",
+      "share": 0.12235069922161526,
+      "total_units": 102.1592732
+    },
+    {
+      "calorie_mult": 1.0,
+      "food_type": "Fruits",
+      "share": 0.0,
+      "total_units": 0.0
+    }
+  ]
+}

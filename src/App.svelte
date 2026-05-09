@@ -18,6 +18,7 @@
   import Situations from './routes/Situations.svelte';
   import Demographics from './routes/Demographics.svelte';
   import Tech from './routes/Tech.svelte';
+  import Cropsim from './routes/Cropsim.svelte';
   import EmptyPage from './routes/EmptyPage.svelte';
   import NotFound from './routes/NotFound.svelte';
 
@@ -35,6 +36,7 @@
     '/map': Map,
     '/population': Population,
     '/demographics': Demographics,
+    '/cropsim': Cropsim,
     '/gois': GoIs,
     '/tech': Tech,
     '/parties': Parties,

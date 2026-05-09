@@ -20,6 +20,7 @@ import openpyxl
 import requests
 
 from extractors import catalog as ex_catalog
+from extractors import cropsim as ex_cropsim
 from extractors import demographics as ex_demographics
 from extractors import gois as ex_gois
 from extractors import map as ex_map
@@ -36,7 +37,7 @@ from validate_schema import SchemaValidationError, validate
 
 logger = logging.getLogger(__name__)
 
-SCHEMA_VERSION = 8
+SCHEMA_VERSION = 9
 EXPORT_URL = "https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=xlsx"
 RETRY_BACKOFFS = [5, 15, 45]  # seconds
 
@@ -112,6 +113,7 @@ def run_sync(xlsx_path: Path, out_dir: Path) -> SyncResult:
         ("population", ex_population.extract),
         ("pops", ex_pops.extract),
         ("demographics", ex_demographics.extract),
+        ("cropsim", ex_cropsim.extract),
         ("gois", ex_gois.extract),
         ("parties", ex_parties.extract),
         ("map", ex_map.extract),
