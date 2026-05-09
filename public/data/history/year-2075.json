@@ -1,48 +1,48 @@
 {
-  "avg_satisfaction": 0.6871299708682354,
-  "crisis_factor": -0.2552006645,
-  "effective_cdr": 0.01333333333,
-  "gov_approval": 0.373901631,
-  "housing_util": 0.940463645943098,
-  "net_delta_pct": -0.37333333300000016,
+  "avg_satisfaction": 0.7397186716728011,
+  "crisis_factor": -0.2709459881,
+  "effective_cdr": 0.008952380952,
+  "gov_approval": 0.3703611684,
+  "housing_util": 1.0130648475011068,
+  "net_delta_pct": 0.06476190479999984,
   "overton": {
-    "authority": 4.5,
+    "authority": 3.0,
     "corporate": 3.5,
     "expansion": 5.0,
     "faith": 6.0,
     "materialist": 4.0,
     "technocratic": 3.5
   },
-  "population_total": 17850,
+  "population_total": 89250,
   "resources": [
     {
-      "current": 200.0,
-      "delta": 118.7625286,
+      "current": 1000.0,
+      "delta": 593.8073282,
       "name": "Food"
     },
     {
-      "current": 500.0,
-      "delta": 71.12249739999999,
+      "current": 2500.0,
+      "delta": 300.601858,
       "name": "Materials"
     },
     {
-      "current": 765.0,
-      "delta": 45.57219710000001,
+      "current": 3825.0,
+      "delta": 160.85567079999998,
       "name": "Ore"
     },
     {
-      "current": 750.0,
-      "delta": 72.47850530000005,
+      "current": 3750.0,
+      "delta": 362.38508600000023,
       "name": "Energy"
     },
     {
-      "current": 0.0,
-      "delta": 18980.0,
+      "current": 88099.0,
+      "delta": 88099.0,
       "name": "Housing"
     },
     {
-      "current": 25000.0,
-      "delta": 53949.94632,
+      "current": 125000.0,
+      "delta": 269710.4338,
       "name": "Money"
     },
     {
@@ -51,17 +51,17 @@
       "name": "Helium-3"
     },
     {
-      "current": 50.0,
-      "delta": 19.3965142,
+      "current": 250.0,
+      "delta": -43.01742919999998,
       "name": "Water"
     }
   ],
-  "stability": 0.1372154572,
-  "synced_at": "2026-05-09T15:58:37Z",
-  "total_deaths": 238.0,
+  "stability": 0.1330698591,
+  "synced_at": "2026-05-09T17:01:55Z",
+  "total_deaths": 799.0,
   "treasury": {
-    "delta": 53949.94632,
-    "money": 27265.0
+    "delta": 269710.4338,
+    "money": 224424.0
   },
   "year": 2075
 }

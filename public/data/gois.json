@@ -7,10 +7,10 @@
         "unlocked_list": []
       },
       "approach": "Religious",
-      "approval": 0.3951155673,
+      "approval": 0.3223647132,
       "derived_influence": 0.2201199153,
       "effective_worldview": {
-        "authority": 4.5,
+        "authority": 3.0,
         "corporate": 4.0,
         "expansion": 5.5,
         "faith": 6.0,
@@ -22,9 +22,9 @@
       "name": "Administration",
       "sub_factions": [
         {
-          "approval": 0.4502312727,
+          "approval": 0.3242243746,
           "effective_worldview": {
-            "authority": 4.85,
+            "authority": 4.4,
             "corporate": 4.0,
             "expansion": 4.45,
             "faith": 4.6,
@@ -38,9 +38,9 @@
           "national_share": 0.06361568696
         },
         {
-          "approval": 0.3363688614,
+          "approval": 0.2350762491,
           "effective_worldview": {
-            "authority": 5.549999999999999,
+            "authority": 5.1,
             "corporate": 4.0,
             "expansion": 4.45,
             "faith": 4.6,
@@ -54,9 +54,9 @@
           "national_share": 0.05598180452
         },
         {
-          "approval": 0.3903675058,
+          "approval": 0.4264677506,
           "effective_worldview": {
-            "authority": 2.75,
+            "authority": 2.3,
             "corporate": 4.0,
             "expansion": 4.45,
             "faith": 4.95,
@@ -77,25 +77,25 @@
         "unlocked": 0,
         "unlocked_list": []
       },
-      "approach": "Communal",
-      "approval": 0.3647044378,
+      "approach": "Democratic",
+      "approval": 0.3934616657,
       "derived_influence": 0.2296341507,
       "effective_worldview": {
-        "authority": 3.5,
+        "authority": 5.5,
         "corporate": 1.0,
         "expansion": 2.0,
         "faith": 5.0,
         "materialist": 2.5,
         "technocratic": 4.0
       },
-      "mad_index": -0.005,
+      "mad_index": 0.16,
       "main_class": "Capitalists",
       "name": "Corporate",
       "sub_factions": [
         {
-          "approval": 0.4329666515,
+          "approval": 0.4793738794,
           "effective_worldview": {
-            "authority": 5.25,
+            "authority": 5.85,
             "corporate": 2.05,
             "expansion": 2.6999999999999997,
             "faith": 4.3,
@@ -109,9 +109,9 @@
           "national_share": 0.1061845529
         },
         {
-          "approval": 0.3038864386,
+          "approval": 0.2998650951,
           "effective_worldview": {
-            "authority": 4.550000000000001,
+            "authority": 5.15,
             "corporate": 1.0,
             "expansion": 2.0,
             "faith": 5.0,
@@ -125,9 +125,9 @@
           "national_share": 0.09291148382
         },
         {
-          "approval": 0.3406300945,
+          "approval": 0.3870373224,
           "effective_worldview": {
-            "authority": 3.5999999999999996,
+            "authority": 3.15,
             "corporate": 1.85,
             "expansion": 5.549999999999999,
             "faith": 4.0,
@@ -150,11 +150,11 @@
           "Collective Bargaining"
         ]
       },
-      "approach": "Democratic",
-      "approval": 0.3699632706,
+      "approach": "Marketist",
+      "approval": 0.3929908224,
       "derived_influence": 0.3571787599,
       "effective_worldview": {
-        "authority": 5.5,
+        "authority": 4.0,
         "corporate": 5.5,
         "expansion": 3.5,
         "faith": 3.5,
@@ -166,9 +166,9 @@
       "name": "Unions",
       "sub_factions": [
         {
-          "approval": 0.3938167878,
+          "approval": 0.4304642375,
           "effective_worldview": {
-            "authority": 3.5999999999999996,
+            "authority": 3.15,
             "corporate": 5.0,
             "expansion": 4.0,
             "faith": 3.5,
@@ -182,9 +182,9 @@
           "national_share": 0.2064526706
         },
         {
-          "approval": 0.2967698261,
+          "approval": 0.3432080922,
           "effective_worldview": {
-            "authority": 3.0500000000000003,
+            "authority": 2.9000000000000004,
             "corporate": 6.0,
             "expansion": 3.7,
             "faith": 3.85,
@@ -198,9 +198,9 @@
           "national_share": 0.1238716024
         },
         {
-          "approval": 0.4201196446,
+          "approval": 0.3739813801,
           "effective_worldview": {
-            "authority": 4.45,
+            "authority": 4.0,
             "corporate": 6.2,
             "expansion": 4.550000000000001,
             "faith": 4.2,
@@ -222,7 +222,7 @@
         "unlocked_list": []
       },
       "approach": "Religious",
-      "approval": 0.367940382,
+      "approval": 0.3557418162,
       "derived_influence": 0.1930671741,
       "effective_worldview": {
         "authority": 4.0,
@@ -232,12 +232,12 @@
         "materialist": 4.5,
         "technocratic": 2.0
       },
-      "mad_index": -0.075,
+      "mad_index": -0.065,
       "main_class": "Scientists",
       "name": "Research",
       "sub_factions": [
         {
-          "approval": 0.3485792415,
+          "approval": 0.3502296553,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 3.3,
@@ -253,7 +253,7 @@
           "national_share": 0.08927570879
         },
         {
-          "approval": 0.3376927069,
+          "approval": 0.2931798554,
           "effective_worldview": {
             "authority": 5.3999999999999995,
             "corporate": 4.0,
@@ -269,7 +269,7 @@
           "national_share": 0.06695678159
         },
         {
-          "approval": 0.424002911,
+          "approval": 0.4256533248,
           "effective_worldview": {
             "authority": 2.6,
             "corporate": 4.0,
