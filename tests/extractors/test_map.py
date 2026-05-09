@@ -72,6 +72,7 @@ def test_extract_seeded_he3_tile(wb):
     assert tile["improvement"]["name"] == "Helium-3 Mine"
     assert tile["improvement"]["owner"] == "Lunar Extractives"
     assert tile["improvement"]["ownership_type"] == "Corporate"
+    assert tile["control"] == "Founders"
     assert tile["yields"]["energy"] == -1
 
 
@@ -124,6 +125,15 @@ def test_extract_includes_improvement_category_palette(wb):
     assert pal["agri"] == "#38d39f"
     assert pal["science"] == "#a89cff"
     assert pal["other"] == "#888888"
+
+
+def test_extract_includes_control_palette(wb):
+    result = extract(wb)
+    assert "control" in result["palettes"]
+    pal = result["palettes"]["control"]
+    assert pal["Administration"] == "#5ec3ff"
+    assert pal["Corporations"] == "#ffd84d"
+    assert pal["Founders"] == "#ffb000"
 
 
 def test_staffing_present_when_sheet_exists(wb):

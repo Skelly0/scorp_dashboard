@@ -76,6 +76,10 @@ BASE_REQUIRED_RANGES: list[str] = [
     "FoodSecurityRatio",
     "FoodPerCap",
     "FoodVarietyIndex",
+    # v9 — Cropsim page tables
+    "CropsimProductionTable",
+    "CropsimDemandTable",
+    "CropsimAggregateTable",
 ]
 
 # Ranges only required when Senate page is enabled.

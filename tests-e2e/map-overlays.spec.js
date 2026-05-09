@@ -1,5 +1,14 @@
 import { test, expect } from '@playwright/test';
 
+async function matchCount(page) {
+  const strip = page.locator('.filter-strip');
+  await expect(strip).toContainText(/\d+\s+matches/i);
+  const text = await strip.innerText();
+  const match = text.match(/(\d+)\s+matches/i);
+  expect(match, `Could not parse match count from: ${text}`).not.toBeNull();
+  return parseInt(match[1], 10);
+}
+
 test.describe('Map overlay system', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/#/map');
@@ -15,6 +24,7 @@ test.describe('Map overlay system', () => {
     await expect(page.getByRole('button', { name: 'Resources' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Features' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Improvements' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Control' })).toBeVisible();
   });
 
   test('Resources tab shows roster + chips', async ({ page }) => {
@@ -55,6 +65,7 @@ test.describe('Filter persistence', () => {
 
     // Switch to a Yields sub-layer via the LayerMenu dropdown.
     await page.getByRole('button', { name: /^Yields/ }).click();
+    await page.getByRole('button', { name: /^Yields/ }).click();
     await page.getByRole('menuitem', { name: 'Food' }).click();
 
     // Filter strip + chip still visible
@@ -65,14 +76,12 @@ test.describe('Filter persistence', () => {
   test('two filters intersect (count drops or stays equal)', async ({ page }) => {
     await page.getByRole('button', { name: 'Resources' }).click();
     await page.locator('.roster-row').first().click();
-    const singleMatchText = await page.locator('.filter-strip').innerText();
-    const singleCount = parseInt(singleMatchText.match(/(\d+) matches/)?.[1] ?? '0', 10);
+    const singleCount = await matchCount(page);
 
     await page.getByRole('button', { name: 'Features' }).click();
     await page.locator('.roster-row').first().click();
 
-    const intersectionText = await page.locator('.filter-strip').innerText();
-    const intersectionCount = parseInt(intersectionText.match(/(\d+) matches/)?.[1] ?? '999', 10);
+    const intersectionCount = await matchCount(page);
 
     expect(intersectionCount).toBeLessThanOrEqual(singleCount);
     await expect(page.locator('.filter-chip')).toHaveCount(2);
@@ -108,6 +117,21 @@ test.describe('Clear filters', () => {
 });
 
 test.describe('Improvement category mapping', () => {
+  test('inspector shows Control and hides ownership type', async ({ page }) => {
+    await page.goto('/#/map');
+    await page.waitForLoadState('networkidle');
+
+    await page.getByRole('button', { name: 'Improvements' }).click();
+    await page.locator('.roster-row', { hasText: /Solar Array Field/ }).first().click();
+
+    const inspector = page.locator('aside .s-card').last();
+    await expect(inspector).toContainText('Improvement Type');
+    await expect(inspector).toContainText('Solar Array Field');
+    await expect(inspector.locator('dt', { hasText: /^Control$/ })).toBeVisible();
+    await expect(inspector.locator('dt', { hasText: /^Owner$/ })).toHaveCount(0);
+    await expect(inspector.locator('dt', { hasText: /^Ownership Type$/ })).toHaveCount(0);
+  });
+
   test('inspector renders the right category icon', async ({ page }) => {
     await page.goto('/#/map');
     await page.waitForLoadState('networkidle');

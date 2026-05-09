@@ -34,12 +34,20 @@
   $: badgeLabel = state === 'researched' ? 'Researched'
                 : state === 'available' ? 'Available'
                 : 'Locked';
+  $: isActive = t.researched === true;
+  $: activeLabel = isActive ? 'Active' : 'Inactive';
+  $: activeAria = isActive ? 'Effects active' : 'Effects inactive';
 </script>
 
 <div class="tech-card {state}">
   <div class="tech-card-header">
     <span class="tech-card-tier tnum">T{t.tier ?? '—'}</span>
     <span class="tech-card-cost tnum">{t.cost_rp ?? '—'} RP</span>
+    <span
+      class="tech-active-chip {isActive ? 'on' : 'off'}"
+      title={activeAria}
+      aria-label={activeAria}
+    >{activeLabel}</span>
     <span class="tech-card-badge" title={badgeLabel} aria-label={badgeLabel}>{badge}</span>
   </div>
 

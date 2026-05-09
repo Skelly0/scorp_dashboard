@@ -37,11 +37,11 @@ describe('data fetcher', () => {
     expect(data).toBeNull();
   });
 
-  it('fetchPage returns null for optional pages served the app-shell HTML fallback', async () => {
-    global.fetch = vi.fn(async () => new Response(
-      '<!DOCTYPE html><html><body><div id="app"></div></body></html>',
-      { status: 200, headers: { 'Content-Type': 'text/html' } },
-    ));
+  it('fetchPage returns null for Vite preview HTML fallback', async () => {
+    global.fetch = vi.fn(async () => new Response('<!DOCTYPE html>', {
+      status: 200,
+      headers: { 'Content-Type': 'text/html' },
+    }));
     const data = await fetchPage('tech', 'x');
     expect(data).toBeNull();
   });

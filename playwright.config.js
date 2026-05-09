@@ -2,6 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests-e2e',
+  workers: 2,
   use: {
     baseURL: 'http://localhost:4173',
   },
@@ -20,9 +21,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npm run preview',
+    command: 'npm run build && npm run preview -- --port 4173 --strictPort',
     port: 4173,
-    timeout: 30000,
-    reuseExistingServer: !process.env.CI,
+    timeout: 120000,
+    reuseExistingServer: process.env.PLAYWRIGHT_REUSE_SERVER === '1',
   },
 });

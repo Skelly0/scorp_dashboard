@@ -1,62 +1,57 @@
 {
-  "active_situations": [
-    {
-      "crisis_factor": 0.5,
-      "description": "Earth go boom",
-      "name": "The Fall"
-    }
-  ],
-  "crisis_factor": 0.2468468831,
+  "active_situations": [],
+  "crisis_factor": 0.0,
   "demographics": {
-    "avg_satisfaction": 0.6852350521798038,
+    "avg_satisfaction": 0.6353079567840761,
     "base_growth_rate": 0.03,
-    "effective_cdr": 0.009075630252,
+    "effective_cdr": 0.01029347826,
     "effective_growth_rate": 0.0096,
-    "housing_capacity": 18223.0,
-    "housing_util": 0.9795313614662788,
-    "net_delta_pct": 0.0524369747999999,
+    "housing_capacity": 90240.0,
+    "housing_util": 1.0195035460992907,
+    "net_delta_pct": -0.06934782600000015,
     "sat_elasticity": 0.32,
-    "total_deaths": 162.0
+    "total_births": 296.0,
+    "total_deaths": 947.0
   },
-  "gov_approval": 0.3208809108,
+  "gov_approval": 0.3342220612,
   "overton": {
-    "authority": 4.5,
+    "authority": 3.0,
     "corporate": 3.5,
     "expansion": 5.0,
     "faith": 6.0,
     "materialist": 4.0,
     "technocratic": 3.5
   },
-  "population_total": 17850,
+  "population_total": 92000,
   "resources": [
     {
-      "current": 0.0,
-      "delta": 63.14083359,
+      "current": 1000.0,
+      "delta": 829.1996137,
       "name": "Food"
     },
     {
-      "current": 3000.0,
-      "delta": -53.48896091,
+      "current": 2500.0,
+      "delta": 311.9090100000001,
       "name": "Materials"
     },
     {
-      "current": 1500.0,
-      "delta": 119.2507191,
+      "current": 3825.0,
+      "delta": 166.50924680000003,
       "name": "Ore"
     },
     {
-      "current": 750.0,
-      "delta": 39.32083309999996,
+      "current": 3750.0,
+      "delta": 349.4804039999999,
       "name": "Energy"
     },
     {
-      "current": 0.0,
-      "delta": 18223.0,
+      "current": 90240.0,
+      "delta": 90240.0,
       "name": "Housing"
     },
     {
-      "current": 7500.0,
-      "delta": 54637.91071,
+      "current": 125000.0,
+      "delta": 287077.1441,
       "name": "Money"
     },
     {
@@ -65,15 +60,15 @@
       "name": "Helium-3"
     },
     {
-      "current": 900.0,
-      "delta": 36.31064979999999,
+      "current": 250.0,
+      "delta": -43.01742919999998,
       "name": "Water"
     }
   ],
-  "stability": 0.1122502324,
+  "stability": 0.1152197241,
   "treasury": {
-    "delta": 54637.91071,
-    "money": 13650.0
+    "delta": 287077.1441,
+    "money": 226565.0
   },
   "year": 2075
 }

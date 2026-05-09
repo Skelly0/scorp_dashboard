@@ -1,6 +1,7 @@
-// Cosmetic accent colours for class/GoI cards. The visual contract: a 4px
-// left bar on cards, a 4px×14px swatch in tables. Names match what extractors
-// emit; anything not listed falls back to var(--accent).
+// Cosmetic accent colours for class/GoI/control affordances. The visual
+// contract: a 4px left bar on cards, a 4px×14px swatch in tables, and concrete
+// map-layer colours. Names match what extractors emit; anything not listed
+// falls back to var(--accent).
 
 export const CLASS_COLORS = {
   Bureaucrats: '#ffb000',
@@ -23,6 +24,13 @@ export const GOI_COLORS = {
   Unionists: '#38d39f',
   Faithful: '#c44dff',
   Technocracy: '#5ec3ff',
+};
+
+export const CONTROL_COLORS = {
+  Administration: '#5ec3ff',
+  Corporations: '#ffd84d',
+  ...GOI_COLORS,
+  ...CLASS_COLORS,
 };
 
 export function classColor(name) {

@@ -47,7 +47,7 @@
           style="background: {cellColor(v)}; color: {cellFg(v)};"
           title="{r} × {colLabels[ci]} = {fmt(v)}"
         >
-          {fmt(v)}
+          <span class="heatmap-value">{fmt(v)}</span>
         </div>
       {/each}
     {/each}

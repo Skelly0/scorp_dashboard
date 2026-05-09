@@ -3,7 +3,7 @@
   import { RESOURCE_CODES, FEATURE_CODES } from '../map-codes.js';
   import { categoryFor, getCategorySlug } from '../improvement-categories.js';
   import { catalog } from '../stores/catalog.js';
-  import { goiColor, classColor, CLASS_COLORS } from '../faction-colors.js';
+  import { goiColor, classColor, CLASS_COLORS, CONTROL_COLORS } from '../faction-colors.js';
   import { ZOOM_DEFAULT, clampZoom, pinchMathStep } from '../map-zoom.js';
 
   /** @type {{tiles: any[], width: number, height: number, palettes: any}} */
@@ -54,6 +54,10 @@
   $: resourcePal = mapData.palettes.resource ?? {};
   $: featurePal  = mapData.palettes.feature  ?? {};
   $: improvementCatPal = mapData.palettes.improvement_category ?? {};
+  $: controlKeys = [...new Set(mapData.tiles
+    .map((t) => t.control ?? t.improvement?.owner)
+    .filter(Boolean))]
+    .sort();
   // Recompute per-layer max for heatmap normalisation whenever map or layer changes.
   $: layerMax = computeLayerMax(mapData, layer);
   $: anyFilterActive = !!(filters.resource || filters.feature || filters.improvement);
@@ -174,6 +178,10 @@
         const t = (v - 0.5) * 2;  // 0 → 1 across the upper half
         return `color-mix(in srgb, ${theme.good} ${(t * 100).toFixed(1)}%, ${theme.amber})`;
       }
+    }
+
+    if (category === 'control') {
+      return controlColor(tile.control ?? tile.improvement?.owner, palettes) ?? theme.bg;
     }
 
     return theme.bg;
@@ -350,15 +358,18 @@
     return mapData.tiles[y * mapData.width + x] ?? null;
   }
 
-  function ownerColor(owner) {
-    if (!owner) return null;
+  function controlColor(control, palettes = {}) {
+    if (!control) return null;
+    const paletteHit = palettes.control?.[control];
+    if (paletteHit) return paletteHit;
+    if (CONTROL_COLORS[control]) return CONTROL_COLORS[control];
     // Try GoI palette first; fall back to class palette. Both helpers
     // return 'var(--accent)' on miss — that string doesn't resolve in SVG
     // presentation attributes (gotcha #14), so we filter it out and let
     // the caller's ?? chain fall through to the category-palette colour.
-    const g = goiColor(owner);
+    const g = goiColor(control);
     if (g !== 'var(--accent)') return g;
-    const c = classColor(owner);
+    const c = classColor(control);
     if (c !== 'var(--accent)') return c;
     return null;
   }
@@ -403,7 +414,7 @@
           {#if t.improvement}
             {@const cat = categoryFor(t.improvement, $catalog)}
             {@const fill = tab === 'improvements'
-              ? (ownerColor(t.improvement.owner) ?? improvementCatPal[cat.slug] ?? '#ffffff')
+              ? (controlColor(t.control ?? t.improvement.owner, mapData.palettes) ?? improvementCatPal[cat.slug] ?? '#ffffff')
               : null}
             <text
               x={t.x * BASE_TILE + BASE_TILE / 2}
@@ -555,6 +566,18 @@
         <span>Staffing —</span>
         <span>0% to 100%</span>
         <span class="inline-block w-12 h-3 border border-border" style="background: linear-gradient(90deg, var(--crit) 0%, var(--accent) 50%, var(--good) 100%)"></span>
+      {:else if parsed.category === 'control'}
+        <span>Control —</span>
+        {#if controlKeys.length > 0}
+          {#each controlKeys as control}
+            <span class="inline-flex items-center gap-1">
+              <span class="inline-block w-4 h-3 border border-border" style="background: {controlColor(control, mapData.palettes) ?? '#ffffff'}"></span>
+              <span>{control}</span>
+            </span>
+          {/each}
+        {:else}
+          <span>(no controlled tiles)</span>
+        {/if}
       {/if}
     </div>
   {/if}

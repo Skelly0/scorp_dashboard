@@ -17,6 +17,17 @@
   $: featurePalette = palettes.feature ?? {};
   $: resourcePalette = palettes.resource ?? {};
   $: improvementCategoryPalette = palettes.improvement_category ?? {};
+
+  function truncateDecimal(value, places = 2) {
+    const n = Number(value);
+    if (!Number.isFinite(n)) return value;
+    const factor = 10 ** places;
+    return Math.trunc(n * factor) / factor;
+  }
+
+  function formatYieldValue(value) {
+    return `${value > 0 ? '+' : ''}${truncateDecimal(value, 2)}`;
+  }
 </script>
 
 {#if !tile}
@@ -55,9 +66,8 @@
           Improvement
         </h4>
         <dl class="kv">
-          <dt>Name</dt><dd>{tile.improvement.name ?? '—'}</dd>
-          <dt>Owner</dt><dd>{tile.improvement.owner ?? '—'}</dd>
-          <dt>Type</dt><dd>{tile.improvement.ownership_type ?? '—'}</dd>
+          <dt>Improvement Type</dt><dd>{tile.improvement.name ?? '—'}</dd>
+          <dt>Control</dt><dd>{tile.control ?? tile.improvement.owner ?? '—'}</dd>
         </dl>
         <button
           class="filter-link"
@@ -77,7 +87,7 @@
         <dl class="kv">
           {#each Object.entries(tile.yields).filter(([_, v]) => v !== 0 && v != null) as [k, v]}
             <dt class="capitalize">{k}</dt>
-            <dd class={v < 0 ? 'crit' : v > 0 ? 'good' : ''}>{v > 0 ? '+' : ''}{v}</dd>
+            <dd class={v < 0 ? 'crit' : v > 0 ? 'good' : ''}>{formatYieldValue(v)}</dd>
           {/each}
         </dl>
       </div>

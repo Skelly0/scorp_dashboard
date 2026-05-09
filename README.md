@@ -1,6 +1,6 @@
 # SCORP Colony Player Dashboard
 
-Player-facing static dashboard for the SCORP Colony tabletop campaign. Reads from a live Google Sheet (the export-public mirror of the `scorp_colony` GM workbook), syncs hourly via GitHub Action, and serves an 8-page Svelte SPA on GitHub Pages.
+Player-facing static dashboard for the SCORP Colony tabletop campaign. Reads from a live Google Sheet (the export-public mirror of the `scorp_colony` GM workbook), syncs hourly via GitHub Action, and serves a 10-route Svelte SPA on GitHub Pages.
 
 **Live:** `https://<your-user>.github.io/scorp_dashboard/` (set after first deploy)
 
@@ -45,7 +45,7 @@ npm run test:e2e
    - `sync.yml` runs hourly + on demand → writes JSON → commits.
    - `deploy-pages.yml` fires on `main` pushes (path-filtered) → builds → publishes.
 
-## Pages (7)
+## Pages (10 routes, Senate gated)
 
 | Page | Route | Notes |
 |---|---|---|
@@ -53,7 +53,9 @@ npm run test:e2e
 | Map | `/#/map` | 40×40 interactive, terrain base + icons + heatmap toggle |
 | Population | `/#/population` | 11 classes, table + per-class worldview radars |
 | Demographics | `/#/demographics` | Pop/housing/food vitals + Class Vitals table with click-to-drilldown per-class detail (income, wealth, status, workforce) |
+| Cropsim | `/#/cropsim` | Food supply, class demand, production mix, and food-security balance |
 | GoIs | `/#/gois` | 4 panels + sub-factions + PopCapture matrix |
+| Tech | `/#/tech` | Research tree, unlock states, and active-effect signalling |
 | Parties | `/#/parties` | Founded parties + GoI/Class compat heatmaps |
 | Senate | `/#/senate` | **Sheet-flag gated.** Coalitions + GoI capture % |
 | Situations | `/#/situations` | Active/ended + Stability Modifiers + Tier Ladder |

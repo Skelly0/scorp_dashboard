@@ -1,0 +1,589 @@
+{
+  "branches": [
+    "Agriculture",
+    "Industry",
+    "Mining",
+    "Energy",
+    "Civic",
+    "Science"
+  ],
+  "techs": [
+    {
+      "available": true,
+      "branch": "Agriculture",
+      "cost_rp": 200,
+      "description": "Refined nutrient cycles boost Hydroponic Bay output and reduce labour needs.",
+      "effects": [
+        {
+          "mag": 0.2,
+          "target": "Hydroponic Bay",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": -0.1,
+          "target": "Hydroponic Bay",
+          "type": "workforce",
+          "type_raw": "Workforce"
+        }
+      ],
+      "name": "Hydroponic Optimization",
+      "prereqs": [],
+      "researched": false,
+      "tier": 1
+    },
+    {
+      "available": false,
+      "branch": "Agriculture",
+      "cost_rp": 440,
+      "description": "Mist-based root culture lifts tower yield and trims water/energy upkeep.",
+      "effects": [
+        {
+          "mag": 0.25,
+          "target": "Aeroponic Tower",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": -0.15,
+          "target": "Aeroponic Tower",
+          "type": "upkeep",
+          "type_raw": "Upkeep"
+        },
+        {
+          "mag": 0.1,
+          "target": "Mycoponic Chamber",
+          "type": "yield",
+          "type_raw": "Yield"
+        }
+      ],
+      "name": "Aeroponic Refinement",
+      "prereqs": [
+        "Hydroponic Optimization"
+      ],
+      "researched": false,
+      "tier": 2
+    },
+    {
+      "available": false,
+      "branch": "Agriculture",
+      "cost_rp": 960,
+      "description": "Designer microbiomes vastly improve vat and algal food production.",
+      "effects": [
+        {
+          "mag": 0.3,
+          "target": "Vat Culture Lab",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": -0.2,
+          "target": "Algal Bioreactor",
+          "type": "workforce",
+          "type_raw": "Workforce"
+        },
+        {
+          "mag": -0.1,
+          "target": "Vat Culture Lab",
+          "type": "upkeep",
+          "type_raw": "Upkeep"
+        }
+      ],
+      "name": "Synthetic Biomes",
+      "prereqs": [
+        "Aeroponic Refinement",
+        "Materials Science"
+      ],
+      "researched": false,
+      "tier": 3
+    },
+    {
+      "available": true,
+      "branch": "Industry",
+      "cost_rp": 240,
+      "description": "Common parts and jigs streamline factory throughput.",
+      "effects": [
+        {
+          "mag": 0.15,
+          "target": "Manufacturing Plant",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": -0.1,
+          "target": "3D Printing Workshop",
+          "type": "workforce",
+          "type_raw": "Workforce"
+        },
+        {
+          "mag": -0.1,
+          "target": "Materials Refinery",
+          "type": "upkeep",
+          "type_raw": "Upkeep"
+        }
+      ],
+      "name": "Standardized Tooling",
+      "prereqs": [],
+      "researched": false,
+      "tier": 1
+    },
+    {
+      "available": false,
+      "branch": "Industry",
+      "cost_rp": 500,
+      "description": "Stronger alloys and composites raise refinery output and lower habitat upkeep.",
+      "effects": [
+        {
+          "mag": 0.2,
+          "target": "Materials Refinery",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": -0.15,
+          "target": "Manufacturing Plant",
+          "type": "upkeep",
+          "type_raw": "Upkeep"
+        },
+        {
+          "mag": -0.1,
+          "target": "Pressure Dome",
+          "type": "upkeep",
+          "type_raw": "Upkeep"
+        }
+      ],
+      "name": "Materials Science",
+      "prereqs": [
+        "Standardized Tooling"
+      ],
+      "researched": false,
+      "tier": 2
+    },
+    {
+      "available": false,
+      "branch": "Industry",
+      "cost_rp": 1040,
+      "description": "Robotic lines slash labour requirements across heavy industry.",
+      "effects": [
+        {
+          "mag": -0.3,
+          "target": "Manufacturing Plant",
+          "type": "workforce",
+          "type_raw": "Workforce"
+        },
+        {
+          "mag": 0.25,
+          "target": "3D Printing Workshop",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": -0.2,
+          "target": "Materials Refinery",
+          "type": "workforce",
+          "type_raw": "Workforce"
+        }
+      ],
+      "name": "Autonomous Manufacturing",
+      "prereqs": [
+        "Materials Science",
+        "Lab Methodology"
+      ],
+      "researched": false,
+      "tier": 3
+    },
+    {
+      "available": true,
+      "branch": "Mining",
+      "cost_rp": 220,
+      "description": "Auto-rigs reduce crew requirements on bulk mining ops.",
+      "effects": [
+        {
+          "mag": -0.15,
+          "target": "Regolith Mine",
+          "type": "workforce",
+          "type_raw": "Workforce"
+        },
+        {
+          "mag": -0.15,
+          "target": "Iron Mine",
+          "type": "workforce",
+          "type_raw": "Workforce"
+        },
+        {
+          "mag": 0.1,
+          "target": "Aluminium Extractor",
+          "type": "yield",
+          "type_raw": "Yield"
+        }
+      ],
+      "name": "Drilling Automation",
+      "prereqs": [],
+      "researched": false,
+      "tier": 1
+    },
+    {
+      "available": false,
+      "branch": "Mining",
+      "cost_rp": 480,
+      "description": "Better separation processes lift recovery rates from ore deposits.",
+      "effects": [
+        {
+          "mag": 0.2,
+          "target": "Heavy Metals Mine",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": 0.25,
+          "target": "Rare Earths Extraction",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": 0.15,
+          "target": "Helium-3 Mine",
+          "type": "yield",
+          "type_raw": "Yield"
+        }
+      ],
+      "name": "Beneficiation Tech",
+      "prereqs": [
+        "Drilling Automation"
+      ],
+      "researched": false,
+      "tier": 2
+    },
+    {
+      "available": false,
+      "branch": "Mining",
+      "cost_rp": 1000,
+      "description": "Reliable orbital transfers transform asteroid mining economics.",
+      "effects": [
+        {
+          "mag": 0.4,
+          "target": "Asteroid Catcher",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": -0.2,
+          "target": "Asteroid Catcher",
+          "type": "upkeep",
+          "type_raw": "Upkeep"
+        },
+        {
+          "mag": 0.2,
+          "target": "Ice Mining Station",
+          "type": "yield",
+          "type_raw": "Yield"
+        }
+      ],
+      "name": "Asteroid Logistics",
+      "prereqs": [
+        "Beneficiation Tech",
+        "Standardized Tooling"
+      ],
+      "researched": false,
+      "tier": 3
+    },
+    {
+      "available": true,
+      "branch": "Energy",
+      "cost_rp": 200,
+      "description": "Higher-efficiency PV cells boost solar arrays significantly.",
+      "effects": [
+        {
+          "mag": 0.25,
+          "target": "Solar Array Field",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": -0.15,
+          "target": "Solar Array Field",
+          "type": "workforce",
+          "type_raw": "Workforce"
+        }
+      ],
+      "name": "Solar Efficiency",
+      "prereqs": [],
+      "researched": false,
+      "tier": 1
+    },
+    {
+      "available": false,
+      "branch": "Energy",
+      "cost_rp": 460,
+      "description": "Deeper bore tech and durable casings raise geothermal performance.",
+      "effects": [
+        {
+          "mag": 0.3,
+          "target": "Geothermal Tap",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": 0.2,
+          "target": "Thermal Pile",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": -0.15,
+          "target": "Geothermal Tap",
+          "type": "upkeep",
+          "type_raw": "Upkeep"
+        }
+      ],
+      "name": "Geothermal Engineering",
+      "prereqs": [
+        "Solar Efficiency"
+      ],
+      "researched": false,
+      "tier": 2
+    },
+    {
+      "available": false,
+      "branch": "Energy",
+      "cost_rp": 1100,
+      "description": "Mature plasma containment improves reactor safety, output, and crew needs.",
+      "effects": [
+        {
+          "mag": 0.25,
+          "target": "Fission Reactor",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": -0.25,
+          "target": "Fission Reactor",
+          "type": "workforce",
+          "type_raw": "Workforce"
+        },
+        {
+          "mag": -0.2,
+          "target": "Helium-3 Mine",
+          "type": "upkeep",
+          "type_raw": "Upkeep"
+        }
+      ],
+      "name": "Fusion Containment",
+      "prereqs": [
+        "Geothermal Engineering",
+        "Lab Methodology"
+      ],
+      "researched": false,
+      "tier": 3
+    },
+    {
+      "available": true,
+      "branch": "Civic",
+      "cost_rp": 180,
+      "description": "Remote diagnostics let one hospital serve more people with less staff.",
+      "effects": [
+        {
+          "mag": -0.2,
+          "target": "Hospital",
+          "type": "workforce",
+          "type_raw": "Workforce"
+        },
+        {
+          "mag": 0.15,
+          "target": "Hospital",
+          "type": "yield",
+          "type_raw": "Yield"
+        }
+      ],
+      "name": "Tele-medicine",
+      "prereqs": [],
+      "researched": false,
+      "tier": 1
+    },
+    {
+      "available": false,
+      "branch": "Civic",
+      "cost_rp": 400,
+      "description": "Networked classrooms scale education without proportional staff growth.",
+      "effects": [
+        {
+          "mag": -0.25,
+          "target": "School",
+          "type": "workforce",
+          "type_raw": "Workforce"
+        },
+        {
+          "mag": 0.2,
+          "target": "School",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": -0.15,
+          "target": "Cultural Hub",
+          "type": "workforce",
+          "type_raw": "Workforce"
+        }
+      ],
+      "name": "Distance Learning",
+      "prereqs": [
+        "Tele-medicine"
+      ],
+      "researched": false,
+      "tier": 2
+    },
+    {
+      "available": false,
+      "branch": "Civic",
+      "cost_rp": 920,
+      "description": "Decision-support AI dramatically thins bureaucratic overhead.",
+      "effects": [
+        {
+          "mag": -0.3,
+          "target": "Bureaucratic Office",
+          "type": "workforce",
+          "type_raw": "Workforce"
+        },
+        {
+          "mag": -0.2,
+          "target": "Command Center",
+          "type": "workforce",
+          "type_raw": "Workforce"
+        },
+        {
+          "mag": 0.2,
+          "target": "Bureaucratic Office",
+          "type": "yield",
+          "type_raw": "Yield"
+        }
+      ],
+      "name": "Algorithmic Governance",
+      "prereqs": [
+        "Distance Learning",
+        "Lab Methodology"
+      ],
+      "researched": false,
+      "tier": 3
+    },
+    {
+      "available": true,
+      "branch": "Science",
+      "cost_rp": 260,
+      "description": "Standardised experimental practice raises lab productivity \u2014 the foundation tech.",
+      "effects": [
+        {
+          "mag": 0.25,
+          "target": "Research Lab",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": -0.1,
+          "target": "Research Lab",
+          "type": "upkeep",
+          "type_raw": "Upkeep"
+        }
+      ],
+      "name": "Lab Methodology",
+      "prereqs": [],
+      "researched": false,
+      "tier": 1
+    },
+    {
+      "available": false,
+      "branch": "Industry",
+      "cost_rp": 420,
+      "description": "Better seals and structural designs lift housing capacity and cut maintenance.",
+      "effects": [
+        {
+          "mag": 0.2,
+          "target": "Pressure Dome",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": -0.15,
+          "target": "Buried Habitat",
+          "type": "upkeep",
+          "type_raw": "Upkeep"
+        },
+        {
+          "mag": -0.1,
+          "target": "Surface Hab Module",
+          "type": "workforce",
+          "type_raw": "Workforce"
+        }
+      ],
+      "name": "Pressurised Architecture",
+      "prereqs": [
+        "Standardized Tooling"
+      ],
+      "researched": false,
+      "tier": 2
+    },
+    {
+      "available": false,
+      "branch": "Agriculture",
+      "cost_rp": 380,
+      "description": "Refrigeration and storage cut spoilage across food production.",
+      "effects": [
+        {
+          "mag": -0.1,
+          "target": "Hydroponic Bay",
+          "type": "upkeep",
+          "type_raw": "Upkeep"
+        },
+        {
+          "mag": 0.15,
+          "target": "Algal Bioreactor",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": 0.15,
+          "target": "Mycoponic Chamber",
+          "type": "yield",
+          "type_raw": "Yield"
+        }
+      ],
+      "name": "Cold-chain Logistics",
+      "prereqs": [
+        "Hydroponic Optimization"
+      ],
+      "researched": false,
+      "tier": 2
+    },
+    {
+      "available": false,
+      "branch": "Civic",
+      "cost_rp": 440,
+      "description": "Modern instruments amplify financial-sector output and reduce staffing.",
+      "effects": [
+        {
+          "mag": 0.25,
+          "target": "Financial District",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": 0.15,
+          "target": "Market",
+          "type": "yield",
+          "type_raw": "Yield"
+        },
+        {
+          "mag": -0.1,
+          "target": "Market",
+          "type": "workforce",
+          "type_raw": "Workforce"
+        }
+      ],
+      "name": "Financial Engineering",
+      "prereqs": [
+        "Lab Methodology"
+      ],
+      "researched": false,
+      "tier": 2
+    }
+  ]
+}

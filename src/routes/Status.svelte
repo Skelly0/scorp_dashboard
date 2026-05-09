@@ -17,6 +17,13 @@
   import OvertonRow from '../lib/components/OvertonRow.svelte';
   import SituationCard from '../lib/components/SituationCard.svelte';
   import MoonLoader from '../lib/components/MoonLoader.svelte';
+  import {
+    formatStatusPercent,
+    populationDeltaFromStatus,
+    statusMetricTone,
+  } from '../lib/status-metrics.js';
+
+  const CRISIS_TONE_OPTIONS = { lowerIsBetter: true };
 
   onMount(() => {
     pageTitle.set('Status');
@@ -26,17 +33,9 @@
     }
   });
 
-  $: critical = $status && $status.crisis_factor != null && $status.stability != null
-    && $status.crisis_factor >= $status.stability;
-
-  // net Δpop / turn — derived from extractor's net_delta_pct (% per year).
-  // Frontend converts back to absolute count for the KpiBlock delta slot.
-  $: netDeltaPop = (() => {
-    const pct = $status?.demographics?.net_delta_pct;
-    const pop = $status?.population_total;
-    if (pct == null || pop == null) return null;
-    return Math.round((pct / 100) * pop);
-  })();
+  // Use workbook's authoritative births-minus-deaths tally, not the estimated
+  // net_delta_pct rate surfaced in the Pulse row.
+  $: netDeltaPop = populationDeltaFromStatus($status);
 
   $: activeSituations = $status?.active_situations?.filter((s) => s.crisis_factor != null) ?? [];
 
@@ -63,7 +62,7 @@
     <div class="grid grid-cols-12 gap-3">
       <div class="col-span-12 md:col-span-4">
         <KpiBlock
-          label="Treasury"
+          label="Government Revenue"
           value={fmtMoney($status.treasury?.money)}
           prefix="₡ "
           delta={fmtDeltaInt($status.treasury?.delta)}
@@ -73,17 +72,17 @@
       <div class="col-span-6 md:col-span-2">
         <KpiBlock
           label="Stability"
-          value={$status.stability?.toFixed(2) ?? '—'}
+          value={formatStatusPercent($status.stability)}
+          tone={statusMetricTone($status.stability)}
           history={$stabilityHistory.length >= 2 ? $stabilityHistory : null}
-          good
         />
       </div>
       <div class="col-span-6 md:col-span-2">
         <KpiBlock
           label="Crisis Factor"
-          value={$status.crisis_factor?.toFixed(2) ?? '—'}
+          value={formatStatusPercent($status.crisis_factor)}
+          tone={statusMetricTone($status.crisis_factor, CRISIS_TONE_OPTIONS)}
           history={$crisisFactorHistory.length >= 2 ? $crisisFactorHistory : null}
-          critical={critical}
         />
       </div>
       <div class="col-span-6 md:col-span-2">
@@ -96,9 +95,9 @@
       <div class="col-span-6 md:col-span-2">
         <KpiBlock
           label="Gov Approval"
-          value={$status.gov_approval?.toFixed(2) ?? '—'}
+          value={formatStatusPercent($status.gov_approval)}
+          tone={statusMetricTone($status.gov_approval)}
           history={$govApprovalHistory.length >= 2 ? $govApprovalHistory : null}
-          good
         />
       </div>
     </div>
@@ -106,9 +105,9 @@
     <Band num="02" title="Pulse" meta="population vitals" />
     <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
       <StatTile
-        label="Growth Rate %"
-        value={$status.demographics?.effective_growth_rate != null
-          ? ($status.demographics.effective_growth_rate * 100).toFixed(2) + '%'
+        label="Births / year"
+        value={$status.demographics?.total_births != null
+          ? Math.round($status.demographics.total_births).toLocaleString()
           : '—'}
       />
       <StatTile

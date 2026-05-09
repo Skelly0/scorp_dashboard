@@ -97,6 +97,17 @@
   $: t = pinnedTile ?? hoverTile;
   $: nameplate = t?.improvement ? resolveImprovementRow(t.improvement.name, $catalog) : null;
 
+  function truncateDecimal(value, places = 2) {
+    const n = Number(value);
+    if (!Number.isFinite(n)) return value;
+    const factor = 10 ** places;
+    return Math.trunc(n * factor) / factor;
+  }
+
+  function formatYieldValue(value) {
+    return `${value > 0 ? '+' : ''}${truncateDecimal(value, 2)}`;
+  }
+
   onMount(() => {
     pageTitle.set('Map');
     if ($meta?.synced_at) loadMap($meta.synced_at);
@@ -190,6 +201,7 @@
         <button aria-pressed={layer === 'resources'} on:click={() => selectLayer('resources')}>Resources</button>
         <button aria-pressed={layer === 'features'} on:click={() => selectLayer('features')}>Features</button>
         <button aria-pressed={layer === 'improvements'} on:click={() => selectLayer('improvements')}>Improvements</button>
+        <button aria-pressed={layer === 'control'} on:click={() => selectLayer('control')}>Control</button>
 
         <div class="s-zoom" role="group" aria-label="Map zoom">
           <button
@@ -320,6 +332,7 @@
       {:else if parsedLayer.category === 'upkeep'}{parsedLayer.key} upkeep magnitude
       {:else if parsedLayer.category === 'workforce'}{parsedLayer.key} count
       {:else if parsedLayer.category === 'staffing'}staffing efficiency (red→amber→green)
+      {:else if layer === 'control'}control
       {:else}{layer}{/if}
     </div>
 

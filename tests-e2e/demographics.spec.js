@@ -30,11 +30,11 @@ test.describe('Demographics page — workforce rework', () => {
     await expect(tile.locator('.kpi-subtitle')).toHaveText(/\d+% free/);
   });
 
-  test('Predicted Growth shows signed "/ turn" value', async ({ page }) => {
+  test('Predicted Growth shows signed "/ year" value', async ({ page }) => {
     const tile = page.locator('.kpi-block').filter({ hasText: 'Predicted Growth' });
     await expect(tile).toBeVisible();
-    // Should look like "+150 / turn", "-18 / turn", or "—".
-    await expect(tile).toContainText(/(\+|−|-|—).*\/ turn|—/);
+    // Should look like "+150 / year", "-18 / year", or "—".
+    await expect(tile).toContainText(/(\+|−|-|—).*\/ year|—/);
   });
 
   test('Class Vitals has Demand and Fill % columns', async ({ page }) => {

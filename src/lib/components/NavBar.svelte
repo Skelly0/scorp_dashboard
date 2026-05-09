@@ -10,6 +10,7 @@
     { path: '/map', label: 'Map' },
     { path: '/population', label: 'Population' },
     { path: '/demographics', label: 'Demographics' },
+    { path: '/cropsim', label: 'Cropsim' },
     { path: '/gois', label: 'GoIs' },
     { path: '/tech', label: 'Tech' },
     { path: '/parties', label: 'Parties' },
