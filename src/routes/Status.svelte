@@ -149,7 +149,7 @@
           : '—'}
       />
       <StatTile
-        label="Est. Net Δ%"
+        label="Projected Growth"
         value={$status.demographics?.net_delta_pct != null
           ? ($status.demographics.net_delta_pct >= 0 ? '+' : '')
             + $status.demographics.net_delta_pct.toFixed(2) + '%'

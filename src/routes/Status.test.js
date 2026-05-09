@@ -39,6 +39,8 @@ describe('Status page', () => {
 
     expect(screen.getByText('Births / year')).toBeTruthy();
     expect(screen.getByText('577')).toBeTruthy();
+    expect(screen.getByText('Projected Growth')).toBeTruthy();
+    expect(screen.queryByText('Est. Net Δ%')).toBeNull();
     expect(screen.queryByText('Growth Rate %')).toBeNull();
     expect(screen.queryByText('0.96%')).toBeNull();
   });
