@@ -190,6 +190,7 @@ def _demographics_block(wb, pop_total: int) -> dict:
         "sat_elasticity": elasticity,
         "effective_growth_rate": effective_growth,
         "effective_cdr": cdr,
+        "total_births": scalar_named(wb, "TotalBirths"),
         "total_deaths": scalar_named(wb, "TotalDeathsPerTurn"),
         "net_delta_pct": net_delta_pct(effective_growth, cdr),
         "housing_capacity": capacity,

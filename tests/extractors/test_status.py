@@ -164,7 +164,7 @@ def test_extract_demographics_block_shape(wb):
     demo = result["demographics"]
     assert set(demo.keys()) == {
         "base_growth_rate", "sat_elasticity", "effective_growth_rate",
-        "effective_cdr", "total_deaths", "net_delta_pct",
+        "effective_cdr", "total_births", "total_deaths", "net_delta_pct",
         "housing_capacity", "housing_util", "avg_satisfaction",
     }
 
@@ -176,9 +176,18 @@ def test_extract_demographics_values_from_fixture(wb):
     assert demo["sat_elasticity"] == 0.95
     assert demo["effective_growth_rate"] == pytest.approx(0.020 * 0.95)
     assert demo["effective_cdr"] == 0.0125
+    assert demo["total_births"] == 320
     assert demo["total_deaths"] == 280
     assert demo["housing_capacity"] == 16500
     assert demo["avg_satisfaction"] == 0.40
+
+
+def test_extract_demographics_total_births_soft_optional(wb):
+    del wb.defined_names["TotalBirths"]
+    result = extract(wb)
+    demo = result["demographics"]
+    assert demo["total_births"] is None
+    assert demo["total_deaths"] == 280
 
 
 def test_extract_demographics_effective_growth_none_when_base_missing(wb):

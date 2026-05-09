@@ -17,6 +17,7 @@
   import OvertonRow from '../lib/components/OvertonRow.svelte';
   import SituationCard from '../lib/components/SituationCard.svelte';
   import MoonLoader from '../lib/components/MoonLoader.svelte';
+  import { populationDeltaFromStatus } from '../lib/status-metrics.js';
 
   onMount(() => {
     pageTitle.set('Status');
@@ -29,14 +30,9 @@
   $: critical = $status && $status.crisis_factor != null && $status.stability != null
     && $status.crisis_factor >= $status.stability;
 
-  // net Δpop / turn — derived from extractor's net_delta_pct (% per year).
-  // Frontend converts back to absolute count for the KpiBlock delta slot.
-  $: netDeltaPop = (() => {
-    const pct = $status?.demographics?.net_delta_pct;
-    const pop = $status?.population_total;
-    if (pct == null || pop == null) return null;
-    return Math.round((pct / 100) * pop);
-  })();
+  // Use workbook's authoritative births-minus-deaths tally, not the estimated
+  // net_delta_pct rate surfaced in the Pulse row.
+  $: netDeltaPop = populationDeltaFromStatus($status);
 
   $: activeSituations = $status?.active_situations?.filter((s) => s.crisis_factor != null) ?? [];
 
