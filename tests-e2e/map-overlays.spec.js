@@ -24,6 +24,7 @@ test.describe('Map overlay system', () => {
     await expect(page.getByRole('button', { name: 'Resources' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Features' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Improvements' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Control' })).toBeVisible();
   });
 
   test('Resources tab shows roster + chips', async ({ page }) => {

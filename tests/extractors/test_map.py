@@ -127,6 +127,15 @@ def test_extract_includes_improvement_category_palette(wb):
     assert pal["other"] == "#888888"
 
 
+def test_extract_includes_control_palette(wb):
+    result = extract(wb)
+    assert "control" in result["palettes"]
+    pal = result["palettes"]["control"]
+    assert pal["Administration"] == "#5ec3ff"
+    assert pal["Corporations"] == "#ffd84d"
+    assert pal["Founders"] == "#ffb000"
+
+
 def test_staffing_present_when_sheet_exists(wb):
     out = extract(wb)
     assert out["available_categories"]["staffing"] is True

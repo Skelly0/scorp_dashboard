@@ -43,6 +43,77 @@ test.describe('Map page — staffing & dropdowns', () => {
   });
 });
 
+test.describe('Map page — control layer', () => {
+  test('Control button selects the control layer and paints controlled tiles', async ({ page }) => {
+    await page.route('**/data/map.json*', async (route) => {
+      await route.fulfill({
+        json: {
+          available_categories: { staffing: false, upkeep: false, workforce: false },
+          height: 1,
+          width: 2,
+          missing_sheets: [],
+          palettes: {
+            terrain: { Plain: '#010203' },
+            resource: {},
+            feature: {},
+            improvement_category: {},
+            control: { Administration: '#123456' },
+          },
+          tiles: [
+            {
+              x: 0,
+              y: 0,
+              terrain: 'Plain',
+              feature: null,
+              resource: null,
+              slots: 0,
+              improvement: { name: 'Habitat Dome', owner: null, ownership_type: null },
+              control: 'Administration',
+              yields: {},
+              upkeep: {},
+              workforce: {},
+              staffing: null,
+            },
+            {
+              x: 1,
+              y: 0,
+              terrain: 'Plain',
+              feature: null,
+              resource: null,
+              slots: 0,
+              improvement: null,
+              control: null,
+              yields: {},
+              upkeep: {},
+              workforce: {},
+              staffing: null,
+            },
+          ],
+        },
+      });
+    });
+
+    await page.goto('/#/map');
+    await page.waitForLoadState('networkidle');
+
+    const controlBtn = page.getByRole('button', { name: 'Control' });
+    await controlBtn.click();
+    await expect(controlBtn).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('text=/Control —/i').first()).toBeVisible();
+
+    const canvas = page.locator('canvas[role=application]');
+    await expect.poll(async () => (
+      await canvas.evaluate((canvas) => {
+        const ctx = canvas.getContext('2d');
+        const x = Math.floor(canvas.width * 0.25);
+        const y = Math.floor(canvas.height * 0.5);
+        const [r, g, b, a] = ctx.getImageData(x, y, 1, 1).data;
+        return { r, g, b, a };
+      })
+    )).toEqual({ r: 18, g: 52, b: 86, a: 255 });
+  });
+});
+
 test.describe('Map page — detail values', () => {
   test('truncates yield decimals in the tile detail box', async ({ page }) => {
     await page.route('**/data/map.json*', async (route) => {
