@@ -17,7 +17,11 @@
   import OvertonRow from '../lib/components/OvertonRow.svelte';
   import SituationCard from '../lib/components/SituationCard.svelte';
   import MoonLoader from '../lib/components/MoonLoader.svelte';
-  import { populationDeltaFromStatus } from '../lib/status-metrics.js';
+  import {
+    formatStatusPercent,
+    populationDeltaFromStatus,
+    statusMetricTone,
+  } from '../lib/status-metrics.js';
 
   onMount(() => {
     pageTitle.set('Status');
@@ -26,9 +30,6 @@
       loadHistory($meta.synced_at);
     }
   });
-
-  $: critical = $status && $status.crisis_factor != null && $status.stability != null
-    && $status.crisis_factor >= $status.stability;
 
   // Use workbook's authoritative births-minus-deaths tally, not the estimated
   // net_delta_pct rate surfaced in the Pulse row.
@@ -69,17 +70,17 @@
       <div class="col-span-6 md:col-span-2">
         <KpiBlock
           label="Stability"
-          value={$status.stability?.toFixed(2) ?? '—'}
+          value={formatStatusPercent($status.stability)}
+          tone={statusMetricTone($status.stability)}
           history={$stabilityHistory.length >= 2 ? $stabilityHistory : null}
-          good
         />
       </div>
       <div class="col-span-6 md:col-span-2">
         <KpiBlock
           label="Crisis Factor"
-          value={$status.crisis_factor?.toFixed(2) ?? '—'}
+          value={formatStatusPercent($status.crisis_factor)}
+          tone={statusMetricTone($status.crisis_factor)}
           history={$crisisFactorHistory.length >= 2 ? $crisisFactorHistory : null}
-          critical={critical}
         />
       </div>
       <div class="col-span-6 md:col-span-2">
@@ -92,9 +93,9 @@
       <div class="col-span-6 md:col-span-2">
         <KpiBlock
           label="Gov Approval"
-          value={$status.gov_approval?.toFixed(2) ?? '—'}
+          value={formatStatusPercent($status.gov_approval)}
+          tone={statusMetricTone($status.gov_approval)}
           history={$govApprovalHistory.length >= 2 ? $govApprovalHistory : null}
-          good
         />
       </div>
     </div>

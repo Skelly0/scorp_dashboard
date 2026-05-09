@@ -181,10 +181,11 @@ body {
   font-size: 56px;
   font-weight: 800;
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   font-variant-numeric: tabular-nums;
 }
 .kpi-block .kpi-num.crit { color: var(--crit); }
+.kpi-block .kpi-num.warn { color: var(--warn); }
 .kpi-block .kpi-num.good { color: var(--good); }
 .kpi-subtitle {
   font-size: 0.7rem;
@@ -226,10 +227,11 @@ body {
   font-size: 32px;
   font-weight: 800;
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   font-variant-numeric: tabular-nums;
 }
 .stat-tile .val.crit { color: var(--crit); }
+.stat-tile .val.warn { color: var(--warn); }
 .stat-tile .val.good { color: var(--good); }
 .stat-tile .sub {
   font-size: 10px;
@@ -294,6 +296,15 @@ body {
    the number colour. */
 .kpi-block.critical {
   border-color: var(--crit);
+}
+.kpi-block.tone-crit {
+  border-color: var(--crit);
+}
+.kpi-block.tone-warn {
+  border-color: var(--warn);
+}
+.kpi-block.tone-good {
+  border-color: var(--good);
 }
 .s-card.critical {
   border-color: var(--crit);
