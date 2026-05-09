@@ -36,7 +36,7 @@ const mockTechPayload = {
       tier: 1,
       cost_rp: 10,
       researched: false,
-      available: true,
+      available: false,
       prereqs: [],
       effects: [],
       description: '',
@@ -200,4 +200,21 @@ test('Tech page gives effect chips enough width at dashboard size', async ({ pag
   );
 
   expect(wrappedTargets).toEqual([]);
+});
+
+test('Tech page shows whether each tech is active', async ({ page }) => {
+  await mockTechData(page);
+  await gotoWithTheme(page, 'light', '/#/tech');
+  await page.waitForSelector('.tech-card');
+
+  await expect(page.locator('.tech-active-chip.on')).toHaveCount(1);
+  await expect(page.locator('.tech-active-chip.off')).toHaveCount(5);
+  await expect(page.locator('.tech-card.researched .tech-active-chip')).toHaveText('Active');
+  await expect(page.locator('.tech-card.available .tech-active-chip')).toHaveText([
+    'Inactive',
+    'Inactive',
+    'Inactive',
+    'Inactive',
+  ]);
+  await expect(page.locator('.tech-card.locked .tech-active-chip')).toHaveText('Inactive');
 });

@@ -1364,6 +1364,7 @@ table.tbl th.num {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  flex-wrap: wrap;
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -1373,6 +1374,23 @@ table.tbl th.num {
 .tech-card-tier { font-weight: 700; color: var(--fg); }
 .tech-card-cost { color: var(--fg-dim); }
 .tech-card-badge { font-size: 12px; line-height: 1; }
+.tech-active-chip {
+  padding: 2px 6px;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-2);
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.tech-active-chip.on {
+  border-color: var(--good);
+  background: var(--good-soft);
+  color: var(--good);
+}
+.tech-active-chip.off {
+  color: var(--fg-dim);
+}
 .tech-card-title {
   font-weight: 700;
   font-size: 13px;
