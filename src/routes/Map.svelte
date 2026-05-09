@@ -302,9 +302,9 @@
                     Improvement
                   </h4>
                   <dl class="kv">
-                    <dt>Name</dt><dd>{t.improvement.name ?? '—'}</dd>
+                    <dt>Improvement Type</dt><dd>{t.improvement.name ?? '—'}</dd>
                     <dt>Owner</dt><dd>{t.improvement.owner ?? '—'}</dd>
-                    <dt>Type</dt><dd>{t.improvement.ownership_type ?? '—'}</dd>
+                    <dt>Ownership Type</dt><dd>{t.improvement.ownership_type ?? '—'}</dd>
                   </dl>
                   <button
                     class="filter-link"
