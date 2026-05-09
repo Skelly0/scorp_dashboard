@@ -40,11 +40,11 @@
     },
     {
       "current": 750.0,
-      "delta": -188.22963909999999,
+      "delta": 72.47850530000005,
       "name": "Energy"
     },
     {
-      "current": 18980.0,
+      "current": 0.0,
       "delta": 18980.0,
       "name": "Housing"
     },
@@ -67,7 +67,7 @@
   "stability": 0.1372154572,
   "treasury": {
     "delta": 53949.94632,
-    "money": 46245.0
+    "money": 27265.0
   },
   "year": 2075
 }
