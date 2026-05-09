@@ -60,7 +60,7 @@
     <div class="grid grid-cols-12 gap-3">
       <div class="col-span-12 md:col-span-4">
         <KpiBlock
-          label="Treasury"
+          label="Government Revenue"
           value={fmtMoney($status.treasury?.money)}
           prefix="₡ "
           delta={fmtDeltaInt($status.treasury?.delta)}
