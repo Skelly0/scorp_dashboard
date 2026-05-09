@@ -52,6 +52,15 @@ describe('statusMetricTone', () => {
     expect(statusMetricTone(0.66)).toBe('good');
   });
 
+  test('can invert tones for metrics where lower values are better', () => {
+    const lowerIsBetter = { lowerIsBetter: true };
+
+    expect(statusMetricTone(0.32, lowerIsBetter)).toBe('good');
+    expect(statusMetricTone(0.33, lowerIsBetter)).toBe('warn');
+    expect(statusMetricTone(0.65, lowerIsBetter)).toBe('warn');
+    expect(statusMetricTone(0.66, lowerIsBetter)).toBe('crit');
+  });
+
   test('does not tone missing values', () => {
     expect(statusMetricTone(null)).toBe(null);
   });

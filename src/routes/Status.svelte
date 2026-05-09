@@ -23,6 +23,8 @@
     statusMetricTone,
   } from '../lib/status-metrics.js';
 
+  const CRISIS_TONE_OPTIONS = { lowerIsBetter: true };
+
   onMount(() => {
     pageTitle.set('Status');
     if ($meta?.synced_at) {
@@ -79,7 +81,7 @@
         <KpiBlock
           label="Crisis Factor"
           value={formatStatusPercent($status.crisis_factor)}
-          tone={statusMetricTone($status.crisis_factor)}
+          tone={statusMetricTone($status.crisis_factor, CRISIS_TONE_OPTIONS)}
           history={$crisisFactorHistory.length >= 2 ? $crisisFactorHistory : null}
         />
       </div>

@@ -21,12 +21,12 @@ export function formatStatusPercent(value) {
   return `${Math.round(number * 100)}%`;
 }
 
-export function statusMetricTone(value) {
+export function statusMetricTone(value, options = {}) {
   if (value == null) return null;
   const number = Number(value);
   if (!Number.isFinite(number)) return null;
 
-  if (number < LOW_TONE_CUTOFF) return 'crit';
+  if (number < LOW_TONE_CUTOFF) return options.lowerIsBetter ? 'good' : 'crit';
   if (number < HIGH_TONE_CUTOFF) return 'warn';
-  return 'good';
+  return options.lowerIsBetter ? 'crit' : 'good';
 }
