@@ -8,6 +8,7 @@ from extractors._common import (
     coerce_number,
     net_delta_pct,
     population_total,
+    read_named_range,
     scalar_named,
 )
 
@@ -50,8 +51,28 @@ def _year(wb) -> int | None:
 
 
 def _treasury(wb) -> dict[str, Any]:
-    """Read treasury balance from Colony!B3, derive delta from the Money row
-    in the resource table (Income/turn − Upkeep/turn at row 13)."""
+    """Read treasury via legacy names when present, else live Colony cells."""
+    live = _treasury_live(wb)
+    money_rows = read_named_range(wb, "TreasuryMoney")
+    delta_rows = read_named_range(wb, "TreasuryMoneyDelta")
+    money = _first_number(money_rows)
+    delta = _first_number(delta_rows)
+
+    return {
+        "money": money if money is not None else live["money"],
+        "delta": delta if delta is not None else live["delta"],
+    }
+
+
+def _first_number(rows: list[list[Any]]) -> float | None:
+    if not rows or not rows[0]:
+        return None
+    return coerce_number(rows[0][0])
+
+
+def _treasury_live(wb) -> dict[str, Any]:
+    # Live workbook layout: balance at Colony!B3, delta from the Money row in
+    # the resource table (income/turn minus upkeep/turn).
     money = None
     delta = None
     if "Colony" in wb.sheetnames:
@@ -68,8 +89,34 @@ def _treasury(wb) -> dict[str, Any]:
 
 
 def _resources(wb) -> list[dict[str, Any]]:
-    """Read Colony!A8:D15 — name / reserve / income/turn / upkeep/turn.
-    Delta = income − upkeep."""
+    """Read resource flows via legacy named range, else live Colony table."""
+    named = _resources_from_rows(read_named_range(wb, "ResourceFlows"))
+    return named or _resources_live(wb)
+
+
+def _resources_from_rows(rows: list[list[Any]]) -> list[dict[str, Any]]:
+    out = []
+    for row in rows:
+        if not row or row[0] in (None, ""):
+            continue
+        name = str(row[0]).strip()
+        if name.lower() in {"name", "resource", "resources"}:
+            continue
+        padded = list(row) + [None, None, None, None]
+        current = coerce_number(padded[1])
+        income = coerce_number(padded[2])
+        upkeep = coerce_number(padded[3])
+        delta = (income or 0) - (upkeep or 0) if upkeep is not None else income
+        out.append({
+            "name": row[0],
+            "current": current,
+            "delta": delta,
+        })
+    return out
+
+
+def _resources_live(wb) -> list[dict[str, Any]]:
+    # Live workbook layout: Colony!A8:D15 is name / reserve / income / upkeep.
     if "Colony" not in wb.sheetnames:
         return []
     ws = wb["Colony"]

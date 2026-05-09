@@ -105,6 +105,15 @@ async function mockTechData(page, payload = mockTechPayload) {
   });
 }
 
+async function gotoWithTheme(page, theme, path) {
+  await page.addInitScript((t) => {
+    localStorage.setItem('theme', t);
+  }, theme);
+  await page.goto(path);
+  await page.waitForLoadState('networkidle');
+  await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
+}
+
 // The committed public data may omit optional tech.json, and Vite preview can
 // serve the SPA fallback HTML for that URL. Mocking keeps these layout checks
 // deterministic and exercises the populated tree path every run.
@@ -112,10 +121,11 @@ async function mockTechData(page, payload = mockTechPayload) {
 for (const theme of THEMES) {
   test(`Tech page renders (${theme})`, async ({ page }) => {
     await mockTechData(page);
-    await page.goto('/');
-    await page.evaluate((t) => localStorage.setItem('theme', t), theme);
-    await page.goto('/#/tech');
-    await page.waitForLoadState('networkidle');
+    await gotoWithTheme(page, theme, '/#/tech');
+    await expect(page.locator('section')).toContainText(
+      /Research Progress|Tech tree not yet wired up/,
+      { timeout: 10000 }
+    );
 
     const grid = await page.locator('.tech-grid').count();
     if (grid > 0) {
@@ -137,10 +147,7 @@ for (const theme of THEMES) {
 
   test(`Tech page axe a11y (${theme})`, async ({ page }) => {
     await mockTechData(page);
-    await page.goto('/');
-    await page.evaluate((t) => localStorage.setItem('theme', t), theme);
-    await page.goto('/#/tech');
-    await page.waitForLoadState('networkidle');
+    await gotoWithTheme(page, theme, '/#/tech');
 
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa'])
@@ -152,9 +159,7 @@ for (const theme of THEMES) {
 test('Tech page keeps effect text inside green effect chips', async ({ page }) => {
   await mockTechData(page);
   await page.setViewportSize({ width: 380, height: 900 });
-  await page.goto('/');
-  await page.evaluate(() => localStorage.setItem('theme', 'light'));
-  await page.goto('/#/tech');
+  await gotoWithTheme(page, 'light', '/#/tech');
   await page.waitForSelector('.tech-effect-chip.pos');
 
   const overflowingChips = await page.locator('.tech-effect-chip').evaluateAll((chips) =>

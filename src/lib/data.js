@@ -12,6 +12,7 @@ export async function fetchPage(name, syncedAt) {
   const r = await fetch(url);
   if (r.status === 404) return null;
   if (!r.ok) throw new Error(`${name}.json fetch failed: ${r.status}`);
+  if ((r.headers.get('content-type') ?? '').toLowerCase().includes('text/html')) return null;
   return r.json();
 }
 

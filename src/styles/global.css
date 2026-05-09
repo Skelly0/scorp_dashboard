@@ -15,16 +15,17 @@
   --bg-3: #e1d5b3;
   --fg: #1a140a;
   --fg-dim: #4a3a20;
-  --accent: #c44900;
-  --accent-soft: rgba(196, 73, 0, 0.10);
+  --accent: #9f3b00;
+  --accent-soft: rgba(159, 59, 0, 0.10);
   --accent-line: rgba(26, 20, 10, 0.35);
   --border: #1a140a;
   --border-soft: rgba(26, 20, 10, 0.22);
   --muted: #6b5a3a;
-  --crit: #c44900;
-  --crit-soft: rgba(196, 73, 0, 0.15);
-  --good: #2a7a52;
-  --good-soft: rgba(42, 122, 82, 0.14);
+  --crit: #9f3b00;
+  --crit-soft: rgba(159, 59, 0, 0.15);
+  --good: #1e6848;
+  --good-soft: rgba(30, 104, 72, 0.14);
+  --warn: #805400;
   --grid-line: rgba(26, 20, 10, 0.12);
   --alert-bg: #1a140a;
   --alert-fg: #f3ead4;
@@ -43,11 +44,12 @@
   --accent-line: rgba(255, 176, 0, 0.35);
   --border: #f3a000;
   --border-soft: rgba(243, 160, 0, 0.25);
-  --muted: #8a6f3f;
+  --muted: #a1844d;
   --crit: #ff5544;
   --crit-soft: rgba(255, 85, 68, 0.15);
   --good: #38d39f;
   --good-soft: rgba(56, 211, 159, 0.18);
+  --warn: #e89020;
   --grid-line: rgba(243, 160, 0, 0.18);
   --alert-bg: #f3a000;
   --alert-fg: #0a0805;
@@ -71,6 +73,7 @@
   --crit-soft: rgba(165, 58, 38, 0.13);
   --good: #1f6a4a;
   --good-soft: rgba(31, 106, 74, 0.14);
+  --warn: #805400;
   --grid-line: rgba(14, 58, 138, 0.18);
   --alert-bg: #0e3a8a;
   --alert-fg: #f4f1ea;
@@ -422,8 +425,8 @@ body {
 }
 .sit-card.sev-low { border-left-color: var(--good); }
 .sit-card.sev-low .cf { color: var(--good); }
-.sit-card.sev-warn { border-left-color: #e89020; }
-.sit-card.sev-warn .cf { color: #e89020; }
+.sit-card.sev-warn { border-left-color: var(--warn); }
+.sit-card.sev-warn .cf { color: var(--warn); }
 .sit-card.sev-crit { border-left-color: var(--crit); background: var(--crit-soft); }
 .sit-meter {
   margin-top: 8px;
@@ -438,7 +441,7 @@ body {
   color: var(--crit);
 }
 .sit-card.sev-low .sit-meter-fill { color: var(--good); }
-.sit-card.sev-warn .sit-meter-fill { color: #e89020; }
+.sit-card.sev-warn .sit-meter-fill { color: var(--warn); }
 .sit-card.sev-crit .sit-meter-fill { color: var(--crit); }
 
 /* Crisis Index summary tile */
@@ -487,10 +490,10 @@ body {
 .crisis-index.sev-low .ci-bar-fill { color: var(--good); background-color: var(--good); }
 .crisis-index.sev-low .ci-num,
 .crisis-index.sev-low .ci-tier { background-color: transparent; }
-.crisis-index.sev-warn { border-left: 4px solid #e89020; }
+.crisis-index.sev-warn { border-left: 4px solid var(--warn); }
 .crisis-index.sev-warn .ci-num,
-.crisis-index.sev-warn .ci-tier { color: #e89020; }
-.crisis-index.sev-warn .ci-bar-fill { background: #e89020; }
+.crisis-index.sev-warn .ci-tier { color: var(--warn); }
+.crisis-index.sev-warn .ci-bar-fill { background: var(--warn); }
 .crisis-index.sev-crit { border-left: 4px solid var(--crit); background: var(--crit-soft); }
 .crisis-index.sev-crit .ci-num,
 .crisis-index.sev-crit .ci-tier { color: var(--crit); }
@@ -531,7 +534,7 @@ body {
 }
 .tier.t-1 { border-left-color: var(--good); }
 .tier.t-2 { border-left-color: var(--accent); }
-.tier.t-3 { border-left-color: #e89020; }
+.tier.t-3 { border-left-color: var(--warn); }
 .tier.t-4 { border-left-color: var(--crit); }
 .tier.t-5 {
   border-left-color: var(--crit);
@@ -648,6 +651,14 @@ table.tbl th.num {
   text-align: left;
   padding-left: 8px;
   justify-content: flex-start;
+}
+.heatmap-value {
+  display: inline-block;
+  min-width: 2ch;
+  padding: 1px 3px;
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid var(--border-soft);
 }
 
 /* === Layer tabs (Map page) ================================================= */

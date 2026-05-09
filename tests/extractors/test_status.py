@@ -2,13 +2,29 @@
 from __future__ import annotations
 
 import pytest
+from openpyxl.workbook.defined_name import DefinedName
 
 from extractors.status import extract
+
+
+def set_name(wb, name: str, attr_text: str) -> None:
+    wb.defined_names[name] = DefinedName(name, attr_text=attr_text)
 
 
 def test_extract_returns_treasury_block(wb):
     result = extract(wb)
     assert result["treasury"] == {"money": 487, "delta": -12}
+
+
+def test_extract_treasury_fills_partial_legacy_names_from_live_layout(wb):
+    del wb.defined_names["TreasuryMoneyDelta"]
+    col = wb["Colony"]
+    col["B3"] = 900
+    col["A8"], col["B8"], col["C8"], col["D8"] = "Money", 900, 40, 10
+
+    result = extract(wb)
+
+    assert result["treasury"] == {"money": 487, "delta": 30}
 
 
 def test_extract_returns_stability_and_crisis(wb):
@@ -30,6 +46,34 @@ def test_extract_returns_resource_flow_strip(wb):
     assert names == ["Food", "Materials", "Ore", "Energy", "Housing", "He-3", "Water"]
     assert resources[0] == {"name": "Food", "current": 0, "delta": -2}
     assert resources[6] == {"name": "Water", "current": 60, "delta": -1}
+
+
+def test_extract_resource_flow_accepts_live_four_column_shape(wb):
+    col = wb["Colony"]
+    col.cell(row=4, column=3, value=5)
+    col.cell(row=4, column=4, value=7)
+    set_name(wb, "ResourceFlows", "Colony!$A$4:$D$10")
+
+    result = extract(wb)
+
+    assert result["resources"][0] == {"name": "Food", "current": 0, "delta": -2}
+
+
+def test_extract_resource_flow_falls_back_when_named_range_is_blank(wb):
+    col = wb["Colony"]
+    for row in range(8, 16):
+        for column in range(1, 5):
+            col.cell(row=row, column=column).value = None
+    col["A8"], col["B8"], col["C8"], col["D8"] = "Money", 900, 40, 10
+    col["A9"], col["B9"], col["C9"], col["D9"] = "Food", 100, 5, 7
+    set_name(wb, "ResourceFlows", "Colony!$Z$1:$AB$3")
+
+    result = extract(wb)
+
+    assert result["resources"] == [
+        {"name": "Money", "current": 900, "delta": 30},
+        {"name": "Food", "current": 100, "delta": -2},
+    ]
 
 
 def test_extract_returns_overton_window(wb):

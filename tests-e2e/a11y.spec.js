@@ -4,15 +4,19 @@ import AxeBuilder from '@axe-core/playwright';
 const PAGES = ['/', '/#/map', '/#/population', '/#/demographics', '/#/gois', '/#/tech', '/#/parties', '/#/situations'];
 const THEMES = ['light', 'dark', 'schematic'];
 
+async function gotoWithTheme(page, theme, path) {
+  await page.addInitScript((t) => {
+    localStorage.setItem('theme', t);
+  }, theme);
+  await page.goto(path);
+  await page.waitForLoadState('networkidle');
+  await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
+}
+
 for (const theme of THEMES) {
   for (const path of PAGES) {
     test(`a11y: ${theme} theme — ${path}`, async ({ page }) => {
-      await page.goto('/');
-      await page.evaluate((t) => {
-        localStorage.setItem('theme', t);
-      }, theme);
-      await page.goto(path);
-      await page.waitForLoadState('networkidle');
+      await gotoWithTheme(page, theme, path);
       const results = await new AxeBuilder({ page })
         .withTags(['wcag2a', 'wcag2aa'])
         .analyze();
@@ -25,13 +29,8 @@ for (const theme of THEMES) {
 // default page-load scan, so we sweep it explicitly per theme.
 for (const theme of THEMES) {
   test(`a11y: ${theme} theme — /#/gois with sub-faction selected (desktop rail)`, async ({ page }) => {
-    await page.goto('/');
-    await page.evaluate((t) => {
-      localStorage.setItem('theme', t);
-    }, theme);
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto('/#/gois');
-    await page.waitForLoadState('networkidle');
+    await gotoWithTheme(page, theme, '/#/gois');
     // Wait for the sub-faction row buttons (rendered after gois.json loads).
     await page.waitForSelector('.gois-main li button', { timeout: 10_000 });
     // Click the first sub-faction button to reveal the rail panel.
@@ -44,13 +43,8 @@ for (const theme of THEMES) {
   });
 
   test(`a11y: ${theme} theme — /#/gois with sub-faction selected (mobile sheet)`, async ({ page }) => {
-    await page.goto('/');
-    await page.evaluate((t) => {
-      localStorage.setItem('theme', t);
-    }, theme);
     await page.setViewportSize({ width: 768, height: 1024 });
-    await page.goto('/#/gois');
-    await page.waitForLoadState('networkidle');
+    await gotoWithTheme(page, theme, '/#/gois');
     await page.waitForSelector('.gois-main li button', { timeout: 10_000 });
     await page.locator('.gois-main li button').first().click();
     await page.waitForSelector('.s-sheet .s-rail-name');
@@ -65,12 +59,7 @@ for (const theme of THEMES) {
 // scan, so we sweep it explicitly per theme.
 for (const theme of THEMES) {
   test(`a11y: ${theme} theme — /#/demographics with class detail open`, async ({ page }) => {
-    await page.goto('/');
-    await page.evaluate((t) => {
-      localStorage.setItem('theme', t);
-    }, theme);
-    await page.goto('/#/demographics');
-    await page.waitForLoadState('networkidle');
+    await gotoWithTheme(page, theme, '/#/demographics');
     await page.waitForSelector('table.tbl tbody tr', { timeout: 10_000 });
     await page.locator('table.tbl tbody tr').first().click();
     await page.waitForSelector('text=per-class drilldown');

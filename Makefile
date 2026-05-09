@@ -9,7 +9,7 @@ sync:
 
 test:
 	uv run pytest -v
-	npm run test -- --run
+	npm run test -- run
 
 dev:
 	npm run dev

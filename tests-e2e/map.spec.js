@@ -7,8 +7,10 @@ test.describe('Map page — staffing & dropdowns', () => {
     await expect(page.locator('canvas[role=application]')).toBeVisible();
   });
 
-  test('Yields dropdown opens, lists 6 options, switching updates the legend', async ({ page }) => {
+  test('Yields quick-selects, then opens dropdown and switches legend', async ({ page }) => {
     const yieldsTrigger = page.getByRole('button', { name: /^Yields/ });
+    await yieldsTrigger.click();
+    await expect(yieldsTrigger).toContainText('Food');
     await yieldsTrigger.click();
     const items = page.getByRole('menuitem');
     await expect(items).toHaveCount(6);
@@ -33,6 +35,7 @@ test.describe('Map page — staffing & dropdowns', () => {
   });
 
   test('Esc precedence: popup closes first', async ({ page }) => {
+    await page.getByRole('button', { name: /^Yields/ }).click();
     await page.getByRole('button', { name: /^Yields/ }).click();
     await expect(page.getByRole('menu')).toBeVisible();
     await page.keyboard.press('Escape');

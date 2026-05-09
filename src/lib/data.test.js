@@ -37,6 +37,15 @@ describe('data fetcher', () => {
     expect(data).toBeNull();
   });
 
+  it('fetchPage returns null for Vite preview HTML fallback', async () => {
+    global.fetch = vi.fn(async () => new Response('<!DOCTYPE html>', {
+      status: 200,
+      headers: { 'Content-Type': 'text/html' },
+    }));
+    const data = await fetchPage('tech', 'x');
+    expect(data).toBeNull();
+  });
+
   it('fetchPage throws on non-404 errors', async () => {
     global.fetch = vi.fn(async () => new Response('boom', { status: 500 }));
     await expect(fetchPage('status', 'x')).rejects.toThrow();
