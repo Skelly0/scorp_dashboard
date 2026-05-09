@@ -9,8 +9,8 @@
       "worldview": {
         "authority": 4.5,
         "corporate": 4.0,
-        "expansion": 3.5,
-        "faith": 4.5,
+        "expansion": 5.5,
+        "faith": 6.0,
         "materialist": 5.5,
         "technocratic": 4.5
       }
@@ -24,7 +24,7 @@
       "worldview": {
         "authority": 3.5,
         "corporate": 1.0,
-        "expansion": 6.0,
+        "expansion": 2.0,
         "faith": 5.0,
         "materialist": 2.5,
         "technocratic": 4.0
@@ -54,7 +54,7 @@
       "worldview": {
         "authority": 4.0,
         "corporate": 4.0,
-        "expansion": 5.5,
+        "expansion": 4.0,
         "faith": 7.0,
         "materialist": 4.5,
         "technocratic": 2.0
@@ -69,7 +69,7 @@
       "worldview": {
         "authority": 5.0,
         "corporate": 4.0,
-        "expansion": 4.5,
+        "expansion": 5.0,
         "faith": 3.5,
         "materialist": 2.5,
         "technocratic": 4.5
@@ -99,7 +99,7 @@
       "worldview": {
         "authority": 4.0,
         "corporate": 2.0,
-        "expansion": 5.0,
+        "expansion": 3.0,
         "faith": 5.0,
         "materialist": 2.5,
         "technocratic": 3.5
@@ -129,7 +129,7 @@
       "worldview": {
         "authority": 5.5,
         "corporate": 5.5,
-        "expansion": 4.5,
+        "expansion": 3.5,
         "faith": 3.5,
         "materialist": 3.0,
         "technocratic": 5.5
@@ -144,7 +144,7 @@
       "worldview": {
         "authority": 5.5,
         "corporate": 6.0,
-        "expansion": 5.0,
+        "expansion": 3.0,
         "faith": 3.5,
         "materialist": 3.0,
         "technocratic": 5.5
@@ -159,7 +159,7 @@
       "worldview": {
         "authority": 5.0,
         "corporate": 5.0,
-        "expansion": 3.5,
+        "expansion": 4.0,
         "faith": 3.5,
         "materialist": 3.0,
         "technocratic": 5.5
