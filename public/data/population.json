@@ -25,7 +25,7 @@
         "authority": 3.5,
         "corporate": 1.0,
         "expansion": 6.0,
-        "faith": 3.0,
+        "faith": 5.0,
         "materialist": 2.5,
         "technocratic": 4.0
       }
@@ -40,7 +40,7 @@
         "authority": 4.0,
         "corporate": 3.5,
         "expansion": 5.0,
-        "faith": 3.0,
+        "faith": 5.0,
         "materialist": 3.5,
         "technocratic": 2.5
       }
@@ -55,7 +55,7 @@
         "authority": 4.0,
         "corporate": 4.0,
         "expansion": 5.5,
-        "faith": 2.5,
+        "faith": 7.0,
         "materialist": 4.5,
         "technocratic": 2.0
       }
@@ -70,7 +70,7 @@
         "authority": 5.0,
         "corporate": 4.0,
         "expansion": 4.5,
-        "faith": 4.5,
+        "faith": 3.5,
         "materialist": 2.5,
         "technocratic": 4.5
       }
@@ -82,10 +82,10 @@
       "share": 0.040336134453781515,
       "tier": "Middle",
       "worldview": {
-        "authority": 6.0,
-        "corporate": 6.0,
+        "authority": 5.0,
+        "corporate": 1.5,
         "expansion": 4.5,
-        "faith": 5.0,
+        "faith": 4.0,
         "materialist": 3.0,
         "technocratic": 5.0
       }
@@ -100,7 +100,7 @@
         "authority": 4.0,
         "corporate": 2.0,
         "expansion": 5.0,
-        "faith": 3.0,
+        "faith": 5.0,
         "materialist": 2.5,
         "technocratic": 3.5
       }
@@ -115,7 +115,7 @@
         "authority": 4.5,
         "corporate": 4.0,
         "expansion": 4.0,
-        "faith": 3.0,
+        "faith": 5.0,
         "materialist": 4.5,
         "technocratic": 3.0
       }
@@ -130,7 +130,7 @@
         "authority": 5.5,
         "corporate": 5.5,
         "expansion": 4.5,
-        "faith": 4.5,
+        "faith": 3.5,
         "materialist": 3.0,
         "technocratic": 5.5
       }
@@ -145,7 +145,7 @@
         "authority": 5.5,
         "corporate": 6.0,
         "expansion": 5.0,
-        "faith": 4.5,
+        "faith": 3.5,
         "materialist": 3.0,
         "technocratic": 5.5
       }
@@ -160,7 +160,7 @@
         "authority": 5.0,
         "corporate": 5.0,
         "expansion": 3.5,
-        "faith": 4.5,
+        "faith": 3.5,
         "materialist": 3.0,
         "technocratic": 5.5
       }
