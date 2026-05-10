@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { meta } from '../lib/stores/meta.js';
   import { cropsim, cropsimError, loadCropsim } from '../lib/stores/cropsim.js';
+  import { status, loadStatus } from '../lib/stores/status.js';
   import { pageTitle } from '../lib/page-title.js';
   import { classColor } from '../lib/faction-colors.js';
   import Band from '../lib/components/Band.svelte';
@@ -10,12 +11,20 @@
 
   onMount(() => {
     pageTitle.set('Cropsim');
-    if ($meta?.synced_at) loadCropsim($meta.synced_at);
+    if ($meta?.synced_at) {
+      loadCropsim($meta.synced_at);
+      loadStatus($meta.synced_at);
+    }
   });
 
   $: ready = $cropsim != null;
   $: empty = ready && $cropsim.production.length === 0 && $cropsim.demand.length === 0;
   $: metrics = $cropsim?.metrics;
+  $: foodResource = $status?.resources?.find((resource) => resource?.name?.toLowerCase() === 'food') ?? null;
+  $: foodReserve = foodResource?.current;
+  $: foodSupply = foodResource?.income ?? metrics?.total_supply;
+  $: foodDemand = foodResource?.upkeep ?? metrics?.total_demand;
+  $: foodReserveDetails = foodFlowDetails(foodSupply, foodDemand);
   $: securityTone = metrics?.security_ratio == null
     ? null
     : metrics.security_ratio < 0.95
@@ -48,6 +57,41 @@
     return sign + fmt(abs, digits);
   }
 
+  function fmtSignedFlow(value) {
+    if (value == null || !Number.isFinite(value)) return null;
+    const rounded = Math.round(value);
+    return `${rounded > 0 ? '+' : ''}${rounded.toLocaleString()}`;
+  }
+
+  function fmtDemandFlow(value) {
+    if (value == null || !Number.isFinite(value)) return null;
+    const rounded = Math.round(value);
+    if (rounded === 0) return '0';
+    return rounded > 0
+      ? `-${rounded.toLocaleString()}`
+      : `+${Math.abs(rounded).toLocaleString()}`;
+  }
+
+  function foodFlowDetails(supply, demand) {
+    const details = [];
+
+    if (supply != null) {
+      details.push({
+        key: 'supply',
+        text: fmtSignedFlow(supply),
+        tone: supply > 0 ? 'good' : null,
+      });
+    }
+    if (demand != null) {
+      details.push({
+        key: 'demand',
+        text: fmtDemandFlow(demand),
+        tone: demand > 0 ? 'crit' : null,
+      });
+    }
+    return details;
+  }
+
   function fmtRatio(value, digits = 2) {
     if (value == null || !Number.isFinite(value)) return '—';
     return value.toFixed(digits);
@@ -78,10 +122,9 @@
     </div>
   {:else}
     <Band num="01" title="Food Balance" meta={`${metrics.production_types} foods / ${metrics.demand_classes} classes`} />
-    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 cropsim-kpis">
-      <KpiBlock label="Supply" value={fmt(metrics.total_supply, 1)} />
-      <KpiBlock label="Demand" value={fmt(metrics.total_demand, 1)} />
-      <KpiBlock label="Balance" value={fmtSigned(metrics.balance, 1)} tone={balanceTone} />
+    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3 cropsim-kpis">
+      <KpiBlock label="Food Reserve" value={fmtInt(foodReserve)} details={foodReserveDetails} />
+      <KpiBlock label="Net/Turn" value={fmtSigned(metrics.balance, 1)} tone={balanceTone} />
       <KpiBlock label="Security Ratio" value={fmtRatio(metrics.security_ratio, 3)} tone={securityTone} />
       <KpiBlock label="Food / Cap" value={fmtRatio(metrics.per_cap, 4)} />
       <KpiBlock label="Variety Index" value={fmtRatio(metrics.variety_index, 3)} />

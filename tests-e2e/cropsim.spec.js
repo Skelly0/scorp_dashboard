@@ -26,13 +26,19 @@ const mockCropsimPayload = {
   ],
 };
 
+const mockStatusPayload = {
+  resources: [
+    { name: 'Food', current: 1000, income: 833.3043028, upkeep: 846.25, delta: -12.9456972 },
+  ],
+};
+
 async function mockCropsimData(page) {
   await page.route('**/data/meta.json?*', async (route) => {
     await route.fulfill({
       json: {
         history_year: 2075,
         partial_failures: [],
-        schema_version: 9,
+        schema_version: 10,
         senate_visible: false,
         synced_at: 'playwright-cropsim',
       },
@@ -41,6 +47,9 @@ async function mockCropsimData(page) {
   await page.route('**/data/cropsim.json?*', async (route) => {
     await route.fulfill({ json: mockCropsimPayload });
   });
+  await page.route('**/data/status.json?*', async (route) => {
+    await route.fulfill({ json: mockStatusPayload });
+  });
 }
 
 test('Cropsim page renders food balance, production, and demand', async ({ page }) => {
@@ -48,6 +57,11 @@ test('Cropsim page renders food balance, production, and demand', async ({ page 
   await page.goto('/#/cropsim');
 
   await expect(page.locator('.band-title', { hasText: 'Food Balance' })).toBeVisible();
+  await expect(page.locator('.kpi-block', { hasText: 'Food Reserve' })).toContainText('1,000');
+  await expect(page.locator('.kpi-block', { hasText: 'Food Reserve' })).toContainText('+833');
+  await expect(page.locator('.kpi-block', { hasText: 'Food Reserve' })).toContainText('-846');
+  await expect(page.locator('.kpi-block', { hasText: 'Net/Turn' })).toContainText('-12.9');
+  await expect(page.locator('.kpi-label', { hasText: /^Balance$/ })).toHaveCount(0);
   await expect(page.locator('.kpi-block', { hasText: 'Security Ratio' })).toContainText('0.985');
   await expect(page.locator('.crop-mix-card', { hasText: 'Vat Protein' })).toBeVisible();
   await expect(page.locator('table.tbl', { hasText: 'Industrial Workers' })).toBeVisible();
