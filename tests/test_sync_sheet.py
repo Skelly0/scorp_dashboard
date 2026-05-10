@@ -131,6 +131,7 @@ def test_run_sync_writes_tech_json(fixture_workbook_path, tmp_path):
     payload = json.loads((out_dir / "tech.json").read_text())
     assert "techs" in payload
     assert "branches" in payload
+    assert payload["research_points"] == {"accrued": 375}
     # Fixture seeds 4 named techs across Agriculture (3) + Industry (1).
     assert len(payload["techs"]) == 4
     assert payload["branches"] == ["Agriculture", "Industry"]

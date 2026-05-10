@@ -1565,8 +1565,9 @@ table.tbl th.num {
 }
 .tech-active-chip.on {
   border-color: var(--good);
-  background: var(--good-soft);
+  background: var(--bg);
   color: var(--good);
+  font-weight: 700;
 }
 .tech-active-chip.off {
   color: var(--fg-dim);

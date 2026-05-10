@@ -5,6 +5,9 @@ const THEMES = ['light', 'dark', 'schematic'];
 
 const mockTechPayload = {
   branches: ['Agriculture', 'Industry', 'Terraforming', 'Social', 'Defense', 'Logistics'],
+  research_points: {
+    accrued: 375,
+  },
   techs: [
     {
       name: 'Stacked Nutrient Loops',
@@ -94,7 +97,7 @@ async function mockTechData(page, payload = mockTechPayload) {
       json: {
         history_year: 2075,
         partial_failures: [],
-        schema_version: 9,
+        schema_version: 10,
         senate_visible: false,
         synced_at: 'playwright-tech-overflow',
       },
@@ -217,4 +220,13 @@ test('Tech page shows whether each tech is active', async ({ page }) => {
     'Inactive',
   ]);
   await expect(page.locator('.tech-card.locked .tech-active-chip')).toHaveText('Inactive');
+});
+
+test('Tech page displays accrued research points from the workbook', async ({ page }) => {
+  await mockTechData(page);
+  await gotoWithTheme(page, 'light', '/#/tech');
+
+  const accruedTile = page.locator('.kpi-block', { hasText: 'RP Accrued' });
+  await expect(accruedTile).toBeVisible();
+  await expect(accruedTile).toContainText('375');
 });

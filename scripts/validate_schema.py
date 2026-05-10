@@ -125,6 +125,9 @@ SOFT_OPTIONAL_V3_RANGES: list[str] = [
     # missing → returns empty techs+branches lists, frontend renders an empty
     # state band on the /tech page).
     "TechTable",
+    # v10 — Accrued research points for the Tech page. Soft-optional so older
+    # workbooks render "—" until the named cell is added.
+    "AccruedResearchPoints",
     # v10 — Weekly hours worked from GoI Modifiers. Soft-optional because the
     # Demographics drilldown can show "—" while the GM workbook table is being
     # introduced or adjusted.
