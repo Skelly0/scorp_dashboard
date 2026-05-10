@@ -1,5 +1,11 @@
 {
-  "active": [],
+  "active": [
+    {
+      "crisis_factor": 0.5,
+      "description": "All contact with Earth has ceased. Something ominous has happened to Earth.",
+      "name": "The Lights Go Down"
+    }
+  ],
   "ended": [],
   "stability_modifiers": [],
   "tier_ladder": []
