@@ -648,6 +648,8 @@ def build(out_path: Path) -> Path:
     tech = wb.create_sheet("Tech & Institutions")
     tech["A1"] = "TECH & INSTITUTIONS"
     tech["F2"] = "These are kinda just examples"
+    tech["F1"], tech["G1"] = "Accrued Research Points:", 375
+    _add_name(wb, "AccruedResearchPoints", "'Tech & Institutions'!$G$1")
 
     tech_headers = [
         "Name", "Branch", "Tier", "Cost (RP)",

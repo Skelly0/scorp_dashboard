@@ -11,8 +11,21 @@ def test_extract_returns_techs_and_branches(wb):
     out = ex_tech.extract(wb)
     assert "techs" in out
     assert "branches" in out
+    assert "research_points" in out
     assert isinstance(out["techs"], list)
     assert isinstance(out["branches"], list)
+    assert isinstance(out["research_points"], dict)
+
+
+def test_extract_reads_accrued_research_points(wb):
+    out = ex_tech.extract(wb)
+    assert out["research_points"] == {"accrued": 375}
+
+
+def test_extract_sets_accrued_research_points_null_when_range_missing(wb):
+    del wb.defined_names["AccruedResearchPoints"]
+    out = ex_tech.extract(wb)
+    assert out["research_points"] == {"accrued": None}
 
 
 def test_extract_skips_blank_name_rows(wb):
@@ -86,7 +99,11 @@ def test_extract_branches_canonical_order(wb):
 def test_extract_returns_empty_when_range_missing(wb):
     del wb.defined_names["TechTable"]
     out = ex_tech.extract(wb)
-    assert out == {"techs": [], "branches": []}
+    assert out == {
+        "techs": [],
+        "branches": [],
+        "research_points": {"accrued": 375},
+    }
 
 
 def test_extract_logs_unknown_effect_type(wb, caplog):

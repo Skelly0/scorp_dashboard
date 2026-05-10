@@ -1,27 +1,37 @@
 import { writable, derived } from 'svelte/store';
 import { fetchPage } from '../data.js';
 
-// $tech is null until loaded; once loaded, always { techs, branches } even
-// when both arrays are empty. The page treats empty as the documented
-// "TechTable not named yet" state.
+// $tech is null until loaded; once loaded, always
+// { techs, branches, research_points } even when arrays are empty. The page
+// treats empty as the documented "TechTable not named yet" state.
 export const tech = writable(null);
 export const techError = writable(null);
+
+const EMPTY_RESEARCH_POINTS = { accrued: null };
+
+function normalizeResearchPoints(value) {
+  if (!value || typeof value !== 'object') return { ...EMPTY_RESEARCH_POINTS };
+  return {
+    accrued: Number.isFinite(value.accrued) ? value.accrued : null,
+  };
+}
 
 export async function loadTech(syncedAt) {
   try {
     const data = await fetchPage('tech', syncedAt);
     if (!data) {
       // 404 — sync hasn't written tech.json. Treat as empty.
-      tech.set({ techs: [], branches: [] });
+      tech.set({ techs: [], branches: [], research_points: { ...EMPTY_RESEARCH_POINTS } });
       return;
     }
     tech.set({
       techs: Array.isArray(data.techs) ? data.techs : [],
       branches: Array.isArray(data.branches) ? data.branches : [],
+      research_points: normalizeResearchPoints(data.research_points),
     });
   } catch (err) {
     techError.set(err.message);
-    tech.set({ techs: [], branches: [] });
+    tech.set({ techs: [], branches: [], research_points: { ...EMPTY_RESEARCH_POINTS } });
   }
 }
 

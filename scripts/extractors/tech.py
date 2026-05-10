@@ -9,8 +9,9 @@ Effect groups are anchored on the literal `Effect N - Target` header strings
 next two columns of each group as `Type` and `Mag`. Reordering across groups
 is safe; reordering within a group breaks the assumption.
 
-Soft-optional: missing range → returns {'techs': [], 'branches': []}, sync
-still succeeds, frontend renders an empty-state band.
+Soft-optional: missing TechTable → returns an empty tree, sync still succeeds,
+frontend renders an empty-state band. Missing AccruedResearchPoints → returns
+research_points.accrued as None.
 """
 from __future__ import annotations
 
@@ -18,7 +19,7 @@ import logging
 import re
 from typing import Any
 
-from extractors._common import coerce_number, read_named_range
+from extractors._common import coerce_number, read_named_range, scalar_named
 
 _log = logging.getLogger(__name__)
 
@@ -57,9 +58,10 @@ _EFFECT_TARGET_HEADER_RE = re.compile(
 
 
 def extract(wb) -> dict[str, Any]:
+    research_points = _research_points(wb)
     rows = read_named_range(wb, "TechTable")
     if not rows or len(rows) < 2:
-        return {"techs": [], "branches": []}
+        return {"techs": [], "branches": [], "research_points": research_points}
 
     header_row = [_norm_header(h) for h in rows[0]]
     effect_starts = _find_effect_starts(header_row)
@@ -136,7 +138,14 @@ def extract(wb) -> dict[str, Any]:
         techs.append(rec)
 
     branches = _order_branches(seen_branches)
-    return {"techs": techs, "branches": branches}
+    return {"techs": techs, "branches": branches, "research_points": research_points}
+
+
+def _research_points(wb) -> dict[str, int | float | None]:
+    accrued = scalar_named(wb, "AccruedResearchPoints")
+    if accrued is not None and accrued.is_integer():
+        accrued = int(accrued)
+    return {"accrued": accrued}
 
 
 def _norm_header(value: Any) -> str:
