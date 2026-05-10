@@ -3,7 +3,7 @@
   import { RESOURCE_CODES, FEATURE_CODES } from '../map-codes.js';
   import { categoryFor, getCategorySlug } from '../improvement-categories.js';
   import { catalog } from '../stores/catalog.js';
-  import { goiColor, classColor, CLASS_COLORS, CONTROL_COLORS } from '../faction-colors.js';
+  import { CLASS_COLORS, resolveControlColor } from '../faction-colors.js';
   import { labelForMetricKey } from '../map-metrics.js';
   import { ZOOM_DEFAULT, clampZoom, pinchMathStep } from '../map-zoom.js';
 
@@ -360,19 +360,7 @@
   }
 
   function controlColor(control, palettes = {}) {
-    if (!control) return null;
-    const paletteHit = palettes.control?.[control];
-    if (paletteHit) return paletteHit;
-    if (CONTROL_COLORS[control]) return CONTROL_COLORS[control];
-    // Try GoI palette first; fall back to class palette. Both helpers
-    // return 'var(--accent)' on miss — that string doesn't resolve in SVG
-    // presentation attributes (gotcha #14), so we filter it out and let
-    // the caller's ?? chain fall through to the category-palette colour.
-    const g = goiColor(control);
-    if (g !== 'var(--accent)') return g;
-    const c = classColor(control);
-    if (c !== 'var(--accent)') return c;
-    return null;
+    return resolveControlColor(control, palettes);
   }
 
   function handleClick(e) {

@@ -584,6 +584,39 @@
       ],
       "researched": false,
       "tier": 2
+    },
+    {
+      "available": false,
+      "branch": "Science",
+      "cost_rp": 460,
+      "description": "Focused sunlight and regolith catalysts recycle CO2 and trace water into lower-demand life-support loops.",
+      "effects": [
+        {
+          "mag": -0.1,
+          "target": "Hydroponic Bay",
+          "type": "upkeep",
+          "type_raw": "Upkeep"
+        },
+        {
+          "mag": -0.1,
+          "target": "Aeroponic Tower",
+          "type": "upkeep",
+          "type_raw": "Upkeep"
+        },
+        {
+          "mag": -0.1,
+          "target": "Algal Bioreactor",
+          "type": "upkeep",
+          "type_raw": "Upkeep"
+        }
+      ],
+      "name": "Regolith Photocatalysis",
+      "prereqs": [
+        "Lab Methodology",
+        "Solar Efficiency"
+      ],
+      "researched": false,
+      "tier": 2
     }
   ]
 }

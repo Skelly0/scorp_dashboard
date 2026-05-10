@@ -275,12 +275,14 @@ IMPROVEMENT_CATEGORY_PALETTE = {
 }
 
 CONTROL_PALETTE = {
-    "Administration": "#5ec3ff",
+    "Administration": "#38d39f",
     "Corporations": "#ffd84d",
+    "Unions": "#ff5544",
+    "Research": "#5ec3ff",
     "Founders": "#ffb000",
     "Capitalists": "#ffd84d",
     "Security": "#ff5544",
-    "Unionists": "#38d39f",
+    "Unionists": "#ff5544",
     "Faithful": "#c44dff",
     "Technocracy": "#5ec3ff",
     "Bureaucrats": "#ffb000",
