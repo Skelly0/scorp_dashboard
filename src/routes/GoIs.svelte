@@ -142,7 +142,7 @@
     </div>
 
     {#if $gois.pop_capture_matrix?.classes?.length && $gois.pop_capture_matrix?.gois?.length}
-      <Band num="02" title="Pop Capture Matrix" meta="class × GoI · captured pop" />
+      <Band num="02" title="GOI VALUE CAPTURED POP" meta="class × GoI · captured pop" />
       <div class="s-card s-card-pad">
         <Heatmap
           rowLabels={$gois.pop_capture_matrix.classes}
