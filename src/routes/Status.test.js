@@ -57,6 +57,25 @@ describe('Status page', () => {
     expect(screen.queryByText('0.96%')).toBeNull();
   });
 
+  test('shows projected growth rate from actual births and deaths', () => {
+    status.set({
+      ...baseStatus,
+      population_total: 92_000,
+      demographics: {
+        ...baseStatus.demographics,
+        total_births: 2046,
+        total_deaths: 1276,
+        net_delta_pct: -0.426956522,
+      },
+    });
+
+    render(Status);
+
+    const growthTile = statTileByLabel('Projected Growth');
+    expect(within(growthTile).getByText('+0.84%')).toBeTruthy();
+    expect(within(growthTile).queryByText('-0.43%')).toBeNull();
+  });
+
   test('uses Money resource as the headline instead of the colony resource total', () => {
     status.set({
       ...baseStatus,

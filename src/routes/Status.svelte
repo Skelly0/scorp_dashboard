@@ -19,6 +19,7 @@
   import {
     formatStatusPercent,
     populationDeltaFromStatus,
+    projectedGrowthRateFromStatus,
     statusMetricTone,
   } from '../lib/status-metrics.js';
 
@@ -32,9 +33,10 @@
     }
   });
 
-  // Use workbook's authoritative births-minus-deaths tally, not the estimated
-  // net_delta_pct rate surfaced in the Pulse row.
+  // Use workbook's authoritative births-minus-deaths tally for both the
+  // headline delta and the Pulse growth rate; net_delta_pct is an estimate.
   $: netDeltaPop = populationDeltaFromStatus($status);
+  $: projectedGrowthRate = projectedGrowthRateFromStatus($status);
 
   $: activeSituations = $status?.active_situations?.filter((s) => s.crisis_factor != null) ?? [];
   $: moneyResource = $status?.resources?.find((r) => String(r?.name ?? '').toLowerCase() === 'money') ?? null;
@@ -151,9 +153,9 @@
       />
       <StatTile
         label="Projected Growth"
-        value={$status.demographics?.net_delta_pct != null
-          ? ($status.demographics.net_delta_pct >= 0 ? '+' : '')
-            + $status.demographics.net_delta_pct.toFixed(2) + '%'
+        value={projectedGrowthRate != null
+          ? (projectedGrowthRate >= 0 ? '+' : '')
+            + projectedGrowthRate.toFixed(2) + '%'
           : '—'}
       />
       <StatTile

@@ -14,6 +14,18 @@ export function populationDeltaFromStatus(status) {
   return null;
 }
 
+export function projectedGrowthRateFromStatus(status) {
+  const demographics = status?.demographics;
+  const population = Number(status?.population_total);
+  if (!demographics || !Number.isFinite(population) || population <= 0) return null;
+
+  const births = Number(demographics.total_births);
+  const deaths = Number(demographics.total_deaths);
+  if (!Number.isFinite(births) || !Number.isFinite(deaths)) return null;
+
+  return ((births - deaths) / population) * 100;
+}
+
 export function formatStatusPercent(value) {
   if (value == null) return '—';
   const number = Number(value);
