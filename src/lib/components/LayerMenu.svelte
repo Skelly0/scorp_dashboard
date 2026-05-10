@@ -20,6 +20,11 @@
   let popupEl;
 
   $: if (activeKey) lastUsedSub = activeKey;
+  $: if (!activeKey && !options.some((opt) => opt.key === lastUsedSub)) {
+    lastUsedSub = options.some((opt) => opt.key === defaultKey)
+      ? defaultKey
+      : options[0]?.key ?? defaultKey;
+  }
 
   $: activeOption = activeKey ? options.find((o) => o.key === activeKey) : null;
   $: triggerLabel = activeOption ? `${label} · ${activeOption.label}` : label;
@@ -30,6 +35,7 @@
       open = !open;
     } else {
       // Not active — first click selects lastUsedSub without opening the popup.
+      if (!lastUsedSub) return;
       dispatch('select', { layerId: `${category}:${lastUsedSub}` });
     }
   }

@@ -141,6 +141,61 @@ test.describe('Map page — control layer', () => {
 });
 
 test.describe('Map page — detail values', () => {
+  test('Upkeep menu lists upkeep resources from map data', async ({ page }) => {
+    await page.route('**/data/map.json*', async (route) => {
+      await route.fulfill({
+        json: {
+          available_categories: { staffing: false, upkeep: true, workforce: true },
+          height: 1,
+          width: 1,
+          missing_sheets: [],
+          palettes: {
+            terrain: { Plain: '#333333' },
+            resource: {},
+            feature: {},
+            improvement_category: {},
+            control: {},
+          },
+          tiles: [
+            {
+              x: 0,
+              y: 0,
+              terrain: 'Plain',
+              feature: null,
+              resource: null,
+              slots: 0,
+              improvement: null,
+              control: null,
+              yields: { food: 0 },
+              upkeep: {
+                energy: 7,
+                money: 12,
+                helium3: 3,
+              },
+              workforce: { Engineers: 44 },
+              staffing: null,
+            },
+          ],
+        },
+      });
+    });
+
+    await page.goto('/#/map');
+    await page.waitForLoadState('networkidle');
+
+    const upkeepTrigger = page.getByRole('button', { name: /^Upkeep/ });
+    await upkeepTrigger.click();
+    await upkeepTrigger.click();
+
+    await expect(page.getByRole('menuitem', { name: 'Energy' })).toBeVisible();
+    await expect(page.getByRole('menuitem', { name: 'Money' })).toBeVisible();
+    await expect(page.getByRole('menuitem', { name: 'Helium-3' })).toBeVisible();
+
+    await page.getByRole('menuitem', { name: 'Money' }).click();
+    await expect(upkeepTrigger).toContainText('Money');
+    await expect(page.locator('text=/money upkeep/i').first()).toBeVisible();
+  });
+
   test('truncates yield decimals in the tile detail box', async ({ page }) => {
     await page.route('**/data/map.json*', async (route) => {
       await route.fulfill({

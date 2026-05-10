@@ -17,14 +17,19 @@ YIELD_SHEETS = {
     "water": "Yield - Water",
 }
 
-UPKEEP_SHEETS = {
-    "food": "Upkeep - Food",
-    "materials": "Upkeep - Materials",
-    "ore": "Upkeep - Ore",
-    "energy": "Upkeep - Energy",
-    "housing": "Upkeep - Housing",
-    "water": "Upkeep - Water",
+UPKEEP_SHEET_CANDIDATES = {
+    "energy": ("Upkeep Energy", "Upkeep - Energy"),
+    "materials": ("Upkeep Materials", "Upkeep - Materials"),
+    "money": ("Upkeep Money", "Upkeep - Money"),
+    "ore": ("Upkeep Ore", "Upkeep - Ore"),
+    "water": ("Upkeep Water", "Upkeep - Water"),
+    "helium3": ("Upkeep Helium-3", "Upkeep Helium 3", "Upkeep - Helium-3", "Upkeep - Helium 3"),
+    # Legacy optional sheets from the first map-metrics pass. Keep reading them
+    # when present, but don't report them as missing on the live workbook.
+    "food": ("Upkeep - Food",),
+    "housing": ("Upkeep - Housing",),
 }
+LEGACY_UPKEEP_KEYS = {"food", "housing"}
 
 
 def extract(wb) -> dict[str, Any]:
@@ -43,22 +48,31 @@ def extract(wb) -> dict[str, Any]:
             missing_sheets.append({"kind": "missing_sheet", "sheet": sheet_name})
         return grid
 
+    def _read_optional_grid(sheet_names: tuple[str, ...], *, report_missing: bool = True):
+        for sheet_name in sheet_names:
+            grid = read_grid_optional(wb, sheet_name, WIDTH, HEIGHT)
+            if grid is not None:
+                return grid
+        if report_missing:
+            missing_sheets.append({"kind": "missing_sheet", "sheet": sheet_names[0]})
+        return None
+
     staffing_grid = _track("Staffing Efficiency", read_grid_optional(wb, "Staffing Efficiency", WIDTH, HEIGHT))
     upkeep_grids = {
-        key: _track(sheet, read_grid_optional(wb, sheet, WIDTH, HEIGHT))
-        for key, sheet in UPKEEP_SHEETS.items()
+        key: _read_optional_grid(sheets, report_missing=key not in LEGACY_UPKEEP_KEYS)
+        for key, sheets in UPKEEP_SHEET_CANDIDATES.items()
     }
     upkeep_present = {key: g for key, g in upkeep_grids.items() if g is not None}
 
     # Workforce: read class names from ClassTable (same source pops.py uses) and
-    # try to read a Workforce - <name> sheet for each. Missing → silent skip on
+    # try to read a Workforce <name> sheet for each. Missing → silent skip on
     # tile data, but recorded in missing_sheets so the frontend can surface it.
     classtable = read_named_range(wb, "ClassTable")
-    class_names = [row[0] for row in classtable if row and row[0] not in (None, "")]
+    class_names = [str(row[0]) for row in classtable if row and row[0] not in (None, "", "Name")]
     workforce_grids = {}
     for name in class_names:
-        sheet_name = f"Workforce - {name}"
-        grid = _track(sheet_name, read_grid_optional(wb, sheet_name, WIDTH, HEIGHT))
+        sheet_names = (f"Workforce {name}", f"Workforce - {name}")
+        grid = _read_optional_grid(sheet_names)
         if grid is not None:
             workforce_grids[name] = grid
 
