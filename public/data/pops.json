@@ -8,7 +8,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 121.0,
+      "births_per_turn": 116.0,
       "deaths_per_turn": 58.0,
       "expected_sol": 21.0,
       "income": {
@@ -25,7 +25,7 @@
       "mortality_rate": 0.01118287384,
       "name": "Bureaucrats",
       "pop": 5225,
-      "satisfaction": 0.3193444332,
+      "satisfaction": 0.2835285976,
       "satisfaction_breakdown": {
         "employment": 0.7925393712,
         "entertainment": 0.7168297101,
@@ -33,9 +33,9 @@
         "food": 0.9078925075,
         "housing": 0.9661956522,
         "ownership": 0.3047619048,
-        "safety": 0.5643066834,
+        "safety": 0.4859310503,
         "services": 0.679676547,
-        "situations": 0.6201872649,
+        "situations": 0.4096135575,
         "tax": 0.64,
         "wages": 0.4
       },
@@ -45,7 +45,7 @@
         "abject_poverty": 0.0,
         "literacy": 0.34,
         "organisation": 0.436,
-        "radicalisation": 0.1244502321,
+        "radicalisation": 0.1530055976,
         "vote_share": 0.07115969886,
         "votes_total": 1777.0
       },
@@ -70,7 +70,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 46.0,
+      "births_per_turn": 44.0,
       "deaths_per_turn": 22.0,
       "expected_sol": 36.0,
       "income": {
@@ -87,7 +87,7 @@
       "mortality_rate": 0.01076057214,
       "name": "Capitalists",
       "pop": 2025,
-      "satisfaction": 0.2805606651,
+      "satisfaction": 0.2540401485,
       "satisfaction_breakdown": {
         "employment": 0.795288839,
         "entertainment": 0.8148689258,
@@ -95,9 +95,9 @@
         "food": 1.0,
         "housing": 0.9763369565,
         "ownership": 0.4,
-        "safety": 0.538623408,
+        "safety": 0.4604181567,
         "services": 0.8335213965,
-        "situations": 0.6581685384,
+        "situations": 0.4686522017,
         "tax": 0.424,
         "wages": 0.4583333333
       },
@@ -107,7 +107,7 @@
         "abject_poverty": 0.0,
         "literacy": 0.38,
         "organisation": 0.484,
-        "radicalisation": 0.0832506385,
+        "radicalisation": 0.1118060041,
         "vote_share": 0.03083453468,
         "votes_total": 770.0
       },
@@ -132,7 +132,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 133.0,
+      "births_per_turn": 128.0,
       "deaths_per_turn": 74.0,
       "expected_sol": 16.0,
       "income": {
@@ -149,7 +149,7 @@
       "mortality_rate": 0.01303450436,
       "name": "Engineers",
       "pop": 5700,
-      "satisfaction": 0.3467096829,
+      "satisfaction": 0.318849031,
       "satisfaction_breakdown": {
         "employment": 0.5833333333,
         "entertainment": 0.6655476589,
@@ -157,9 +157,9 @@
         "food": 1.0,
         "housing": 0.9702521739,
         "ownership": 0.4,
-        "safety": 0.5779721913,
+        "safety": 0.496188922,
         "services": 0.8708576022,
-        "situations": 0.6201872649,
+        "situations": 0.4096135575,
         "tax": 0.76,
         "wages": 0.5
       },
@@ -169,7 +169,7 @@
         "abject_poverty": 0.0,
         "literacy": 0.36,
         "organisation": 0.444,
-        "radicalisation": 0.1131282633,
+        "radicalisation": 0.1416836289,
         "vote_share": 0.08217203268,
         "votes_total": 2052.0
       },
@@ -194,7 +194,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 200.0,
+      "births_per_turn": 192.0,
       "deaths_per_turn": 106.0,
       "expected_sol": 18.0,
       "income": {
@@ -211,7 +211,7 @@
       "mortality_rate": 0.01237465796,
       "name": "Scientists",
       "pop": 8550,
-      "satisfaction": 0.3568809061,
+      "satisfaction": 0.3284272646,
       "satisfaction_breakdown": {
         "employment": 0.6066903193,
         "entertainment": 0.6930201863,
@@ -219,9 +219,9 @@
         "food": 0.962366058,
         "housing": 0.968223913,
         "ownership": 0.3715555556,
-        "safety": 0.5779721913,
+        "safety": 0.496188922,
         "services": 0.8583188058,
-        "situations": 0.6201872649,
+        "situations": 0.4096135575,
         "tax": 0.784,
         "wages": 0.5
       },
@@ -231,7 +231,7 @@
         "abject_poverty": 0.0,
         "literacy": 0.38,
         "organisation": 0.452,
-        "radicalisation": 0.117687062,
+        "radicalisation": 0.1462424276,
         "vote_share": 0.1301057184,
         "votes_total": 3249.0
       },
@@ -256,7 +256,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 110.0,
+      "births_per_turn": 106.0,
       "deaths_per_turn": 55.0,
       "expected_sol": 12.0,
       "income": {
@@ -273,7 +273,7 @@
       "mortality_rate": 0.01154020604,
       "name": "Security",
       "pop": 4750,
-      "satisfaction": 0.3307271314,
+      "satisfaction": 0.3188203615,
       "satisfaction_breakdown": {
         "employment": 0.7388888889,
         "entertainment": 0.6865266798,
@@ -281,9 +281,9 @@
         "food": 0.7989454066,
         "housing": 0.9621391304,
         "ownership": 0.4,
-        "safety": 0.2202564702,
+        "safety": 0.1902692714,
         "services": 0.9533941853,
-        "situations": 0.848074906,
+        "situations": 0.763845423,
         "tax": 0.76,
         "wages": 0.3166666667
       },
@@ -293,7 +293,7 @@
         "abject_poverty": 0.05,
         "literacy": 0.26,
         "organisation": 0.389,
-        "radicalisation": 0.1374376775,
+        "radicalisation": 0.165993043,
         "vote_share": 0.04945539004,
         "votes_total": 1235.0
       },
@@ -318,7 +318,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 83.0,
+      "births_per_turn": 80.0,
       "deaths_per_turn": 41.0,
       "expected_sol": 14.0,
       "income": {
@@ -335,7 +335,7 @@
       "mortality_rate": 0.01138996409,
       "name": "Proprietors",
       "pop": 3600,
-      "satisfaction": 0.3141096068,
+      "satisfaction": 0.2889569296,
       "satisfaction_breakdown": {
         "employment": 0.5006954103,
         "entertainment": 0.7427738728,
@@ -343,9 +343,9 @@
         "food": 1.0,
         "housing": 0.9722804348,
         "ownership": 0.4,
-        "safety": 0.5140254936,
+        "safety": 0.4419539875,
         "services": 1.0,
-        "situations": 0.6581685384,
+        "situations": 0.4686522017,
         "tax": 0.64,
         "wages": 0.4142857143
       },
@@ -355,7 +355,7 @@
         "abject_poverty": 0.0,
         "literacy": 0.3,
         "organisation": 0.42,
-        "radicalisation": 0.1239562699,
+        "radicalisation": 0.1525116355,
         "vote_share": 0.04324843825,
         "votes_total": 1080.0
       },
@@ -380,7 +380,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 72.0,
+      "births_per_turn": 69.0,
       "deaths_per_turn": 32.0,
       "expected_sol": 16.0,
       "income": {
@@ -397,7 +397,7 @@
       "mortality_rate": 0.01031898262,
       "name": "Managerial",
       "pop": 3100,
-      "satisfaction": 0.3486691208,
+      "satisfaction": 0.3210789606,
       "satisfaction_breakdown": {
         "employment": 0.7601844026,
         "entertainment": 0.6655476589,
@@ -405,9 +405,9 @@
         "food": 1.0,
         "housing": 0.9743086957,
         "ownership": 0.4,
-        "safety": 0.5779721913,
+        "safety": 0.496188922,
         "services": 0.9737114661,
-        "situations": 0.6201872649,
+        "situations": 0.4096135575,
         "tax": 0.712,
         "wages": 0.5
       },
@@ -417,7 +417,7 @@
         "abject_poverty": 0.0,
         "literacy": 0.36,
         "organisation": 0.444,
-        "radicalisation": 0.06742849407,
+        "radicalisation": 0.09598385966,
         "vote_share": 0.04469005286,
         "votes_total": 1116.0
       },
@@ -442,7 +442,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 171.0,
+      "births_per_turn": 163.0,
       "deaths_per_turn": 83.0,
       "expected_sol": 16.0,
       "income": {
@@ -459,7 +459,7 @@
       "mortality_rate": 0.01140519132,
       "name": "Botanists",
       "pop": 7300,
-      "satisfaction": 0.3486129335,
+      "satisfaction": 0.3156005543,
       "satisfaction_breakdown": {
         "employment": 0.8176,
         "entertainment": 0.6655476589,
@@ -467,9 +467,9 @@
         "food": 0.8534189571,
         "housing": 0.9641673913,
         "ownership": 0.399,
-        "safety": 0.6432854399,
+        "safety": 0.5514496437,
         "services": 0.8452302704,
-        "situations": 0.5822059914,
+        "situations": 0.3505749132,
         "tax": 0.784,
         "wages": 0.5
       },
@@ -479,7 +479,7 @@
         "abject_poverty": 0.0,
         "literacy": 0.36,
         "organisation": 0.444,
-        "radicalisation": 0.1084441354,
+        "radicalisation": 0.136999501,
         "vote_share": 0.1052378664,
         "votes_total": 2628.0
       },
@@ -504,7 +504,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 398.0,
+      "births_per_turn": 381.0,
       "deaths_per_turn": 279.0,
       "expected_sol": 9.0,
       "income": {
@@ -521,7 +521,7 @@
       "mortality_rate": 0.01620176711,
       "name": "Industrial Workers",
       "pop": 17250,
-      "satisfaction": 0.3027801538,
+      "satisfaction": 0.2686659122,
       "satisfaction_breakdown": {
         "employment": 0.503649635,
         "entertainment": 0.5501630435,
@@ -529,9 +529,9 @@
         "food": 0.6899983057,
         "housing": 0.9580826087,
         "ownership": 0.4,
-        "safety": 0.6935666296,
+        "safety": 0.5954267065,
         "services": 0.8695367833,
-        "situations": 0.5442247179,
+        "situations": 0.291536269,
         "tax": 0.88,
         "wages": 0.5
       },
@@ -541,7 +541,7 @@
         "abject_poverty": 0.0,
         "literacy": 0.22,
         "organisation": 0.388,
-        "radicalisation": 0.2448478862,
+        "radicalisation": 0.2734032518,
         "vote_share": 0.1519702066,
         "votes_total": 3795.0
       },
@@ -566,7 +566,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 432.0,
+      "births_per_turn": 413.0,
       "deaths_per_turn": 321.0,
       "expected_sol": 9.0,
       "income": {
@@ -583,7 +583,7 @@
       "mortality_rate": 0.01735903619,
       "name": "Extraction Workers",
       "pop": 18500,
-      "satisfaction": 0.3429281745,
+      "satisfaction": 0.3083909161,
       "satisfaction_breakdown": {
         "employment": 0.799382716,
         "entertainment": 0.5501630435,
@@ -591,9 +591,9 @@
         "food": 0.7444718562,
         "housing": 0.9601108696,
         "ownership": 0.4,
-        "safety": 0.7099652392,
+        "safety": 0.6077361526,
         "services": 0.8894362093,
-        "situations": 0.5442247179,
+        "situations": 0.291536269,
         "tax": 0.88,
         "wages": 0.5
       },
@@ -603,7 +603,7 @@
         "abject_poverty": 0.0,
         "literacy": 0.22,
         "organisation": 0.452,
-        "radicalisation": 0.1905222947,
+        "radicalisation": 0.2190776603,
         "vote_share": 0.1629825404,
         "votes_total": 4070.0
       },
@@ -628,7 +628,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 370.0,
+      "births_per_turn": 354.0,
       "deaths_per_turn": 205.0,
       "expected_sol": 9.0,
       "income": {
@@ -645,7 +645,7 @@
       "mortality_rate": 0.01284162618,
       "name": "Service Workers",
       "pop": 16000,
-      "satisfaction": 0.3142659105,
+      "satisfaction": 0.2819782236,
       "satisfaction_breakdown": {
         "employment": 0.7,
         "entertainment": 0.5501630435,
@@ -653,9 +653,9 @@
         "food": 0.6355247553,
         "housing": 0.9560543478,
         "ownership": 0.4,
-        "safety": 0.6853673248,
+        "safety": 0.5892719834,
         "services": 0.8257539942,
-        "situations": 0.5442247179,
+        "situations": 0.291536269,
         "tax": 0.88,
         "wages": 0.5
       },
@@ -665,7 +665,7 @@
         "abject_poverty": 0.0,
         "literacy": 0.2,
         "organisation": 0.38,
-        "radicalisation": 0.1688596634,
+        "radicalisation": 0.197415029,
         "vote_share": 0.1281435207,
         "votes_total": 3200.0
       },
