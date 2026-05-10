@@ -12,6 +12,7 @@
     avgSatHistory, populationDeltaHistory,
   } from '../lib/stores/history.js';
   import { pageTitle } from '../lib/page-title.js';
+  import { statusMetricTone } from '../lib/status-metrics.js';
   import { classColor } from '../lib/faction-colors.js';
   import Band from '../lib/components/Band.svelte';
   import KpiBlock from '../lib/components/KpiBlock.svelte';
@@ -59,6 +60,8 @@
   $: predictedGrowthDisplay = predictedGrowth == null
     ? null
     : (predictedGrowth >= 0 ? '+' : '') + predictedGrowth.toLocaleString() + ' / year';
+
+  $: avgSatisfactionTone = statusMetricTone($demographics?.totals?.avg_satisfaction);
 
   // Workforce fill from derived store.
   $: workforceFill = $workforce?.fillRatio;
@@ -134,7 +137,7 @@
         label="Avg Satisfaction"
         value={$demographics.totals.avg_satisfaction?.toFixed(2) ?? '—'}
         history={$avgSatHistory.length >= 2 ? $avgSatHistory : null}
-        good
+        tone={avgSatisfactionTone}
       />
       <KpiBlock
         label="Available Housing"

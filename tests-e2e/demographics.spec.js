@@ -23,6 +23,21 @@ test.describe('Demographics page — workforce rework', () => {
     await expect(band01.locator('text=Total Deaths')).toHaveCount(0);
   });
 
+  test('Avg Satisfaction tone follows the 0 to 1 satisfaction scale', async ({ page }) => {
+    const tile = page.locator('.kpi-block').filter({ hasText: 'Avg Satisfaction' });
+    const num = tile.locator('.kpi-num');
+    const value = await page.evaluate(async () => {
+      const response = await fetch('/data/demographics.json');
+      const data = await response.json();
+      return data.totals.avg_satisfaction;
+    });
+    const expected = value < 0.33 ? 'crit' : value < 0.66 ? 'warn' : 'good';
+
+    expect(Number.isFinite(value)).toBe(true);
+    await expect(tile).toHaveClass(new RegExp(`\\btone-${expected}\\b`));
+    await expect(num).toHaveClass(new RegExp(`\\b${expected}\\b`));
+  });
+
   test('Available Housing shows count and "% free" subtitle', async ({ page }) => {
     const tile = page.locator('.kpi-block').filter({ hasText: 'Available Housing' });
     await expect(tile).toBeVisible();
