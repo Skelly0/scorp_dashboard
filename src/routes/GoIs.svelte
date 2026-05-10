@@ -7,6 +7,7 @@
   import Band from '../lib/components/Band.svelte';
   import RadarChart from '../lib/components/RadarChart.svelte';
   import Heatmap from '../lib/components/Heatmap.svelte';
+  import MadIndex from '../lib/components/MadIndex.svelte';
   import Tag from '../lib/components/Tag.svelte';
   import SubFactionPanel from '../lib/components/SubFactionPanel.svelte';
   import { WORLDVIEW_AXES as AXES, AXIS_HIGH_LABELS } from '../lib/worldview.js';
@@ -94,8 +95,7 @@
                   </div>
                 </div>
                 <div>
-                  <div class="text-muted text-[9px] uppercase tracking-widest">MAD</div>
-                  <div class="font-extrabold text-lg tnum">{g.mad_index?.toFixed(2) ?? '—'}</div>
+                  <MadIndex value={g.mad_index} compact />
                 </div>
               </div>
 

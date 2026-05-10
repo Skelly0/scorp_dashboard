@@ -9,6 +9,7 @@
   import Band from '../lib/components/Band.svelte';
   import RadarChart from '../lib/components/RadarChart.svelte';
   import Heatmap from '../lib/components/Heatmap.svelte';
+  import MadIndex from '../lib/components/MadIndex.svelte';
   import { WORLDVIEW_AXES as AXES, AXIS_HIGH_LABELS } from '../lib/worldview.js';
 
   onMount(() => {
@@ -53,8 +54,7 @@
                 <div class="font-extrabold text-base tnum">{p.vote_share != null ? Math.round(p.vote_share * 100) + '%' : '—'}</div>
               </div>
               <div>
-                <div class="text-muted text-[9px] uppercase tracking-widest">MAD Index</div>
-                <div class="font-extrabold text-base tnum">{p.mad_index?.toFixed(2) ?? '—'}</div>
+                <MadIndex value={p.mad_index} />
               </div>
             </div>
             <div class="party-radar-frame">
