@@ -162,6 +162,19 @@ def test_upkeep_present_when_all_sheets_exist(wb):
     assert tile["upkeep"]["water"] == pytest.approx(1.5)
 
 
+def test_upkeep_reads_live_sheet_names_without_dash(wb):
+    for s in [name for name in wb.sheetnames if name.startswith("Upkeep - ")]:
+        wb.remove(wb[s])
+    ws = wb.create_sheet("Upkeep Energy")
+    ws.cell(row=10, column=10, value=7.5)
+
+    out = extract(wb)
+
+    assert out["available_categories"]["upkeep"] is True
+    tile = next(t for t in out["tiles"] if t["x"] == 9 and t["y"] == 9)
+    assert tile["upkeep"]["energy"] == pytest.approx(7.5)
+
+
 def test_upkeep_absent_when_all_sheets_missing(wb):
     for r in ["Food", "Water", "Energy", "Materials", "Ore", "Housing"]:
         wb.remove(wb[f"Upkeep - {r}"])
@@ -194,6 +207,19 @@ def test_workforce_present_when_classtable_and_sheets_exist(wb):
     assert "Engineers" not in (tile_zero["workforce"] or {})
 
 
+def test_workforce_reads_live_sheet_names_without_dash(wb):
+    for s in [name for name in wb.sheetnames if name.startswith("Workforce - ")]:
+        wb.remove(wb[s])
+    ws = wb.create_sheet("Workforce Engineers")
+    ws.cell(row=10, column=10, value=44)
+
+    out = extract(wb)
+
+    assert out["available_categories"]["workforce"] is True
+    tile = next(t for t in out["tiles"] if t["x"] == 9 and t["y"] == 9)
+    assert tile["workforce"]["Engineers"] == 44
+
+
 def test_workforce_absent_when_all_workforce_sheets_missing(wb):
     workforce_sheets = [s for s in wb.sheetnames if s.startswith("Workforce - ")]
     for s in workforce_sheets:
@@ -218,16 +244,14 @@ def test_missing_sheets_reported_in_map_output(wb):
     out = extract(wb)
     sheets_missed = {f["sheet"] for f in out["missing_sheets"]}
     assert "Staffing Efficiency" in sheets_missed
-    assert "Upkeep - Ore" in sheets_missed
+    assert "Upkeep Ore" in sheets_missed
     for f in out["missing_sheets"]:
         assert f["kind"] == "missing_sheet"
 
 
 def test_missing_sheets_includes_truncated_workforce_class(wb):
-    """The fixture pre-truncates one Workforce sheet to 31 chars; extractor looks
-    for the full name and should record it as missing."""
+    """The fixture pre-truncates one legacy Workforce sheet to 31 chars; extractor
+    looks for the live/full names and should record it as missing."""
     out = extract(wb)
     missing = {f["sheet"] for f in out["missing_sheets"]}
-    # The truncated class is "Agricultural Workers" — full sheet name is missing
-    # because the fixture stored it under the 31-char-truncated form.
-    assert "Workforce - Agricultural Workers" in missing
+    assert "Workforce Agricultural Workers" in missing

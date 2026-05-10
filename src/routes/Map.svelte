@@ -7,6 +7,7 @@
   import { getCategorySlug, CATEGORIES } from '../lib/improvement-categories.js';
   import { catalog } from '../lib/stores/catalog.js';
   import { RESOURCE_CODES, FEATURE_CODES } from '../lib/map-codes.js';
+  import { labelForMetricKey, optionsFromMetricKeys, YIELD_ORDER, UPKEEP_ORDER } from '../lib/map-metrics.js';
   import {
     ZOOM_MIN,
     ZOOM_MAX,
@@ -37,15 +38,20 @@
   let isMobileInspector = false;
   let filters = { resource: null, feature: null, improvement: null };
 
-  const YIELD_OPTIONS = [
-    { key: 'food',     label: 'Food' },
-    { key: 'water',    label: 'Water' },
-    { key: 'energy',   label: 'Energy' },
-    { key: 'materials',label: 'Materials' },
-    { key: 'ore',      label: 'Ore' },
-    { key: 'housing',  label: 'Housing' },
-  ];
-  const UPKEEP_OPTIONS = YIELD_OPTIONS;  // same set of resources
+  function collectTileMetricKeys(mapData, field) {
+    if (!mapData) return [];
+    const keys = new Set();
+    for (const tile of mapData.tiles) {
+      const metric = tile[field];
+      if (metric) for (const key of Object.keys(metric)) keys.add(key);
+    }
+    return [...keys];
+  }
+
+  function defaultOptionKey(options, preferred, fallback) {
+    if (options.some((opt) => opt.key === preferred)) return preferred;
+    return options[0]?.key ?? fallback;
+  }
 
   $: parsedLayer = (() => {
     if (!layer || !layer.includes(':')) return { category: layer, key: null };
@@ -57,6 +63,8 @@
     lastSubByCategory[parsedLayer.category] = parsedLayer.key;
   }
 
+  $: yieldOptions = optionsFromMetricKeys(collectTileMetricKeys($map, 'yields'), YIELD_ORDER);
+  $: upkeepOptions = optionsFromMetricKeys(collectTileMetricKeys($map, 'upkeep'), UPKEEP_ORDER);
   $: workforceOptions = (() => {
     if (!$map) return [];
     const present = new Set();
@@ -65,6 +73,9 @@
     }
     return [...present].sort().map((k) => ({ key: k, label: k }));
   })();
+  $: defaultYieldKey = defaultOptionKey(yieldOptions, lastSubByCategory.yield, 'food');
+  $: defaultUpkeepKey = defaultOptionKey(upkeepOptions, lastSubByCategory.upkeep, 'energy');
+  $: defaultWorkforceKey = defaultOptionKey(workforceOptions, lastSubByCategory.workforce, 'Engineers');
 
   $: activeFilterCount = (filters.resource ? 1 : 0) + (filters.feature ? 1 : 0) + (filters.improvement ? 1 : 0);
   $: matchedTiles = $map ? $map.tiles.filter(t => tileMatchesFilters(t, filters)) : [];
@@ -96,17 +107,6 @@
 
   $: t = pinnedTile ?? hoverTile;
   $: nameplate = t?.improvement ? resolveImprovementRow(t.improvement.name, $catalog) : null;
-
-  function truncateDecimal(value, places = 2) {
-    const n = Number(value);
-    if (!Number.isFinite(n)) return value;
-    const factor = 10 ** places;
-    return Math.trunc(n * factor) / factor;
-  }
-
-  function formatYieldValue(value) {
-    return `${value > 0 ? '+' : ''}${truncateDecimal(value, 2)}`;
-  }
 
   onMount(() => {
     pageTitle.set('Map');
@@ -161,30 +161,30 @@
         <LayerMenu
           label="Yields"
           category="yield"
-          options={YIELD_OPTIONS}
+          options={yieldOptions}
           activeKey={parsedLayer.category === 'yield' ? parsedLayer.key : null}
-          defaultKey={lastSubByCategory.yield}
+          defaultKey={defaultYieldKey}
           on:select={(e) => selectLayer(e.detail.layerId)}
         />
 
-        {#if $map?.available_categories?.upkeep}
+        {#if $map?.available_categories?.upkeep && upkeepOptions.length > 0}
           <LayerMenu
             label="Upkeep"
             category="upkeep"
-            options={UPKEEP_OPTIONS}
+            options={upkeepOptions}
             activeKey={parsedLayer.category === 'upkeep' ? parsedLayer.key : null}
-            defaultKey={lastSubByCategory.upkeep}
+            defaultKey={defaultUpkeepKey}
             on:select={(e) => selectLayer(e.detail.layerId)}
           />
         {/if}
 
-        {#if $map?.available_categories?.workforce}
+        {#if $map?.available_categories?.workforce && workforceOptions.length > 0}
           <LayerMenu
             label="Workforce"
             category="workforce"
             options={workforceOptions}
             activeKey={parsedLayer.category === 'workforce' ? parsedLayer.key : null}
-            defaultKey={lastSubByCategory.workforce}
+            defaultKey={defaultWorkforceKey}
             on:select={(e) => selectLayer(e.detail.layerId)}
           />
         {/if}
@@ -328,8 +328,8 @@
     <div class="text-muted text-[10px] uppercase tracking-widest mt-3">
       ▣ Improvement · ↗ Resource · ↖ Feature · Color =
       {#if layer === 'terrain'}biome
-      {:else if parsedLayer.category === 'yield'}{parsedLayer.key} yield magnitude
-      {:else if parsedLayer.category === 'upkeep'}{parsedLayer.key} upkeep magnitude
+      {:else if parsedLayer.category === 'yield'}{labelForMetricKey(parsedLayer.key)} yield magnitude
+      {:else if parsedLayer.category === 'upkeep'}{labelForMetricKey(parsedLayer.key)} upkeep magnitude
       {:else if parsedLayer.category === 'workforce'}{parsedLayer.key} count
       {:else if parsedLayer.category === 'staffing'}staffing efficiency (red→amber→green)
       {:else if layer === 'control'}control
