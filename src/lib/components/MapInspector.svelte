@@ -109,7 +109,7 @@
 
     {#if tile.workforce && Object.keys(tile.workforce).length > 0}
       <div class="kv-section">
-        <h4>Workforce</h4>
+        <h4>Workforce Demand</h4>
         {#each Object.entries(tile.workforce).sort(([, a], [, b]) => b - a) as [name, count]}
           <div class="workforce-row">
             <span class="swatch" style="background: {classColor(name)}"></span>

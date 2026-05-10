@@ -18,7 +18,7 @@ test.describe('Map overlay system', () => {
   test('shows the core layer tabs and overlay buttons', async ({ page }) => {
     // Post-refactor: tab strip composed of single buttons + LayerMenu triggers.
     // Required tabs: Terrain, Yields (menu), Resources/Features/Improvements.
-    // Optional tabs (gated on available_categories): Upkeep, Workforce, Staffing.
+    // Optional tabs (gated on available_categories): Upkeep, Workforce Demand, Staffing.
     await expect(page.getByRole('button', { name: /^Terrain$/ })).toBeVisible();
     await expect(page.getByRole('button', { name: /^Yields/ })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Resources' })).toBeVisible();
