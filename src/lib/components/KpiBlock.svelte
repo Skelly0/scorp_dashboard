@@ -7,6 +7,7 @@
   export let suffix = '';
   export let subtitle = null;
   export let delta = null;
+  export let details = [];
   export let critical = false;
   export let good = false;
   export let tone = null;
@@ -27,6 +28,7 @@
   $: numClass = resolvedTone ? `kpi-num ${resolvedTone}` : 'kpi-num';
   $: resolvedSparkColor = sparkColor ?? TONE_COLORS[resolvedTone] ?? 'var(--accent)';
   $: displayValue = value == null ? '—' : value;
+  $: visibleDetails = Array.isArray(details) ? details.filter((detail) => detail?.text) : [];
 </script>
 
 <div class={blockClass} class:critical>
@@ -36,6 +38,11 @@
     <div class="kpi-subtitle">{subtitle}</div>
   {/if}
   <div class="kpi-foot">
+    {#each visibleDetails as detail, i (detail.key ?? `${detail.text}:${i}`)}
+      <span class="flow-detail" class:good={detail.tone === 'good'} class:crit={detail.tone === 'crit'}>
+        {detail.text}
+      </span>
+    {/each}
     {#if delta != null}
       <span class={deltaClass}>{deltaSign} {delta > 0 ? '+' : ''}{delta}</span>
     {/if}
