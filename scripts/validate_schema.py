@@ -58,6 +58,7 @@ BASE_REQUIRED_RANGES: list[str] = [
     # GoI Benefits + Pop Capture
     "GoIBenefitsTable",
     "PopCaptureBase",
+    "GoIValueCapturedPop",
     # Note: Treasury / Resources / Parties / Coalitions / Terrain palette
     # are read via direct cell references (no named ranges in the live workbook).
     # v3 — Status colony vitals
