@@ -6,6 +6,7 @@ import pytest
 from validate_schema import (
     BASE_REQUIRED_RANGES,
     SENATE_REQUIRED_RANGES,
+    SOFT_OPTIONAL_V3_RANGES,
     SchemaValidationError,
     validate,
 )
@@ -40,6 +41,10 @@ def test_senate_required_ranges_is_empty_by_design():
     validate_schema.py:81 comment). If this changes, update the senate
     handling in validate() and the relevant extractor docs."""
     assert SENATE_REQUIRED_RANGES == []
+
+
+def test_weekly_hours_table_is_documented_soft_optional():
+    assert "WeeklyHoursWorkedTable" in SOFT_OPTIONAL_V3_RANGES
 
 
 def test_validate_with_senate_enabled_passes_when_base_ranges_present(wb):

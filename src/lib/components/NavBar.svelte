@@ -8,7 +8,6 @@
   const ALL_PAGES = [
     { path: '/', label: 'Status' },
     { path: '/map', label: 'Map' },
-    { path: '/population', label: 'Population' },
     { path: '/demographics', label: 'Demographics' },
     { path: '/cropsim', label: 'Cropsim' },
     { path: '/gois', label: 'GoIs' },

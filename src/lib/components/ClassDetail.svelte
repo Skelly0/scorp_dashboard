@@ -1,6 +1,8 @@
 <script>
   import Bar from './Bar.svelte';
+  import RadarChart from './RadarChart.svelte';
   import Tag from './Tag.svelte';
+  import { WORLDVIEW_AXES as AXES, AXIS_HIGH_LABELS } from '../worldview.js';
 
   /** @type {{
    *   name: string,
@@ -16,6 +18,8 @@
    *   satisfaction_breakdown: object|null,
    * }} */
   export let cls;
+  /** @type {{name: string, tier: string|null, pop: number|null, share: number|null, political_weight: number|null, worldview: Record<string, number|null>}|null} */
+  export let populationProfile = null;
 
   // Two-column split of the 11 satisfaction sources. Order MUST match
   // extractors/pops.py:SATISFACTION_SOURCES — a row in PopsimSatisfactionFullTable
@@ -37,6 +41,10 @@
   ];
 
   $: critRad = cls?.status?.radicalisation > 0.5;
+  $: worldviewAxes = AXES.map((a) => ({
+    label: AXIS_HIGH_LABELS[a],
+    value: populationProfile?.worldview?.[a] ?? null,
+  }));
 
   function num(v, decimals = 2) {
     return v == null ? '—' : v.toFixed(decimals);
@@ -50,9 +58,49 @@
   function whole(v) {
     return v == null ? '—' : v.toFixed(0);
   }
+  function hours(v) {
+    if (v == null) return '—';
+    const display = Number.isInteger(v) ? v.toFixed(0) : v.toFixed(1);
+    return `${display} / wk`;
+  }
 </script>
 
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+  <div class="s-card">
+    <div class="s-card-header"><h3>Population Profile</h3></div>
+    <div class="s-card-pad">
+      <dl class="kv">
+        <dt>Tier</dt><dd>{populationProfile?.tier ?? '—'}</dd>
+        <dt>Population</dt><dd>{int(populationProfile?.pop)}</dd>
+        <dt>Pop Share</dt><dd>{pct(populationProfile?.share, 1)}</dd>
+        <dt>Political Weight</dt><dd>{num(populationProfile?.political_weight, 1)}</dd>
+        <dt>Votes</dt><dd>{int(cls.status?.votes_total)}</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="s-card-header"><h3>Class Pressure</h3></div>
+    <div class="s-card-pad">
+      <Bar label="Pop Share" value={populationProfile?.share} max={0.25} format="pct" />
+      <Bar label="Vote Share" value={cls.status?.vote_share} max={0.25} format="pct" />
+      <Bar
+        label="Work Fill"
+        value={cls.workforce?.fill_ratio}
+        max={1}
+        format="pct"
+        variant={cls.workforce?.fill_ratio != null && cls.workforce.fill_ratio < 0.85 ? 'crit' : 'good'}
+      />
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="s-card-header"><h3>Worldview Chart</h3></div>
+    <div class="s-card-pad flex justify-center">
+      <RadarChart axes={worldviewAxes} size={170} scaleMin={0} scaleMax={6} />
+    </div>
+  </div>
+
   <div class="s-card">
     <div class="s-card-header"><h3>Living Standards</h3></div>
     <div class="s-card-pad">
@@ -137,6 +185,7 @@
       <dl class="kv">
         <dt>Supply</dt><dd>{int(cls.workforce?.supply)}</dd>
         <dt>Demand</dt><dd>{int(cls.workforce?.demand)}</dd>
+        <dt>Weekly Hours</dt><dd>{hours(cls.workforce?.weekly_hours_worked)}</dd>
       </dl>
       <div>
         <Bar label="Fill Ratio" value={cls.workforce?.fill_ratio} max={1} variant="good" />

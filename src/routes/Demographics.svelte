@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { meta } from '../lib/stores/meta.js';
   import { pops, popsError, loadPops } from '../lib/stores/pops.js';
+  import { population, populationError, loadPopulation } from '../lib/stores/population.js';
   import {
     demographics, demographicsError, loadDemographics,
   } from '../lib/stores/demographics.js';
@@ -23,13 +24,14 @@
     pageTitle.set('Demographics');
     if ($meta?.synced_at) {
       loadPops($meta.synced_at);
+      loadPopulation($meta.synced_at);
       loadDemographics($meta.synced_at);
       loadHistory($meta.synced_at);
     }
   });
 
-  $: errorMsg = $demographicsError ?? $popsError;
-  $: ready = $demographics && $pops;
+  $: errorMsg = $demographicsError ?? $popsError ?? $populationError;
+  $: ready = $demographics && $pops && $population;
   $: housingCritical = $demographics?.housing?.ratio != null
     && $demographics.housing.ratio > 1.0;
 
@@ -73,6 +75,10 @@
 
   $: current = selected
     ? $pops?.classes.find((c) => c.name === selected) ?? null
+    : null;
+
+  $: currentPopulation = selected
+    ? $population?.classes.find((c) => c.name === selected) ?? null
     : null;
 
   // Clear stale selection when the class disappears across a sync.
@@ -156,6 +162,8 @@
         <thead>
           <tr>
             <th>Class</th>
+            <th class="num hide-narrow">Tier</th>
+            <th class="hide-narrow">Share</th>
             <th class="num">Pop</th>
             <th class="num hide-narrow">Mortality</th>
             <th class="num hide-narrow">Births/year</th>
@@ -172,6 +180,7 @@
           {#each $pops.classes as c}
             {@const fill = c.workforce?.fill_ratio}
             {@const fillDim = fill != null && fill < 0.85}
+            {@const popProfile = $population.classes.find((p) => p.name === c.name)}
             <tr
               role="button"
               tabindex="0"
@@ -184,6 +193,15 @@
               <td>
                 <span class="faction-bar" style="--bar-color: {classColor(c.name)}"></span>
                 {c.name}
+              </td>
+              <td class="num hide-narrow">{popProfile?.tier ?? '—'}</td>
+              <td class="hide-narrow">
+                <div class="bar-row" style="padding: 0;">
+                  <div class="bar">
+                    <span style="width: {Math.min(100, (popProfile?.share ?? 0) * 100 * 4)}%"></span>
+                  </div>
+                  <div class="val">{popProfile?.share != null ? (popProfile.share * 100).toFixed(1) + '%' : '—'}</div>
+                </div>
               </td>
               <td class="num">{c.pop?.toLocaleString() ?? '—'}</td>
               <td class="num hide-narrow">{c.mortality_rate != null ? (c.mortality_rate * 100).toFixed(2) + '%' : '—'}</td>
@@ -203,7 +221,7 @@
     {#if current}
       <Band title={`${current.name} · Detail`} meta="per-class drilldown" />
       <div bind:this={detailWrapper} aria-live="polite">
-        <ClassDetail cls={current} />
+        <ClassDetail cls={current} populationProfile={currentPopulation} />
       </div>
     {/if}
     <WorkforceBand bandNum="03" />

@@ -57,6 +57,7 @@ def extract(wb) -> dict[str, Any]:
     # WorkforceSupplyDemand: A:E × 14 rows. Indexed by class name (col 0)
     # because the row order isn't guaranteed to match ClassTable.
     workforce_by_class = _index_workforce(read_named_range(wb, "WorkforceSupplyDemand"))
+    weekly_hours_by_class = _index_weekly_hours(read_named_range(wb, "WeeklyHoursWorkedTable"))
 
     out: list[dict[str, Any]] = []
     for i, row in enumerate(classes):
@@ -67,6 +68,10 @@ def extract(wb) -> dict[str, Any]:
         g = coerce_number(gross[i][0]) if i < len(gross) else None
         d = coerce_number(disposable[i][0]) if i < len(disposable) else None
         wi_row = wealth_income[i] if i < len(wealth_income) else []
+        workforce = {
+            **workforce_by_class.get(name, _empty_workforce()),
+            "weekly_hours_worked": weekly_hours_by_class.get(name),
+        }
         out.append({
             "name": name,
             "pop": int(pop),
@@ -95,7 +100,7 @@ def extract(wb) -> dict[str, Any]:
                 "votes_total": coerce_number(votes_total[i][0]) if i < len(votes_total) else None,
                 "vote_share": coerce_number(vote_share[i][0]) if i < len(vote_share) else None,
             },
-            "workforce": workforce_by_class.get(name, _empty_workforce()),
+            "workforce": workforce,
             "satisfaction": coerce_number(sat[i][0]) if i < len(sat) else None,
             "satisfaction_breakdown": _satisfaction_breakdown_row(sat_full, i),
             "mortality_rate": coerce_number(mortality_rates[i][0]) if i < len(mortality_rates) else None,
@@ -123,7 +128,13 @@ def _satisfaction_breakdown_row(table, i):
 
 
 def _empty_workforce():
-    return {"supply": None, "demand": None, "fill_ratio": None, "unemployment": None}
+    return {
+        "supply": None,
+        "demand": None,
+        "fill_ratio": None,
+        "unemployment": None,
+        "weekly_hours_worked": None,
+    }
 
 
 def _index_workforce(rows) -> dict[str, dict[str, float | None]]:
@@ -139,6 +150,34 @@ def _index_workforce(rows) -> dict[str, dict[str, float | None]]:
             "unemployment": coerce_number(r[4]) if len(r) > 4 else None,
         }
     return out
+
+
+def _index_weekly_hours(rows) -> dict[str, float | None]:
+    """Index the GoI Modifiers hours table by class name.
+
+    The named range intentionally covers only class + baseline/current hours,
+    not the union-capture columns that sit to the right in the workbook.
+    """
+    if not rows:
+        return {}
+    header = [str(v).strip().lower() if v is not None else "" for v in rows[0]]
+    class_idx = _header_idx(header, "class", 0)
+    current_idx = _header_idx(header, "current hours/wk", 2)
+
+    out: dict[str, float | None] = {}
+    for r in rows[1:]:
+        if len(r) <= class_idx or not r[class_idx]:
+            continue
+        name = str(r[class_idx]).strip()
+        out[name] = coerce_number(r[current_idx]) if len(r) > current_idx else None
+    return out
+
+
+def _header_idx(header: list[str], label: str, fallback: int) -> int:
+    try:
+        return header.index(label)
+    except ValueError:
+        return fallback
 
 
 def _additional_income_row(rows, i):

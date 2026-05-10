@@ -400,12 +400,22 @@ def build(out_path: Path) -> Path:
     _add_name(wb, "SubFactionStances", "Politics!$AG$24:$AL$36")    # N:S
 
     # GoI Modifiers: PopCaptureBase B5:E15 (11 classes × 4 GoIs)
+    # and WeeklyHoursWorkedTable A57:C72 (15 class slots, header included).
     gm = wb.create_sheet("GoI Modifiers")
     for i, (name, _, _, _) in enumerate(classes, start=5):
         gm.cell(row=i, column=1, value=name)
         for j in range(4):
             gm.cell(row=i, column=2 + j, value=0.20 + (j * 0.10))
     _add_name(wb, "PopCaptureBase", "'GoI Modifiers'!$B$5:$E$15")
+    gm.cell(row=57, column=1, value="Class")
+    gm.cell(row=57, column=2, value="Baseline Hours/wk")
+    gm.cell(row=57, column=3, value="Current Hours/wk")
+    for offset, (name, _, _, _) in enumerate(classes):
+        row = 58 + offset
+        gm.cell(row=row, column=1, value=name)
+        gm.cell(row=row, column=2, value=40)
+        gm.cell(row=row, column=3, value=42 - offset)
+    _add_name(wb, "WeeklyHoursWorkedTable", "'GoI Modifiers'!$A$57:$C$72")
 
     # Party and GoI Pop Capture: GoIValueCapturedPop P65:S75
     # (11 classes × 4 live GoIs). These are captured-pop counts, not rates.
