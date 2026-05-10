@@ -81,11 +81,50 @@
   --radar-overlay: rgba(165, 58, 38, 0.55); /* warm crit red — contrasts vs. navy accent */
 }
 
+:root {
+  --scroll-track: var(--bg-3);
+  --scroll-thumb: color-mix(in srgb, var(--accent) 72%, var(--border));
+  --scroll-thumb-hover: var(--accent);
+  --scroll-corner: var(--bg-2);
+}
+
 html,
 body {
   background: var(--bg);
   color: var(--fg);
   font-feature-settings: 'tnum' 1, 'zero' 1, 'ss01' 1;
+  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+  scrollbar-width: thin;
+}
+
+* {
+  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background:
+    linear-gradient(90deg, transparent 0 4px, var(--border-soft) 4px 5px, transparent 5px 100%),
+    var(--scroll-track);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border: 3px solid var(--scroll-track);
+  box-shadow: inset 0 0 0 1px var(--border-soft);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--scroll-thumb-hover);
+}
+
+*::-webkit-scrollbar-corner {
+  background: var(--scroll-corner);
 }
 
 /* === Section header band =================================================== */
@@ -818,9 +857,15 @@ table.tbl th.num {
 }
 
 /* === Resizable map viewport (Map page) ===================================== */
-.map-viewport {
+.map-canvas-wrap {
   width: 100%;
   max-width: 100%;
+}
+
+.map-viewport {
+  width: min(100%, var(--map-viewport-width, 100%));
+  max-width: 100%;
+  max-height: min(76vh, 820px);
   overflow: auto;
   touch-action: pan-x pan-y;
   overscroll-behavior: contain;
@@ -836,16 +881,26 @@ table.tbl th.num {
 
 .s-zoom {
   display: inline-flex;
-  align-items: stretch;
+  align-items: center;
   margin-left: auto;        /* push to the right end of the .layer-tabs flex row */
   border: 1px solid var(--border);
-  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 88%, var(--bg-2));
   /* No --font-mono token exists in the theme blocks — use the same literal
      stack as Tailwind's font-mono utility used throughout the app. */
   font-family: ui-monospace, "JetBrains Mono", "IBM Plex Mono", Consolas, monospace;
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
+  min-height: 33px;
+}
+
+.s-zoom-label {
+  color: var(--fg-muted);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  padding: 0 8px 0 10px;
+  white-space: nowrap;
 }
 
 .layer-tabs .s-zoom button {
@@ -853,12 +908,16 @@ table.tbl th.num {
   color: var(--fg);
   border: none;
   border-right: 1px solid var(--border);
-  padding: 4px 10px;
-  min-width: 28px;
+  border-left: 1px solid var(--border-soft);
+  padding: 0;
+  min-width: 32px;
+  height: 31px;
   cursor: pointer;
   line-height: 1;
   font-size: 11px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
+  display: inline-grid;
+  place-items: center;
 }
 
 .layer-tabs .s-zoom button:last-child {
@@ -875,9 +934,53 @@ table.tbl th.num {
   cursor: not-allowed;
 }
 
-.layer-tabs .s-zoom button[aria-pressed="true"] {
-  background: var(--accent);
-  color: var(--bg);
+.s-zoom-readout {
+  min-width: 56px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.s-zoom-range {
+  width: 104px;
+  height: 31px;
+  margin: 0 8px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.s-zoom-range:focus-visible,
+.layer-tabs .s-zoom button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.s-zoom-range::-webkit-slider-runnable-track {
+  height: 3px;
+  border: 1px solid var(--border);
+  background: var(--bg-2);
+}
+
+.s-zoom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 18px;
+  margin-top: -8px;
+  border: 1px solid var(--accent);
+  background: var(--fg);
+}
+
+.s-zoom-range::-moz-range-track {
+  height: 3px;
+  border: 1px solid var(--border);
+  background: var(--bg-2);
+}
+
+.s-zoom-range::-moz-range-thumb {
+  width: 12px;
+  height: 18px;
+  border: 1px solid var(--accent);
+  border-radius: 0;
+  background: var(--fg);
 }
 
 @media (max-width: 767px) {
@@ -896,6 +999,17 @@ table.tbl th.num {
   }
   .layer-tabs .s-zoom {
     margin-left: 0;
+  }
+  .s-zoom-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+  .s-zoom-range {
+    width: 86px;
   }
   .layer-menu-popup {
     position: fixed;

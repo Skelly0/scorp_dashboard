@@ -11,6 +11,8 @@
     ZOOM_MIN,
     ZOOM_MAX,
     ZOOM_DEFAULT,
+    ZOOM_STEP,
+    clampZoom,
     stepZoom,
     scaleZoom,
     resetZoom,
@@ -36,6 +38,10 @@
   let pinnedTile = null;
   let isMobileInspector = false;
   let filters = { resource: null, feature: null, improvement: null };
+
+  const ZOOM_PERCENT_MIN = Math.round(ZOOM_MIN * 100);
+  const ZOOM_PERCENT_MAX = Math.round(ZOOM_MAX * 100);
+  const ZOOM_PERCENT_STEP = Math.round(ZOOM_STEP * 100);
 
   const YIELD_OPTIONS = [
     { key: 'food',     label: 'Food' },
@@ -68,6 +74,7 @@
 
   $: activeFilterCount = (filters.resource ? 1 : 0) + (filters.feature ? 1 : 0) + (filters.improvement ? 1 : 0);
   $: matchedTiles = $map ? $map.tiles.filter(t => tileMatchesFilters(t, filters)) : [];
+  $: zoomPercent = Math.round(zoom * 100);
 
   function selectLayer(layerId) {
     layer = layerId;
@@ -94,6 +101,12 @@
     layer = 'improvements';
   }
 
+  function setZoomPercent(value) {
+    const percent = Number(value);
+    if (!Number.isFinite(percent)) return;
+    zoom = clampZoom(percent / 100);
+  }
+
   $: t = pinnedTile ?? hoverTile;
   $: nameplate = t?.improvement ? resolveImprovementRow(t.improvement.name, $catalog) : null;
 
@@ -118,12 +131,15 @@
     const updateInspectorViewport = () => {
       isMobileInspector = inspectorMedia.matches;
     };
+    const handleWindowKeydown = (event) => handlePageKey(event);
 
     updateInspectorViewport();
     inspectorMedia.addEventListener('change', updateInspectorViewport);
+    window.addEventListener('keydown', handleWindowKeydown);
 
     return () => {
       inspectorMedia.removeEventListener('change', updateInspectorViewport);
+      window.removeEventListener('keydown', handleWindowKeydown);
     };
   });
 
@@ -143,7 +159,7 @@
   }
 </script>
 
-<section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]" tabindex="-1" on:keydown={handlePageKey}>
+<section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
   {#if $mapError}
     <p class="text-crit">{$mapError}</p>
   {:else if !$map}
@@ -204,20 +220,34 @@
         <button aria-pressed={layer === 'control'} on:click={() => selectLayer('control')}>Control</button>
 
         <div class="s-zoom" role="group" aria-label="Map zoom">
+          <span class="s-zoom-label" aria-hidden="true">Zoom</span>
           <button
             type="button"
+            class="s-zoom-step"
             aria-label="Zoom out"
             disabled={zoom <= ZOOM_MIN}
             on:click={() => { zoom = stepZoom(zoom, -1); }}
           >−</button>
+          <input
+            class="s-zoom-range"
+            type="range"
+            min={ZOOM_PERCENT_MIN}
+            max={ZOOM_PERCENT_MAX}
+            step={ZOOM_PERCENT_STEP}
+            value={zoomPercent}
+            aria-label="Zoom level"
+            aria-valuetext="{zoomPercent} percent"
+            on:input={(e) => setZoomPercent(e.currentTarget.value)}
+          />
           <button
             type="button"
+            class="s-zoom-readout"
             aria-label="Reset zoom to {Math.round(ZOOM_DEFAULT * 100)} percent"
-            aria-pressed={zoom === ZOOM_DEFAULT}
             on:click={() => { zoom = resetZoom(); }}
-          >{Math.round(zoom * 100)}%</button>
+          ><span aria-live="polite" aria-atomic="true">{zoomPercent}%</span></button>
           <button
             type="button"
+            class="s-zoom-step"
             aria-label="Zoom in"
             disabled={zoom >= ZOOM_MAX}
             on:click={() => { zoom = stepZoom(zoom, +1); }}

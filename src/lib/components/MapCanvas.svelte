@@ -1,5 +1,5 @@
 <script>
-  import { createEventDispatcher, tick } from 'svelte';
+  import { createEventDispatcher, onMount, tick } from 'svelte';
   import { RESOURCE_CODES, FEATURE_CODES } from '../map-codes.js';
   import { categoryFor, getCategorySlug } from '../improvement-categories.js';
   import { catalog } from '../stores/catalog.js';
@@ -28,20 +28,27 @@
   }
 
   const BASE_TILE = 16;          // drawing-coordinate size; never changes.
+  const VIEWPORT_BORDER_PX = 8;
   const dispatch = createEventDispatcher();
 
   let canvas;
   let focused = { x: 0, y: 0 };
-  let viewportClientWidth = 0;
+  let availableClientWidth = 0;
+  let viewportMaxHeight = 0;
   let pinchPreviousDistance = null;
   let gesturePreviousScale = null;
   let touchPinchActive = false;
 
   $: nativeMapW = mapData.width * BASE_TILE;
   $: nativeMapH = mapData.height * BASE_TILE;
-  $: fitScale = viewportClientWidth > 0
-    ? viewportClientWidth / nativeMapW
+  $: availableViewportContentW = Math.max(1, availableClientWidth - VIEWPORT_BORDER_PX);
+  $: fitScaleW = availableClientWidth > VIEWPORT_BORDER_PX
+    ? availableViewportContentW / nativeMapW
     : 1;
+  $: fitScaleH = viewportMaxHeight > 0
+    ? viewportMaxHeight / nativeMapH
+    : fitScaleW;
+  $: fitScale = Math.min(fitScaleW, fitScaleH);
   $: displayScale = (() => {
     const z = clampZoom(zoom);
     const raw = fitScale * z;
@@ -50,6 +57,7 @@
   })();
   $: contentCssW = nativeMapW * displayScale;
   $: contentCssH = nativeMapH * displayScale;
+  $: viewportCssW = Math.ceil(contentCssW + VIEWPORT_BORDER_PX);
   $: viewBox = `0 0 ${nativeMapW} ${nativeMapH}`; // unchanged shape, BASE_TILE coords
   $: resourcePal = mapData.palettes.resource ?? {};
   $: featurePal  = mapData.palettes.feature  ?? {};
@@ -72,6 +80,22 @@
   // Redraw when the catalog arrives so tile colours reflect catalog-derived slugs,
   // not stale regex-derived slugs (gotcha 14 in CLAUDE.md).
   $: if ($catalog) { drawTerrain(mapData, layer, layerMax, filters, displayScale, redrawKey); }
+
+  onMount(() => {
+    const updateViewportMaxHeight = () => {
+      viewportMaxHeight = Math.max(
+        1,
+        Math.floor(Math.min(window.innerHeight * 0.76, 820) - VIEWPORT_BORDER_PX),
+      );
+    };
+
+    updateViewportMaxHeight();
+    window.addEventListener('resize', updateViewportMaxHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateViewportMaxHeight);
+    };
+  });
 
   function tileMatches(t, f) {
     if (f.resource && t.resource !== f.resource) return false;
@@ -380,11 +404,15 @@
   }
 </script>
 
-<div class="map-canvas-wrap">
+<div class="map-canvas-wrap" bind:clientWidth={availableClientWidth}>
+  <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
   <div
     class="map-viewport relative border-4 border-border focus:outline focus:outline-2 focus:outline-accent"
-    bind:clientWidth={viewportClientWidth}
+    style="--map-viewport-width: {viewportCssW}px;"
     tabindex="0"
+    role="application"
+    aria-label="Interactive colony map viewport: {mapData.width} by {mapData.height} grid"
     on:keydown={handleKey}
     on:touchstart|nonpassive={handleTouchStart}
     on:touchmove|nonpassive={handleTouchMove}
@@ -401,8 +429,7 @@
       <canvas
         bind:this={canvas}
         style="width: 100%; height: 100%;"
-        role="application"
-        aria-label="Colony map: {mapData.width} by {mapData.height} grid"
+        aria-hidden="true"
         on:mousemove={handleMove}
         on:click={handleClick}
         class="block w-full h-full cursor-crosshair"

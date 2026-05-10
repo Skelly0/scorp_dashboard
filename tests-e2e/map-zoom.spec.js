@@ -29,6 +29,23 @@ test.describe('Map zoom controls', () => {
     await expect(reset).toHaveText('100%');
   });
 
+  test('slider jumps directly between zoom levels', async ({ page }) => {
+    const group = page.getByRole('group', { name: /map zoom/i });
+    const slider = group.getByRole('slider', { name: /zoom level/i });
+    const reset = group.getByRole('button', { name: /reset zoom/i });
+
+    await expect(slider).toHaveValue('100');
+    await expect(slider).toHaveAttribute('aria-valuetext', '100 percent');
+
+    await slider.evaluate((node) => {
+      node.value = '175';
+      node.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+
+    await expect(reset).toHaveText('175%');
+    await expect(slider).toHaveAttribute('aria-valuetext', '175 percent');
+  });
+
   test('disables + at the upper bound and − at the lower bound', async ({ page }) => {
     const group = page.getByRole('group', { name: /map zoom/i });
     const zoomIn = group.getByRole('button', { name: /zoom in/i });
@@ -107,6 +124,87 @@ test.describe('Map zoom controls', () => {
     const fullRatio = w200 / w100;
     expect(fullRatio).toBeGreaterThan(1.95);
     expect(fullRatio).toBeLessThan(2.05);
+  });
+
+  test('100 percent fits the entire map inside the viewport', async ({ page }) => {
+    const viewport = page.locator('.map-viewport');
+    const content = page.locator('.map-content');
+    const reset = page.getByRole('group', { name: /map zoom/i })
+      .getByRole('button', { name: /reset zoom/i });
+
+    await expect(reset).toHaveText('100%');
+
+    const boxes = await viewport.evaluate((node) => ({
+      viewportClientWidth: node.clientWidth,
+      viewportClientHeight: node.clientHeight,
+      viewportScrollWidth: node.scrollWidth,
+      viewportScrollHeight: node.scrollHeight,
+    }));
+    const contentBox = await content.boundingBox();
+
+    expect(contentBox.width).toBeLessThanOrEqual(boxes.viewportClientWidth + 1);
+    expect(contentBox.height).toBeLessThanOrEqual(boxes.viewportClientHeight + 1);
+    expect(boxes.viewportScrollWidth).toBeLessThanOrEqual(boxes.viewportClientWidth + 1);
+    expect(boxes.viewportScrollHeight).toBeLessThanOrEqual(boxes.viewportClientHeight + 1);
+  });
+
+  test('100 percent viewport hugs the fitted map without a side void', async ({ page }) => {
+    const viewport = page.locator('.map-viewport');
+    const reset = page.getByRole('group', { name: /map zoom/i })
+      .getByRole('button', { name: /reset zoom/i });
+
+    await expect(reset).toHaveText('100%');
+
+    const metrics = await viewport.evaluate((node) => {
+      const content = node.querySelector('.map-content');
+      const viewportRect = node.getBoundingClientRect();
+      const contentRect = content.getBoundingClientRect();
+      const styles = getComputedStyle(node);
+      const borderX =
+        parseFloat(styles.borderLeftWidth || '0') +
+        parseFloat(styles.borderRightWidth || '0');
+
+      return {
+        innerViewportWidth: viewportRect.width - borderX,
+        contentWidth: contentRect.width,
+      };
+    });
+
+    expect(metrics.innerViewportWidth - metrics.contentWidth).toBeLessThanOrEqual(2);
+  });
+
+  test('map viewport owns vertical scrolling when content is taller than the panel', async ({ page }) => {
+    const viewport = page.locator('.map-viewport');
+    const zoomIn = page.getByRole('group', { name: /map zoom/i })
+      .getByRole('button', { name: /zoom in/i });
+
+    for (let i = 0; i < 4; i++) await zoomIn.click();
+    await expect(page.getByRole('group', { name: /map zoom/i })
+      .getByRole('button', { name: /reset zoom/i })).toHaveText('200%');
+
+    const before = await viewport.evaluate((node) => ({
+      clientHeight: node.clientHeight,
+      scrollHeight: node.scrollHeight,
+      scrollTop: node.scrollTop,
+    }));
+
+    expect(before.scrollHeight).toBeGreaterThan(before.clientHeight + 20);
+
+    await viewport.evaluate((node) => { node.scrollTop = 160; });
+    await expect.poll(() => viewport.evaluate((node) => node.scrollTop)).toBeGreaterThan(0);
+  });
+
+  test('map viewport scrollbars use themed bands', async ({ page }) => {
+    const styles = await page.locator('.map-viewport').evaluate((node) => {
+      const s = getComputedStyle(node);
+      return {
+        scrollbarColor: s.scrollbarColor,
+        scrollbarWidth: s.scrollbarWidth,
+      };
+    });
+
+    expect(styles.scrollbarWidth).toBe('thin');
+    expect(styles.scrollbarColor).not.toBe('auto');
   });
 
   test('touch pinch suppresses overlapping Safari gesture zoom dispatch', async ({ page }) => {
