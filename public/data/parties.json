@@ -13,8 +13,24 @@
       "Extraction Workers",
       "Service Workers"
     ],
-    "parties": [],
-    "values": []
+    "parties": [
+      "Developmental League"
+    ],
+    "values": [
+      [
+        0.7916666667,
+        0.7222222222,
+        0.8194444444,
+        0.875,
+        0.7638888889,
+        0.7361111111,
+        0.8333333333,
+        0.8333333333,
+        0.75,
+        0.7222222222,
+        0.7638888889
+      ]
+    ]
   },
   "goi_compat_matrix": {
     "gois": [
@@ -23,8 +39,62 @@
       "Unions",
       "Research"
     ],
-    "parties": [],
-    "values": []
+    "parties": [
+      "Developmental League"
+    ],
+    "values": [
+      [
+        0.807602455,
+        0.822575261,
+        0.7642131776,
+        0.8329208559
+      ]
+    ]
   },
-  "parties": []
+  "parties": [
+    {
+      "class_compat": [
+        0.7916666667,
+        0.7222222222,
+        0.8194444444,
+        0.875,
+        0.7638888889,
+        0.7361111111,
+        0.8333333333,
+        0.8333333333,
+        0.75,
+        0.7222222222,
+        0.7638888889
+      ],
+      "closest_goi": "Research",
+      "establishment": 0.9,
+      "estimated_support": 265951.8,
+      "founded": true,
+      "goi_compat": [
+        0.807602455,
+        0.822575261,
+        0.7642131776,
+        0.8329208559
+      ],
+      "mad_index": -0.075,
+      "name": "Developmental League",
+      "stance": {
+        "authority": 3.0,
+        "corporate": 4.0,
+        "expansion": 3.0,
+        "faith": 7.0,
+        "materialist": 3.0,
+        "technocratic": 3.0
+      },
+      "vote_share": 1.0,
+      "weighted_stance": {
+        "authority": 3.0,
+        "corporate": 4.0,
+        "expansion": 3.0,
+        "faith": 7.0,
+        "materialist": 3.0,
+        "technocratic": 3.0
+      }
+    }
+  ]
 }
