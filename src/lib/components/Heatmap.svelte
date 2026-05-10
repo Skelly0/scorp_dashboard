@@ -37,10 +37,10 @@
   >
     <div class="heatmap-cell head"></div>
     {#each colLabels as c}
-      <div class="heatmap-cell head">{c}</div>
+      <div class="heatmap-cell head" title={c}>{c}</div>
     {/each}
     {#each rowLabels as r, ri}
-      <div class="heatmap-cell head row-head">{r}</div>
+      <div class="heatmap-cell head row-head" title={r}>{r}</div>
       {#each colLabels as _c, ci}
         {@const v = values[ri]?.[ci]}
         <div
