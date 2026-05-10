@@ -2,8 +2,10 @@
   import { onMount } from 'svelte';
   import { meta } from '../lib/stores/meta.js';
   import { parties, partiesError, loadParties } from '../lib/stores/parties.js';
+  import { pops, popsError, loadPops } from '../lib/stores/pops.js';
   import { pageTitle } from '../lib/page-title.js';
   import { goiColor } from '../lib/faction-colors.js';
+  import { classCompatPopMatrix } from '../lib/party-compat.js';
   import Band from '../lib/components/Band.svelte';
   import RadarChart from '../lib/components/RadarChart.svelte';
   import Heatmap from '../lib/components/Heatmap.svelte';
@@ -11,14 +13,20 @@
 
   onMount(() => {
     pageTitle.set('Parties');
-    if ($meta?.synced_at) loadParties($meta.synced_at);
+    if ($meta?.synced_at) {
+      loadParties($meta.synced_at);
+      loadPops($meta.synced_at);
+    }
   });
+
+  $: errorMsg = $partiesError ?? $popsError;
+  $: classPopMatrix = classCompatPopMatrix($parties?.class_compat_matrix, $pops?.classes);
 </script>
 
 <section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
-  {#if $partiesError}
-    <p class="text-crit">{$partiesError}</p>
-  {:else if !$parties}
+  {#if errorMsg}
+    <p class="text-crit">{errorMsg}</p>
+  {:else if !$parties || !$pops}
     <p class="text-muted text-xs uppercase tracking-widest">Loading…</p>
   {:else if $parties.parties.length === 0}
     <Band num="01" title="Founded Parties" meta="0 parties" />
@@ -67,17 +75,22 @@
           rowLabels={$parties.goi_compat_matrix.parties}
           colLabels={$parties.goi_compat_matrix.gois}
           values={$parties.goi_compat_matrix.values}
+          rowHeadWidth={180}
+          minCellWidth={64}
         />
       </div>
     {/if}
 
-    {#if $parties.class_compat_matrix?.values?.length}
-      <Band num="03" title="Class · Party Compatibility" />
+    {#if classPopMatrix?.values?.length}
+      <Band num="03" title="Party Pops" meta="by class" />
       <div class="s-card s-card-pad">
         <Heatmap
-          rowLabels={$parties.class_compat_matrix.parties}
-          colLabels={$parties.class_compat_matrix.classes}
-          values={$parties.class_compat_matrix.values}
+          rowLabels={classPopMatrix.parties}
+          colLabels={classPopMatrix.classes}
+          values={classPopMatrix.values}
+          format="int"
+          rowHeadWidth={180}
+          minCellWidth={72}
         />
       </div>
     {/if}

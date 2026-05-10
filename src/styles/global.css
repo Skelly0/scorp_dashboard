@@ -704,7 +704,9 @@ table.tbl th.num {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   font-weight: 600;
-  white-space: nowrap;
+  line-height: 1.2;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 .heatmap-cell.row-head {
   text-align: left;
@@ -714,6 +716,9 @@ table.tbl th.num {
   left: 0;
   z-index: 2;
   background: var(--bg);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
 }
 .heatmap-value {
   display: inline-block;
