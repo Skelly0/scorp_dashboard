@@ -24,6 +24,18 @@ const baseStatus = {
   active_situations: [],
 };
 
+function kpiBlockByLabel(label) {
+  const labelNode = screen.getAllByText(label).find((node) => node.classList.contains('kpi-label'));
+  expect(labelNode).toBeTruthy();
+  return labelNode.closest('.kpi-block');
+}
+
+function statTileByLabel(label) {
+  const labelNode = screen.getAllByText(label).find((node) => node.classList.contains('label'));
+  expect(labelNode).toBeTruthy();
+  return labelNode.closest('.stat-tile');
+}
+
 describe('Status page', () => {
   beforeEach(() => {
     meta.set(null);
@@ -45,6 +57,31 @@ describe('Status page', () => {
     expect(screen.queryByText('0.96%')).toBeNull();
   });
 
+  test('uses Money resource as the headline instead of the colony resource total', () => {
+    status.set({
+      ...baseStatus,
+      treasury: { money: 222465, delta: 321784.5245 },
+      resources: [
+        { name: 'Money', current: 125000, income: 429534.5245, upkeep: 107750, delta: 321784.5245 },
+      ],
+    });
+
+    render(Status);
+
+    expect(screen.queryByText('Government Revenue')).toBeNull();
+    expect(screen.queryByText('Treasury balance')).toBeNull();
+    expect(screen.queryByText('222,465')).toBeNull();
+
+    const moneyHeadline = kpiBlockByLabel('Money');
+    expect(within(moneyHeadline).getByText('Reserve')).toBeTruthy();
+    expect(within(moneyHeadline).getByText((_, node) =>
+      node?.classList?.contains('kpi-num') && node.textContent === '₡ 125,000'
+    )).toBeTruthy();
+    expect(within(moneyHeadline).getByText('+429,535')).toBeTruthy();
+    expect(within(moneyHeadline).getByText('-107,750')).toBeTruthy();
+    expect(within(moneyHeadline).getByText('▲ +321785')).toBeTruthy();
+  });
+
   test('shows numeric resource inflows and upkeeps inside resource flow boxes', () => {
     status.set({
       ...baseStatus,
@@ -56,14 +93,14 @@ describe('Status page', () => {
 
     render(Status);
 
-    const foodTile = screen.getByText('Food').closest('.stat-tile');
+    const foodTile = statTileByLabel('Food');
     expect(within(foodTile).getByText('+12')).toBeTruthy();
     expect(within(foodTile).getByText('-7')).toBeTruthy();
     expect(within(foodTile).queryByText('Yield +12')).toBeNull();
     expect(within(foodTile).queryByText('Upkeep -7')).toBeNull();
     expect(within(foodTile).queryByText((text) => text.includes('▲') && text.includes('+5'))).toBeNull();
 
-    const moneyTile = screen.getByText('Money').closest('.stat-tile');
+    const moneyTile = statTileByLabel('Money');
     expect(within(moneyTile).getByText('+90')).toBeTruthy();
     expect(within(moneyTile).getByText('-20')).toBeTruthy();
     expect(within(moneyTile).queryByText('Income +90')).toBeNull();
@@ -82,11 +119,11 @@ describe('Status page', () => {
 
     render(Status);
 
-    const foodTile = screen.getByText('Food').closest('.stat-tile');
+    const foodTile = statTileByLabel('Food');
     expect(within(foodTile).queryByText('+5')).toBeNull();
     expect(within(foodTile).queryByText('0')).toBeNull();
 
-    const waterTile = screen.getByText('Water').closest('.stat-tile');
+    const waterTile = statTileByLabel('Water');
     expect(within(waterTile).queryByText('-3')).toBeNull();
     expect(within(waterTile).queryByText('0')).toBeNull();
   });
@@ -101,7 +138,7 @@ describe('Status page', () => {
 
     render(Status);
 
-    const heliumTile = screen.getByText('Helium-3').closest('.stat-tile');
+    const heliumTile = statTileByLabel('Helium-3');
     expect(within(heliumTile).getAllByText('0').length).toBe(3);
   });
 });
