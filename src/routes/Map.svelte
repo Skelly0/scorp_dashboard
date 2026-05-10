@@ -180,7 +180,7 @@
 
         {#if $map?.available_categories?.workforce && workforceOptions.length > 0}
           <LayerMenu
-            label="Workforce"
+            label="Workforce Demand"
             category="workforce"
             options={workforceOptions}
             activeKey={parsedLayer.category === 'workforce' ? parsedLayer.key : null}
@@ -330,7 +330,7 @@
       {#if layer === 'terrain'}biome
       {:else if parsedLayer.category === 'yield'}{labelForMetricKey(parsedLayer.key)} yield magnitude
       {:else if parsedLayer.category === 'upkeep'}{labelForMetricKey(parsedLayer.key)} upkeep magnitude
-      {:else if parsedLayer.category === 'workforce'}{parsedLayer.key} count
+      {:else if parsedLayer.category === 'workforce'}{parsedLayer.key} demand
       {:else if parsedLayer.category === 'staffing'}staffing efficiency (red→amber→green)
       {:else if layer === 'control'}control
       {:else}{layer}{/if}

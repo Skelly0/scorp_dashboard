@@ -196,6 +196,56 @@ test.describe('Map page — detail values', () => {
     await expect(page.locator('text=/money upkeep/i').first()).toBeVisible();
   });
 
+  test('Workforce Demand menu labels the map layer as demand', async ({ page }) => {
+    await page.route('**/data/map.json*', async (route) => {
+      await route.fulfill({
+        json: {
+          available_categories: { staffing: false, upkeep: false, workforce: true },
+          height: 1,
+          width: 1,
+          missing_sheets: [],
+          palettes: {
+            terrain: { Plain: '#333333' },
+            resource: {},
+            feature: {},
+            improvement_category: {},
+            control: {},
+          },
+          tiles: [
+            {
+              x: 0,
+              y: 0,
+              terrain: 'Plain',
+              feature: null,
+              resource: null,
+              slots: 0,
+              improvement: null,
+              control: null,
+              yields: {},
+              upkeep: {},
+              workforce: { Engineers: 44 },
+              staffing: null,
+            },
+          ],
+        },
+      });
+    });
+
+    await page.goto('/#/map');
+    await page.waitForLoadState('networkidle');
+
+    const workforceTrigger = page.getByRole('button', { name: /^Workforce Demand/ });
+    await expect(workforceTrigger).toBeVisible();
+
+    await workforceTrigger.click();
+    await expect(workforceTrigger).toContainText('Engineers');
+    await expect(page.locator('text=/Engineers demand/i').first()).toBeVisible();
+
+    const canvas = page.locator('canvas[role=application]');
+    await canvas.click({ position: { x: 10, y: 10 } });
+    await expect(page.getByRole('heading', { name: 'Workforce Demand' })).toBeVisible();
+  });
+
   test('truncates yield decimals in the tile detail box', async ({ page }) => {
     await page.route('**/data/map.json*', async (route) => {
       await route.fulfill({

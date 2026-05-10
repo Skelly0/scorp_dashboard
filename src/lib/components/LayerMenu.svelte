@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher, tick } from 'svelte';
 
-  /** @type {string} 'Yields' | 'Upkeep' | 'Workforce' */
+  /** @type {string} 'Yields' | 'Upkeep' | 'Workforce Demand' */
   export let label;
   /** @type {string} 'yield' | 'upkeep' | 'workforce' */
   export let category;

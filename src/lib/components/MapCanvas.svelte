@@ -544,12 +544,12 @@
           <span>(no tiles consume {labelForMetricKey(parsed.key)})</span>
         {/if}
       {:else if parsed.category === 'workforce'}
-        <span>{parsed.key} —</span>
+        <span>{parsed.key} demand —</span>
         {#if layerMax.max > 0}
           <span>0 to <strong class="text-fg">{layerMax.max}</strong></span>
           <span class="inline-block w-4 h-3 border border-border" style="background: {CLASS_COLORS[parsed.key] ?? 'var(--accent)'}"></span>
         {:else}
-          <span>(no tiles employ {parsed.key})</span>
+          <span>(no tiles demand {parsed.key})</span>
         {/if}
       {:else if parsed.category === 'staffing'}
         <span>Staffing —</span>
