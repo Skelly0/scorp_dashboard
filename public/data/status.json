@@ -2,18 +2,18 @@
   "active_situations": [],
   "crisis_factor": 0.0,
   "demographics": {
-    "avg_satisfaction": 0.3872105821092391,
+    "avg_satisfaction": 0.39804441665853263,
     "base_growth_rate": 0.03,
-    "effective_cdr": 0.01469565217,
+    "effective_cdr": 0.01386956522,
     "effective_growth_rate": 0.0096,
-    "housing_capacity": 81174.0,
-    "housing_util": 1.133367827136768,
-    "net_delta_pct": -0.5095652170000001,
+    "housing_capacity": 88890.0,
+    "housing_util": 1.0349870626617168,
+    "net_delta_pct": -0.426956522,
     "sat_elasticity": 0.32,
-    "total_births": 1754.0,
-    "total_deaths": 1352.0
+    "total_births": 2312.0,
+    "total_deaths": 1276.0
   },
-  "gov_approval": 0.6353030749,
+  "gov_approval": 0.6386364209,
   "overton": {
     "authority": 3.0,
     "corporate": 3.5,
@@ -53,9 +53,9 @@
       "upkeep": 4733.09375
     },
     {
-      "current": 81174.0,
-      "delta": -10826.0,
-      "income": 81174.0,
+      "current": 88890.0,
+      "delta": -3110.0,
+      "income": 88890.0,
       "name": "Housing",
       "upkeep": 92000.0
     },
@@ -81,10 +81,10 @@
       "upkeep": 592.35
     }
   ],
-  "stability": 0.6546132565,
+  "stability": 0.6707892625,
   "treasury": {
     "delta": 321784.5245,
-    "money": 214749.0
+    "money": 222465.0
   },
   "year": 2075
 }
