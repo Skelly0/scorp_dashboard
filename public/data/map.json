@@ -8,7 +8,7 @@
   "missing_sheets": [],
   "palettes": {
     "control": {
-      "Administration": "#5ec3ff",
+      "Administration": "#38d39f",
       "Botanists": "#7fc97f",
       "Bureaucrats": "#ffb000",
       "Capitalists": "#ffd84d",
@@ -20,11 +20,13 @@
       "Industrial Workers": "#38d39f",
       "Managerial": "#c44dff",
       "Proprietors": "#9c8a2e",
+      "Research": "#5ec3ff",
       "Scientists": "#a89cff",
       "Security": "#ff5544",
       "Service Workers": "#a89567",
       "Technocracy": "#5ec3ff",
-      "Unionists": "#38d39f"
+      "Unionists": "#ff5544",
+      "Unions": "#ff5544"
     },
     "feature": {
       "Boulder Field": "#6e6058",
@@ -19903,7 +19905,7 @@
     },
     {
       "control": null,
-      "feature": null,
+      "feature": "Buried Ice",
       "improvement": null,
       "resource": "Phosphorus Deposit",
       "slots": 4,
@@ -19923,10 +19925,10 @@
       "yields": {
         "energy": 0,
         "food": 1.5,
-        "housing": 200.0,
+        "housing": 250.0,
         "materials": 0.25,
         "ore": 0.5,
-        "water": 0
+        "water": 5.0
       }
     },
     {
@@ -19934,9 +19936,9 @@
       "feature": null,
       "improvement": null,
       "resource": null,
-      "slots": 3,
+      "slots": 2,
       "staffing": null,
-      "terrain": "Mare Plain",
+      "terrain": "Regolith Plain",
       "upkeep": {
         "energy": 0.0,
         "helium3": 0.0,
@@ -19953,7 +19955,7 @@
         "food": 0,
         "housing": 0,
         "materials": 0.25,
-        "ore": 0.25,
+        "ore": 0.5,
         "water": 0
       }
     },
@@ -21054,9 +21056,9 @@
       "feature": null,
       "improvement": null,
       "resource": null,
-      "slots": 3,
+      "slots": 2,
       "staffing": null,
-      "terrain": "Mare Plain",
+      "terrain": "Regolith Plain",
       "upkeep": {
         "energy": 0.0,
         "helium3": 0.0,
@@ -21073,7 +21075,7 @@
         "food": 0,
         "housing": 0,
         "materials": 0.25,
-        "ore": 0.25,
+        "ore": 0.5,
         "water": 0
       }
     },
@@ -21082,9 +21084,9 @@
       "feature": null,
       "improvement": null,
       "resource": null,
-      "slots": 3,
+      "slots": 2,
       "staffing": null,
-      "terrain": "Mare Plain",
+      "terrain": "Regolith Plain",
       "upkeep": {
         "energy": 0.0,
         "helium3": 0.0,
@@ -21101,7 +21103,7 @@
         "food": 0,
         "housing": 0,
         "materials": 0.25,
-        "ore": 0.25,
+        "ore": 0.5,
         "water": 0
       }
     },
@@ -21110,9 +21112,9 @@
       "feature": null,
       "improvement": null,
       "resource": null,
-      "slots": 3,
+      "slots": 2,
       "staffing": null,
-      "terrain": "Mare Plain",
+      "terrain": "Regolith Plain",
       "upkeep": {
         "energy": 0.0,
         "helium3": 0.0,
@@ -21129,7 +21131,7 @@
         "food": 0,
         "housing": 0,
         "materials": 0.25,
-        "ore": 0.25,
+        "ore": 0.5,
         "water": 0
       }
     },
@@ -21194,9 +21196,9 @@
       "feature": null,
       "improvement": null,
       "resource": null,
-      "slots": 1,
+      "slots": 3,
       "staffing": null,
-      "terrain": "Crater Rim",
+      "terrain": "Mare Plain",
       "upkeep": {
         "energy": 0.0,
         "helium3": 0.0,
@@ -21213,7 +21215,7 @@
         "food": 0,
         "housing": 0,
         "materials": 0.25,
-        "ore": 0.5,
+        "ore": 0.25,
         "water": 0
       }
     },
@@ -21278,9 +21280,9 @@
       "feature": null,
       "improvement": null,
       "resource": null,
-      "slots": 1,
+      "slots": 3,
       "staffing": null,
-      "terrain": "Crater Rim",
+      "terrain": "Mare Plain",
       "upkeep": {
         "energy": 0.0,
         "helium3": 0.0,
@@ -21297,7 +21299,7 @@
         "food": 0,
         "housing": 0,
         "materials": 0.25,
-        "ore": 0.5,
+        "ore": 0.25,
         "water": 0
       }
     },
@@ -22202,9 +22204,9 @@
       "feature": null,
       "improvement": null,
       "resource": null,
-      "slots": 3,
+      "slots": 2,
       "staffing": null,
-      "terrain": "Mare Plain",
+      "terrain": "Regolith Plain",
       "upkeep": {
         "energy": 0.0,
         "helium3": 0.0,
@@ -22221,7 +22223,7 @@
         "food": 0,
         "housing": 0,
         "materials": 0.25,
-        "ore": 0.25,
+        "ore": 0.5,
         "water": 0
       }
     },
@@ -23434,9 +23436,9 @@
       "feature": null,
       "improvement": null,
       "resource": null,
-      "slots": 1,
+      "slots": 3,
       "staffing": null,
-      "terrain": "Crater Rim",
+      "terrain": "Mare Plain",
       "upkeep": {
         "energy": 0.0,
         "helium3": 0.0,
@@ -23453,7 +23455,7 @@
         "food": 0,
         "housing": 0,
         "materials": 0.25,
-        "ore": 0.5,
+        "ore": 0.25,
         "water": 0
       }
     },
@@ -23518,9 +23520,9 @@
       "feature": null,
       "improvement": null,
       "resource": "Helium-3",
-      "slots": 1,
+      "slots": 3,
       "staffing": null,
-      "terrain": "Crater Rim",
+      "terrain": "Mare Plain",
       "upkeep": {
         "energy": 0.0,
         "helium3": 0.0,
@@ -23537,7 +23539,7 @@
         "food": 0,
         "housing": 0,
         "materials": 0.25,
-        "ore": 0.5,
+        "ore": 0.25,
         "water": 0
       }
     },
