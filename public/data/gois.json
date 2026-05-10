@@ -7,7 +7,7 @@
         "unlocked_list": []
       },
       "approach": "Centrist",
-      "approval": 0.5118495407,
+      "approval": 0.5118173877,
       "derived_influence": 0.2445914376,
       "effective_worldview": {
         "authority": 3.793239213,
@@ -22,7 +22,7 @@
       "name": "Administration",
       "sub_factions": [
         {
-          "approval": 0.509913748,
+          "approval": 0.5098815949,
           "effective_worldview": {
             "authority": 4.4,
             "corporate": 4.0,
@@ -38,7 +38,7 @@
           "national_share": 0.07287595679
         },
         {
-          "approval": 0.4261382377,
+          "approval": 0.4261060847,
           "effective_worldview": {
             "authority": 5.1,
             "corporate": 4.0,
@@ -54,7 +54,7 @@
           "national_share": 0.06413084197
         },
         {
-          "approval": 0.619296401,
+          "approval": 0.6192642479,
           "effective_worldview": {
             "authority": 2.3,
             "corporate": 4.0,
@@ -78,7 +78,7 @@
         "unlocked_list": []
       },
       "approach": "Centrist",
-      "approval": 0.4677803671,
+      "approval": 0.4677397566,
       "derived_influence": 0.2411410409,
       "effective_worldview": {
         "authority": 4.060633649,
@@ -93,7 +93,7 @@
       "name": "Corporate",
       "sub_factions": [
         {
-          "approval": 0.549912646,
+          "approval": 0.5498720355,
           "effective_worldview": {
             "authority": 5.85,
             "corporate": 2.05,
@@ -109,7 +109,7 @@
           "national_share": 0.1149566591
         },
         {
-          "approval": 0.3741323739,
+          "approval": 0.3740917634,
           "effective_worldview": {
             "authority": 5.15,
             "corporate": 1.0,
@@ -125,7 +125,7 @@
           "national_share": 0.1005870768
         },
         {
-          "approval": 0.4674759113,
+          "approval": 0.4674353008,
           "effective_worldview": {
             "authority": 3.15,
             "corporate": 1.85,
@@ -149,7 +149,7 @@
         "unlocked_list": []
       },
       "approach": "Marketist",
-      "approval": 0.5515683216,
+      "approval": 0.551520821,
       "derived_influence": 0.2631831055,
       "effective_worldview": {
         "authority": 4.099459114,
@@ -164,7 +164,7 @@
       "name": "Unions",
       "sub_factions": [
         {
-          "approval": 0.5879826073,
+          "approval": 0.5879351068,
           "effective_worldview": {
             "authority": 3.15,
             "corporate": 5.0,
@@ -180,7 +180,7 @@
           "national_share": 0.156830679
         },
         {
-          "approval": 0.4963805665,
+          "approval": 0.4963330659,
           "effective_worldview": {
             "authority": 2.9000000000000004,
             "corporate": 6.0,
@@ -196,7 +196,7 @@
           "national_share": 0.09409840741
         },
         {
-          "approval": 0.54331424,
+          "approval": 0.5432667394,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 6.2,
@@ -220,7 +220,7 @@
         "unlocked_list": []
       },
       "approach": "Centrist",
-      "approval": 0.4988150031,
+      "approval": 0.4987813586,
       "derived_influence": 0.2510844159,
       "effective_worldview": {
         "authority": 4.045197216,
@@ -235,7 +235,7 @@
       "name": "Research",
       "sub_factions": [
         {
-          "approval": 0.4817743908,
+          "approval": 0.4817407463,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 3.3,
@@ -251,7 +251,7 @@
           "national_share": 0.1196968608
         },
         {
-          "approval": 0.4335101051,
+          "approval": 0.4334764606,
           "effective_worldview": {
             "authority": 5.3999999999999995,
             "corporate": 4.0,
@@ -267,7 +267,7 @@
           "national_share": 0.08977264562
         },
         {
-          "approval": 0.5868407174,
+          "approval": 0.5868070728,
           "effective_worldview": {
             "authority": 2.6,
             "corporate": 4.0,
