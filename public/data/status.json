@@ -2,18 +2,18 @@
   "active_situations": [],
   "crisis_factor": 0.0,
   "demographics": {
-    "avg_satisfaction": 0.3827460098674728,
+    "avg_satisfaction": 0.3838304635471738,
     "base_growth_rate": 0.03,
-    "effective_cdr": 0.01352173913,
+    "effective_cdr": 0.01386956522,
     "effective_growth_rate": 0.0096,
-    "housing_capacity": 90111.0,
-    "housing_util": 1.0209630344796972,
-    "net_delta_pct": -0.3921739130000001,
+    "housing_capacity": 88890.0,
+    "housing_util": 1.0349870626617168,
+    "net_delta_pct": -0.426956522,
     "sat_elasticity": 0.32,
-    "total_births": 2442.0,
-    "total_deaths": 1244.0
+    "total_births": 2302.0,
+    "total_deaths": 1276.0
   },
-  "gov_approval": 0.6403484905,
+  "gov_approval": 0.6359508031,
   "overton": {
     "authority": 3.0,
     "corporate": 3.5,
@@ -26,45 +26,45 @@
   "resources": [
     {
       "current": 1000.0,
-      "delta": -169.8172267,
-      "income": 827.4077733,
+      "delta": -175.7570304,
+      "income": 821.4679696,
       "name": "Food",
       "upkeep": 997.225
     },
     {
       "current": 2500.0,
-      "delta": 29.83034447,
-      "income": 1087.205344,
+      "delta": 4.778258029,
+      "income": 1087.153258,
       "name": "Materials",
-      "upkeep": 1057.375
+      "upkeep": 1082.375
     },
     {
       "current": 3825.0,
-      "delta": 164.157414,
-      "income": 939.157414,
+      "delta": 139.1313708,
+      "income": 939.1313708,
       "name": "Ore",
-      "upkeep": 775.0
+      "upkeep": 800.0
     },
     {
       "current": 1000.0,
-      "delta": 425.0787447,
-      "income": 5058.172495,
+      "delta": 325.0266582,
+      "income": 5058.120408,
       "name": "Energy",
-      "upkeep": 4633.09375
+      "upkeep": 4733.09375
     },
     {
-      "current": 90111.0,
-      "delta": -1889.0,
-      "income": 90111.0,
+      "current": 88890.0,
+      "delta": -3110.0,
+      "income": 88890.0,
       "name": "Housing",
       "upkeep": 92000.0
     },
     {
       "current": 125000.0,
-      "delta": 288037.6547,
-      "income": 393287.6547,
+      "delta": 321784.5245,
+      "income": 429534.5245,
       "name": "Money",
-      "upkeep": 105250.0
+      "upkeep": 107750.0
     },
     {
       "current": 0.0,
@@ -75,16 +75,16 @@
     },
     {
       "current": 250.0,
-      "delta": 4.425599129,
+      "delta": -20.57440087,
       "income": 571.7755991,
       "name": "Water",
-      "upkeep": 567.35
+      "upkeep": 592.35
     }
   ],
-  "stability": 0.6603930863,
+  "stability": 0.655573175,
   "treasury": {
-    "delta": 288037.6547,
-    "money": 223686.0
+    "delta": 321784.5245,
+    "money": 222465.0
   },
   "year": 2075
 }

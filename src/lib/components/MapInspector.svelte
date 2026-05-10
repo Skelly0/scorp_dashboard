@@ -2,6 +2,7 @@
   import { createEventDispatcher } from 'svelte';
   import { categoryFor, CATEGORIES } from '../improvement-categories.js';
   import { RESOURCE_CODES, FEATURE_CODES } from '../map-codes.js';
+  import { labelForMetricKey } from '../map-metrics.js';
   import { classColor } from '../faction-colors.js';
   import ImprovementCard from './ImprovementCard.svelte';
 
@@ -28,6 +29,7 @@
   function formatYieldValue(value) {
     return `${value > 0 ? '+' : ''}${truncateDecimal(value, 2)}`;
   }
+
 </script>
 
 {#if !tile}
@@ -86,7 +88,7 @@
         <h4>Yields</h4>
         <dl class="kv">
           {#each Object.entries(tile.yields).filter(([_, v]) => v !== 0 && v != null) as [k, v]}
-            <dt class="capitalize">{k}</dt>
+            <dt>{labelForMetricKey(k)}</dt>
             <dd class={v < 0 ? 'crit' : v > 0 ? 'good' : ''}>{formatYieldValue(v)}</dd>
           {/each}
         </dl>
@@ -98,8 +100,8 @@
         <h4>Upkeep</h4>
         <dl class="kv">
           {#each Object.entries(tile.upkeep).filter(([_, v]) => v != null && v !== 0) as [k, v]}
-            <dt class="capitalize">{k}</dt>
-            <dd class="crit">{v}</dd>
+            <dt>{labelForMetricKey(k)}</dt>
+            <dd class="crit">{truncateDecimal(v, 2)}</dd>
           {/each}
         </dl>
       </div>
@@ -107,7 +109,7 @@
 
     {#if tile.workforce && Object.keys(tile.workforce).length > 0}
       <div class="kv-section">
-        <h4>Workforce</h4>
+        <h4>Workforce Demand</h4>
         {#each Object.entries(tile.workforce).sort(([, a], [, b]) => b - a) as [name, count]}
           <div class="workforce-row">
             <span class="swatch" style="background: {classColor(name)}"></span>

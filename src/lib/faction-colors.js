@@ -27,10 +27,18 @@ export const GOI_COLORS = {
 };
 
 export const CONTROL_COLORS = {
-  Administration: '#5ec3ff',
+  Administration: '#38d39f',
   Corporations: '#ffd84d',
+  Unions: '#ff5544',
+  Research: '#5ec3ff',
   ...GOI_COLORS,
+  Unionists: '#ff5544',
   ...CLASS_COLORS,
+};
+
+const LEGACY_CONTROL_DEFAULTS = {
+  Administration: '#5ec3ff',
+  Unionists: '#38d39f',
 };
 
 export function classColor(name) {
@@ -39,4 +47,19 @@ export function classColor(name) {
 
 export function goiColor(name) {
   return GOI_COLORS[name] ?? 'var(--accent)';
+}
+
+export function resolveControlColor(control, palettes = {}) {
+  if (!control) return null;
+  const paletteHit = palettes.control?.[control];
+  const canonical = CONTROL_COLORS[control];
+  if (paletteHit && paletteHit !== LEGACY_CONTROL_DEFAULTS[control]) return paletteHit;
+  if (canonical) return canonical;
+  if (paletteHit) return paletteHit;
+
+  const g = goiColor(control);
+  if (g !== 'var(--accent)') return g;
+  const c = classColor(control);
+  if (c !== 'var(--accent)') return c;
+  return null;
 }

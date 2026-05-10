@@ -1,12 +1,15 @@
 import { test, expect } from '@playwright/test';
 
+const mapViewport = (page) => page.getByRole('application', { name: /interactive colony map viewport/i });
+const mapCanvas = (page) => page.locator('.map-content canvas');
+
 test.describe('Map page — staffing & dropdowns', () => {
   test.skip(({ isMobile }) => isMobile, 'Desktop map dropdown coverage runs in desktop projects.');
 
   test.beforeEach(async ({ page }) => {
     await page.goto('/#/map');
     await page.waitForLoadState('networkidle');
-    await expect(page.locator('canvas[role=application]')).toBeVisible();
+    await expect(mapViewport(page)).toBeVisible();
   });
 
   test('Yields quick-selects, then opens dropdown and switches legend', async ({ page }) => {
@@ -52,12 +55,12 @@ test.describe('Map mobile inspector sheet', () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/#/map');
     await page.waitForLoadState('networkidle');
-    await expect(page.locator('canvas[role=application]')).toBeVisible();
+    await expect(mapViewport(page)).toBeVisible();
   });
 
   test('tapping a tile opens a dismissable bottom sheet', async ({ page }) => {
-    const canvas = page.locator('canvas[role=application]');
-    const box = await canvas.boundingBox();
+    const viewport = mapViewport(page);
+    const box = await viewport.boundingBox();
     expect(box).not.toBeNull();
 
     await page.touchscreen.tap(box.x + box.width / 2, box.y + box.height / 2);
@@ -127,7 +130,8 @@ test.describe('Map page — control layer', () => {
     await expect(controlBtn).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('text=/Control —/i').first()).toBeVisible();
 
-    const canvas = page.locator('canvas[role=application]');
+    const canvas = mapCanvas(page);
+    await expect(canvas).toBeVisible();
     await expect.poll(async () => (
       await canvas.evaluate((canvas) => {
         const ctx = canvas.getContext('2d');
@@ -141,6 +145,111 @@ test.describe('Map page — control layer', () => {
 });
 
 test.describe('Map page — detail values', () => {
+  test('Upkeep menu lists upkeep resources from map data', async ({ page }) => {
+    await page.route('**/data/map.json*', async (route) => {
+      await route.fulfill({
+        json: {
+          available_categories: { staffing: false, upkeep: true, workforce: true },
+          height: 1,
+          width: 1,
+          missing_sheets: [],
+          palettes: {
+            terrain: { Plain: '#333333' },
+            resource: {},
+            feature: {},
+            improvement_category: {},
+            control: {},
+          },
+          tiles: [
+            {
+              x: 0,
+              y: 0,
+              terrain: 'Plain',
+              feature: null,
+              resource: null,
+              slots: 0,
+              improvement: null,
+              control: null,
+              yields: { food: 0 },
+              upkeep: {
+                energy: 7,
+                money: 12,
+                helium3: 3,
+              },
+              workforce: { Engineers: 44 },
+              staffing: null,
+            },
+          ],
+        },
+      });
+    });
+
+    await page.goto('/#/map');
+    await page.waitForLoadState('networkidle');
+
+    const upkeepTrigger = page.getByRole('button', { name: /^Upkeep/ });
+    await upkeepTrigger.click();
+    await upkeepTrigger.click();
+
+    await expect(page.getByRole('menuitem', { name: 'Energy' })).toBeVisible();
+    await expect(page.getByRole('menuitem', { name: 'Money' })).toBeVisible();
+    await expect(page.getByRole('menuitem', { name: 'Helium-3' })).toBeVisible();
+
+    await page.getByRole('menuitem', { name: 'Money' }).click();
+    await expect(upkeepTrigger).toContainText('Money');
+    await expect(page.locator('text=/money upkeep/i').first()).toBeVisible();
+  });
+
+  test('Workforce Demand menu labels the map layer as demand', async ({ page }) => {
+    await page.route('**/data/map.json*', async (route) => {
+      await route.fulfill({
+        json: {
+          available_categories: { staffing: false, upkeep: false, workforce: true },
+          height: 1,
+          width: 1,
+          missing_sheets: [],
+          palettes: {
+            terrain: { Plain: '#333333' },
+            resource: {},
+            feature: {},
+            improvement_category: {},
+            control: {},
+          },
+          tiles: [
+            {
+              x: 0,
+              y: 0,
+              terrain: 'Plain',
+              feature: null,
+              resource: null,
+              slots: 0,
+              improvement: null,
+              control: null,
+              yields: {},
+              upkeep: {},
+              workforce: { Engineers: 44 },
+              staffing: null,
+            },
+          ],
+        },
+      });
+    });
+
+    await page.goto('/#/map');
+    await page.waitForLoadState('networkidle');
+
+    const workforceTrigger = page.getByRole('button', { name: /^Workforce Demand/ });
+    await expect(workforceTrigger).toBeVisible();
+
+    await workforceTrigger.click();
+    await expect(workforceTrigger).toContainText('Engineers');
+    await expect(page.locator('text=/Engineers demand/i').first()).toBeVisible();
+
+    const canvas = mapCanvas(page);
+    await canvas.click({ position: { x: 10, y: 10 } });
+    await expect(page.getByRole('heading', { name: 'Workforce Demand' })).toBeVisible();
+  });
+
   test('truncates yield decimals in the tile detail box', async ({ page }) => {
     await page.route('**/data/map.json*', async (route) => {
       await route.fulfill({
@@ -194,7 +303,7 @@ test.describe('Map page — detail values', () => {
     await page.goto('/#/map');
     await page.waitForLoadState('networkidle');
 
-    const canvas = page.locator('canvas[role=application]');
+    const canvas = mapCanvas(page);
     await expect(canvas).toBeVisible();
     await canvas.click({ position: { x: 10, y: 10 } });
 

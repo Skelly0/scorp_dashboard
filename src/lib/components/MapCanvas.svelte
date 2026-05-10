@@ -3,7 +3,8 @@
   import { RESOURCE_CODES, FEATURE_CODES } from '../map-codes.js';
   import { categoryFor, getCategorySlug } from '../improvement-categories.js';
   import { catalog } from '../stores/catalog.js';
-  import { goiColor, classColor, CLASS_COLORS, CONTROL_COLORS } from '../faction-colors.js';
+  import { CLASS_COLORS, resolveControlColor } from '../faction-colors.js';
+  import { labelForMetricKey } from '../map-metrics.js';
   import { ZOOM_DEFAULT, clampZoom, pinchMathStep } from '../map-zoom.js';
 
   /** @type {{tiles: any[], width: number, height: number, palettes: any}} */
@@ -383,19 +384,7 @@
   }
 
   function controlColor(control, palettes = {}) {
-    if (!control) return null;
-    const paletteHit = palettes.control?.[control];
-    if (paletteHit) return paletteHit;
-    if (CONTROL_COLORS[control]) return CONTROL_COLORS[control];
-    // Try GoI palette first; fall back to class palette. Both helpers
-    // return 'var(--accent)' on miss — that string doesn't resolve in SVG
-    // presentation attributes (gotcha #14), so we filter it out and let
-    // the caller's ?? chain fall through to the category-palette colour.
-    const g = goiColor(control);
-    if (g !== 'var(--accent)') return g;
-    const c = classColor(control);
-    if (c !== 'var(--accent)') return c;
-    return null;
+    return resolveControlColor(control, palettes);
   }
 
   function handleClick(e) {
@@ -561,7 +550,7 @@
     {@const parsed = parseLayer(layer)}
     <div class="font-mono text-xs uppercase tracking-widest text-muted mt-2 flex items-center gap-3">
       {#if parsed.category === 'yield'}
-        <span class="capitalize">{parsed.key} yield —</span>
+        <span>{labelForMetricKey(parsed.key)} yield —</span>
         {#if layerMax.pos > 0}
           <span>0 to <strong class="text-fg">+{layerMax.pos.toFixed(1)}</strong></span>
           <span class="inline-block w-4 h-3 border border-border" style="background: var(--good)"></span>
@@ -571,23 +560,23 @@
           <span class="inline-block w-4 h-3 border border-border" style="background: var(--crit)"></span>
         {/if}
         {#if layerMax.pos === 0 && layerMax.neg === 0}
-          <span>(no tiles produce or consume {parsed.key})</span>
+          <span>(no tiles produce or consume {labelForMetricKey(parsed.key)})</span>
         {/if}
       {:else if parsed.category === 'upkeep'}
-        <span class="capitalize">{parsed.key} upkeep —</span>
+        <span>{labelForMetricKey(parsed.key)} upkeep —</span>
         {#if layerMax.max > 0}
           <span>0 to <strong class="text-fg">{layerMax.max.toFixed(1)}</strong></span>
           <span class="inline-block w-4 h-3 border border-border" style="background: var(--crit)"></span>
         {:else}
-          <span>(no tiles consume {parsed.key})</span>
+          <span>(no tiles consume {labelForMetricKey(parsed.key)})</span>
         {/if}
       {:else if parsed.category === 'workforce'}
-        <span>{parsed.key} —</span>
+        <span>{parsed.key} demand —</span>
         {#if layerMax.max > 0}
           <span>0 to <strong class="text-fg">{layerMax.max}</strong></span>
           <span class="inline-block w-4 h-3 border border-border" style="background: {CLASS_COLORS[parsed.key] ?? 'var(--accent)'}"></span>
         {:else}
-          <span>(no tiles employ {parsed.key})</span>
+          <span>(no tiles demand {parsed.key})</span>
         {/if}
       {:else if parsed.category === 'staffing'}
         <span>Staffing —</span>
