@@ -10,7 +10,6 @@
   import MoonBackdrop from './lib/components/MoonBackdrop.svelte';
 
   import Status from './routes/Status.svelte';
-  import Population from './routes/Population.svelte';
   import GoIs from './routes/GoIs.svelte';
   import Parties from './routes/Parties.svelte';
   import Map from './routes/Map.svelte';
@@ -34,7 +33,6 @@
   const routes = {
     '/': Status,
     '/map': Map,
-    '/population': Population,
     '/demographics': Demographics,
     '/cropsim': Cropsim,
     '/gois': GoIs,

@@ -61,7 +61,7 @@ def test_run_sync_writes_status_and_meta(tmp_path, fixture_workbook_path):
     assert (out_dir / "meta.json").exists()
     meta = json.loads((out_dir / "meta.json").read_text())
     assert meta["senate_visible"] is False
-    assert meta["schema_version"] == 9
+    assert meta["schema_version"] == 10
     assert "synced_at" in meta
 
 

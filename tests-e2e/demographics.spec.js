@@ -37,13 +37,15 @@ test.describe('Demographics page — workforce rework', () => {
     await expect(tile).toContainText(/(\+|−|-|—).*\/ year|—/);
   });
 
-  test('Class Vitals has Demand and Fill % columns', async ({ page }) => {
+  test('Class Vitals has population profile and workforce columns', async ({ page }) => {
+    await expect(page.locator('th', { hasText: 'Tier' })).toBeVisible();
+    await expect(page.locator('th', { hasText: 'Share' })).toBeVisible();
     await expect(page.locator('th', { hasText: 'Demand' })).toBeVisible();
     await expect(page.locator('th', { hasText: 'Fill %' })).toBeVisible();
-    // Total expected column count: Class, Pop, Mortality, Births/turn, Deaths/turn,
-    // Mobility In, Mobility Out, Demand, Fill %, Unemployed, Satisfaction = 11.
+    // Total expected column count: Class, Tier, Share, Pop, Mortality, Births/turn,
+    // Deaths/turn, Mobility In, Mobility Out, Demand, Fill %, Unemployed, Satisfaction = 13.
     const headers = await page.locator('table.tbl thead th').count();
-    expect(headers).toBe(11);
+    expect(headers).toBe(13);
   });
 
   test('Workforce band renders between Class Vitals and Housing', async ({ page }) => {
@@ -122,9 +124,26 @@ test.describe('Demographics — class drilldown', () => {
   test('Status and per-class Workforce cards present in detail', async ({ page }) => {
     await page.locator('table.tbl tbody tr').first().click();
     await expect(page.locator('.s-card', { hasText: 'Status' })).toBeVisible();
-    await expect(
-      page.locator('.s-card', { hasText: 'Workforce' }).filter({ hasText: 'Fill Ratio' })
-    ).toBeVisible();
+    const workforceCard = page.locator('.s-card', { hasText: 'Workforce' }).filter({ hasText: 'Fill Ratio' });
+    await expect(workforceCard).toBeVisible();
+    await expect(workforceCard.locator('dt', { hasText: 'Weekly Hours' })).toBeVisible();
+    await expect(workforceCard.locator('dd', { hasText: '40 / wk' })).toBeVisible();
+  });
+
+  test('Population profile and worldview chart are merged into class detail', async ({ page }) => {
+    await page.locator('table.tbl tbody tr').first().click();
+    const profileCard = page.locator('.s-card', { hasText: 'Population Profile' });
+    await expect(profileCard).toBeVisible();
+    await expect(profileCard.locator('dt', { hasText: 'Tier' })).toBeVisible();
+    await expect(profileCard.locator('dt', { hasText: 'Pop Share' })).toBeVisible();
+    await expect(profileCard.locator('dt', { hasText: 'Political Weight' })).toBeVisible();
+    await expect(page.locator('.s-card', { hasText: 'Worldview Chart' })).toBeVisible();
+  });
+
+  test('Population page is no longer exposed as a standalone route', async ({ page }) => {
+    await expect(page.locator('nav a', { hasText: 'Population' })).toHaveCount(0);
+    await page.goto('/#/population');
+    await expect(page.locator('text=404 — Page Not Found')).toBeVisible();
   });
 
   test('row aria-pressed reflects selection', async ({ page }) => {
@@ -153,6 +172,8 @@ test.describe('Demographics mobile table trim', () => {
     await expect(page.locator('th', { hasText: 'Fill %' })).toBeVisible();
     await expect(page.locator('th', { hasText: 'Satisfaction' })).toBeVisible();
 
+    await expect(page.locator('th', { hasText: 'Tier' })).toBeHidden();
+    await expect(page.locator('th', { hasText: 'Share' })).toBeHidden();
     await expect(page.locator('th', { hasText: 'Mortality' })).toBeHidden();
     await expect(page.locator('th', { hasText: 'Births/year' })).toBeHidden();
     await expect(page.locator('th', { hasText: 'Deaths/year' })).toBeHidden();

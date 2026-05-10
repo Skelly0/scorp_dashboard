@@ -97,6 +97,21 @@ def test_pops_mobility_optional_when_range_missing(wb):
         assert cls["mobility_out"] is None
 
 
+def test_pops_weekly_hours_worked_present(wb):
+    result = extract(wb)
+    first = result["classes"][0]
+    second = result["classes"][1]
+    assert first["workforce"]["weekly_hours_worked"] == 42
+    assert second["workforce"]["weekly_hours_worked"] == 41
+
+
+def test_pops_weekly_hours_worked_optional_when_range_missing(wb):
+    del wb.defined_names["WeeklyHoursWorkedTable"]
+    result = extract(wb)
+    for cls in result["classes"]:
+        assert cls["workforce"]["weekly_hours_worked"] is None
+
+
 def test_pops_satisfaction_breakdown_present(wb):
     """Per-class satisfaction_breakdown dict surfaces all 11 sources."""
     result = extract(wb)

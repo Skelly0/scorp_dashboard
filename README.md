@@ -45,14 +45,13 @@ npm run test:e2e
    - `sync.yml` runs hourly + on demand → writes JSON → commits.
    - `deploy-pages.yml` fires on `main` pushes (path-filtered) → builds → publishes.
 
-## Pages (10 routes, Senate gated)
+## Pages (9 routes, Senate gated)
 
 | Page | Route | Notes |
 |---|---|---|
 | Status | `/` | Treasury, Stab/Crisis, resources, Overton, situations banner |
 | Map | `/#/map` | 40×40 interactive, terrain base + icons + heatmap toggle |
-| Population | `/#/population` | 11 classes, table + per-class worldview radars |
-| Demographics | `/#/demographics` | Pop/housing/food vitals + Class Vitals table with click-to-drilldown per-class detail (income, wealth, status, workforce) |
+| Demographics | `/#/demographics` | Pop/housing/food vitals + Class Vitals table with click-to-drilldown per-class detail (population share, worldview, income, wealth, status, workforce) |
 | Cropsim | `/#/cropsim` | Food supply, class demand, production mix, and food-security balance |
 | GoIs | `/#/gois` | 4 panels + sub-factions + PopCapture matrix |
 | Tech | `/#/tech` | Research tree, unlock states, and active-effect signalling |
