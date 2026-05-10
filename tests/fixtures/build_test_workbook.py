@@ -428,6 +428,42 @@ def build(out_path: Path) -> Path:
             pc.cell(row=i, column=16 + j, value=(i - 64) * 1000 + (j + 1) * 100)
     _add_name(wb, "GoIValueCapturedPop", "'Party and GoI Pop Capture'!$P$65:$S$75")
 
+    # PARTY VALUE CAPTURE % / POP blocks: class rows x founded party cols.
+    # Read by title/headers in extractors.parties, not via named ranges.
+    party_names = ["Liberty Now", "People's Voice"]
+    capture_pcts = [
+        (0.65, 0.35),
+        (0.25, 0.75),
+        (0.40, 0.60),
+        (0.55, 0.45),
+        (0.30, 0.70),
+        (0.20, 0.80),
+        (0.45, 0.55),
+        (0.50, 0.50),
+        (0.35, 0.65),
+        (0.42, 0.58),
+        (0.48, 0.52),
+    ]
+    pc.cell(row=82, column=15, value="PARTY VALUE CAPTURE %")
+    pc.cell(row=83, column=15, value="Class pop split across founded parties by value compatibility.")
+    pc.cell(row=84, column=15, value="Class")
+    pc.cell(row=104, column=15, value="Class")
+    pc.cell(row=102, column=15, value="PARTY VALUE CAPTURED POP")
+    pc.cell(row=103, column=15, value="Captured pop count = blended party capture % multiplied by current Popsim population.")
+    for idx, party_name in enumerate(party_names):
+        pc.cell(row=84, column=16 + idx, value=party_name)
+        pc.cell(row=104, column=16 + idx, value=party_name)
+    for idx, (name, _tier, pop_count, _weight) in enumerate(classes):
+        pct_row = 85 + idx
+        pop_row = 105 + idx
+        pc.cell(row=pct_row, column=15, value=name)
+        pc.cell(row=pop_row, column=15, value=name)
+        for party_idx, pct in enumerate(capture_pcts[idx]):
+            pc.cell(row=pct_row, column=16 + party_idx, value=pct)
+            pc.cell(row=pop_row, column=16 + party_idx, value=round(pop_count * pct))
+        pc.cell(row=pct_row, column=31, value=sum(capture_pcts[idx]))
+        pc.cell(row=pop_row, column=31, value=pop_count)
+
     # GoI Benefits: A4:D15
     gb = wb.create_sheet("GoI Benefits")
     benefits = [

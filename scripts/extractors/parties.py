@@ -51,6 +51,18 @@ def extract(wb) -> dict[str, Any]:
             "classes": [c[0] for c in classes],
             "values": [p["class_compat"] for p in parties_out],
         },
+        "party_capture_pct_matrix": _read_party_capture_matrix(
+            wb,
+            "PARTY VALUE CAPTURE %",
+            [p["name"] for p in parties_out],
+            [c[0] for c in classes],
+        ),
+        "party_capture_pop_matrix": _read_party_capture_matrix(
+            wb,
+            "PARTY VALUE CAPTURED POP",
+            [p["name"] for p in parties_out],
+            [c[0] for c in classes],
+        ),
     }
 
 
@@ -68,3 +80,59 @@ def _read_parties_block(wb):
         row = [ws.cell(row=r, column=c).value for c in range(1, 43)]  # cols A-AP
         rows.append(row)
     return rows
+
+
+def _read_party_capture_matrix(wb, block_title, party_names, class_names):
+    """Read class x party capture blocks from Party and GoI Pop Capture.
+
+    These blocks are sheet-keyed rather than named ranges in the live workbook.
+    Locate by title so the extractor survives rows being inserted above them.
+    """
+    empty = {"classes": class_names, "parties": party_names, "values": []}
+    if not party_names or not class_names or "Party and GoI Pop Capture" not in wb.sheetnames:
+        return empty
+
+    ws = wb["Party and GoI Pop Capture"]
+    anchor = _find_cell(ws, block_title)
+    if anchor is None:
+        return empty
+
+    title_row, title_col = anchor
+    header_row = title_row + 2
+    party_cols = {}
+    for col in range(title_col + 1, ws.max_column + 1):
+        header = ws.cell(row=header_row, column=col).value
+        if header in party_names:
+            party_cols[header] = col
+
+    if not party_cols:
+        return empty
+
+    rows_by_class = {}
+    for row in range(header_row + 1, ws.max_row + 1):
+        class_name = ws.cell(row=row, column=title_col).value
+        if class_name in class_names:
+            rows_by_class[class_name] = [
+                coerce_number(ws.cell(row=row, column=party_cols[p]).value)
+                if p in party_cols else None
+                for p in party_names
+            ]
+        if len(rows_by_class) == len(class_names):
+            break
+
+    return {
+        "classes": class_names,
+        "parties": party_names,
+        "values": [
+            rows_by_class.get(class_name, [None] * len(party_names))
+            for class_name in class_names
+        ],
+    }
+
+
+def _find_cell(ws, value):
+    for row in ws.iter_rows():
+        for cell in row:
+            if cell.value == value:
+                return cell.row, cell.column
+    return None

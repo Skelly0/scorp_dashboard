@@ -25,3 +25,28 @@ export function classCompatPopMatrix(matrix, classes = []) {
     ),
   };
 }
+
+export function partySupportOverview(pctMatrix, popMatrix, limit = 3) {
+  if (!popMatrix?.values?.length || !popMatrix?.classes?.length || !popMatrix?.parties?.length) return [];
+
+  return popMatrix.parties.map((party, pi) => {
+    const rows = popMatrix.classes
+      .map((className, ci) => {
+        const capturedPop = finiteNumber(popMatrix.values?.[ci]?.[pi]);
+        const classCapturePct = finiteNumber(pctMatrix?.values?.[ci]?.[pi]);
+        return { className, capturedPop, classCapturePct };
+      })
+      .filter((row) => row.className && row.capturedPop != null && row.capturedPop > 0);
+
+    const totalCapturedPop = rows.reduce((total, row) => total + row.capturedPop, 0);
+    const topClasses = rows
+      .map((row) => ({
+        ...row,
+        partySharePct: totalCapturedPop > 0 ? row.capturedPop / totalCapturedPop : null,
+      }))
+      .sort((a, b) => b.capturedPop - a.capturedPop)
+      .slice(0, limit);
+
+    return { party, totalCapturedPop, topClasses };
+  });
+}
