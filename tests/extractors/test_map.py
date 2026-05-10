@@ -131,8 +131,10 @@ def test_extract_includes_control_palette(wb):
     result = extract(wb)
     assert "control" in result["palettes"]
     pal = result["palettes"]["control"]
-    assert pal["Administration"] == "#5ec3ff"
+    assert pal["Administration"] == "#38d39f"
     assert pal["Corporations"] == "#ffd84d"
+    assert pal["Unions"] == "#ff5544"
+    assert pal["Research"] == "#5ec3ff"
     assert pal["Founders"] == "#ffb000"
 
 
