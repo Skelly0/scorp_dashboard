@@ -37,7 +37,8 @@ COL_DERIVED_INFLUENCE = 19  # S
 
 def extract(wb) -> dict[str, Any]:
     classes = filter_blank_rows(read_named_range(wb, "ClassTable"))
-    capture = read_named_range(wb, "PopCaptureBase")
+    base_capture = read_named_range(wb, "PopCaptureBase")
+    captured_pop = read_named_range(wb, "GoIValueCapturedPop")
     benefits_table = read_named_range(wb, "GoIBenefitsTable")
 
     # Read the GoI block directly from Politics by column offset.
@@ -47,7 +48,7 @@ def extract(wb) -> dict[str, Any]:
     live_indices = [i for i, r in enumerate(rows) if r["name"] not in (None, "")]
     live_names = [rows[i]["name"] for i in live_indices]
 
-    main_classes = _infer_main_classes(live_names, capture, classes)
+    main_classes = _infer_main_classes(live_names, base_capture, classes)
 
     sub_factions_by_goi = _sub_factions_by_goi(wb)
 
@@ -73,7 +74,7 @@ def extract(wb) -> dict[str, Any]:
         "pop_capture_matrix": {
             "classes": [c[0] for c in classes],
             "gois": live_names,
-            "values": _capture_values(capture, len(classes), live_indices),
+            "values": _capture_values(captured_pop, len(classes), live_indices),
         },
     }
 

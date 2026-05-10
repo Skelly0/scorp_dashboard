@@ -407,6 +407,17 @@ def build(out_path: Path) -> Path:
             gm.cell(row=i, column=2 + j, value=0.20 + (j * 0.10))
     _add_name(wb, "PopCaptureBase", "'GoI Modifiers'!$B$5:$E$15")
 
+    # Party and GoI Pop Capture: GoIValueCapturedPop P65:S75
+    # (11 classes × 4 live GoIs). These are captured-pop counts, not rates.
+    pc = wb.create_sheet("Party and GoI Pop Capture")
+    for j, goi in enumerate([g[0] for g in gois], start=16):
+        pc.cell(row=64, column=j, value=goi)
+    for i, (name, _, _, _) in enumerate(classes, start=65):
+        pc.cell(row=i, column=15, value=name)
+        for j in range(4):
+            pc.cell(row=i, column=16 + j, value=(i - 64) * 1000 + (j + 1) * 100)
+    _add_name(wb, "GoIValueCapturedPop", "'Party and GoI Pop Capture'!$P$65:$S$75")
+
     # GoI Benefits: A4:D15
     gb = wb.create_sheet("GoI Benefits")
     benefits = [

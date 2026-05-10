@@ -46,6 +46,13 @@ def test_extract_pop_capture_matrix_shape(wb):
     assert all(len(row) == 4 for row in matrix["values"])
 
 
+def test_extract_pop_capture_matrix_uses_captured_pop_counts(wb):
+    matrix = extract(wb)["pop_capture_matrix"]
+
+    assert matrix["values"][0] == [1100, 1200, 1300, 1400]
+    assert matrix["values"][-1] == [11100, 11200, 11300, 11400]
+
+
 def test_extract_includes_subfaction_goal(wb):
     result = extract(wb)
     founders = next(g for g in result["gois"] if g["name"] == "Founders")

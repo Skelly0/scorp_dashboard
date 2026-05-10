@@ -54,6 +54,7 @@ NEW_HARD_REQUIRED = [
     "MortalityRates", "DeathsPerTurn", "ClassBirths", "PopsimUnemployed",
     "HousingCapacity",
     "FoodSecurityRatio", "FoodPerCap", "FoodVarietyIndex",
+    "GoIValueCapturedPop",
     "CropsimProductionTable", "CropsimDemandTable", "CropsimAggregateTable",
 ]
 
