@@ -16,7 +16,8 @@
     "parties": [
       "Developmental League",
       "Independent",
-      "Market Interests Group"
+      "Market Interests Group",
+      "Lunar Survival League"
     ],
     "values": [
       [
@@ -46,17 +47,30 @@
         0.2237382585
       ],
       [
-        0.1590946553,
-        0.2112071664,
+        0.1476798547,
+        0.3180457579,
         0.3666871885,
-        0.1272380996,
-        0.3391011771,
-        0.2888805784,
-        0.4592826096,
-        0.4643379961,
-        0.4755318143,
-        0.3909065758,
-        0.5050984211
+        0.1174185815,
+        0.3129312632,
+        0.4419024348,
+        0.6319931733,
+        0.4201503935,
+        0.3443059523,
+        0.2738691094,
+        0.394318402
+      ],
+      [
+        0.08401858408,
+        0.08984629321,
+        0.1513970041,
+        0.0459475221,
+        0.3086141254,
+        0.1314362619,
+        0.197806847,
+        0.2017368608,
+        0.7606828897,
+        0.6690304676,
+        0.6471950542
       ]
     ]
   },
@@ -70,26 +84,33 @@
     "parties": [
       "Developmental League",
       "Independent",
-      "Market Interests Group"
+      "Market Interests Group",
+      "Lunar Survival League"
     ],
     "values": [
       [
-        0.807602455,
-        0.822575261,
-        0.7642131776,
-        0.8329208559
+        0.2699693765,
+        0.2260184763,
+        0.1887944799,
+        0.5856123844
       ],
       [
-        0.8500081539,
-        0.8164118949,
-        0.7487509052,
-        0.8705529776
+        0.5883930968,
+        0.2788002602,
+        0.2113720304,
+        0.56866288
       ],
       [
-        0.906821747,
-        0.9476301749,
-        0.9031020665,
-        0.9130265532
+        0.4050487386,
+        0.6491892325,
+        0.3358509244,
+        0.2597591727
+      ],
+      [
+        0.252823211,
+        0.1863883827,
+        0.6870518108,
+        0.1147325976
       ]
     ]
   },
@@ -109,14 +130,14 @@
         0.1937072167
       ],
       "closest_goi": "Research",
-      "establishment": 0.8,
-      "estimated_support": 56799.39547,
+      "establishment": 0.6,
+      "estimated_support": 42599.5466,
       "founded": true,
       "goi_compat": [
-        0.807602455,
-        0.822575261,
-        0.7642131776,
-        0.8329208559
+        0.2699693765,
+        0.2260184763,
+        0.1887944799,
+        0.5856123844
       ],
       "mad_index": -0.075,
       "name": "Developmental League",
@@ -128,7 +149,7 @@
         "materialist": 3.0,
         "technocratic": 3.0
       },
-      "vote_share": 0.3041201973,
+      "vote_share": 0.2102221833,
       "weighted_stance": {
         "authority": 3.0,
         "corporate": 4.0,
@@ -152,15 +173,15 @@
         0.108003846,
         0.2237382585
       ],
-      "closest_goi": "Research",
+      "closest_goi": "Administration",
       "establishment": 0.6,
       "estimated_support": 54304.38782,
       "founded": true,
       "goi_compat": [
-        0.8500081539,
-        0.8164118949,
-        0.7487509052,
-        0.8705529776
+        0.5883930968,
+        0.2788002602,
+        0.2113720304,
+        0.56866288
       ],
       "mad_index": -0.75,
       "name": "Independent",
@@ -172,7 +193,7 @@
         "materialist": 4.0,
         "technocratic": 3.5
       },
-      "vote_share": 0.2907612133,
+      "vote_share": 0.267983767,
       "weighted_stance": {
         "authority": 3.0,
         "corporate": 3.5,
@@ -184,46 +205,90 @@
     },
     {
       "class_compat": [
-        0.1590946553,
-        0.2112071664,
+        0.1476798547,
+        0.3180457579,
         0.3666871885,
-        0.1272380996,
-        0.3391011771,
-        0.2888805784,
-        0.4592826096,
-        0.4643379961,
-        0.4755318143,
-        0.3909065758,
-        0.5050984211
+        0.1174185815,
+        0.3129312632,
+        0.4419024348,
+        0.6319931733,
+        0.4201503935,
+        0.3443059523,
+        0.2738691094,
+        0.394318402
       ],
       "closest_goi": "Corporate",
-      "establishment": 0.8,
-      "estimated_support": 75662.48864,
+      "establishment": 0.6,
+      "estimated_support": 56476.20739,
       "founded": true,
       "goi_compat": [
-        0.906821747,
-        0.9476301749,
-        0.9031020665,
-        0.9130265532
+        0.4050487386,
+        0.6491892325,
+        0.3358509244,
+        0.2597591727
       ],
       "mad_index": -0.0375,
       "name": "Market Interests Group",
       "stance": {
         "authority": 4.0,
-        "corporate": 4.0,
+        "corporate": 3.0,
         "expansion": 3.0,
         "faith": 4.0,
         "materialist": 3.0,
         "technocratic": 4.0
       },
-      "vote_share": 0.4051185894,
+      "vote_share": 0.2787013611,
       "weighted_stance": {
         "authority": 4.0,
-        "corporate": 4.0,
+        "corporate": 3.0,
         "expansion": 3.0,
         "faith": 4.0,
         "materialist": 3.0,
         "technocratic": 4.0
+      }
+    },
+    {
+      "class_compat": [
+        0.08401858408,
+        0.08984629321,
+        0.1513970041,
+        0.0459475221,
+        0.3086141254,
+        0.1314362619,
+        0.197806847,
+        0.2017368608,
+        0.7606828897,
+        0.6690304676,
+        0.6471950542
+      ],
+      "closest_goi": "Unions",
+      "establishment": 0.6,
+      "estimated_support": 49260.44509,
+      "founded": true,
+      "goi_compat": [
+        0.252823211,
+        0.1863883827,
+        0.6870518108,
+        0.1147325976
+      ],
+      "mad_index": 0.16,
+      "name": "Lunar Survival League",
+      "stance": {
+        "authority": 4.0,
+        "corporate": 5.5,
+        "expansion": 3.0,
+        "faith": 3.5,
+        "materialist": 2.0,
+        "technocratic": 5.0
+      },
+      "vote_share": 0.2430926886,
+      "weighted_stance": {
+        "authority": 4.0,
+        "corporate": 5.5,
+        "expansion": 3.0,
+        "faith": 3.5,
+        "materialist": 2.0,
+        "technocratic": 5.0
       }
     }
   ]
