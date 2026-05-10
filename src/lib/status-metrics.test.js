@@ -2,6 +2,7 @@ import { describe, expect, test } from 'vitest';
 import {
   formatStatusPercent,
   populationDeltaFromStatus,
+  projectedGrowthRateFromStatus,
   statusMetricTone,
 } from './status-metrics.js';
 
@@ -29,6 +30,32 @@ describe('populationDeltaFromStatus', () => {
     };
 
     expect(populationDeltaFromStatus(status)).toBeNull();
+  });
+});
+
+describe('projectedGrowthRateFromStatus', () => {
+  test('uses workbook total births and deaths over population instead of stale net_delta_pct', () => {
+    const status = {
+      population_total: 92_000,
+      demographics: {
+        total_births: 2046,
+        total_deaths: 1276,
+        net_delta_pct: -0.426956522,
+      },
+    };
+
+    expect(projectedGrowthRateFromStatus(status)).toBeCloseTo(0.8369565217);
+  });
+
+  test('returns null when actual totals or population are missing', () => {
+    expect(projectedGrowthRateFromStatus({
+      population_total: 92_000,
+      demographics: { total_deaths: 1276, net_delta_pct: -0.426956522 },
+    })).toBeNull();
+    expect(projectedGrowthRateFromStatus({
+      population_total: 0,
+      demographics: { total_births: 2046, total_deaths: 1276 },
+    })).toBeNull();
   });
 });
 
