@@ -5,7 +5,6 @@
   import {
     history,
     loadHistory,
-    treasuryHistory,
     stabilityHistory,
     crisisFactorHistory,
     govApprovalHistory,
@@ -38,6 +37,7 @@
   $: netDeltaPop = populationDeltaFromStatus($status);
 
   $: activeSituations = $status?.active_situations?.filter((s) => s.crisis_factor != null) ?? [];
+  $: moneyResource = $status?.resources?.find((r) => String(r?.name ?? '').toLowerCase() === 'money') ?? null;
 
   function fmtMoney(n) {
     if (n == null) return '—';
@@ -94,11 +94,12 @@
     <div class="grid grid-cols-12 gap-3">
       <div class="col-span-12 md:col-span-4">
         <KpiBlock
-          label="Government Revenue"
-          value={fmtMoney($status.treasury?.money)}
+          label="Money"
+          value={fmtMoney(moneyResource?.current)}
           prefix="₡ "
-          delta={fmtDeltaInt($status.treasury?.delta)}
-          history={$treasuryHistory.length >= 2 ? $treasuryHistory : null}
+          subtitle="Reserve"
+          details={resourceFlowDetails(moneyResource)}
+          delta={fmtDeltaInt(moneyResource?.delta)}
         />
       </div>
       <div class="col-span-6 md:col-span-2">
@@ -163,7 +164,7 @@
       />
     </div>
 
-    <Band num="03" title="Resource Flows" meta="per-year gross/net" />
+    <Band num="03" title="Resource Flows" meta="gross income/upkeep per year" />
     <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
       {#each $status.resources as r}
         <StatTile
