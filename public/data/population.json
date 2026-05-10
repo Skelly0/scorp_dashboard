@@ -2,7 +2,7 @@
   "classes": [
     {
       "name": "Bureaucrats",
-      "political_weight": 3.0,
+      "political_weight": 2.0,
       "pop": 5225,
       "share": 0.05679347826086956,
       "tier": "Upper",
@@ -32,7 +32,7 @@
     },
     {
       "name": "Engineers",
-      "political_weight": 2.0,
+      "political_weight": 2.5,
       "pop": 5700,
       "share": 0.06195652173913044,
       "tier": "Middle",
@@ -47,7 +47,7 @@
     },
     {
       "name": "Scientists",
-      "political_weight": 2.5,
+      "political_weight": 2.3,
       "pop": 8550,
       "share": 0.09293478260869566,
       "tier": "Middle",
@@ -77,7 +77,7 @@
     },
     {
       "name": "Proprietors",
-      "political_weight": 1.5,
+      "political_weight": 2.4,
       "pop": 3600,
       "share": 0.0391304347826087,
       "tier": "Middle",
@@ -92,7 +92,7 @@
     },
     {
       "name": "Managerial",
-      "political_weight": 2.5,
+      "political_weight": 1.8,
       "pop": 3100,
       "share": 0.03369565217391304,
       "tier": "Middle",
@@ -107,7 +107,7 @@
     },
     {
       "name": "Botanists",
-      "political_weight": 2.0,
+      "political_weight": 1.4,
       "pop": 7300,
       "share": 0.07934782608695652,
       "tier": "Middle",
@@ -122,7 +122,7 @@
     },
     {
       "name": "Industrial Workers",
-      "political_weight": 0.8,
+      "political_weight": 1.15,
       "pop": 17250,
       "share": 0.1875,
       "tier": "Lower",
@@ -137,7 +137,7 @@
     },
     {
       "name": "Extraction Workers",
-      "political_weight": 0.8,
+      "political_weight": 1.2,
       "pop": 18500,
       "share": 0.20108695652173914,
       "tier": "Lower",
@@ -152,7 +152,7 @@
     },
     {
       "name": "Service Workers",
-      "political_weight": 0.7,
+      "political_weight": 1.1,
       "pop": 16000,
       "share": 0.17391304347826086,
       "tier": "Lower",
