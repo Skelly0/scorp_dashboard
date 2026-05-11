@@ -32,7 +32,6 @@ def extract(wb) -> dict[str, Any]:
             "stance": stance,
             "weighted_stance": {axis: coerce_number(r[9 + i]) for i, axis in enumerate(AXES)},
             "mad_index": coerce_number(r[15]),
-            "closest_goi": r[16],
             "goi_compat": goi_compat_full[: len(goi_names)],
             "class_compat": [class_compat_full[i] for i in live_class_indices],
             "estimated_support": coerce_number(r[40]),

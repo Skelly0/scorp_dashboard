@@ -9,7 +9,7 @@ const baseParties = {
   parties: [
     {
       name: 'Developmental League',
-      closest_goi: 'Research',
+      closest_goi: 'Hidden GoI Label',
       establishment: 0.6,
       vote_share: 0.21,
       estimated_support: 42599,
@@ -82,5 +82,6 @@ describe('Parties page', () => {
     expect(screen.getByText('Class x party - % of class')).toBeTruthy();
     expect(screen.getAllByText('4,237').length).toBeGreaterThan(0);
     expect(screen.getByText('50% class')).toBeTruthy();
+    expect(screen.queryByText('Hidden GoI Label')).toBeNull();
   });
 });
