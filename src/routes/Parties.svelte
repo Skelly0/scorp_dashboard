@@ -27,6 +27,10 @@
   );
   $: supportByParty = new Map(supportOverview.map((item) => [item.party, item]));
 
+  function supporterCount(party, support) {
+    return support?.totalCapturedPop ?? party?.estimated_support ?? null;
+  }
+
   function fmtPct(value) {
     return value != null && Number.isFinite(value) ? `${Math.round(value * 100)}%` : '—';
   }
@@ -51,6 +55,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
       {#each $parties.parties as p}
         {@const support = supportByParty.get(p.name)}
+        {@const supporters = supporterCount(p, support)}
         <div class="s-card">
           <div class="s-card-header">
             <h3>{p.name}</h3>
@@ -67,8 +72,8 @@
                   <div class="font-extrabold text-base tnum">{fmtPct(p.vote_share)}</div>
                 </div>
                 <div>
-                  <div class="text-muted text-[9px] uppercase tracking-widest">Support</div>
-                  <div class="font-extrabold text-base tnum">{fmtPop(p.estimated_support)}</div>
+                  <div class="text-muted text-[9px] uppercase tracking-widest">Supporters</div>
+                  <div class="font-extrabold text-base tnum">{fmtPop(supporters)}</div>
                 </div>
               </div>
               <MadIndex value={p.mad_index} />
@@ -76,8 +81,7 @@
               {#if support?.topClasses?.length}
                 <div class="party-support">
                   <div class="party-support-head">
-                    <span>Support Base</span>
-                    <strong class="tnum">{fmtPop(support.totalCapturedPop)}</strong>
+                    <span>Top Classes</span>
                   </div>
                   <ul>
                     {#each support.topClasses as row}
@@ -130,7 +134,7 @@
     {/if}
 
     {#if $parties.party_capture_pop_matrix?.values?.length}
-      <Band num="04" title="Party Captured Pop" meta="class x party - people" />
+      <Band num="04" title="Party Supporters" meta="class x party - people" />
       <div class="s-card s-card-pad">
         <Heatmap
           rowLabels={$parties.party_capture_pop_matrix.classes}
@@ -170,7 +174,6 @@
     text-transform: uppercase;
     color: var(--muted);
   }
-  .party-support-head strong { color: var(--fg); letter-spacing: 0; }
   .party-support ul { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 3px; }
   .party-support li {
     display: grid;
