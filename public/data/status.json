@@ -6,9 +6,9 @@
       "name": "The Lights Go Down"
     }
   ],
-  "crisis_factor": 0.5905024387,
+  "crisis_factor": 0.5905024389,
   "demographics": {
-    "avg_satisfaction": 0.29668121382663043,
+    "avg_satisfaction": 0.29668121348948373,
     "base_growth_rate": 0.03,
     "effective_cdr": 0.01386956522,
     "effective_growth_rate": 0.0096,
@@ -87,7 +87,7 @@
       "upkeep": 592.35
     }
   ],
-  "stability": 0.3376085511,
+  "stability": 0.3376085563,
   "treasury": {
     "delta": 321784.5245,
     "money": 222465.0

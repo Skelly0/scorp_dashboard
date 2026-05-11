@@ -1,6 +1,6 @@
 {
-  "avg_satisfaction": 0.29668121382663043,
-  "crisis_factor": 0.5905024387,
+  "avg_satisfaction": 0.29668121348948373,
+  "crisis_factor": 0.5905024389,
   "effective_cdr": 0.01386956522,
   "gov_approval": 0.5052388311,
   "housing_util": 1.0349870626617168,
@@ -72,8 +72,8 @@
       "upkeep": 592.35
     }
   ],
-  "stability": 0.3376085511,
-  "synced_at": "2026-05-11T11:31:18Z",
+  "stability": 0.3376085563,
+  "synced_at": "2026-05-11T15:26:36Z",
   "total_deaths": 1276.0,
   "treasury": {
     "delta": 321784.5245,
