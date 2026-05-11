@@ -11,9 +11,9 @@
       "name": "Council Chaos"
     }
   ],
-  "crisis_factor": 0.687559093,
+  "crisis_factor": 0.68761441,
   "demographics": {
-    "avg_satisfaction": 0.2980420153805434,
+    "avg_satisfaction": 0.2978734668158153,
     "base_growth_rate": 0.03,
     "effective_cdr": 0.01386956522,
     "effective_growth_rate": 0.0096,
@@ -24,7 +24,7 @@
     "total_births": 2016.0,
     "total_deaths": 1276.0
   },
-  "gov_approval": 0.4890366812,
+  "gov_approval": 0.4883341647,
   "overton": {
     "authority": 3.0,
     "corporate": 3.5,
@@ -92,7 +92,7 @@
       "upkeep": 592.35
     }
   ],
-  "stability": 0.3091503256,
+  "stability": 0.3184221908,
   "treasury": {
     "delta": 159435.7299,
     "money": 222465.0
