@@ -193,7 +193,7 @@
         0.1937072167
       ],
       "establishment": 0.6,
-      "estimated_support": 10584.0,
+      "estimated_support": 10625.0,
       "founded": true,
       "goi_compat": [
         0.2699693765,
@@ -211,7 +211,7 @@
         "materialist": 3.0,
         "technocratic": 3.0
       },
-      "vote_share": 0.1150434783,
+      "vote_share": 0.1154891304,
       "weighted_stance": {
         "authority": 3.0,
         "corporate": 4.0,
@@ -236,7 +236,7 @@
         0.2237382585
       ],
       "establishment": 0.6,
-      "estimated_support": 12327.0,
+      "estimated_support": 12216.0,
       "founded": true,
       "goi_compat": [
         0.5883930968,
@@ -254,7 +254,7 @@
         "materialist": 4.0,
         "technocratic": 3.5
       },
-      "vote_share": 0.1339891304,
+      "vote_share": 0.1327826087,
       "weighted_stance": {
         "authority": 3.0,
         "corporate": 3.5,
@@ -279,7 +279,7 @@
         0.2930265759
       ],
       "establishment": 0.5,
-      "estimated_support": 11514.0,
+      "estimated_support": 11493.0,
       "founded": true,
       "goi_compat": [
         0.3397118578,
@@ -297,7 +297,7 @@
         "materialist": 3.0,
         "technocratic": 4.0
       },
-      "vote_share": 0.1251521739,
+      "vote_share": 0.124923913,
       "weighted_stance": {
         "authority": 4.0,
         "corporate": 2.0,
@@ -322,7 +322,7 @@
         0.6471950542
       ],
       "establishment": 0.6,
-      "estimated_support": 16693.0,
+      "estimated_support": 16631.0,
       "founded": true,
       "goi_compat": [
         0.252823211,
@@ -340,7 +340,7 @@
         "materialist": 2.0,
         "technocratic": 5.0
       },
-      "vote_share": 0.1814456522,
+      "vote_share": 0.1807717391,
       "weighted_stance": {
         "authority": 4.0,
         "corporate": 5.5,
@@ -365,7 +365,7 @@
         0.2656439047
       ],
       "establishment": 0.6,
-      "estimated_support": 12166.0,
+      "estimated_support": 12252.0,
       "founded": true,
       "goi_compat": [
         0.438092593,
@@ -383,7 +383,7 @@
         "materialist": 3.0,
         "technocratic": 2.5
       },
-      "vote_share": 0.1322391304,
+      "vote_share": 0.133173913,
       "weighted_stance": {
         "authority": 5.0,
         "corporate": 5.0,
@@ -408,7 +408,7 @@
         0.2891152954
       ],
       "establishment": 0.6,
-      "estimated_support": 10484.0,
+      "estimated_support": 10703.0,
       "founded": true,
       "goi_compat": [
         0.2878237975,
@@ -426,7 +426,7 @@
         "materialist": 5.0,
         "technocratic": 5.0
       },
-      "vote_share": 0.1139565217,
+      "vote_share": 0.1163369565,
       "weighted_stance": {
         "authority": 5.0,
         "corporate": 7.0,
@@ -451,7 +451,7 @@
         0.8006760644
       ],
       "establishment": 0.6,
-      "estimated_support": 18232.0,
+      "estimated_support": 18080.0,
       "founded": true,
       "goi_compat": [
         0.5013249926,
@@ -469,7 +469,7 @@
         "materialist": 3.5,
         "technocratic": 5.0
       },
-      "vote_share": 0.198173913,
+      "vote_share": 0.1965217391,
       "weighted_stance": {
         "authority": 3.5,
         "corporate": 5.0,
@@ -541,13 +541,13 @@
         0.05512246253
       ],
       [
-        0.1256092004,
-        0.1893900891,
-        0.1516340697,
-        0.169354804,
-        0.1065019803,
-        0.05053878663,
-        0.20697107
+        0.1342331716,
+        0.166123616,
+        0.1472456063,
+        0.1561059734,
+        0.1246795616,
+        0.09669796475,
+        0.1749141064
       ],
       [
         0.1040547012,
@@ -666,13 +666,13 @@
         473.0
       ],
       [
-        597.0,
-        900.0,
-        720.0,
-        804.0,
-        506.0,
-        240.0,
-        983.0
+        638.0,
+        789.0,
+        699.0,
+        742.0,
+        592.0,
+        459.0,
+        831.0
       ],
       [
         375.0,
