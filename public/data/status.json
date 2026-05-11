@@ -6,9 +6,9 @@
       "name": "The Lights Go Down"
     }
   ],
-  "crisis_factor": 0.5904982455,
+  "crisis_factor": 0.5905024387,
   "demographics": {
-    "avg_satisfaction": 0.29669393389176635,
+    "avg_satisfaction": 0.29668121382663043,
     "base_growth_rate": 0.03,
     "effective_cdr": 0.01386956522,
     "effective_growth_rate": 0.0096,
@@ -19,7 +19,7 @@
     "total_births": 2046.0,
     "total_deaths": 1276.0
   },
-  "gov_approval": 0.505358757,
+  "gov_approval": 0.5052388311,
   "overton": {
     "authority": 3.0,
     "corporate": 3.5,
@@ -87,7 +87,7 @@
       "upkeep": 592.35
     }
   ],
-  "stability": 0.337688728,
+  "stability": 0.3376085511,
   "treasury": {
     "delta": 321784.5245,
     "money": 222465.0
