@@ -71,13 +71,15 @@ describe('Parties page', () => {
     popsError.set(null);
   });
 
-  test('shows party support base and class support split from capture data', () => {
+  test('shows party supporters and class support split from capture data', () => {
     parties.set(baseParties);
     pops.set({ classes: [] });
 
     render(Parties);
 
-    expect(screen.getAllByText('Support Base').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Supporters').length).toBeGreaterThan(0);
+    expect(screen.getByText('5,299')).toBeTruthy();
+    expect(screen.getAllByText('Top Classes').length).toBeGreaterThan(0);
     expect(screen.getByText('Class Support Split')).toBeTruthy();
     expect(screen.getByText('Class x party - % of class')).toBeTruthy();
     expect(screen.getAllByText('4,237').length).toBeGreaterThan(0);
