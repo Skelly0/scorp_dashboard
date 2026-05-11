@@ -4,11 +4,16 @@
       "crisis_factor": 0.7,
       "description": "All contact with Earth has ceased. Something ominous has happened to Earth.",
       "name": "The Lights Go Down"
+    },
+    {
+      "crisis_factor": 0.1,
+      "description": "Chaotic arrest in the council of Director Mills",
+      "name": "Council Chaos"
     }
   ],
-  "crisis_factor": 0.5827104331,
+  "crisis_factor": 0.687559093,
   "demographics": {
-    "avg_satisfaction": 0.31224887762652176,
+    "avg_satisfaction": 0.2980420153805434,
     "base_growth_rate": 0.03,
     "effective_cdr": 0.01386956522,
     "effective_growth_rate": 0.0096,
@@ -16,10 +21,10 @@
     "housing_util": 1.0349870626617168,
     "net_delta_pct": -0.426956522,
     "sat_elasticity": 0.32,
-    "total_births": 2058.0,
+    "total_births": 2016.0,
     "total_deaths": 1276.0
   },
-  "gov_approval": 0.5085206387,
+  "gov_approval": 0.4890366812,
   "overton": {
     "authority": 3.0,
     "corporate": 3.5,
@@ -87,7 +92,7 @@
       "upkeep": 592.35
     }
   ],
-  "stability": 0.3510102757,
+  "stability": 0.3091503256,
   "treasury": {
     "delta": 159435.7299,
     "money": 222465.0
