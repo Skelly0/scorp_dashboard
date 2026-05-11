@@ -4,7 +4,6 @@
   import { parties, partiesError, loadParties } from '../lib/stores/parties.js';
   import { pops, popsError, loadPops } from '../lib/stores/pops.js';
   import { pageTitle } from '../lib/page-title.js';
-  import { goiColor } from '../lib/faction-colors.js';
   import { classCompatPopMatrix, partySupportOverview } from '../lib/party-compat.js';
   import Band from '../lib/components/Band.svelte';
   import RadarChart from '../lib/components/RadarChart.svelte';
@@ -52,10 +51,9 @@
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
       {#each $parties.parties as p}
         {@const support = supportByParty.get(p.name)}
-        <div class="s-card barred" style="--bar-color: {goiColor(p.closest_goi)}">
+        <div class="s-card">
           <div class="s-card-header">
             <h3>{p.name}</h3>
-            <span class="meta">{p.closest_goi ?? '—'}</span>
           </div>
           <div class="s-card-pad party-card-body">
             <div class="flex flex-col gap-2">

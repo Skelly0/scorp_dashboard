@@ -129,7 +129,6 @@
         0.1447187901,
         0.1937072167
       ],
-      "closest_goi": "Research",
       "establishment": 0.6,
       "estimated_support": 42599.5466,
       "founded": true,
@@ -173,7 +172,6 @@
         0.108003846,
         0.2237382585
       ],
-      "closest_goi": "Administration",
       "establishment": 0.6,
       "estimated_support": 54304.38782,
       "founded": true,
@@ -217,7 +215,6 @@
         0.2738691094,
         0.394318402
       ],
-      "closest_goi": "Corporate",
       "establishment": 0.6,
       "estimated_support": 56476.20739,
       "founded": true,
@@ -261,7 +258,6 @@
         0.6690304676,
         0.6471950542
       ],
-      "closest_goi": "Unions",
       "establishment": 0.6,
       "estimated_support": 49260.44509,
       "founded": true,

@@ -17,7 +17,7 @@ def test_extract_party_record_shape(wb):
     assert p["establishment"] == 0.55
     assert isinstance(p["stance"], dict)
     assert set(p["stance"].keys()) == {"expansion", "authority", "corporate", "technocratic", "faith", "materialist"}
-    assert p["closest_goi"] == "Founders"
+    assert "closest_goi" not in p
     assert p["estimated_support"] == 0.30
     assert p["vote_share"] == 0.28
 
