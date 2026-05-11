@@ -11,6 +11,7 @@
   function fmt(v) {
     if (v == null || !Number.isFinite(v)) return '—';
     if (format === 'int') return Math.round(v).toLocaleString('en-US');
+    if (format === 'pctSign') return `${Math.round(v * 100)}%`;
     if (format === 'pct') return `${Math.round(v * 100)}`;
     return v.toFixed(2);
   }

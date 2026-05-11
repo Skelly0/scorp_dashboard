@@ -55,7 +55,7 @@ npm run test:e2e
 | Cropsim | `/#/cropsim` | Food supply, class demand, production mix, and food-security balance |
 | GoIs | `/#/gois` | 4 panels + sub-factions + PopCapture matrix |
 | Tech | `/#/tech` | Research tree, unlock states, and active-effect signalling |
-| Parties | `/#/parties` | Founded parties + GoI/Class compat heatmaps |
+| Parties | `/#/parties` | Founded parties + class support splits + GoI/Class compat heatmaps |
 | Senate | `/#/senate` | **Sheet-flag gated.** Coalitions + GoI capture % |
 | Situations | `/#/situations` | Active/ended + Stability Modifiers + Tier Ladder |
 
