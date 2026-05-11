@@ -14196,7 +14196,7 @@
         "energy": 150.0,
         "helium3": 0.0,
         "materials": 25.0,
-        "money": 0.0,
+        "money": 10000.0,
         "ore": 25.0,
         "water": 5.0
       },
@@ -16431,7 +16431,7 @@
         "energy": 50.0,
         "helium3": 0.0,
         "materials": 25.0,
-        "money": 0.0,
+        "money": 2500.0,
         "ore": 25.0,
         "water": 5.0
       },
@@ -18693,7 +18693,7 @@
         "energy": 100.0,
         "helium3": 0.0,
         "materials": 25.0,
-        "money": 2500.0,
+        "money": 6000.0,
         "ore": 25.0,
         "water": 25.0
       },
