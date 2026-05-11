@@ -10,6 +10,28 @@
   export let scaleMin = 1;
   export let scaleMax = 7;
 
+  const LABEL_PAD = 4;
+  const SIDE_LABEL_THRESHOLD = 3;
+
+  function labelPlacement(point) {
+    if (point.x > cx + SIDE_LABEL_THRESHOLD) {
+      return {
+        x: Math.min(point.x, size - LABEL_PAD),
+        anchor: 'end',
+      };
+    }
+    if (point.x < cx - SIDE_LABEL_THRESHOLD) {
+      return {
+        x: Math.max(point.x, LABEL_PAD),
+        anchor: 'start',
+      };
+    }
+    return {
+      x: point.x,
+      anchor: 'middle',
+    };
+  }
+
   $: cx = size / 2;
   $: cy = size / 2;
   $: radius = size / 2 - 18;
@@ -18,6 +40,12 @@
   $: pathD = dataPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ') + ' Z';
   $: gridLevels = [0.25, 0.5, 0.75, 1].map((f) => polarPoints(axes.map(() => scaleMin + (scaleMax - scaleMin) * f), { cx, cy, radius, scaleMin, scaleMax }));
   $: spokes = polarPoints(axes.map(() => scaleMax), { cx, cy, radius, scaleMin, scaleMax });
+  $: labelPoints = polarPoints(axes.map(() => scaleMax), { cx, cy, radius: radius + 12, scaleMin, scaleMax });
+  $: labels = axes.map((axis, i) => ({
+    ...axis,
+    y: labelPoints[i].y,
+    ...labelPlacement(labelPoints[i]),
+  }));
 
   $: overlayValid = (() => {
     if (!overlay) return false;
@@ -73,10 +101,9 @@
   <!-- data shape -->
   <path d={pathD} fill="var(--accent)" fill-opacity="0.25" stroke="var(--accent)" stroke-width="2" />
   <!-- axis labels -->
-  {#each axes as a, i}
-    {@const lp = polarPoints(axes.map((_, j) => (j === i ? scaleMax : scaleMin)), { cx, cy, radius: radius + 12, scaleMin, scaleMax })[i]}
-    <text x={lp.x.toFixed(1)} y={lp.y.toFixed(1)} text-anchor="middle" dominant-baseline="central" font-size="9" fill="var(--muted)" text-transform="uppercase">
-      {a.label.slice(0, 4)}
+  {#each labels as a}
+    <text x={a.x.toFixed(1)} y={a.y.toFixed(1)} text-anchor={a.anchor} dominant-baseline="central" font-size="9" fill="var(--muted)" text-transform="uppercase">
+      {a.label}
     </text>
   {/each}
 </svg>
