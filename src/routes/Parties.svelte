@@ -9,6 +9,7 @@
   import Band from '../lib/components/Band.svelte';
   import RadarChart from '../lib/components/RadarChart.svelte';
   import Heatmap from '../lib/components/Heatmap.svelte';
+  import MadIndex from '../lib/components/MadIndex.svelte';
   import { WORLDVIEW_AXES as AXES, AXIS_HIGH_LABELS } from '../lib/worldview.js';
 
   onMount(() => {
@@ -71,11 +72,8 @@
                   <div class="text-muted text-[9px] uppercase tracking-widest">Support</div>
                   <div class="font-extrabold text-base tnum">{fmtPop(p.estimated_support)}</div>
                 </div>
-                <div>
-                  <div class="text-muted text-[9px] uppercase tracking-widest">MAD Index</div>
-                  <div class="font-extrabold text-base tnum">{p.mad_index?.toFixed(2) ?? '—'}</div>
-                </div>
               </div>
+              <MadIndex value={p.mad_index} />
 
               {#if support?.topClasses?.length}
                 <div class="party-support">
