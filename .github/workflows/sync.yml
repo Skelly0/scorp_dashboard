@@ -2,7 +2,7 @@ name: Sync sheet → JSON
 
 on:
   schedule:
-    - cron: '7 * * * *'   # hourly, off-the-hour to avoid contention
+    - cron: '7,22,37,52 * * * *' # every 15 minutes, off the quarter-hour to avoid contention
   workflow_dispatch:       # manual trigger after a turn
 
 permissions:
