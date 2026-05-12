@@ -9,6 +9,11 @@
       "crisis_factor": 0.1,
       "description": "Chaotic arrest in the council of Director Mills",
       "name": "Council Chaos"
+    },
+    {
+      "crisis_factor": 0.15,
+      "description": "The collaborators who attempted to forcibly establish The Lunar Workers' Council have been arrested for treason",
+      "name": "Attempted Coup and Arrests of the Communists"
     }
   ],
   "ended": [],
