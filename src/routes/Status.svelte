@@ -114,7 +114,7 @@
       </div>
       <div class="col-span-6 md:col-span-2">
         <KpiBlock
-          label="Crisis Factor"
+          label="Crisis Pressure"
           value={formatStatusPercent($status.crisis_factor)}
           tone={statusMetricTone($status.crisis_factor, CRISIS_TONE_OPTIONS)}
           history={$crisisFactorHistory.length >= 2 ? $crisisFactorHistory : null}

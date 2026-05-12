@@ -506,7 +506,7 @@ body {
 .sit-card.sev-warn .sit-meter-fill { color: var(--warn); }
 .sit-card.sev-crit .sit-meter-fill { color: var(--crit); }
 
-/* Crisis Index summary tile */
+/* Situation Load summary tile */
 .crisis-index {
   display: grid;
   grid-template-columns: auto 1fr auto;
