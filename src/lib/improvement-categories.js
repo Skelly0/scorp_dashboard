@@ -7,6 +7,7 @@ import { resolveImprovementRow } from './stores/catalog.js';
 export const CATEGORIES = {
   energy:   { slug: 'energy',   icon: '☀', label: 'Energy' },
   mining:   { slug: 'mining',   icon: '⛏', label: 'Mining' },
+  materials: { slug: 'materials', icon: '◆', label: 'Materials' },
   habitat:  { slug: 'habitat',  icon: '⌂', label: 'Habitat' },
   civic:    { slug: 'civic',    icon: '⌧', label: 'Civic' },
   military: { slug: 'military', icon: '⚐', label: 'Military' },

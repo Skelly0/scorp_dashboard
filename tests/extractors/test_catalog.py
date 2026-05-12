@@ -75,3 +75,49 @@ def test_extract_with_missing_range_returns_empty():
     blank_wb = openpyxl.Workbook()
     result = extract(blank_wb)
     assert result == {"improvements": []}
+
+
+def test_extract_live_shape_when_named_range_starts_below_headers(wb):
+    """Live workbook range starts at data row 4; headers live one row above."""
+    from openpyxl.workbook.defined_name import DefinedName
+
+    ws = wb["ImprovementsCatalog"]
+    wb.defined_names["ImprovementsCatalog"] = DefinedName(
+        "ImprovementsCatalog",
+        attr_text="ImprovementsCatalog!$A$2:$AM$5",
+    )
+
+    result = extract(wb)
+
+    names = [imp["name"] for imp in result["improvements"]]
+    assert names == ["Solar Array Field", "Hydroponic Farm", "Heat Pump"]
+    assert result["improvements"][0]["category"] == "energy"
+    assert result["improvements"][1]["splits"]["greens"] == 0.6
+    assert ws["A1"].value == "Name"
+
+
+def test_extract_accepts_live_category_vocabulary(wb, caplog):
+    """Live workbook category labels map into dashboard slugs without warnings."""
+    from openpyxl.workbook.defined_name import DefinedName
+
+    ws = wb["ImprovementsCatalog"]
+    ws["A2"], ws["B2"] = "Hydroponic Bay", "Food"
+    ws["A3"], ws["B3"] = "Materials Refinery", "Materials"
+    ws["A4"], ws["B4"] = "Surface Hab Module", "Housing"
+    ws["A5"], ws["B5"] = "Faith Center", "Faith/Culture/Recreation"
+    ws["A6"], ws["B6"] = "Research Lab", "Research/Economy"
+    wb.defined_names["ImprovementsCatalog"] = DefinedName(
+        "ImprovementsCatalog",
+        attr_text="ImprovementsCatalog!$A$1:$AM$6",
+    )
+
+    with caplog.at_level(logging.WARNING, logger="extractors.catalog"):
+        result = extract(wb)
+
+    by_name = {imp["name"]: imp for imp in result["improvements"]}
+    assert by_name["Hydroponic Bay"]["category"] == "agri"
+    assert by_name["Materials Refinery"]["category"] == "materials"
+    assert by_name["Surface Hab Module"]["category"] == "habitat"
+    assert by_name["Faith Center"]["category"] == "civic"
+    assert by_name["Research Lab"]["category"] == "science"
+    assert caplog.records == []
