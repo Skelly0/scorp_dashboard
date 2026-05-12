@@ -10,6 +10,7 @@ succeeds, frontend hides the catalog UI.
 from __future__ import annotations
 
 import logging
+import re
 from typing import Any
 
 from openpyxl.utils.cell import range_boundaries
@@ -18,7 +19,7 @@ from extractors._common import coerce_number, read_named_range
 
 _log = logging.getLogger(__name__)
 
-# Canonical 8-slug set used by improvement-categories.js + map palette keys.
+# Canonical 9-slug set used by improvement-categories.js + map palette keys.
 _KNOWN_SLUGS = {"energy", "mining", "materials", "habitat", "civic",
                 "military", "agri", "science", "other"}
 _CATEGORY_ALIASES = {
@@ -148,6 +149,11 @@ def _header_row_above_named_range(wb, name: str) -> list[Any] | None:
     for sheet_name, ref in dn.destinations:
         min_col, min_row, max_col, _max_row = range_boundaries(ref)
         if min_row <= 1:
+            _log.warning(
+                "%s starts at row %d; no room for a header row above — "
+                "extractor will fall back to in-range header detection",
+                name, min_row,
+            )
             return None
         ws = wb[sheet_name]
         return [
@@ -190,7 +196,9 @@ def _slugify_category(raw: Any, row_name: str) -> tuple[str | None, str | None]:
     if raw is None or raw == "":
         return None, None
     raw_str = str(raw)
-    cleaned = raw_str.strip().lower()
+    # Tolerate whitespace around slashes so "Faith / Culture / Recreation"
+    # matches the same alias key as "Faith/Culture/Recreation".
+    cleaned = re.sub(r"\s*/\s*", "/", raw_str.strip().lower())
     if cleaned in _KNOWN_SLUGS:
         return cleaned, raw_str
     if cleaned in _CATEGORY_ALIASES:

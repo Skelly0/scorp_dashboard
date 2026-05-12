@@ -7,7 +7,7 @@ import { resolveImprovementRow } from './stores/catalog.js';
 export const CATEGORIES = {
   energy:   { slug: 'energy',   icon: '☀', label: 'Energy' },
   mining:   { slug: 'mining',   icon: '⛏', label: 'Mining' },
-  materials: { slug: 'materials', icon: '◆', label: 'Materials' },
+  materials: { slug: 'materials', icon: '⚒', label: 'Materials' },
   habitat:  { slug: 'habitat',  icon: '⌂', label: 'Habitat' },
   civic:    { slug: 'civic',    icon: '⌧', label: 'Civic' },
   military: { slug: 'military', icon: '⚐', label: 'Military' },
@@ -19,6 +19,7 @@ export const CATEGORIES = {
 const REGEX_RULES = [
   [/solar|reactor/, 'energy'],
   [/extract|mining|station/, 'mining'],
+  [/refinery|foundry|manufactur|smelter|fabric|3d print|workshop/, 'materials'],
   [/dome|habitat|hab module/, 'habitat'],
   [/center|school|district|civic/, 'civic'],
   [/outpost|barracks|garrison/, 'military'],

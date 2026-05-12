@@ -78,10 +78,14 @@ def test_extract_with_missing_range_returns_empty():
 
 
 def test_extract_live_shape_when_named_range_starts_below_headers(wb):
-    """Live workbook range starts at data row 4; headers live one row above."""
+    """Live workbook range starts at its first data row; headers sit one row above.
+
+    Arithmetic mirrors the live `ImprovementsCatalog!$A$4:$AO$44` contract
+    (data row 4, header on row 3); here the 3-row fixture is shifted by one
+    row so the same one-row offset is exercised.
+    """
     from openpyxl.workbook.defined_name import DefinedName
 
-    ws = wb["ImprovementsCatalog"]
     wb.defined_names["ImprovementsCatalog"] = DefinedName(
         "ImprovementsCatalog",
         attr_text="ImprovementsCatalog!$A$2:$AM$5",
@@ -93,7 +97,56 @@ def test_extract_live_shape_when_named_range_starts_below_headers(wb):
     assert names == ["Solar Array Field", "Hydroponic Farm", "Heat Pump"]
     assert result["improvements"][0]["category"] == "energy"
     assert result["improvements"][1]["splits"]["greens"] == 0.6
-    assert ws["A1"].value == "Name"
+
+
+def test_extract_warns_when_named_range_pinned_to_row_one_without_header(caplog):
+    """If `ImprovementsCatalog` starts at row 1 and that row isn't a header,
+    there is no row above to read headers from; the extractor warns and bails
+    to an empty list instead of misreading data rows as headers silently.
+    """
+    import openpyxl
+    from openpyxl.workbook.defined_name import DefinedName
+
+    bw = openpyxl.Workbook()
+    ws = bw.active
+    ws.title = "ImprovementsCatalog"
+    ws["A1"], ws["B1"] = "Hydroponic Farm", "Food"
+    ws["A2"], ws["B2"] = "Solar Array", "Energy"
+    bw.defined_names["ImprovementsCatalog"] = DefinedName(
+        "ImprovementsCatalog",
+        attr_text="ImprovementsCatalog!$A$1:$AM$2",
+    )
+
+    with caplog.at_level(logging.WARNING, logger="extractors.catalog"):
+        result = extract(bw)
+
+    assert result == {"improvements": []}
+    assert any(
+        "ImprovementsCatalog" in r.message and "row 1" in r.message
+        for r in caplog.records
+    )
+
+
+def test_extract_tolerates_whitespace_around_slashes_in_category(wb, caplog):
+    """`Faith / Culture / Recreation` and `Faith/Culture/Recreation` map to
+    the same dashboard slug without warning."""
+    from openpyxl.workbook.defined_name import DefinedName
+
+    ws = wb["ImprovementsCatalog"]
+    ws["A2"], ws["B2"] = "Faith Center", "Faith / Culture / Recreation"
+    ws["A3"], ws["B3"] = "Research Lab", "Research / Economy"
+    wb.defined_names["ImprovementsCatalog"] = DefinedName(
+        "ImprovementsCatalog",
+        attr_text="ImprovementsCatalog!$A$1:$AM$3",
+    )
+
+    with caplog.at_level(logging.WARNING, logger="extractors.catalog"):
+        result = extract(wb)
+
+    by_name = {imp["name"]: imp for imp in result["improvements"]}
+    assert by_name["Faith Center"]["category"] == "civic"
+    assert by_name["Research Lab"]["category"] == "science"
+    assert caplog.records == []
 
 
 def test_extract_accepts_live_category_vocabulary(wb, caplog):
