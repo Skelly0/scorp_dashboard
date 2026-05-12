@@ -20,17 +20,17 @@
     $situations.stability_modifiers.length === 0 &&
     $situations.tier_ladder.length === 0;
 
-  $: totalCF = $situations
+  $: totalLoad = $situations
     ? $situations.active.reduce((a, s) => a + (Number(s.crisis_factor) || 0), 0)
     : 0;
-  $: ciSeverity = totalCF >= 0.6 ? 'crit' : totalCF >= 0.3 ? 'warn' : 'low';
+  $: ciSeverity = totalLoad >= 0.6 ? 'crit' : totalLoad >= 0.3 ? 'warn' : 'low';
   $: ciTier =
-    totalCF >= 0.8 ? 'T5 · Collapse'
-    : totalCF >= 0.6 ? 'T4 · Crisis'
-    : totalCF >= 0.4 ? 'T3 · Elevated'
-    : totalCF >= 0.2 ? 'T2 · Watch'
+    totalLoad >= 0.8 ? 'T5 · Collapse'
+    : totalLoad >= 0.6 ? 'T4 · Crisis'
+    : totalLoad >= 0.4 ? 'T3 · Elevated'
+    : totalLoad >= 0.2 ? 'T2 · Watch'
     : 'T1 · Calm';
-  $: ciPct = Math.max(0, Math.min(100, totalCF * 100));
+  $: ciPct = Math.max(0, Math.min(100, totalLoad * 100));
 </script>
 
 <section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
@@ -48,11 +48,11 @@
     </div>
   {:else}
     {#if $situations.active.length > 0}
-      <Band num="00" title="Crisis Index" meta={`${$situations.active.length} active · Σ CF`} />
+      <Band num="00" title="Situation Load" meta={`${$situations.active.length} active · raw total`} />
       <div class="crisis-index sev-{ciSeverity}">
         <div>
-          <div class="ci-num">{totalCF.toFixed(2)}</div>
-          <div class="ci-meta">aggregate cf</div>
+          <div class="ci-num">{totalLoad.toFixed(2)}</div>
+          <div class="ci-meta">raw load</div>
         </div>
         <div>
           <div class="ci-bar"><div class="ci-bar-fill" style="width: {ciPct}%"></div></div>

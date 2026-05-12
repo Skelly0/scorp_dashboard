@@ -18,7 +18,7 @@
   <div class="flex justify-between items-baseline gap-2">
     <h4>{ended ? '✓' : '⚠'} {name}</h4>
     {#if !ended && crisis_factor != null}
-      <span class="cf tnum">CF {crisis_factor.toFixed(2)}</span>
+      <span class="cf tnum">Load {crisis_factor.toFixed(2)}</span>
     {:else if ended}
       <span class="text-muted text-[10px] uppercase tracking-widest">Ended</span>
     {/if}
