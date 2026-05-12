@@ -277,6 +277,7 @@ IMPROVEMENT_CATEGORY_PALETTE = {
 
 CONTROL_PALETTE = {
     "Administration": "#38d39f",
+    "Corporate": "#ffd84d",
     "Corporations": "#ffd84d",
     "Unions": "#ff5544",
     "Research": "#5ec3ff",

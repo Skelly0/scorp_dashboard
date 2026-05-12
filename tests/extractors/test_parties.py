@@ -26,9 +26,15 @@ def test_extract_compat_matrices_shape(wb):
     result = extract(wb)
     goi_compat = result["goi_compat_matrix"]
     assert len(goi_compat["parties"]) == 2
-    assert len(goi_compat["gois"]) == 4
+    assert goi_compat["gois"] == [
+        "Administration",
+        "Corporate",
+        "Unions",
+        "Security",
+        "Research",
+    ]
     assert len(goi_compat["values"]) == 2
-    assert len(goi_compat["values"][0]) == 4
+    assert len(goi_compat["values"][0]) == 5
 
     class_compat = result["class_compat_matrix"]
     assert len(class_compat["parties"]) == 2

@@ -18,9 +18,14 @@ export const CLASS_COLORS = {
 };
 
 export const GOI_COLORS = {
+  Administration: '#38d39f',
+  Corporate: '#ffd84d',
+  Corporations: '#ffd84d',
+  Unions: '#ff5544',
+  Research: '#5ec3ff',
+  Security: '#ff5544',
   Founders: '#ffb000',
   Capitalists: '#ffd84d',
-  Security: '#ff5544',
   Unionists: '#38d39f',
   Faithful: '#c44dff',
   Technocracy: '#5ec3ff',
@@ -28,6 +33,7 @@ export const GOI_COLORS = {
 
 export const CONTROL_COLORS = {
   Administration: '#38d39f',
+  Corporate: '#ffd84d',
   Corporations: '#ffd84d',
   Unions: '#ff5544',
   Research: '#5ec3ff',

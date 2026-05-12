@@ -38,9 +38,15 @@ def test_extract_goi_capture_matrix_present(wb_senate_on):
     result = extract(wb_senate_on)
     matrix = result["goi_capture_matrix"]
     assert len(matrix["parties"]) == 2
-    assert len(matrix["gois"]) == 4
+    assert matrix["gois"] == [
+        "Administration",
+        "Corporate",
+        "Unions",
+        "Security",
+        "Research",
+    ]
     # Sum of capture across parties per GoI should equal 1.0 (normalised).
-    for j in range(4):
+    for j in range(5):
         col_sum = sum(matrix["values"][i][j] for i in range(len(matrix["parties"])))
         assert abs(col_sum - 1.0) < 1e-6
 
