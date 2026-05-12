@@ -12,13 +12,22 @@ from __future__ import annotations
 import logging
 from typing import Any
 
+from openpyxl.utils.cell import range_boundaries
+
 from extractors._common import coerce_number, read_named_range
 
 _log = logging.getLogger(__name__)
 
 # Canonical 8-slug set used by improvement-categories.js + map palette keys.
-_KNOWN_SLUGS = {"energy", "mining", "habitat", "civic",
+_KNOWN_SLUGS = {"energy", "mining", "materials", "habitat", "civic",
                 "military", "agri", "science", "other"}
+_CATEGORY_ALIASES = {
+    "agriculture": "agri",
+    "food": "agri",
+    "housing": "habitat",
+    "faith/culture/recreation": "civic",
+    "research/economy": "science",
+}
 
 # Header → output-key mapping. Anything not listed here is silently dropped.
 HEADER_KEYS: dict[str, tuple[str, str]] = {
@@ -67,7 +76,7 @@ _TOP_STRING_HEADERS: dict[str, str] = {
 
 
 def extract(wb) -> dict[str, Any]:
-    rows = read_named_range(wb, "ImprovementsCatalog")
+    rows = _read_catalog_rows(wb)
     if not rows or len(rows) < 2:
         return {"improvements": []}
 
@@ -110,10 +119,42 @@ def extract(wb) -> dict[str, Any]:
     return {"improvements": out}
 
 
+def _read_catalog_rows(wb) -> list[list[Any]]:
+    rows = read_named_range(wb, "ImprovementsCatalog")
+    if not rows or _looks_like_header(rows[0]):
+        return rows
+
+    header = _header_row_above_named_range(wb, "ImprovementsCatalog")
+    if not header or not _looks_like_header(header):
+        return rows
+    return [header, *rows]
+
+
 def _norm_header(value: Any) -> str:
     if value is None:
         return ""
     return " ".join(str(value).split())
+
+
+def _looks_like_header(row: list[Any]) -> bool:
+    headers = {_norm_header(value) for value in row}
+    return "Name" in headers and "Category" in headers
+
+
+def _header_row_above_named_range(wb, name: str) -> list[Any] | None:
+    if name not in wb.defined_names:
+        return None
+    dn = wb.defined_names[name]
+    for sheet_name, ref in dn.destinations:
+        min_col, min_row, max_col, _max_row = range_boundaries(ref)
+        if min_row <= 1:
+            return None
+        ws = wb[sheet_name]
+        return [
+            ws.cell(row=min_row - 1, column=col).value
+            for col in range(min_col, max_col + 1)
+        ]
+    return None
 
 
 def _value_for_header(row, header_row, header: str):
@@ -152,7 +193,7 @@ def _slugify_category(raw: Any, row_name: str) -> tuple[str | None, str | None]:
     cleaned = raw_str.strip().lower()
     if cleaned in _KNOWN_SLUGS:
         return cleaned, raw_str
-    if cleaned == "agriculture":
-        return "agri", raw_str
+    if cleaned in _CATEGORY_ALIASES:
+        return _CATEGORY_ALIASES[cleaned], raw_str
     _log.warning("unknown category '%s' on '%s'", raw_str, row_name)
     return "other", raw_str

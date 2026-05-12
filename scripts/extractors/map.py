@@ -266,6 +266,7 @@ FEATURE_PALETTE = {
 IMPROVEMENT_CATEGORY_PALETTE = {
     "energy": "#ffb000",
     "mining": "#a06840",
+    "materials": "#c9a86a",
     "habitat": "#7ed4a8",
     "civic": "#5ec3ff",
     "military": "#ff5544",
