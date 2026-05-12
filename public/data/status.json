@@ -16,9 +16,9 @@
       "name": "Attempted Coup and Arrests of the Communists"
     }
   ],
-  "crisis_factor": 0.8407423333,
+  "crisis_factor": 0.8403954055,
   "demographics": {
-    "avg_satisfaction": 0.2920553621277446,
+    "avg_satisfaction": 0.29310596295461955,
     "base_growth_rate": 0.03,
     "effective_cdr": 0.0135,
     "effective_growth_rate": 0.0096,
@@ -26,10 +26,10 @@
     "housing_util": 1.0349870626617168,
     "net_delta_pct": -0.39000000000000007,
     "sat_elasticity": 0.32,
-    "total_births": 2014.0,
+    "total_births": 2015.0,
     "total_deaths": 1242.0
   },
-  "gov_approval": 0.4752309223,
+  "gov_approval": 0.4776387305,
   "overton": {
     "authority": 3.0,
     "corporate": 3.5,
@@ -97,7 +97,7 @@
       "upkeep": 592.35
     }
   ],
-  "stability": 0.2610766416,
+  "stability": 0.2761025032,
   "treasury": {
     "delta": 174865.324,
     "money": 222465.0
