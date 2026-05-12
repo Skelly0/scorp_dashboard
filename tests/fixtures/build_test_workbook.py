@@ -305,12 +305,16 @@ def build(out_path: Path) -> Path:
     _add_name(wb, "FoodPerCap", "Cropsim!$B$28")
     _add_name(wb, "FoodVarietyIndex", "Cropsim!$B$29")
 
-    # Politics GoI block: rows 4-11 (8 slots, 4 live + 4 blank)
+    # Politics GoI block: rows 4-11 (8 slots, 5 live + 3 blank)
+    # Keep Security before Research here to exercise GoI insertion/reorder
+    # behaviour; the capture matrices below deliberately keep their own header
+    # order so the extractor must align by GoI name rather than raw position.
     gois = [
-        ("Founders", "Bureaucrats", 0.30, 0.55, "Reformist"),
-        ("Capitalists", "Capitalists", 0.28, 0.50, "Pragmatic"),
+        ("Administration", "Bureaucrats", 0.30, 0.55, "Reformist"),
+        ("Corporate", "Capitalists", 0.28, 0.50, "Pragmatic"),
+        ("Unions", "Industrial Workers", 0.22, 0.45, "Activist"),
         ("Security", "Security", 0.20, 0.60, "Defensive"),
-        ("Unionists", "Industrial Workers", 0.22, 0.45, "Activist"),
+        ("Research", "Scientists", 0.18, 0.52, "Investigative"),
     ]
     for i, (name, main_class, infl, appr, approach) in enumerate(gois, start=4):
         pol.cell(row=i, column=1, value=name)
@@ -344,32 +348,72 @@ def build(out_path: Path) -> Path:
     sub_factions = [
         # parent, sf_name, goal_axis, goal_delta, goal_text, infl,
         # m1, m2, m3, approval, national_share
-        ("Founders", "Constitutional Loyalists", "authority", 1.0,
-         "Defend the founding charter against revisionism.", 0.40,
-         "", "", "", 0.5, 0.20),
-        ("Founders", "Reformist Founders", "technocratic", 1.0,
-         "Modernise the constitutional framework.", 0.35,
-         "", "", "", 0.6, 0.18),
-        ("Founders", "Hardliner Founders", "authority", 1.5,
-         "Restore lost civic order through firm institutions.", 0.25,
-         "", "", "", 0.4, 0.12),
-        ("Capitalists", "Industrialists", "corporate", 1.5,
-         "Expand heavy industry above all else.", 0.40,
-         "", "", "", 0.5, 0.30),
-        ("Capitalists", "Extraction Cartels", "expansion", 1.0,
-         "Prioritise extraction over downstream value.", 0.35,
-         "", "", "", 0.4, 0.20),
+        ("Administration", "Statebuilders", "authority", 0.0,
+         "Establish a constitution", 0.35,
+         "", "", "", 0.5, 0.08),
+        ("Administration", "Reformist Administrators", "technocratic", 0.0,
+         "Expand civilian oversight", 0.25,
+         "", "", "", 0.6, 0.06),
+        ("Administration", "Hardliner Administrators", "authority", 0.0,
+         "Enshrine martial law into the new constitution", 0.40,
+         "", "", "", 0.4, 0.10),
+        ("Corporate", "Industrialists", "corporate", 0.0,
+         "Reject labour regulations", 0.40,
+         "", "", "", 0.5, 0.09),
+        ("Corporate", "Extraction Cartels", "expansion", 0.0,
+         "Open new mining territory", 0.35,
+         "", "", "", 0.4, 0.08),
+        ("Corporate", "Small Businesses", "materialist", 0.0,
+         "Enshrine private ownership of land", 0.25,
+         "", "", "", 0.45, 0.06),
+        ("Unions", "Labour Caucus", "corporate", 0.0,
+         "Enshrine collective bargaining", 0.50,
+         "", "", "", 0.55, 0.12),
+        ("Unions", "Co-op Movement", "authority", 0.0,
+         "Convert improvements to co-ops", 0.30,
+         "", "", "", 0.5, 0.07),
+        ("Unions", "Agitators", "corporate", 0.0,
+         "Establish labour regulations", 0.20,
+         "", "", "", 0.45, 0.05),
+        ("Security", "Officers", "technocratic", 0.0,
+         "Build a Prison Outpost", 0.35,
+         "", "", "", 0.7, 0.05),
+        ("Security", "Fraternalists", "corporate", 0.0,
+         "Increase Security Pay", 0.35,
+         "", "", "", 0.7, 0.05),
+        ("Security", "Shepherds", "authority", 0.0,
+         "Establish Independent Security Chain of Command", 0.30,
+         "", "", "", 0.7, 0.04),
+        ("Research", "Frontier Bloc", "expansion", 0.0,
+         "Found a third outpost", 0.40,
+         "", "", "", 0.5, 0.09),
+        ("Research", "Scientific Vanguard", "technocratic", 0.0,
+         "Create a second legislative chamber composed of appointed experts in their fields", 0.30,
+         "", "", "", 0.5, 0.07),
+        ("Research", "Intellectual Liberty Movement", "authority", 0.0,
+         "Create a public database.", 0.30,
+         "", "", "", 0.55, 0.07),
     ]
     # 6-axis effective stance per sub-faction (Expn, Auth, Corp, Tech, Faith,
     # Mat) — sourced from the live wb's Sub-Factions cols N:S. Distinct values
     # make it obvious in tests that the worldview comes straight from this
     # range and not from any baseline computation.
     sf_stances = {
-        "Constitutional Loyalists": (4.0, 4.5, 4.0, 4.5, 5.0, 5.5),
-        "Reformist Founders":       (3.5, 5.0, 4.0, 4.0, 4.5, 5.0),
-        "Hardliner Founders":       (5.0, 6.2, 4.4, 4.1, 3.8, 3.5),
-        "Industrialists":           (5.5, 3.5, 6.5, 4.0, 3.0, 2.5),
-        "Extraction Cartels":       (6.5, 3.0, 6.5, 4.5, 3.5, 2.0),
+        "Statebuilders":                    (4.45, 4.40, 4.00, 4.15, 4.60, 4.45),
+        "Reformist Administrators":         (4.45, 5.10, 4.00, 4.85, 4.60, 4.45),
+        "Hardliner Administrators":         (4.45, 2.30, 4.00, 3.45, 4.95, 4.45),
+        "Industrialists":                   (2.70, 5.85, 2.05, 3.30, 4.30, 4.25),
+        "Extraction Cartels":               (2.00, 5.15, 1.00, 4.00, 5.00, 4.95),
+        "Small Businesses":                 (5.55, 3.15, 1.85, 5.70, 4.00, 5.10),
+        "Labour Caucus":                    (4.00, 3.15, 5.00, 5.15, 3.50, 3.70),
+        "Co-op Movement":                   (3.70, 2.90, 6.00, 5.85, 3.85, 3.00),
+        "Agitators":                        (4.55, 4.00, 6.20, 5.85, 4.20, 3.70),
+        "Officers":                         (5.00, 1.65, 4.00, 3.10, 3.50, 2.50),
+        "Fraternalists":                    (4.65, 2.35, 5.05, 4.50, 3.50, 2.85),
+        "Shepherds":                        (5.35, 1.30, 3.65, 4.15, 2.80, 2.15),
+        "Frontier Bloc":                    (2.60, 4.00, 3.30, 2.70, 7.00, 4.85),
+        "Scientific Vanguard":              (3.30, 5.40, 4.00, 1.30, 6.30, 4.85),
+        "Intellectual Liberty Movement":    (3.30, 2.60, 4.00, 2.70, 6.30, 4.15),
     }
     for i, (parent, sf_name, goal_axis, goal_delta, goal_text, infl,
             m1, m2, m3, appr, nat_share) in enumerate(sub_factions, start=24):
@@ -390,23 +434,28 @@ def build(out_path: Path) -> Path:
         if stance is not None:
             for k, v in enumerate(stance):
                 pol.cell(row=i, column=33 + k, value=v)  # AG..AL (live col N..S)
-    _add_name(wb, "SubFactionsBlock", "Politics!$U$24:$AF$36")
-    _add_name(wb, "SubFactionGoals", "Politics!$U$24:$Y$36")        # A:E
-    _add_name(wb, "SubFactionGoal", "Politics!$Y$24:$Y$36")          # E
-    _add_name(wb, "SubFactionInfluences", "Politics!$Z$24:$Z$36")   # F
-    _add_name(wb, "SubFactionMinorGoals", "Politics!$AA$24:$AC$36") # G:I
-    _add_name(wb, "SubFactionApprovals", "Politics!$AD$24:$AD$36")  # J
-    _add_name(wb, "SubFactionNationalShare", "Politics!$AF$24:$AF$36")  # L
-    _add_name(wb, "SubFactionStances", "Politics!$AG$24:$AL$36")    # N:S
+    _add_name(wb, "SubFactionsBlock", "Politics!$U$24:$AF$38")
+    _add_name(wb, "SubFactionGoals", "Politics!$U$24:$Y$38")        # A:E
+    _add_name(wb, "SubFactionGoal", "Politics!$Y$24:$Y$38")          # E
+    _add_name(wb, "SubFactionInfluences", "Politics!$Z$24:$Z$38")   # F
+    _add_name(wb, "SubFactionMinorGoals", "Politics!$AA$24:$AC$38") # G:I
+    _add_name(wb, "SubFactionApprovals", "Politics!$AD$24:$AD$38")  # J
+    _add_name(wb, "SubFactionNationalShare", "Politics!$AF$24:$AF$38")  # L
+    _add_name(wb, "SubFactionStances", "Politics!$AG$24:$AL$38")    # N:S
 
-    # GoI Modifiers: PopCaptureBase B5:E15 (11 classes × 4 GoIs)
+    # GoI Modifiers: PopCaptureBase B5:F15 (11 classes x 5 GoIs)
     # and WeeklyHoursWorkedTable A57:C72 (15 class slots, header included).
+    matrix_gois = ["Administration", "Corporate", "Unions", "Research", "Security"]
+    main_class_by_goi = {name: main_class for name, main_class, *_ in gois}
     gm = wb.create_sheet("GoI Modifiers")
+    for j, goi_name in enumerate(matrix_gois, start=2):
+        gm.cell(row=4, column=j, value=goi_name)
     for i, (name, _, _, _) in enumerate(classes, start=5):
         gm.cell(row=i, column=1, value=name)
-        for j in range(4):
-            gm.cell(row=i, column=2 + j, value=0.20 + (j * 0.10))
-    _add_name(wb, "PopCaptureBase", "'GoI Modifiers'!$B$5:$E$15")
+        for j, goi_name in enumerate(matrix_gois):
+            base = 1.0 if name == main_class_by_goi[goi_name] else 0.10 + (j * 0.02)
+            gm.cell(row=i, column=2 + j, value=base)
+    _add_name(wb, "PopCaptureBase", "'GoI Modifiers'!$B$5:$F$15")
     gm.cell(row=57, column=1, value="Class")
     gm.cell(row=57, column=2, value="Baseline Hours/wk")
     gm.cell(row=57, column=3, value="Current Hours/wk")
@@ -417,16 +466,16 @@ def build(out_path: Path) -> Path:
         gm.cell(row=row, column=3, value=42 - offset)
     _add_name(wb, "WeeklyHoursWorkedTable", "'GoI Modifiers'!$A$57:$C$72")
 
-    # Party and GoI Pop Capture: GoIValueCapturedPop P65:S75
-    # (11 classes × 4 live GoIs). These are captured-pop counts, not rates.
+    # Party and GoI Pop Capture: GoIValueCapturedPop P65:T75
+    # (11 classes x 5 live GoIs). These are captured-pop counts, not rates.
     pc = wb.create_sheet("Party and GoI Pop Capture")
-    for j, goi in enumerate([g[0] for g in gois], start=16):
+    for j, goi in enumerate(matrix_gois, start=16):
         pc.cell(row=64, column=j, value=goi)
     for i, (name, _, _, _) in enumerate(classes, start=65):
         pc.cell(row=i, column=15, value=name)
-        for j in range(4):
+        for j in range(len(matrix_gois)):
             pc.cell(row=i, column=16 + j, value=(i - 64) * 1000 + (j + 1) * 100)
-    _add_name(wb, "GoIValueCapturedPop", "'Party and GoI Pop Capture'!$P$65:$S$75")
+    _add_name(wb, "GoIValueCapturedPop", "'Party and GoI Pop Capture'!$P$65:$T$75")
 
     # PARTY VALUE CAPTURE % / POP blocks: class rows x founded party cols.
     # Read by title/headers in extractors.parties, not via named ranges.
@@ -464,34 +513,37 @@ def build(out_path: Path) -> Path:
         pc.cell(row=pct_row, column=31, value=sum(capture_pcts[idx]))
         pc.cell(row=pop_row, column=31, value=pop_count)
 
-    # GoI Benefits: A4:D15
+    # GoI Benefits: A4:D18
     gb = wb.create_sheet("GoI Benefits")
     benefits = [
-        ("Founders", 0.30, "Tax Holiday", "10% reduction"),
-        ("Founders", 0.45, "Free Press", "Public approval +"),
-        ("Founders", 0.60, "Constitutional Reform", "Stability +"),
-        ("Capitalists", 0.30, "Subsidy", "Industry yield +"),
-        ("Capitalists", 0.45, "Deregulation", "Crisis +"),
-        ("Capitalists", 0.60, "Charter", "New corp"),
+        ("Administration", 0.30, "Charter Draft", "Stability +"),
+        ("Administration", 0.45, "Civil Service", "Admin capacity +"),
+        ("Administration", 0.60, "Public Mandate", "Approval +"),
+        ("Corporate", 0.30, "Subsidy", "Industry yield +"),
+        ("Corporate", 0.45, "Deregulation", "Crisis +"),
+        ("Corporate", 0.60, "Charter", "New corp"),
+        ("Unions", 0.30, "Min Wage", "Bargain +"),
+        ("Unions", 0.45, "Strike Right", "Bargain ++ / Crisis +"),
+        ("Unions", 0.60, "Co-op Charter", "New worker co-op"),
         ("Security", 0.30, "Patrol", "Security yield +"),
         ("Security", 0.45, "Curfew", "Stability + / approval -"),
         ("Security", 0.60, "Martial Law", "Big stab + / approval --"),
-        ("Unionists", 0.30, "Min Wage", "Bargain +"),
-        ("Unionists", 0.45, "Strike Right", "Bargain ++ / Crisis +"),
-        ("Unionists", 0.60, "Co-op Charter", "New worker co-op"),
+        ("Research", 0.30, "Open Lab", "Research yield +"),
+        ("Research", 0.45, "Peer Review", "Tech availability +"),
+        ("Research", 0.60, "Institute Charter", "Research agenda +"),
     ]
     for i, (goi, thresh, name, desc) in enumerate(benefits, start=4):
         gb.cell(row=i, column=1, value=goi)
         gb.cell(row=i, column=2, value=thresh)
         gb.cell(row=i, column=3, value=name)
         gb.cell(row=i, column=4, value=desc)
-    _add_name(wb, "GoIBenefitsTable", "'GoI Benefits'!$A$4:$D$15")
+    _add_name(wb, "GoIBenefitsTable", "'GoI Benefits'!$A$4:$D$18")
 
     # Parties sheet: 15 slots rows 4-18. Two seeded for tests; the rest blank.
     pa = wb.create_sheet("Parties")
     pa["A1"] = "Parties Master"
     seeded = [
-        # name, founded, establishment, 6-axis stance, weighted stance(6), Mad, ClosestGoI, Compat[4], ClassCompat[15], Estimated, VoteShare
+        # name, founded, establishment, 6-axis stance, weighted stance(6), Mad, ClosestGoI, Compat[5], ClassCompat[15], Estimated, VoteShare
         ("Liberty Now", True, 0.55, [5, 5, 4, 5, 4, 4]),
         ("People's Voice", True, 0.40, [3, 3, 6, 3, 4, 5]),
     ]
@@ -506,9 +558,9 @@ def build(out_path: Path) -> Path:
         for k, v in enumerate(stance):
             pa.cell(row=row, column=10 + k, value=v)
         pa.cell(row=row, column=16, value=0.15)              # Mad Index P
-        pa.cell(row=row, column=17, value=["Founders", "Unionists"][slot])  # Closest GoI Q
-        # GoI compat R-Y (cols 18-21 for 4 live GoIs)
-        for j in range(4):
+        pa.cell(row=row, column=17, value=["Administration", "Unions"][slot])  # Closest GoI Q
+        # GoI compat R-V (cols 18-22 for 5 live GoIs)
+        for j in range(len(gois)):
             pa.cell(row=row, column=18 + j, value=0.6 - j * 0.1 if slot == 0 else 0.3 + j * 0.1)
         # Class compat Z-AN (cols 26-40 for 15 class slots)
         for j in range(15):
