@@ -11,6 +11,7 @@
   export let critical = false;
   export let good = false;
   export let tone = null;
+  export let muted = false;
   export let history = null;
   export let sparkColor = null;
 
@@ -24,8 +25,12 @@
   $: deltaClass = delta != null ? (delta > 0 ? 'delta up' : delta < 0 ? 'delta down' : 'delta') : '';
   $: explicitTone = TONE_COLORS[tone] ? tone : null;
   $: resolvedTone = explicitTone ?? (critical ? 'crit' : good ? 'good' : null);
-  $: blockClass = resolvedTone ? `kpi-block tone-${resolvedTone}` : 'kpi-block';
-  $: numClass = resolvedTone ? `kpi-num ${resolvedTone}` : 'kpi-num';
+  $: blockClass = resolvedTone
+    ? `kpi-block tone-${resolvedTone}${muted ? ' muted' : ''}`
+    : `kpi-block${muted ? ' muted' : ''}`;
+  $: numClass = resolvedTone
+    ? `kpi-num ${resolvedTone}${muted ? ' muted' : ''}`
+    : `kpi-num${muted ? ' muted' : ''}`;
   $: resolvedSparkColor = sparkColor ?? TONE_COLORS[resolvedTone] ?? 'var(--accent)';
   $: displayValue = value == null ? '—' : value;
   $: visibleDetails = Array.isArray(details) ? details.filter((detail) => detail?.text) : [];

@@ -100,7 +100,12 @@
       <div class="lg:col-span-3">
         <Band num="02" title="Stability Modifiers" meta="long-term" />
         {#if $situations.stability_modifiers.length === 0}
-          <p class="text-muted text-xs uppercase tracking-widest">No long-term modifiers.</p>
+          <div class="s-card s-card-pad">
+            <p class="text-muted text-xs uppercase tracking-widest m-0">No long-term modifiers in play.</p>
+            <p class="text-muted text-[11px] m-0 mt-2">
+              Persistent stability tweaks from prior crises or wonders surface here when active.
+            </p>
+          </div>
         {:else}
           <ul class="m-0 p-0 list-none text-[11px]">
             {#each $situations.stability_modifiers as m}

@@ -38,6 +38,14 @@
   function fmtPop(value) {
     return value != null && Number.isFinite(value) ? Math.round(value).toLocaleString('en-US') : '—';
   }
+
+  // Class x party heatmap tabs: % of class vs raw people. Compatibility lives
+  // separately because its axes are party x GoI (a different cross-table).
+  $: hasPct = $parties?.party_capture_pct_matrix?.values?.length > 0;
+  $: hasPop = $parties?.party_capture_pop_matrix?.values?.length > 0;
+  $: hasFallbackPop = !hasPop && classPopMatrix?.values?.length > 0;
+  let supportTab = 'pop'; // 'pop' | 'pct' — Party Supporters is the authoritative count
+  $: if (supportTab === 'pop' && !hasPop && !hasFallbackPop && hasPct) supportTab = 'pct';
 </script>
 
 <section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
@@ -119,43 +127,61 @@
       </div>
     {/if}
 
-    {#if $parties.party_capture_pct_matrix?.values?.length}
-      <Band num="03" title="Class Support Split" meta="Class x party - % of class" />
-      <div class="s-card s-card-pad">
-        <Heatmap
-          rowLabels={$parties.party_capture_pct_matrix.classes}
-          colLabels={$parties.party_capture_pct_matrix.parties}
-          values={$parties.party_capture_pct_matrix.values}
-          format="pctSign"
-          rowHeadWidth={180}
-          minCellWidth={72}
-        />
-      </div>
-    {/if}
-
-    {#if $parties.party_capture_pop_matrix?.values?.length}
-      <Band num="04" title="Party Supporters" meta="class x party - people" />
-      <div class="s-card s-card-pad">
-        <Heatmap
-          rowLabels={$parties.party_capture_pop_matrix.classes}
-          colLabels={$parties.party_capture_pop_matrix.parties}
-          values={$parties.party_capture_pop_matrix.values}
-          format="int"
-          rowHeadWidth={180}
-          minCellWidth={72}
-        />
-      </div>
-    {:else if classPopMatrix?.values?.length}
-      <Band num="03" title="Party Pops" meta="by class" />
-      <div class="s-card s-card-pad">
-        <Heatmap
-          rowLabels={classPopMatrix.parties}
-          colLabels={classPopMatrix.classes}
-          values={classPopMatrix.values}
-          format="int"
-          rowHeadWidth={180}
-          minCellWidth={72}
-        />
+    {#if hasPct || hasPop || hasFallbackPop}
+      <Band
+        num="03"
+        title="Class × Party Support"
+        meta={supportTab === 'pct' ? '% of class' : 'people'}
+      />
+      <div class="s-card">
+        <div class="layer-tabs" role="tablist" aria-label="Class × party view">
+          {#if hasPop || hasFallbackPop}
+            <button
+              role="tab"
+              aria-pressed={supportTab === 'pop'}
+              aria-selected={supportTab === 'pop'}
+              on:click={() => (supportTab = 'pop')}
+            >Supporters</button>
+          {/if}
+          {#if hasPct}
+            <button
+              role="tab"
+              aria-pressed={supportTab === 'pct'}
+              aria-selected={supportTab === 'pct'}
+              on:click={() => (supportTab = 'pct')}
+            >% of Class</button>
+          {/if}
+        </div>
+        <div class="s-card-pad">
+          {#if supportTab === 'pct' && hasPct}
+            <Heatmap
+              rowLabels={$parties.party_capture_pct_matrix.classes}
+              colLabels={$parties.party_capture_pct_matrix.parties}
+              values={$parties.party_capture_pct_matrix.values}
+              format="pctSign"
+              rowHeadWidth={180}
+              minCellWidth={72}
+            />
+          {:else if supportTab === 'pop' && hasPop}
+            <Heatmap
+              rowLabels={$parties.party_capture_pop_matrix.classes}
+              colLabels={$parties.party_capture_pop_matrix.parties}
+              values={$parties.party_capture_pop_matrix.values}
+              format="int"
+              rowHeadWidth={180}
+              minCellWidth={72}
+            />
+          {:else if supportTab === 'pop' && hasFallbackPop}
+            <Heatmap
+              rowLabels={classPopMatrix.parties}
+              colLabels={classPopMatrix.classes}
+              values={classPopMatrix.values}
+              format="int"
+              rowHeadWidth={180}
+              minCellWidth={72}
+            />
+          {/if}
+        </div>
       </div>
     {/if}
   {/if}

@@ -33,8 +33,13 @@
 </script>
 
 {#if !tile}
-  <div class="s-card-pad">
-    <p class="text-muted text-xs uppercase tracking-widest">Hover or click a tile to inspect.</p>
+  <div class="s-card-pad inspector-empty">
+    <p class="inspector-empty-head">Inspect a tile</p>
+    <ul class="inspector-empty-hints">
+      <li><span class="inspector-empty-key">hover</span> for quick read</li>
+      <li><span class="inspector-empty-key">click</span> to pin</li>
+      <li><span class="inspector-empty-key">esc</span> to clear</li>
+    </ul>
   </div>
 {:else}
   <div class="s-card-header">

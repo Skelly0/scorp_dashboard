@@ -26,14 +26,16 @@
     <p class="text-crit">{$senateError}</p>
   {:else if !$senate}
     <p class="text-muted text-xs uppercase tracking-widest">Loading…</p>
+  {:else if $senate.placeholder_note}
+    <Band num="01" title="Senate" />
+    <div class="s-card s-card-pad" style="border-color: var(--accent);">
+      <strong class="uppercase tracking-widest text-[10px] text-muted">Senate not yet convened</strong>
+      <p class="text-sm m-0 mt-1">{$senate.placeholder_note}</p>
+      <p class="text-muted text-xs m-0 mt-3">
+        Once the Senate sheet is published for a turn, coalitions, vote share, and GoI capture will appear here.
+      </p>
+    </div>
   {:else}
-    {#if $senate.placeholder_note}
-      <div class="s-card s-card-pad mb-3" style="border-color: var(--accent);">
-        <strong class="uppercase tracking-widest text-[10px] text-muted">Note</strong>
-        <p class="text-sm m-0 mt-1">{$senate.placeholder_note}</p>
-      </div>
-    {/if}
-
     <Band num="01" title="Coalitions" meta={`${coalitions.length} coalitions`} />
     {#if coalitions.length === 0}
       <p class="text-muted text-xs uppercase tracking-widest">No coalitions formed.</p>

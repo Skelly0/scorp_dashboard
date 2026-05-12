@@ -64,15 +64,28 @@
 
     <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-3">
       <KpiBlock label="Researched" value={`${researchedCount} / ${total}`} />
-      <KpiBlock label="Available" value={fmtInt(availableCount)} />
-      <KpiBlock label="Locked" value={fmtInt(lockedCount)} />
+      <KpiBlock
+        label="Available"
+        value={fmtInt(availableCount)}
+        muted={availableCount === 0}
+      />
+      <KpiBlock
+        label="Locked"
+        value={fmtInt(lockedCount)}
+        muted={lockedCount === 0}
+      />
       <KpiBlock
         label="RP Accrued"
         value={fmtInt(accruedRp)}
         details={accruedDetails}
         tone={rpRemaining != null && rpRemaining < 0 ? 'crit' : null}
+        muted={accruedRp === 0}
       />
-      <KpiBlock label="RP Committed" value={fmtInt(rpCommitted)} />
+      <KpiBlock
+        label="RP Committed"
+        value={fmtInt(rpCommitted)}
+        muted={rpCommitted === 0}
+      />
     </div>
 
     <div class="tech-progress-row">

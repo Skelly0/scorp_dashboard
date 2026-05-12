@@ -226,6 +226,9 @@ body {
 .kpi-block .kpi-num.crit { color: var(--crit); }
 .kpi-block .kpi-num.warn { color: var(--warn); }
 .kpi-block .kpi-num.good { color: var(--good); }
+.kpi-block .kpi-num.muted { color: var(--muted); font-weight: 600; }
+.kpi-block.muted { border-color: var(--border-soft); }
+.kpi-block.muted .kpi-label { opacity: 0.7; }
 .kpi-subtitle {
   font-size: 0.7rem;
   letter-spacing: 0.05em;
@@ -864,6 +867,37 @@ table.tbl th.num {
   text-align: right;
 }
 
+/* Inspector empty-state (Map right rail). */
+.inspector-empty-head {
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--fg);
+  margin: 0;
+}
+.inspector-empty-hints {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.inspector-empty-key {
+  display: inline-block;
+  min-width: 44px;
+  margin-right: 8px;
+  padding: 1px 6px;
+  border: 1px solid var(--border-soft);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  text-align: center;
+  color: var(--fg-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
 /* === Resizable map viewport (Map page) ===================================== */
 .map-canvas-wrap {
   width: 100%;
@@ -998,6 +1032,9 @@ table.tbl th.num {
     overflow-x: auto;
     scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
+    /* Right-edge fade hints there are more tabs to swipe to. */
+    -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 24px), transparent 100%);
+            mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 24px), transparent 100%);
   }
   .layer-tabs > button,
   .layer-tabs .layer-menu,
@@ -1658,16 +1695,21 @@ table.tbl th.num {
 /* === Mobile friendliness =================================================== */
 .narrow-hide { display: inline; }
 
-.kpi-block .kpi-num {
-  font-size: clamp(2rem, 9vw, 56px);
-  letter-spacing: 0;
-  overflow-wrap: anywhere;
-}
+/* KPI/StatTile number fluid-shrink + wrap-anywhere only kicks in on coarse
+   pointers — on desktop a 2/12 column with overflow-wrap:anywhere would let
+   "92,000" snap to "92,00 / 0" mid-digit. */
+@media (hover: none) and (pointer: coarse) {
+  .kpi-block .kpi-num {
+    font-size: clamp(2rem, 9vw, 56px);
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+  }
 
-.stat-tile .val {
-  font-size: clamp(1.5rem, 6.5vw, 32px);
-  letter-spacing: 0;
-  overflow-wrap: anywhere;
+  .stat-tile .val {
+    font-size: clamp(1.5rem, 6.5vw, 32px);
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+  }
 }
 
 .heatmap-scroll,

@@ -168,7 +168,7 @@
 
     <Band num="03" title="Resource Flows" meta="gross income/upkeep per year" />
     <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
-      {#each $status.resources as r}
+      {#each ($status.resources ?? []).filter((r) => String(r?.name ?? '').toLowerCase() !== 'money') as r}
         <StatTile
           label={r.name}
           value={r.current != null ? Math.round(r.current).toLocaleString() : '—'}

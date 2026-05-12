@@ -106,6 +106,10 @@ describe('Status page', () => {
       ...baseStatus,
       resources: [
         { name: 'Food', current: 100, income: 12, upkeep: 7, delta: 5 },
+        { name: 'Materials', current: 800, income: 90, upkeep: 20, delta: 70 },
+        // Money is filtered out of the Resource Flows grid (it lives on the
+        // headline KPI instead) — see gotcha #35. Including it here verifies
+        // the filter and that the other two resources still render.
         { name: 'Money', current: 1200, income: 90, upkeep: 20, delta: 70 },
       ],
     });
@@ -119,12 +123,19 @@ describe('Status page', () => {
     expect(within(foodTile).queryByText('Upkeep -7')).toBeNull();
     expect(within(foodTile).queryByText((text) => text.includes('▲') && text.includes('+5'))).toBeNull();
 
-    const moneyTile = statTileByLabel('Money');
-    expect(within(moneyTile).getByText('+90')).toBeTruthy();
-    expect(within(moneyTile).getByText('-20')).toBeTruthy();
-    expect(within(moneyTile).queryByText('Income +90')).toBeNull();
-    expect(within(moneyTile).queryByText('Upkeep -20')).toBeNull();
-    expect(within(moneyTile).queryByText((text) => text.includes('▲') && text.includes('+70'))).toBeNull();
+    const materialsTile = statTileByLabel('Materials');
+    expect(within(materialsTile).getByText('+90')).toBeTruthy();
+    expect(within(materialsTile).getByText('-20')).toBeTruthy();
+    expect(within(materialsTile).queryByText('Income +90')).toBeNull();
+    expect(within(materialsTile).queryByText('Upkeep -20')).toBeNull();
+    expect(within(materialsTile).queryByText((text) => text.includes('▲') && text.includes('+70'))).toBeNull();
+
+    // Money does not get a Resource Flows stat-tile; it appears only as the
+    // headline KPI (validated by the dedicated headline test above).
+    const moneyStatTileLabel = screen
+      .getAllByText('Money')
+      .find((node) => node.classList.contains('label'));
+    expect(moneyStatTileLabel).toBeUndefined();
   });
 
   test('does not invent gross flow numbers for net-only resource data', () => {

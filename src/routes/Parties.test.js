@@ -80,8 +80,11 @@ describe('Parties page', () => {
     expect(screen.getAllByText('Supporters').length).toBeGreaterThan(0);
     expect(screen.getByText('5,299')).toBeTruthy();
     expect(screen.getAllByText('Top Classes').length).toBeGreaterThan(0);
-    expect(screen.getByText('Class Support Split')).toBeTruthy();
-    expect(screen.getByText('Class x party - % of class')).toBeTruthy();
+    // The class×party heatmaps share a tabbed card; default tab is "Supporters"
+    // (the authoritative people count per gotcha #44). The "% of Class" tab
+    // button must also be present in the strip.
+    expect(screen.getByText('Class × Party Support')).toBeTruthy();
+    expect(screen.getByText('% of Class')).toBeTruthy();
     expect(screen.getAllByText('4,237').length).toBeGreaterThan(0);
     expect(screen.getByText('50% class')).toBeTruthy();
     expect(screen.queryByText('Hidden GoI Label')).toBeNull();
