@@ -1,3 +1,2136 @@
 {
-  "improvements": []
+  "improvements": [
+    {
+      "category": "agri",
+      "category_raw": "Food",
+      "costs": {
+        "engineering": 500.0,
+        "materials": 2000.0,
+        "money": 5000.0,
+        "ore": 750.0
+      },
+      "name": "Hydroponic Bay",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.6,
+        "greens": 0.4,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 100.0,
+        "materials": 25.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 100.0
+      },
+      "workforce": {
+        "botanists": 3000.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 240.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 525.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "agri",
+      "category_raw": "Food",
+      "costs": {
+        "engineering": 750.0,
+        "materials": 2500.0,
+        "money": 8000.0,
+        "ore": 500.0
+      },
+      "name": "Aeroponic Tower",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.5,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 150.0,
+        "materials": 25.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 100.0
+      },
+      "workforce": {
+        "botanists": 2000.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 240.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 450.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "agri",
+      "category_raw": "Food",
+      "costs": {
+        "engineering": 250.0,
+        "materials": 1750.0,
+        "money": 5000.0,
+        "ore": 1250.0
+      },
+      "name": "Algal Bioreactor",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 1.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 100.0,
+        "materials": 50.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 100.0
+      },
+      "workforce": {
+        "botanists": 2000.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 50.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 200.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 750.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "agri",
+      "category_raw": "Food",
+      "costs": {
+        "engineering": 1000.0,
+        "materials": 4000.0,
+        "money": 25000.0,
+        "ore": 1500.0
+      },
+      "name": "Vat Culture Lab",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 1.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 300.0,
+        "materials": 25.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 100.0
+      },
+      "workforce": {
+        "botanists": 1500.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 240.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 1500.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 375.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "agri",
+      "category_raw": "Food",
+      "costs": {
+        "engineering": 250.0,
+        "materials": 1250.0,
+        "money": 5000.0,
+        "ore": 500.0
+      },
+      "name": "Mycoponic Chamber",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.25,
+        "cereal": 0.0,
+        "greens": 0.25,
+        "vat_protein": 0.5
+      },
+      "terrain_compat": "Lava Tube, feature:Cave System, Crater Floor",
+      "upkeep": {
+        "energy": 50.0,
+        "materials": 25.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 100.0
+      },
+      "workforce": {
+        "botanists": 500.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 0.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 2250.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 375.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "energy",
+      "category_raw": "Energy",
+      "costs": {
+        "engineering": 0.0,
+        "materials": 2500.0,
+        "money": 8000.0,
+        "ore": 500.0
+      },
+      "name": "Solar Array Field",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "Mare Plain, Crater Rim, Regolith Plain",
+      "upkeep": {
+        "energy": 25.0,
+        "materials": 25.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 0.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 1500.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 1600.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "energy",
+      "category_raw": "Energy",
+      "costs": {
+        "engineering": 250.0,
+        "materials": 3000.0,
+        "money": 18000.0,
+        "ore": 1500.0
+      },
+      "name": "Geothermal Tap",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "Geothermal Vent",
+      "upkeep": {
+        "energy": 25.0,
+        "materials": 50.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 360.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 3000.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 3400.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "energy",
+      "category_raw": "Energy",
+      "costs": {
+        "engineering": 1250.0,
+        "materials": 4500.0,
+        "money": 40000.0,
+        "ore": 2500.0
+      },
+      "name": "Helium-3 Mine",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "resource:Helium-3",
+      "upkeep": {
+        "energy": 25.0,
+        "materials": 250.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 480.0,
+        "extraction_workers": 5625.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 100.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "energy",
+      "category_raw": "Energy",
+      "costs": {
+        "engineering": 3000.0,
+        "materials": 11000.0,
+        "money": 80000.0,
+        "ore": 4500.0
+      },
+      "name": "Helium-3 Reactor",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "Highland, Mountain, Crater Floor",
+      "upkeep": {
+        "energy": 25.0,
+        "materials": 125.0,
+        "money": 15000.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 1200.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 3000.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 2250.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 10000.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.05,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "energy",
+      "category_raw": "Energy",
+      "costs": {
+        "engineering": 2000.0,
+        "materials": 9000.0,
+        "money": 75000.0,
+        "ore": 3500.0
+      },
+      "name": "Fission Reactor",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "Highland, Mountain, Crater Floor",
+      "upkeep": {
+        "energy": 25.0,
+        "materials": 100.0,
+        "money": 12500.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 960.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 3750.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 1500.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 4500.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "energy",
+      "category_raw": "Energy",
+      "costs": {
+        "engineering": 0.0,
+        "materials": 750.0,
+        "money": 4000.0,
+        "ore": 400.0
+      },
+      "name": "Thermal Pile",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 25.0,
+        "materials": 25.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 0.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 750.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 500.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "energy",
+      "category_raw": "Energy",
+      "costs": {
+        "engineering": 250.0,
+        "materials": 1250.0,
+        "money": 12000.0,
+        "ore": 600.0
+      },
+      "name": "RTG Cluster",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 25.0,
+        "materials": 25.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 120.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 700.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "mining",
+      "category_raw": "Mining",
+      "costs": {
+        "engineering": 0.0,
+        "materials": 1500.0,
+        "money": 9000.0,
+        "ore": 750.0
+      },
+      "name": "Regolith Mine",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "Mare Plain, Regolith Plain, Highland",
+      "upkeep": {
+        "energy": 200.0,
+        "materials": 25.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 240.0,
+        "extraction_workers": 4050.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 200.0,
+        "money": 0.0,
+        "ore": 250.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "mining",
+      "category_raw": "Mining",
+      "costs": {
+        "engineering": 500.0,
+        "materials": 2500.0,
+        "money": 22000.0,
+        "ore": 1500.0
+      },
+      "name": "Heavy Metals Mine",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "resource:Heavy Metals",
+      "upkeep": {
+        "energy": 300.0,
+        "materials": 25.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 360.0,
+        "extraction_workers": 4950.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 400.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "mining",
+      "category_raw": "Mining",
+      "costs": {
+        "engineering": 750.0,
+        "materials": 3500.0,
+        "money": 30000.0,
+        "ore": 2000.0
+      },
+      "name": "Rare Earths Extraction",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "resource:Rare Earths",
+      "upkeep": {
+        "energy": 350.0,
+        "materials": 25.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 600.0,
+        "extraction_workers": 4050.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 600.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "mining",
+      "category_raw": "Mining",
+      "costs": {
+        "engineering": 250.0,
+        "materials": 2000.0,
+        "money": 14000.0,
+        "ore": 1250.0
+      },
+      "name": "Iron Mine",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "resource:Iron Deposit, Mountain",
+      "upkeep": {
+        "energy": 250.0,
+        "materials": 25.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 360.0,
+        "extraction_workers": 4950.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 500.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "mining",
+      "category_raw": "Mining",
+      "costs": {
+        "engineering": 250.0,
+        "materials": 2000.0,
+        "money": 14000.0,
+        "ore": 1500.0
+      },
+      "name": "Aluminium Extractor",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "resource:Aluminum Deposit",
+      "upkeep": {
+        "energy": 250.0,
+        "materials": 25.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 15.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 360.0,
+        "extraction_workers": 2250.0,
+        "industrial_workers": 1875.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 625.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "mining",
+      "category_raw": "Mining",
+      "costs": {
+        "engineering": 250.0,
+        "materials": 2000.0,
+        "money": 12000.0,
+        "ore": 750.0
+      },
+      "name": "Ice Mining Station",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "Polar Ice Plain, feature:Buried Ice, resource:Water Ice",
+      "upkeep": {
+        "energy": 150.0,
+        "materials": 25.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 360.0,
+        "extraction_workers": 2700.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 3600.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 350.0
+      }
+    },
+    {
+      "category": "mining",
+      "category_raw": "Mining",
+      "costs": {
+        "engineering": 7500.0,
+        "materials": 12500.0,
+        "money": 125000.0,
+        "ore": 4000.0
+      },
+      "name": "Asteroid Catcher",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 750.0,
+        "materials": 25.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 1440.0,
+        "extraction_workers": 2700.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 1500.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 1000.0,
+        "money": 0.0,
+        "ore": 750.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "materials",
+      "category_raw": "Materials",
+      "costs": {
+        "engineering": 500.0,
+        "materials": 3000.0,
+        "money": 18000.0,
+        "ore": 2000.0
+      },
+      "name": "Materials Refinery",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 200.0,
+        "materials": 25.0,
+        "money": 1500.0,
+        "ore": 150.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 360.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 5625.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 800.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "materials",
+      "category_raw": "Materials",
+      "costs": {
+        "engineering": 1250.0,
+        "materials": 4500.0,
+        "money": 30000.0,
+        "ore": 3000.0
+      },
+      "name": "Manufacturing Plant",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 350.0,
+        "materials": 25.0,
+        "money": 2500.0,
+        "ore": 200.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 720.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 9375.0,
+        "managerial": 675.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 1200.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.1,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "materials",
+      "category_raw": "Materials",
+      "costs": {
+        "engineering": 400.0,
+        "materials": 1500.0,
+        "money": 12000.0,
+        "ore": 1200.0
+      },
+      "name": "3D Printing Workshop",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 100.0,
+        "materials": 50.0,
+        "money": 1250.0,
+        "ore": 100.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 240.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 2250.0,
+        "managerial": 0.0,
+        "proprietors": 750.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 400.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.05,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "civic",
+      "category_raw": "Civic",
+      "costs": {
+        "engineering": 500.0,
+        "materials": 3500.0,
+        "money": 25000.0,
+        "ore": 1250.0
+      },
+      "name": "Outpost",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 1.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 200.0,
+        "materials": 50.0,
+        "money": 2500.0,
+        "ore": 50.0,
+        "water": 25.0
+      },
+      "workforce": {
+        "botanists": 500.0,
+        "bureaucrats": 375.0,
+        "capitalists": 0.0,
+        "engineers": 600.0,
+        "extraction_workers": 1125.0,
+        "industrial_workers": 1875.0,
+        "managerial": 450.0,
+        "proprietors": 375.0,
+        "scientists": 0.0,
+        "security": 750.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 150.0,
+        "food": 75.0,
+        "helium3": 0.0,
+        "housing": 3600.0,
+        "materials": 150.0,
+        "money": 0.0,
+        "ore": 75.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "habitat",
+      "category_raw": "Housing",
+      "costs": {
+        "engineering": 250.0,
+        "materials": 1250.0,
+        "money": 8000.0,
+        "ore": 400.0
+      },
+      "name": "Surface Hab Module",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any_surface",
+      "upkeep": {
+        "energy": 100.0,
+        "materials": 25.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 25.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 0.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 1125.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 8000.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "habitat",
+      "category_raw": "Housing",
+      "costs": {
+        "engineering": 400.0,
+        "materials": 2500.0,
+        "money": 18000.0,
+        "ore": 900.0
+      },
+      "name": "Buried Habitat",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "Lava Tube, feature:Cave System, Crater Floor",
+      "upkeep": {
+        "energy": 100.0,
+        "materials": 25.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 25.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 0.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 1875.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 20000.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "habitat",
+      "category_raw": "Housing",
+      "costs": {
+        "engineering": 2500.0,
+        "materials": 7500.0,
+        "money": 50000.0,
+        "ore": 5000.0
+      },
+      "name": "Pressure Dome",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.5,
+        "greens": 0.5,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "Mare Plain, Crater Floor, Regolith Plain",
+      "upkeep": {
+        "energy": 400.0,
+        "materials": 50.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 25.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 360.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 3750.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 50.0,
+        "helium3": 0.0,
+        "housing": 40000.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "civic",
+      "category_raw": "Civic",
+      "costs": {
+        "engineering": 0.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0
+      },
+      "name": "Command Center",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "Crater Floor, Lava Tube",
+      "upkeep": {
+        "energy": 400.0,
+        "materials": 25.0,
+        "money": 7500.0,
+        "ore": 25.0,
+        "water": 25.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 750.0,
+        "capitalists": 0.0,
+        "engineers": 360.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 2250.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 10.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.1,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "civic",
+      "category_raw": "Civic",
+      "costs": {
+        "engineering": 400.0,
+        "materials": 1750.0,
+        "money": 12000.0,
+        "ore": 600.0
+      },
+      "name": "Bureaucratic Office",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 100.0,
+        "materials": 25.0,
+        "money": 5000.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 550.0,
+        "capitalists": 0.0,
+        "engineers": 0.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 675.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "civic",
+      "category_raw": "Civic",
+      "costs": {
+        "engineering": 400.0,
+        "materials": 2500.0,
+        "money": 15000.0,
+        "ore": 1100.0
+      },
+      "name": "Garrison",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 150.0,
+        "materials": 50.0,
+        "money": 5000.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 150.0,
+        "capitalists": 0.0,
+        "engineers": 0.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 8250.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.05,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "civic",
+      "category_raw": "Civic",
+      "costs": {
+        "engineering": 500.0,
+        "materials": 3000.0,
+        "money": 20000.0,
+        "ore": 900.0
+      },
+      "name": "Hospital",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 200.0,
+        "materials": 25.0,
+        "money": 7500.0,
+        "ore": 25.0,
+        "water": 25.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 0.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 675.0,
+        "proprietors": 0.0,
+        "scientists": 1875.0,
+        "security": 0.0,
+        "service_workers": 4500.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.05,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "civic",
+      "category_raw": "Civic",
+      "costs": {
+        "engineering": 250.0,
+        "materials": 2000.0,
+        "money": 12000.0,
+        "ore": 600.0
+      },
+      "name": "School",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 100.0,
+        "materials": 25.0,
+        "money": 5000.0,
+        "ore": 25.0,
+        "water": 15.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 0.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 1875.0,
+        "security": 0.0,
+        "service_workers": 3750.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 20.0,
+        "satisfaction_all": 0.025,
+        "stability": 0.05,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "civic",
+      "category_raw": "Faith/Culture/Recreation",
+      "costs": {
+        "engineering": 500.0,
+        "materials": 4000.0,
+        "money": 20000.0,
+        "ore": 1250.0
+      },
+      "name": "Faith Center",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 150.0,
+        "materials": 25.0,
+        "money": 7500.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 300.0,
+        "capitalists": 0.0,
+        "engineers": 0.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 450.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 3000.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.1,
+        "stability": 0.06,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "civic",
+      "category_raw": "Faith/Culture/Recreation",
+      "costs": {
+        "engineering": 250.0,
+        "materials": 1250.0,
+        "money": 10000.0,
+        "ore": 400.0
+      },
+      "name": "Recreational Facility",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 100.0,
+        "materials": 25.0,
+        "money": 2500.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 0.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 750.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 2250.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.1,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "civic",
+      "category_raw": "Faith/Culture/Recreation",
+      "costs": {
+        "engineering": 250.0,
+        "materials": 1000.0,
+        "money": 7500.0,
+        "ore": 250.0
+      },
+      "name": "Cantina",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 50.0,
+        "materials": 25.0,
+        "money": 2000.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 0.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 750.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 1500.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 2000.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.05,
+        "stability": 0.04,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "civic",
+      "category_raw": "Faith/Culture/Recreation",
+      "costs": {
+        "engineering": 1000.0,
+        "materials": 4500.0,
+        "money": 45000.0,
+        "ore": 1250.0
+      },
+      "name": "Entertainment Complex",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 250.0,
+        "materials": 25.0,
+        "money": 7500.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 0.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 450.0,
+        "proprietors": 1500.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 4500.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 6000.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.2,
+        "stability": 0.03,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "civic",
+      "category_raw": "Faith/Culture/Recreation",
+      "costs": {
+        "engineering": 500.0,
+        "materials": 2500.0,
+        "money": 18000.0,
+        "ore": 750.0
+      },
+      "name": "Cultural Hub",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 150.0,
+        "materials": 25.0,
+        "money": 5000.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 75.0,
+        "capitalists": 0.0,
+        "engineers": 0.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 2250.0,
+        "security": 0.0,
+        "service_workers": 1500.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 10.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "science",
+      "category_raw": "Research/Economy",
+      "costs": {
+        "engineering": 750.0,
+        "materials": 3500.0,
+        "money": 25000.0,
+        "ore": 1250.0
+      },
+      "name": "Research Lab",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 200.0,
+        "materials": 25.0,
+        "money": 5000.0,
+        "ore": 25.0,
+        "water": 10.0
+      },
+      "workforce": {
+        "botanists": 375.0,
+        "bureaucrats": 0.0,
+        "capitalists": 0.0,
+        "engineers": 300.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 0.0,
+        "scientists": 3000.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "research": 50.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "science",
+      "category_raw": "Research/Economy",
+      "costs": {
+        "engineering": 0.0,
+        "materials": 1750.0,
+        "money": 18000.0,
+        "ore": 600.0
+      },
+      "name": "Market",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 50.0,
+        "materials": 25.0,
+        "money": 2500.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 150.0,
+        "capitalists": 0.0,
+        "engineers": 0.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 0.0,
+        "proprietors": 1875.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 3000.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 20000.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "materials",
+      "category_raw": "Materials",
+      "costs": {
+        "engineering": 500.0,
+        "materials": 3750.0,
+        "money": 65000.0,
+        "ore": 2500.0
+      },
+      "name": "Space Port",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 250.0,
+        "materials": 50.0,
+        "money": 50000.0,
+        "ore": 25.0,
+        "water": 10.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 250.0,
+        "capitalists": 250.0,
+        "engineers": 480.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 2600.0,
+        "managerial": 150.0,
+        "proprietors": 1500.0,
+        "scientists": 250.0,
+        "security": 750.0,
+        "service_workers": 1500.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 360.0,
+        "materials": 0.0,
+        "money": 25000.0,
+        "ore": 0.0,
+        "research": 5.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.05,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "science",
+      "category_raw": "Research/Economy",
+      "costs": {
+        "engineering": 600.0,
+        "materials": 4500.0,
+        "money": 70000.0,
+        "ore": 1250.0
+      },
+      "name": "Financial District",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any",
+      "upkeep": {
+        "energy": 150.0,
+        "materials": 25.0,
+        "money": 10000.0,
+        "ore": 25.0,
+        "water": 5.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 170.0,
+        "capitalists": 1125.0,
+        "engineers": 0.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 675.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 0.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 180.0,
+        "materials": 0.0,
+        "money": 65000.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    },
+    {
+      "category": "habitat",
+      "category_raw": "Housing",
+      "costs": {
+        "engineering": 1000.0,
+        "materials": 2500.0,
+        "money": 85000.0,
+        "ore": 1500.0
+      },
+      "name": "Ultra-Deluxe Moon Hotel",
+      "ownership_options": null,
+      "splits": {
+        "algal_paste": 0.0,
+        "cereal": 0.0,
+        "greens": 0.0,
+        "vat_protein": 0.0
+      },
+      "terrain_compat": "any_surface",
+      "upkeep": {
+        "energy": 100.0,
+        "materials": 25.0,
+        "money": 6000.0,
+        "ore": 25.0,
+        "water": 25.0
+      },
+      "workforce": {
+        "botanists": 0.0,
+        "bureaucrats": 0.0,
+        "capitalists": 250.0,
+        "engineers": 0.0,
+        "extraction_workers": 0.0,
+        "industrial_workers": 0.0,
+        "managerial": 250.0,
+        "proprietors": 0.0,
+        "scientists": 0.0,
+        "security": 0.0,
+        "service_workers": 2500.0
+      },
+      "yields": {
+        "energy": 0.0,
+        "food": 0.0,
+        "helium3": 0.0,
+        "housing": 1800.0,
+        "materials": 0.0,
+        "money": 12000.0,
+        "ore": 0.0,
+        "research": 0.0,
+        "satisfaction_all": 0.0,
+        "stability": 0.0,
+        "water": 0.0
+      }
+    }
+  ]
 }
