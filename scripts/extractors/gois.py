@@ -81,8 +81,9 @@ def extract(wb) -> dict[str, Any]:
             "classes": [c[0] for c in classes],
             "gois": live_names,
             "values": _capture_values(
+                wb,
                 captured_pop,
-                len(classes),
+                [c[0] for c in classes],
                 live_names,
                 live_indices,
                 captured_pop_headers,
@@ -264,8 +265,72 @@ def _infer_main_classes(live_names, capture_matrix, classes, capture_headers=Non
     return out
 
 
-def _capture_values(capture, n_classes, live_names, live_indices, capture_headers=None):
+def _find_cell(ws, value):
+    for row in ws.iter_rows():
+        for cell in row:
+            if cell.value == value:
+                return cell.row, cell.column
+    return None
+
+
+def _capture_values_from_titled_block(wb, class_names, live_names):
+    """Read the displayed GOI VALUE CAPTURED POP table by labels.
+
+    The live workbook's visible table grew to include Security before the
+    backing named range did. Label-based extraction keeps the dashboard aligned
+    with the player-visible source even when workbook names lag by a column.
+    """
+    if "Party and GoI Pop Capture" not in wb.sheetnames:
+        return None
+
+    ws = wb["Party and GoI Pop Capture"]
+    anchor = _find_cell(ws, "GOI VALUE CAPTURED POP")
+    if anchor is None:
+        return None
+
+    title_row, title_col = anchor
+    header_row = title_row + 2
+    goi_cols = {}
+    in_header_block = False
+    for col in range(title_col + 1, ws.max_column + 1):
+        header = ws.cell(row=header_row, column=col).value
+        if header in (None, ""):
+            if in_header_block:
+                break
+            continue
+        in_header_block = True
+        if header in live_names:
+            goi_cols[header] = col
+
+    if not all(name in goi_cols for name in live_names):
+        return None
+
+    rows_by_class = {}
+    for row in range(header_row + 1, ws.max_row + 1):
+        class_name = ws.cell(row=row, column=title_col).value
+        if class_name in (None, "") and rows_by_class:
+            break
+        if class_name in class_names:
+            rows_by_class[class_name] = [
+                coerce_number(ws.cell(row=row, column=goi_cols[name]).value)
+                for name in live_names
+            ]
+        if len(rows_by_class) == len(class_names):
+            break
+
+    return [
+        rows_by_class.get(class_name, [None] * len(live_names))
+        for class_name in class_names
+    ]
+
+
+def _capture_values(wb, capture, class_names, live_names, live_indices, capture_headers=None):
+    titled_values = _capture_values_from_titled_block(wb, class_names, live_names)
+    if titled_values is not None:
+        return titled_values
+
     header_idx = _column_index_by_header(capture_headers or [])
+    n_classes = len(class_names)
     rows = []
     for i in range(n_classes):
         if i >= len(capture):

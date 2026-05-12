@@ -466,16 +466,22 @@ def build(out_path: Path) -> Path:
         gm.cell(row=row, column=3, value=42 - offset)
     _add_name(wb, "WeeklyHoursWorkedTable", "'GoI Modifiers'!$A$57:$C$72")
 
-    # Party and GoI Pop Capture: GoIValueCapturedPop P65:T75
+    # Party and GoI Pop Capture: visible GOI VALUE CAPTURED POP block O62:T75
     # (11 classes x 5 live GoIs). These are captured-pop counts, not rates.
+    # The named range is intentionally stale/narrow to match the live sheet
+    # regression where Security appeared in the visible block before the name
+    # was widened.
     pc = wb.create_sheet("Party and GoI Pop Capture")
+    pc.cell(row=62, column=15, value="GOI VALUE CAPTURED POP")
+    pc.cell(row=63, column=15, value="Captured pop count = sum of pop class value captured")
+    pc.cell(row=64, column=15, value="Class")
     for j, goi in enumerate(matrix_gois, start=16):
         pc.cell(row=64, column=j, value=goi)
     for i, (name, _, _, _) in enumerate(classes, start=65):
         pc.cell(row=i, column=15, value=name)
         for j in range(len(matrix_gois)):
             pc.cell(row=i, column=16 + j, value=(i - 64) * 1000 + (j + 1) * 100)
-    _add_name(wb, "GoIValueCapturedPop", "'Party and GoI Pop Capture'!$P$65:$T$75")
+    _add_name(wb, "GoIValueCapturedPop", "'Party and GoI Pop Capture'!$P$65:$S$75")
 
     # PARTY VALUE CAPTURE % / POP blocks: class rows x founded party cols.
     # Read by title/headers in extractors.parties, not via named ranges.
