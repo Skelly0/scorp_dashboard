@@ -14157,26 +14157,32 @@
     {
       "control": null,
       "feature": null,
-      "improvement": null,
+      "improvement": {
+        "name": "Surface Hab Module",
+        "owner": null,
+        "ownership_type": null
+      },
       "resource": "Phosphorus Deposit",
-      "slots": 3,
-      "staffing": null,
+      "slots": 2,
+      "staffing": 0.85,
       "terrain": "Mare Plain",
       "upkeep": {
-        "energy": 0.0,
+        "energy": 100.0,
         "helium3": 0.0,
-        "materials": 0.0,
-        "money": 0.0,
-        "ore": 0.0,
-        "water": 0.0
+        "materials": 25.0,
+        "money": 1250.0,
+        "ore": 25.0,
+        "water": 25.0
       },
-      "workforce": null,
+      "workforce": {
+        "Service Workers": 1125
+      },
       "x": 20,
       "y": 12,
       "yields": {
         "energy": 0,
         "food": 1.5,
-        "housing": 0,
+        "housing": 8000.0,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0

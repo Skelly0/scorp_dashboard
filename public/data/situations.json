@@ -14,6 +14,11 @@
       "crisis_factor": 0.15,
       "description": "The collaborators who attempted to forcibly establish The Lunar Workers' Council have been arrested for treason",
       "name": "Attempted Coup and Arrests of the Communists"
+    },
+    {
+      "crisis_factor": -0.05,
+      "description": "A shrine to honour the dead.",
+      "name": "Memorial Shrine"
     }
   ],
   "ended": [],
