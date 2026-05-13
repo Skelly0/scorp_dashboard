@@ -62,7 +62,7 @@
     },
     {
       "name": "Security",
-      "political_weight": 2.0,
+      "political_weight": 1.5,
       "pop": 4750,
       "share": 0.051630434782608696,
       "tier": "Middle",
