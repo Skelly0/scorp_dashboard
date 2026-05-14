@@ -7,22 +7,22 @@
         "unlocked_list": []
       },
       "approach": "Centrist",
-      "approval": 0.5332797871,
-      "derived_influence": 0.2051254098,
+      "approval": 0.5334010599,
+      "derived_influence": 0.2063352452,
       "effective_worldview": {
-        "authority": 3.594947543,
-        "corporate": 4.134444988,
-        "expansion": 4.60534763,
-        "faith": 4.979215319,
-        "materialist": 4.493149326,
-        "technocratic": 4.28170037
+        "authority": 3.591957138,
+        "corporate": 4.133514287,
+        "expansion": 4.606920812,
+        "faith": 4.977843137,
+        "materialist": 4.491528926,
+        "technocratic": 4.2815612
       },
       "mad_index": -0.1025,
       "main_class": "Bureaucrats",
       "name": "Administration",
       "sub_factions": [
         {
-          "approval": 0.4504706034,
+          "approval": 0.4505918762,
           "effective_worldview": {
             "authority": 4.4,
             "corporate": 4.0,
@@ -35,10 +35,10 @@
           "influence": 0.35,
           "minor_goals": [],
           "name": "Statebuilders",
-          "national_share": 0.07179389342
+          "national_share": 0.073691159
         },
         {
-          "approval": 0.3666950932,
+          "approval": 0.366816366,
           "effective_worldview": {
             "authority": 5.1,
             "corporate": 4.0,
@@ -51,10 +51,10 @@
           "influence": 0.25,
           "minor_goals": [],
           "name": "Reformist Administrators",
-          "national_share": 0.05128135244
+          "national_share": 0.05263654214
         },
         {
-          "approval": 0.7098532565,
+          "approval": 0.7099745293,
           "effective_worldview": {
             "authority": 2.3,
             "corporate": 4.0,
@@ -67,7 +67,7 @@
           "influence": 0.4,
           "minor_goals": [],
           "name": "Hardliner Administrators",
-          "national_share": 0.08205016391
+          "national_share": 0.08421846743
         }
       ]
     },
@@ -78,22 +78,22 @@
         "unlocked_list": []
       },
       "approach": "Marketist",
-      "approval": 0.4474450347,
-      "derived_influence": 0.2059168145,
+      "approval": 0.4455631866,
+      "derived_influence": 0.1821126618,
       "effective_worldview": {
-        "authority": 4.749067334,
-        "corporate": 2.174177435,
-        "expansion": 3.154409341,
-        "faith": 4.477372266,
-        "materialist": 3.807426057,
-        "technocratic": 4.290503527
+        "authority": 4.761406051,
+        "corporate": 2.175775632,
+        "expansion": 3.146680107,
+        "faith": 4.48160841,
+        "materialist": 3.81143091,
+        "technocratic": 4.291126842
       },
       "mad_index": -0.0325,
       "main_class": "Capitalists",
       "name": "Corporate",
       "sub_factions": [
         {
-          "approval": 0.5295773136,
+          "approval": 0.5276954655,
           "effective_worldview": {
             "authority": 5.85,
             "corporate": 2.05,
@@ -106,10 +106,10 @@
           "influence": 0.4,
           "minor_goals": [],
           "name": "Industrialists",
-          "national_share": 0.08236672579
+          "national_share": 0.07433169868
         },
         {
-          "approval": 0.3537970415,
+          "approval": 0.3519151934,
           "effective_worldview": {
             "authority": 5.15,
             "corporate": 1.0,
@@ -122,10 +122,10 @@
           "influence": 0.35,
           "minor_goals": [],
           "name": "Extraction Cartels",
-          "national_share": 0.07207088506
+          "national_share": 0.06504023634
         },
         {
-          "approval": 0.4471405789,
+          "approval": 0.4452587308,
           "effective_worldview": {
             "authority": 3.15,
             "corporate": 1.85,
@@ -138,7 +138,7 @@
           "influence": 0.25,
           "minor_goals": [],
           "name": "Small Businesses",
-          "national_share": 0.05147920362
+          "national_share": 0.04645731167
         }
       ]
     },
@@ -149,22 +149,22 @@
         "unlocked_list": []
       },
       "approach": "Communal",
-      "approval": 0.5260026412,
-      "derived_influence": 0.2283755322,
+      "approval": 0.5260709747,
+      "derived_influence": 0.2288637722,
       "effective_worldview": {
-        "authority": 3.665875162,
-        "corporate": 5.434916151,
-        "expansion": 3.80959126,
-        "faith": 3.67289537,
-        "materialist": 3.26892276,
-        "technocratic": 5.429697647
+        "authority": 3.664881978,
+        "corporate": 5.434320851,
+        "expansion": 3.810248818,
+        "faith": 3.672806971,
+        "materialist": 3.268647232,
+        "technocratic": 5.429353836
       },
       "mad_index": -0.015,
       "main_class": "Industrial Workers",
       "name": "Unions",
       "sub_factions": [
         {
-          "approval": 0.5624169269,
+          "approval": 0.5624852604,
           "effective_worldview": {
             "authority": 3.15,
             "corporate": 5.0,
@@ -177,10 +177,10 @@
           "influence": 0.5,
           "minor_goals": [],
           "name": "Labour Caucus",
-          "national_share": 0.1141877661
+          "national_share": 0.1167672307
         },
         {
-          "approval": 0.4708148861,
+          "approval": 0.4708832196,
           "effective_worldview": {
             "authority": 2.9000000000000004,
             "corporate": 6.0,
@@ -193,10 +193,10 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Co-op Movement",
-          "national_share": 0.06851265966
+          "national_share": 0.07006033844
         },
         {
-          "approval": 0.5177485596,
+          "approval": 0.5178168931,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 6.2,
@@ -209,7 +209,7 @@
           "influence": 0.2,
           "minor_goals": [],
           "name": "Agitators",
-          "national_share": 0.04567510644
+          "national_share": 0.04670689229
         }
       ]
     },
@@ -220,22 +220,22 @@
         "unlocked_list": []
       },
       "approach": "Secular",
-      "approval": 0.4726611052,
-      "derived_influence": 0.2086873507,
+      "approval": 0.4727110702,
+      "derived_influence": 0.209009558,
       "effective_worldview": {
-        "authority": 4.019213878,
-        "corporate": 3.966794851,
-        "expansion": 3.487684453,
-        "faith": 6.240297815,
-        "materialist": 4.369324769,
-        "technocratic": 2.613258399
+        "authority": 4.018434537,
+        "corporate": 3.966551762,
+        "expansion": 3.48810599,
+        "faith": 6.239902724,
+        "materialist": 4.3689053,
+        "technocratic": 2.613372335
       },
       "mad_index": -0.0875,
       "main_class": "Scientists",
       "name": "Research",
       "sub_factions": [
         {
-          "approval": 0.455620493,
+          "approval": 0.455670458,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 3.3,
@@ -248,10 +248,10 @@
           "influence": 0.4,
           "minor_goals": [],
           "name": "Frontier Bloc",
-          "national_share": 0.08347494029
+          "national_share": 0.08531002366
         },
         {
-          "approval": 0.4073562073,
+          "approval": 0.4074061723,
           "effective_worldview": {
             "authority": 5.3999999999999995,
             "corporate": 4.0,
@@ -264,10 +264,10 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Scientific Vanguard",
-          "national_share": 0.06260620522
+          "national_share": 0.06398251775
         },
         {
-          "approval": 0.5606868195,
+          "approval": 0.5607367845,
           "effective_worldview": {
             "authority": 2.6,
             "corporate": 4.0,
@@ -280,7 +280,7 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Intellectual Liberty Movement",
-          "national_share": 0.06260620522
+          "national_share": 0.06398251775
         }
       ]
     },
@@ -291,22 +291,22 @@
         "unlocked_list": []
       },
       "approach": "Authoritarian",
-      "approval": 0.7125244068,
-      "derived_influence": 0.1518948928,
+      "approval": 0.7135069903,
+      "derived_influence": 0.1536787628,
       "effective_worldview": {
-        "authority": 2.301596969,
-        "corporate": 4.109479597,
-        "expansion": 4.808820306,
-        "faith": 3.671004944,
-        "materialist": 2.751445923,
-        "technocratic": 4.105591823
+        "authority": 2.295433203,
+        "corporate": 4.171558532,
+        "expansion": 4.811480775,
+        "faith": 3.666410604,
+        "materialist": 2.747600515,
+        "technocratic": 4.107504791
       },
-      "mad_index": -0.0625,
+      "mad_index": -0.06,
       "main_class": "Security",
       "name": "Security",
       "sub_factions": [
         {
-          "approval": 0.7125244068,
+          "approval": 0.7135069903,
           "effective_worldview": {
             "authority": 1.65,
             "corporate": 4.0,
@@ -319,13 +319,13 @@
           "influence": 0.35,
           "minor_goals": [],
           "name": "Officers",
-          "national_share": 0.05316321249
+          "national_share": 0.05488527244
         },
         {
-          "approval": 0.7125244068,
+          "approval": 0.7135069903,
           "effective_worldview": {
             "authority": 2.35,
-            "corporate": 5.05,
+            "corporate": 5.3999999999999995,
             "expansion": 4.65,
             "faith": 3.5,
             "materialist": 2.8499999999999996,
@@ -335,10 +335,10 @@
           "influence": 0.35,
           "minor_goals": [],
           "name": "Fraternalists",
-          "national_share": 0.05316321249
+          "national_share": 0.05488527244
         },
         {
-          "approval": 0.7125244068,
+          "approval": 0.7135069903,
           "effective_worldview": {
             "authority": 1.3,
             "corporate": 3.65,
@@ -351,7 +351,7 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Shepherds",
-          "national_share": 0.04556846785
+          "national_share": 0.04704451923
         }
       ]
     }
@@ -379,81 +379,81 @@
     ],
     "values": [
       [
-        2769.0,
-        558.0,
+        2770.0,
+        559.0,
         198.0,
         430.0,
-        1270.0
+        1268.0
       ],
       [
         244.0,
-        1298.0,
+        1299.0,
         0.0,
         241.0,
-        242.0
+        241.0
       ],
       [
-        1200.0,
-        873.0,
+        1201.0,
+        874.0,
         641.0,
-        1427.0,
-        1559.0
+        1428.0,
+        1556.0
       ],
       [
-        1371.0,
+        1372.0,
         1173.0,
         589.0,
-        3991.0,
-        1426.0
+        3993.0,
+        1423.0
       ],
       [
-        1169.0,
-        845.0,
-        497.0,
-        274.0,
-        1965.0
+        1284.0,
+        464.0,
+        546.0,
+        301.0,
+        2155.0
       ],
       [
-        677.0,
-        1069.0,
+        678.0,
+        1070.0,
         353.0,
         293.0,
-        1208.0
+        1206.0
       ],
       [
         674.0,
-        1083.0,
+        1084.0,
         264.0,
-        413.0,
-        666.0
+        414.0,
+        664.0
       ],
       [
         1332.0,
         815.0,
         791.0,
-        3594.0,
-        768.0
+        3595.0,
+        767.0
       ],
       [
         2897.0,
-        1897.0,
-        8655.0,
+        1896.0,
+        8654.0,
         2771.0,
-        1030.0
+        1032.0
       ],
       [
-        3857.0,
+        3856.0,
         4238.0,
-        7534.0,
-        1838.0,
-        1033.0
+        7533.0,
+        1837.0,
+        1036.0
       ],
       [
-        2206.0,
-        3022.0,
-        6656.0,
+        2205.0,
+        3021.0,
+        6655.0,
         2944.0,
-        1172.0
+        1175.0
       ]
     ]
   }
