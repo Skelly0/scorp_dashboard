@@ -466,6 +466,32 @@ def build(out_path: Path) -> Path:
         gm.cell(row=row, column=3, value=42 - offset)
     _add_name(wb, "WeeklyHoursWorkedTable", "'GoI Modifiers'!$A$57:$C$72")
 
+    # Consumption demand tables (soft-optional, v10). Each is a Class / Pop /
+    # Per-Cap Demand / Total Demand block — same layout as CropsimDemandTable.
+    # Three blocks stacked on a single Consumption sheet; named ranges include
+    # the header row + 15 slots so the extractor's header-aware parser works.
+    cons = wb.create_sheet("Consumption")
+    consumption_specs = [
+        (1,  "WATER DEMAND BY CLASS",     0.005, "WaterDemandByClass"),
+        (20, "ENERGY DEMAND BY CLASS",    0.020, "EnergyDemandByClass"),
+        (40, "MATERIALS DEMAND BY CLASS", 0.010, "MaterialsDemandByClass"),
+    ]
+    for title_row, title, per_cap, range_name in consumption_specs:
+        cons.cell(row=title_row, column=1, value=title)
+        header_row = title_row + 1
+        cons.cell(row=header_row, column=1, value="Class")
+        cons.cell(row=header_row, column=2, value="Pop")
+        cons.cell(row=header_row, column=3, value="Per-Cap Demand")
+        cons.cell(row=header_row, column=4, value="Total Demand")
+        for offset, (name, _tier, p, _w) in enumerate(classes):
+            row = header_row + 1 + offset
+            cons.cell(row=row, column=1, value=name)
+            cons.cell(row=row, column=2, value=p)
+            cons.cell(row=row, column=3, value=per_cap)
+            cons.cell(row=row, column=4, value=p * per_cap)
+        end_row = header_row + 15  # header + 15 slots (11 live + 4 blank)
+        _add_name(wb, range_name, f"Consumption!$A${header_row}:$D${end_row}")
+
     # Party and GoI Pop Capture: visible GOI VALUE CAPTURED POP block O62:T75
     # (11 classes x 5 live GoIs). These are captured-pop counts, not rates.
     # The named range is intentionally stale/narrow to match the live sheet

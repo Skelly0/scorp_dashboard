@@ -202,6 +202,33 @@
   </div>
 
   <div class="s-card md:col-span-2 xl:col-span-3">
+    <div class="s-card-header"><h3>Consumption</h3></div>
+    <div class="s-card-pad grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-2">
+      <div>
+        <h4 class="text-muted text-[10px] uppercase tracking-widest mb-1">Water</h4>
+        <dl class="kv">
+          <dt>Per Cap</dt><dd>{num(cls.consumption?.water?.per_cap, 3)}</dd>
+          <dt>Total / turn</dt><dd>{num(cls.consumption?.water?.total, 2)}</dd>
+        </dl>
+      </div>
+      <div>
+        <h4 class="text-muted text-[10px] uppercase tracking-widest mb-1">Energy</h4>
+        <dl class="kv">
+          <dt>Per Cap</dt><dd>{num(cls.consumption?.energy?.per_cap, 3)}</dd>
+          <dt>Total / turn</dt><dd>{num(cls.consumption?.energy?.total, 2)}</dd>
+        </dl>
+      </div>
+      <div>
+        <h4 class="text-muted text-[10px] uppercase tracking-widest mb-1">Materials</h4>
+        <dl class="kv">
+          <dt>Per Cap</dt><dd>{num(cls.consumption?.materials?.per_cap, 3)}</dd>
+          <dt>Total / turn</dt><dd>{num(cls.consumption?.materials?.total, 2)}</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="s-card md:col-span-2 xl:col-span-3">
     <div class="s-card-header">
       <h3>Satisfaction · sources</h3>
       <span class="text-muted text-[10px] tracking-widest">

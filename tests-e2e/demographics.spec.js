@@ -145,6 +145,18 @@ test.describe('Demographics — class drilldown', () => {
     await expect(workforceCard.locator('dd', { hasText: '40 / wk' })).toBeVisible();
   });
 
+  test('Consumption card lists Water / Energy / Materials with Per Cap and Total', async ({ page }) => {
+    await page.locator('table.tbl tbody tr').first().click();
+    const card = page.locator('.s-card', { hasText: 'Consumption' });
+    await expect(card).toBeVisible();
+    await expect(card.locator('h4', { hasText: 'Water' })).toBeVisible();
+    await expect(card.locator('h4', { hasText: 'Energy' })).toBeVisible();
+    await expect(card.locator('h4', { hasText: 'Materials' })).toBeVisible();
+    // Each resource sub-column shows Per Cap + Total / turn labels.
+    await expect(card.locator('dt', { hasText: 'Per Cap' })).toHaveCount(3);
+    await expect(card.locator('dt', { hasText: 'Total / turn' })).toHaveCount(3);
+  });
+
   test('Population profile and worldview chart are merged into class detail', async ({ page }) => {
     await page.locator('table.tbl tbody tr').first().click();
     const profileCard = page.locator('.s-card', { hasText: 'Population Profile' });

@@ -58,6 +58,9 @@ def extract(wb) -> dict[str, Any]:
     # because the row order isn't guaranteed to match ClassTable.
     workforce_by_class = _index_workforce(read_named_range(wb, "WorkforceSupplyDemand"))
     weekly_hours_by_class = _index_weekly_hours(read_named_range(wb, "WeeklyHoursWorkedTable"))
+    water_by_class = _index_demand(read_named_range(wb, "WaterDemandByClass"))
+    energy_by_class = _index_demand(read_named_range(wb, "EnergyDemandByClass"))
+    materials_by_class = _index_demand(read_named_range(wb, "MaterialsDemandByClass"))
 
     out: list[dict[str, Any]] = []
     for i, row in enumerate(classes):
@@ -101,6 +104,11 @@ def extract(wb) -> dict[str, Any]:
                 "vote_share": coerce_number(vote_share[i][0]) if i < len(vote_share) else None,
             },
             "workforce": workforce,
+            "consumption": {
+                "water": water_by_class.get(name, _empty_consumption()),
+                "energy": energy_by_class.get(name, _empty_consumption()),
+                "materials": materials_by_class.get(name, _empty_consumption()),
+            },
             "satisfaction": coerce_number(sat[i][0]) if i < len(sat) else None,
             "satisfaction_breakdown": _satisfaction_breakdown_row(sat_full, i),
             "mortality_rate": coerce_number(mortality_rates[i][0]) if i < len(mortality_rates) else None,
@@ -148,6 +156,34 @@ def _index_workforce(rows) -> dict[str, dict[str, float | None]]:
             "demand": coerce_number(r[2]) if len(r) > 2 else None,
             "fill_ratio": coerce_number(r[3]) if len(r) > 3 else None,
             "unemployment": coerce_number(r[4]) if len(r) > 4 else None,
+        }
+    return out
+
+
+def _empty_consumption():
+    return {"per_cap": None, "total": None}
+
+
+def _index_demand(rows) -> dict[str, dict[str, float | None]]:
+    """Index a per-class demand table (Class / Pop / Per-Cap Demand / Total Demand)
+    by class name. Header-aware: skips the header row and locates Per-Cap / Total
+    columns by label, falling back to col 2 / 3 when headers are absent.
+    """
+    if not rows:
+        return {}
+    header = [str(v).strip().lower() if v is not None else "" for v in rows[0]]
+    class_idx = _header_idx(header, "class", 0)
+    per_cap_idx = _header_idx(header, "per-cap demand", 2)
+    total_idx = _header_idx(header, "total demand", 3)
+
+    out: dict[str, dict[str, float | None]] = {}
+    for r in rows[1:]:
+        if len(r) <= class_idx or not r[class_idx]:
+            continue
+        name = str(r[class_idx]).strip()
+        out[name] = {
+            "per_cap": coerce_number(r[per_cap_idx]) if len(r) > per_cap_idx else None,
+            "total": coerce_number(r[total_idx]) if len(r) > total_idx else None,
         }
     return out
 
