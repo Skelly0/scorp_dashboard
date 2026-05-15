@@ -1384,6 +1384,10 @@ table.tbl th.num {
   display: flex;
   flex-direction: column;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+  /* Portaled to <body> so it sits outside #app's font-mono class — restore
+     the dashboard typography stack here. */
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', Consolas, monospace;
+  font-feature-settings: 'tnum' 1, 'zero' 1, 'ss01' 1;
 }
 
 .cat-header {
