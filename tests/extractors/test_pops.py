@@ -145,6 +145,45 @@ def test_pops_satisfaction_breakdown_optional_when_range_missing(wb):
         assert all(v is None for v in bd.values())
 
 
+def test_pops_consumption_present(wb):
+    """Per-class consumption block surfaces water/energy/materials per-cap and total."""
+    result = extract(wb)
+    first = result["classes"][0]  # Bureaucrats, pop 970
+    cons = first["consumption"]
+    assert set(cons) == {"water", "energy", "materials"}
+    # Fixture seeds water=0.005, energy=0.020, materials=0.010 per cap.
+    assert cons["water"]["per_cap"] == pytest.approx(0.005)
+    assert cons["water"]["total"] == pytest.approx(970 * 0.005)
+    assert cons["energy"]["per_cap"] == pytest.approx(0.020)
+    assert cons["energy"]["total"] == pytest.approx(970 * 0.020)
+    assert cons["materials"]["per_cap"] == pytest.approx(0.010)
+    assert cons["materials"]["total"] == pytest.approx(970 * 0.010)
+
+
+def test_pops_consumption_optional_when_ranges_missing(wb):
+    """Removing the soft-optional consumption ranges should not break extraction."""
+    del wb.defined_names["WaterDemandByClass"]
+    del wb.defined_names["EnergyDemandByClass"]
+    del wb.defined_names["MaterialsDemandByClass"]
+    result = extract(wb)
+    for cls in result["classes"]:
+        cons = cls["consumption"]
+        for resource in ("water", "energy", "materials"):
+            assert cons[resource]["per_cap"] is None
+            assert cons[resource]["total"] is None
+
+
+def test_pops_consumption_partial_when_one_range_missing(wb):
+    """A single missing range degrades only that resource; others still extract."""
+    del wb.defined_names["EnergyDemandByClass"]
+    result = extract(wb)
+    first = result["classes"][0]
+    assert first["consumption"]["water"]["per_cap"] == pytest.approx(0.005)
+    assert first["consumption"]["energy"]["per_cap"] is None
+    assert first["consumption"]["energy"]["total"] is None
+    assert first["consumption"]["materials"]["per_cap"] == pytest.approx(0.010)
+
+
 def test_pops_handles_short_mortality_range(wb):
     """If MortalityRates has fewer rows than ClassTable, missing rows surface as None - no IndexError."""
     from openpyxl.workbook.defined_name import DefinedName
