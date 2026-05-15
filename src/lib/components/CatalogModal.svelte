@@ -17,6 +17,17 @@
   $: groups = buildGroups($catalog, query, activeFilters);
   $: totalCount = groups.reduce((n, g) => n + g.items.length, 0);
 
+  // Move the backdrop out of `#app` so the `inert` attribute we apply there
+  // doesn't propagate down into the modal itself (freezing scroll + focus).
+  function portal(node, target = document.body) {
+    target.appendChild(node);
+    return {
+      destroy() {
+        node.parentNode?.removeChild(node);
+      },
+    };
+  }
+
   // Note: onMount runs sync setup; cleanup lives in onDestroy.
   // (An async onMount would return a Promise, and Svelte ignores its returned cleanup.)
   onMount(() => {
@@ -104,6 +115,7 @@
 
 <div
   class="cat-backdrop"
+  use:portal
   on:mousedown={onBackdropMouseDown}
   on:click={onBackdropClick}
   role="presentation"
