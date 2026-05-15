@@ -260,7 +260,7 @@
           on:click={() => (catalogOpen = true)}
           aria-label="Open improvement catalog"
         >
-          ⌬ Catalog
+          ▣ Catalog
         </button>
       {/if}
     </div>

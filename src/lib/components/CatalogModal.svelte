@@ -140,14 +140,16 @@
       <button class="cat-close" on:click={close} aria-label="Close catalog">✕</button>
     </header>
 
-    <div class="cat-cat-strip">
+    <div class="cat-cat-strip" role="group" aria-label="Filter by category">
       {#each Object.values(CATEGORIES) as c (c.slug)}
         <button
-          class="s-chip"
+          class="cat-cat-chip"
           aria-pressed={activeFilters.has(c.slug)}
+          style="--cat-color: {c.color};"
           on:click={() => toggleFilter(c.slug)}
         >
-          {c.icon} {c.label}
+          <span class="cat-cat-chip-icon" aria-hidden="true">{c.icon}</span>
+          <span class="cat-cat-chip-label">{c.label}</span>
         </button>
       {/each}
     </div>
@@ -159,10 +161,11 @@
         <div class="cat-empty">No improvements match the current filters.</div>
       {:else}
         {#each groups as g (g.slug)}
-          <section class="cat-group">
+          <section class="cat-group" style="--cat-color: {g.meta.color};">
             <h3>
-              <span aria-hidden="true">{g.meta.icon}</span>
-              {g.meta.label}
+              <span class="cat-group-icon" aria-hidden="true">{g.meta.icon}</span>
+              <span class="cat-group-label">{g.meta.label}</span>
+              <span class="cat-group-rule" aria-hidden="true"></span>
               <span class="meta">{g.items.length}</span>
             </h3>
             <div class="cat-grid">
