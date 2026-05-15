@@ -10,6 +10,7 @@ export const METRIC_LABELS = {
   stability: 'Stability',
   satisfaction_all: 'Satisfaction',
   research: 'Research',
+  engineering: 'Eng',
 };
 
 export const YIELD_ORDER = ['food', 'water', 'energy', 'materials', 'ore', 'housing', 'money', 'helium3', 'stability', 'satisfaction_all', 'research'];
