@@ -21,9 +21,9 @@
       "name": "Memorial Shrine"
     }
   ],
-  "crisis_factor": 0.786202955,
+  "crisis_factor": 0.7862030498,
   "demographics": {
-    "avg_satisfaction": 0.30511178478505435,
+    "avg_satisfaction": 0.30511149321855985,
     "base_growth_rate": 0.03,
     "effective_cdr": 0.0135,
     "effective_growth_rate": 0.0096,
@@ -34,7 +34,7 @@
     "total_births": 2041.0,
     "total_deaths": 1242.0
   },
-  "gov_approval": 0.5440399074,
+  "gov_approval": 0.5440412737,
   "overton": {
     "authority": 3.0,
     "corporate": 3.5,
@@ -102,7 +102,7 @@
       "upkeep": 592.35
     }
   ],
-  "stability": 0.3576649205,
+  "stability": 0.3576507598,
   "treasury": {
     "delta": 174865.324,
     "money": 224965.0
