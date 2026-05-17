@@ -17658,35 +17658,28 @@
       }
     },
     {
-      "control": "Administration",
+      "control": null,
       "feature": null,
-      "improvement": {
-        "name": "Mycoponic Chamber",
-        "owner": null,
-        "ownership_type": null
-      },
+      "improvement": null,
       "resource": null,
-      "slots": 3,
-      "staffing": 0.7852019741,
+      "slots": 4,
+      "staffing": null,
       "terrain": "Lava Tube",
       "upkeep": {
-        "energy": 50.0,
+        "energy": 0.0,
         "helium3": 0.0,
-        "materials": 25.0,
-        "money": 1325.0,
-        "ore": 25.0,
-        "water": 70.0
+        "materials": 0.0,
+        "money": 0.0,
+        "ore": 0.0,
+        "water": 0.0
       },
-      "workforce": {
-        "Botanists": 500,
-        "Service Workers": 2250
-      },
+      "workforce": null,
       "x": 21,
       "y": 15,
       "yields": {
         "energy": 0,
-        "food": 294.4507403,
-        "housing": 380.0,
+        "food": 0,
+        "housing": 200.0,
         "materials": 0.25,
         "ore": 0.5,
         "water": 0
@@ -18807,28 +18800,35 @@
       }
     },
     {
-      "control": null,
+      "control": "Administration",
       "feature": null,
-      "improvement": null,
+      "improvement": {
+        "name": "Mycoponic Chamber",
+        "owner": null,
+        "ownership_type": null
+      },
       "resource": null,
-      "slots": 4,
-      "staffing": null,
+      "slots": 3,
+      "staffing": 0.7852019741,
       "terrain": "Lava Tube",
       "upkeep": {
-        "energy": 0.0,
+        "energy": 50.0,
         "helium3": 0.0,
-        "materials": 0.0,
-        "money": 0.0,
-        "ore": 0.0,
-        "water": 0.0
+        "materials": 25.0,
+        "money": 1325.0,
+        "ore": 25.0,
+        "water": 70.0
       },
-      "workforce": null,
+      "workforce": {
+        "Botanists": 500,
+        "Service Workers": 2250
+      },
       "x": 21,
       "y": 16,
       "yields": {
         "energy": 0,
-        "food": 0,
-        "housing": 200.0,
+        "food": 294.4507403,
+        "housing": 380.0,
         "materials": 0.25,
         "ore": 0.5,
         "water": 0

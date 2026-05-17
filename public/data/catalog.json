@@ -1452,7 +1452,7 @@
         "ore": 0.0,
         "research": 0.0,
         "satisfaction_all": 0.0,
-        "stability": 0.0,
+        "stability": 0.1,
         "water": 0.0
       }
     },
