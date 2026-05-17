@@ -8,7 +8,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 117.0,
+      "births_per_turn": 112.0,
       "consumption": {
         "energy": {
           "per_cap": null,
@@ -23,33 +23,33 @@
           "total": null
         }
       },
-      "deaths_per_turn": 57.0,
+      "deaths_per_turn": 56.0,
       "expected_sol": 21.0,
       "income": {
         "disposable_per_cap": 20.65,
         "effective_tax_rate": 0.174,
         "gross_per_cap": 25.0,
         "income_tax_per_cap": 3.75,
-        "total_disposable": 107896.25,
-        "total_gross": 130625.0,
+        "total_disposable": 106264.9,
+        "total_gross": 128650.0,
         "wealth_tax_per_cap": 0.6
       },
       "mobility_in": 0.0,
-      "mobility_out": 139.0,
-      "mortality_rate": 0.01084721356,
+      "mobility_out": 129.0,
+      "mortality_rate": 0.01089760143,
       "name": "Bureaucrats",
-      "pop": 5225,
-      "satisfaction": 0.2981009579,
+      "pop": 5146,
+      "satisfaction": 0.2989925527,
       "satisfaction_breakdown": {
-        "employment": 0.614914392,
-        "entertainment": 0.7168297101,
+        "employment": 0.624821335,
+        "entertainment": 0.7169090452,
         "faith": 0.6,
         "food": 1.0,
-        "housing": 0.9702521739,
+        "housing": 0.9626500054,
         "ownership": 0.3933333333,
-        "safety": 0.5218955168,
+        "safety": 0.5274604894,
         "services": 0.737681507,
-        "situations": 0.2682480675,
+        "situations": 0.2692658479,
         "tax": 0.826,
         "wages": 0.4
       },
@@ -59,20 +59,20 @@
         "abject_poverty": 0.0,
         "literacy": 0.3461,
         "organisation": 0.43844,
-        "radicalisation": 0.1266324058,
-        "vote_share": 0.07107756418,
-        "votes_total": 1808.0
+        "radicalisation": 0.1266779661,
+        "vote_share": 0.06937519476,
+        "votes_total": 1781.0
       },
-      "unemployed_count": 1029.0,
+      "unemployed_count": 962.0,
       "wealth": {
         "per_cap": 100.0,
-        "total": 522500.0
+        "total": 514600.0
       },
       "workforce": {
         "demand": 3412.0,
         "fill_ratio": 1.0,
-        "supply": 4441.0,
-        "unemployment": 1029.0,
+        "supply": 4374.0,
+        "unemployment": 962.0,
         "weekly_hours_worked": 40.0
       }
     },
@@ -99,33 +99,33 @@
           "total": null
         }
       },
-      "deaths_per_turn": 21.0,
+      "deaths_per_turn": 22.0,
       "expected_sol": 36.0,
       "income": {
         "disposable_per_cap": 60.298,
         "effective_tax_rate": 0.174,
         "gross_per_cap": 73.0,
         "income_tax_per_cap": 10.95,
-        "total_disposable": 122103.45,
-        "total_gross": 147825.0,
+        "total_disposable": 123731.496,
+        "total_gross": 149796.0,
         "wealth_tax_per_cap": 1.752
       },
-      "mobility_in": 3.0,
+      "mobility_in": 2.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.01043406735,
+      "mortality_rate": 0.01048253606,
       "name": "Capitalists",
-      "pop": 2025,
-      "satisfaction": 0.3046924349,
+      "pop": 2052,
+      "satisfaction": 0.3055293502,
       "satisfaction_breakdown": {
-        "employment": 0.9652271453,
-        "entertainment": 0.8148689258,
+        "employment": 0.9781267527,
+        "entertainment": 0.8149482609,
         "faith": 0.55,
         "food": 1.0,
-        "housing": 0.9763369565,
+        "housing": 0.970289777,
         "ownership": 0.4,
-        "safety": 0.4963044396,
+        "safety": 0.5018573144,
         "services": 0.8875167416,
-        "situations": 0.3414232608,
+        "situations": 0.3423392631,
         "tax": 0.7216,
         "wages": 0.4583333333
       },
@@ -135,19 +135,19 @@
         "abject_poverty": 0.0,
         "literacy": 0.3867,
         "organisation": 0.48668,
-        "radicalisation": 0.07397847691,
-        "vote_share": 0.03078193183,
-        "votes_total": 783.0
+        "radicalisation": 0.07312106466,
+        "vote_share": 0.03092863821,
+        "votes_total": 794.0
       },
       "unemployed_count": 0.0,
       "wealth": {
         "per_cap": 292.0,
-        "total": 591300.0
+        "total": 599184.0
       },
       "workforce": {
         "demand": 1783.0,
-        "fill_ratio": 0.9652271453,
-        "supply": 1721.0,
+        "fill_ratio": 0.9781267527,
+        "supply": 1744.0,
         "unemployment": 0.0,
         "weekly_hours_worked": 40.0
       }
@@ -160,7 +160,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 129.0,
+      "births_per_turn": 128.0,
       "consumption": {
         "energy": {
           "per_cap": null,
@@ -175,33 +175,33 @@
           "total": null
         }
       },
-      "deaths_per_turn": 72.0,
+      "deaths_per_turn": 74.0,
       "expected_sol": 16.0,
       "income": {
         "disposable_per_cap": 20.516,
         "effective_tax_rate": 0.108,
         "gross_per_cap": 23.0,
         "income_tax_per_cap": 2.3,
-        "total_disposable": 116941.2,
-        "total_gross": 131100.0,
+        "total_disposable": 119177.444,
+        "total_gross": 133607.0,
         "wealth_tax_per_cap": 0.184
       },
-      "mobility_in": 52.0,
+      "mobility_in": 50.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.01264115426,
+      "mortality_rate": 0.01269987541,
       "name": "Engineers",
-      "pop": 5700,
-      "satisfaction": 0.3401685811,
+      "pop": 5809,
+      "satisfaction": 0.3414217363,
       "satisfaction_breakdown": {
-        "employment": 0.7083333333,
-        "entertainment": 0.6655476589,
+        "employment": 0.7219298246,
+        "entertainment": 0.6656269939,
         "faith": 0.55,
-        "food": 0.9905232427,
-        "housing": 0.968223913,
+        "food": 0.9915060821,
+        "housing": 0.9601034148,
         "ownership": 0.4,
-        "safety": 0.533717061,
+        "safety": 0.5395239889,
         "services": 0.9162735557,
-        "situations": 0.2682480675,
+        "situations": 0.2692658479,
         "tax": 0.892,
         "wages": 0.5
       },
@@ -211,19 +211,19 @@
         "abject_poverty": 0.0,
         "literacy": 0.3664,
         "organisation": 0.44656,
-        "radicalisation": 0.116242898,
-        "vote_share": 0.08208515155,
-        "votes_total": 2088.0
+        "radicalisation": 0.1153367039,
+        "vote_share": 0.08289186663,
+        "votes_total": 2128.0
       },
       "unemployed_count": 0.0,
       "wealth": {
         "per_cap": 92.0,
-        "total": 524400.0
+        "total": 534428.0
       },
       "workforce": {
         "demand": 6840.0,
-        "fill_ratio": 0.7083333333,
-        "supply": 4845.0,
+        "fill_ratio": 0.7219298246,
+        "supply": 4938.0,
         "unemployment": 0.0,
         "weekly_hours_worked": 40.0
       }
@@ -236,7 +236,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 194.0,
+      "births_per_turn": 192.0,
       "consumption": {
         "energy": {
           "per_cap": null,
@@ -251,33 +251,33 @@
           "total": null
         }
       },
-      "deaths_per_turn": 103.0,
+      "deaths_per_turn": 105.0,
       "expected_sol": 18.0,
       "income": {
         "disposable_per_cap": 19.624,
         "effective_tax_rate": 0.108,
         "gross_per_cap": 22.0,
         "income_tax_per_cap": 2.2,
-        "total_disposable": 167785.2,
-        "total_gross": 188100.0,
+        "total_disposable": 170905.416,
+        "total_gross": 191598.0,
         "wealth_tax_per_cap": 0.176
       },
-      "mobility_in": 68.0,
+      "mobility_in": 64.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.01199917745,
+      "mortality_rate": 0.01205491646,
       "name": "Scientists",
-      "pop": 8550,
-      "satisfaction": 0.3489165691,
+      "pop": 8709,
+      "satisfaction": 0.3501148228,
       "satisfaction_breakdown": {
-        "employment": 0.736746072,
-        "entertainment": 0.6930201863,
+        "employment": 0.750430816,
+        "entertainment": 0.6930995214,
         "faith": 0.65,
-        "food": 0.9344558893,
-        "housing": 0.9661956522,
+        "food": 0.9353830963,
+        "housing": 0.9575568243,
         "ownership": 0.4,
-        "safety": 0.533717061,
+        "safety": 0.5395239889,
         "services": 0.9036313688,
-        "situations": 0.2682480675,
+        "situations": 0.2692658479,
         "tax": 0.9028,
         "wages": 0.5
       },
@@ -287,19 +287,19 @@
         "abject_poverty": 0.0,
         "literacy": 0.3867,
         "organisation": 0.45468,
-        "radicalisation": 0.1204022686,
-        "vote_share": 0.1299681566,
-        "votes_total": 3306.0
+        "radicalisation": 0.1194898968,
+        "vote_share": 0.1311935182,
+        "votes_total": 3368.0
       },
       "unemployed_count": 0.0,
       "wealth": {
         "per_cap": 88.0,
-        "total": 752400.0
+        "total": 766392.0
       },
       "workforce": {
         "demand": 9865.0,
-        "fill_ratio": 0.736746072,
-        "supply": 7268.0,
+        "fill_ratio": 0.750430816,
+        "supply": 7403.0,
         "unemployment": 0.0,
         "weekly_hours_worked": 40.0
       }
@@ -312,7 +312,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 108.0,
+      "births_per_turn": 107.0,
       "consumption": {
         "energy": {
           "per_cap": null,
@@ -327,33 +327,33 @@
           "total": null
         }
       },
-      "deaths_per_turn": 53.0,
+      "deaths_per_turn": 54.0,
       "expected_sol": 16.0,
       "income": {
         "disposable_per_cap": 16.948,
         "effective_tax_rate": 0.108,
         "gross_per_cap": 19.0,
         "income_tax_per_cap": 1.9,
-        "total_disposable": 80503.0,
-        "total_gross": 90250.0,
+        "total_disposable": 81638.516,
+        "total_gross": 91523.0,
         "wealth_tax_per_cap": 0.152
       },
-      "mobility_in": 12.0,
+      "mobility_in": 11.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.01120096611,
+      "mortality_rate": 0.01125299725,
       "name": "Security",
-      "pop": 4750,
-      "satisfaction": 0.3580599982,
+      "pop": 4817,
+      "satisfaction": 0.3586364964,
       "satisfaction_breakdown": {
-        "employment": 0.8973333333,
-        "entertainment": 0.7424707358,
+        "employment": 0.9097777778,
+        "entertainment": 0.7425500708,
         "faith": 0.475,
-        "food": 0.8223211826,
-        "housing": 0.9621391304,
+        "food": 0.8231371247,
+        "housing": 0.9524636432,
         "ownership": 0.4,
-        "safety": 0.204029589,
+        "safety": 0.2061587959,
         "services": 0.9699030471,
-        "situations": 0.707299227,
+        "situations": 0.7077063392,
         "tax": 0.892,
         "wages": 0.3625
       },
@@ -363,19 +363,19 @@
         "abject_poverty": 0.05,
         "literacy": 0.2649,
         "organisation": 0.39096,
-        "radicalisation": 0.1425581939,
-        "vote_share": 0.04945551755,
-        "votes_total": 1258.0
+        "radicalisation": 0.141732643,
+        "vote_share": 0.04970395762,
+        "votes_total": 1276.0
       },
       "unemployed_count": 0.0,
       "wealth": {
         "per_cap": 76.0,
-        "total": 361000.0
+        "total": 366092.0
       },
       "workforce": {
         "demand": 4500.0,
-        "fill_ratio": 0.8973333333,
-        "supply": 4038.0,
+        "fill_ratio": 0.9097777778,
+        "supply": 4094.0,
         "unemployment": 0.0,
         "weekly_hours_worked": 40.0
       }
@@ -403,33 +403,33 @@
           "total": null
         }
       },
-      "deaths_per_turn": 40.0,
+      "deaths_per_turn": 41.0,
       "expected_sol": 14.0,
       "income": {
         "disposable_per_cap": 22.3,
         "effective_tax_rate": 0.108,
         "gross_per_cap": 25.0,
         "income_tax_per_cap": 2.5,
-        "total_disposable": 80280.0,
-        "total_gross": 90000.0,
+        "total_disposable": 82331.6,
+        "total_gross": 92300.0,
         "wealth_tax_per_cap": 0.2
       },
-      "mobility_in": 51.0,
+      "mobility_in": 50.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.01105167842,
+      "mortality_rate": 0.01110301608,
       "name": "Proprietors",
-      "pop": 3600,
-      "satisfaction": 0.3197158787,
+      "pop": 3692,
+      "satisfaction": 0.3205831864,
       "satisfaction_breakdown": {
-        "employment": 0.6079872839,
-        "entertainment": 0.8035726378,
+        "employment": 0.623484999,
+        "entertainment": 0.8036519728,
         "faith": 0.5,
         "food": 1.0,
-        "housing": 0.9722804348,
+        "housing": 0.9651965959,
         "ownership": 0.4,
-        "safety": 0.47502566,
+        "safety": 0.4801430153,
         "services": 1.0,
-        "situations": 0.3414232608,
+        "situations": 0.3423392631,
         "tax": 0.838,
         "wages": 0.4142857143
       },
@@ -439,19 +439,19 @@
         "abject_poverty": 0.0,
         "literacy": 0.3055,
         "organisation": 0.4222,
-        "radicalisation": 0.1348487069,
-        "vote_share": 0.04324409325,
-        "votes_total": 1100.0
+        "radicalisation": 0.1338094271,
+        "vote_share": 0.04393892178,
+        "votes_total": 1128.0
       },
       "unemployed_count": 0.0,
       "wealth": {
         "per_cap": 100.0,
-        "total": 360000.0
+        "total": 369200.0
       },
       "workforce": {
         "demand": 5033.0,
-        "fill_ratio": 0.6079872839,
-        "supply": 3060.0,
+        "fill_ratio": 0.623484999,
+        "supply": 3138.0,
         "unemployment": 0.0,
         "weekly_hours_worked": 40.0
       }
@@ -464,7 +464,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 70.0,
+      "births_per_turn": 67.0,
       "consumption": {
         "energy": {
           "per_cap": null,
@@ -486,26 +486,26 @@
         "effective_tax_rate": 0.108,
         "gross_per_cap": 33.0,
         "income_tax_per_cap": 3.3,
-        "total_disposable": 91251.6,
-        "total_gross": 102300.0,
+        "total_disposable": 89750.364,
+        "total_gross": 100617.0,
         "wealth_tax_per_cap": 0.264
       },
       "mobility_in": 0.0,
-      "mobility_out": 90.0,
-      "mortality_rate": 0.01000758046,
+      "mobility_out": 84.0,
+      "mortality_rate": 0.01005406804,
       "name": "Managerial",
-      "pop": 3100,
-      "satisfaction": 0.3239593872,
+      "pop": 3049,
+      "satisfaction": 0.3247805565,
       "satisfaction_breakdown": {
-        "employment": 0.5996206732,
-        "entertainment": 0.6899525304,
+        "employment": 0.609685154,
+        "entertainment": 0.6900318654,
         "faith": 0.55,
         "food": 1.0,
-        "housing": 0.9743086957,
+        "housing": 0.9677431865,
         "ownership": 0.4,
-        "safety": 0.533717061,
+        "safety": 0.5395239889,
         "services": 1.0,
-        "situations": 0.2682480675,
+        "situations": 0.2692658479,
         "tax": 0.8704,
         "wages": 0.5
       },
@@ -515,20 +515,20 @@
         "abject_poverty": 0.0,
         "literacy": 0.3664,
         "organisation": 0.44656,
-        "radicalisation": 0.08197096748,
-        "vote_share": 0.04465935448,
-        "votes_total": 1136.0
+        "radicalisation": 0.08201652774,
+        "vote_share": 0.04351043939,
+        "votes_total": 1117.0
       },
-      "unemployed_count": 660.0,
+      "unemployed_count": 617.0,
       "wealth": {
         "per_cap": 132.0,
-        "total": 409200.0
+        "total": 402468.0
       },
       "workforce": {
         "demand": 1975.0,
         "fill_ratio": 1.0,
-        "supply": 2635.0,
-        "unemployment": 660.0,
+        "supply": 2592.0,
+        "unemployment": 617.0,
         "weekly_hours_worked": 40.0
       }
     },
@@ -540,7 +540,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 165.0,
+      "births_per_turn": 162.0,
       "consumption": {
         "energy": {
           "per_cap": null,
@@ -555,33 +555,33 @@
           "total": null
         }
       },
-      "deaths_per_turn": 81.0,
+      "deaths_per_turn": 82.0,
       "expected_sol": 16.0,
       "income": {
         "disposable_per_cap": 18.732,
         "effective_tax_rate": 0.108,
         "gross_per_cap": 21.0,
         "income_tax_per_cap": 2.1,
-        "total_disposable": 136743.6,
-        "total_gross": 153300.0,
+        "total_disposable": 138335.82,
+        "total_gross": 155085.0,
         "wealth_tax_per_cap": 0.168
       },
-      "mobility_in": 1.0,
-      "mobility_out": 0.0,
-      "mortality_rate": 0.01106100998,
+      "mobility_in": 0.0,
+      "mobility_out": 4.0,
+      "mortality_rate": 0.01111239099,
       "name": "Botanists",
-      "pop": 7300,
-      "satisfaction": 0.3388127325,
+      "pop": 7385,
+      "satisfaction": 0.3349036979,
       "satisfaction_breakdown": {
-        "employment": 0.9928,
-        "entertainment": 0.6655476589,
+        "employment": 0.9475318436,
+        "entertainment": 0.6656269939,
         "faith": 0.55,
-        "food": 0.878388536,
-        "housing": 0.9641673913,
+        "food": 0.8792601105,
+        "housing": 0.9550102338,
         "ownership": 0.4,
-        "safety": 0.5935906164,
+        "safety": 0.6001113126,
         "services": 0.8904301359,
-        "situations": 0.1950728743,
+        "situations": 0.1961924327,
         "tax": 0.9028,
         "wages": 0.5
       },
@@ -591,20 +591,20 @@
         "abject_poverty": 0.0,
         "literacy": 0.3664,
         "organisation": 0.44656,
-        "radicalisation": 0.1080750224,
-        "vote_share": 0.1051617722,
-        "votes_total": 2675.0
+        "radicalisation": 0.1076165827,
+        "vote_share": 0.1054066687,
+        "votes_total": 2706.0
       },
-      "unemployed_count": 0.0,
+      "unemployed_count": 27.0,
       "wealth": {
         "per_cap": 84.0,
-        "total": 613200.0
+        "total": 620340.0
       },
       "workforce": {
         "demand": 6250.0,
-        "fill_ratio": 0.9928,
-        "supply": 6205.0,
-        "unemployment": 0.0,
+        "fill_ratio": 1.0,
+        "supply": 6277.0,
+        "unemployment": 27.0,
         "weekly_hours_worked": 40.0
       }
     },
@@ -616,7 +616,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 384.0,
+      "births_per_turn": 378.0,
       "consumption": {
         "energy": {
           "per_cap": null,
@@ -631,109 +631,109 @@
           "total": null
         }
       },
-      "deaths_per_turn": 271.0,
-      "expected_sol": 9.0,
-      "income": {
-        "disposable_per_cap": 14.1,
-        "effective_tax_rate": 0.06,
-        "gross_per_cap": 15.0,
-        "income_tax_per_cap": 0.9,
-        "total_disposable": 243225.0,
-        "total_gross": 258750.0,
-        "wealth_tax_per_cap": 0.0
-      },
-      "mobility_in": 32.0,
-      "mobility_out": 0.0,
-      "mortality_rate": 0.01573024648,
-      "name": "Industrial Workers",
-      "pop": 17250,
-      "satisfaction": 0.2834807676,
-      "satisfaction_breakdown": {
-        "employment": 0.6115954119,
-        "entertainment": 0.5501630435,
-        "faith": 0.475,
-        "food": 0.7101864759,
-        "housing": 0.9580826087,
-        "ownership": 0.4,
-        "safety": 0.6404604732,
-        "services": 0.9006073903,
-        "situations": 0.121897681,
-        "tax": 0.952,
-        "wages": 0.5
-      },
-      "social_privileges": 5.0,
-      "standard_of_living": 8.105466513,
-      "status": {
-        "abject_poverty": 0.0,
-        "literacy": 0.2243,
-        "organisation": 0.38972,
-        "radicalisation": 0.254524665,
-        "vote_share": 0.1521012698,
-        "votes_total": 3869.0
-      },
-      "unemployed_count": 0.0,
-      "wealth": {
-        "per_cap": 60.0,
-        "total": 1035000.0
-      },
-      "workforce": {
-        "demand": 23975.0,
-        "fill_ratio": 0.6115954119,
-        "supply": 14663.0,
-        "unemployment": 0.0,
-        "weekly_hours_worked": 40.0
-      }
-    },
-    {
-      "additional_income": {
-        "dividends": 0.0,
-        "other": 0.0,
-        "subsidies": 0.0,
-        "total": 0.0,
-        "welfare": 0.0
-      },
-      "births_per_turn": 417.0,
-      "consumption": {
-        "energy": {
-          "per_cap": null,
-          "total": null
-        },
-        "materials": {
-          "per_cap": null,
-          "total": null
-        },
-        "water": {
-          "per_cap": null,
-          "total": null
-        }
-      },
-      "deaths_per_turn": 312.0,
+      "deaths_per_turn": 275.0,
       "expected_sol": 9.0,
       "income": {
         "disposable_per_cap": 15.04,
         "effective_tax_rate": 0.06,
         "gross_per_cap": 16.0,
         "income_tax_per_cap": 0.96,
-        "total_disposable": 278240.0,
-        "total_gross": 296000.0,
+        "total_disposable": 261635.84,
+        "total_gross": 278336.0,
         "wealth_tax_per_cap": 0.0
       },
-      "mobility_in": 2.0,
+      "mobility_in": 32.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.01685383551,
-      "name": "Extraction Workers",
-      "pop": 18500,
-      "satisfaction": 0.330142506,
+      "mortality_rate": 0.01580331719,
+      "name": "Industrial Workers",
+      "pop": 17396,
+      "satisfaction": 0.2919376547,
       "satisfaction_breakdown": {
-        "employment": 0.9706790123,
-        "entertainment": 0.5501630435,
+        "employment": 0.6167674661,
+        "entertainment": 0.5502423785,
         "faith": 0.475,
-        "food": 0.7662538293,
-        "housing": 0.9601108696,
+        "food": 0.767014139,
+        "housing": 0.9499170527,
         "ownership": 0.4,
-        "safety": 0.6546463262,
+        "safety": 0.6474287867,
         "services": 0.9206422225,
-        "situations": 0.121897681,
+        "situations": 0.1231190175,
+        "tax": 0.952,
+        "wages": 0.5
+      },
+      "social_privileges": 5.0,
+      "standard_of_living": 8.285780002,
+      "status": {
+        "abject_poverty": 0.0,
+        "literacy": 0.2243,
+        "organisation": 0.38972,
+        "radicalisation": 0.2499649488,
+        "vote_share": 0.1519943908,
+        "votes_total": 3902.0
+      },
+      "unemployed_count": 0.0,
+      "wealth": {
+        "per_cap": 64.0,
+        "total": 1113344.0
+      },
+      "workforce": {
+        "demand": 23975.0,
+        "fill_ratio": 0.6167674661,
+        "supply": 14787.0,
+        "unemployment": 0.0,
+        "weekly_hours_worked": 40.0
+      }
+    },
+    {
+      "additional_income": {
+        "dividends": 0.0,
+        "other": 0.0,
+        "subsidies": 0.0,
+        "total": 0.0,
+        "welfare": 0.0
+      },
+      "births_per_turn": 409.0,
+      "consumption": {
+        "energy": {
+          "per_cap": null,
+          "total": null
+        },
+        "materials": {
+          "per_cap": null,
+          "total": null
+        },
+        "water": {
+          "per_cap": null,
+          "total": null
+        }
+      },
+      "deaths_per_turn": 315.0,
+      "expected_sol": 9.0,
+      "income": {
+        "disposable_per_cap": 15.04,
+        "effective_tax_rate": 0.06,
+        "gross_per_cap": 16.0,
+        "income_tax_per_cap": 0.96,
+        "total_disposable": 279849.28,
+        "total_gross": 297712.0,
+        "wealth_tax_per_cap": 0.0
+      },
+      "mobility_in": 1.0,
+      "mobility_out": 0.0,
+      "mortality_rate": 0.01693212556,
+      "name": "Extraction Workers",
+      "pop": 18607,
+      "satisfaction": 0.3306278302,
+      "satisfaction_breakdown": {
+        "employment": 0.9762962963,
+        "entertainment": 0.5502423785,
+        "faith": 0.475,
+        "food": 0.767014139,
+        "housing": 0.9499170527,
+        "ownership": 0.4,
+        "safety": 0.6619049862,
+        "services": 0.9206422225,
+        "situations": 0.1231190175,
         "tax": 0.952,
         "wages": 0.5
       },
@@ -743,19 +743,19 @@
         "abject_poverty": 0.0,
         "literacy": 0.2243,
         "organisation": 0.45372,
-        "radicalisation": 0.1957455803,
-        "vote_share": 0.16314817,
-        "votes_total": 4150.0
+        "radicalisation": 0.1953979307,
+        "vote_share": 0.1625895918,
+        "votes_total": 4174.0
       },
       "unemployed_count": 0.0,
       "wealth": {
         "per_cap": 64.0,
-        "total": 1184000.0
+        "total": 1190848.0
       },
       "workforce": {
         "demand": 16200.0,
-        "fill_ratio": 0.9706790123,
-        "supply": 15725.0,
+        "fill_ratio": 0.9762962963,
+        "supply": 15816.0,
         "unemployment": 0.0,
         "weekly_hours_worked": 40.0
       }
@@ -768,7 +768,7 @@
         "total": 0.0,
         "welfare": 0.0
       },
-      "births_per_turn": 358.0,
+      "births_per_turn": 354.0,
       "consumption": {
         "energy": {
           "per_cap": null,
@@ -783,55 +783,55 @@
           "total": null
         }
       },
-      "deaths_per_turn": 200.0,
+      "deaths_per_turn": 203.0,
       "expected_sol": 9.0,
       "income": {
-        "disposable_per_cap": 12.22,
+        "disposable_per_cap": 15.04,
         "effective_tax_rate": 0.06,
-        "gross_per_cap": 13.0,
-        "income_tax_per_cap": 0.78,
-        "total_disposable": 195520.0,
-        "total_gross": 208000.0,
+        "gross_per_cap": 16.0,
+        "income_tax_per_cap": 0.96,
+        "total_disposable": 243166.72,
+        "total_gross": 258688.0,
         "wealth_tax_per_cap": 0.0
       },
       "mobility_in": 8.0,
       "mobility_out": 0.0,
-      "mortality_rate": 0.01246973004,
+      "mortality_rate": 0.01252765488,
       "name": "Service Workers",
-      "pop": 16000,
-      "satisfaction": 0.3013922131,
+      "pop": 16168,
+      "satisfaction": 0.3204475533,
       "satisfaction_breakdown": {
-        "employment": 0.85,
-        "entertainment": 0.5501630435,
+        "employment": 0.8589375,
+        "entertainment": 0.5502423785,
         "faith": 0.475,
-        "food": 0.6541191225,
-        "housing": 0.9560543478,
+        "food": 0.767014139,
+        "housing": 0.9499170527,
         "ownership": 0.4,
-        "safety": 0.6333675467,
-        "services": 0.8564962505,
-        "situations": 0.121897681,
+        "safety": 0.640190687,
+        "services": 0.9206422225,
+        "situations": 0.1231190175,
         "tax": 0.952,
         "wages": 0.5
       },
       "social_privileges": 5.0,
-      "standard_of_living": 7.708466254,
+      "standard_of_living": 8.285780002,
       "status": {
         "abject_poverty": 0.0,
         "literacy": 0.204,
         "organisation": 0.3816,
-        "radicalisation": 0.1756986157,
-        "vote_share": 0.1283170185,
-        "votes_total": 3264.0
+        "radicalisation": 0.1618230464,
+        "vote_share": 0.1284668121,
+        "votes_total": 3298.0
       },
       "unemployed_count": 0.0,
       "wealth": {
-        "per_cap": 52.0,
-        "total": 832000.0
+        "per_cap": 64.0,
+        "total": 1034752.0
       },
       "workforce": {
         "demand": 16000.0,
-        "fill_ratio": 0.85,
-        "supply": 13600.0,
+        "fill_ratio": 0.8589375,
+        "supply": 13743.0,
         "unemployment": 0.0,
         "weekly_hours_worked": 40.0
       }
