@@ -19,11 +19,16 @@
       "crisis_factor": -0.05,
       "description": "A shrine to honour the dead.",
       "name": "Memorial Shrine"
+    },
+    {
+      "crisis_factor": -0.05,
+      "description": "Week of Mourning and annual Remembrance Day help people come to terms.",
+      "name": "Memorialization of Earth Act"
     }
   ],
-  "crisis_factor": 0.7843877804,
+  "crisis_factor": 0.7313592174,
   "demographics": {
-    "avg_satisfaction": 0.31014330801024453,
+    "avg_satisfaction": 0.3190915406698641,
     "base_growth_rate": 0.03,
     "effective_cdr": 0.01348913043,
     "effective_growth_rate": 0.0096,
@@ -31,13 +36,13 @@
     "housing_util": 1.0349870626617168,
     "net_delta_pct": -0.388913043,
     "sat_elasticity": 0.32,
-    "total_births": 2043.0,
+    "total_births": 2068.0,
     "total_deaths": 1241.0
   },
-  "gov_approval": 0.5461538153,
+  "gov_approval": 0.5674556014,
   "overton": {
-    "authority": 3.0,
-    "corporate": 3.5,
+    "authority": 3.5,
+    "corporate": 4.0,
     "expansion": 5.0,
     "faith": 6.0,
     "materialist": 4.0,
@@ -102,7 +107,7 @@
       "upkeep": 592.35
     }
   ],
-  "stability": 0.3659581394,
+  "stability": 0.4089960772,
   "treasury": {
     "delta": 174865.324,
     "money": 224965.0

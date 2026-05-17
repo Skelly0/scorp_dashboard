@@ -254,7 +254,7 @@
         0.5922569569,
         0.4251129898
       ],
-      "mad_index": -0.75,
+      "mad_index": -0.25,
       "name": "Independent",
       "stance": {
         "authority": 3.0,
@@ -342,7 +342,7 @@
         0.1237376737,
         0.3231769662
       ],
-      "mad_index": 0.16,
+      "mad_index": 0.0,
       "name": "Lunar Survival League",
       "stance": {
         "authority": 4.0,
@@ -386,7 +386,7 @@
         0.4444297975,
         0.271383921
       ],
-      "mad_index": -0.0375,
+      "mad_index": -0.055,
       "name": "Novus Chrysalis Collective",
       "stance": {
         "authority": 5.0,
@@ -430,7 +430,7 @@
         0.145949448,
         0.1102831977
       ],
-      "mad_index": 0.32,
+      "mad_index": 0.16,
       "name": "Selenite Rose Front",
       "stance": {
         "authority": 5.0,
@@ -474,7 +474,7 @@
         0.2214190087,
         0.4504617045
       ],
-      "mad_index": -0.03,
+      "mad_index": -0.0475,
       "name": "Lunar Solidarity Party",
       "stance": {
         "authority": 3.5,
