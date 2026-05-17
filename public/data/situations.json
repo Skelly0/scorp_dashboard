@@ -1,17 +1,17 @@
 {
   "active": [
     {
-      "crisis_factor": 0.7,
+      "crisis_factor": 0.65,
       "description": "All contact with Earth has ceased. Something ominous has happened to Earth.",
       "name": "The Lights Go Down"
     },
     {
-      "crisis_factor": 0.1,
+      "crisis_factor": 0.05,
       "description": "Chaotic arrest in the council of Director Mills",
       "name": "Council Chaos"
     },
     {
-      "crisis_factor": 0.15,
+      "crisis_factor": 0.1,
       "description": "The collaborators who attempted to forcibly establish The Lunar Workers' Council have been arrested for treason",
       "name": "Attempted Coup and Arrests of the Communists"
     },
