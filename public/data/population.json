@@ -4,7 +4,7 @@
       "name": "Bureaucrats",
       "political_weight": 2.0,
       "pop": 5146,
-      "share": 0.05543466551761284,
+      "share": 0.05124732360703082,
       "tier": "Upper",
       "worldview": {
         "authority": 3.0,
@@ -19,7 +19,7 @@
       "name": "Capitalists",
       "political_weight": 5.0,
       "pop": 2052,
-      "share": 0.022104922977485727,
+      "share": 0.02043519394512772,
       "tier": "Upper",
       "worldview": {
         "authority": 5.5,
@@ -33,8 +33,8 @@
     {
       "name": "Engineers",
       "political_weight": 2.5,
-      "pop": 5809,
-      "share": 0.06257675320478294,
+      "pop": 7209,
+      "share": 0.07179206293880397,
       "tier": "Middle",
       "worldview": {
         "authority": 4.0,
@@ -48,8 +48,8 @@
     {
       "name": "Scientists",
       "political_weight": 2.3,
-      "pop": 8709,
-      "share": 0.09381665409889045,
+      "pop": 9809,
+      "share": 0.09768460887317632,
       "tier": "Middle",
       "worldview": {
         "authority": 4.0,
@@ -63,8 +63,8 @@
     {
       "name": "Security",
       "political_weight": 1.75,
-      "pop": 4817,
-      "share": 0.05189055262307444,
+      "pop": 4902,
+      "share": 0.04881740775780511,
       "tier": "Middle",
       "worldview": {
         "authority": 2.0,
@@ -78,8 +78,8 @@
     {
       "name": "Proprietors",
       "political_weight": 2.4,
-      "pop": 3692,
-      "share": 0.03977162555208445,
+      "pop": 3801,
+      "share": 0.037852910421749736,
       "tier": "Middle",
       "worldview": {
         "authority": 3.5,
@@ -94,7 +94,7 @@
       "name": "Managerial",
       "political_weight": 1.8,
       "pop": 3049,
-      "share": 0.032844985457287514,
+      "share": 0.030363989443808196,
       "tier": "Middle",
       "worldview": {
         "authority": 4.0,
@@ -108,8 +108,8 @@
     {
       "name": "Botanists",
       "political_weight": 1.4,
-      "pop": 7385,
-      "share": 0.07955402348378757,
+      "pop": 7468,
+      "share": 0.07437135886072797,
       "tier": "Middle",
       "worldview": {
         "authority": 4.5,
@@ -123,8 +123,8 @@
     {
       "name": "Industrial Workers",
       "political_weight": 1.15,
-      "pop": 17396,
-      "share": 0.18739631584617042,
+      "pop": 21896,
+      "share": 0.2180550714534681,
       "tier": "Lower",
       "worldview": {
         "authority": 4.0,
@@ -138,8 +138,8 @@
     {
       "name": "Extraction Workers",
       "political_weight": 1.2,
-      "pop": 18607,
-      "share": 0.20044166756436496,
+      "pop": 18818,
+      "share": 0.18740228053577654,
       "tier": "Lower",
       "worldview": {
         "authority": 5.0,
@@ -153,8 +153,8 @@
     {
       "name": "Service Workers",
       "political_weight": 1.1,
-      "pop": 16168,
-      "share": 0.17416783367445868,
+      "pop": 16265,
+      "share": 0.16197779216252553,
       "tier": "Lower",
       "worldview": {
         "authority": 3.5,
@@ -167,8 +167,8 @@
     }
   ],
   "tier_totals": {
-    "Lower": 0.5620058170849941,
-    "Middle": 0.36045459441990735,
-    "Upper": 0.07753958849509857
+    "Lower": 0.5674351441517702,
+    "Middle": 0.3608823382960713,
+    "Upper": 0.07168251755215854
   }
 }
