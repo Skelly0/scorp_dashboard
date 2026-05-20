@@ -35,4 +35,31 @@ describe('ClassDetail', () => {
     expect(screen.getByText('0.008')).toBeTruthy();
     expect(screen.getByText('20.58')).toBeTruthy();
   });
+
+  test('renders worldview radar on the shared 1-7 scale', () => {
+    const { container } = render(ClassDetail, {
+      props: {
+        cls: baseClass,
+        populationProfile: {
+          name: 'Industrial Workers',
+          tier: 'Lower',
+          pop: 21896,
+          share: 0.218,
+          political_weight: 1.15,
+          worldview: {
+            expansion: 1,
+            authority: 7,
+            corporate: 7,
+            technocratic: 7,
+            faith: 7,
+            materialist: 7,
+          },
+        },
+      },
+    });
+
+    const dataPath = container.querySelector('svg path');
+
+    expect(dataPath?.getAttribute('d')).toContain('M 85.0 85.0');
+  });
 });
