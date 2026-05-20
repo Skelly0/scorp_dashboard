@@ -12,6 +12,7 @@
    *   income: object|null,
    *   wealth: object|null,
    *   additional_income: object|null,
+   *   consumption: object|null,
    *   status: object|null,
    *   workforce: object|null,
    *   satisfaction: number|null,
@@ -38,6 +39,11 @@
     ['Wages', 'wages'],
     ['Safety', 'safety'],
     ['Situations', 'situations'],
+  ];
+  const CONSUMPTION_RESOURCES = [
+    ['Water', 'water'],
+    ['Energy', 'energy'],
+    ['Materials', 'materials'],
   ];
 
   $: critRad = cls?.status?.radicalisation > 0.5;
@@ -109,6 +115,21 @@
         <dt>Expected</dt><dd>{num(cls.expected_sol)}</dd>
         <dt>Privilege</dt><dd>{pct(cls.social_privileges)}</dd>
       </dl>
+    </div>
+  </div>
+
+  <div class="s-card md:col-span-2 xl:col-span-3">
+    <div class="s-card-header"><h3>Consumption</h3></div>
+    <div class="s-card-pad grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-3">
+      {#each CONSUMPTION_RESOURCES as [label, key]}
+        <div>
+          <div class="text-[10px] uppercase tracking-widest text-muted mb-2">{label}</div>
+          <dl class="kv">
+            <dt>Per cap</dt><dd>{num(cls.consumption?.[key]?.per_cap, 3)}</dd>
+            <dt>Total / turn</dt><dd>{num(cls.consumption?.[key]?.total_per_turn)}</dd>
+          </dl>
+        </div>
+      {/each}
     </div>
   </div>
 

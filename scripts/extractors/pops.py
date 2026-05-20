@@ -23,6 +23,12 @@ SATISFACTION_SOURCES = (
     "situations",
 )
 
+CONSUMPTION_BLOCKS = {
+    "water": "WATER DEMAND BY CLASS",
+    "energy": "ENERGY DEMAND BY CLASS",
+    "materials": "MATERIALS DEMAND BY CLASS",
+}
+
 
 def extract(wb) -> dict[str, Any]:
     classes = filter_blank_rows(read_named_range(wb, "ClassTable"))
@@ -49,6 +55,7 @@ def extract(wb) -> dict[str, Any]:
     mobility_out = read_named_range(wb, "PopsimMobilityOut")
     unemployed_count = read_named_range(wb, "PopsimUnemployed")
     add_income = _read_additional_income_breakdown(wb)
+    consumption = _read_consumption_by_class(wb, len(classes))
 
     # WealthIncomePerClass: A:J × 15 rows. Column offsets within each row:
     #   3=D income tax/cap, 4=E wealth tax/cap, 5=F effective rate, 9=J total post-tax.
@@ -92,6 +99,7 @@ def extract(wb) -> dict[str, Any]:
                 "total": (coerce_number(wealth_pc[i][0]) * pop) if (i < len(wealth_pc) and wealth_pc[i][0] is not None) else None,
             },
             "additional_income": _additional_income_row(add_income, i),
+            "consumption": consumption[i] if i < len(consumption) else _empty_consumption(),
             "status": {
                 "radicalisation": coerce_number(radical[i][0]) if i < len(radical) else None,
                 "abject_poverty": coerce_number(poverty[i][0]) if i < len(poverty) else None,
@@ -204,4 +212,48 @@ def _read_additional_income_breakdown(wb):
     rows = []
     for r in range(23, 38):  # 15 class slots
         rows.append([ws.cell(row=r, column=c).value for c in range(1, 7)])
+    return rows
+
+
+def _empty_consumption():
+    return {
+        key: {"per_cap": None, "total_per_turn": None}
+        for key in CONSUMPTION_BLOCKS
+    }
+
+
+def _read_consumption_by_class(wb, class_count: int):
+    """Read Consumption sheet blocks by class row order.
+
+    The live Consumption tab's class-name formulas can drift to #REF!, while
+    the per-cap and total demand cells remain valid and row-aligned with
+    ClassTable. Use ClassTable order from the caller instead of matching on
+    the broken class-name cells.
+    """
+    rows = [_empty_consumption() for _ in range(class_count)]
+    if "Consumption" not in wb.sheetnames:
+        return rows
+
+    ws = wb["Consumption"]
+    title_rows: dict[str, int] = {}
+    for sheet_row in range(1, min(ws.max_row, 200) + 1):
+        value = ws.cell(row=sheet_row, column=1).value
+        if value is None:
+            continue
+        title = str(value).strip().upper()
+        for key, expected in CONSUMPTION_BLOCKS.items():
+            if title == expected:
+                title_rows[key] = sheet_row
+
+    for key in CONSUMPTION_BLOCKS:
+        title_row = title_rows.get(key)
+        if title_row is None:
+            continue
+        data_start = title_row + 2
+        for i in range(class_count):
+            sheet_row = data_start + i
+            rows[i][key] = {
+                "per_cap": coerce_number(ws.cell(row=sheet_row, column=3).value),
+                "total_per_turn": coerce_number(ws.cell(row=sheet_row, column=4).value),
+            }
     return rows
