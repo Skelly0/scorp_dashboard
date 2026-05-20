@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import openpyxl
+from openpyxl.workbook.defined_name import DefinedName
 
 from extractors.gois import extract
 
@@ -33,6 +34,48 @@ def test_extract_active_benefits_parsed(wb):
     assert g["active_benefits"]["unlocked"] == 1
     assert g["active_benefits"]["total"] == 3
     assert isinstance(g["active_benefits"]["unlocked_list"], list)
+
+
+def test_extract_active_benefits_include_descriptions_and_status(wb):
+    g = extract(wb)["gois"][0]
+
+    assert g["active_benefits"]["items"] == [
+        {
+            "name": "Charter Draft",
+            "description": "Stability +",
+            "threshold": 0.30,
+            "active": True,
+        },
+        {
+            "name": "Civil Service",
+            "description": "Admin capacity +",
+            "threshold": 0.45,
+            "active": False,
+        },
+        {
+            "name": "Public Mandate",
+            "description": "Approval +",
+            "threshold": 0.60,
+            "active": False,
+        },
+    ]
+    assert g["active_benefits"]["unlocked_list"] == ["Charter Draft"]
+
+
+def test_extract_benefits_falls_back_to_visible_table_when_named_range_stale(wb):
+    wb.defined_names["GoIBenefitsTable"] = DefinedName(
+        "GoIBenefitsTable",
+        attr_text="'GoI Benefits'!$A$4:$D$15",
+    )
+
+    result = extract(wb)
+    research = next(g for g in result["gois"] if g["name"] == "Research")
+
+    assert [b["name"] for b in research["active_benefits"]["items"]] == [
+        "Open Lab",
+        "Peer Review",
+        "Institute Charter",
+    ]
 
 
 def test_extract_sub_factions_grouped_under_parent(wb):

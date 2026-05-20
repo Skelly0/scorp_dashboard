@@ -29,4 +29,51 @@ describe('GoIs page', () => {
     expect(screen.getByText('1,974')).toBeTruthy();
     expect(screen.queryByText('Pop Capture Matrix')).toBeNull();
   });
+
+  test('shows benefit descriptions and active state', () => {
+    gois.set({
+      ...baseGois,
+      gois: [
+        {
+          name: 'Administration',
+          main_class: 'Bureaucrats',
+          approach: 'Centrist',
+          derived_influence: 0.2,
+          approval: 0.5,
+          mad_index: 0.1,
+          effective_worldview: {},
+          sub_factions: [],
+          active_benefits: {
+            unlocked: 1,
+            total: 3,
+            unlocked_list: ['Charter Draft'],
+            items: [
+              {
+                name: 'Charter Draft',
+                description: 'Stability +',
+                threshold: 0.3,
+                active: true,
+              },
+              {
+                name: 'Civil Service',
+                description: 'Admin capacity +',
+                threshold: 0.45,
+                active: false,
+              },
+            ],
+          },
+        },
+      ],
+    });
+
+    render(GoIs);
+
+    expect(screen.getByText('Benefits 1/3 active')).toBeTruthy();
+    expect(screen.getByText('Charter Draft')).toBeTruthy();
+    expect(screen.getByText('Stability +')).toBeTruthy();
+    expect(screen.getByText('Active')).toBeTruthy();
+    expect(screen.getByText('Civil Service')).toBeTruthy();
+    expect(screen.getByText('Admin capacity +')).toBeTruthy();
+    expect(screen.getByText('Inactive')).toBeTruthy();
+  });
 });

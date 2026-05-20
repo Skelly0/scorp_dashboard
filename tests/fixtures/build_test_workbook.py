@@ -566,6 +566,9 @@ def build(out_path: Path) -> Path:
 
     # GoI Benefits: A4:D18
     gb = wb.create_sheet("GoI Benefits")
+    gb["A1"] = "GOI BENEFITS"
+    for col, header in enumerate(("GoI", "Threshold", "Benefit Name", "Description"), start=1):
+        gb.cell(row=3, column=col, value=header)
     benefits = [
         ("Administration", 0.30, "Charter Draft", "Stability +"),
         ("Administration", 0.45, "Civil Service", "Admin capacity +"),

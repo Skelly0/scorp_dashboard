@@ -43,7 +43,7 @@ def extract(wb) -> dict[str, Any]:
     base_capture_headers = _headers_above_named_range(wb, "PopCaptureBase")
     captured_pop = read_named_range(wb, "GoIValueCapturedPop")
     captured_pop_headers = _headers_above_named_range(wb, "GoIValueCapturedPop")
-    benefits_table = read_named_range(wb, "GoIBenefitsTable")
+    benefits_table = _read_goi_benefits_table(wb)
 
     # Read the GoI block directly from Politics by column offset.
     rows = _read_politics_goi_rows(wb)
@@ -118,15 +118,74 @@ def _read_politics_goi_rows(wb):
 _BENEFIT_COUNT_RE = re.compile(r"(\d+)\s*/\s*(\d+)")
 
 
+def _read_goi_benefits_table(wb):
+    named = read_named_range(wb, "GoIBenefitsTable")
+    visible = _read_visible_goi_benefits_table(wb)
+    if visible and len(visible) > len(named):
+        return visible
+    return named or visible
+
+
+def _read_visible_goi_benefits_table(wb):
+    if "GoI Benefits" not in wb.sheetnames:
+        return []
+    ws = wb["GoI Benefits"]
+    header_row = None
+    for row in range(1, min(ws.max_row, 40) + 1):
+        first = ws.cell(row=row, column=1).value
+        second = ws.cell(row=row, column=2).value
+        third = ws.cell(row=row, column=3).value
+        fourth = ws.cell(row=row, column=4).value
+        if (
+            first == "GoI"
+            and second == "Threshold"
+            and third == "Benefit Name"
+            and fourth == "Description"
+        ):
+            header_row = row
+            break
+    if header_row is None:
+        return []
+
+    rows = []
+    for row in range(header_row + 1, ws.max_row + 1):
+        values = [ws.cell(row=row, column=col).value for col in range(1, 5)]
+        if all(v in (None, "") for v in values):
+            if rows:
+                break
+            continue
+        rows.append(values)
+    return rows
+
+
 def _parse_active_benefits(text, goi_name, benefits_table):
-    if not text:
-        return {"unlocked": 0, "total": 0, "unlocked_list": []}
-    m = _BENEFIT_COUNT_RE.search(str(text))
-    unlocked = int(m.group(1)) if m else 0
-    total = int(m.group(2)) if m else 0
     matches = [r for r in benefits_table if r and r[0] == goi_name]
-    unlocked_list = [r[2] for r in matches[:unlocked]]
-    return {"unlocked": unlocked, "total": total, "unlocked_list": unlocked_list}
+    m = _BENEFIT_COUNT_RE.search(str(text)) if text else None
+    unlocked = int(m.group(1)) if m else 0
+    total = int(m.group(2)) if m else len(matches)
+    items = []
+    for idx, row in enumerate(matches):
+        name = row[2] if len(row) > 2 else None
+        if name in (None, ""):
+            continue
+        description = row[3] if len(row) > 3 else None
+        if description == "":
+            description = None
+        items.append({
+            "name": name,
+            "description": description,
+            "threshold": coerce_number(row[1]) if len(row) > 1 else None,
+            "active": idx < unlocked,
+        })
+    unlocked_list = [b["name"] for b in items if b["active"]]
+    if total == 0 and items:
+        total = len(items)
+    return {
+        "unlocked": unlocked,
+        "total": total,
+        "unlocked_list": unlocked_list,
+        "items": items,
+    }
 
 
 def _stance_row_to_worldview(row):
