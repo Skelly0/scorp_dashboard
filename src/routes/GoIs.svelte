@@ -8,7 +8,6 @@
   import RadarChart from '../lib/components/RadarChart.svelte';
   import Heatmap from '../lib/components/Heatmap.svelte';
   import MadIndex from '../lib/components/MadIndex.svelte';
-  import Tag from '../lib/components/Tag.svelte';
   import SubFactionPanel from '../lib/components/SubFactionPanel.svelte';
   import { WORLDVIEW_AXES as AXES, AXIS_HIGH_LABELS } from '../lib/worldview.js';
 
@@ -39,6 +38,23 @@
     if (e.key === 'Escape' && selected) {
       selected = null;
     }
+  }
+
+  function benefitItems(activeBenefits) {
+    if (activeBenefits?.items?.length) return activeBenefits.items;
+    return (activeBenefits?.unlocked_list ?? []).map((name) => ({
+      name,
+      description: null,
+      threshold: null,
+      active: true,
+    }));
+  }
+
+  function formatThreshold(value) {
+    if (value == null) return null;
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return null;
+    return Math.round(numeric * 100) + '%';
   }
 
   // Auto-dismiss stale selections after a sync (sub-faction renamed/removed
@@ -101,12 +117,32 @@
 
               <div>
                 <div class="text-muted text-[9px] uppercase tracking-widest mb-1">
-                  Benefits {g.active_benefits?.unlocked ?? 0}/{g.active_benefits?.total ?? 0}
+                  Benefits {g.active_benefits?.unlocked ?? 0}/{g.active_benefits?.total ?? 0} active
                 </div>
-                <div class="flex flex-wrap gap-1">
-                  {#each g.active_benefits?.unlocked_list ?? [] as b}
-                    <Tag variant="good">{b}</Tag>
+                <div class="goi-benefits-list">
+                  {#each benefitItems(g.active_benefits) as b}
+                    <div class="goi-benefit-row" class:is-active={b.active}>
+                      <div class="goi-benefit-head">
+                        <span
+                          class="goi-benefit-status"
+                          class:is-active={b.active}
+                          aria-label={b.active ? 'Benefit active' : 'Benefit inactive'}
+                        >
+                          {b.active ? 'Active' : 'Inactive'}
+                        </span>
+                        <span class="goi-benefit-name">{b.name}</span>
+                        {#if formatThreshold(b.threshold)}
+                          <span class="goi-benefit-threshold tnum">{formatThreshold(b.threshold)}</span>
+                        {/if}
+                      </div>
+                      {#if b.description}
+                        <div class="goi-benefit-desc">{b.description}</div>
+                      {/if}
+                    </div>
                   {/each}
+                  {#if benefitItems(g.active_benefits).length === 0}
+                    <div class="goi-benefits-empty">No benefits listed.</div>
+                  {/if}
                 </div>
               </div>
 
@@ -191,6 +227,69 @@
   .goi-radar-frame { display: grid; }
   .goi-radar-frame :global(svg) { max-width: min(170px, 50vw); height: auto; justify-self: center; }
 
+  .goi-benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+  }
+  .goi-benefit-row {
+    border: 1px solid var(--border-soft);
+    background: var(--bg-2);
+    padding: 6px 8px;
+    min-width: 0;
+  }
+  .goi-benefit-row.is-active {
+    border-color: var(--good);
+    background: var(--good-soft);
+  }
+  .goi-benefit-head {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 7px;
+    align-items: baseline;
+    min-width: 0;
+  }
+  .goi-benefit-status {
+    border: 1px solid var(--border-soft);
+    color: var(--muted);
+    background: var(--bg);
+    padding: 2px 5px;
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .goi-benefit-status.is-active {
+    color: var(--good);
+    border-color: var(--good);
+    font-weight: 800;
+  }
+  .goi-benefit-name {
+    font-size: 11px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+  }
+  .goi-benefit-threshold {
+    color: var(--muted);
+    font-size: 10px;
+    white-space: nowrap;
+  }
+  .goi-benefit-desc,
+  .goi-benefits-empty {
+    margin-top: 4px;
+    color: var(--fg-dim);
+    font-size: 10.5px;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+  .goi-benefits-empty {
+    margin-top: 0;
+    color: var(--muted);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
   .gois-rail-desktop { display: none; }
   @media (min-width: 1280px) {
     .gois-rail-desktop { display: block; }
@@ -198,6 +297,8 @@
 
   @media (max-width: 479px) {
     .goi-card-body { grid-template-columns: 1fr; }
+    .goi-benefit-head { grid-template-columns: 1fr auto; }
+    .goi-benefit-status { grid-column: 1 / -1; width: fit-content; }
   }
 
   .gois-sheet-mobile { display: block; }

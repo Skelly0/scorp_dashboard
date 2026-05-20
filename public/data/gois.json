@@ -2,12 +2,32 @@
   "gois": [
     {
       "active_benefits": {
+        "items": [
+          {
+            "active": false,
+            "description": "+0.025 Stability",
+            "name": "Administrative Buy-In",
+            "threshold": 0.3
+          },
+          {
+            "active": false,
+            "description": "-0.050 Crisis Factor",
+            "name": "Institutional Trust",
+            "threshold": 0.45
+          },
+          {
+            "active": false,
+            "description": "-5% Improvement Upkeep",
+            "name": "Administrative Efficiency",
+            "threshold": 0.6
+          }
+        ],
         "total": 3,
         "unlocked": 0,
         "unlocked_list": []
       },
       "approach": "Centrist",
-      "approval": 0.5787237239,
+      "approval": 0.5787096336,
       "derived_influence": 0.202560056,
       "effective_worldview": {
         "authority": 3.595463698,
@@ -22,7 +42,7 @@
       "name": "Administration",
       "sub_factions": [
         {
-          "approval": 0.4959145403,
+          "approval": 0.49590045,
           "effective_worldview": {
             "authority": 4.4,
             "corporate": 4.0,
@@ -38,7 +58,7 @@
           "national_share": 0.07161214102
         },
         {
-          "approval": 0.41213903,
+          "approval": 0.4121249398,
           "effective_worldview": {
             "authority": 5.1,
             "corporate": 4.0,
@@ -54,7 +74,7 @@
           "national_share": 0.0511515293
         },
         {
-          "approval": 0.7552971933,
+          "approval": 0.755283103,
           "effective_worldview": {
             "authority": 2.3,
             "corporate": 4.0,
@@ -73,12 +93,32 @@
     },
     {
       "active_benefits": {
+        "items": [
+          {
+            "active": false,
+            "description": "+0.020 Stability",
+            "name": "Business Confidence",
+            "threshold": 0.3
+          },
+          {
+            "active": false,
+            "description": "-5% Money Upkeep",
+            "name": "Lower Capital Costs",
+            "threshold": 0.45
+          },
+          {
+            "active": false,
+            "description": "-0.040 Crisis Factor",
+            "name": "Investor Trust",
+            "threshold": 0.6
+          }
+        ],
         "total": 3,
         "unlocked": 0,
         "unlocked_list": []
       },
       "approach": "Marketist",
-      "approval": 0.4306204823,
+      "approval": 0.4306063928,
       "derived_influence": 0.1766680853,
       "effective_worldview": {
         "authority": 4.759665189,
@@ -93,7 +133,7 @@
       "name": "Corporate",
       "sub_factions": [
         {
-          "approval": 0.5046752102,
+          "approval": 0.5046611207,
           "effective_worldview": {
             "authority": 5.85,
             "corporate": 2.05,
@@ -109,7 +149,7 @@
           "national_share": 0.07138104458
         },
         {
-          "approval": 0.3680377952,
+          "approval": 0.3680237057,
           "effective_worldview": {
             "authority": 5.15,
             "corporate": 1.0,
@@ -125,7 +165,7 @@
           "national_share": 0.06245841401
         },
         {
-          "approval": 0.3997486796,
+          "approval": 0.3997345901,
           "effective_worldview": {
             "authority": 3.15,
             "corporate": 1.85,
@@ -144,12 +184,32 @@
     },
     {
       "active_benefits": {
+        "items": [
+          {
+            "active": false,
+            "description": "+0.035 Stability",
+            "name": "Workplace Peace",
+            "threshold": 0.3
+          },
+          {
+            "active": false,
+            "description": "-5% Materials Demand",
+            "name": "Shop-Floor Stewardship",
+            "threshold": 0.45
+          },
+          {
+            "active": false,
+            "description": "+0.030 Stability",
+            "name": "Labour Solidarity",
+            "threshold": 0.6
+          }
+        ],
         "total": 3,
         "unlocked": 0,
         "unlocked_list": []
       },
       "approach": "Communal",
-      "approval": 0.6871139987,
+      "approval": 0.6870974516,
       "derived_influence": 0.2440932319,
       "effective_worldview": {
         "authority": 3.705498381,
@@ -164,7 +224,7 @@
       "name": "Unions",
       "sub_factions": [
         {
-          "approval": 0.6935034545,
+          "approval": 0.6934869073,
           "effective_worldview": {
             "authority": 3.15,
             "corporate": 5.0,
@@ -180,7 +240,7 @@
           "national_share": 0.110951469
         },
         {
-          "approval": 0.5961191008,
+          "approval": 0.5961025536,
           "effective_worldview": {
             "authority": 2.9000000000000004,
             "corporate": 6.0,
@@ -196,7 +256,7 @@
           "national_share": 0.06163970502
         },
         {
-          "approval": 0.7533588967,
+          "approval": 0.7533423495,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 6.2,
@@ -215,12 +275,32 @@
     },
     {
       "active_benefits": {
+        "items": [
+          {
+            "active": false,
+            "description": "-5% Energy Demand",
+            "name": "Researcher Cooperation",
+            "threshold": 0.3
+          },
+          {
+            "active": false,
+            "description": "-0.035 Crisis Factor",
+            "name": "Expert Confidence",
+            "threshold": 0.45
+          },
+          {
+            "active": false,
+            "description": "-0.045 Crisis Factor",
+            "name": "Technical Readiness",
+            "threshold": 0.6
+          }
+        ],
         "total": 3,
         "unlocked": 0,
         "unlocked_list": []
       },
       "approach": "Secular",
-      "approval": 0.6329489878,
+      "approval": 0.6329379065,
       "derived_influence": 0.2117475251,
       "effective_worldview": {
         "authority": 3.771751747,
@@ -235,7 +315,7 @@
       "name": "Research",
       "sub_factions": [
         {
-          "approval": 0.4189225082,
+          "approval": 0.4189114269,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 3.3,
@@ -251,7 +331,7 @@
           "national_share": 0.05347159724
         },
         {
-          "approval": 0.4085153653,
+          "approval": 0.4085042841,
           "effective_worldview": {
             "authority": 5.3999999999999995,
             "corporate": 4.0,
@@ -267,7 +347,7 @@
           "national_share": 0.04277727779
         },
         {
-          "approval": 0.8118459776,
+          "approval": 0.8118348963,
           "effective_worldview": {
             "authority": 2.6,
             "corporate": 4.0,
@@ -286,12 +366,32 @@
     },
     {
       "active_benefits": {
+        "items": [
+          {
+            "active": false,
+            "description": "+0.025 Stability",
+            "name": "Security Morale",
+            "threshold": 0.3
+          },
+          {
+            "active": false,
+            "description": "-0.060 Crisis Factor",
+            "name": "Crisis Readiness",
+            "threshold": 0.45
+          },
+          {
+            "active": false,
+            "description": "+0.040 Stability",
+            "name": "Operational Cohesion",
+            "threshold": 0.6
+          }
+        ],
         "total": 3,
         "unlocked": 0,
         "unlocked_list": []
       },
       "approach": "Authoritarian",
-      "approval": 0.7976318476,
+      "approval": 0.7976177572,
       "derived_influence": 0.1549311017,
       "effective_worldview": {
         "authority": 2.315042682,
@@ -306,7 +406,7 @@
       "name": "Security",
       "sub_factions": [
         {
-          "approval": 0.7376318476,
+          "approval": 0.7376177572,
           "effective_worldview": {
             "authority": 1.65,
             "corporate": 4.0,
@@ -322,7 +422,7 @@
           "national_share": 0.04694881869
         },
         {
-          "approval": 0.8876318476,
+          "approval": 0.8876177572,
           "effective_worldview": {
             "authority": 2.35,
             "corporate": 5.3999999999999995,
@@ -338,7 +438,7 @@
           "national_share": 0.06259842492
         },
         {
-          "approval": 0.7376318476,
+          "approval": 0.7376177572,
           "effective_worldview": {
             "authority": 1.3,
             "corporate": 3.65,
