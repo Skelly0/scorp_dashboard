@@ -103,7 +103,7 @@
   <div class="s-card">
     <div class="s-card-header"><h3>Worldview Chart</h3></div>
     <div class="s-card-pad flex justify-center">
-      <RadarChart axes={worldviewAxes} size={170} scaleMin={0} scaleMax={6} />
+      <RadarChart axes={worldviewAxes} size={170} />
     </div>
   </div>
 
