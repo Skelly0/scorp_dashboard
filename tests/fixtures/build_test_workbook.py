@@ -305,6 +305,51 @@ def build(out_path: Path) -> Path:
     _add_name(wb, "FoodPerCap", "Cropsim!$B$28")
     _add_name(wb, "FoodVarietyIndex", "Cropsim!$B$29")
 
+    # ---- Consumption sheet ----
+    # Live workbook layout: each resource has a title row, a header row, then
+    # class rows with C=Per-Cap Demand and D=Total Demand. The class-name
+    # cells can be broken (#REF!) in the live sheet, so the extractor must use
+    # ClassTable row order instead of matching on Consumption!A:A.
+    cons = wb.create_sheet("Consumption")
+    _seed_consumption_block(
+        cons,
+        "WATER DEMAND BY CLASS",
+        start_row=5,
+        classes=classes,
+        rates={"default": 0.005, "Industrial Workers": 0.006, "Service Workers": 0.006},
+        demand_var=0.2,
+    )
+    _seed_consumption_block(
+        cons,
+        "ENERGY DEMAND BY CLASS",
+        start_row=20,
+        classes=classes,
+        rates={
+            "default": 0.025,
+            "Capitalists": 0.030,
+            "Security": 0.020,
+            "Agricultural Workers": 0.020,
+            "Industrial Workers": 0.015,
+            "Service Workers": 0.015,
+            "Skilled Tradesmen": 0.015,
+        },
+        demand_var=0.25,
+    )
+    _seed_consumption_block(
+        cons,
+        "MATERIALS DEMAND BY CLASS",
+        start_row=35,
+        classes=classes,
+        rates={
+            "default": 0.008,
+            "Capitalists": 0.012,
+            "Industrial Workers": 0.006,
+            "Service Workers": 0.006,
+            "Skilled Tradesmen": 0.006,
+        },
+        demand_var=0.5,
+    )
+
     # Politics GoI block: rows 4-11 (8 slots, 5 live + 3 blank)
     # Keep Security before Research here to exercise GoI insertion/reorder
     # behaviour; the capture matrices below deliberately keep their own header
@@ -833,6 +878,28 @@ def build(out_path: Path) -> Path:
 
 def _add_name(wb, name: str, attr_text: str) -> None:
     wb.defined_names[name] = DefinedName(name, attr_text=attr_text)
+
+
+def _seed_consumption_block(ws, title: str, start_row: int, classes, rates, demand_var: float) -> None:
+    resource = title.split()[0].title()
+    ws.cell(row=start_row, column=1, value=title)
+    ws.cell(row=start_row + 1, column=1, value="Class")
+    ws.cell(row=start_row + 1, column=2, value="Pop")
+    ws.cell(row=start_row + 1, column=3, value="Per-Cap Demand")
+    ws.cell(row=start_row + 1, column=4, value="Total Demand")
+    total = 0.0
+    for offset, (name, _tier, pop, _weight) in enumerate(classes):
+        row = start_row + 2 + offset
+        # Deliberately broken to prove extraction does not depend on this cell.
+        ws.cell(row=row, column=1, value="#REF!")
+        ws.cell(row=row, column=2, value=pop)
+        per_cap = rates.get(name, rates["default"])
+        demand = pop * per_cap * demand_var
+        total += demand
+        ws.cell(row=row, column=3, value=per_cap)
+        ws.cell(row=row, column=4, value=demand)
+    ws.cell(row=start_row + 2 + len(classes), column=1, value=f"Total {resource} Demand")
+    ws.cell(row=start_row + 2 + len(classes), column=4, value=total)
 
 
 if __name__ == "__main__":

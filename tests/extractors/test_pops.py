@@ -42,6 +42,35 @@ def test_extract_additional_income_breakdown(wb):
     assert a["total"] == 0.7
 
 
+def test_extract_consumption_block_complete(wb):
+    result = extract(wb)
+    first = result["classes"][0]["consumption"]
+    assert first["water"]["per_cap"] == pytest.approx(0.005)
+    assert first["water"]["total_per_turn"] == pytest.approx(970 * 0.005 * 0.2)
+    assert first["energy"]["per_cap"] == pytest.approx(0.025)
+    assert first["energy"]["total_per_turn"] == pytest.approx(970 * 0.025 * 0.25)
+    assert first["materials"]["per_cap"] == pytest.approx(0.008)
+    assert first["materials"]["total_per_turn"] == pytest.approx(970 * 0.008 * 0.5)
+
+
+def test_extract_consumption_uses_class_order_when_names_are_broken(wb):
+    result = extract(wb)
+    industrial = next(c for c in result["classes"] if c["name"] == "Industrial Workers")
+    assert industrial["consumption"]["water"]["per_cap"] == pytest.approx(0.006)
+    assert industrial["consumption"]["energy"]["per_cap"] == pytest.approx(0.015)
+    assert industrial["consumption"]["materials"]["per_cap"] == pytest.approx(0.006)
+
+
+def test_extract_consumption_optional_when_sheet_missing(wb):
+    del wb["Consumption"]
+    result = extract(wb)
+    for cls in result["classes"]:
+        consumption = cls["consumption"]
+        assert set(consumption) == {"water", "energy", "materials"}
+        for resource in consumption.values():
+            assert resource == {"per_cap": None, "total_per_turn": None}
+
+
 def test_extract_satisfaction_present(wb):
     result = extract(wb)
     assert result["classes"][0]["satisfaction"] == 0.40
