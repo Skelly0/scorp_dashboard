@@ -560,6 +560,10 @@ body {
 .crisis-index.sev-crit .ci-num,
 .crisis-index.sev-crit .ci-tier { color: var(--crit); }
 .crisis-index.sev-crit .ci-bar-fill { background: var(--crit); }
+/* The crit-soft background tint lifts the panel enough that --muted meta
+   text drops below WCAG AA (4.46 in light). Use the higher-contrast dim
+   token on critical tiles. */
+.crisis-index.sev-crit .ci-meta { color: var(--fg-dim); }
 
 /* === Tier ladder =========================================================== */
 .ladder {

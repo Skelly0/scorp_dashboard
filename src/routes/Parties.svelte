@@ -138,7 +138,6 @@
           {#if hasPop || hasFallbackPop}
             <button
               role="tab"
-              aria-pressed={supportTab === 'pop'}
               aria-selected={supportTab === 'pop'}
               on:click={() => (supportTab = 'pop')}
             >Supporters</button>
@@ -146,7 +145,6 @@
           {#if hasPct}
             <button
               role="tab"
-              aria-pressed={supportTab === 'pct'}
               aria-selected={supportTab === 'pct'}
               on:click={() => (supportTab = 'pct')}
             >% of Class</button>
