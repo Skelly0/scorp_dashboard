@@ -148,23 +148,44 @@ def _read_visible_goi_benefits_table(wb):
         return []
 
     rows = []
+    blank_streak = 0
     for row in range(header_row + 1, ws.max_row + 1):
         values = [ws.cell(row=row, column=col).value for col in range(1, 5)]
         if all(v in (None, "") for v in values):
-            if rows:
+            if not rows:
+                continue
+            # Tolerate an isolated separator row between GoI groups; only a
+            # larger gap signals the real end of the table. Breaking on the
+            # first blank row truncated the table whenever the live sheet put
+            # a spacer between groups — defeating the whole point of this
+            # fallback (CLAUDE.md #51).
+            blank_streak += 1
+            if blank_streak >= 2:
                 break
             continue
+        blank_streak = 0
         rows.append(values)
     return rows
 
 
+def _benefit_threshold_key(row):
+    """Sort key: ascending threshold, with missing thresholds sorted last."""
+    val = coerce_number(row[1]) if len(row) > 1 else None
+    return (val is None, val if val is not None else 0.0)
+
+
 def _parse_active_benefits(text, goi_name, benefits_table):
     matches = [r for r in benefits_table if r and r[0] == goi_name]
+    # Benefits unlock in ascending-threshold order, so the workbook's
+    # authoritative "N / M" count means the N lowest-threshold benefits are
+    # active. Sort by threshold first so that rule holds regardless of the
+    # row order the sheet happens to store them in.
+    matches.sort(key=_benefit_threshold_key)
     m = _BENEFIT_COUNT_RE.search(str(text)) if text else None
     unlocked = int(m.group(1)) if m else 0
     total = int(m.group(2)) if m else len(matches)
     items = []
-    for idx, row in enumerate(matches):
+    for row in matches:
         name = row[2] if len(row) > 2 else None
         if name in (None, ""):
             continue
@@ -175,7 +196,9 @@ def _parse_active_benefits(text, goi_name, benefits_table):
             "name": name,
             "description": description,
             "threshold": coerce_number(row[1]) if len(row) > 1 else None,
-            "active": idx < unlocked,
+            # Position among kept items (not raw row index) so a skipped
+            # blank-name row can't shift the active/inactive boundary.
+            "active": len(items) < unlocked,
         })
     unlocked_list = [b["name"] for b in items if b["active"]]
     if total == 0 and items:

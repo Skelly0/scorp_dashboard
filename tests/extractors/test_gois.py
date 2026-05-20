@@ -4,7 +4,11 @@ from __future__ import annotations
 import openpyxl
 from openpyxl.workbook.defined_name import DefinedName
 
-from extractors.gois import extract
+from extractors.gois import (
+    extract,
+    _parse_active_benefits,
+    _read_visible_goi_benefits_table,
+)
 
 
 def test_extract_returns_live_gois_only(wb):
@@ -76,6 +80,46 @@ def test_extract_benefits_falls_back_to_visible_table_when_named_range_stale(wb)
         "Peer Review",
         "Institute Charter",
     ]
+
+
+def test_visible_benefits_table_tolerates_separator_rows():
+    # A single blank spacer row between GoI groups must not truncate the table.
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "GoI Benefits"
+    ws["A1"] = "GOI BENEFITS"
+    for col, header in enumerate(("GoI", "Threshold", "Benefit Name", "Description"), start=1):
+        ws.cell(row=3, column=col, value=header)
+    # rows 4-5: Administration; row 6 blank separator; row 7: Research
+    data = {
+        4: ("Administration", 0.30, "Charter Draft", "Stability +"),
+        5: ("Administration", 0.45, "Civil Service", "Admin capacity +"),
+        # row 6 intentionally blank
+        7: ("Research", 0.30, "Open Lab", "Research yield +"),
+    }
+    for row, (goi, thresh, name, desc) in data.items():
+        ws.cell(row=row, column=1, value=goi)
+        ws.cell(row=row, column=2, value=thresh)
+        ws.cell(row=row, column=3, value=name)
+        ws.cell(row=row, column=4, value=desc)
+
+    rows = _read_visible_goi_benefits_table(wb)
+    assert [r[2] for r in rows] == ["Charter Draft", "Civil Service", "Open Lab"]
+
+
+def test_active_flags_follow_threshold_order_not_row_order():
+    # Rows stored out of threshold order; the lowest-threshold benefits should
+    # still be the active ones, matching the workbook's "2 / 3" count.
+    table = [
+        ["X", 0.60, "High", "d"],
+        ["X", 0.30, "Low", "d"],
+        ["X", 0.45, "Mid", "d"],
+    ]
+    result = _parse_active_benefits("2 / 3 unlocked", "X", table)
+
+    assert [b["name"] for b in result["items"]] == ["Low", "Mid", "High"]
+    assert [b["active"] for b in result["items"]] == [True, True, False]
+    assert result["unlocked_list"] == ["Low", "Mid"]
 
 
 def test_extract_sub_factions_grouped_under_parent(wb):
