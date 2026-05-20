@@ -1,8 +1,8 @@
 {
-  "avg_satisfaction": 0.3599788528118797,
-  "crisis_factor": 0.5697203036,
+  "avg_satisfaction": 0.3932145343915073,
+  "crisis_factor": 0.4135621161,
   "effective_cdr": 0.0115719763,
-  "gov_approval": 0.6248041456,
+  "gov_approval": 0.677754859,
   "housing_util": 1.122582448295137,
   "net_delta_pct": -0.037197629999999836,
   "overton": {
@@ -24,10 +24,10 @@
     },
     {
       "current": 886.691617,
-      "delta": 516.9502806,
+      "delta": 532.3465556,
       "income": 1699.875781,
       "name": "Materials",
-      "upkeep": 1182.9255
+      "upkeep": 1167.529225
     },
     {
       "current": 1708.272482,
@@ -38,10 +38,10 @@
     },
     {
       "current": 1500.361308,
-      "delta": 2189.565645,
+      "delta": 2213.178082,
       "income": 7111.814395,
       "name": "Energy",
-      "upkeep": 4922.24875
+      "upkeep": 4898.6363125
     },
     {
       "current": 89450.0,
@@ -72,8 +72,8 @@
       "upkeep": 676.8108
     }
   ],
-  "stability": 0.4743616778,
-  "synced_at": "2026-05-20T21:26:12Z",
+  "stability": 0.7243628111,
+  "synced_at": "2026-05-20T21:29:47Z",
   "total_deaths": 1162.0,
   "treasury": {
     "delta": 183435.9451,
