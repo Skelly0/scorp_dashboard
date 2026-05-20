@@ -11,6 +11,7 @@
   import MadIndex from '../lib/components/MadIndex.svelte';
   import { WORLDVIEW_AXES as AXES, AXIS_HIGH_LABELS } from '../lib/worldview.js';
   import { partyIdeology } from '../lib/party-ideology.js';
+  import { partyColor } from '../lib/faction-colors.js';
 
   onMount(() => {
     pageTitle.set('Parties');
@@ -66,7 +67,8 @@
         {@const support = supportByParty.get(p.name)}
         {@const supporters = supporterCount(p, support)}
         {@const ideo = partyIdeology(p.stance)}
-        <div class="s-card barred" style="--bar-color: {ideo.color}">
+        {@const color = partyColor(p.name) ?? ideo.color}
+        <div class="s-card barred" style="--bar-color: {color}">
           <div class="s-card-header">
             <h3>{p.name}</h3>
             <span class="party-lean" aria-label={`Ideological lean: ${ideo.leanLabel}`} title="Ideological lean">
@@ -113,7 +115,7 @@
               <RadarChart
                 axes={AXES.map((a) => ({ label: AXIS_HIGH_LABELS[a], value: p.stance?.[a] ?? 0 }))}
                 size={140}
-                accent={ideo.color}
+                accent={color}
               />
             </div>
           </div>
