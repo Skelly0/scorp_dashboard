@@ -132,13 +132,6 @@ SOFT_OPTIONAL_V3_RANGES: list[str] = [
     # Demographics drilldown can show "—" while the GM workbook table is being
     # introduced or adjusted.
     "WeeklyHoursWorkedTable",
-    # v10 — Per-class consumption demand tables. Each covers
-    # Class / Pop / Per-Cap Demand / Total Demand, indexed by class name.
-    # Soft-optional so the per-class Consumption card renders "—" when the
-    # GM hasn't named the range yet (same degradation as WeeklyHoursWorkedTable).
-    "WaterDemandByClass",
-    "EnergyDemandByClass",
-    "MaterialsDemandByClass",
 ]
 
 

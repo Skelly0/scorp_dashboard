@@ -76,10 +76,24 @@ test.describe('Demographics page — workforce rework', () => {
     await expect(page.locator('.bar-row').filter({ hasText: 'Colony-wide Fill' })).toBeVisible();
   });
 
-  test('skill-mismatch callout appears when both shortage and unemployment exist (live data)', async ({ page }) => {
-    // The current snapshot has skill mismatch (Industrial/Service unemployed; Botanists/Engineers short).
-    // If a future snapshot lacks one side, this assertion can flip — adjust then.
-    await expect(page.locator('text=Skill mismatch:')).toBeVisible();
+  test('skill-mismatch callout follows current live data', async ({ page }) => {
+    const mismatch = await page.evaluate(async () => {
+      const response = await fetch('/data/pops.json');
+      const data = await response.json();
+      const classes = data.classes ?? [];
+      const totalUnemployed = classes.reduce((sum, c) => sum + (c.unemployed_count ?? 0), 0);
+      const shortage = classes.reduce(
+        (sum, c) => sum + Math.max(0, (c.workforce?.demand ?? 0) - (c.workforce?.supply ?? 0)),
+        0
+      );
+      return totalUnemployed > 0 && shortage > 0;
+    });
+    const callout = page.getByRole('status', { name: 'Skill mismatch' });
+    if (mismatch) {
+      await expect(callout).toBeVisible();
+    } else {
+      await expect(callout).toHaveCount(0);
+    }
   });
 
   test('band ordering — Pop Dynamics → Class Vitals → Workforce → Housing → Food Security', async ({ page }) => {
@@ -147,13 +161,14 @@ test.describe('Demographics — class drilldown', () => {
 
   test('Consumption card lists Water / Energy / Materials with Per Cap and Total', async ({ page }) => {
     await page.locator('table.tbl tbody tr').first().click();
-    const card = page.locator('.s-card', { hasText: 'Consumption' });
+    const card = page.locator('.s-card').filter({ has: page.locator('h3', { hasText: 'Consumption' }) });
+    await expect(card).toHaveCount(1);
     await expect(card).toBeVisible();
-    await expect(card.locator('h4', { hasText: 'Water' })).toBeVisible();
-    await expect(card.locator('h4', { hasText: 'Energy' })).toBeVisible();
-    await expect(card.locator('h4', { hasText: 'Materials' })).toBeVisible();
+    await expect(card.getByText('Water', { exact: true })).toBeVisible();
+    await expect(card.getByText('Energy', { exact: true })).toBeVisible();
+    await expect(card.getByText('Materials', { exact: true })).toBeVisible();
     // Each resource sub-column shows Per Cap + Total / turn labels.
-    await expect(card.locator('dt', { hasText: 'Per Cap' })).toHaveCount(3);
+    await expect(card.locator('dt', { hasText: 'Per cap' })).toHaveCount(3);
     await expect(card.locator('dt', { hasText: 'Total / turn' })).toHaveCount(3);
   });
 
