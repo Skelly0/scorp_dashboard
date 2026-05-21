@@ -275,6 +275,12 @@
     font-size: 10px;
     white-space: nowrap;
   }
+  /* On active rows the good-soft tint lifts the background enough that
+     --muted drops below WCAG AA (4.16 in dark). Use the higher-contrast
+     dim token there. */
+  .goi-benefit-row.is-active .goi-benefit-threshold {
+    color: var(--fg-dim);
+  }
   .goi-benefit-desc,
   .goi-benefits-empty {
     margin-top: 4px;
