@@ -4,7 +4,7 @@
   import { initTheme } from './lib/theme.js';
   import { meta, metaError, loadMeta } from './lib/stores/meta.js';
   import { loadCatalog } from './lib/stores/catalog.js';
-  import { loadStatus } from './lib/stores/status.js';
+  import { loadSituations } from './lib/stores/situations.js';
   import { crisisBreach } from './lib/stores/crisis.js';
   import { crisisAlert } from './lib/page-title.js';
   import CrisisBanner from './lib/components/CrisisBanner.svelte';
@@ -32,8 +32,8 @@
     if (data) {
       // Catalog is fire-and-forget — categorizer regex is the load-time fallback.
       loadCatalog(data.synced_at);
-      // Load status once globally so the crisis breach treatment is available on every route.
-      loadStatus(data.synced_at);
+      // Load situations once globally so the crisis breach treatment (driven by Situation Load) shows on every route.
+      loadSituations(data.synced_at);
     }
   });
 

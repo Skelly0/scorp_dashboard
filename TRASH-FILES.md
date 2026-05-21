@@ -8,3 +8,4 @@
 - `mobility-cols.png` — moved to TRASH/ — screenshot from `verify_mobility.mjs` showing the populated Mobility columns. Safe to delete.
 - `test-map-icons.mjs` — moved to TRASH/ — one-off Node Playwright script that confirmed improvement icons render in every map mode (terrain, yields, resources, features, improvements) after the all-modes change. Safe to delete.
 - `test-map-icons.py` — moved to TRASH/ — abandoned Python variant of the same check; Python Playwright wasn't installed. Safe to delete.
+- `_tmp_verify_kpi.mjs` — moved to TRASH/ — one-off Node Playwright script that measured Status KPI number fit (scrollWidth vs tile clientWidth) at 1440 and 820 widths to tune the `.kpi-num` `clamp(…, 18cqi, 56px)` container-query coefficient. Safe to delete.

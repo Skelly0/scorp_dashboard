@@ -13,7 +13,7 @@
   import Band from '../lib/components/Band.svelte';
   import KpiBlock from '../lib/components/KpiBlock.svelte';
   import CrisisGauge from '../lib/components/CrisisGauge.svelte';
-  import { crisisBreach } from '../lib/stores/crisis.js';
+  import { crisisBreach, situationLoad } from '../lib/stores/crisis.js';
   import StatTile from '../lib/components/StatTile.svelte';
   import OvertonRow from '../lib/components/OvertonRow.svelte';
   import SituationCard from '../lib/components/SituationCard.svelte';
@@ -123,7 +123,7 @@
         >
           {#if $crisisBreach.breached}
             <span class="crisis-over-tag" aria-hidden="true">OVER 1.0</span>
-            <CrisisGauge factor={$status.crisis_factor} />
+            <CrisisGauge factor={$situationLoad} />
           {/if}
         </KpiBlock>
       </div>

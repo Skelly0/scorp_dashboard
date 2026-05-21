@@ -1,19 +1,19 @@
 import { afterEach, describe, expect, test } from 'vitest';
 import { render } from '@testing-library/svelte';
-import { status } from '../stores/status.js';
+import { situations } from '../stores/situations.js';
 import CrisisFrame from './CrisisFrame.svelte';
 
-afterEach(() => status.set(null));
+afterEach(() => situations.set(null));
 
 describe('CrisisFrame', () => {
-  test('renders nothing when not breached', () => {
-    status.set({ crisis_factor: 0.9 });
+  test('renders nothing when situation load is under 1.0', () => {
+    situations.set({ active: [{ crisis_factor: 0.9 }] });
     const { container } = render(CrisisFrame);
     expect(container.querySelector('.crisis-frame')).toBe(null);
   });
 
   test('renders four edges and an intensity custom property when breached', () => {
-    status.set({ crisis_factor: 1.42 });
+    situations.set({ active: [{ crisis_factor: 0.9 }, { crisis_factor: 0.52 }] });
     const { container } = render(CrisisFrame);
     const frame = container.querySelector('.crisis-frame');
     expect(frame).not.toBe(null);

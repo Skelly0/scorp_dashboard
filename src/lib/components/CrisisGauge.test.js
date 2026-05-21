@@ -14,6 +14,8 @@ describe('CrisisGauge', () => {
     const surplusStyle = surplus.getAttribute('style').replace(/\s/g, '');
     expect(surplusStyle).toMatch(/width:(?:12|11\.99)/);
     expect(container.querySelector('.crisis-gauge-cap .sp').textContent).toBe('surplus +0.18');
+    expect(container.querySelector('.crisis-gauge-label').textContent).toBe('Situation Load');
+    expect(container.querySelector('.crisis-gauge-val').textContent).toBe('1.18');
   });
 
   test('under 1.0 shows no surplus width', () => {

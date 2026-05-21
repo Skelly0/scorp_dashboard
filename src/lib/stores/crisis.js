@@ -1,9 +1,12 @@
 import { derived } from 'svelte/store';
-import { status } from './status.js';
-import { computeCrisisBreach } from '../crisis-breach.js';
+import { situations } from './situations.js';
+import { computeCrisisBreach, sumSituationLoad } from '../crisis-breach.js';
 
-// Colony-wide breach state, available app-wide. Derived from the shared `status` store,
-// which App.svelte loads once globally so every route sees it.
-export const crisisBreach = derived(status, ($status) =>
-  computeCrisisBreach($status?.crisis_factor ?? null),
+// Colony-wide "Situation Load" = sum of active situation crisis contributions.
+// This is the number that can exceed 1.0 (capacity) and drive the breach state —
+// NOT status.crisis_factor (the "Crisis Pressure" scalar, which is typically < 1).
+export const situationLoad = derived(situations, ($situations) =>
+  $situations ? sumSituationLoad($situations.active) : null,
 );
+
+export const crisisBreach = derived(situationLoad, ($load) => computeCrisisBreach($load));
