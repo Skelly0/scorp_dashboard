@@ -31,20 +31,20 @@
       "name": "Memorialization of Earth Act"
     }
   ],
-  "crisis_factor": 0.9306144763,
+  "crisis_factor": 0.9351341327,
   "demographics": {
-    "avg_satisfaction": 0.2575677329945787,
+    "avg_satisfaction": 0.24392256523347847,
     "base_growth_rate": 0.035,
-    "effective_cdr": 0.01157797196,
+    "effective_cdr": 0.01483614479,
     "effective_growth_rate": 0.011200000000000002,
     "housing_capacity": 89450.0,
     "housing_util": 1.122001117942985,
-    "net_delta_pct": -0.037797195999999915,
+    "net_delta_pct": -0.3636144789999999,
     "sat_elasticity": 0.32,
-    "total_births": 2316.0,
-    "total_deaths": 1162.0
+    "total_births": 1870.0,
+    "total_deaths": 1489.0
   },
-  "gov_approval": 0.4934733517,
+  "gov_approval": 0.4864232866,
   "overton": {
     "authority": 3.5,
     "corporate": 4.5,
@@ -57,29 +57,29 @@
   "resources": [
     {
       "current": 804.9005384,
-      "delta": 2.10669884,
-      "income": 1287.324699,
+      "delta": -242.8933012,
+      "income": 1042.324699,
       "name": "Food",
       "upkeep": 1285.218
     },
     {
       "current": 886.691617,
-      "delta": 516.2678269,
-      "income": 1699.028827,
+      "delta": 211.2678269,
+      "income": 1394.028827,
       "name": "Materials",
       "upkeep": 1182.761
     },
     {
       "current": 1708.272482,
-      "delta": 292.7811505,
-      "income": 1217.781151,
+      "delta": -42.21884945,
+      "income": 882.7811505,
       "name": "Ore",
       "upkeep": 925.0
     },
     {
       "current": 1500.361308,
-      "delta": 2209.607307,
-      "income": 7108.006119,
+      "delta": 304.607307,
+      "income": 5203.006119,
       "name": "Energy",
       "upkeep": 4898.3988125
     },
@@ -92,8 +92,8 @@
     },
     {
       "current": 165330.324,
-      "delta": 183233.054,
-      "income": 314083.054,
+      "delta": 142883.054,
+      "income": 273733.054,
       "name": "Money",
       "upkeep": 130850.0
     },
@@ -106,15 +106,15 @@
     },
     {
       "current": 380.5203704,
-      "delta": 34.13172241,
-      "income": 710.8851224,
+      "delta": -140.8682776,
+      "income": 535.8851224,
       "name": "Water",
       "upkeep": 676.7534
     }
   ],
-  "stability": 0.4136877179,
+  "stability": 0.3820752057,
   "treasury": {
-    "delta": 183233.054,
+    "delta": 142883.054,
     "money": 260061.0703
   },
   "year": 2076
