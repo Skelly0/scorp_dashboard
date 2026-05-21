@@ -12,6 +12,8 @@
   import { pageTitle } from '../lib/page-title.js';
   import Band from '../lib/components/Band.svelte';
   import KpiBlock from '../lib/components/KpiBlock.svelte';
+  import CrisisGauge from '../lib/components/CrisisGauge.svelte';
+  import { crisisBreach } from '../lib/stores/crisis.js';
   import StatTile from '../lib/components/StatTile.svelte';
   import OvertonRow from '../lib/components/OvertonRow.svelte';
   import SituationCard from '../lib/components/SituationCard.svelte';
@@ -118,7 +120,12 @@
           value={formatStatusPercent($status.crisis_factor)}
           tone={statusMetricTone($status.crisis_factor, CRISIS_TONE_OPTIONS)}
           history={$crisisFactorHistory.length >= 2 ? $crisisFactorHistory : null}
-        />
+        >
+          {#if $crisisBreach.breached}
+            <span class="crisis-over-tag" aria-hidden="true">OVER 1.0</span>
+            <CrisisGauge factor={$status.crisis_factor} />
+          {/if}
+        </KpiBlock>
       </div>
       <div class="col-span-6 md:col-span-2">
         <KpiBlock

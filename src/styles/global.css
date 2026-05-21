@@ -2136,3 +2136,122 @@ table.tbl th.num {
     grid-template-columns: minmax(54px, 1fr);
   }
 }
+
+/* === Crisis breach visual state (crisis_factor > 1.0) ====================== */
+
+/* Hazard banner — in-flow, top of every page when breached */
+.crisis-banner {
+  border: 2px solid var(--crit);
+  background: var(--crit-soft);
+  margin-bottom: 18px;
+  position: relative;
+  overflow: hidden;
+  animation: crisis-pulse 1.7s ease-in-out infinite;
+}
+@keyframes crisis-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--crit) 0%, transparent); }
+  50%      { box-shadow: 0 0 0 5px color-mix(in srgb, var(--crit) 22%, transparent); }
+}
+/* Tiled chevron: explicit background-size + one-tile shift => seamless march (no jump) */
+.crisis-banner .hz {
+  height: 10px;
+  background-image: linear-gradient(45deg,
+    var(--crit) 25%, transparent 25%, transparent 50%,
+    var(--crit) 50%, var(--crit) 75%, transparent 75%);
+  background-size: 24px 24px;
+}
+.crisis-banner .hz.t { animation: crisis-march 0.9s linear infinite; }
+.crisis-banner .hz.b { animation: crisis-march-rev 0.9s linear infinite; }
+@keyframes crisis-march     { to { background-position: 24px 0; } }
+@keyframes crisis-march-rev { to { background-position: -24px 0; } }
+.crisis-banner-mid { display: flex; align-items: center; gap: 14px; padding: 11px 16px; }
+.crisis-banner .sig { font-size: 22px; color: var(--crit); animation: crisis-blink 1.05s steps(1) infinite; }
+@keyframes crisis-blink { 50% { opacity: 0.2; } }
+.crisis-banner .htxt {
+  font-size: 13px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--crit);
+}
+.crisis-banner .hsub {
+  font-size: 10px; letter-spacing: 0.1em; color: var(--fg-dim);
+  margin-left: auto; text-transform: uppercase;
+}
+
+/* Fixed perimeter + atmosphere overlay — every page when breached */
+.crisis-frame {
+  position: fixed; inset: 0; z-index: 40; pointer-events: none;
+}
+.crisis-frame .crisis-vignette {
+  position: absolute; inset: 0;
+  /* center stays transparent; edge alpha capped at ~0.45 for legibility, scaled by intensity */
+  background: radial-gradient(125% 95% at 50% 48%, transparent 38%,
+    color-mix(in srgb, var(--crit) calc(8% * var(--crisis-intensity, 1)), transparent) 70%,
+    color-mix(in srgb, var(--crit) calc(45% * var(--crisis-intensity, 1)), transparent) 100%);
+  animation: crisis-breathe 2.6s ease-in-out infinite;
+}
+@keyframes crisis-breathe { 0%, 100% { opacity: 0.72; } 50% { opacity: 1; } }
+.crisis-frame .crisis-scan {
+  position: absolute; inset: 0; mix-blend-mode: multiply;
+  background: repeating-linear-gradient(0deg, transparent 0 3px,
+    color-mix(in srgb, var(--crit) 7%, transparent) 3px 4px);
+}
+.crisis-frame .crisis-edge { position: absolute; background-repeat: repeat; }
+.crisis-frame .crisis-edge.top {
+  top: 0; left: 0; right: 0; height: 6px;
+  background: repeating-linear-gradient(90deg, var(--crit) 0 16px, transparent 16px 32px);
+  animation: crisis-mx 1.05s linear infinite;
+}
+.crisis-frame .crisis-edge.bottom {
+  bottom: 0; left: 0; right: 0; height: 6px;
+  background: repeating-linear-gradient(90deg, var(--crit) 0 16px, transparent 16px 32px);
+  animation: crisis-mxr 1.05s linear infinite;
+}
+.crisis-frame .crisis-edge.right {
+  top: 0; bottom: 0; right: 0; width: 6px;
+  background: repeating-linear-gradient(0deg, var(--crit) 0 16px, transparent 16px 32px);
+  animation: crisis-my 1.05s linear infinite;
+}
+.crisis-frame .crisis-edge.left {
+  top: 0; bottom: 0; left: 0; width: 6px;
+  background: repeating-linear-gradient(0deg, var(--crit) 0 16px, transparent 16px 32px);
+  animation: crisis-myr 1.05s linear infinite;
+}
+@keyframes crisis-mx  { to { background-position: 32px 0; } }   /* top: flows right  */
+@keyframes crisis-my  { to { background-position: 0 32px; } }   /* right: flows down  */
+@keyframes crisis-mxr { to { background-position: -32px 0; } }  /* bottom: flows left */
+@keyframes crisis-myr { to { background-position: 0 -32px; } }  /* left: flows up     */
+
+/* Status Crisis KPI: OVER 1.0 tag (anchored to the relative .kpi-block) + surplus gauge */
+.crisis-over-tag {
+  position: absolute; top: 12px; right: 14px;
+  font-size: 9px; font-weight: 800; letter-spacing: 0.12em;
+  color: var(--crit); border: 2px solid var(--crit); padding: 1px 6px;
+  animation: crisis-blink 1.05s steps(1) infinite;
+}
+.crisis-gauge {
+  height: 13px; background: var(--bg-2); border: 2px solid var(--border);
+  position: relative; overflow: visible; margin-top: 12px;
+}
+.crisis-gauge .solid { position: absolute; left: 0; top: 0; bottom: 0; background: var(--crit); }
+.crisis-gauge .surplus {
+  position: absolute; top: 0; bottom: 0;
+  background: repeating-linear-gradient(45deg, var(--crit) 0 5px,
+    color-mix(in srgb, var(--crit) 45%, #000) 5px 10px);
+}
+.crisis-gauge .tick { position: absolute; top: -5px; bottom: -5px; width: 2px; background: var(--fg); }
+.crisis-gauge-cap {
+  font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin-top: 9px;
+}
+.crisis-gauge-cap .sp { color: var(--crit); font-weight: 800; }
+
+/* Accessibility: honour reduced-motion — keep the signal, drop all animation */
+@media (prefers-reduced-motion: reduce) {
+  .crisis-banner,
+  .crisis-banner .hz.t,
+  .crisis-banner .hz.b,
+  .crisis-banner .sig,
+  .crisis-frame .crisis-vignette,
+  .crisis-frame .crisis-edge,
+  .crisis-over-tag {
+    animation: none !important;
+  }
+}

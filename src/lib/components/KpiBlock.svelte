@@ -56,4 +56,5 @@
       <Sparkline data={history} color={resolvedSparkColor} />
     {/if}
   </div>
+  <slot />
 </div>
