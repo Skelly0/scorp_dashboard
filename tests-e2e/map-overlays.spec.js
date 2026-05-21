@@ -141,18 +141,18 @@ test.describe('Improvement category mapping', () => {
     // Click the Improvements tab so the roster is visible
     await page.getByRole('button', { name: 'Improvements' }).click();
 
-    // Click any leaf row that mentions "Solar" — should resolve to ☀ (energy)
+    // Click any leaf row that mentions "Solar" — should resolve to the energy
+    // category icon (✦ per src/lib/improvement-categories.js).
     const solarRow = page.locator('.roster-row', { hasText: /Solar/ }).first();
     if (await solarRow.count()) {
       await solarRow.click();
-      // Inspector should now show the ☀ icon
-      await expect(page.locator('.kv-section h4 span').first()).toHaveText('☀');
+      await expect(page.locator('.kv-section h4 span').first()).toHaveText('✦');
     }
-    // Click a leaf with "Mining" → ⛏
+    // Click a leaf with "Mining" → mining category icon (▲).
     const miningRow = page.locator('.roster-row', { hasText: /Mining|Extractor|Extraction/ }).first();
     if (await miningRow.count()) {
       await miningRow.click();
-      await expect(page.locator('.kv-section h4 span').first()).toHaveText('⛏');
+      await expect(page.locator('.kv-section h4 span').first()).toHaveText('▲');
     }
   });
 });

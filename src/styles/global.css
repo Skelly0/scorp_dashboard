@@ -1036,9 +1036,21 @@ table.tbl th.num {
     overflow-x: auto;
     scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
-    /* Right-edge fade hints there are more tabs to swipe to. */
+    /* Right-edge fade hints there are more tabs to swipe to.
+       NOTE: mask-image makes .layer-tabs a stacking context, which would trap
+       the position:fixed .layer-menu-popup inside it — the popup could then no
+       longer paint above the static nav / page content, so taps on its items
+       got stolen by whatever overlapped them. The popup only exists while open,
+       so we drop the mask exactly then (see the :has rule below); the fade hint
+       is only meaningful while browsing the tab strip anyway. */
     -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 24px), transparent 100%);
             mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 24px), transparent 100%);
+  }
+  /* While a LayerMenu popup is open, remove the mask so .layer-tabs is no longer
+     a stacking context and the fixed popup (z-index:50) paints above the nav. */
+  .layer-tabs:has(.layer-menu-popup) {
+    -webkit-mask-image: none;
+            mask-image: none;
   }
   .layer-tabs > button,
   .layer-tabs .layer-menu,
@@ -1062,12 +1074,16 @@ table.tbl th.num {
   }
   .layer-menu-popup {
     position: fixed;
-    top: max(72px, env(safe-area-inset-top));
+    /* Open below the mobile nav (≈112px tall, wraps to ~2 rows at phone widths)
+       rather than the old 72px, which overlapped the nav. The popup now also
+       paints above the nav (see the .layer-tabs :has mask reset), so this is a
+       visual choice, not a stacking workaround. */
+    top: max(120px, env(safe-area-inset-top));
     left: max(12px, env(safe-area-inset-left));
     right: max(12px, env(safe-area-inset-right));
     z-index: 50;
     min-width: 0;
-    max-height: min(420px, calc(100vh - 112px));
+    max-height: min(420px, calc(100vh - 132px));
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
