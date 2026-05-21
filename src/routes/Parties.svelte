@@ -10,6 +10,8 @@
   import Heatmap from '../lib/components/Heatmap.svelte';
   import MadIndex from '../lib/components/MadIndex.svelte';
   import { WORLDVIEW_AXES as AXES, AXIS_HIGH_LABELS } from '../lib/worldview.js';
+  import { partyIdeology } from '../lib/party-ideology.js';
+  import { partyColor } from '../lib/faction-colors.js';
 
   onMount(() => {
     pageTitle.set('Parties');
@@ -64,9 +66,15 @@
       {#each $parties.parties as p}
         {@const support = supportByParty.get(p.name)}
         {@const supporters = supporterCount(p, support)}
-        <div class="s-card">
+        {@const ideo = partyIdeology(p.stance)}
+        {@const color = partyColor(p.name) ?? ideo.color}
+        <div class="s-card barred" style="--bar-color: {color}">
           <div class="s-card-header">
             <h3>{p.name}</h3>
+            <span class="party-lean" aria-label={`Ideological lean: ${ideo.leanLabel}`} title="Ideological lean">
+              <span class="party-lean-swatch" aria-hidden="true"></span>
+              {ideo.leanLabel}
+            </span>
           </div>
           <div class="s-card-pad party-card-body">
             <div class="flex flex-col gap-2">
@@ -107,6 +115,7 @@
               <RadarChart
                 axes={AXES.map((a) => ({ label: AXIS_HIGH_LABELS[a], value: p.stance?.[a] ?? 0 }))}
                 size={140}
+                accent={color}
               />
             </div>
           </div>
@@ -134,18 +143,16 @@
         meta={supportTab === 'pct' ? '% of class' : 'people'}
       />
       <div class="s-card">
-        <div class="layer-tabs" role="tablist" aria-label="Class × party view">
+        <div class="layer-tabs" role="group" aria-label="Class × party view">
           {#if hasPop || hasFallbackPop}
             <button
-              role="tab"
-              aria-selected={supportTab === 'pop'}
+              aria-pressed={supportTab === 'pop'}
               on:click={() => (supportTab = 'pop')}
             >Supporters</button>
           {/if}
           {#if hasPct}
             <button
-              role="tab"
-              aria-selected={supportTab === 'pct'}
+              aria-pressed={supportTab === 'pct'}
               on:click={() => (supportTab = 'pct')}
             >% of Class</button>
           {/if}
@@ -186,6 +193,23 @@
 </section>
 
 <style>
+  .party-lean {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  /* Swatch inherits the card's --bar-color so the chip matches the left bar. */
+  .party-lean-swatch {
+    display: inline-block;
+    width: 4px;
+    height: 11px;
+    background: var(--bar-color, var(--accent));
+  }
   .party-card-body { display: grid; grid-template-columns: minmax(0, 1fr) 140px; gap: 12px; }
   .party-stat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; }
   .party-support { margin-top: 4px; border-top: 1px dashed var(--border-soft); padding-top: 8px; }
