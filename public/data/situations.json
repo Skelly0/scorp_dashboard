@@ -24,6 +24,11 @@
       "crisis_factor": -0.05,
       "description": "Week of Mourning and annual Remembrance Day help people come to terms.",
       "name": "Memorialization of Earth Act"
+    },
+    {
+      "crisis_factor": 0.5,
+      "description": "Tonight we sing of Ayer.",
+      "name": "Blood on the Dance Floor"
     }
   ],
   "ended": [],
