@@ -31,6 +31,19 @@ export const GOI_COLORS = {
   Technocracy: '#5ec3ff',
 };
 
+// Party accent colours pinned to each party's Discord role colour (cosmetic —
+// used for the card left-bar, lean-chip swatch, and radar tint). Keyed by the
+// party name exactly as it appears in parties.json. Parties with no Discord
+// role (e.g. "Independent") fall back to their ideology-derived hue.
+export const PARTY_COLORS = {
+  'Selenite Rose Front': '#e74c3c',
+  'Market Interests Group': '#f1c40f',
+  'Developmental League': '#3498db',
+  'Lunar Survival League': '#95a5a6',
+  'Lunar Solidarity Party': '#e91e63',
+  'Novus Chrysalis Collective': '#2ecc71',
+};
+
 export const CONTROL_COLORS = {
   Administration: '#38d39f',
   Corporate: '#ffd84d',
@@ -53,6 +66,10 @@ export function classColor(name) {
 
 export function goiColor(name) {
   return GOI_COLORS[name] ?? 'var(--accent)';
+}
+
+export function partyColor(name) {
+  return PARTY_COLORS[name] ?? null;
 }
 
 export function resolveControlColor(control, palettes = {}) {
