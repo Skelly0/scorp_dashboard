@@ -13,45 +13,44 @@
   export let accent = 'var(--accent)';
 
   const LABEL_PAD = 4;
-  const SIDE_LABEL_THRESHOLD = 3;
-
-  function labelPlacement(point) {
-    if (point.x > cx + SIDE_LABEL_THRESHOLD) {
-      return { x: Math.min(point.x, size - LABEL_PAD), anchor: 'end' };
-    }
-    if (point.x < cx - SIDE_LABEL_THRESHOLD) {
-      return { x: Math.max(point.x, LABEL_PAD), anchor: 'start' };
-    }
-    return { x: point.x, anchor: 'middle' };
-  }
+  const CENTER_BAND = 0.3; // |cos| below this ⇒ a top/bottom (not side) axis
 
   $: cx = size / 2;
   $: cy = size / 2;
-  // Spacing scales with size so compact (140) and large (200) charts stay
-  // balanced: the polygon is inset enough to leave a clear ring before the
-  // labels, which sit just inside the edge with a background halo for legibility.
-  $: labelFont = Math.max(8, Math.min(10, size * 0.062));
+  // Long single-word axis labels can't wrap, so a square box forces the side
+  // labels to overlap the polygon. Instead we add vertical gutters (taller SVG,
+  // same width ⇒ font stays crisp): the top/bottom labels live in those
+  // gutters, the diagonal labels are lifted to the corners where the polygon is
+  // narrow, and nothing sits beside the polygon's wide middle. The result is a
+  // clean grid of labels around an unobstructed chart.
+  $: labelFont = Math.max(8, Math.min(10.5, size * 0.064));
   $: haloWidth = labelFont * 0.36;
-  $: inset = Math.max(20, size * 0.15);
+  $: inset = Math.max(14, size * 0.13);
   $: radius = size / 2 - inset;
-  $: labelGap = Math.max(11, size * 0.075);
-  $: labelRadius = radius + labelGap;
+  $: vGutter = labelFont * 1.7;
+  $: vbY = -vGutter;
+  $: vbH = size + 2 * vGutter;
   $: values = axes.map((a) => a.value);
   $: dataPoints = polarPoints(values, { cx, cy, radius, scaleMin, scaleMax });
   $: pathD = dataPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ') + ' Z';
   $: gridLevels = [0.25, 0.5, 0.75, 1].map((f) => polarPoints(axes.map(() => scaleMin + (scaleMax - scaleMin) * f), { cx, cy, radius, scaleMin, scaleMax }));
   $: spokes = polarPoints(axes.map(() => scaleMax), { cx, cy, radius, scaleMin, scaleMax });
-  $: labelPoints = polarPoints(axes.map(() => scaleMax), { cx, cy, radius: labelRadius, scaleMin, scaleMax });
   $: labels = axes.map((axis, i) => {
-    const point = labelPoints[i];
-    const place = labelPlacement(point);
-    // Diagonal (side) labels nudge vertically outward so they clear the
-    // polygon's vertices; top/bottom centre labels stay put. Clamp keeps every
-    // label fully inside the viewBox.
-    const nudge = place.anchor === 'middle' ? 0 : Math.sign(point.y - cy) * Math.max(3, size * 0.02);
-    const halfText = labelFont * 0.6;
-    const y = Math.max(halfText + 1, Math.min(size - halfText - 1, point.y + nudge));
-    return { ...axis, x: place.x, anchor: place.anchor, y };
+    const angle = (i / axes.length) * 2 * Math.PI - Math.PI / 2;
+    const c = Math.cos(angle);
+    const s = Math.sin(angle);
+    if (Math.abs(c) < CENTER_BAND) {
+      // Top / bottom axis — parked in the vertical gutter, clear of the plot.
+      return { ...axis, x: cx, anchor: 'middle', y: s < 0 ? -vGutter * 0.55 : size + vGutter * 0.55 };
+    }
+    // Side axis — pinned to the horizontal edge and lifted toward its corner,
+    // where the polygon tapers to a vertex so the inward-reading word clears it.
+    return {
+      ...axis,
+      x: c > 0 ? size - LABEL_PAD : LABEL_PAD,
+      anchor: c > 0 ? 'end' : 'start',
+      y: cy + Math.sign(s) * radius * 0.92,
+    };
   });
 
   $: overlayValid = (() => {
@@ -79,7 +78,7 @@
     : null;
 </script>
 
-<svg width={size} height={size} viewBox="0 0 {size} {size}" class="font-mono">
+<svg width={size} height={vbH} viewBox="0 {vbY} {size} {vbH}" class="font-mono">
   <!-- grid rings -->
   {#each gridLevels as ring}
     <polygon
