@@ -19,6 +19,11 @@ export function computeCrisisBreach(factor) {
   return { factor: cf, breached, surplus, intensity };
 }
 
+export function sumSituationLoad(activeSituations) {
+  if (!Array.isArray(activeSituations)) return null;
+  return activeSituations.reduce((acc, s) => acc + (Number(s?.crisis_factor) || 0), 0);
+}
+
 export function crisisGaugeGeometry(factor) {
   const cf = toFinite(factor) ?? 0;
   const max = CRISIS_GAUGE_MAX;

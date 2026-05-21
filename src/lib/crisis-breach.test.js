@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { computeCrisisBreach, crisisGaugeGeometry, CRISIS_GAUGE_MAX, CRISIS_INTENSITY_FLOOR, CRISIS_INTENSITY_RAMP } from './crisis-breach.js';
+import { computeCrisisBreach, crisisGaugeGeometry, sumSituationLoad, CRISIS_GAUGE_MAX, CRISIS_INTENSITY_FLOOR, CRISIS_INTENSITY_RAMP } from './crisis-breach.js';
 
 describe('computeCrisisBreach', () => {
   test('null factor is not breached', () => {
@@ -50,5 +50,23 @@ describe('crisisGaugeGeometry', () => {
     const g = crisisGaugeGeometry(0.6);
     expect(g.solidPct).toBeCloseTo((0.6 / 1.5) * 100, 5);
     expect(g.surplusPct).toBe(0);
+  });
+});
+
+describe('sumSituationLoad', () => {
+  test('non-array returns null', () => {
+    expect(sumSituationLoad(null)).toBe(null);
+    expect(sumSituationLoad(undefined)).toBe(null);
+  });
+  test('empty array sums to 0', () => {
+    expect(sumSituationLoad([])).toBe(0);
+  });
+  test('sums crisis_factor across active situations (incl. negatives)', () => {
+    expect(sumSituationLoad([{ crisis_factor: 0.65 }, { crisis_factor: 0.5 }, { crisis_factor: -0.05 }]))
+      .toBeCloseTo(1.10, 5);
+  });
+  test('ignores non-numeric contributions', () => {
+    expect(sumSituationLoad([{ crisis_factor: 0.7 }, { crisis_factor: null }, { foo: 1 }]))
+      .toBeCloseTo(0.7, 5);
   });
 });

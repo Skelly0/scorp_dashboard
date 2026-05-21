@@ -209,6 +209,9 @@ body {
   position: relative;
   min-height: 130px;
   height: 100%;
+  /* Each tile is its own query container so .kpi-num can scale to the tile's
+     own inline size (cqi) instead of overflowing on narrow md:col-span-2 tiles. */
+  container-type: inline-size;
 }
 .kpi-block .kpi-label {
   font-size: 10px;
@@ -217,7 +220,11 @@ body {
   text-transform: uppercase;
 }
 .kpi-block .kpi-num {
-  font-size: 56px;
+  /* Container-query auto-fit: the number scales to its own tile's inline size,
+     so 7-digit comma-grouped values (192,000 / ₡ 1,888,000) fit narrow tiles
+     while wide tiles (Money md:col-span-4) and short values (41%) still reach
+     56px. Do NOT add overflow-wrap here (gotcha #49) — mid-digit wrapping. */
+  font-size: clamp(1.25rem, 18cqi, 56px);
   font-weight: 800;
   line-height: 1;
   letter-spacing: 0;
@@ -2226,9 +2233,19 @@ table.tbl th.num {
   color: var(--crit); border: 2px solid var(--crit); padding: 1px 6px;
   animation: crisis-blink 1.05s steps(1) infinite;
 }
+.crisis-gauge-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-top: 12px; gap: 8px;
+}
+.crisis-gauge-label {
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 800;
+}
+.crisis-gauge-val {
+  font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--crit);
+}
 .crisis-gauge {
   height: 13px; background: var(--bg-2); border: 2px solid var(--border);
-  position: relative; overflow: visible; margin-top: 12px;
+  position: relative; overflow: visible;
 }
 .crisis-gauge .solid { position: absolute; left: 0; top: 0; bottom: 0; background: var(--crit); }
 .crisis-gauge .surplus {

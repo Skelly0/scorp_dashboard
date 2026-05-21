@@ -6,6 +6,7 @@
   import Band from '../lib/components/Band.svelte';
   import SituationCard from '../lib/components/SituationCard.svelte';
   import TierLadder from '../lib/components/TierLadder.svelte';
+  import { sumSituationLoad } from '../lib/crisis-breach.js';
 
   let showEnded = false;
 
@@ -20,9 +21,7 @@
     $situations.stability_modifiers.length === 0 &&
     $situations.tier_ladder.length === 0;
 
-  $: totalLoad = $situations
-    ? $situations.active.reduce((a, s) => a + (Number(s.crisis_factor) || 0), 0)
-    : 0;
+  $: totalLoad = $situations ? (sumSituationLoad($situations.active) ?? 0) : 0;
   $: ciSeverity = totalLoad >= 0.6 ? 'crit' : totalLoad >= 0.3 ? 'warn' : 'low';
   $: ciTier =
     totalLoad >= 0.8 ? 'T5 · Collapse'
