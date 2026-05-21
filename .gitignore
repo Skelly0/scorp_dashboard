@@ -21,6 +21,9 @@ TRASH/
 # Claude Code worktrees + local config
 .claude/
 
+# Superpowers brainstorm visual companion (ephemeral mockups)
+.superpowers/
+
 # Editor
 .vscode/
 .idea/

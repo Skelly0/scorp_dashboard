@@ -4,6 +4,11 @@
   import { initTheme } from './lib/theme.js';
   import { meta, metaError, loadMeta } from './lib/stores/meta.js';
   import { loadCatalog } from './lib/stores/catalog.js';
+  import { loadStatus } from './lib/stores/status.js';
+  import { crisisBreach } from './lib/stores/crisis.js';
+  import { crisisAlert } from './lib/page-title.js';
+  import CrisisBanner from './lib/components/CrisisBanner.svelte';
+  import CrisisFrame from './lib/components/CrisisFrame.svelte';
   import NavBar from './lib/components/NavBar.svelte';
   import MaintenanceBanner from './lib/components/MaintenanceBanner.svelte';
   import MoonLoader from './lib/components/MoonLoader.svelte';
@@ -27,8 +32,13 @@
     if (data) {
       // Catalog is fire-and-forget — categorizer regex is the load-time fallback.
       loadCatalog(data.synced_at);
+      // Load status once globally so the crisis breach treatment is available on every route.
+      loadStatus(data.synced_at);
     }
   });
+
+  // Tab title + favicon alert mirror the colony-wide breach state.
+  $: crisisAlert.set($crisisBreach.breached);
 
   const routes = {
     '/': Status,
@@ -58,7 +68,9 @@
       </div>
     {:else}
       <NavBar />
+      <CrisisBanner />
       <Router {routes} />
     {/if}
   </div>
+  <CrisisFrame />
 </div>
