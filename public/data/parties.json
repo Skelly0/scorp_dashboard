@@ -223,7 +223,7 @@
         0.1937072167
       ],
       "establishment": 0.8,
-      "estimated_support": 12777.0,
+      "estimated_support": 12748.0,
       "founded": true,
       "goi_compat": [
         0.2926048856,
@@ -242,7 +242,7 @@
         "materialist": 3.0,
         "technocratic": 3.0
       },
-      "vote_share": 0.1273078724,
+      "vote_share": 0.1270189213,
       "weighted_stance": {
         "authority": 3.0,
         "corporate": 4.0,
@@ -267,7 +267,7 @@
         0.2237382585
       ],
       "establishment": 0.6,
-      "estimated_support": 10411.0,
+      "estimated_support": 10548.0,
       "founded": true,
       "goi_compat": [
         0.5827851065,
@@ -286,7 +286,7 @@
         "materialist": 4.0,
         "technocratic": 3.5
       },
-      "vote_share": 0.1037334476,
+      "vote_share": 0.1050984925,
       "weighted_stance": {
         "authority": 3.0,
         "corporate": 3.5,
@@ -311,7 +311,7 @@
         0.2930265759
       ],
       "establishment": 0.6,
-      "estimated_support": 10651.0,
+      "estimated_support": 10642.0,
       "founded": true,
       "goi_compat": [
         0.3574830733,
@@ -330,7 +330,7 @@
         "materialist": 3.0,
         "technocratic": 4.0
       },
-      "vote_share": 0.1061247671,
+      "vote_share": 0.1060350926,
       "weighted_stance": {
         "authority": 4.0,
         "corporate": 2.0,
@@ -355,7 +355,7 @@
         0.6471950542
       ],
       "establishment": 0.6,
-      "estimated_support": 15542.0,
+      "estimated_support": 15533.0,
       "founded": true,
       "goi_compat": [
         0.2859446946,
@@ -374,7 +374,7 @@
         "materialist": 2.0,
         "technocratic": 5.0
       },
-      "vote_share": 0.1548578659,
+      "vote_share": 0.1547681915,
       "weighted_stance": {
         "authority": 4.0,
         "corporate": 5.5,
@@ -399,7 +399,7 @@
         0.2656439047
       ],
       "establishment": 0.6,
-      "estimated_support": 10806.0,
+      "estimated_support": 10796.0,
       "founded": true,
       "goi_compat": [
         0.4551879828,
@@ -418,7 +418,7 @@
         "materialist": 3.0,
         "technocratic": 2.5
       },
-      "vote_share": 0.1076691609,
+      "vote_share": 0.1075695226,
       "weighted_stance": {
         "authority": 5.0,
         "corporate": 5.0,
@@ -443,7 +443,7 @@
         0.2891152954
       ],
       "establishment": 0.6,
-      "estimated_support": 14474.0,
+      "estimated_support": 14409.0,
       "founded": true,
       "goi_compat": [
         0.2820939381,
@@ -462,7 +462,7 @@
         "materialist": 5.0,
         "technocratic": 5.0
       },
-      "vote_share": 0.1442164941,
+      "vote_share": 0.1435688451,
       "weighted_stance": {
         "authority": 5.0,
         "corporate": 7.0,
@@ -487,7 +487,7 @@
         0.8006760644
       ],
       "establishment": 0.6,
-      "estimated_support": 16755.0,
+      "estimated_support": 16746.0,
       "founded": true,
       "goi_compat": [
         0.5521793464,
@@ -506,7 +506,7 @@
         "materialist": 3.5,
         "technocratic": 5.0
       },
-      "vote_share": 0.1669439933,
+      "vote_share": 0.1668543188,
       "weighted_stance": {
         "authority": 3.5,
         "corporate": 5.0,
@@ -531,7 +531,7 @@
         0.16914093
       ],
       "establishment": 0.6,
-      "estimated_support": 8947.0,
+      "estimated_support": 8941.0,
       "founded": true,
       "goi_compat": [
         0.2945626955,
@@ -550,7 +550,7 @@
         "materialist": 3.0,
         "technocratic": 2.5
       },
-      "vote_share": 0.08914639857,
+      "vote_share": 0.08908661559,
       "weighted_stance": {
         "authority": 3.0,
         "corporate": 4.0,
@@ -627,14 +627,14 @@
         0.2686360357
       ],
       [
-        0.1731567276,
-        0.1102925013,
-        0.09938665745,
-        0.1019938869,
-        0.07596024982,
-        0.2522363651,
-        0.1175745428,
-        0.06939906901
+        0.1671496335,
+        0.138325607,
+        0.09738429275,
+        0.1000868729,
+        0.07405323582,
+        0.2388872671,
+        0.1156675288,
+        0.06844556201
       ],
       [
         0.1244456086,
@@ -764,14 +764,14 @@
         2635.0
       ],
       [
-        847.0,
-        540.0,
-        486.0,
-        499.0,
-        372.0,
-        1234.0,
-        575.0,
-        341.0
+        818.0,
+        677.0,
+        477.0,
+        490.0,
+        362.0,
+        1169.0,
+        566.0,
+        335.0
       ],
       [
         473.0,
