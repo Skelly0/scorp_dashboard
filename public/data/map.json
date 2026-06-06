@@ -5,16 +5,7 @@
     "workforce": true
   },
   "height": 40,
-  "missing_sheets": [
-    {
-      "kind": "missing_sheet",
-      "sheet": "Workforce Expropriated Bourgeoisie"
-    },
-    {
-      "kind": "missing_sheet",
-      "sheet": "Workforce War Wounded"
-    }
-  ],
+  "missing_sheets": [],
   "palettes": {
     "control": {
       "Administration": "#38d39f",
@@ -10849,7 +10840,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.5325711299,
+      "staffing": 0.5823762951,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 100.0,
@@ -10860,7 +10851,9 @@
         "water": 5.0
       },
       "workforce": {
-        "Botanists": 2250
+        "Engineers": 240,
+        "Industrial Workers": 2250,
+        "Proprietors": 750
       },
       "x": 24,
       "y": 9,
@@ -10868,7 +10861,7 @@
         "energy": 0,
         "food": 0,
         "housing": 180.0,
-        "materials": 213.278452,
+        "materials": 233.200518,
         "ore": 0.25,
         "water": 0
       }
@@ -11902,7 +11895,7 @@
         "water": 5.0
       },
       "workforce": {
-        "Botanists": 1500
+        "Industrial Workers": 1500
       },
       "x": 21,
       "y": 10,
@@ -11925,7 +11918,7 @@
       },
       "resource": "Iron Deposit",
       "slots": 2,
-      "staffing": 0.503052603,
+      "staffing": 0.580478096,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 250.0,
@@ -11936,11 +11929,15 @@
         "water": 10.0
       },
       "workforce": {
-        "Botanists": 2600,
-        "Bureaucrats": 500,
-        "Engineers": 250,
-        "Extraction Workers": 1500,
-        "Scientists": 750
+        "Bureaucrats": 250,
+        "Capitalists": 250,
+        "Engineers": 480,
+        "Industrial Workers": 2600,
+        "Managerial": 150,
+        "Proprietors": 1500,
+        "Scientists": 250,
+        "Security": 750,
+        "Service Workers": 1500
       },
       "x": 22,
       "y": 10,
@@ -11974,7 +11971,8 @@
         "water": 5.0
       },
       "workforce": {
-        "Industrial Workers": 2700
+        "Engineers": 360,
+        "Extraction Workers": 2700
       },
       "x": 23,
       "y": 10,
@@ -12008,8 +12006,9 @@
         "water": 15.0
       },
       "workforce": {
-        "Botanists": 1875,
-        "Industrial Workers": 2250
+        "Engineers": 360,
+        "Extraction Workers": 2250,
+        "Industrial Workers": 1875
       },
       "x": 24,
       "y": 10,
@@ -13051,7 +13050,8 @@
         "water": 25.0
       },
       "workforce": {
-        "Extraction Workers": 3750
+        "Engineers": 360,
+        "Service Workers": 3750
       },
       "x": 21,
       "y": 11,
@@ -13074,7 +13074,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.551277904,
+      "staffing": 0.6855200767,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 400.0,
@@ -13086,7 +13086,8 @@
       },
       "workforce": {
         "Bureaucrats": 750,
-        "Scientists": 2250
+        "Engineers": 360,
+        "Security": 2250
       },
       "x": 22,
       "y": 11,
@@ -13109,7 +13110,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6400381741,
+      "staffing": 0.7314870889,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 200.0,
@@ -13120,20 +13121,23 @@
         "water": 25.0
       },
       "workforce": {
-        "Botanists": 1875,
+        "Botanists": 500,
         "Bureaucrats": 375,
-        "Industrial Workers": 1125,
-        "Managerial": 500,
-        "Scientists": 750
+        "Engineers": 600,
+        "Extraction Workers": 1125,
+        "Industrial Workers": 1875,
+        "Managerial": 450,
+        "Proprietors": 375,
+        "Security": 750
       },
       "x": 23,
       "y": 11,
       "yields": {
-        "energy": 96.00572612,
-        "food": 48.00286306,
+        "energy": 109.7230633,
+        "food": 54.86153167,
         "housing": 3600.0,
-        "materials": 96.25572612,
-        "ore": 48.25286306,
+        "materials": 109.9730633,
+        "ore": 55.11153167,
         "water": 0
       }
     },
@@ -13158,7 +13162,7 @@
         "water": 25.0
       },
       "workforce": {
-        "Extraction Workers": 1875
+        "Service Workers": 1875
       },
       "x": 24,
       "y": 11,
@@ -13181,7 +13185,7 @@
       },
       "resource": "Heavy Metals",
       "slots": 2,
-      "staffing": 0.550018385,
+      "staffing": 0.6038079634,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 100.0,
@@ -13192,7 +13196,8 @@
         "water": 5.0
       },
       "workforce": {
-        "Extraction Workers": 2250
+        "Proprietors": 750,
+        "Service Workers": 2250
       },
       "x": 25,
       "y": 11,
@@ -14195,7 +14200,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.3528915621,
+      "staffing": 0.6868683648,
       "terrain": "Lava Tube",
       "upkeep": {
         "energy": 150.0,
@@ -14206,7 +14211,9 @@
         "water": 5.0
       },
       "workforce": {
-        "Bureaucrats": 1295
+        "Bureaucrats": 170,
+        "Capitalists": 1125,
+        "Managerial": 675
       },
       "x": 21,
       "y": 12,
@@ -14240,7 +14247,8 @@
         "water": 5.0
       },
       "workforce": {
-        "Industrial Workers": 4050
+        "Engineers": 600,
+        "Extraction Workers": 4050
       },
       "x": 22,
       "y": 12,
@@ -14274,7 +14282,8 @@
         "water": 100.0
       },
       "workforce": {
-        "Managerial": 3000
+        "Botanists": 3000,
+        "Engineers": 240
       },
       "x": 23,
       "y": 12,
@@ -14297,7 +14306,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.5764998125,
+      "staffing": 0.5630124055,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 25.0,
@@ -14308,13 +14317,14 @@
         "water": 5.0
       },
       "workforce": {
-        "Botanists": 3750,
-        "Engineers": 1500
+        "Engineers": 960,
+        "Industrial Workers": 3750,
+        "Scientists": 1500
       },
       "x": 24,
       "y": 12,
       "yields": {
-        "energy": 2594.249156,
+        "energy": 2533.555825,
         "food": 0,
         "housing": 180.0,
         "materials": 0.25,
@@ -15323,7 +15333,8 @@
         "water": 5.0
       },
       "workforce": {
-        "Botanists": 5625
+        "Engineers": 360,
+        "Industrial Workers": 5625
       },
       "x": 20,
       "y": 13,
@@ -15357,7 +15368,7 @@
         "water": 5.0
       },
       "workforce": {
-        "Botanists": 1500
+        "Industrial Workers": 1500
       },
       "x": 21,
       "y": 13,
@@ -15408,7 +15419,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.7963748806,
+      "staffing": 0.7507929498,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 200.0,
@@ -15419,8 +15430,9 @@
         "water": 10.0
       },
       "workforce": {
-        "Engineers": 3000,
-        "Managerial": 375
+        "Botanists": 375,
+        "Engineers": 300,
+        "Scientists": 3000
       },
       "x": 23,
       "y": 13,
@@ -16423,7 +16435,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.3000711774,
+      "staffing": 0.385757132,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 50.0,
@@ -16435,7 +16447,8 @@
       },
       "workforce": {
         "Bureaucrats": 150,
-        "Extraction Workers": 3000
+        "Proprietors": 1875,
+        "Service Workers": 3000
       },
       "x": 19,
       "y": 14,
@@ -16458,7 +16471,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.5463748806,
+      "staffing": 0.5007929498,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 200.0,
@@ -16469,8 +16482,9 @@
         "water": 10.0
       },
       "workforce": {
-        "Engineers": 3000,
-        "Managerial": 375
+        "Botanists": 375,
+        "Engineers": 300,
+        "Scientists": 3000
       },
       "x": 20,
       "y": 14,
@@ -16504,7 +16518,8 @@
         "water": 5.0
       },
       "workforce": {
-        "Industrial Workers": 2700
+        "Engineers": 360,
+        "Extraction Workers": 2700
       },
       "x": 21,
       "y": 14,
@@ -17546,7 +17561,7 @@
         "water": 25.0
       },
       "workforce": {
-        "Extraction Workers": 1125
+        "Service Workers": 1125
       },
       "x": 18,
       "y": 15,
@@ -17569,7 +17584,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.5400381741,
+      "staffing": 0.6314870889,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 200.0,
@@ -17580,20 +17595,23 @@
         "water": 25.0
       },
       "workforce": {
-        "Botanists": 1875,
+        "Botanists": 500,
         "Bureaucrats": 375,
-        "Industrial Workers": 1125,
-        "Managerial": 500,
-        "Scientists": 750
+        "Engineers": 600,
+        "Extraction Workers": 1125,
+        "Industrial Workers": 1875,
+        "Managerial": 450,
+        "Proprietors": 375,
+        "Security": 750
       },
       "x": 19,
       "y": 15,
       "yields": {
-        "energy": 81.00572612,
-        "food": 40.50286306,
+        "energy": 94.72306334,
+        "food": 47.36153167,
         "housing": 3600.0,
-        "materials": 81.25572612,
-        "ore": 40.75286306,
+        "materials": 94.97306334,
+        "ore": 47.61153167,
         "water": 0
       }
     },
@@ -17618,8 +17636,9 @@
         "water": 15.0
       },
       "workforce": {
-        "Botanists": 1875,
-        "Industrial Workers": 2250
+        "Engineers": 360,
+        "Extraction Workers": 2250,
+        "Industrial Workers": 1875
       },
       "x": 20,
       "y": 15,
@@ -18678,7 +18697,7 @@
       },
       "resource": null,
       "slots": 0,
-      "staffing": 0.225507223,
+      "staffing": 0.2941568133,
       "terrain": "Crater Rim",
       "upkeep": {
         "energy": 100.0,
@@ -18689,8 +18708,9 @@
         "water": 25.0
       },
       "workforce": {
-        "Bureaucrats": 250,
-        "Extraction Workers": 2500
+        "Capitalists": 250,
+        "Managerial": 250,
+        "Service Workers": 2500
       },
       "x": 18,
       "y": 16,
@@ -18713,7 +18733,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.7100379413,
+      "staffing": 0.6841870777,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 300.0,
@@ -18724,14 +18744,15 @@
         "water": 100.0
       },
       "workforce": {
-        "Engineers": 1500,
-        "Managerial": 1500
+        "Botanists": 1500,
+        "Engineers": 240,
+        "Scientists": 1500
       },
       "x": 19,
       "y": 16,
       "yields": {
         "energy": 0,
-        "food": 266.264228,
+        "food": 256.5701542,
         "housing": 180.0,
         "materials": 0.25,
         "ore": 0.25,
@@ -18759,7 +18780,7 @@
         "water": 5.0
       },
       "workforce": {
-        "Botanists": 1500
+        "Industrial Workers": 1500
       },
       "x": 20,
       "y": 16,
@@ -18793,8 +18814,8 @@
         "water": 70.0
       },
       "workforce": {
-        "Extraction Workers": 2250,
-        "Managerial": 500
+        "Botanists": 500,
+        "Service Workers": 2250
       },
       "x": 21,
       "y": 16,

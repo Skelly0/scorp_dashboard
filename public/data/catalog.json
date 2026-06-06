@@ -28,7 +28,7 @@
       "workforce": {
         "botanists": 3000.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 240.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -80,7 +80,7 @@
       "workforce": {
         "botanists": 2000.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 240.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -132,7 +132,7 @@
       "workforce": {
         "botanists": 2000.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 50.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -184,7 +184,7 @@
       "workforce": {
         "botanists": 1500.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 240.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -236,7 +236,7 @@
       "workforce": {
         "botanists": 500.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -288,7 +288,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 1500.0,
@@ -340,7 +340,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 360.0,
         "extraction_workers": 0.0,
         "industrial_workers": 3000.0,
@@ -392,7 +392,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 480.0,
         "extraction_workers": 5625.0,
         "industrial_workers": 0.0,
@@ -444,7 +444,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 1200.0,
         "extraction_workers": 0.0,
         "industrial_workers": 3000.0,
@@ -496,7 +496,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 960.0,
         "extraction_workers": 0.0,
         "industrial_workers": 3750.0,
@@ -548,7 +548,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 750.0,
@@ -600,7 +600,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 120.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -652,7 +652,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 240.0,
         "extraction_workers": 4050.0,
         "industrial_workers": 0.0,
@@ -704,7 +704,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 360.0,
         "extraction_workers": 4950.0,
         "industrial_workers": 0.0,
@@ -756,7 +756,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 600.0,
         "extraction_workers": 4050.0,
         "industrial_workers": 0.0,
@@ -808,7 +808,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 360.0,
         "extraction_workers": 4950.0,
         "industrial_workers": 0.0,
@@ -860,7 +860,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 360.0,
         "extraction_workers": 2250.0,
         "industrial_workers": 1875.0,
@@ -912,7 +912,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 360.0,
         "extraction_workers": 2700.0,
         "industrial_workers": 0.0,
@@ -964,7 +964,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 1440.0,
         "extraction_workers": 2700.0,
         "industrial_workers": 0.0,
@@ -1016,7 +1016,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 360.0,
         "extraction_workers": 0.0,
         "industrial_workers": 5625.0,
@@ -1068,7 +1068,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 720.0,
         "extraction_workers": 0.0,
         "industrial_workers": 9375.0,
@@ -1120,12 +1120,12 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 240.0,
         "extraction_workers": 0.0,
         "industrial_workers": 2250.0,
-        "managerial": 750.0,
-        "proprietors": 0.0,
+        "managerial": 0.0,
+        "proprietors": 750.0,
         "scientists": 0.0,
         "security": 0.0,
         "service_workers": 0.0
@@ -1172,12 +1172,12 @@
       "workforce": {
         "botanists": 500.0,
         "bureaucrats": 375.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 600.0,
         "extraction_workers": 1125.0,
         "industrial_workers": 1875.0,
-        "managerial": 825.0,
-        "proprietors": 0.0,
+        "managerial": 450.0,
+        "proprietors": 375.0,
         "scientists": 0.0,
         "security": 750.0,
         "service_workers": 0.0
@@ -1224,7 +1224,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -1276,7 +1276,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -1328,7 +1328,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 360.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -1380,7 +1380,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 750.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 360.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -1432,7 +1432,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 550.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -1484,7 +1484,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 150.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -1536,7 +1536,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -1588,7 +1588,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -1640,7 +1640,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 300.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -1692,12 +1692,12 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
-        "managerial": 750.0,
-        "proprietors": 0.0,
+        "managerial": 0.0,
+        "proprietors": 750.0,
         "scientists": 0.0,
         "security": 0.0,
         "service_workers": 2250.0
@@ -1744,12 +1744,12 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
-        "managerial": 750.0,
-        "proprietors": 0.0,
+        "managerial": 0.0,
+        "proprietors": 750.0,
         "scientists": 0.0,
         "security": 0.0,
         "service_workers": 1500.0
@@ -1796,12 +1796,12 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
-        "managerial": 1950.0,
-        "proprietors": 0.0,
+        "managerial": 450.0,
+        "proprietors": 1500.0,
         "scientists": 0.0,
         "security": 0.0,
         "service_workers": 4500.0
@@ -1848,7 +1848,7 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 75.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -1900,7 +1900,7 @@
       "workforce": {
         "botanists": 375.0,
         "bureaucrats": 0.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 300.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -1952,12 +1952,12 @@
       "workforce": {
         "botanists": 0.0,
         "bureaucrats": 150.0,
-        "capitalists": 0,
+        "capitalists": 0.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
-        "managerial": 1875.0,
-        "proprietors": 0.0,
+        "managerial": 0.0,
+        "proprietors": 1875.0,
         "scientists": 0.0,
         "security": 0.0,
         "service_workers": 3000.0
@@ -2003,13 +2003,13 @@
       },
       "workforce": {
         "botanists": 0.0,
-        "bureaucrats": 500.0,
-        "capitalists": 0,
+        "bureaucrats": 250.0,
+        "capitalists": 250.0,
         "engineers": 480.0,
         "extraction_workers": 0.0,
         "industrial_workers": 2600.0,
-        "managerial": 1650.0,
-        "proprietors": 0.0,
+        "managerial": 150.0,
+        "proprietors": 1500.0,
         "scientists": 250.0,
         "security": 750.0,
         "service_workers": 1500.0
@@ -2055,8 +2055,8 @@
       },
       "workforce": {
         "botanists": 0.0,
-        "bureaucrats": 1295.0,
-        "capitalists": 0,
+        "bureaucrats": 170.0,
+        "capitalists": 1125.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -2107,8 +2107,8 @@
       },
       "workforce": {
         "botanists": 0.0,
-        "bureaucrats": 250.0,
-        "capitalists": 0,
+        "bureaucrats": 0.0,
+        "capitalists": 250.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,

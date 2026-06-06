@@ -4,7 +4,7 @@
       "name": "Bureaucrats",
       "political_weight": 2.0,
       "pop": 5142,
-      "share": 0.04997035986044839,
+      "share": 0.05185401813176285,
       "tier": "Upper",
       "worldview": {
         "authority": 3.0,
@@ -16,10 +16,25 @@
       }
     },
     {
+      "name": "Capitalists",
+      "political_weight": 5.0,
+      "pop": 2049,
+      "share": 0.020662948882143543,
+      "tier": "Upper",
+      "worldview": {
+        "authority": 5.5,
+        "corporate": 1.0,
+        "expansion": 2.0,
+        "faith": 5.0,
+        "materialist": 2.5,
+        "technocratic": 4.0
+      }
+    },
+    {
       "name": "Engineers",
       "political_weight": 2.5,
       "pop": 7146,
-      "share": 0.06944538925763598,
+      "share": 0.07206316872220485,
       "tier": "Middle",
       "worldview": {
         "authority": 4.0,
@@ -34,7 +49,7 @@
       "name": "Scientists",
       "political_weight": 2.3,
       "pop": 9747,
-      "share": 0.0947221115441055,
+      "share": 0.09829270998255397,
       "tier": "Middle",
       "worldview": {
         "authority": 4.0,
@@ -49,7 +64,7 @@
       "name": "Security",
       "political_weight": 1.75,
       "pop": 4114,
-      "share": 0.03998017511977532,
+      "share": 0.041487248268003186,
       "tier": "Middle",
       "worldview": {
         "authority": 2.0,
@@ -61,16 +76,16 @@
       }
     },
     {
-      "name": "Expropriated Bourgeoisie",
+      "name": "Proprietors",
       "political_weight": 2.4,
-      "pop": 9525,
-      "share": 0.09256469810789011,
+      "pop": 3738,
+      "share": 0.03769551143067475,
       "tier": "Middle",
       "worldview": {
-        "authority": 3.0,
-        "corporate": 1.0,
+        "authority": 3.5,
+        "corporate": 1.5,
         "expansion": 4.5,
-        "faith": 3.0,
+        "faith": 4.0,
         "materialist": 3.0,
         "technocratic": 5.0
       }
@@ -79,7 +94,7 @@
       "name": "Managerial",
       "political_weight": 1.8,
       "pop": 2988,
-      "share": 0.029037618682034187,
+      "share": 0.030132206568982384,
       "tier": "Middle",
       "worldview": {
         "authority": 4.0,
@@ -94,7 +109,7 @@
       "name": "Botanists",
       "political_weight": 1.4,
       "pop": 7407,
-      "share": 0.07198180775697029,
+      "share": 0.0746951988140738,
       "tier": "Middle",
       "worldview": {
         "authority": 4.5,
@@ -109,7 +124,7 @@
       "name": "Industrial Workers",
       "political_weight": 1.15,
       "pop": 21844,
-      "share": 0.21228170766076132,
+      "share": 0.2202837751984107,
       "tier": "Lower",
       "worldview": {
         "authority": 4.0,
@@ -124,7 +139,7 @@
       "name": "Extraction Workers",
       "political_weight": 1.2,
       "pop": 18772,
-      "share": 0.18242777038124022,
+      "share": 0.18930447848491877,
       "tier": "Lower",
       "worldview": {
         "authority": 5.0,
@@ -139,7 +154,7 @@
       "name": "Service Workers",
       "political_weight": 1.1,
       "pop": 16216,
-      "share": 0.1575883616291387,
+      "share": 0.1635287355162712,
       "tier": "Lower",
       "worldview": {
         "authority": 3.5,
@@ -149,26 +164,11 @@
         "materialist": 3.0,
         "technocratic": 5.5
       }
-    },
-    {
-      "name": "War Wounded",
-      "political_weight": 0.0,
-      "pop": 0,
-      "share": 0.0,
-      "tier": "Lower",
-      "worldview": {
-        "authority": 0.0,
-        "corporate": 0.0,
-        "expansion": 0.0,
-        "faith": 0.0,
-        "materialist": 0.0,
-        "technocratic": 0.0
-      }
     }
   ],
   "tier_totals": {
-    "Lower": 0.5522978396711402,
-    "Middle": 0.39773180046841133,
-    "Upper": 0.04997035986044839
+    "Lower": 0.5731169891996006,
+    "Middle": 0.35436604378649295,
+    "Upper": 0.07251696701390639
   }
 }
