@@ -44,7 +44,7 @@
       "name": "Administration",
       "sub_factions": [
         {
-          "approval": 0.4520051118,
+          "approval": 0.4520051119,
           "effective_worldview": {
             "authority": 4.4,
             "corporate": 4.0,
@@ -213,7 +213,7 @@
         ]
       },
       "approach": "Communal",
-      "approval": 0.4616633267,
+      "approval": 0.4616633268,
       "derived_influence": 0.2745117588,
       "effective_worldview": {
         "authority": 3.79726403,
@@ -353,7 +353,7 @@
           "national_share": 0.04272341986
         },
         {
-          "approval": 0.5762483424,
+          "approval": 0.5762483425,
           "effective_worldview": {
             "authority": 2.6,
             "corporate": 4.0,
