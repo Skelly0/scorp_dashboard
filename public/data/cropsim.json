@@ -4,114 +4,114 @@
       "class_name": "Bureaucrats",
       "per_cap_demand": 0.011,
       "pop": 5142.0,
-      "share": 0.044477541051413154,
+      "share": 0.04233121809460873,
       "total_demand": 56.562
     },
     {
-      "class_name": "Capitalists",
-      "per_cap_demand": 0.02,
-      "pop": 2049.0,
-      "share": 0.032224631948780294,
-      "total_demand": 40.98
-    },
-    {
       "class_name": "Engineers",
-      "per_cap_demand": 0.011,
+      "per_cap_demand": 0.02,
       "pop": 7146.0,
-      "share": 0.061811845265149434,
-      "total_demand": 78.606
+      "share": 0.1069618770567073,
+      "total_demand": 142.92
     },
     {
       "class_name": "Scientists",
       "per_cap_demand": 0.011,
       "pop": 9747.0,
-      "share": 0.08431011136291794,
+      "share": 0.08024161469625657,
       "total_demand": 107.217
     },
     {
       "class_name": "Security",
       "per_cap_demand": 0.011,
       "pop": 4114.0,
-      "share": 0.035585492782091346,
+      "share": 0.033868267452590486,
       "total_demand": 45.254
     },
     {
-      "class_name": "Proprietors",
+      "class_name": "Expropriated Bourgeoisie",
       "per_cap_demand": 0.011,
-      "pop": 3738.0,
-      "share": 0.03233314827891528,
-      "total_demand": 41.118
+      "pop": 9525.0,
+      "share": 0.07841401251480905,
+      "total_demand": 104.775
     },
     {
       "class_name": "Managerial",
       "per_cap_demand": 0.011,
       "pop": 2988.0,
-      "share": 0.025845758977367274,
+      "share": 0.02459853746921254,
       "total_demand": 32.868
     },
     {
       "class_name": "Botanists",
       "per_cap_demand": 0.011,
       "pop": 7407.0,
-      "share": 0.06406945674208815,
+      "share": 0.060977699810728675,
       "total_demand": 81.477
     },
     {
       "class_name": "Industrial Workers",
-      "per_cap_demand": 0.015,
+      "per_cap_demand": 0.011,
       "pop": 21844.0,
-      "share": 0.2576555125509359,
-      "total_demand": 327.66
+      "share": 0.17982946870062874,
+      "total_demand": 240.284
     },
     {
       "class_name": "Extraction Workers",
       "per_cap_demand": 0.015,
       "pop": 18772.0,
-      "share": 0.22142049448847134,
+      "share": 0.2107355537477445,
       "total_demand": 281.58
     },
     {
       "class_name": "Service Workers",
-      "per_cap_demand": 0.011,
+      "per_cap_demand": 0.015,
       "pop": 16216.0,
-      "share": 0.14026600655187005,
-      "total_demand": 178.376
+      "share": 0.18204175045671347,
+      "total_demand": 243.24
+    },
+    {
+      "class_name": "War Wounded",
+      "per_cap_demand": 0.011,
+      "pop": 0.0,
+      "share": 0.0,
+      "total_demand": 0.0
     }
   ],
   "metrics": {
-    "balance": -240.08022099999994,
+    "balance": -308.5824839999998,
     "demand_classes": 11,
-    "per_cap": 0.01040325302,
+    "per_cap": 0.009986244211,
     "production_types": 5,
-    "security_ratio": 0.8112128658,
-    "total_demand": 1271.6979999999999,
-    "total_supply": 1031.617779,
-    "variety_index": 0.03492191694
+    "security_ratio": 0.7690556832,
+    "total_demand": 1336.177,
+    "total_supply": 1027.594516,
+    "variety_index": 0.03733691735
   },
   "production": [
     {
       "calorie_mult": 1.0,
       "food_type": "Greens",
-      "share": 0.22661146323652107,
+      "share": 0.2274986979397231,
       "total_units": 233.7764144
     },
     {
       "calorie_mult": 1.1,
       "food_type": "Cereal Substitutes",
-      "share": 0.2381445820351648,
+      "share": 0.23907697148512222,
       "total_units": 245.6741848
     },
     {
       "calorie_mult": 1.3,
       "food_type": "Vat Protein",
-      "share": 0.3736714671335652,
-      "total_units": 385.486129
+      "share": 0.38456822866111906,
+      "total_units": 395.1802028
     },
     {
       "calorie_mult": 1.2,
       "food_type": "Algal Paste",
-      "share": 0.16157248749781386,
-      "total_units": 166.6810507
+      "share": 0.14885610142746225,
+      "total_units": 152.9637135
     },
     {
       "calorie_mult": 1.0,
