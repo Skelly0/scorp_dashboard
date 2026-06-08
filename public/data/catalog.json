@@ -1124,8 +1124,8 @@
         "engineers": 240.0,
         "extraction_workers": 0.0,
         "industrial_workers": 2250.0,
-        "managerial": 0.0,
-        "proprietors": 750.0,
+        "managerial": 750.0,
+        "proprietors": 0.0,
         "scientists": 0.0,
         "security": 0.0,
         "service_workers": 0.0
@@ -1171,16 +1171,16 @@
       },
       "workforce": {
         "botanists": 500.0,
-        "bureaucrats": 375.0,
+        "bureaucrats": 500.0,
         "capitalists": 0.0,
         "engineers": 600.0,
         "extraction_workers": 1125.0,
         "industrial_workers": 1875.0,
-        "managerial": 450.0,
-        "proprietors": 375.0,
+        "managerial": 600.0,
+        "proprietors": 0.0,
         "scientists": 0.0,
         "security": 750.0,
-        "service_workers": 0.0
+        "service_workers": 100.0
       },
       "yields": {
         "energy": 150.0,
@@ -1696,11 +1696,11 @@
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
-        "managerial": 0.0,
-        "proprietors": 750.0,
+        "managerial": 100.0,
+        "proprietors": 0.0,
         "scientists": 0.0,
         "security": 0.0,
-        "service_workers": 2250.0
+        "service_workers": 2900.0
       },
       "yields": {
         "energy": 0.0,
@@ -1748,11 +1748,11 @@
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
-        "managerial": 0.0,
-        "proprietors": 750.0,
+        "managerial": 100.0,
+        "proprietors": 0.0,
         "scientists": 0.0,
         "security": 0.0,
-        "service_workers": 1500.0
+        "service_workers": 2150.0
       },
       "yields": {
         "energy": 0.0,
@@ -1800,11 +1800,11 @@
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
-        "managerial": 450.0,
-        "proprietors": 1500.0,
+        "managerial": 1000.0,
+        "proprietors": 0.0,
         "scientists": 0.0,
         "security": 0.0,
-        "service_workers": 4500.0
+        "service_workers": 5150.0
       },
       "yields": {
         "energy": 0.0,
@@ -1956,11 +1956,11 @@
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
-        "managerial": 0.0,
-        "proprietors": 1875.0,
+        "managerial": 875.0,
+        "proprietors": 0.0,
         "scientists": 0.0,
         "security": 0.0,
-        "service_workers": 3000.0
+        "service_workers": 4000.0
       },
       "yields": {
         "energy": 0.0,
@@ -2003,16 +2003,16 @@
       },
       "workforce": {
         "botanists": 0.0,
-        "bureaucrats": 250.0,
-        "capitalists": 250.0,
+        "bureaucrats": 500.0,
+        "capitalists": 0.0,
         "engineers": 480.0,
         "extraction_workers": 0.0,
         "industrial_workers": 2600.0,
-        "managerial": 150.0,
-        "proprietors": 1500.0,
+        "managerial": 650.0,
+        "proprietors": 0.0,
         "scientists": 250.0,
         "security": 750.0,
-        "service_workers": 1500.0
+        "service_workers": 2500.0
       },
       "yields": {
         "energy": 0.0,
@@ -2055,8 +2055,8 @@
       },
       "workforce": {
         "botanists": 0.0,
-        "bureaucrats": 170.0,
-        "capitalists": 1125.0,
+        "bureaucrats": 1295.0,
+        "capitalists": 0.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,
@@ -2107,8 +2107,8 @@
       },
       "workforce": {
         "botanists": 0.0,
-        "bureaucrats": 0.0,
-        "capitalists": 250.0,
+        "bureaucrats": 250.0,
+        "capitalists": 0.0,
         "engineers": 0.0,
         "extraction_workers": 0.0,
         "industrial_workers": 0.0,

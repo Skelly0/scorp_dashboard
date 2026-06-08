@@ -19,6 +19,8 @@ WORLDVIEW_AXES = ["expansion", "authority", "corporate", "technocratic", "faith"
 
 _log = logging.getLogger(__name__)
 
+BLANK_TEXT_SENTINELS = {"", "none", "null"}
+
 # GoI block lives at Politics rows 4-11 (8 slots, currently 5 live + 3 reserved blank).
 GOI_BLOCK_FIRST_ROW = 4
 GOI_BLOCK_LAST_ROW = 11
@@ -104,9 +106,9 @@ def _read_politics_goi_rows(wb):
             for i, axis in enumerate(WORLDVIEW_AXES)
         }
         out.append({
-            "name": ws.cell(row=row_num, column=COL_NAME).value,
+            "name": _clean_text(ws.cell(row=row_num, column=COL_NAME).value),
             "approval": coerce_number(ws.cell(row=row_num, column=COL_APPROVAL).value),
-            "approach": ws.cell(row=row_num, column=COL_APPROACH).value,
+            "approach": _clean_text(ws.cell(row=row_num, column=COL_APPROACH).value),
             "mad_index": coerce_number(ws.cell(row=row_num, column=COL_MAD_INDEX).value),
             "derived_influence": coerce_number(ws.cell(row=row_num, column=COL_DERIVED_INFLUENCE).value),
             "worldview": worldview,
@@ -228,7 +230,55 @@ def _stance_row_to_worldview(row):
     return out
 
 
+def _clean_text(value):
+    if value in (None, ""):
+        return None
+    text = str(value).strip()
+    if text.lower() in BLANK_TEXT_SENTINELS:
+        return None
+    return text
+
+
+def _merge_sub_faction_record(base, overlay):
+    if base is None:
+        return overlay
+    merged = dict(base)
+    for key, value in overlay.items():
+        if key == "minor_goals":
+            if value:
+                merged[key] = value
+        elif key == "effective_worldview":
+            if value is not None:
+                merged[key] = value
+        elif value not in (None, ""):
+            merged[key] = value
+    return merged
+
+
 def _sub_factions_by_goi(wb):
+    named = _named_sub_factions_by_goi(wb)
+    visible = _visible_sub_factions_by_goi(wb)
+    if not visible:
+        return named
+
+    out = {
+        goi_name: [dict(record) for record in records]
+        for goi_name, records in named.items()
+    }
+    for goi_name, records in visible.items():
+        named_by_name = {
+            record["name"]: record
+            for record in named.get(goi_name, [])
+            if record.get("name") not in (None, "")
+        }
+        out[goi_name] = [
+            _merge_sub_faction_record(named_by_name.get(record["name"]), record)
+            for record in records
+        ]
+    return out
+
+
+def _named_sub_factions_by_goi(wb):
     """Zip the SubFaction* named ranges into per-GoI lists.
 
     Sub-Factions sheet layout (live wb, all ranges row-aligned at rows 6-20):
@@ -250,10 +300,12 @@ def _sub_factions_by_goi(wb):
 
     by_goi: dict[str, list[dict[str, Any]]] = {}
     for i, gr in enumerate(goals):
-        if not gr or not gr[0]:
+        if not gr:
             continue
-        goi_name = gr[0]
-        sf_name = gr[1] if len(gr) > 1 else None
+        goi_name = _clean_text(gr[0])
+        sf_name = _clean_text(gr[1]) if len(gr) > 1 else None
+        if goi_name is None or sf_name is None:
+            continue
         infl = (
             coerce_number(influences[i][0])
             if i < len(influences) and influences[i]
@@ -266,14 +318,12 @@ def _sub_factions_by_goi(wb):
         )
         mgs = []
         if i < len(minor_goals) and minor_goals[i]:
-            mgs = [g for g in minor_goals[i] if g not in (None, "")]
-        goal_text = (
+            mgs = [g for g in (_clean_text(g) for g in minor_goals[i]) if g]
+        goal_text = _clean_text(
             goals_text[i][0]
             if i < len(goals_text) and goals_text[i]
             else None
         )
-        if goal_text == "":
-            goal_text = None
         nat_share = (
             coerce_number(national_shares[i][0])
             if i < len(national_shares) and national_shares[i]
@@ -293,6 +343,145 @@ def _sub_factions_by_goi(wb):
             "effective_worldview": worldview,
         })
 
+    return by_goi
+
+
+HEADER_ALIASES = {
+    "goi": ("goi",),
+    "sub_faction": ("sub-faction", "sub faction", "subfaction"),
+    "goal": ("goal",),
+    "influence": ("influence",),
+    "approval": ("approval",),
+    "national_share": ("national share",),
+    "minor_1": ("minor 1", "minor goal 1"),
+    "minor_2": ("minor 2", "minor goal 2"),
+    "minor_3": ("minor 3", "minor goal 3"),
+}
+
+WORLDVIEW_HEADER_ALIASES = {
+    "expansion": ("expn", "ideal expn", "expansion"),
+    "authority": ("auth", "ideal auth", "authority"),
+    "corporate": ("corp", "ideal corp", "corporate"),
+    "technocratic": ("tech", "ideal tech", "technocratic"),
+    "faith": ("faith", "ideal faith"),
+    "materialist": ("mat", "ideal mat", "materialist"),
+}
+
+
+def _header_map(row):
+    return {
+        header: i
+        for i, raw in enumerate(row)
+        if (header := _clean_text(raw).lower() if _clean_text(raw) else None)
+    }
+
+
+def _first_header(headers, aliases):
+    for alias in aliases:
+        if alias in headers:
+            return headers[alias]
+    return None
+
+
+def _row_value(row, idx):
+    return row[idx] if idx is not None and idx < len(row) else None
+
+
+def _visible_sub_factions_by_goi(wb):
+    by_goi: dict[str, list[dict[str, Any]]] = {}
+    for sheet_name in ("Modular Sub-Factions", "Sub-Factions", "Sub-Faction Detail"):
+        source = _visible_sub_factions_from_sheet(wb, sheet_name)
+        for goi_name, records in source.items():
+            existing_by_name = {
+                record["name"]: record
+                for record in by_goi.get(goi_name, [])
+                if record.get("name") not in (None, "")
+            }
+            by_goi[goi_name] = [
+                _merge_sub_faction_record(existing_by_name.get(record["name"]), record)
+                for record in records
+            ]
+    return by_goi
+
+
+def _visible_sub_factions_from_sheet(wb, sheet_name):
+    if sheet_name not in wb.sheetnames:
+        return {}
+    ws = wb[sheet_name]
+    header_row = None
+    headers = None
+    for row_num in range(1, min(ws.max_row, 40) + 1):
+        values = [ws.cell(row=row_num, column=col).value for col in range(1, ws.max_column + 1)]
+        candidate_headers = _header_map(values)
+        if (
+            _first_header(candidate_headers, HEADER_ALIASES["goi"]) is not None
+            and _first_header(candidate_headers, HEADER_ALIASES["sub_faction"]) is not None
+        ):
+            header_row = row_num
+            headers = candidate_headers
+            break
+    if header_row is None or headers is None:
+        return {}
+
+    idx_goi = _first_header(headers, HEADER_ALIASES["goi"])
+    idx_sub_faction = _first_header(headers, HEADER_ALIASES["sub_faction"])
+    idx_goal = _first_header(headers, HEADER_ALIASES["goal"])
+    idx_influence = _first_header(headers, HEADER_ALIASES["influence"])
+    idx_approval = _first_header(headers, HEADER_ALIASES["approval"])
+    idx_national_share = _first_header(headers, HEADER_ALIASES["national_share"])
+    minor_idxs = [
+        _first_header(headers, HEADER_ALIASES["minor_1"]),
+        _first_header(headers, HEADER_ALIASES["minor_2"]),
+        _first_header(headers, HEADER_ALIASES["minor_3"]),
+    ]
+    axis_idxs = {
+        axis: _first_header(headers, aliases)
+        for axis, aliases in WORLDVIEW_HEADER_ALIASES.items()
+    }
+
+    by_goi: dict[str, list[dict[str, Any]]] = {}
+    blank_identity_streak = 0
+    for row in ws.iter_rows(
+        min_row=header_row + 1,
+        max_row=ws.max_row,
+        min_col=1,
+        max_col=ws.max_column,
+        values_only=True,
+    ):
+        goi_name = _clean_text(_row_value(row, idx_goi))
+        sf_name = _clean_text(_row_value(row, idx_sub_faction))
+        if goi_name is None and sf_name is None:
+            if by_goi:
+                blank_identity_streak += 1
+                if blank_identity_streak >= 10:
+                    break
+            continue
+        blank_identity_streak = 0
+        if goi_name is None or sf_name is None:
+            continue
+
+        worldview = {
+            axis: coerce_number(_row_value(row, idx))
+            for axis, idx in axis_idxs.items()
+        }
+        if all(value is None for value in worldview.values()):
+            worldview = None
+
+        minor_goals = [
+            goal
+            for goal in (_clean_text(_row_value(row, idx)) for idx in minor_idxs)
+            if goal
+        ]
+        record = {
+            "name": sf_name,
+            "influence": coerce_number(_row_value(row, idx_influence)),
+            "approval": coerce_number(_row_value(row, idx_approval)),
+            "minor_goals": minor_goals,
+            "goal": _clean_text(_row_value(row, idx_goal)),
+            "national_share": coerce_number(_row_value(row, idx_national_share)),
+            "effective_worldview": worldview,
+        }
+        by_goi.setdefault(goi_name, []).append(record)
     return by_goi
 
 

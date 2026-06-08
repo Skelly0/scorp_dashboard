@@ -76,4 +76,32 @@ describe('GoIs page', () => {
     expect(screen.getByText('Admin capacity +')).toBeTruthy();
     expect(screen.getByText('Inactive')).toBeTruthy();
   });
+
+  test('does not render nameless sub-faction rows', () => {
+    gois.set({
+      ...baseGois,
+      gois: [
+        {
+          name: 'Administration',
+          main_class: 'Bureaucrats',
+          approach: 'Centrist',
+          derived_influence: 0.2,
+          approval: 0.5,
+          mad_index: 0.1,
+          effective_worldview: {},
+          active_benefits: { unlocked: 0, total: 0, unlocked_list: [], items: [] },
+          sub_factions: [
+            { name: null, influence: null, approval: null },
+            { name: '', influence: 0.3, approval: 0.4 },
+            { name: 'Legal Professionals', influence: 0.5, approval: 0.57 },
+          ],
+        },
+      ],
+    });
+
+    const { container } = render(GoIs);
+
+    expect(screen.getByText('Legal Professionals')).toBeTruthy();
+    expect(container.querySelectorAll('.goi-subfaction-button')).toHaveLength(1);
+  });
 });

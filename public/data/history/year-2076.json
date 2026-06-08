@@ -1,61 +1,61 @@
 {
-  "avg_satisfaction": 0.25920604735337727,
-  "crisis_factor": 0.8441037615,
-  "effective_cdr": 0.01157797196,
-  "gov_approval": 0.4689247758,
-  "housing_util": 1.122001117942985,
-  "net_delta_pct": -0.037797195999999915,
+  "avg_satisfaction": 0.23071762109257285,
+  "crisis_factor": 0.9043752752,
+  "effective_cdr": 0.0150963565,
+  "gov_approval": 0.4771556646,
+  "housing_util": 1.065123523093448,
+  "net_delta_pct": -0.38963564999999983,
   "overton": {
-    "authority": 3.5,
-    "corporate": 4.5,
-    "expansion": 5.0,
-    "faith": 6.5,
-    "materialist": 4.0,
-    "technocratic": 3.5
+    "authority": 5.0,
+    "corporate": 6.0,
+    "expansion": 4.0,
+    "faith": 6.0,
+    "materialist": 5.0,
+    "technocratic": 5.0
   },
-  "population_total": 100363,
+  "population_total": 99163,
   "resources": [
     {
       "current": 804.9005384,
-      "delta": 2.10669884,
-      "income": 1287.324699,
+      "delta": -293.581098,
+      "income": 978.116902,
       "name": "Food",
-      "upkeep": 1285.218
+      "upkeep": 1271.698
     },
     {
       "current": 886.691617,
-      "delta": 516.2678269,
-      "income": 1699.028827,
+      "delta": 60.1948955,
+      "income": 1264.175895,
       "name": "Materials",
-      "upkeep": 1182.761
+      "upkeep": 1203.981
     },
     {
       "current": 1708.272482,
-      "delta": 292.7811505,
-      "income": 1217.781151,
+      "delta": -178.0072286,
+      "income": 771.9927714,
       "name": "Ore",
-      "upkeep": 925.0
+      "upkeep": 950.0
     },
     {
       "current": 1500.361308,
-      "delta": 2209.607307,
-      "income": 7108.006119,
+      "delta": 130.9502711,
+      "income": 5173.506584,
       "name": "Energy",
-      "upkeep": 4898.3988125
+      "upkeep": 5042.5563125
     },
     {
-      "current": 89450.0,
-      "delta": -10913.0,
-      "income": 89450.0,
+      "current": 93100.0,
+      "delta": -6063.0,
+      "income": 93100.0,
       "name": "Housing",
-      "upkeep": 100363.0
+      "upkeep": 99163.0
     },
     {
       "current": 165330.324,
-      "delta": 183233.054,
-      "income": 314083.054,
+      "delta": 71059.38629,
+      "income": 203159.3863,
       "name": "Money",
-      "upkeep": 130850.0
+      "upkeep": 132100.0
     },
     {
       "current": 0.0,
@@ -66,18 +66,18 @@
     },
     {
       "current": 380.5203704,
-      "delta": 34.13172241,
-      "income": 710.8851224,
+      "delta": 61.04392736,
+      "income": 741.5733274,
       "name": "Water",
-      "upkeep": 676.7534
+      "upkeep": 680.5294
     }
   ],
-  "stability": 0.3891296131,
-  "synced_at": "2026-05-21T21:10:34Z",
-  "total_deaths": 1162.0,
+  "stability": 0.3175862855,
+  "synced_at": "2026-06-08T23:17:52Z",
+  "total_deaths": 1497.0,
   "treasury": {
-    "delta": 183233.054,
-    "money": 260061.0703
+    "delta": 71059.38629,
+    "money": 263711.0703
   },
   "year": 2076
 }

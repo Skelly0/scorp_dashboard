@@ -6,6 +6,11 @@
       "name": "The Lights Go Down"
     },
     {
+      "crisis_factor": 0.5,
+      "description": "Tonight the Moon runs with blood.",
+      "name": "Blood on the Dance Floor"
+    },
+    {
       "crisis_factor": 0.05,
       "description": "Chaotic arrest in the council of Director Mills",
       "name": "Council Chaos"
@@ -24,11 +29,6 @@
       "crisis_factor": -0.05,
       "description": "Week of Mourning and annual Remembrance Day help people come to terms.",
       "name": "Memorialization of Earth Act"
-    },
-    {
-      "crisis_factor": 0.5,
-      "description": "Tonight we sing of Ayer.",
-      "name": "Blood on the Dance Floor"
     }
   ],
   "ended": [],
