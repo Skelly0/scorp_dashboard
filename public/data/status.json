@@ -31,55 +31,55 @@
       "name": "Memorialization of Earth Act"
     }
   ],
-  "crisis_factor": 0.9385645943,
+  "crisis_factor": 0.8863831449,
   "demographics": {
-    "avg_satisfaction": 0.2369975010874459,
+    "avg_satisfaction": 0.23915692081753473,
     "base_growth_rate": 0.035,
-    "effective_cdr": 0.01448120771,
+    "effective_cdr": 0.01451146093,
     "effective_growth_rate": 0.011200000000000002,
     "housing_capacity": 93100.0,
     "housing_util": 1.065123523093448,
-    "net_delta_pct": -0.32812077099999976,
+    "net_delta_pct": -0.33114609299999975,
     "sat_elasticity": 0.32,
-    "total_births": 2141.0,
-    "total_deaths": 1436.0
+    "total_births": 2159.0,
+    "total_deaths": 1439.0
   },
-  "gov_approval": 0.4735496924,
+  "gov_approval": 0.4753256012,
   "overton": {
-    "authority": 3.5,
-    "corporate": 4.5,
-    "expansion": 5.0,
-    "faith": 6.5,
-    "materialist": 4.0,
-    "technocratic": 3.5
+    "authority": 5.0,
+    "corporate": 6.0,
+    "expansion": 4.0,
+    "faith": 6.0,
+    "materialist": 5.0,
+    "technocratic": 5.0
   },
   "population_total": 99163,
   "resources": [
     {
       "current": 804.9005384,
-      "delta": -246.5350403,
-      "income": 1025.16296,
+      "delta": -248.3814073,
+      "income": 1023.316593,
       "name": "Food",
       "upkeep": 1271.698
     },
     {
       "current": 886.691617,
-      "delta": 97.70731633,
-      "income": 1301.688316,
+      "delta": 93.87433408,
+      "income": 1297.855334,
       "name": "Materials",
       "upkeep": 1203.981
     },
     {
       "current": 1708.272482,
-      "delta": -164.7526434,
-      "income": 785.2473566,
+      "delta": -166.5990104,
+      "income": 783.4009896,
       "name": "Ore",
       "upkeep": 950.0
     },
     {
       "current": 1500.361308,
-      "delta": 157.4594415,
-      "income": 5200.015754,
+      "delta": 153.7667075,
+      "income": 5196.32302,
       "name": "Energy",
       "upkeep": 5042.5563125
     },
@@ -92,8 +92,8 @@
     },
     {
       "current": 165330.324,
-      "delta": 139105.105,
-      "income": 271205.105,
+      "delta": 96037.26578,
+      "income": 228137.2658,
       "name": "Money",
       "upkeep": 132100.0
     },
@@ -112,9 +112,9 @@
       "upkeep": 680.5294
     }
   ],
-  "stability": 0.3192966863,
+  "stability": 0.3415213336,
   "treasury": {
-    "delta": 139105.105,
+    "delta": 96037.26578,
     "money": 263711.0703
   },
   "year": 2076

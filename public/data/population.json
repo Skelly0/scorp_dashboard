@@ -7,11 +7,11 @@
       "share": 0.05185401813176285,
       "tier": "Upper",
       "worldview": {
-        "authority": 3.0,
-        "corporate": 4.0,
+        "authority": 4.0,
+        "corporate": 4.5,
         "expansion": 5.5,
-        "faith": 6.0,
-        "materialist": 5.5,
+        "faith": 5.0,
+        "materialist": 5.0,
         "technocratic": 4.5
       }
     },
@@ -20,14 +20,14 @@
       "political_weight": 5.0,
       "pop": 2049,
       "share": 0.020662948882143543,
-      "tier": "Upper",
+      "tier": "Expropriated",
       "worldview": {
-        "authority": 5.5,
+        "authority": 2.0,
         "corporate": 1.0,
         "expansion": 2.0,
-        "faith": 5.0,
-        "materialist": 2.5,
-        "technocratic": 4.0
+        "faith": 4.0,
+        "materialist": 6.0,
+        "technocratic": 3.0
       }
     },
     {
@@ -38,9 +38,9 @@
       "tier": "Middle",
       "worldview": {
         "authority": 4.0,
-        "corporate": 3.5,
+        "corporate": 4.0,
         "expansion": 5.0,
-        "faith": 5.0,
+        "faith": 4.0,
         "materialist": 3.5,
         "technocratic": 2.5
       }
@@ -53,9 +53,9 @@
       "tier": "Middle",
       "worldview": {
         "authority": 4.0,
-        "corporate": 4.0,
+        "corporate": 4.5,
         "expansion": 4.0,
-        "faith": 7.0,
+        "faith": 6.0,
         "materialist": 4.5,
         "technocratic": 2.0
       }
@@ -67,12 +67,12 @@
       "share": 0.041487248268003186,
       "tier": "Middle",
       "worldview": {
-        "authority": 2.0,
-        "corporate": 4.0,
+        "authority": 6.0,
+        "corporate": 5.0,
         "expansion": 5.0,
-        "faith": 3.5,
-        "materialist": 2.5,
-        "technocratic": 4.5
+        "faith": 2.5,
+        "materialist": 7.0,
+        "technocratic": 6.0
       }
     },
     {
@@ -80,14 +80,14 @@
       "political_weight": 2.4,
       "pop": 3738,
       "share": 0.03769551143067475,
-      "tier": "Middle",
+      "tier": "Expropriated",
       "worldview": {
-        "authority": 3.5,
-        "corporate": 1.5,
+        "authority": 2.0,
+        "corporate": 1.0,
         "expansion": 4.5,
-        "faith": 4.0,
-        "materialist": 3.0,
-        "technocratic": 5.0
+        "faith": 3.0,
+        "materialist": 5.0,
+        "technocratic": 3.0
       }
     },
     {
@@ -98,11 +98,11 @@
       "tier": "Middle",
       "worldview": {
         "authority": 4.0,
-        "corporate": 2.0,
+        "corporate": 4.0,
         "expansion": 3.0,
-        "faith": 5.0,
-        "materialist": 2.5,
-        "technocratic": 3.5
+        "faith": 4.0,
+        "materialist": 3.0,
+        "technocratic": 5.0
       }
     },
     {
@@ -114,9 +114,9 @@
       "worldview": {
         "authority": 4.5,
         "corporate": 4.0,
-        "expansion": 4.0,
-        "faith": 5.0,
-        "materialist": 4.5,
+        "expansion": 5.0,
+        "faith": 4.0,
+        "materialist": 6.0,
         "technocratic": 3.0
       }
     },
@@ -127,12 +127,12 @@
       "share": 0.2202837751984107,
       "tier": "Lower",
       "worldview": {
-        "authority": 4.0,
-        "corporate": 5.5,
-        "expansion": 3.5,
-        "faith": 3.5,
-        "materialist": 3.0,
-        "technocratic": 5.5
+        "authority": 5.0,
+        "corporate": 6.0,
+        "expansion": 3.0,
+        "faith": 2.5,
+        "materialist": 4.5,
+        "technocratic": 6.0
       }
     },
     {
@@ -144,10 +144,10 @@
       "worldview": {
         "authority": 5.0,
         "corporate": 6.0,
-        "expansion": 3.0,
-        "faith": 3.5,
-        "materialist": 3.0,
-        "technocratic": 5.5
+        "expansion": 2.5,
+        "faith": 2.5,
+        "materialist": 4.5,
+        "technocratic": 6.0
       }
     },
     {
@@ -157,18 +157,18 @@
       "share": 0.1635287355162712,
       "tier": "Lower",
       "worldview": {
-        "authority": 3.5,
-        "corporate": 5.0,
+        "authority": 4.0,
+        "corporate": 4.0,
         "expansion": 4.0,
-        "faith": 3.5,
+        "faith": 2.5,
         "materialist": 3.0,
-        "technocratic": 5.5
+        "technocratic": 5.0
       }
     }
   ],
   "tier_totals": {
     "Lower": 0.5731169891996006,
-    "Middle": 0.35436604378649295,
-    "Upper": 0.07251696701390639
+    "Middle": 0.3166705323558182,
+    "Upper": 0.05185401813176285
   }
 }

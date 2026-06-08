@@ -10840,7 +10840,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.5770713951,
+      "staffing": 0.5767207744,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 100.0,
@@ -10861,7 +10861,7 @@
         "energy": 0,
         "food": 0,
         "housing": 180.0,
-        "materials": 231.0785581,
+        "materials": 230.9383097,
         "ore": 0.25,
         "water": 0
       }
@@ -11918,7 +11918,7 @@
       },
       "resource": "Iron Deposit",
       "slots": 2,
-      "staffing": 0.5880938921,
+      "staffing": 0.5743004753,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 250.0,
@@ -11929,8 +11929,7 @@
         "water": 10.0
       },
       "workforce": {
-        "Bureaucrats": 250,
-        "Capitalists": 250,
+        "Bureaucrats": 500,
         "Engineers": 480,
         "Industrial Workers": 2600,
         "Managerial": 150,
@@ -13074,7 +13073,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6745450466,
+      "staffing": 0.6351661562,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 400.0,
@@ -13110,7 +13109,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.7228973484,
+      "staffing": 0.7105882353,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 200.0,
@@ -13133,11 +13132,11 @@
       "x": 23,
       "y": 11,
       "yields": {
-        "energy": 108.4346023,
-        "food": 54.21730113,
+        "energy": 106.5882353,
+        "food": 53.29411764,
         "housing": 3600.0,
-        "materials": 108.6846023,
-        "ore": 54.46730113,
+        "materials": 106.8382353,
+        "ore": 53.54411764,
         "water": 0
       }
     },
@@ -13185,7 +13184,7 @@
       },
       "resource": "Heavy Metals",
       "slots": 2,
-      "staffing": 0.5817452314,
+      "staffing": 0.5812713925,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 100.0,
@@ -14200,7 +14199,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.6911254472,
+      "staffing": 0.6094498964,
       "terrain": "Lava Tube",
       "upkeep": {
         "energy": 150.0,
@@ -14211,8 +14210,7 @@
         "water": 5.0
       },
       "workforce": {
-        "Bureaucrats": 170,
-        "Capitalists": 1125,
+        "Bureaucrats": 1295,
         "Managerial": 675
       },
       "x": 21,
@@ -16435,7 +16433,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.3639436295,
+      "staffing": 0.3553001197,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 50.0,
@@ -17584,7 +17582,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6228973484,
+      "staffing": 0.6105882353,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 200.0,
@@ -17607,11 +17605,11 @@
       "x": 19,
       "y": 15,
       "yields": {
-        "energy": 93.43460226,
-        "food": 46.71730113,
+        "energy": 91.58823529,
+        "food": 45.79411764,
         "housing": 3600.0,
-        "materials": 93.68460226,
-        "ore": 46.96730113,
+        "materials": 91.83823529,
+        "ore": 46.04411764,
         "water": 0
       }
     },
@@ -18697,7 +18695,7 @@
       },
       "resource": null,
       "slots": 0,
-      "staffing": 0.3413543697,
+      "staffing": 0.322117116,
       "terrain": "Crater Rim",
       "upkeep": {
         "energy": 100.0,
@@ -18708,7 +18706,7 @@
         "water": 25.0
       },
       "workforce": {
-        "Capitalists": 250,
+        "Bureaucrats": 250,
         "Managerial": 250,
         "Service Workers": 2500
       },
