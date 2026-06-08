@@ -129,6 +129,90 @@ def test_extract_sub_factions_grouped_under_parent(wb):
     assert sf_names == ["Officers", "Fraternalists", "Shepherds"]
 
 
+def test_extract_skips_structural_subfaction_rows_without_names(wb):
+    ws = wb["Politics"]
+    ws["V24"] = None
+    ws["Y24"] = None
+    ws["Z24"] = None
+    ws["AD24"] = None
+    ws["AF24"] = None
+    for col in range(33, 39):
+        ws.cell(row=24, column=col, value=None)
+
+    result = extract(wb)
+    all_sfs = [s for g in result["gois"] for s in g["sub_factions"]]
+
+    assert all(s["name"] not in (None, "") for s in all_sfs)
+    administration = next(g for g in result["gois"] if g["name"] == "Administration")
+    assert [s["name"] for s in administration["sub_factions"]] == [
+        "Reformist Administrators",
+        "Hardliner Administrators",
+    ]
+
+
+def test_extract_prefers_visible_subfaction_detail_when_named_ranges_are_stale(wb):
+    ws = wb["Politics"]
+    live_row = 9
+    ws.cell(row=live_row, column=1, value="Outcast Dissidents")
+    ws.cell(row=live_row, column=6, value=0.31)
+    ws.cell(row=live_row, column=8, value="0 / 0 unlocked")
+    ws.cell(row=live_row, column=17, value=0.22)
+    ws.cell(row=live_row, column=18, value="Dissident")
+    ws.cell(row=live_row, column=19, value=0.09)
+    for axis in range(6):
+        ws.cell(row=live_row, column=11 + axis, value=4.0 + axis * 0.2)
+
+    detail = wb.create_sheet("Sub-Faction Detail")
+    headers = [
+        "GoI",
+        "Sub-faction",
+        "Influence",
+        "Goal Axis",
+        "Goal Δ",
+        "Expn",
+        "Auth",
+        "Corp",
+        "Tech",
+        "Faith",
+        "Mat",
+        "Approval",
+        "Minor 1",
+        "Minor 2",
+        "Minor 3",
+        "National Share",
+    ]
+    for col, header in enumerate(headers, start=1):
+        detail.cell(row=3, column=col, value=header)
+    rows = [
+        ("Administration", "Legal Professionals", 0.5, None, 0, 4.45, 4.7, 3.45, 4.15, 4.3, 4.3, 0.5709, None, None, None, 0.0765),
+        ("Administration", None, None, None, None, None, None, None, None, None, None, None, None, None, None, None),
+        ("Outcast Dissidents", "Rebellious Youths", 0.1, None, 0, 4.0, 4.0, 5.4, 5.0, 3.55, 5.1, 0.5491, None, None, None, 0.0103),
+        ("Outcast Dissidents", "Reactionaries", 0.5, None, 0, 3.4, 2.7, 1.0, 1.6, 3.3, 6.0, 0.2240, None, None, None, 0.0515),
+    ]
+    for row_idx, row in enumerate(rows, start=4):
+        for col, value in enumerate(row, start=1):
+            detail.cell(row=row_idx, column=col, value=value)
+
+    result = extract(wb)
+    outcasts = next(g for g in result["gois"] if g["name"] == "Outcast Dissidents")
+
+    assert [s["name"] for s in outcasts["sub_factions"]] == [
+        "Rebellious Youths",
+        "Reactionaries",
+    ]
+    assert outcasts["sub_factions"][0]["influence"] == 0.1
+    assert outcasts["sub_factions"][0]["approval"] == 0.5491
+    assert outcasts["sub_factions"][0]["national_share"] == 0.0103
+    assert outcasts["sub_factions"][0]["effective_worldview"] == {
+        "expansion": 4.0,
+        "authority": 4.0,
+        "corporate": 5.4,
+        "technocratic": 5.0,
+        "faith": 3.55,
+        "materialist": 5.1,
+    }
+
+
 def test_extract_pop_capture_matrix_shape(wb):
     matrix = extract(wb)["pop_capture_matrix"]
     assert len(matrix["classes"]) == 11

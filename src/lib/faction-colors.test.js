@@ -16,12 +16,14 @@ describe('control colors', () => {
   it('pins live GoI accent colors', () => {
     expect(GOI_COLORS).toMatchObject({
       Administration: '#38d39f',
-      Corporate: '#ffd84d',
-      Unions: '#ff5544',
+      Proletariat: '#ff5544',
+      'White Collar': '#ffd84d',
       Research: '#5ec3ff',
-      Security: '#ff5544',
+      Congregations: '#c44dff',
+      'Outcast Dissidents': '#ff8c42',
     });
     expect(goiColor('Administration')).not.toBe('var(--accent)');
+    expect(goiColor('Outcast Dissidents')).not.toBe('var(--accent)');
   });
 
   it('uses canonical colors over stale generated palette defaults', () => {

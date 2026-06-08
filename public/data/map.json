@@ -12,6 +12,7 @@
       "Botanists": "#7fc97f",
       "Bureaucrats": "#ffb000",
       "Capitalists": "#ffd84d",
+      "Congregations": "#c44dff",
       "Corporate": "#ffd84d",
       "Corporations": "#ffd84d",
       "Engineers": "#5ec3ff",
@@ -20,6 +21,8 @@
       "Founders": "#ffb000",
       "Industrial Workers": "#38d39f",
       "Managerial": "#c44dff",
+      "Outcast Dissidents": "#ff8c42",
+      "Proletariat": "#ff5544",
       "Proprietors": "#9c8a2e",
       "Research": "#5ec3ff",
       "Scientists": "#a89cff",
@@ -27,7 +30,8 @@
       "Service Workers": "#a89567",
       "Technocracy": "#5ec3ff",
       "Unionists": "#ff5544",
-      "Unions": "#ff5544"
+      "Unions": "#ff5544",
+      "White Collar": "#ffd84d"
     },
     "feature": {
       "Boulder Field": "#6e6058",

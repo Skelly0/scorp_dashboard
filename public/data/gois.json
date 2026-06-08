@@ -30,7 +30,7 @@
         ]
       },
       "approach": "Centrist",
-      "approval": 0.5981511353,
+      "approval": 0.5981511398,
       "derived_influence": 0.1431347128,
       "effective_worldview": {
         "authority": 4.56107004,
@@ -45,7 +45,7 @@
       "name": "Administration",
       "sub_factions": [
         {
-          "approval": 0.5994198428,
+          "approval": 0.5994198473,
           "effective_worldview": {
             "authority": 4.7,
             "corporate": 3.45,
@@ -61,7 +61,7 @@
           "national_share": 0.07652508236
         },
         {
-          "approval": 0.5968824279,
+          "approval": 0.5968824324,
           "effective_worldview": {
             "authority": 5.4,
             "corporate": 4.85,
@@ -105,7 +105,7 @@
         "unlocked_list": []
       },
       "approach": "Communal",
-      "approval": 0.3697009657,
+      "approval": 0.3697009716,
       "derived_influence": 0.1923086301,
       "effective_worldview": {
         "authority": 4.88705619,
@@ -120,7 +120,7 @@
       "name": "Proletariat",
       "sub_factions": [
         {
-          "approval": 0.3568459771,
+          "approval": 0.356845983,
           "effective_worldview": {
             "authority": 5.0,
             "corporate": 6.0,
@@ -136,7 +136,7 @@
           "national_share": 0.06168916039
         },
         {
-          "approval": 0.332073188,
+          "approval": 0.3320731939,
           "effective_worldview": {
             "authority": 4.3,
             "corporate": 6.0,
@@ -152,7 +152,7 @@
           "national_share": 0.06168916039
         },
         {
-          "approval": 0.4201837322,
+          "approval": 0.4201837381,
           "effective_worldview": {
             "authority": 5.0,
             "corporate": 6.0,
@@ -198,7 +198,7 @@
         ]
       },
       "approach": "Centrist",
-      "approval": 0.4103131642,
+      "approval": 0.4103131701,
       "derived_influence": 0.2570180835,
       "effective_worldview": {
         "authority": 4.115670671,
@@ -213,7 +213,7 @@
       "name": "White Collar",
       "sub_factions": [
         {
-          "approval": 0.3012672458,
+          "approval": 0.3012672517,
           "effective_worldview": {
             "authority": 4.15,
             "corporate": 4.7,
@@ -229,7 +229,7 @@
           "national_share": 0.08244679281
         },
         {
-          "approval": 0.3293539805,
+          "approval": 0.3293539864,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 4.7,
@@ -245,7 +245,7 @@
           "national_share": 0.08244679281
         },
         {
-          "approval": 0.6003182662,
+          "approval": 0.6003182721,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 4.7,
@@ -291,7 +291,7 @@
         ]
       },
       "approach": "Secular",
-      "approval": 0.5000365071,
+      "approval": 0.5000365116,
       "derived_influence": 0.1694029652,
       "effective_worldview": {
         "authority": 4.340440312,
@@ -306,7 +306,7 @@
       "name": "Research",
       "sub_factions": [
         {
-          "approval": 0.470376303,
+          "approval": 0.4703763075,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 3.45,
@@ -322,7 +322,7 @@
           "national_share": 0.09056905633
         },
         {
-          "approval": 0.5296967112,
+          "approval": 0.5296967157,
           "effective_worldview": {
             "authority": 5.4,
             "corporate": 2.05,
@@ -370,7 +370,7 @@
         ]
       },
       "approach": "Religious",
-      "approval": 0.7458958681,
+      "approval": 0.7458958742,
       "derived_influence": 0.121942191,
       "effective_worldview": {
         "authority": 4.770157679,
@@ -385,7 +385,7 @@
       "name": "Congregations",
       "sub_factions": [
         {
-          "approval": 0.7208958681,
+          "approval": 0.7208958742,
           "effective_worldview": {
             "authority": 4.6,
             "corporate": 4.3,
@@ -401,7 +401,7 @@
           "national_share": 0.06519478068
         },
         {
-          "approval": 0.8708958681,
+          "approval": 0.8708958742,
           "effective_worldview": {
             "authority": 4.6,
             "corporate": 5.7,
@@ -417,7 +417,7 @@
           "national_share": 0.03911686841
         },
         {
-          "approval": 0.6208958681,
+          "approval": 0.6208958742,
           "effective_worldview": {
             "authority": 2.5,
             "corporate": 2.9,
@@ -442,7 +442,7 @@
         "unlocked_list": []
       },
       "approach": "Marketist",
-      "approval": 0.309818792,
+      "approval": 0.3098187965,
       "derived_influence": 0.09634045479,
       "effective_worldview": {
         "authority": 3.524911817,
@@ -455,7 +455,56 @@
       "mad_index": 0.0,
       "main_class": "Capitalists",
       "name": "Outcast Dissidents",
-      "sub_factions": []
+      "sub_factions": [
+        {
+          "approval": 0.5775930822,
+          "effective_worldview": {
+            "authority": 4.0,
+            "corporate": 5.4,
+            "expansion": 4.0,
+            "faith": 3.55,
+            "materialist": 5.1,
+            "technocratic": 5.0
+          },
+          "goal": null,
+          "influence": 0.1,
+          "minor_goals": [],
+          "name": "Rebellious Youths",
+          "national_share": 0.01030143016
+        },
+        {
+          "approval": 0.2525685924,
+          "effective_worldview": {
+            "authority": 2.7,
+            "corporate": 1.0,
+            "expansion": 3.4,
+            "faith": 3.3,
+            "materialist": 6.0,
+            "technocratic": 1.6
+          },
+          "goal": null,
+          "influence": 0.5,
+          "minor_goals": [],
+          "name": "Reactionaries",
+          "national_share": 0.05150715082
+        },
+        {
+          "approval": 0.3144379802,
+          "effective_worldview": {
+            "authority": 6.1,
+            "corporate": 6.1,
+            "expansion": 1.6,
+            "faith": 2.6,
+            "materialist": 5.8,
+            "technocratic": 2.9
+          },
+          "goal": null,
+          "influence": 0.4,
+          "minor_goals": [],
+          "name": "Sybarites",
+          "national_share": 0.04120572066
+        }
+      ]
     }
   ],
   "pop_capture_matrix": {

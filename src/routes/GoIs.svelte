@@ -27,11 +27,26 @@
     }
   }
 
+  function subFactionName(subFaction) {
+    if (subFaction?.name == null) return null;
+    const name = String(subFaction.name).trim();
+    return name && !['null', 'none'].includes(name.toLowerCase()) ? name : null;
+  }
+
+  function visibleSubFactions(goi) {
+    return (goi?.sub_factions ?? [])
+      .map((subFaction) => {
+        const name = subFactionName(subFaction);
+        return name ? { ...subFaction, name } : null;
+      })
+      .filter(Boolean);
+  }
+
   $: selectedParent = selected
     ? ($gois?.gois.find((g) => g.name === selected.goi) ?? null)
     : null;
   $: selectedSf = selected && selectedParent
-    ? (selectedParent.sub_factions.find((s) => s.name === selected.sf) ?? null)
+    ? (visibleSubFactions(selectedParent).find((s) => s.name === selected.sf) ?? null)
     : null;
 
   function handleKeydown(e) {
@@ -63,7 +78,7 @@
   $: {
     if (selected && $gois) {
       const parent = $gois.gois.find((g) => g.name === selected.goi) ?? null;
-      const sf = parent ? parent.sub_factions.find((s) => s.name === selected.sf) ?? null : null;
+      const sf = parent ? visibleSubFactions(parent).find((s) => s.name === selected.sf) ?? null : null;
       if (!parent || !sf) selected = null;
     }
   }
@@ -81,6 +96,7 @@
     <Band num="01" title="Groups of Interest" meta={`${$gois.gois.length} GoIs`} />
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
       {#each $gois.gois as g}
+        {@const subFactions = visibleSubFactions(g)}
         <div class="s-card barred" style="--bar-color: {goiColor(g.name)}">
           <div class="s-card-header">
             <h3>
@@ -146,11 +162,11 @@
                 </div>
               </div>
 
-              {#if g.sub_factions?.length}
+              {#if subFactions.length}
                 <div>
                   <div class="text-muted text-[9px] uppercase tracking-widest mb-1">Sub-factions</div>
                   <ul class="m-0 p-0 list-none text-[11px]">
-                    {#each g.sub_factions as s}
+                    {#each subFactions as s}
                       {@const isActive = selected && selected.goi === g.name && selected.sf === s.name}
                       <li>
                         <button
