@@ -10840,7 +10840,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.5767207744,
+      "staffing": 0.5495632689,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 100.0,
@@ -10853,7 +10853,7 @@
       "workforce": {
         "Engineers": 240,
         "Industrial Workers": 2250,
-        "Proprietors": 750
+        "Managerial": 750
       },
       "x": 24,
       "y": 9,
@@ -10861,7 +10861,7 @@
         "energy": 0,
         "food": 0,
         "housing": 180.0,
-        "materials": 230.9383097,
+        "materials": 220.0753076,
         "ore": 0.25,
         "water": 0
       }
@@ -11918,7 +11918,7 @@
       },
       "resource": "Iron Deposit",
       "slots": 2,
-      "staffing": 0.5743004753,
+      "staffing": 0.542592323,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 250.0,
@@ -11932,11 +11932,10 @@
         "Bureaucrats": 500,
         "Engineers": 480,
         "Industrial Workers": 2600,
-        "Managerial": 150,
-        "Proprietors": 1500,
+        "Managerial": 650,
         "Scientists": 250,
         "Security": 750,
-        "Service Workers": 1500
+        "Service Workers": 2500
       },
       "x": 22,
       "y": 10,
@@ -13038,7 +13037,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6651309214,
+      "staffing": 0.579545746,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 400.0,
@@ -13056,7 +13055,7 @@
       "y": 11,
       "yields": {
         "energy": 0,
-        "food": 33.25654607,
+        "food": 28.9772873,
         "housing": 40000.0,
         "materials": 0.25,
         "ore": 0.25,
@@ -13073,7 +13072,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6351661562,
+      "staffing": 0.6288006147,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 400.0,
@@ -13109,7 +13108,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.7105882353,
+      "staffing": 0.6345334472,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 200.0,
@@ -13121,22 +13120,22 @@
       },
       "workforce": {
         "Botanists": 500,
-        "Bureaucrats": 375,
+        "Bureaucrats": 500,
         "Engineers": 600,
         "Extraction Workers": 1125,
         "Industrial Workers": 1875,
-        "Managerial": 450,
-        "Proprietors": 375,
-        "Security": 750
+        "Managerial": 600,
+        "Security": 750,
+        "Service Workers": 100
       },
       "x": 23,
       "y": 11,
       "yields": {
-        "energy": 106.5882353,
-        "food": 53.29411764,
+        "energy": 95.18001708,
+        "food": 47.59000854,
         "housing": 3600.0,
-        "materials": 106.8382353,
-        "ore": 53.54411764,
+        "materials": 95.43001708,
+        "ore": 47.84000854,
         "water": 0
       }
     },
@@ -13150,7 +13149,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.5552876712,
+      "staffing": 0.4532701422,
       "terrain": "Lava Tube",
       "upkeep": {
         "energy": 100.0,
@@ -13184,7 +13183,7 @@
       },
       "resource": "Heavy Metals",
       "slots": 2,
-      "staffing": 0.5812713925,
+      "staffing": 0.5425033909,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 100.0,
@@ -13195,8 +13194,8 @@
         "water": 5.0
       },
       "workforce": {
-        "Proprietors": 750,
-        "Service Workers": 2250
+        "Managerial": 100,
+        "Service Workers": 2900
       },
       "x": 25,
       "y": 11,
@@ -14190,7 +14189,7 @@
       }
     },
     {
-      "control": "Corporations",
+      "control": "Unions",
       "feature": null,
       "improvement": {
         "name": "Financial District",
@@ -14199,7 +14198,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.6094498964,
+      "staffing": 0.3527542821,
       "terrain": "Lava Tube",
       "upkeep": {
         "energy": 150.0,
@@ -15346,7 +15345,7 @@
       }
     },
     {
-      "control": "Corporations",
+      "control": "Unions",
       "feature": null,
       "improvement": {
         "name": "Solar Array Field",
@@ -16424,7 +16423,7 @@
       }
     },
     {
-      "control": "Corporations",
+      "control": "Unions",
       "feature": "Smooth Plain",
       "improvement": {
         "name": "Market",
@@ -16433,7 +16432,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.3553001197,
+      "staffing": 0.3167023006,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 50.0,
@@ -16445,8 +16444,8 @@
       },
       "workforce": {
         "Bureaucrats": 150,
-        "Proprietors": 1875,
-        "Service Workers": 3000
+        "Managerial": 875,
+        "Service Workers": 4000
       },
       "x": 19,
       "y": 14,
@@ -16496,7 +16495,7 @@
       }
     },
     {
-      "control": "Corporations",
+      "control": "Unions",
       "feature": null,
       "improvement": {
         "name": "Ice Mining Station",
@@ -17548,7 +17547,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6052876712,
+      "staffing": 0.5032701422,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 100.0,
@@ -17582,7 +17581,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6105882353,
+      "staffing": 0.5345334472,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 200.0,
@@ -17594,27 +17593,27 @@
       },
       "workforce": {
         "Botanists": 500,
-        "Bureaucrats": 375,
+        "Bureaucrats": 500,
         "Engineers": 600,
         "Extraction Workers": 1125,
         "Industrial Workers": 1875,
-        "Managerial": 450,
-        "Proprietors": 375,
-        "Security": 750
+        "Managerial": 600,
+        "Security": 750,
+        "Service Workers": 100
       },
       "x": 19,
       "y": 15,
       "yields": {
-        "energy": 91.58823529,
-        "food": 45.79411764,
+        "energy": 80.18001708,
+        "food": 40.09000854,
         "housing": 3600.0,
-        "materials": 91.83823529,
-        "ore": 46.04411764,
+        "materials": 80.43001708,
+        "ore": 40.34000854,
         "water": 0
       }
     },
     {
-      "control": "Corporations",
+      "control": "Unions",
       "feature": null,
       "improvement": {
         "name": "Aluminium Extractor",
@@ -18686,7 +18685,7 @@
       }
     },
     {
-      "control": "Corporations",
+      "control": "Unions",
       "feature": null,
       "improvement": {
         "name": "Ultra-Deluxe Moon Hotel",
@@ -18695,7 +18694,7 @@
       },
       "resource": null,
       "slots": 0,
-      "staffing": 0.322117116,
+      "staffing": 0.1422887596,
       "terrain": "Crater Rim",
       "upkeep": {
         "energy": 100.0,
@@ -18801,7 +18800,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.6958483728,
+      "staffing": 0.6171491361,
       "terrain": "Lava Tube",
       "upkeep": {
         "energy": 50.0,
@@ -18819,7 +18818,7 @@
       "y": 16,
       "yields": {
         "energy": 0,
-        "food": 260.9431398,
+        "food": 231.4309261,
         "housing": 380.0,
         "materials": 0.25,
         "ore": 0.5,

@@ -31,20 +31,20 @@
       "name": "Memorialization of Earth Act"
     }
   ],
-  "crisis_factor": 0.8863831449,
+  "crisis_factor": 0.8885983897,
   "demographics": {
-    "avg_satisfaction": 0.23915692081753473,
+    "avg_satisfaction": 0.23256044671502274,
     "base_growth_rate": 0.035,
-    "effective_cdr": 0.01451146093,
+    "effective_cdr": 0.0150963565,
     "effective_growth_rate": 0.011200000000000002,
     "housing_capacity": 93100.0,
     "housing_util": 1.065123523093448,
-    "net_delta_pct": -0.33114609299999975,
+    "net_delta_pct": -0.38963564999999983,
     "sat_elasticity": 0.32,
-    "total_births": 2159.0,
-    "total_deaths": 1439.0
+    "total_births": 2057.0,
+    "total_deaths": 1497.0
   },
-  "gov_approval": 0.4753256012,
+  "gov_approval": 0.4734404982,
   "overton": {
     "authority": 5.0,
     "corporate": 6.0,
@@ -57,29 +57,29 @@
   "resources": [
     {
       "current": 804.9005384,
-      "delta": -248.3814073,
-      "income": 1023.316593,
+      "delta": -293.581098,
+      "income": 978.116902,
       "name": "Food",
       "upkeep": 1271.698
     },
     {
       "current": 886.691617,
-      "delta": 93.87433408,
-      "income": 1297.855334,
+      "delta": 60.1948955,
+      "income": 1264.175895,
       "name": "Materials",
       "upkeep": 1203.981
     },
     {
       "current": 1708.272482,
-      "delta": -166.5990104,
-      "income": 783.4009896,
+      "delta": -178.0072286,
+      "income": 771.9927714,
       "name": "Ore",
       "upkeep": 950.0
     },
     {
       "current": 1500.361308,
-      "delta": 153.7667075,
-      "income": 5196.32302,
+      "delta": 130.9502711,
+      "income": 5173.506584,
       "name": "Energy",
       "upkeep": 5042.5563125
     },
@@ -92,8 +92,8 @@
     },
     {
       "current": 165330.324,
-      "delta": 96037.26578,
-      "income": 228137.2658,
+      "delta": 71059.38629,
+      "income": 203159.3863,
       "name": "Money",
       "upkeep": 132100.0
     },
@@ -112,9 +112,9 @@
       "upkeep": 680.5294
     }
   ],
-  "stability": 0.3415213336,
+  "stability": 0.3324602978,
   "treasury": {
-    "delta": 96037.26578,
+    "delta": 71059.38629,
     "money": 263711.0703
   },
   "year": 2076
