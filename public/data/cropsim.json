@@ -4,35 +4,35 @@
       "class_name": "Bureaucrats",
       "per_cap_demand": 0.011,
       "pop": 5142.0,
-      "share": 0.04447754105141315,
+      "share": 0.044477541051413154,
       "total_demand": 56.562
     },
     {
       "class_name": "Capitalists",
       "per_cap_demand": 0.02,
       "pop": 2049.0,
-      "share": 0.03222463194878029,
+      "share": 0.032224631948780294,
       "total_demand": 40.98
     },
     {
       "class_name": "Engineers",
       "per_cap_demand": 0.011,
       "pop": 7146.0,
-      "share": 0.06181184526514942,
+      "share": 0.061811845265149434,
       "total_demand": 78.606
     },
     {
       "class_name": "Scientists",
       "per_cap_demand": 0.011,
       "pop": 9747.0,
-      "share": 0.08431011136291792,
+      "share": 0.08431011136291794,
       "total_demand": 107.217
     },
     {
       "class_name": "Security",
       "per_cap_demand": 0.011,
       "pop": 4114.0,
-      "share": 0.03558549278209134,
+      "share": 0.035585492782091346,
       "total_demand": 45.254
     },
     {
@@ -46,45 +46,45 @@
       "class_name": "Managerial",
       "per_cap_demand": 0.011,
       "pop": 2988.0,
-      "share": 0.025845758977367267,
+      "share": 0.025845758977367274,
       "total_demand": 32.868
     },
     {
       "class_name": "Botanists",
       "per_cap_demand": 0.011,
       "pop": 7407.0,
-      "share": 0.06406945674208814,
+      "share": 0.06406945674208815,
       "total_demand": 81.477
     },
     {
       "class_name": "Industrial Workers",
       "per_cap_demand": 0.015,
       "pop": 21844.0,
-      "share": 0.25765551255093583,
+      "share": 0.2576555125509359,
       "total_demand": 327.66
     },
     {
       "class_name": "Extraction Workers",
       "per_cap_demand": 0.015,
       "pop": 18772.0,
-      "share": 0.2214204944884713,
+      "share": 0.22142049448847134,
       "total_demand": 281.58
     },
     {
       "class_name": "Service Workers",
       "per_cap_demand": 0.011,
       "pop": 16216.0,
-      "share": 0.14026600655187002,
+      "share": 0.14026600655187005,
       "total_demand": 178.376
     }
   ],
   "metrics": {
-    "balance": -293.5810980000001,
+    "balance": -293.5810979999999,
     "demand_classes": 11,
     "per_cap": 0.009863728427,
     "production_types": 5,
     "security_ratio": 0.7691424395,
-    "total_demand": 1271.698,
+    "total_demand": 1271.6979999999999,
     "total_supply": 978.116902,
     "variety_index": 0.03660108851
   },
