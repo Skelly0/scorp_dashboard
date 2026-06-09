@@ -11922,7 +11922,7 @@
       },
       "resource": "Iron Deposit",
       "slots": 2,
-      "staffing": 0.542592323,
+      "staffing": 0.5385365922,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 250.0,
@@ -13076,7 +13076,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6288006147,
+      "staffing": 0.6171787833,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 400.0,
@@ -13112,7 +13112,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6345334472,
+      "staffing": 0.6298485096,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 200.0,
@@ -13135,11 +13135,11 @@
       "x": 23,
       "y": 11,
       "yields": {
-        "energy": 95.18001708,
-        "food": 47.59000854,
+        "energy": 94.47727644,
+        "food": 47.23863822,
         "housing": 3600.0,
-        "materials": 95.43001708,
-        "ore": 47.84000854,
+        "materials": 94.72727644,
+        "ore": 47.48863822,
         "water": 0
       }
     },
@@ -14193,16 +14193,16 @@
       }
     },
     {
-      "control": "Unions",
+      "control": "Administration",
       "feature": null,
       "improvement": {
-        "name": "Financial District",
+        "name": "Central Planning Buro",
         "owner": null,
         "ownership_type": null
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.3527542821,
+      "staffing": 0.3260303693,
       "terrain": "Lava Tube",
       "upkeep": {
         "energy": 150.0,
@@ -15349,7 +15349,7 @@
       }
     },
     {
-      "control": "Unions",
+      "control": "Administration",
       "feature": null,
       "improvement": {
         "name": "Solar Array Field",
@@ -16427,7 +16427,7 @@
       }
     },
     {
-      "control": "Unions",
+      "control": "Administration",
       "feature": "Smooth Plain",
       "improvement": {
         "name": "Market",
@@ -16436,7 +16436,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.3167023006,
+      "staffing": 0.3147618296,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 50.0,
@@ -17585,7 +17585,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.5345334472,
+      "staffing": 0.5298485096,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 200.0,
@@ -17608,11 +17608,11 @@
       "x": 19,
       "y": 15,
       "yields": {
-        "energy": 80.18001708,
-        "food": 40.09000854,
+        "energy": 79.47727644,
+        "food": 39.73863822,
         "housing": 3600.0,
-        "materials": 80.43001708,
-        "ore": 40.34000854,
+        "materials": 79.72727644,
+        "ore": 39.98863822,
         "water": 0
       }
     },
@@ -18689,7 +18689,7 @@
       }
     },
     {
-      "control": "Unions",
+      "control": "Administration",
       "feature": null,
       "improvement": {
         "name": "Ultra-Deluxe Moon Hotel",
@@ -18698,7 +18698,7 @@
       },
       "resource": null,
       "slots": 0,
-      "staffing": 0.1422887596,
+      "staffing": 0.1358893342,
       "terrain": "Crater Rim",
       "upkeep": {
         "energy": 100.0,

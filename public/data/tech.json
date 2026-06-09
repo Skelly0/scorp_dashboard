@@ -564,7 +564,7 @@
       "effects": [
         {
           "mag": 0.25,
-          "target": "Financial District",
+          "target": "Central Planning Buro",
           "type": "yield",
           "type_raw": "Yield"
         },
