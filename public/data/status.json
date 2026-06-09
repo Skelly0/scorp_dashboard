@@ -31,9 +31,9 @@
       "name": "Memorialization of Earth Act"
     }
   ],
-  "crisis_factor": 0.9045827875,
+  "crisis_factor": 0.9045827873,
   "demographics": {
-    "avg_satisfaction": 0.23033276150055565,
+    "avg_satisfaction": 0.23033276193287414,
     "base_growth_rate": 0.035,
     "effective_cdr": 0.01510644091,
     "effective_growth_rate": 0.011200000000000002,
@@ -44,7 +44,7 @@
     "total_births": 2049.0,
     "total_deaths": 1498.0
   },
-  "gov_approval": 0.4769412069,
+  "gov_approval": 0.4769412072,
   "overton": {
     "authority": 5.0,
     "corporate": 6.0,
@@ -112,7 +112,7 @@
       "upkeep": 680.5294
     }
   ],
-  "stability": 0.3165331898,
+  "stability": 0.3165331911,
   "treasury": {
     "delta": 65998.14289,
     "money": 263711.0703
