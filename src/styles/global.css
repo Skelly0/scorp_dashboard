@@ -81,6 +81,24 @@
   --radar-overlay: rgba(165, 58, 38, 0.55); /* warm crit red — contrasts vs. navy accent */
 }
 
+/* Skip-to-content link: visually hidden until keyboard focus. */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 12px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--bg);
+  color: var(--fg);
+  border: 2px solid var(--accent);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.skip-link:focus {
+  top: 12px;
+}
+
 :root {
   --scroll-track: var(--bg-3);
   --scroll-thumb: color-mix(in srgb, var(--accent) 72%, var(--border));
@@ -234,6 +252,12 @@ body {
 .kpi-block .kpi-num.warn { color: var(--warn); }
 .kpi-block .kpi-num.good { color: var(--good); }
 .kpi-block .kpi-num.muted { color: var(--muted); font-weight: 600; }
+/* Secondary KPI rows: cap the container-query auto-fit below the headline
+   56px so support bands (e.g. Demographics Workforce) never out-shout the
+   page's vital signs. */
+.kpi-row-secondary .kpi-block .kpi-num {
+  font-size: clamp(1.25rem, 18cqi, 42px);
+}
 .kpi-block.muted { border-color: var(--border-soft); }
 .kpi-block.muted .kpi-label { opacity: 0.7; }
 .kpi-subtitle {
@@ -257,6 +281,27 @@ body {
 .delta { font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums; }
 .delta.up { color: var(--good); }
 .delta.down { color: var(--crit); }
+
+/* Stale-sync banner — PageState renders this when the route's page key is in
+   meta.partial_failures. Body text stays --fg for small-text AA; the warn
+   token carries the border + icon only. */
+.stale-banner {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  border: 2px solid var(--warn);
+  background: var(--bg-2);
+  color: var(--fg);
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.stale-banner .stale-banner-icon {
+  color: var(--warn);
+  font-size: 14px;
+}
 
 /* === Stat tile (smaller cousin of KPI block) =============================== */
 .stat-tile {
@@ -474,7 +519,7 @@ body {
   border-left-color: var(--muted);
   opacity: 0.7;
 }
-.sit-card h4 {
+.sit-card h3 {
   margin: 0 0 4px;
   font-size: 12px;
   letter-spacing: 0.1em;
@@ -878,7 +923,7 @@ table.tbl th.num {
   text-align: right;
 }
 
-/* Inspector empty-state (Map right rail). */
+/* Inspector empty-state with keyboard hints (Map right rail + GoIs sub-faction rail). */
 .inspector-empty-head {
   font-size: 12px;
   letter-spacing: 0.25em;
@@ -1266,17 +1311,8 @@ table.tbl th.num {
 .s-rail-empty {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   flex: 1;
-  color: var(--muted);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  text-align: center;
-  gap: 8px;
 }
-.s-rail-empty-icon { font-size: 32px; opacity: 0.4; }
 
 .s-rail-panel { display: flex; flex-direction: column; gap: 14px; }
 
@@ -2173,7 +2209,10 @@ table.tbl th.num {
 @keyframes crisis-march-rev { to { background-position: -24px 0; } }
 .crisis-banner-mid { display: flex; align-items: center; gap: 14px; padding: 11px 16px; }
 .crisis-banner .sig { font-size: 22px; color: var(--crit); animation: crisis-blink 1.05s steps(1) infinite; }
-@keyframes crisis-blink { 50% { opacity: 0.2; } }
+/* Blink toggles visibility, not opacity: a 20%-opacity phase is a real WCAG
+   contrast failure (axe samples mid-blink), and a half-faded ghost is no more
+   readable for sighted users. steps(1) keeps the same on/off rhythm. */
+@keyframes crisis-blink { 50% { visibility: hidden; } }
 .crisis-banner .htxt {
   font-size: 13px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--crit);
 }

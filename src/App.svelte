@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import Router from 'svelte-spa-router';
+  import Router, { location } from 'svelte-spa-router';
   import { initTheme } from './lib/theme.js';
   import { meta, metaError, loadMeta } from './lib/stores/meta.js';
   import { loadCatalog } from './lib/stores/catalog.js';
@@ -23,7 +23,6 @@
   import Demographics from './routes/Demographics.svelte';
   import Tech from './routes/Tech.svelte';
   import Cropsim from './routes/Cropsim.svelte';
-  import EmptyPage from './routes/EmptyPage.svelte';
   import NotFound from './routes/NotFound.svelte';
 
   onMount(async () => {
@@ -52,6 +51,22 @@
     '/situations': Situations,
     '*': NotFound,
   };
+
+  let mainEl;
+  let routeInitialized = false;
+  // Route change → move focus to the main landmark + scroll to top.
+  // Skips the initial value so page load doesn't steal focus.
+  $: handleRouteChange($location);
+  function handleRouteChange(_loc) {
+    if (!routeInitialized) {
+      routeInitialized = true;
+      return;
+    }
+    requestAnimationFrame(() => {
+      mainEl?.focus({ preventScroll: true });
+      window.scrollTo(0, 0);
+    });
+  }
 </script>
 
 <div class="relative min-h-screen bg-bg text-fg font-mono">
@@ -67,9 +82,12 @@
         <p class="text-muted text-xs uppercase tracking-widest">Synchronising colony record…</p>
       </div>
     {:else}
+      <a href="#main" class="skip-link" on:click|preventDefault={() => mainEl?.focus()}>Skip to content</a>
       <NavBar />
       <CrisisBanner />
-      <Router {routes} />
+      <main id="main" tabindex="-1" bind:this={mainEl} class="outline-none">
+        <Router {routes} />
+      </main>
     {/if}
   </div>
   <CrisisFrame />

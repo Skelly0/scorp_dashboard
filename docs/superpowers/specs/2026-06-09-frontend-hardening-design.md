@@ -95,7 +95,7 @@ would render the old error forever. One-line change per store.
 | Cropsim | `['cropsim', 'status']` |
 | GoIs | `'gois'` |
 | Tech | `'tech'` |
-| Parties | `'parties'` |
+| Parties | `['parties', 'pops']` |
 | Senate | `'senate'` |
 | Situations | `'situations'` |
 
@@ -141,7 +141,7 @@ does this, gotcha #34):
 
 - **Demographics · Avg Satisfaction**: `0.23` → `23%` (tone logic already wired; only
   the display changes).
-- **Cropsim · Security Ratio**: `0.769` → `77%`, toned via `statusMetricTone()`.
+- **Cropsim · Security Ratio**: `0.769` → `77%`; keeps Cropsim's domain `securityTone` thresholds (< 0.95 crit, < 1 warn, ≥ 1 good) — `statusMetricTone`'s generic 0.33/0.66 cutoffs would mistone food security.
 
 Non-ratio decimals standardize precision instead of percent-ifying (they are not 0..1
 shares): **Cropsim Food/Cap** `0.0099` → `0.01`, **Variety Index** `0.037` → `0.04` —

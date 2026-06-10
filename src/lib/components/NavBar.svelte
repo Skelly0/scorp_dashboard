@@ -48,6 +48,7 @@
             <a
               href={p.path}
               use:link
+              aria-current={$location === p.path ? 'page' : undefined}
               class="px-2 py-1 border-2 border-transparent hover:border-border"
               class:border-border={$location === p.path}
               class:bg-border={$location === p.path}
@@ -71,6 +72,7 @@
           <a
             href={p.path}
             use:link
+            aria-current={$location === p.path ? 'page' : undefined}
             on:click={() => (menuOpen = false)}
             class="flex items-center min-h-[44px] px-4 py-3 border-b border-border/30"
             class:bg-border={$location === p.path}

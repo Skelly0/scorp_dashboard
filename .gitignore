@@ -17,6 +17,7 @@ playwright-report/
 
 # Local scratch
 TRASH/
+output/
 
 # Claude Code worktrees + local config
 .claude/
