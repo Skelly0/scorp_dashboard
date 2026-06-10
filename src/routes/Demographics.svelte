@@ -13,11 +13,12 @@
   } from '../lib/stores/history.js';
   import { pageTitle } from '../lib/page-title.js';
   import { statusMetricTone } from '../lib/status-metrics.js';
+  import { fmtPct, fmtSignedInt, fmtInt, fmtNum } from '../lib/format.js';
   import { classColor } from '../lib/faction-colors.js';
   import Band from '../lib/components/Band.svelte';
   import KpiBlock from '../lib/components/KpiBlock.svelte';
   import Bar from '../lib/components/Bar.svelte';
-  import MoonLoader from '../lib/components/MoonLoader.svelte';
+  import PageState from '../lib/components/PageState.svelte';
   import WorkforceBand from '../lib/components/WorkforceBand.svelte';
   import ClassDetail from '../lib/components/ClassDetail.svelte';
 
@@ -43,7 +44,7 @@
     if (cap == null || pop == null || cap === 0) return { value: null, subtitle: null };
     const free = cap - pop;
     const pct = Math.round((free / cap) * 100);
-    return { value: free.toLocaleString(), subtitle: `${pct}% free` };
+    return { value: fmtInt(free), subtitle: `${pct}% free` };
   })();
 
   // Predicted growth: TotalBirths − TotalDeaths from the workbook (authoritative
@@ -57,17 +58,11 @@
     return Math.round(b - d);
   })();
 
-  $: predictedGrowthDisplay = predictedGrowth == null
-    ? null
-    : (predictedGrowth >= 0 ? '+' : '') + predictedGrowth.toLocaleString() + ' / year';
-
   $: avgSatisfactionTone = statusMetricTone($demographics?.totals?.avg_satisfaction);
 
   // Workforce fill from derived store.
   $: workforceFill = $workforce?.fillRatio;
-  $: workforceFillDisplay = workforceFill == null
-    ? null
-    : (workforceFill * 100).toFixed(1) + '%';
+  $: workforceFillDisplay = fmtPct(workforceFill, 1);
   $: workforceFillCritical = workforceFill != null && workforceFill < 0.85;
   $: workforceFillGood = workforceFill != null && workforceFill >= 1.0;
 
@@ -119,23 +114,28 @@
 <svelte:window on:keydown={handleWindowKeydown} />
 
 <section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
-  {#if errorMsg}
-    <p class="text-crit">Failed to load demographics: {errorMsg}</p>
-  {:else if !ready}
-    <div class="flex flex-col items-center justify-center py-12 gap-4">
-      <MoonLoader size={220} label="Loading demographics" />
-      <p class="text-muted text-xs uppercase tracking-widest">Reading vital signs…</p>
-    </div>
-  {:else}
+  <PageState
+    label="Demographics"
+    page={['demographics', 'pops', 'population']}
+    error={errorMsg}
+    loading={!ready}
+    loadingText="Reading vital signs…"
+    retry={() => {
+      loadPops($meta.synced_at);
+      loadPopulation($meta.synced_at);
+      loadDemographics($meta.synced_at);
+      loadHistory($meta.synced_at);
+    }}
+  >
     <Band num="01" title="Pop Dynamics" meta="colony vital signs" />
     <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
       <KpiBlock
         label="Total Pop"
-        value={$demographics.totals.pop?.toLocaleString() ?? '—'}
+        value={fmtInt($demographics.totals.pop)}
       />
       <KpiBlock
         label="Avg Satisfaction"
-        value={$demographics.totals.avg_satisfaction?.toFixed(2) ?? '—'}
+        value={fmtPct($demographics.totals.avg_satisfaction)}
         history={$avgSatHistory.length >= 2 ? $avgSatHistory : null}
         tone={avgSatisfactionTone}
       />
@@ -146,7 +146,8 @@
       />
       <KpiBlock
         label="Predicted Growth"
-        value={predictedGrowthDisplay}
+        value={predictedGrowth == null ? null : fmtSignedInt(predictedGrowth)}
+        subtitle={predictedGrowth == null ? null : 'per year'}
         history={$populationDeltaHistory.length >= 2 ? $populationDeltaHistory : null}
         critical={predictedGrowth != null && predictedGrowth < 0}
         good={predictedGrowth != null && predictedGrowth > 0}
@@ -206,16 +207,16 @@
                   <div class="val">{popProfile?.share != null ? (popProfile.share * 100).toFixed(1) + '%' : '—'}</div>
                 </div>
               </td>
-              <td class="num">{c.pop?.toLocaleString() ?? '—'}</td>
+              <td class="num">{fmtInt(c.pop)}</td>
               <td class="num hide-narrow">{c.mortality_rate != null ? (c.mortality_rate * 100).toFixed(2) + '%' : '—'}</td>
-              <td class="num hide-narrow">{c.births_per_turn != null ? Math.round(c.births_per_turn).toLocaleString() : '—'}</td>
-              <td class="num hide-narrow">{c.deaths_per_turn != null ? Math.round(c.deaths_per_turn).toLocaleString() : '—'}</td>
-              <td class="num hide-narrow">{c.mobility_in != null ? Math.round(c.mobility_in).toLocaleString() : '—'}</td>
-              <td class="num hide-narrow">{c.mobility_out != null ? Math.round(c.mobility_out).toLocaleString() : '—'}</td>
-              <td class="num hide-narrow">{c.workforce?.demand != null ? Math.round(c.workforce.demand).toLocaleString() : '—'}</td>
+              <td class="num hide-narrow">{fmtInt(c.births_per_turn)}</td>
+              <td class="num hide-narrow">{fmtInt(c.deaths_per_turn)}</td>
+              <td class="num hide-narrow">{fmtInt(c.mobility_in)}</td>
+              <td class="num hide-narrow">{fmtInt(c.mobility_out)}</td>
+              <td class="num hide-narrow">{fmtInt(c.workforce?.demand)}</td>
               <td class="num" class:text-crit={fillDim}>{fill != null ? (fill * 100).toFixed(0) + '%' : '—'}</td>
-              <td class="num hide-narrow">{c.unemployed_count != null ? Math.round(c.unemployed_count).toLocaleString() : '—'}</td>
-              <td class="num">{c.satisfaction?.toFixed(2) ?? '—'}</td>
+              <td class="num hide-narrow">{fmtInt(c.unemployed_count)}</td>
+              <td class="num">{fmtPct(c.satisfaction)}</td>
             </tr>
           {/each}
         </tbody>
@@ -243,8 +244,8 @@
             format="pct"
           />
           <dl class="kv mt-2">
-            <dt>Pop</dt><dd>{$demographics.housing.pop?.toLocaleString() ?? '—'}</dd>
-            <dt>Capacity</dt><dd>{$demographics.housing.capacity?.toLocaleString() ?? '—'}</dd>
+            <dt>Pop</dt><dd>{fmtInt($demographics.housing.pop)}</dd>
+            <dt>Capacity</dt><dd>{fmtInt($demographics.housing.capacity)}</dd>
           </dl>
         </div>
       </div>
@@ -266,23 +267,23 @@
       </div>
     </div>
     <Band num="05" title="Food Security" meta="cropsim signals" />
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 kpi-row-secondary">
       <KpiBlock
         label="Security Ratio"
-        value={$demographics.food.security_ratio?.toFixed(2) ?? '—'}
+        value={fmtPct($demographics.food.security_ratio)}
         good={($demographics.food.security_ratio ?? 0) >= 1.0}
         critical={($demographics.food.security_ratio ?? 1) < 0.95}
       />
       <KpiBlock
         label="Food / Cap"
-        value={$demographics.food.per_cap?.toFixed(2) ?? '—'}
+        value={fmtNum($demographics.food.per_cap, 2)}
       />
       <KpiBlock
         label="Variety Index"
-        value={$demographics.food.variety_index?.toFixed(2) ?? '—'}
+        value={fmtNum($demographics.food.variety_index, 2)}
       />
     </div>
-  {/if}
+  </PageState>
 </section>
 
 <style>

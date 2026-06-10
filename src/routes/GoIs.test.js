@@ -13,6 +13,18 @@ const baseGois = {
   },
 };
 
+const minimalGoi = {
+  name: 'Administration',
+  main_class: 'Bureaucrats',
+  approach: 'Centrist',
+  derived_influence: 0.2,
+  approval: 0.5,
+  mad_index: 0.1,
+  effective_worldview: {},
+  sub_factions: [],
+  active_benefits: { unlocked: 0, total: 0, unlocked_list: [], items: [] },
+};
+
 describe('GoIs page', () => {
   beforeEach(() => {
     meta.set(null);
@@ -21,13 +33,23 @@ describe('GoIs page', () => {
   });
 
   test('labels the captured-pop heatmap with the workbook table name', () => {
-    gois.set(baseGois);
+    gois.set({ ...baseGois, gois: [minimalGoi] });
 
     render(GoIs);
 
     expect(screen.getByText('GOI VALUE CAPTURED POP')).toBeTruthy();
     expect(screen.getByText('1,974')).toBeTruthy();
     expect(screen.queryByText('Pop Capture Matrix')).toBeNull();
+  });
+
+  test('zero GoIs renders only the empty state — no heatmap or rail', () => {
+    gois.set(baseGois);
+
+    render(GoIs);
+
+    expect(screen.getByText('No GoIs recorded in this sync.')).toBeTruthy();
+    expect(screen.queryByText('GOI VALUE CAPTURED POP')).toBeNull();
+    expect(screen.queryByText('Inspect a sub-faction')).toBeNull();
   });
 
   test('shows benefit descriptions and active state', () => {

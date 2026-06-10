@@ -3,9 +3,11 @@
   import { meta } from '../lib/stores/meta.js';
   import { tech, techError, loadTech, techByBranch } from '../lib/stores/tech.js';
   import { pageTitle } from '../lib/page-title.js';
+  import PageState from '../lib/components/PageState.svelte';
   import Band from '../lib/components/Band.svelte';
   import KpiBlock from '../lib/components/KpiBlock.svelte';
   import TechCard from '../lib/components/TechCard.svelte';
+  import { fmtInt, fmtSignedInt } from '../lib/format.js';
 
   onMount(() => {
     pageTitle.set('Tech');
@@ -34,24 +36,17 @@
     techs.map((t) => [t.name.toLowerCase(), t]),
   );
 
-  function fmtInt(n) {
-    if (n == null || !Number.isFinite(n)) return null;
-    return Math.round(n).toLocaleString();
-  }
-
-  function fmtSignedInt(n) {
-    if (n == null || !Number.isFinite(n)) return '—';
-    const rounded = Math.round(n);
-    return `${rounded > 0 ? '+' : ''}${rounded.toLocaleString()}`;
-  }
 </script>
 
 <section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
-  {#if $techError}
-    <p class="text-crit">{$techError}</p>
-  {:else if !$tech}
-    <p class="text-muted text-xs uppercase tracking-widest">Loading…</p>
-  {:else if empty}
+  <PageState
+    label="Tech"
+    page="tech"
+    error={$techError}
+    loading={!$tech}
+    retry={() => loadTech($meta.synced_at)}
+  >
+    {#if empty}
     <Band num="01" title="Tech &amp; Institutions" />
     <div class="s-card s-card-pad">
       <p class="text-muted text-sm">
@@ -59,7 +54,7 @@
         <code>TechTable</code> named range.
       </p>
     </div>
-  {:else}
+    {:else}
     <Band num="01" title="Research Progress" meta={`${total} techs`} />
 
     <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-3">
@@ -120,5 +115,6 @@
         </div>
       {/each}
     </div>
-  {/if}
+    {/if}
+  </PageState>
 </section>

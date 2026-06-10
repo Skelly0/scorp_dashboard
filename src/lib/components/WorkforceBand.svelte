@@ -18,7 +18,7 @@
 
 {#if w}
   <Band num={bandNum} title="Workforce" meta={w.mismatch ? 'SKILL MISMATCH' : 'colony labour'} />
-  <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-3 kpi-row-secondary">
     <KpiBlock label="Total Demand" value={Math.round(w.totalDemand).toLocaleString()} />
     <KpiBlock label="Total Supply" value={Math.round(w.totalSupply).toLocaleString()} />
     <KpiBlock

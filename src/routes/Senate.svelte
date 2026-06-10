@@ -3,8 +3,10 @@
   import { meta } from '../lib/stores/meta.js';
   import { senate, senateError, loadSenate } from '../lib/stores/senate.js';
   import { pageTitle } from '../lib/page-title.js';
+  import PageState from '../lib/components/PageState.svelte';
   import Band from '../lib/components/Band.svelte';
   import Heatmap from '../lib/components/Heatmap.svelte';
+  import { fmtPct } from '../lib/format.js';
 
   onMount(() => {
     pageTitle.set('Senate');
@@ -22,11 +24,14 @@
 </script>
 
 <section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
-  {#if $senateError}
-    <p class="text-crit">{$senateError}</p>
-  {:else if !$senate}
-    <p class="text-muted text-xs uppercase tracking-widest">Loading…</p>
-  {:else if $senate.placeholder_note}
+  <PageState
+    label="Senate"
+    page="senate"
+    error={$senateError}
+    loading={!$senate}
+    retry={() => loadSenate($meta.synced_at)}
+  >
+    {#if $senate.placeholder_note}
     <Band num="01" title="Senate" />
     <div class="s-card s-card-pad" style="border-color: var(--accent);">
       <strong class="uppercase tracking-widest text-[10px] text-muted">Senate not yet convened</strong>
@@ -35,7 +40,7 @@
         Once the Senate sheet is published for a turn, coalitions, vote share, and GoI capture will appear here.
       </p>
     </div>
-  {:else}
+    {:else}
     <Band num="01" title="Coalitions" meta={`${coalitions.length} coalitions`} />
     {#if coalitions.length === 0}
       <p class="text-muted text-xs uppercase tracking-widest">No coalitions formed.</p>
@@ -59,8 +64,8 @@
                 <td><strong>{c.name}</strong></td>
                 <td>{c.member_parties?.join(' · ') ?? '—'}</td>
                 <td class="num">{c.member_count ?? '—'}</td>
-                <td class="num">{c.total_establishment != null ? Math.round(c.total_establishment * 100) + '%' : '—'}</td>
-                <td class="num">{c.total_vote_share != null ? Math.round(c.total_vote_share * 100) + '%' : '—'}</td>
+                <td class="num">{fmtPct(c.total_establishment)}</td>
+                <td class="num">{fmtPct(c.total_vote_share)}</td>
                 <td class="text-muted">{c.approach ?? '—'}</td>
               </tr>
             {/each}
@@ -76,9 +81,9 @@
               <div
                 class="flex items-center justify-center text-[10px] font-bold uppercase tracking-widest"
                 style="flex: {seg.share}; background: {seg.color}; color: var(--alert-fg);"
-                title="{seg.name} {Math.round(seg.share * 100)}%"
+                title="{seg.name} {fmtPct(seg.share)}"
               >
-                {Math.round(seg.share * 100)}%
+                {fmtPct(seg.share)}
               </div>
             {/if}
           {/each}
@@ -104,5 +109,6 @@
         />
       </div>
     {/if}
-  {/if}
+    {/if}
+  </PageState>
 </section>

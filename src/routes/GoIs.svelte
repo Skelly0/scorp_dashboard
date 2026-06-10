@@ -4,12 +4,14 @@
   import { gois, goisError, loadGois } from '../lib/stores/gois.js';
   import { pageTitle } from '../lib/page-title.js';
   import { goiColor } from '../lib/faction-colors.js';
+  import PageState from '../lib/components/PageState.svelte';
   import Band from '../lib/components/Band.svelte';
   import RadarChart from '../lib/components/RadarChart.svelte';
   import Heatmap from '../lib/components/Heatmap.svelte';
   import MadIndex from '../lib/components/MadIndex.svelte';
   import SubFactionPanel from '../lib/components/SubFactionPanel.svelte';
   import { WORLDVIEW_AXES as AXES, AXIS_HIGH_LABELS } from '../lib/worldview.js';
+  import { fmtPct } from '../lib/format.js';
 
   onMount(() => {
     pageTitle.set('GoIs');
@@ -87,11 +89,19 @@
 <svelte:window on:keydown={handleKeydown} />
 
 <section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px] gois-page">
-  {#if $goisError}
-    <p class="text-crit">{$goisError}</p>
-  {:else if !$gois}
-    <p class="text-muted text-xs uppercase tracking-widest">Loading…</p>
-  {:else}
+  <PageState
+    label="GoIs"
+    page="gois"
+    error={$goisError}
+    loading={!$gois}
+    retry={() => loadGois($meta.synced_at)}
+  >
+    {#if $gois.gois.length === 0}
+      <Band num="01" title="Groups of Interest" meta="0 GoIs" />
+      <div class="s-card s-card-pad">
+        <p class="text-muted text-sm">No GoIs recorded in this sync.</p>
+      </div>
+    {:else}
     <div class="gois-main">
     <Band num="01" title="Groups of Interest" meta={`${$gois.gois.length} GoIs`} />
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
@@ -117,13 +127,13 @@
                 <div>
                   <div class="text-muted text-[9px] uppercase tracking-widest">Influence</div>
                   <div class="font-extrabold text-lg tnum">
-                    {g.derived_influence != null ? Math.round(g.derived_influence * 100) + '%' : '—'}
+                    {fmtPct(g.derived_influence)}
                   </div>
                 </div>
                 <div>
                   <div class="text-muted text-[9px] uppercase tracking-widest">Approval</div>
                   <div class="font-extrabold text-lg tnum">
-                    {g.approval != null ? Math.round(g.approval * 100) + '%' : '—'}
+                    {fmtPct(g.approval)}
                   </div>
                 </div>
                 <div>
@@ -178,8 +188,8 @@
                         >
                           <span>{s.name}</span>
                           <span class="text-muted tnum">
-                            {s.influence != null ? Math.round(s.influence * 100) + '%' : '—'} ·
-                            ap {s.approval != null ? Math.round(s.approval * 100) + '%' : '—'}
+                            {fmtPct(s.influence)} ·
+                            ap {fmtPct(s.approval)}
                           </span>
                         </button>
                       </li>
@@ -230,7 +240,8 @@
         />
       </div>
     {/if}
-  {/if}
+    {/if}
+  </PageState>
 </section>
 
 <style>

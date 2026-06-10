@@ -36,8 +36,11 @@
 
 {#if subfaction == null}
   <div class="s-rail-empty" role="region" aria-label="Sub-faction detail">
-    <div class="s-rail-empty-icon" aria-hidden="true">◇</div>
-    <p>Select a sub-faction to inspect</p>
+    <p class="inspector-empty-head">Inspect a sub-faction</p>
+    <ul class="inspector-empty-hints">
+      <li><span class="inspector-empty-key">click</span> a sub-faction row on a GoI card</li>
+      <li><span class="inspector-empty-key">esc</span> to clear</li>
+    </ul>
   </div>
 {:else}
   <div class="s-rail-panel" role="region" aria-label="Sub-faction detail">

@@ -5,6 +5,7 @@
   import { pops, popsError, loadPops } from '../lib/stores/pops.js';
   import { pageTitle } from '../lib/page-title.js';
   import { classCompatPopMatrix, partySupportOverview } from '../lib/party-compat.js';
+  import PageState from '../lib/components/PageState.svelte';
   import Band from '../lib/components/Band.svelte';
   import RadarChart from '../lib/components/RadarChart.svelte';
   import Heatmap from '../lib/components/Heatmap.svelte';
@@ -12,6 +13,7 @@
   import { WORLDVIEW_AXES as AXES, AXIS_HIGH_LABELS } from '../lib/worldview.js';
   import { partyIdeology } from '../lib/party-ideology.js';
   import { partyColor } from '../lib/faction-colors.js';
+  import { fmtInt, fmtPct } from '../lib/format.js';
 
   onMount(() => {
     pageTitle.set('Parties');
@@ -33,14 +35,6 @@
     return support?.totalCapturedPop ?? party?.estimated_support ?? null;
   }
 
-  function fmtPct(value) {
-    return value != null && Number.isFinite(value) ? `${Math.round(value * 100)}%` : '—';
-  }
-
-  function fmtPop(value) {
-    return value != null && Number.isFinite(value) ? Math.round(value).toLocaleString('en-US') : '—';
-  }
-
   // Class x party heatmap tabs: % of class vs raw people. Compatibility lives
   // separately because its axes are party x GoI (a different cross-table).
   $: hasPct = $parties?.party_capture_pct_matrix?.values?.length > 0;
@@ -51,16 +45,19 @@
 </script>
 
 <section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
-  {#if errorMsg}
-    <p class="text-crit">{errorMsg}</p>
-  {:else if !$parties || !$pops}
-    <p class="text-muted text-xs uppercase tracking-widest">Loading…</p>
-  {:else if $parties.parties.length === 0}
+  <PageState
+    label="Parties"
+    page={['parties', 'pops']}
+    error={errorMsg}
+    loading={!$parties || !$pops}
+    retry={() => { loadParties($meta.synced_at); loadPops($meta.synced_at); }}
+  >
+    {#if $parties.parties.length === 0}
     <Band num="01" title="Founded Parties" meta="0 parties" />
     <div class="s-card s-card-pad">
       <p class="text-muted text-sm">No parties founded yet — players form parties during play.</p>
     </div>
-  {:else}
+    {:else}
     <Band num="01" title="Founded Parties" meta={`${$parties.parties.length} parties`} />
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
       {#each $parties.parties as p}
@@ -89,7 +86,7 @@
                 </div>
                 <div>
                   <div class="text-muted text-[9px] uppercase tracking-widest">Supporters</div>
-                  <div class="font-extrabold text-base tnum">{fmtPop(supporters)}</div>
+                  <div class="font-extrabold text-base tnum">{fmtInt(supporters)}</div>
                 </div>
               </div>
               <MadIndex value={p.mad_index} />
@@ -103,7 +100,7 @@
                     {#each support.topClasses as row}
                       <li>
                         <span>{row.className}</span>
-                        <span class="text-muted tnum">{fmtPop(row.capturedPop)}</span>
+                        <span class="text-muted tnum">{fmtInt(row.capturedPop)}</span>
                         <span class="text-muted tnum">{fmtPct(row.classCapturePct)} class</span>
                       </li>
                     {/each}
@@ -189,7 +186,8 @@
         </div>
       </div>
     {/if}
-  {/if}
+    {/if}
+  </PageState>
 </section>
 
 <style>

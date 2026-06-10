@@ -20,6 +20,7 @@
     readZoom,
     writeZoom,
   } from '../lib/map-zoom.js';
+  import PageState from '../lib/components/PageState.svelte';
   import Band from '../lib/components/Band.svelte';
   import MapCanvas from '../lib/components/MapCanvas.svelte';
   import RosterPanel from '../lib/components/RosterPanel.svelte';
@@ -160,11 +161,13 @@
 </script>
 
 <section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
-  {#if $mapError}
-    <p class="text-crit">{$mapError}</p>
-  {:else if !$map}
-    <p class="text-muted text-xs uppercase tracking-widest">Loading map…</p>
-  {:else}
+  <PageState
+    label="Map"
+    page="map"
+    error={$mapError}
+    loading={!$map}
+    retry={() => loadMap($meta.synced_at)}
+  >
     <Band num="01" title="Surface Grid" meta="40 × 40" />
 
     <div class="flex items-center gap-3 mb-2">
@@ -369,5 +372,5 @@
     {#if catalogOpen}
       <CatalogModal on:close={() => (catalogOpen = false)} />
     {/if}
-  {/if}
+  </PageState>
 </section>
