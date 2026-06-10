@@ -5,6 +5,7 @@ export const population = writable(null);
 export const populationError = writable(null);
 
 export async function loadPopulation(syncedAt) {
+  populationError.set(null);
   try {
     population.set(await fetchPage('population', syncedAt));
   } catch (err) {

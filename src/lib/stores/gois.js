@@ -5,6 +5,7 @@ export const gois = writable(null);
 export const goisError = writable(null);
 
 export async function loadGois(syncedAt) {
+  goisError.set(null);
   try {
     gois.set(await fetchPage('gois', syncedAt));
   } catch (err) {

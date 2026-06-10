@@ -5,6 +5,7 @@ export const parties = writable(null);
 export const partiesError = writable(null);
 
 export async function loadParties(syncedAt) {
+  partiesError.set(null);
   try {
     parties.set(await fetchPage('parties', syncedAt));
   } catch (err) {

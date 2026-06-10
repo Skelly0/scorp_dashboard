@@ -17,6 +17,9 @@ function normalizeResearchPoints(value) {
 }
 
 export async function loadTech(syncedAt) {
+  techError.set(null);
+  // Reset to the loading state so a Retry shows the loader, not the empty-state card.
+  tech.set(null);
   try {
     const data = await fetchPage('tech', syncedAt);
     if (!data) {

@@ -20,6 +20,9 @@ export const cropsim = writable(null);
 export const cropsimError = writable(null);
 
 export async function loadCropsim(syncedAt) {
+  cropsimError.set(null);
+  // Reset to the loading state so a Retry shows the loader, not the empty-state card.
+  cropsim.set(null);
   try {
     const data = await fetchPage('cropsim', syncedAt);
     if (!data) {
