@@ -12,9 +12,9 @@ const emptySenate = () => ({
 });
 
 export async function loadSenate(syncedAt) {
+  senateError.set(null);
   try {
     const data = await fetchPage('senate', syncedAt);
-    senateError.set(null);
     senate.set(data ?? emptySenate());
   } catch (err) {
     senateError.set(err.message);

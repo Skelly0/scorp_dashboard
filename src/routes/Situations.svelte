@@ -3,6 +3,7 @@
   import { meta } from '../lib/stores/meta.js';
   import { situations, situationsError, loadSituations } from '../lib/stores/situations.js';
   import { pageTitle } from '../lib/page-title.js';
+  import PageState from '../lib/components/PageState.svelte';
   import Band from '../lib/components/Band.svelte';
   import SituationCard from '../lib/components/SituationCard.svelte';
   import TierLadder from '../lib/components/TierLadder.svelte';
@@ -33,11 +34,14 @@
 </script>
 
 <section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
-  {#if $situationsError}
-    <p class="text-crit">{$situationsError}</p>
-  {:else if !$situations}
-    <p class="text-muted text-xs uppercase tracking-widest">Loading…</p>
-  {:else if empty}
+  <PageState
+    label="Situations"
+    page="situations"
+    error={$situationsError}
+    loading={!$situations}
+    retry={() => loadSituations($meta.synced_at)}
+  >
+    {#if empty}
     <Band num="01" title="Situations" />
     <div class="s-card s-card-pad">
       <p class="text-muted text-sm">
@@ -45,7 +49,7 @@
         and Tier Ladder, this page will fill in.
       </p>
     </div>
-  {:else}
+    {:else}
     {#if $situations.active.length > 0}
       <Band num="00" title="Situation Load" meta={`${$situations.active.length} active · raw total`} />
       <div class="crisis-index sev-{ciSeverity}">
@@ -124,5 +128,6 @@
       <Band num="03" title="Crisis Tier Ladder" meta="0.00 — 1.00" />
       <TierLadder tiers={$situations.tier_ladder} />
     {/if}
-  {/if}
+    {/if}
+  </PageState>
 </section>

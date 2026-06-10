@@ -45,11 +45,17 @@ test.describe('Demographics page — workforce rework', () => {
     await expect(tile.locator('.kpi-subtitle')).toHaveText(/\d+% free/);
   });
 
-  test('Predicted Growth shows signed "/ year" value', async ({ page }) => {
+  test('Predicted Growth shows signed value with "per year" subtitle', async ({ page }) => {
     const tile = page.locator('.kpi-block').filter({ hasText: 'Predicted Growth' });
     await expect(tile).toBeVisible();
-    // Should look like "+150 / year", "-18 / year", or "—".
-    await expect(tile).toContainText(/(\+|−|-|—).*\/ year|—/);
+    // Headline is a bare signed integer ("+150", "-18", "0") or "—"; the unit
+    // lives in the subtitle so the value never wraps mid-string.
+    const num = tile.locator('.kpi-num');
+    await expect(num).toHaveText(/^(\+|-)?[\d,]+$|^—$/);
+    const text = (await num.innerText()).trim();
+    if (text !== '—') {
+      await expect(tile.locator('.kpi-subtitle')).toHaveText('per year');
+    }
   });
 
   test('Class Vitals has population profile and workforce columns', async ({ page }) => {

@@ -12,6 +12,8 @@ export default {
         border: 'var(--border)',
         muted: 'var(--muted)',
         crit: 'var(--crit)',
+        warn: 'var(--warn)',
+        good: 'var(--good)',
       },
     },
   },

@@ -154,7 +154,7 @@
       {/each}
     </div>
 
-    <main class="cat-body">
+    <div class="cat-body">
       {#if !$catalog}
         <div class="cat-empty">Catalog is loading or unavailable.</div>
       {:else if totalCount === 0}
@@ -176,6 +176,6 @@
           </section>
         {/each}
       {/if}
-    </main>
+    </div>
   </div>
 </div>

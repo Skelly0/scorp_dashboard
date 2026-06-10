@@ -16,7 +16,7 @@
 
 <div class="sit-card sev-{severity}" class:ended>
   <div class="flex justify-between items-baseline gap-2">
-    <h4>{ended ? '✓' : '⚠'} {name}</h4>
+    <h3>{ended ? '✓' : '⚠'} {name}</h3>
     {#if !ended && crisis_factor != null}
       <span class="cf tnum">Load {crisis_factor.toFixed(2)}</span>
     {:else if ended}

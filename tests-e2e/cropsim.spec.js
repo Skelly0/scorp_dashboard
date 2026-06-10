@@ -62,7 +62,9 @@ test('Cropsim page renders food balance, production, and demand', async ({ page 
   await expect(page.locator('.kpi-block', { hasText: 'Food Reserve' })).toContainText('-846');
   await expect(page.locator('.kpi-block', { hasText: 'Net/Turn' })).toContainText('-12.9');
   await expect(page.locator('.kpi-label', { hasText: /^Balance$/ })).toHaveCount(0);
-  await expect(page.locator('.kpi-block', { hasText: 'Security Ratio' })).toContainText('0.985');
+  await expect(page.locator('.kpi-block', { hasText: 'Security Ratio' })).toContainText('98%');
+  await expect(page.locator('.kpi-block', { hasText: 'Food / Cap' })).toContainText('0.01');
+  await expect(page.locator('.kpi-block', { hasText: 'Variety Index' })).toContainText('0.04');
   await expect(page.locator('.crop-mix-card', { hasText: 'Vat Protein' })).toBeVisible();
   await expect(page.locator('table.tbl', { hasText: 'Industrial Workers' })).toBeVisible();
 });

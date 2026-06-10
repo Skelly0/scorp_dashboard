@@ -5,6 +5,7 @@ export const situations = writable(null);
 export const situationsError = writable(null);
 
 export async function loadSituations(syncedAt) {
+  situationsError.set(null);
   try {
     situations.set(await fetchPage('situations', syncedAt));
   } catch (err) {
