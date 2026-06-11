@@ -1,0 +1,60 @@
+{
+  "congress": {
+    "parties": [
+      {
+        "name": "Independent",
+        "seats": 4.0
+      },
+      {
+        "name": "Lunar Survival League",
+        "seats": 8.0
+      },
+      {
+        "name": "Novus Chrysalis Collective",
+        "seats": 6.0
+      },
+      {
+        "name": "Selenite Rose Front",
+        "seats": 7.0
+      },
+      {
+        "name": "Education Party",
+        "seats": 2.0
+      },
+      {
+        "name": "Non-aligned",
+        "seats": 0.0
+      }
+    ],
+    "total_seats": 27
+  },
+  "council": {
+    "parties": [
+      {
+        "name": "Independent",
+        "seats": 2.0
+      },
+      {
+        "name": "Lunar Survival League",
+        "seats": 5.0
+      },
+      {
+        "name": "Novus Chrysalis Collective",
+        "seats": 3.0
+      },
+      {
+        "name": "Selenite Rose Front",
+        "seats": 4.0
+      },
+      {
+        "name": "Education Party",
+        "seats": 1.0
+      },
+      {
+        "name": "Non-aligned",
+        "seats": 0.0
+      }
+    ],
+    "total_seats": 15
+  }
+}
