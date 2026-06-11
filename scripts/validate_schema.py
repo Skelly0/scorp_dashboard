@@ -136,12 +136,14 @@ SOFT_OPTIONAL_V3_RANGES: list[str] = [
     # read_named_range; missing → empty party/delegation lists, frontend
     # renders an empty-state band on the /congress page). Party columns B..P
     # mirror the Parties sheet's 15 slots; col Q is Non-aligned.
-    # `CongressDelegationSeats` optionally pins the `DELEGATION → PARTY SEATS`
+    # `CongressPartySeats` is the OFFICIAL party-totals channel — the GM
+    # zeroes it pre-election, so all-zero is a real state to render, not
+    # drift to repair. `CongressDelegationSeats` pins the federation seat
     # matrix (col A federation names + the CongressPartyNames party columns,
-    # data rows only); when absent the extractor locates that block by its
-    # col-A title on the CongressPartyNames sheet. Congress party totals
-    # derive from matrix column sums, falling back to the CongressPartySeats
-    # row when no matrix is found. `CouncilSeatsByParty` is no longer read —
+    # data rows only) and is the GM's explicit publish switch for the
+    # federation band: there is deliberately NO title-located fallback to
+    # the visible `DELEGATION → PARTY SEATS` block, which holds unofficial
+    # live projection formulas. `CouncilSeatsByParty` is no longer read —
     # the Celestial Council band was replaced by the federation delegations.
     "CongressPartyNames",
     "CongressPartySeats",

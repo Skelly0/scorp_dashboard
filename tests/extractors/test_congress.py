@@ -1,17 +1,16 @@
 from __future__ import annotations
 
-from openpyxl.workbook.defined_name import DefinedName
-
 from extractors import congress
 
 
-def test_congress_party_totals_derive_from_delegation_matrix(wb):
+def test_congress_party_totals_read_seats_row_not_matrix(wb):
     result = congress.extract(wb)
     assert set(result.keys()) == {"congress", "federations"}
-    # Matrix column sums (14/13), NOT the drifted legacy row 45 (15/12).
+    # The OFFICIAL CongressPartySeats row (15/12), never the projection
+    # matrix column sums (14/13) — the GM controls the row.
     assert result["congress"]["total_seats"] == 27
     by_name = {p["name"]: p["seats"] for p in result["congress"]["parties"]}
-    assert by_name == {"Liberty Now": 14, "People's Voice": 13, "Non-aligned": 0}
+    assert by_name == {"Liberty Now": 15, "People's Voice": 12, "Non-aligned": 0}
 
 
 def test_congress_filters_blank_party_slots(wb):
@@ -29,10 +28,21 @@ def test_congress_keeps_named_zero_seat_parties(wb):
     assert nonaligned["seats"] == 0
 
 
-def test_congress_delegations_read_titled_matrix_block(wb):
+def test_congress_zeroed_seats_row_is_a_valid_pre_election_state(wb):
+    # The GM zeroes CongressPartySeats while elections have not been run.
+    # The extractor must report the zeros faithfully, not repair them from
+    # the projection matrix elsewhere on the sheet.
+    for col in range(2, 18):  # B..Q
+        wb["All-Worker Congress"].cell(row=45, column=col, value=0)
+    result = congress.extract(wb)
+    assert result["congress"]["total_seats"] == 0
+    assert all(p["seats"] == 0 for p in result["congress"]["parties"])
+
+
+def test_congress_delegations_read_named_range(wb):
     feds = congress.extract(wb)["federations"]
     assert feds["total_seats"] == 27
-    # QUOTAS helper block skipped, TOTAL row skipped, federations in sheet order.
+    # TOTAL row inside the range is skipped; federations in sheet order.
     assert [d["name"] for d in feds["delegations"]] == [
         "Dockworkers Guild",
         "Vacuum Farmers Union",
@@ -47,35 +57,22 @@ def test_congress_delegations_read_titled_matrix_block(wb):
     ]
 
 
-def test_congress_named_range_overrides_title_block(wb):
-    wb.defined_names["CongressDelegationSeats"] = DefinedName(
-        "CongressDelegationSeats",
-        attr_text="'All-Worker Congress'!$A$35:$Q$36",
-    )
-    result = congress.extract(wb)
-    feds = result["federations"]
-    assert [d["name"] for d in feds["delegations"]] == [
-        "Dockworkers Guild",
-        "Vacuum Farmers Union",
-    ]
-    assert feds["total_seats"] == 20
-    by_name = {p["name"]: p["seats"] for p in result["congress"]["parties"]}
-    assert by_name == {"Liberty Now": 12, "People's Voice": 8, "Non-aligned": 0}
-
-
-def test_congress_falls_back_to_seats_row_without_matrix(wb):
-    wb["All-Worker Congress"]["A33"] = None
+def test_congress_ignores_visible_matrix_without_named_range(wb):
+    # The on-sheet DELEGATION → PARTY SEATS block is a live projection the
+    # GM keeps unofficial until elections run; without the named range it
+    # must NOT be read (no title-located fallback — the publish switch is
+    # the range itself).
+    del wb.defined_names["CongressDelegationSeats"]
     result = congress.extract(wb)
     assert result["federations"] == {"total_seats": 0, "delegations": []}
-    # Legacy CongressPartySeats row drives the chamber when no matrix exists.
+    # Party totals still come from the official row, untouched.
     assert result["congress"]["total_seats"] == 27
-    by_name = {p["name"]: p["seats"] for p in result["congress"]["parties"]}
-    assert by_name == {"Liberty Now": 15, "People's Voice": 12, "Non-aligned": 0}
 
 
 def test_congress_missing_ranges_yield_empty_page(wb):
     del wb.defined_names["CongressPartyNames"]
     del wb.defined_names["CongressPartySeats"]
+    del wb.defined_names["CongressDelegationSeats"]
     result = congress.extract(wb)
     assert result["congress"] == {"total_seats": 0, "parties": []}
     assert result["federations"] == {"total_seats": 0, "delegations": []}

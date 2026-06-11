@@ -48,9 +48,9 @@
       {:else}
         <div class="s-card s-card-pad">
           <p class="text-muted text-sm">
-            Delegation data hasn't synced yet — the
-            <code>DELEGATION → PARTY SEATS</code> block was not found on the
-            All-Worker Congress sheet.
+            No delegation results published yet — seat splits appear here
+            once the workbook pins the seat matrix to the
+            <code>CongressDelegationSeats</code> named range.
           </p>
         </div>
       {/if}
