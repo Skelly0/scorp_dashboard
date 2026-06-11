@@ -173,7 +173,7 @@ test('Congress page shows the empty state when congress.json is absent', async (
   await expect(page.locator('code', { hasText: 'CongressPartyNames' })).toBeVisible();
 });
 
-test('Congress page falls back to a pending card when delegations are missing', async ({ page }) => {
+test('Congress page falls back to a pending card when delegations are unpublished', async ({ page }) => {
   await mockCongressData(page, {
     congress: mockCongressPayload.congress,
     federations: { total_seats: 0, delegations: [] },
@@ -182,6 +182,6 @@ test('Congress page falls back to a pending card when delegations are missing', 
 
   await expect(page.getByRole('heading', { name: 'All-Worker Congress' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Trade Federation Delegations' })).toBeVisible();
-  await expect(page.getByText(/Delegation data hasn't synced yet/)).toBeVisible();
+  await expect(page.getByText(/No delegation results published yet/)).toBeVisible();
   await expect(page.locator('.parliament-svg')).toHaveCount(0);
 });

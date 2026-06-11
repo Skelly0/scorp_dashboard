@@ -115,14 +115,19 @@ diagram showing which Trade Federations the delegates come from.
   Hemicycle layout math is pure and unit-tested in `src/lib/parliament.js`: concentric
   rows, seats distributed to rows ∝ radius by largest remainder, filled left→right by
   angle so workbook-ordered delegations form contiguous wedges.
-- **Data source is the `DELEGATION → PARTY SEATS` matrix** (AWC sheet rows 33–41 live):
-  optional `CongressDelegationSeats` named range first, title-located fallback second
-  (the gotcha-#40/#51 pattern — works without any workbook change). The sibling
-  `DELEGATION → PARTY QUOTAS` helper block is explicitly not matched.
-- **Congress party totals now derive from matrix column sums** when the matrix is
-  readable. Rationale: the live `CongressPartySeats` row 45 drifted to literal zeros
-  (its helper SUM row 46 also mis-ranges, summing B35:B42 against a matrix at rows
-  34–41), while the matrix array formulas stayed healthy. Row 45 remains the fallback.
+- **Data source is the `CongressDelegationSeats` named range, exclusively** (col A
+  federation names + the CongressPartyNames party columns, data rows only; `TOTAL` /
+  `Federation…` label rows skipped). The first cut of this feature read the visible
+  `DELEGATION → PARTY SEATS` block by title as a fallback and derived party totals
+  from its column sums — interpreting the zeroed `CongressPartySeats` row as drift.
+  **The GM then clarified the zeros are intentional**: elections haven't been run, the
+  on-sheet matrix is a live projection (largest-remainder split of current party
+  support), and its totals formulas were deliberately parked outside the named rows so
+  projections wouldn't reach the dashboard. The title fallback was therefore removed —
+  the named range is the GM's explicit publish switch, and `CongressPartySeats` stays
+  the authoritative totals channel (all-zero = pre-election chamber, rendered
+  faithfully). This is the inverse of the gotcha-#51 "visible table is fuller truth"
+  situation; do not reintroduce a visible-block fallback here.
 - **`council` removed from `congress.json`; `federations` added** (`total_seats` +
   `delegations[] = {name, seats, parties[]}`; zero-seat parties omitted per delegation,
   kept at chamber level). `CouncilSeatsByParty` dropped from the soft-optional list —

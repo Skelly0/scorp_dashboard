@@ -851,16 +851,15 @@ def build(out_path: Path) -> Path:
 
     # ---- All-Worker Congress sheet (v12) ----
     # Party columns B..P mirror the Parties sheet's 15 slots; Q is Non-aligned.
-    # Live layout: a fractional `DELEGATION → PARTY QUOTAS` helper block (the
-    # title matcher must skip it), then the integer `DELEGATION → PARTY SEATS`
-    # matrix (title row, `Federation \ Party` header row, one row per
-    # federation, trailing TOTAL row), then PARTY TOTALS rows 44/45.
-    # The extractor derives party totals from matrix column sums; row 45
-    # deliberately holds DIFFERENT legacy values (15/12 vs matrix sums 14/13)
-    # so tests can pin matrix precedence AND the row-45 fallback (by blanking
-    # the matrix title). Like the live workbook, no CongressDelegationSeats
-    # named range is defined — the default path is title location; the
-    # named-range override is added dynamically in tests.
+    # Live layout: a fractional `DELEGATION → PARTY QUOTAS` helper block, the
+    # `DELEGATION → PARTY SEATS` projection matrix (title row, `Federation \
+    # Party` header row, one row per federation, trailing TOTAL row), then
+    # PARTY TOTALS rows 44/45. Row 45 is the OFFICIAL seats channel (the GM
+    # zeroes it pre-election); the matrix is only read through the
+    # `CongressDelegationSeats` named range — never by locating its title —
+    # so the fixture deliberately gives the matrix sums (14/13) DIFFERENT
+    # values from row 45 (15/12) to pin the source of party totals, and
+    # includes the TOTAL row inside the named range to pin label skipping.
     awc = wb.create_sheet("All-Worker Congress")
     party_cols = {2: "Liberty Now", 3: "People's Voice", 17: "Non-aligned"}
     awc["A21"] = "DELEGATION → PARTY QUOTAS (helper for largest remainder)"
@@ -896,6 +895,7 @@ def build(out_path: Path) -> Path:
         awc.cell(row=45, column=col, value=congress_seats.get(col, 0))
     _add_name(wb, "CongressPartyNames", "'All-Worker Congress'!$B$44:$Q$44")
     _add_name(wb, "CongressPartySeats", "'All-Worker Congress'!$B$45:$Q$45")
+    _add_name(wb, "CongressDelegationSeats", "'All-Worker Congress'!$A$35:$Q$38")
 
     wb.save(out_path)
     return out_path
