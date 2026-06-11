@@ -2378,3 +2378,43 @@ table.tbl th.num {
   color: var(--muted);
   font-weight: 400;
 }
+
+/* ---- Congress federation delegations (FederationChamber) ---- */
+.parliament-wrap {
+  max-width: 560px;
+  margin: 0 auto;
+}
+.parliament-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.parliament-dot {
+  stroke: var(--bg);
+  stroke-width: 0.8;
+}
+.parliament-caption {
+  margin: 6px 0 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+/* Multi-segment per-federation party split. Overrides the single-span
+   absolutely-positioned `.bar > span` contract — segments flow in a row on
+   a scale shared across rows (width % of the largest delegation). Declared
+   after .seat-row-bar so the md+ display:flex wins over its display:block. */
+.fed-bar > span {
+  position: static;
+  inset: auto;
+  height: 100%;
+}
+.fed-bar > span + span {
+  border-left: 1px solid var(--bg);
+}
+@media (min-width: 768px) {
+  .fed-bar {
+    display: flex;
+  }
+}

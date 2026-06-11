@@ -48,8 +48,10 @@ def test_weekly_hours_table_is_documented_soft_optional():
 
 
 def test_congress_ranges_are_documented_soft_optional():
-    for name in ("CongressPartyNames", "CongressPartySeats", "CouncilSeatsByParty"):
+    for name in ("CongressPartyNames", "CongressPartySeats", "CongressDelegationSeats"):
         assert name in SOFT_OPTIONAL_V3_RANGES
+    # The Celestial Council range is retired — the dashboard no longer reads it.
+    assert "CouncilSeatsByParty" not in SOFT_OPTIONAL_V3_RANGES
 
 
 def test_validate_with_senate_enabled_passes_when_base_ranges_present(wb):

@@ -7,7 +7,7 @@ vi.mock('./MoonLoader.svelte', async () => ({
   default: (await import('./MoonLoaderStub.svelte')).default,
 }));
 
-const BASE_META = { synced_at: 't', schema_version: 11, senate_visible: false, partial_failures: [] };
+const BASE_META = { synced_at: 't', schema_version: 12, senate_visible: false, partial_failures: [] };
 
 describe('PageState', () => {
   beforeEach(() => {
