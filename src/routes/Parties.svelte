@@ -234,7 +234,13 @@
 
   @media (max-width: 399px) {
     .party-card-body { grid-template-columns: 1fr; }
+  }
+  /* Same cutoff as .narrow-hide: common phone widths (390/414) keep the
+     single-line row — the class-name column truncates, so it always fits.
+     Below 380 the pct drops to a second line, right-aligned under the count
+     so it reads as a sub-line of the same row instead of an orphan. */
+  @media (max-width: 380px) {
     .party-support li { grid-template-columns: minmax(0, 1fr) auto; }
-    .party-support li span:last-child { grid-column: 1 / -1; }
+    .party-support li span:last-child { grid-column: 1 / -1; justify-self: end; }
   }
 </style>

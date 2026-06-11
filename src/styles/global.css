@@ -120,6 +120,25 @@ body {
   scrollbar-width: thin;
 }
 
+/* === Keyboard focus + text selection ======================================= */
+/* One themed ring for everything keyboard-focusable, replacing the UA default
+   that matches none of the three palettes. Component-level :focus-visible
+   rules (zoom buttons, class-vitals rows, rail close, catalog search) carry
+   higher specificity and keep their tighter offsets. Mouse clicks don't
+   trigger :focus-visible, so pointer flows stay clean. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+/* The #main landmark receives programmatic focus on every route change — an
+   accent ring around the entire page would read as a rendering glitch. */
+#main:focus-visible { outline: none; }
+
+::selection {
+  background: var(--accent);
+  color: var(--alert-fg);
+}
+
 *::-webkit-scrollbar {
   width: 12px;
   height: 12px;
@@ -993,7 +1012,7 @@ table.tbl th.num {
 }
 
 .s-zoom-label {
-  color: var(--fg-muted);
+  color: var(--muted);
   font-size: 9px;
   letter-spacing: 0.16em;
   line-height: 1;

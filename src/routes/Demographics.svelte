@@ -143,6 +143,7 @@
         label="Available Housing"
         value={availableHousing.value}
         subtitle={availableHousing.subtitle}
+        critical={housingCritical}
       />
       <KpiBlock
         label="Predicted Growth"

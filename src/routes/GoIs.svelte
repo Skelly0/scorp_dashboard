@@ -181,13 +181,13 @@
                       <li>
                         <button
                           type="button"
-                          class="w-full flex justify-between border-b border-[var(--border-soft)] border-dashed py-1 text-left goi-subfaction-button"
+                          class="w-full flex items-baseline justify-between gap-2 border-b border-[var(--border-soft)] border-dashed py-1 text-left goi-subfaction-button"
                           class:s-rail-row-active={isActive}
                           aria-pressed={Boolean(isActive)}
                           on:click={() => toggleSelect(g.name, s.name)}
                         >
                           <span>{s.name}</span>
-                          <span class="text-muted tnum">
+                          <span class="text-muted tnum shrink-0 whitespace-nowrap">
                             {fmtPct(s.influence)} ·
                             ap {fmtPct(s.approval)}
                           </span>

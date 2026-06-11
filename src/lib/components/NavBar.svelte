@@ -35,7 +35,7 @@
         aria-label="Toggle nav"
         aria-expanded={menuOpen}
       >
-        {menuOpen ? 'x' : '☰'}
+        {menuOpen ? '✕' : '☰'}
       </button>
       {#if currentLabel}
         <span class="md:hidden min-w-0 flex-1 max-w-[7rem] sm:max-w-[10rem] text-xs uppercase tracking-widest text-muted truncate">

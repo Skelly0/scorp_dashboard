@@ -191,7 +191,7 @@ test.describe('Demographics — class drilldown', () => {
   test('Population page is no longer exposed as a standalone route', async ({ page }) => {
     await expect(page.locator('nav a', { hasText: 'Population' })).toHaveCount(0);
     await page.goto('/#/population');
-    await expect(page.locator('text=404 — Page Not Found')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Signal Lost' })).toBeVisible();
   });
 
   test('row aria-pressed reflects selection', async ({ page }) => {

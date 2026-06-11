@@ -147,6 +147,7 @@
       <StatTile
         label="Housing util"
         value={fmtPct($status.demographics?.housing_util, 1)}
+        critical={($status.demographics?.housing_util ?? 0) > 1.0}
       />
     </div>
 
