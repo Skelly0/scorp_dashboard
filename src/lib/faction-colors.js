@@ -49,6 +49,23 @@ export const PARTY_COLORS = {
   'Education Party': '#1abc9c',
 };
 
+// Trade-federation accents (Congress page — federation arc bands, legend
+// swatches). Each federation inherits the colour of its dominant member
+// class so Demographics and Congress speak one visual language; Logistics &
+// Transport is a slice federation with no 1:1 class and takes the Capitalists
+// yellow, which no federation otherwise uses. Unknown names fall back to
+// var(--accent) via federationColor().
+export const FEDERATION_COLORS = {
+  'Administration & Bureaucracy': '#ffb000',
+  Engineering: '#5ec3ff',
+  'Science & Research': '#a89cff',
+  'Logistics & Transport': '#ffd84d',
+  'Botany & Agriculture': '#7fc97f',
+  'Industrial Production': '#38d39f',
+  'Extraction & Mining': '#ff8c42',
+  'Service & Support Workers': '#a89567',
+};
+
 export const CONTROL_COLORS = {
   Administration: '#38d39f',
   Corporate: '#ffd84d',
@@ -75,6 +92,10 @@ export function goiColor(name) {
 
 export function partyColor(name) {
   return PARTY_COLORS[name] ?? null;
+}
+
+export function federationColor(name) {
+  return FEDERATION_COLORS[name] ?? 'var(--accent)';
 }
 
 export function resolveControlColor(control, palettes = {}) {

@@ -1,5 +1,14 @@
 import { describe, it, expect } from 'vitest';
-import { CONTROL_COLORS, GOI_COLORS, PARTY_COLORS, goiColor, partyColor, resolveControlColor } from './faction-colors.js';
+import {
+  CONTROL_COLORS,
+  FEDERATION_COLORS,
+  GOI_COLORS,
+  PARTY_COLORS,
+  federationColor,
+  goiColor,
+  partyColor,
+  resolveControlColor,
+} from './faction-colors.js';
 
 describe('control colors', () => {
   it('pins the map control palette for major institutions', () => {
@@ -56,5 +65,24 @@ describe('party colors', () => {
   it('returns null for parties without a Discord role so callers can fall back', () => {
     expect(partyColor('Independent')).toBeNull();
     expect(partyColor('Unknown Party')).toBeNull();
+  });
+});
+
+describe('federation colors', () => {
+  it('pins all eight live trade federations', () => {
+    expect(Object.keys(FEDERATION_COLORS)).toHaveLength(8);
+    expect(federationColor('Administration & Bureaucracy')).toBe('#ffb000');
+    expect(federationColor('Industrial Production')).toBe('#38d39f');
+    expect(federationColor('Service & Support Workers')).toBe('#a89567');
+  });
+
+  it('matches each 1:1 federation to its dominant member class colour', () => {
+    expect(federationColor('Engineering')).toBe('#5ec3ff'); // Engineers
+    expect(federationColor('Botany & Agriculture')).toBe('#7fc97f'); // Botanists
+    expect(federationColor('Extraction & Mining')).toBe('#ff8c42'); // Extraction Workers
+  });
+
+  it('falls back to the theme accent for unknown federations', () => {
+    expect(federationColor('Asteroid Wranglers')).toBe('var(--accent)');
   });
 });

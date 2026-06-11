@@ -132,13 +132,20 @@ SOFT_OPTIONAL_V3_RANGES: list[str] = [
     # Demographics drilldown can show "—" while the GM workbook table is being
     # introduced or adjusted.
     "WeeklyHoursWorkedTable",
-    # v11 — All-Worker Congress page (read by extractors/congress.py via
-    # read_named_range; missing → empty chamber lists, frontend renders an
-    # empty-state band on the /congress page). Party columns B..P mirror the
-    # Parties sheet's 15 slots; col Q is Non-aligned.
+    # v11/v12 — All-Worker Congress page (read by extractors/congress.py via
+    # read_named_range; missing → empty party/delegation lists, frontend
+    # renders an empty-state band on the /congress page). Party columns B..P
+    # mirror the Parties sheet's 15 slots; col Q is Non-aligned.
+    # `CongressDelegationSeats` optionally pins the `DELEGATION → PARTY SEATS`
+    # matrix (col A federation names + the CongressPartyNames party columns,
+    # data rows only); when absent the extractor locates that block by its
+    # col-A title on the CongressPartyNames sheet. Congress party totals
+    # derive from matrix column sums, falling back to the CongressPartySeats
+    # row when no matrix is found. `CouncilSeatsByParty` is no longer read —
+    # the Celestial Council band was replaced by the federation delegations.
     "CongressPartyNames",
     "CongressPartySeats",
-    "CouncilSeatsByParty",
+    "CongressDelegationSeats",
 ]
 
 
