@@ -1,5 +1,6 @@
 <script>
   import Sparkline from './Sparkline.svelte';
+  import { fmtSignedInt } from '../format.js';
 
   export let label;
   export let value;
@@ -23,6 +24,8 @@
 
   $: deltaSign = delta != null ? (delta > 0 ? '▲' : delta < 0 ? '▼' : '·') : null;
   $: deltaClass = delta != null ? (delta > 0 ? 'delta up' : delta < 0 ? 'delta down' : 'delta') : '';
+  // Group numeric deltas (+65,998) so they match the formatted flow chips beside them.
+  $: deltaText = delta == null ? null : typeof delta === 'number' ? fmtSignedInt(delta) : `${delta > 0 ? '+' : ''}${delta}`;
   $: explicitTone = TONE_COLORS[tone] ? tone : null;
   $: resolvedTone = explicitTone ?? (critical ? 'crit' : good ? 'good' : null);
   $: blockClass = resolvedTone
@@ -49,7 +52,7 @@
       </span>
     {/each}
     {#if delta != null}
-      <span class={deltaClass}>{deltaSign} {delta > 0 ? '+' : ''}{delta}</span>
+      <span class={deltaClass}>{deltaSign} {deltaText}</span>
     {/if}
     {#if delta != null && history}<span class="text-muted">·</span>{/if}
     {#if history}
