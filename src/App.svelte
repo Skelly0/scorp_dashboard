@@ -17,6 +17,7 @@
   import Status from './routes/Status.svelte';
   import GoIs from './routes/GoIs.svelte';
   import Parties from './routes/Parties.svelte';
+  import Congress from './routes/Congress.svelte';
   import Map from './routes/Map.svelte';
   import Senate from './routes/Senate.svelte';
   import Situations from './routes/Situations.svelte';
@@ -47,6 +48,7 @@
     '/gois': GoIs,
     '/tech': Tech,
     '/parties': Parties,
+    '/congress': Congress,
     '/senate': Senate,
     '/situations': Situations,
     '*': NotFound,

@@ -61,7 +61,7 @@ def test_run_sync_writes_status_and_meta(tmp_path, fixture_workbook_path):
     assert (out_dir / "meta.json").exists()
     meta = json.loads((out_dir / "meta.json").read_text())
     assert meta["senate_visible"] is False
-    assert meta["schema_version"] == 10
+    assert meta["schema_version"] == 11
     assert "synced_at" in meta
 
 
@@ -135,6 +135,18 @@ def test_run_sync_writes_tech_json(fixture_workbook_path, tmp_path):
     # Fixture seeds 4 named techs across Agriculture (3) + Industry (1).
     assert len(payload["techs"]) == 4
     assert payload["branches"] == ["Agriculture", "Industry"]
+
+
+def test_run_sync_writes_congress_json(fixture_workbook_path, tmp_path):
+    out_dir = tmp_path / "data"
+    out_dir.mkdir()
+    run_sync(fixture_workbook_path, out_dir)
+    assert (out_dir / "congress.json").exists()
+    payload = json.loads((out_dir / "congress.json").read_text())
+    assert payload["congress"]["total_seats"] == 27
+    assert payload["council"]["total_seats"] == 15
+    names = [p["name"] for p in payload["congress"]["parties"]]
+    assert names == ["Liberty Now", "People's Voice", "Non-aligned"]
 
 
 def test_run_sync_writes_cropsim_json(fixture_workbook_path, tmp_path):

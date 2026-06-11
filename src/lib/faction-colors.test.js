@@ -49,6 +49,10 @@ describe('party colors', () => {
     expect(PARTY_COLORS['Novus Chrysalis Collective']).toBe('#2ecc71');
   });
 
+  it('pins the Education Party turquoise', () => {
+    expect(partyColor('Education Party')).toBe('#1abc9c');
+  });
+
   it('returns null for parties without a Discord role so callers can fall back', () => {
     expect(partyColor('Independent')).toBeNull();
     expect(partyColor('Unknown Party')).toBeNull();

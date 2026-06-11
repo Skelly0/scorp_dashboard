@@ -132,6 +132,13 @@ SOFT_OPTIONAL_V3_RANGES: list[str] = [
     # Demographics drilldown can show "—" while the GM workbook table is being
     # introduced or adjusted.
     "WeeklyHoursWorkedTable",
+    # v11 — All-Worker Congress page (read by extractors/congress.py via
+    # read_named_range; missing → empty chamber lists, frontend renders an
+    # empty-state band on the /congress page). Party columns B..P mirror the
+    # Parties sheet's 15 slots; col Q is Non-aligned.
+    "CongressPartyNames",
+    "CongressPartySeats",
+    "CouncilSeatsByParty",
 ]
 
 

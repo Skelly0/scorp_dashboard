@@ -849,6 +849,29 @@ def build(out_path: Path) -> Path:
 
     _add_name(wb, "TechTable", "'Tech & Institutions'!$A$3:$R$8")
 
+    # ---- All-Worker Congress sheet (v11) ----
+    # Party columns B..P mirror the Parties sheet's 15 slots; Q is Non-aligned.
+    # Live layout: row 44 = party header, row 45 = Congress seats (Σ=27),
+    # row 49 = Celestial Council seats (Σ=15, Art. 16). Blank-name columns
+    # carry 0 seats — the extractor must drop them (convention 8) while
+    # keeping the NAMED zero-seat entry (Non-aligned).
+    awc = wb.create_sheet("All-Worker Congress")
+    awc["A43"] = "PARTY TOTALS (Congress)"
+    awc["A45"] = "Seats"
+    awc["A47"] = "CELESTIAL COUNCIL ALLOCATION (Art. 16)"
+    awc["A49"] = "Council Seats"
+    party_cols = {2: "Liberty Now", 3: "People's Voice", 17: "Non-aligned"}
+    congress_seats = {2: 15, 3: 12, 17: 0}
+    council_seats = {2: 8, 3: 7, 17: 0}
+    for col, name in party_cols.items():
+        awc.cell(row=44, column=col, value=name)
+    for col in range(2, 18):  # B..Q
+        awc.cell(row=45, column=col, value=congress_seats.get(col, 0))
+        awc.cell(row=49, column=col, value=council_seats.get(col, 0))
+    _add_name(wb, "CongressPartyNames", "'All-Worker Congress'!$B$44:$Q$44")
+    _add_name(wb, "CongressPartySeats", "'All-Worker Congress'!$B$45:$Q$45")
+    _add_name(wb, "CouncilSeatsByParty", "'All-Worker Congress'!$B$49:$Q$49")
+
     wb.save(out_path)
     return out_path
 

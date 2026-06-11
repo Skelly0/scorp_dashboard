@@ -46,6 +46,7 @@ export const PARTY_COLORS = {
   'Lunar Survival League': '#95a5a6',
   'Lunar Solidarity Party': '#e91e63',
   'Novus Chrysalis Collective': '#2ecc71',
+  'Education Party': '#1abc9c',
 };
 
 export const CONTROL_COLORS = {

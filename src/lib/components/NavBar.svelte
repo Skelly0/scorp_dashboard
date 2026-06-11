@@ -13,6 +13,7 @@
     { path: '/gois', label: 'GoIs' },
     { path: '/tech', label: 'Tech' },
     { path: '/parties', label: 'Parties' },
+    { path: '/congress', label: 'Congress' },
     { path: '/senate', label: 'Senate', requiresSenate: true },
     { path: '/situations', label: 'Situations' },
   ];

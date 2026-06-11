@@ -2311,3 +2311,54 @@ table.tbl th.num {
     animation: none !important;
   }
 }
+
+/* ---- Congress seat composition (SeatChamber) ---- */
+.seat-strip {
+  display: flex;
+  height: 22px;
+  border: 2px solid var(--border);
+  background: var(--bg-2);
+  overflow: hidden;
+}
+.seat-strip > i {
+  display: block;
+  height: 100%;
+  background: var(--seg-color, var(--accent));
+}
+.seat-strip > i + i {
+  border-left: 2px solid var(--bg);
+}
+.seat-rows {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.seat-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  min-width: 0;
+}
+.seat-row-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.seat-row b {
+  font-size: 15px;
+}
+.seat-row-share {
+  color: var(--muted);
+  font-size: 11px;
+  min-width: 44px;
+  text-align: right;
+}
+.seat-row.muted .seat-row-name,
+.seat-row.muted b {
+  color: var(--muted);
+  font-weight: 400;
+}

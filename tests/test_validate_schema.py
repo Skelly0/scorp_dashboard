@@ -47,6 +47,11 @@ def test_weekly_hours_table_is_documented_soft_optional():
     assert "WeeklyHoursWorkedTable" in SOFT_OPTIONAL_V3_RANGES
 
 
+def test_congress_ranges_are_documented_soft_optional():
+    for name in ("CongressPartyNames", "CongressPartySeats", "CouncilSeatsByParty"):
+        assert name in SOFT_OPTIONAL_V3_RANGES
+
+
 def test_validate_with_senate_enabled_passes_when_base_ranges_present(wb):
     """Senate-enabled validation requires no extra ranges today
     (SENATE_REQUIRED_RANGES is []). When that list grows, this test should

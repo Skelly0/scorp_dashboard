@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 const MOCK_META = {
   synced_at: new Date().toISOString(),
-  schema_version: 10,
+  schema_version: 11,
   senate_visible: false,
   partial_failures: ['gois'],
 };
