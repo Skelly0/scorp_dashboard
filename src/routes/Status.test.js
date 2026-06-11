@@ -98,7 +98,7 @@ describe('Status page', () => {
     )).toBeTruthy();
     expect(within(moneyHeadline).getByText('+429,535')).toBeTruthy();
     expect(within(moneyHeadline).getByText('-107,750')).toBeTruthy();
-    expect(within(moneyHeadline).getByText('▲ +321785')).toBeTruthy();
+    expect(within(moneyHeadline).getByText('▲ +321,785')).toBeTruthy();
   });
 
   test('shows numeric resource inflows and upkeeps inside resource flow boxes', () => {

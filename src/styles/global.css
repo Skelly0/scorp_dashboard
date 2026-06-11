@@ -2348,6 +2348,22 @@ table.tbl th.num {
   min-width: 0;
   overflow-wrap: anywhere;
 }
+/* Per-party seat meter (md+ only). At phone widths the four-column row is
+   already tight; on desktop the meter fills what was a ~1000px dead gap
+   between name and count. Fixed name/count columns keep every row's meter
+   on a shared scale — `auto` columns would resolve per row and mis-align
+   the bar origins. */
+.seat-row-bar { display: none; }
+@media (min-width: 768px) {
+  .seat-row {
+    grid-template-columns: auto minmax(160px, 26ch) minmax(0, 1fr) 4ch 44px;
+  }
+  .seat-row > b { text-align: right; }
+  .seat-row-bar {
+    display: block;
+    height: 10px;
+  }
+}
 .seat-row b {
   font-size: 15px;
 }
