@@ -17,7 +17,7 @@
     },
     {
       "name": "Capitalists",
-      "political_weight": 5.0,
+      "political_weight": 1.0,
       "pop": 2049,
       "share": 0.020662948882143543,
       "tier": "Expropriated",
@@ -77,7 +77,7 @@
     },
     {
       "name": "Proprietors",
-      "political_weight": 2.4,
+      "political_weight": 1.0,
       "pop": 3738,
       "share": 0.03769551143067475,
       "tier": "Expropriated",
