@@ -28,33 +28,145 @@
     ],
     "total_seats": 27
   },
-  "council": {
-    "parties": [
+  "federations": {
+    "delegations": [
       {
-        "name": "Independent",
-        "seats": 2.0
+        "name": "Administration & Bureaucracy",
+        "parties": [
+          {
+            "name": "Independent",
+            "seats": 1.0
+          },
+          {
+            "name": "Lunar Survival League",
+            "seats": 1.0
+          },
+          {
+            "name": "Novus Chrysalis Collective",
+            "seats": 1.0
+          }
+        ],
+        "seats": 3
       },
       {
-        "name": "Lunar Survival League",
-        "seats": 5.0
+        "name": "Engineering",
+        "parties": [
+          {
+            "name": "Independent",
+            "seats": 1.0
+          },
+          {
+            "name": "Novus Chrysalis Collective",
+            "seats": 1.0
+          },
+          {
+            "name": "Education Party",
+            "seats": 1.0
+          }
+        ],
+        "seats": 3
       },
       {
-        "name": "Novus Chrysalis Collective",
-        "seats": 3.0
+        "name": "Science & Research",
+        "parties": [
+          {
+            "name": "Independent",
+            "seats": 1.0
+          },
+          {
+            "name": "Novus Chrysalis Collective",
+            "seats": 1.0
+          },
+          {
+            "name": "Education Party",
+            "seats": 1.0
+          }
+        ],
+        "seats": 3
       },
       {
-        "name": "Selenite Rose Front",
-        "seats": 4.0
+        "name": "Logistics & Transport",
+        "parties": [
+          {
+            "name": "Lunar Survival League",
+            "seats": 1.0
+          },
+          {
+            "name": "Novus Chrysalis Collective",
+            "seats": 1.0
+          },
+          {
+            "name": "Selenite Rose Front",
+            "seats": 1.0
+          }
+        ],
+        "seats": 3
       },
       {
-        "name": "Education Party",
-        "seats": 1.0
+        "name": "Botany & Agriculture",
+        "parties": [
+          {
+            "name": "Independent",
+            "seats": 1.0
+          },
+          {
+            "name": "Novus Chrysalis Collective",
+            "seats": 1.0
+          },
+          {
+            "name": "Selenite Rose Front",
+            "seats": 1.0
+          }
+        ],
+        "seats": 3
       },
       {
-        "name": "Non-aligned",
-        "seats": 0.0
+        "name": "Industrial Production",
+        "parties": [
+          {
+            "name": "Lunar Survival League",
+            "seats": 2.0
+          },
+          {
+            "name": "Selenite Rose Front",
+            "seats": 2.0
+          }
+        ],
+        "seats": 4
+      },
+      {
+        "name": "Extraction & Mining",
+        "parties": [
+          {
+            "name": "Lunar Survival League",
+            "seats": 2.0
+          },
+          {
+            "name": "Selenite Rose Front",
+            "seats": 2.0
+          }
+        ],
+        "seats": 4
+      },
+      {
+        "name": "Service & Support Workers",
+        "parties": [
+          {
+            "name": "Lunar Survival League",
+            "seats": 2.0
+          },
+          {
+            "name": "Novus Chrysalis Collective",
+            "seats": 1.0
+          },
+          {
+            "name": "Selenite Rose Front",
+            "seats": 1.0
+          }
+        ],
+        "seats": 4
       }
     ],
-    "total_seats": 15
+    "total_seats": 27
   }
 }
