@@ -22,7 +22,7 @@
       "share": 0.020662948882143543,
       "tier": "Expropriated",
       "worldview": {
-        "authority": 2.0,
+        "authority": 6.0,
         "corporate": 1.0,
         "expansion": 2.0,
         "faith": 4.0,
@@ -67,11 +67,11 @@
       "share": 0.041487248268003186,
       "tier": "Middle",
       "worldview": {
-        "authority": 6.0,
+        "authority": 2.0,
         "corporate": 5.0,
         "expansion": 5.0,
         "faith": 2.5,
-        "materialist": 7.0,
+        "materialist": 6.0,
         "technocratic": 6.0
       }
     },
@@ -82,7 +82,7 @@
       "share": 0.03769551143067475,
       "tier": "Expropriated",
       "worldview": {
-        "authority": 2.0,
+        "authority": 6.0,
         "corporate": 1.0,
         "expansion": 4.5,
         "faith": 3.0,
@@ -112,7 +112,7 @@
       "share": 0.0746951988140738,
       "tier": "Middle",
       "worldview": {
-        "authority": 4.5,
+        "authority": 3.5,
         "corporate": 4.0,
         "expansion": 5.0,
         "faith": 4.0,
@@ -127,7 +127,7 @@
       "share": 0.2202837751984107,
       "tier": "Lower",
       "worldview": {
-        "authority": 5.0,
+        "authority": 3.5,
         "corporate": 6.0,
         "expansion": 3.0,
         "faith": 2.5,
@@ -142,7 +142,7 @@
       "share": 0.18930447848491877,
       "tier": "Lower",
       "worldview": {
-        "authority": 5.0,
+        "authority": 4.0,
         "corporate": 6.0,
         "expansion": 2.5,
         "faith": 2.5,
