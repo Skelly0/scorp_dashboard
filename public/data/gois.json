@@ -30,8 +30,8 @@
         ]
       },
       "approach": "Centrist",
-      "approval": 0.6586060277,
-      "derived_influence": 0.1468304868,
+      "approval": 0.6595650041,
+      "derived_influence": 0.1485445813,
       "effective_worldview": {
         "authority": 4.340538142,
         "corporate": 4.366812652,
@@ -45,7 +45,7 @@
       "name": "Administration",
       "sub_factions": [
         {
-          "approval": 0.6598747352,
+          "approval": 0.6608337116,
           "effective_worldview": {
             "authority": 4.7,
             "corporate": 3.45,
@@ -58,10 +58,10 @@
           "influence": 0.5,
           "minor_goals": [],
           "name": "Legal Professionals",
-          "national_share": 0.07822370558
+          "national_share": 0.07904292468
         },
         {
-          "approval": 0.6573373202,
+          "approval": 0.6582962966,
           "effective_worldview": {
             "authority": 5.4,
             "corporate": 4.85,
@@ -74,7 +74,7 @@
           "influence": 0.5,
           "minor_goals": [],
           "name": "Administration & Bureaucracy Federation",
-          "national_share": 0.07822370558
+          "national_share": 0.07904292468
         }
       ]
     },
@@ -107,8 +107,8 @@
         ]
       },
       "approach": "Communal",
-      "approval": 0.4305692022,
-      "derived_influence": 0.202743536,
+      "approval": 0.4316082858,
+      "derived_influence": 0.2054698406,
       "effective_worldview": {
         "authority": 3.973403948,
         "corporate": 5.950846265,
@@ -122,7 +122,7 @@
       "name": "Proletariat",
       "sub_factions": [
         {
-          "approval": 0.4203196557,
+          "approval": 0.4213587393,
           "effective_worldview": {
             "authority": 4.55,
             "corporate": 6.0,
@@ -135,10 +135,10 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Industrial Production Federation",
-          "national_share": 0.06480677557
+          "national_share": 0.0656002541
         },
         {
-          "approval": 0.3877305401,
+          "approval": 0.3887696237,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 6.0,
@@ -151,10 +151,10 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Extraction & Mining Federation",
-          "national_share": 0.06480677557
+          "national_share": 0.0656002541
         },
         {
-          "approval": 0.4836574108,
+          "approval": 0.4846964944,
           "effective_worldview": {
             "authority": 4.55,
             "corporate": 6.0,
@@ -167,7 +167,7 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Logistics & Transport Federeation",
-          "national_share": 0.06480677557
+          "national_share": 0.0656002541
         }
       ]
     },
@@ -200,8 +200,8 @@
         ]
       },
       "approach": "Centrist",
-      "approval": 0.464424342,
-      "derived_influence": 0.262020369,
+      "approval": 0.4653408368,
+      "derived_influence": 0.263214313,
       "effective_worldview": {
         "authority": 3.913977389,
         "corporate": 4.367577743,
@@ -215,7 +215,7 @@
       "name": "White Collar",
       "sub_factions": [
         {
-          "approval": 0.3446301243,
+          "approval": 0.3455466191,
           "effective_worldview": {
             "authority": 3.85,
             "corporate": 4.7,
@@ -228,10 +228,10 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Botany & Agriculture Federation",
-          "national_share": 0.083754558
+          "national_share": 0.08403630319
         },
         {
-          "approval": 0.388839308,
+          "approval": 0.3897558028,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 4.7,
@@ -244,10 +244,10 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Engineering Federation",
-          "national_share": 0.083754558
+          "national_share": 0.08403630319
         },
         {
-          "approval": 0.6598035937,
+          "approval": 0.6607200885,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 4.7,
@@ -260,7 +260,7 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Service & Support Workers Federation",
-          "national_share": 0.083754558
+          "national_share": 0.08403630319
         }
       ]
     },
@@ -294,8 +294,8 @@
         ]
       },
       "approach": "Secular",
-      "approval": 0.5598443841,
-      "derived_influence": 0.1743860478,
+      "approval": 0.5607772621,
+      "derived_influence": 0.1757739111,
       "effective_worldview": {
         "authority": 4.256187199,
         "corporate": 3.76348245,
@@ -309,7 +309,7 @@
       "name": "Research",
       "sub_factions": [
         {
-          "approval": 0.5301841801,
+          "approval": 0.531117058,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 3.45,
@@ -322,10 +322,10 @@
           "influence": 0.5,
           "minor_goals": [],
           "name": "Frontier Corps",
-          "national_share": 0.0929038864
+          "national_share": 0.09353208238
         },
         {
-          "approval": 0.5895045882,
+          "approval": 0.5904374662,
           "effective_worldview": {
             "authority": 5.4,
             "corporate": 2.05,
@@ -338,7 +338,7 @@
           "influence": 0.5,
           "minor_goals": [],
           "name": "Science & Research Federation",
-          "national_share": 0.0929038864
+          "national_share": 0.09353208238
         }
       ]
     },
@@ -373,8 +373,8 @@
         ]
       },
       "approach": "Religious",
-      "approval": 0.8112525579,
-      "derived_influence": 0.1212756459,
+      "approval": 0.8120811502,
+      "derived_influence": 0.1213716216,
       "effective_worldview": {
         "authority": 3.069899768,
         "corporate": 4.852420943,
@@ -388,7 +388,7 @@
       "name": "Congregations",
       "sub_factions": [
         {
-          "approval": 0.7862525579,
+          "approval": 0.7870811502,
           "effective_worldview": {
             "authority": 3.4,
             "corporate": 4.3,
@@ -401,10 +401,10 @@
           "influence": 0.5,
           "minor_goals": [],
           "name": "The Concilium",
-          "national_share": 0.06460940524
+          "national_share": 0.06458376242
         },
         {
-          "approval": 0.9362525579,
+          "approval": 0.9370811502,
           "effective_worldview": {
             "authority": 3.4,
             "corporate": 5.7,
@@ -417,10 +417,10 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Redemptionists",
-          "national_share": 0.03876564314
+          "national_share": 0.03875025745
         },
         {
-          "approval": 0.6862525579,
+          "approval": 0.6870811502,
           "effective_worldview": {
             "authority": 1.3,
             "corporate": 2.9,
@@ -433,7 +433,7 @@
           "influence": 0.2,
           "minor_goals": [],
           "name": "Charmistic Leaders",
-          "national_share": 0.0258437621
+          "national_share": 0.02583350497
         }
       ]
     },
@@ -445,8 +445,8 @@
         "unlocked_list": []
       },
       "approach": "Marketist",
-      "approval": 0.3870147891,
-      "derived_influence": 0.07774965277,
+      "approval": 0.3873872944,
+      "derived_influence": 0.07213916913,
       "effective_worldview": {
         "authority": 4.881143879,
         "corporate": 2.864752398,
@@ -460,7 +460,7 @@
       "name": "Outcast Dissidents",
       "sub_factions": [
         {
-          "approval": 0.6326992789,
+          "approval": 0.6330717842,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 5.4,
@@ -473,10 +473,10 @@
           "influence": 0.1,
           "minor_goals": [],
           "name": "Rebellious Youths",
-          "national_share": 0.008284200484
+          "national_share": 0.007677278918
         },
         {
-          "approval": 0.351854381,
+          "approval": 0.3522268862,
           "effective_worldview": {
             "authority": 3.9,
             "corporate": 1.0,
@@ -489,10 +489,10 @@
           "influence": 0.5,
           "minor_goals": [],
           "name": "Reactionaries",
-          "national_share": 0.04142100242
+          "national_share": 0.03838639459
         },
         {
-          "approval": 0.3695441769,
+          "approval": 0.3699166821,
           "effective_worldview": {
             "authority": 6.1,
             "corporate": 6.1,
@@ -505,7 +505,7 @@
           "influence": 0.4,
           "minor_goals": [],
           "name": "Sybarites",
-          "national_share": 0.03313680194
+          "national_share": 0.03070911567
         }
       ]
     }
