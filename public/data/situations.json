@@ -6,7 +6,7 @@
       "name": "The Lights Go Down"
     },
     {
-      "crisis_factor": 0.5,
+      "crisis_factor": 0.4,
       "description": "Tonight the Moon runs with blood.",
       "name": "Blood on the Dance Floor"
     },
@@ -29,6 +29,11 @@
       "crisis_factor": -0.05,
       "description": "Week of Mourning and annual Remembrance Day help people come to terms.",
       "name": "Memorialization of Earth Act"
+    },
+    {
+      "crisis_factor": -0.05,
+      "description": "The civil war is over, there is hope in the air.",
+      "name": "A Return to Normalcy?"
     }
   ],
   "ended": [],
