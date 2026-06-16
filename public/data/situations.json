@@ -6,19 +6,9 @@
       "name": "The Lights Go Down"
     },
     {
-      "crisis_factor": 0.4,
+      "crisis_factor": 0.5,
       "description": "Tonight the Moon runs with blood.",
       "name": "Blood on the Dance Floor"
-    },
-    {
-      "crisis_factor": 0.05,
-      "description": "Chaotic arrest in the council of Director Mills",
-      "name": "Council Chaos"
-    },
-    {
-      "crisis_factor": 0.1,
-      "description": "The collaborators who attempted to forcibly establish The Lunar Workers' Council have been arrested for treason",
-      "name": "Attempted Coup and Arrests of the Communists"
     },
     {
       "crisis_factor": -0.05,
