@@ -163,7 +163,7 @@
             "materialist": 4.15,
             "technocratic": 6.0
           },
-          "goal": null,
+          "goal": "Lower the number of hours worked per week.",
           "influence": 0.3,
           "minor_goals": [],
           "name": "Logistics & Transport Federeation",
@@ -318,7 +318,7 @@
             "materialist": 4.85,
             "technocratic": 2.7
           },
-          "goal": null,
+          "goal": "Build a new Outpost.",
           "influence": 0.5,
           "minor_goals": [],
           "name": "Frontier Corps",
@@ -334,7 +334,7 @@
             "materialist": 4.85,
             "technocratic": 1.3
           },
-          "goal": null,
+          "goal": "Build a School.",
           "influence": 0.5,
           "minor_goals": [],
           "name": "Science & Research Federation",
@@ -429,7 +429,7 @@
             "materialist": 6.0,
             "technocratic": 5.3
           },
-          "goal": "Allow preaching in public government buildings.",
+          "goal": "Create a Trade Federation for religious workers and citizens.",
           "influence": 0.2,
           "minor_goals": [],
           "name": "Charmistic Leaders",
@@ -469,7 +469,7 @@
             "materialist": 5.1,
             "technocratic": 5.0
           },
-          "goal": "Create Students Worker Council",
+          "goal": "Create Student Worker Councils.",
           "influence": 0.1,
           "minor_goals": [],
           "name": "Rebellious Youths",
