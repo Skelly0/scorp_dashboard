@@ -131,7 +131,7 @@
             "materialist": 3.45,
             "technocratic": 6.0
           },
-          "goal": "Enshire universally equal pay/luxury distribution.",
+          "goal": "Enshrine universally equal pay/luxury distribution.",
           "influence": 0.3,
           "minor_goals": [],
           "name": "Industrial Production Federation",
@@ -163,10 +163,10 @@
             "materialist": 4.15,
             "technocratic": 6.0
           },
-          "goal": "Lower the number of hours worked per week.",
+          "goal": "Lower the number of hours worked per week for industrial workers.",
           "influence": 0.3,
           "minor_goals": [],
-          "name": "Logistics & Transport Federeation",
+          "name": "Logistics & Transport Federation",
           "national_share": 0.06510428325
         }
       ]
@@ -224,7 +224,7 @@
             "materialist": 4.6,
             "technocratic": 3.0
           },
-          "goal": "Centralize ration system under Botonists.",
+          "goal": "Centralize ration system under Botanists.",
           "influence": 0.3,
           "minor_goals": [],
           "name": "Botany & Agriculture Federation",
@@ -240,7 +240,7 @@
             "materialist": 2.45,
             "technocratic": 2.15
           },
-          "goal": "Guarantee Privilages or Luxuries to High Skill Workers.",
+          "goal": "Guarantee privileges or Luxuries to High Skill Workers.",
           "influence": 0.3,
           "minor_goals": [],
           "name": "Engineering Federation",
@@ -432,7 +432,7 @@
           "goal": "Create a Trade Federation for religious workers and citizens.",
           "influence": 0.2,
           "minor_goals": [],
-          "name": "Charmistic Leaders",
+          "name": "Charismatic Leaders",
           "national_share": 0.02624571488
         }
       ]
