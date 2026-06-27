@@ -6,7 +6,7 @@
   import { link, location } from 'svelte-spa-router';
 
   const ALL_PAGES = [
-    { path: '/', label: 'Status' },
+    { path: '/', label: 'Command' },
     { path: '/map', label: 'Map' },
     { path: '/demographics', label: 'Demographics' },
     { path: '/cropsim', label: 'Cropsim' },

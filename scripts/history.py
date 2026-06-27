@@ -50,19 +50,32 @@ def write_snapshot(out_dir: Path, year: int | None, status_data: dict[str, Any],
 
 
 def _update_index(history_dir: Path, year: int) -> None:
+    """Rewrite index.json to list every colony year present.
+
+    Years are unioned from three sources so the index always reflects reality
+    even if it drifted behind the files on disk: the existing index, every
+    ``year-NNN.json`` snapshot actually present in the directory, and the year
+    just written. The directory scan is what lets a stale index self-heal — a
+    snapshot file that exists but was never indexed (e.g. written by an older
+    sync that only appended the current year) re-enters the index on the next
+    sync instead of staying invisible to the frontend timeline.
+    """
     index_path = history_dir / "index.json"
-    years: list[int] = []
+    years: set[int] = set()
     if index_path.exists():
         try:
             existing = json.loads(index_path.read_text())
-            years = list(existing.get("years", []))
-        except (json.JSONDecodeError, OSError):
-            years = []
-    if year not in years:
-        years.append(year)
-    years = sorted(set(int(y) for y in years))
+            years.update(int(y) for y in existing.get("years", []))
+        except (json.JSONDecodeError, OSError, TypeError, ValueError):
+            years = set()
+    for snapshot in history_dir.glob("year-*.json"):
+        try:
+            years.add(int(snapshot.stem.split("-", 1)[1]))
+        except (IndexError, ValueError):
+            continue
+    years.add(int(year))
     payload = {
-        "years": years,
+        "years": sorted(years),
         "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
     }
     _write_json_atomic(index_path, payload)
