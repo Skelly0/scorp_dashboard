@@ -67,9 +67,9 @@ for (const theme of THEMES) {
 for (const theme of THEMES) {
   test(`a11y: ${theme} theme — /#/demographics with class detail open`, async ({ page }) => {
     await gotoWithTheme(page, theme, '/#/demographics');
-    await page.waitForSelector('table.tbl tbody tr', { timeout: 10_000 });
-    await page.locator('table.tbl tbody tr').first().click();
-    await page.waitForSelector('text=per-class drilldown');
+    await page.waitForSelector('.reg-row', { timeout: 10_000 });
+    await page.locator('.reg-row').first().click();
+    await page.waitForSelector('.reg-expand');
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa'])
       .analyze();
