@@ -11,16 +11,6 @@
       "name": "Blood on the Dance Floor"
     },
     {
-      "crisis_factor": 0.05,
-      "description": "Chaotic arrest in the council of Director Mills",
-      "name": "Council Chaos"
-    },
-    {
-      "crisis_factor": 0.1,
-      "description": "The collaborators who attempted to forcibly establish The Lunar Workers' Council have been arrested for treason",
-      "name": "Attempted Coup and Arrests of the Communists"
-    },
-    {
       "crisis_factor": -0.05,
       "description": "A shrine to honour the dead.",
       "name": "Memorial Shrine"
@@ -29,6 +19,11 @@
       "crisis_factor": -0.05,
       "description": "Week of Mourning and annual Remembrance Day help people come to terms.",
       "name": "Memorialization of Earth Act"
+    },
+    {
+      "crisis_factor": -0.05,
+      "description": "The civil war is over, there is hope in the air.",
+      "name": "A Return to Normalcy?"
     }
   ],
   "ended": [],

@@ -41,4 +41,14 @@ describe('SeatChamber', () => {
     const shares = [...container.querySelectorAll('.seat-row-share')].map((el) => el.textContent);
     expect(shares[0]).toBe('30%'); // 8 / 27 → fmtPct default 0 digits
   });
+
+  test('renders a proportional seat meter per row, empty for zero seats', () => {
+    const { container } = render(SeatChamber, { props: { chamber } });
+    const bars = [...container.querySelectorAll('.seat-row-bar > span')];
+    expect(bars).toHaveLength(6);
+    // Rows sort seats-desc: LSL 8/27 leads.
+    expect(bars[0].getAttribute('style')).toMatch(/width: 29\.6/);
+    // Zero-seat Non-aligned keeps an empty track (shut out, not omitted).
+    expect(bars[5].getAttribute('style')).toMatch(/width: 0%/);
+  });
 });

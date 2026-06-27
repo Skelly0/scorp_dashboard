@@ -39,7 +39,7 @@ describe('congress store', () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(
       new Response(JSON.stringify({
         congress: { total_seats: 27, parties: [{ name: 'Education Party', seats: 2 }] },
-        council: { total_seats: 15, parties: [] },
+        federations: { total_seats: 27, delegations: [{ name: 'Engineering', seats: 3, parties: [] }] },
       }), {
         status: 200,
         headers: { 'content-type': 'application/json' },
@@ -51,7 +51,7 @@ describe('congress store', () => {
     expect(get(congressError)).toBeNull();
     expect(get(congress)).toEqual({
       congress: { total_seats: 27, parties: [{ name: 'Education Party', seats: 2 }] },
-      council: { total_seats: 15, parties: [] },
+      federations: { total_seats: 27, delegations: [{ name: 'Engineering', seats: 3, parties: [] }] },
     });
   });
 
@@ -71,7 +71,7 @@ describe('congress store', () => {
 
     expect(get(congress)).toEqual({
       congress: { total_seats: 0, parties: [] },
-      council: { total_seats: 0, parties: [] },
+      federations: { total_seats: 0, delegations: [] },
     });
     expect(get(congressError)).toBeNull();
   });

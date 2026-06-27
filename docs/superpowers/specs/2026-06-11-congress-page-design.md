@@ -92,9 +92,61 @@ New `scripts/extractors/congress.py` → `public/data/congress.json`:
 
 - Apportionment & enrollment band (divisor, citizens/delegate, % enfranchised).
 - Federation stance radars.
-- Federation→party / delegation→party matrices.
+- ~~Federation→party / delegation→party matrices.~~ *(Surfaced by the v12 addendum below.)*
 - Popular vote-share reference column.
 - Senate page / Council sheet rework.
 - Removing retired parties from `PARTY_COLORS`.
 
 These can each become a follow-up band on this page later; the named-range pattern extends naturally.
+
+---
+
+## Addendum — v12 (2026-06-11): Celestial Council band → Trade Federation delegations
+
+**Player request:** drop the Celestial Council band; replace it with a parliamentary
+diagram showing which Trade Federations the delegates come from.
+
+### What changed
+
+- **Band 02 is now "Trade Federation Delegations"** — `FederationChamber.svelte`: an SVG
+  hemicycle parliament diagram (one dot per delegate, coloured by party; a thin outer arc
+  band per federation wedge, coloured by federation) above per-federation legend rows
+  (federation swatch, name, md+ party-split mini strip on a shared scale, seats, share %).
+  Hemicycle layout math is pure and unit-tested in `src/lib/parliament.js`: concentric
+  rows, seats distributed to rows ∝ radius by largest remainder, filled left→right by
+  angle so workbook-ordered delegations form contiguous wedges.
+- **Data source is the `CongressDelegationSeats` named range, exclusively** (col A
+  federation names + the CongressPartyNames party columns, data rows only; `TOTAL` /
+  `Federation…` label rows skipped). The first cut of this feature read the visible
+  `DELEGATION → PARTY SEATS` block by title as a fallback and derived party totals
+  from its column sums — interpreting the zeroed `CongressPartySeats` row as drift.
+  **The GM then clarified the zeros are intentional**: elections haven't been run, the
+  on-sheet matrix is a live projection (largest-remainder split of current party
+  support), and its totals formulas were deliberately parked outside the named rows so
+  projections wouldn't reach the dashboard. The title fallback was therefore removed —
+  the named range is the GM's explicit publish switch, and `CongressPartySeats` stays
+  the authoritative totals channel (all-zero = pre-election chamber, rendered
+  faithfully). This is the inverse of the gotcha-#51 "visible table is fuller truth"
+  situation; do not reintroduce a visible-block fallback here.
+- **`council` removed from `congress.json`; `federations` added** (`total_seats` +
+  `delegations[] = {name, seats, parties[]}`; zero-seat parties omitted per delegation,
+  kept at chamber level). `CouncilSeatsByParty` dropped from the soft-optional list —
+  the workbook range itself stays because `Council!C4:C19` chains off it.
+- **`SCHEMA_VERSION` 11 → 12** (with `EXPECTED_SCHEMA_VERSION`), and a local resync
+  against the live workbook committed so the data ships at schema 12 (the v10/v11
+  bump pattern).
+- **`FEDERATION_COLORS`** added to `faction-colors.js`: each of the 8 live federations
+  pinned to its dominant member-class colour (Logistics & Transport, a slice federation,
+  takes the otherwise-unused Capitalists yellow); `federationColor()` falls back to
+  `var(--accent)`.
+
+### Accessibility
+
+- The SVG is `role="img"` with a summary label; per-seat/arc `<title>` tooltips carry
+  federation — party detail for pointer users; the legend rows repeat each delegation's
+  party split as sr-only text (the dots and mini strip are colour-only channels).
+
+### Still out of scope
+
+Enrollment stats (% enfranchised, citizens/delegate), federation stance radars, and the
+federation→party *support* matrix on the `Trade Federations` sheet.

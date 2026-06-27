@@ -17,6 +17,10 @@
   function color(name) {
     return partyColor(name) ?? 'var(--accent)';
   }
+
+  function sharePct(p) {
+    return total > 0 && p.seats != null ? (p.seats / total) * 100 : 0;
+  }
 </script>
 
 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
@@ -34,6 +38,12 @@
       <li class="seat-row" class:muted={!((p.seats ?? 0) > 0)}>
         <span class="faction-bar" style="--bar-color: {color(p.name)}"></span>
         <span class="seat-row-name">{p.name}</span>
+        <!-- md+: proportional seat meter fills the wide middle column so the
+             count/share stay scannable next to the name (share % carries the
+             value for AT). Hidden at phone widths where rows pack tight. -->
+        <span class="bar seat-row-bar" aria-hidden="true">
+          <span style="width: {sharePct(p)}%; background: {color(p.name)}"></span>
+        </span>
         <b class="tnum">{fmtInt(p.seats)}</b>
         <span class="seat-row-share tnum">{fmtPct(total > 0 && p.seats != null ? p.seats / total : null)}</span>
       </li>

@@ -3,11 +3,11 @@
     "parties": [
       {
         "name": "Independent",
-        "seats": 4.0
+        "seats": 0.0
       },
       {
-        "name": "Lunar Survival League",
-        "seats": 8.0
+        "name": "The All Lunar Labor Bund",
+        "seats": 5.0
       },
       {
         "name": "Novus Chrysalis Collective",
@@ -15,11 +15,15 @@
       },
       {
         "name": "Selenite Rose Front",
-        "seats": 7.0
+        "seats": 6.0
       },
       {
         "name": "Education Party",
-        "seats": 2.0
+        "seats": 6.0
+      },
+      {
+        "name": "Lunar Reconstruction Association",
+        "seats": 4.0
       },
       {
         "name": "Non-aligned",
@@ -28,33 +32,149 @@
     ],
     "total_seats": 27
   },
-  "council": {
-    "parties": [
+  "federations": {
+    "delegations": [
       {
-        "name": "Independent",
-        "seats": 2.0
+        "name": "Administration & Bureaucracy",
+        "parties": [
+          {
+            "name": "Novus Chrysalis Collective",
+            "seats": 1.0
+          },
+          {
+            "name": "Education Party",
+            "seats": 1.0
+          }
+        ],
+        "seats": 2
       },
       {
-        "name": "Lunar Survival League",
-        "seats": 5.0
+        "name": "Engineering",
+        "parties": [
+          {
+            "name": "Novus Chrysalis Collective",
+            "seats": 1.0
+          },
+          {
+            "name": "Education Party",
+            "seats": 1.0
+          }
+        ],
+        "seats": 2
       },
       {
-        "name": "Novus Chrysalis Collective",
-        "seats": 3.0
+        "name": "Science & Research",
+        "parties": [
+          {
+            "name": "Novus Chrysalis Collective",
+            "seats": 2.0
+          },
+          {
+            "name": "Education Party",
+            "seats": 1.0
+          }
+        ],
+        "seats": 3
       },
       {
-        "name": "Selenite Rose Front",
-        "seats": 4.0
+        "name": "Logistics & Transport",
+        "parties": [
+          {
+            "name": "The All Lunar Labor Bund",
+            "seats": 1.0
+          },
+          {
+            "name": "Selenite Rose Front",
+            "seats": 1.0
+          },
+          {
+            "name": "Lunar Reconstruction Association",
+            "seats": 1.0
+          }
+        ],
+        "seats": 3
       },
       {
-        "name": "Education Party",
-        "seats": 1.0
+        "name": "Botany & Agriculture",
+        "parties": [
+          {
+            "name": "Novus Chrysalis Collective",
+            "seats": 1.0
+          },
+          {
+            "name": "Education Party",
+            "seats": 1.0
+          }
+        ],
+        "seats": 2
       },
       {
-        "name": "Non-aligned",
-        "seats": 0.0
+        "name": "Industrial Production",
+        "parties": [
+          {
+            "name": "The All Lunar Labor Bund",
+            "seats": 2.0
+          },
+          {
+            "name": "Selenite Rose Front",
+            "seats": 2.0
+          },
+          {
+            "name": "Education Party",
+            "seats": 1.0
+          },
+          {
+            "name": "Lunar Reconstruction Association",
+            "seats": 1.0
+          }
+        ],
+        "seats": 6
+      },
+      {
+        "name": "Extraction & Mining",
+        "parties": [
+          {
+            "name": "The All Lunar Labor Bund",
+            "seats": 1.0
+          },
+          {
+            "name": "Selenite Rose Front",
+            "seats": 2.0
+          },
+          {
+            "name": "Education Party",
+            "seats": 1.0
+          },
+          {
+            "name": "Lunar Reconstruction Association",
+            "seats": 1.0
+          }
+        ],
+        "seats": 5
+      },
+      {
+        "name": "Service & Support Workers",
+        "parties": [
+          {
+            "name": "The All Lunar Labor Bund",
+            "seats": 1.0
+          },
+          {
+            "name": "Novus Chrysalis Collective",
+            "seats": 1.0
+          },
+          {
+            "name": "Selenite Rose Front",
+            "seats": 1.0
+          },
+          {
+            "name": "Lunar Reconstruction Association",
+            "seats": 1.0
+          }
+        ],
+        "seats": 4
       }
     ],
-    "total_seats": 15
+    "total_seats": 27
   }
 }

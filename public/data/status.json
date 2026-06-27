@@ -11,16 +11,6 @@
       "name": "Blood on the Dance Floor"
     },
     {
-      "crisis_factor": 0.05,
-      "description": "Chaotic arrest in the council of Director Mills",
-      "name": "Council Chaos"
-    },
-    {
-      "crisis_factor": 0.1,
-      "description": "The collaborators who attempted to forcibly establish The Lunar Workers' Council have been arrested for treason",
-      "name": "Attempted Coup and Arrests of the Communists"
-    },
-    {
       "crisis_factor": -0.05,
       "description": "A shrine to honour the dead.",
       "name": "Memorial Shrine"
@@ -29,22 +19,27 @@
       "crisis_factor": -0.05,
       "description": "Week of Mourning and annual Remembrance Day help people come to terms.",
       "name": "Memorialization of Earth Act"
+    },
+    {
+      "crisis_factor": -0.05,
+      "description": "The civil war is over, there is hope in the air.",
+      "name": "A Return to Normalcy?"
     }
   ],
-  "crisis_factor": 0.904580704,
+  "crisis_factor": 0.6624171094,
   "demographics": {
-    "avg_satisfaction": 0.23033919762060145,
+    "avg_satisfaction": 0.2593522159475769,
     "base_growth_rate": 0.035,
-    "effective_cdr": 0.01510644091,
+    "effective_cdr": 0.01511652532,
     "effective_growth_rate": 0.011200000000000002,
     "housing_capacity": 93100.0,
     "housing_util": 1.065123523093448,
-    "net_delta_pct": -0.3906440909999998,
+    "net_delta_pct": -0.3916525319999998,
     "sat_elasticity": 0.32,
-    "total_births": 2049.0,
-    "total_deaths": 1498.0
+    "total_births": 2154.0,
+    "total_deaths": 1499.0
   },
-  "gov_approval": 0.479661251,
+  "gov_approval": 0.5415245308,
   "overton": {
     "authority": 5.0,
     "corporate": 6.0,
@@ -112,7 +107,7 @@
       "upkeep": 680.5294
     }
   ],
-  "stability": 0.3166133858,
+  "stability": 0.4867315476,
   "treasury": {
     "delta": 65998.14289,
     "money": 263711.0703

@@ -67,6 +67,7 @@ describe('VitalSigns (Command parity)', () => {
       ),
     ).toBeTruthy();
     expect(within(treasury).queryByText('222,465')).toBeNull();
+    expect(within(treasury).getByText('▲ +25,000')).toBeTruthy();
   });
 
   it('surfaces births and projected growth rate in the population drill-down', async () => {

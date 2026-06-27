@@ -186,10 +186,9 @@
                           aria-pressed={Boolean(isActive)}
                           on:click={() => toggleSelect(g.name, s.name)}
                         >
-                          <span>{s.name}</span>
-                          <span class="text-muted tnum">
-                            {fmtPct(s.influence)} ·
-                            ap {fmtPct(s.approval)}
+                          <span class="goi-subfaction-name">{s.name}</span>
+                          <span class="goi-subfaction-meta text-muted tnum">
+                            {fmtPct(s.influence)} · ap&nbsp;{fmtPct(s.approval)}
                           </span>
                         </button>
                       </li>
@@ -338,6 +337,12 @@
   @media (min-width: 1280px) {
     .gois-sheet-mobile { display: none; }
   }
+
+  /* Long federation names wrap; the "50% · ap 60%" stat pair never splits
+     mid-token (the value used to orphan onto its own line under "ap"). */
+  .goi-subfaction-button { gap: 10px; }
+  .goi-subfaction-name { min-width: 0; overflow-wrap: anywhere; }
+  .goi-subfaction-meta { white-space: nowrap; flex-shrink: 0; }
 
   @media (pointer: coarse) {
     .goi-subfaction-button {

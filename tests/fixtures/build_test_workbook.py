@@ -849,28 +849,53 @@ def build(out_path: Path) -> Path:
 
     _add_name(wb, "TechTable", "'Tech & Institutions'!$A$3:$R$8")
 
-    # ---- All-Worker Congress sheet (v11) ----
+    # ---- All-Worker Congress sheet (v12) ----
     # Party columns B..P mirror the Parties sheet's 15 slots; Q is Non-aligned.
-    # Live layout: row 44 = party header, row 45 = Congress seats (Σ=27),
-    # row 49 = Celestial Council seats (Σ=15, Art. 16). Blank-name columns
-    # carry 0 seats — the extractor must drop them (convention 8) while
-    # keeping the NAMED zero-seat entry (Non-aligned).
+    # Live layout: a fractional `DELEGATION → PARTY QUOTAS` helper block, the
+    # `DELEGATION → PARTY SEATS` projection matrix (title row, `Federation \
+    # Party` header row, one row per federation, trailing TOTAL row), then
+    # PARTY TOTALS rows 44/45. Row 45 is the OFFICIAL seats channel (the GM
+    # zeroes it pre-election); the matrix is only read through the
+    # `CongressDelegationSeats` named range — never by locating its title —
+    # so the fixture deliberately gives the matrix sums (14/13) DIFFERENT
+    # values from row 45 (15/12) to pin the source of party totals, and
+    # includes the TOTAL row inside the named range to pin label skipping.
     awc = wb.create_sheet("All-Worker Congress")
+    party_cols = {2: "Liberty Now", 3: "People's Voice", 17: "Non-aligned"}
+    awc["A21"] = "DELEGATION → PARTY QUOTAS (helper for largest remainder)"
+    awc["A22"] = "Federation \\ Party"
+    for col, name in party_cols.items():
+        awc.cell(row=22, column=col, value=name)
+    awc["A23"] = "Dockworkers Guild"
+    awc["B23"] = 7.61
+    awc["C23"] = 4.39
+    # Matrix: blank-name columns carry 0 seats — the extractor must drop them
+    # (convention 8) while keeping NAMED zero-seat parties (Non-aligned) at
+    # chamber level and omitting them within each delegation.
+    awc["A33"] = "DELEGATION → PARTY SEATS (largest remainder within each federation row)"
+    awc["A34"] = "Federation \\ Party"
+    for col, name in party_cols.items():
+        awc.cell(row=34, column=col, value=name)
+    delegation_rows = {
+        35: ("Dockworkers Guild", {2: 8, 3: 4}),
+        36: ("Vacuum Farmers Union", {2: 4, 3: 4}),
+        37: ("Tunnel Borers Combine", {2: 2, 3: 5}),
+        38: ("TOTAL", {2: 14, 3: 13}),
+    }
+    for row, (fed, seats) in delegation_rows.items():
+        awc.cell(row=row, column=1, value=fed)
+        for col in range(2, 18):  # B..Q
+            awc.cell(row=row, column=col, value=seats.get(col, 0))
     awc["A43"] = "PARTY TOTALS (Congress)"
     awc["A45"] = "Seats"
-    awc["A47"] = "CELESTIAL COUNCIL ALLOCATION (Art. 16)"
-    awc["A49"] = "Council Seats"
-    party_cols = {2: "Liberty Now", 3: "People's Voice", 17: "Non-aligned"}
     congress_seats = {2: 15, 3: 12, 17: 0}
-    council_seats = {2: 8, 3: 7, 17: 0}
     for col, name in party_cols.items():
         awc.cell(row=44, column=col, value=name)
     for col in range(2, 18):  # B..Q
         awc.cell(row=45, column=col, value=congress_seats.get(col, 0))
-        awc.cell(row=49, column=col, value=council_seats.get(col, 0))
     _add_name(wb, "CongressPartyNames", "'All-Worker Congress'!$B$44:$Q$44")
     _add_name(wb, "CongressPartySeats", "'All-Worker Congress'!$B$45:$Q$45")
-    _add_name(wb, "CouncilSeatsByParty", "'All-Worker Congress'!$B$49:$Q$49")
+    _add_name(wb, "CongressDelegationSeats", "'All-Worker Congress'!$A$35:$Q$38")
 
     wb.save(out_path)
     return out_path

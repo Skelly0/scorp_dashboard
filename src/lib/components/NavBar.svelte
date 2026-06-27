@@ -20,7 +20,11 @@
 
   let menuOpen = false;
   $: pages = ALL_PAGES.filter((p) => !p.requiresSenate || $meta?.senate_visible);
-  $: yearLabel = $status?.year != null ? `Y-${String($status.year).padStart(2, '0')}` : '';
+  // status.json only loads once Status/Cropsim has been visited; fall back to
+  // meta.history_year (same Var_Year, synced together) so deep links to other
+  // routes still show the year in the brand.
+  $: navYear = $status?.year ?? $meta?.history_year;
+  $: yearLabel = navYear != null ? `Y-${String(navYear).padStart(2, '0')}` : '';
   $: currentLabel = pages.find((p) => p.path === $location)?.label ?? '';
 </script>
 

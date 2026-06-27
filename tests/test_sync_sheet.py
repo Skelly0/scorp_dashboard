@@ -61,7 +61,7 @@ def test_run_sync_writes_status_and_meta(tmp_path, fixture_workbook_path):
     assert (out_dir / "meta.json").exists()
     meta = json.loads((out_dir / "meta.json").read_text())
     assert meta["senate_visible"] is False
-    assert meta["schema_version"] == 11
+    assert meta["schema_version"] == 12
     assert "synced_at" in meta
 
 
@@ -144,7 +144,8 @@ def test_run_sync_writes_congress_json(fixture_workbook_path, tmp_path):
     assert (out_dir / "congress.json").exists()
     payload = json.loads((out_dir / "congress.json").read_text())
     assert payload["congress"]["total_seats"] == 27
-    assert payload["council"]["total_seats"] == 15
+    assert payload["federations"]["total_seats"] == 27
+    assert "council" not in payload
     names = [p["name"] for p in payload["congress"]["parties"]]
     assert names == ["Liberty Now", "People's Voice", "Non-aligned"]
 
