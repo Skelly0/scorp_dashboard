@@ -21,6 +21,9 @@
   export let cls;
   /** @type {{name: string, tier: string|null, pop: number|null, share: number|null, political_weight: number|null, worldview: Record<string, number|null>}|null} */
   export let populationProfile = null;
+  // The Census row-expand renders its own facet-bar visualisation, so it hides
+  // this component's plain satisfaction-sources table to avoid duplication.
+  export let showSatisfactionSources = true;
 
   // Two-column split of the 11 satisfaction sources. Order MUST match
   // extractors/pops.py:SATISFACTION_SOURCES — a row in PopsimSatisfactionFullTable
@@ -58,6 +61,9 @@
   function pct(v, decimals = 0) {
     return v == null ? '—' : (v * 100).toFixed(decimals) + '%';
   }
+  function score10(v) {
+    return v == null || !Number.isFinite(v) ? '—' : String(v) + '/10';
+  }
   function int(v) {
     return v == null ? '—' : Math.round(v).toLocaleString();
   }
@@ -69,6 +75,15 @@
     const display = Number.isInteger(v) ? v.toFixed(0) : v.toFixed(1);
     return `${display} / wk`;
   }
+  function signed(v) {
+    if (v == null || !Number.isFinite(v)) return '—';
+    const r = Math.round(v) || 0;
+    return `${r > 0 ? '+' : ''}${r.toLocaleString()}`;
+  }
+  $: naturalIncrease =
+    cls?.births_per_turn != null && cls?.deaths_per_turn != null
+      ? cls.births_per_turn - cls.deaths_per_turn
+      : null;
 </script>
 
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
@@ -113,7 +128,21 @@
       <dl class="kv">
         <dt>SoL</dt><dd>{num(cls.standard_of_living)}</dd>
         <dt>Expected</dt><dd>{num(cls.expected_sol)}</dd>
-        <dt>Privilege</dt><dd>{pct(cls.social_privileges)}</dd>
+        <dt>Privilege</dt><dd>{score10(cls.social_privileges)}</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="s-card">
+    <div class="s-card-header"><h3>Demography · per turn</h3></div>
+    <div class="s-card-pad">
+      <dl class="kv">
+        <dt>Births</dt><dd>{int(cls.births_per_turn)}</dd>
+        <dt>Deaths</dt><dd>{int(cls.deaths_per_turn)}</dd>
+        <dt>Natural increase</dt><dd>{signed(naturalIncrease)}</dd>
+        <dt>Mortality</dt><dd>{pct(cls.mortality_rate, 2)}</dd>
+        <dt>Mobility in</dt><dd>{int(cls.mobility_in)}</dd>
+        <dt>Mobility out</dt><dd>{int(cls.mobility_out)}</dd>
       </dl>
     </div>
   </div>
@@ -222,6 +251,7 @@
     </div>
   </div>
 
+  {#if showSatisfactionSources}
   <div class="s-card md:col-span-2 xl:col-span-3">
     <div class="s-card-header">
       <h3>Satisfaction · sources</h3>
@@ -258,4 +288,5 @@
       </table>
     </div>
   </div>
+  {/if}
 </div>
