@@ -40,13 +40,17 @@ export const GOI_COLORS = {
 // party name exactly as it appears in parties.json. Parties with no Discord
 // role (e.g. "Independent") fall back to their ideology-derived hue.
 export const PARTY_COLORS = {
-  'Selenite Rose Front': '#e74c3c',
+  'Lunar Reconstruction Association': '#b8893e',
+  'The All Lunar Labor Bund': '#ff474c',
+  'All Lunar Labor Bund': '#ff474c',
+  'Selenite Rose Front': '#960202',
   'Market Interests Group': '#f1c40f',
+  'Development League': '#3498db',
   'Developmental League': '#3498db',
   'Lunar Survival League': '#95a5a6',
   'Lunar Solidarity Party': '#e91e63',
-  'Novus Chrysalis Collective': '#2ecc71',
-  'Education Party': '#1abc9c',
+  'Novus Chrysalis Collective': '#3a9443',
+  'Education Party': '#003366',
 };
 
 // Trade-federation accents (Congress page — federation arc bands, legend

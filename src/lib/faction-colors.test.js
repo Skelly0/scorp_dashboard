@@ -52,14 +52,30 @@ describe('control colors', () => {
 });
 
 describe('party colors', () => {
-  it('pins Discord role colours by exact party name', () => {
-    expect(partyColor('Developmental League')).toBe('#3498db');
-    expect(partyColor('Selenite Rose Front')).toBe('#e74c3c');
-    expect(PARTY_COLORS['Novus Chrysalis Collective']).toBe('#2ecc71');
+  it('pins Discord role colours by exact current party name', () => {
+    expect(PARTY_COLORS).toMatchObject({
+      'Lunar Reconstruction Association': '#b8893e',
+      'The All Lunar Labor Bund': '#ff474c',
+      'All Lunar Labor Bund': '#ff474c',
+      'Selenite Rose Front': '#960202',
+      'Development League': '#3498db',
+      'Developmental League': '#3498db',
+      'Novus Chrysalis Collective': '#3a9443',
+      'Education Party': '#003366',
+    });
   });
 
-  it('pins the Education Party turquoise', () => {
-    expect(partyColor('Education Party')).toBe('#1abc9c');
+  it('keeps current election parties visually distinct', () => {
+    const currentElectionColours = [
+      'Lunar Reconstruction Association',
+      'The All Lunar Labor Bund',
+      'Selenite Rose Front',
+      'Development League',
+      'Novus Chrysalis Collective',
+      'Education Party',
+    ].map(partyColor);
+
+    expect(new Set(currentElectionColours).size).toBe(currentElectionColours.length);
   });
 
   it('returns null for parties without a Discord role so callers can fall back', () => {
