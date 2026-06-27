@@ -14,7 +14,7 @@
   import MoonLoader from './lib/components/MoonLoader.svelte';
   import MoonBackdrop from './lib/components/MoonBackdrop.svelte';
 
-  import Status from './routes/Status.svelte';
+  import Command from './routes/Command.svelte';
   import GoIs from './routes/GoIs.svelte';
   import Parties from './routes/Parties.svelte';
   import Congress from './routes/Congress.svelte';
@@ -41,7 +41,7 @@
   $: crisisAlert.set($crisisBreach.breached);
 
   const routes = {
-    '/': Status,
+    '/': Command,
     '/map': Map,
     '/demographics': Demographics,
     '/cropsim': Cropsim,

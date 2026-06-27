@@ -71,6 +71,20 @@ def test_index_records_each_unique_year(tmp_path: Path):
     assert "updated_at" in index
 
 
+def test_index_unions_orphaned_year_files(tmp_path: Path):
+    """A snapshot file present on disk but missing from a stale index must
+    re-enter the index on the next write. Guards the directory-aware scan that
+    lets the frontend timeline see every year, not just the most recent sync."""
+    history_dir = tmp_path / "history"
+    history_dir.mkdir()
+    # An older year file exists, but the index only knows about the newer one.
+    (history_dir / "year-075.json").write_text(json.dumps({"year": 75}))
+    (history_dir / "index.json").write_text(json.dumps({"years": [76]}))
+    write_snapshot(tmp_path, 76, SAMPLE_STATUS, "2026-06-26T00:00:00Z")
+    index = json.loads((history_dir / "index.json").read_text())
+    assert index["years"] == [75, 76]
+
+
 def test_index_recovers_from_corrupt_existing_file(tmp_path: Path):
     history_dir = tmp_path / "history"
     history_dir.mkdir()
