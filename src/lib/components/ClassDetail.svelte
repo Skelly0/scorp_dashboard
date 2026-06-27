@@ -61,6 +61,9 @@
   function pct(v, decimals = 0) {
     return v == null ? '—' : (v * 100).toFixed(decimals) + '%';
   }
+  function score10(v) {
+    return v == null || !Number.isFinite(v) ? '—' : String(v) + '/10';
+  }
   function int(v) {
     return v == null ? '—' : Math.round(v).toLocaleString();
   }
@@ -125,7 +128,7 @@
       <dl class="kv">
         <dt>SoL</dt><dd>{num(cls.standard_of_living)}</dd>
         <dt>Expected</dt><dd>{num(cls.expected_sol)}</dd>
-        <dt>Privilege</dt><dd>{pct(cls.social_privileges)}</dd>
+        <dt>Privilege</dt><dd>{score10(cls.social_privileges)}</dd>
       </dl>
     </div>
   </div>

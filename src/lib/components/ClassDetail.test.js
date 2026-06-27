@@ -22,6 +22,15 @@ const baseClass = {
 };
 
 describe('ClassDetail', () => {
+  test('renders social privileges as a 0 to 10 standing score', () => {
+    render(ClassDetail, {
+      props: { cls: { ...baseClass, social_privileges: 5 }, populationProfile: null },
+    });
+
+    expect(screen.getByText('5/10')).toBeTruthy();
+    expect(screen.queryByText('500%')).toBeNull();
+  });
+
   test('renders per-class consumption values', () => {
     render(ClassDetail, {
       props: { cls: baseClass, populationProfile: null },
