@@ -75,7 +75,14 @@
     padding: 16px;
     border: 2px solid var(--border);
     background: var(--bg);
-    min-height: 142px;
+    /* Floor sized to the tallest *closed* vital so the row reads as one
+       even band — the headline (Treasury, big number) and the breach tile
+       (Crisis Pressure, +"OVER 1.0" tag line) are the tall ones. The foot
+       (delta + spark) pins to the bottom via margin-top:auto, so the extra
+       room sits as breathing space, not a gap. Using min-height instead of
+       grid-row stretch keeps an opened drill-down from dragging its
+       siblings taller. */
+    min-height: 176px;
     cursor: pointer;
     min-width: 0;
   }
