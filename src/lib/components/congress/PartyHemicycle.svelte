@@ -24,7 +24,9 @@
     Array.from({ length: Math.max(0, Math.round(p.seats ?? 0)) }, () => p),
   );
   $: positions = seatPositions(dots.length);
-  $: dotR = dots.length ? dotRadius(dots.length) * R : 0;
+  // 0.6× the natural packing radius gives the mockup's clearly-separated dots
+  // (the layout still spaces them by the full radius, so they never overlap).
+  $: dotR = dots.length ? dotRadius(dots.length) * R * 0.6 : 0;
   $: active = coalition.size > 0;
   $: coalitionSeatN = seated
     .filter((p) => coalition.has(p.name))
@@ -67,9 +69,10 @@
 </div>
 
 <style>
+  /* Fill the card. NB: an `auto` horizontal margin here would shrink-wrap the
+     SVG when the parent card is a flexbox — keep this a plain block. */
   .hemicycle-wrap {
-    max-width: 660px;
-    margin: 0 auto;
+    width: 100%;
   }
   .hemicycle-svg {
     display: block;
@@ -80,12 +83,12 @@
     cursor: pointer;
   }
   .hemicycle-num {
-    font-size: 30px;
+    font-size: 22px;
     font-weight: 800;
     font-variant-numeric: tabular-nums;
   }
   .hemicycle-cap {
-    font-size: 9px;
+    font-size: 8px;
     letter-spacing: 0.2em;
   }
 </style>

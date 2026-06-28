@@ -193,7 +193,9 @@
   }
   .chamber-col { min-width: 0; display: flex; flex-direction: column; }
   .chamber-col :global(.band) { margin-top: 0; }
-  .chamber-hemi { display: flex; flex-direction: column; flex: 1; justify-content: center; }
+  /* Plain block so the hemicycle SVG fills the card width (a flex parent +
+     auto-margin child shrink-wraps the SVG to its intrinsic size). */
+  .chamber-hemi { display: block; }
 
   .coalition-head {
     display: flex;
