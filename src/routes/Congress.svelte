@@ -5,8 +5,11 @@
   import { pageTitle } from '../lib/page-title.js';
   import Band from '../lib/components/Band.svelte';
   import PageState from '../lib/components/PageState.svelte';
+  import ReadoutStrip from '../lib/components/ReadoutStrip.svelte';
   import ChamberView from '../lib/components/congress/ChamberView.svelte';
   import FederationsView from '../lib/components/congress/FederationsView.svelte';
+  import { majorityQuota } from '../lib/congress-power.js';
+  import { fmtInt, fmtPct } from '../lib/format.js';
 
   const TABS = ['chamber', 'federations'];
 
@@ -41,6 +44,22 @@
   $: hasParties = ready && $congress.congress.parties.length > 0;
   $: hasDelegations = ready && $congress.federations.delegations.length > 0;
   $: empty = ready && !hasParties && !hasDelegations;
+
+  // Data-driven stat strip. "Largest Party" is the biggest single party (the
+  // mockup's "Largest Bloc" — there is no Professional/Labour bloc in the data).
+  $: readoutItems = (() => {
+    if (!ready) return [];
+    const seated = $congress.congress.parties.filter((p) => (p.seats ?? 0) > 0);
+    if (seated.length === 0) return [];
+    const total = seated.reduce((a, p) => a + Math.round(p.seats ?? 0), 0);
+    const largest = Math.max(...seated.map((p) => Math.round(p.seats ?? 0)));
+    return [
+      { label: 'Total Seats', value: fmtInt(total) },
+      { label: 'Parties', value: String(seated.length) },
+      { label: 'Majority', value: String(majorityQuota(total)) },
+      { label: 'Largest Party', value: `${largest} · ${fmtPct(largest / total)}`, tone: 'warn' },
+    ];
+  })();
 </script>
 
 <section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
@@ -79,6 +98,10 @@
           on:click={() => setView('federations')}>Federations</button
         >
       </div>
+
+      {#if readoutItems.length}
+        <ReadoutStrip items={readoutItems} />
+      {/if}
 
       {#if view === 'chamber'}
         <ChamberView chamber={$congress.congress} />
