@@ -1,5 +1,5 @@
 import { describe, expect, test, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/svelte';
+import { render, screen, fireEvent } from '@testing-library/svelte';
 import Parties from './Parties.svelte';
 import { meta } from '../lib/stores/meta.js';
 import { parties, partiesError } from '../lib/stores/parties.js';
@@ -71,22 +71,35 @@ describe('Parties page', () => {
     popsError.set(null);
   });
 
-  test('shows party supporters and class support split from capture data', () => {
+  test('Roster tab shows supporters, top classes, and hides closest GoI', () => {
     parties.set(baseParties);
     pops.set({ classes: [] });
 
     render(Parties);
 
+    // Roster is the default tab.
     expect(screen.getAllByText('Supporters').length).toBeGreaterThan(0);
-    expect(screen.getByText('5,299')).toBeTruthy();
+    // Supporters = summed captured pop (4237 + 1062), not estimated_support.
+    // Appears in the card stat and again in the vote-share legend.
+    expect(screen.getAllByText('5,299').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Top Classes').length).toBeGreaterThan(0);
-    // The class×party heatmaps share a tabbed card; default tab is "Supporters"
-    // (the authoritative people count per gotcha #44). The "% of Class" tab
-    // button must also be present in the strip.
+    expect(screen.getByText('50% class')).toBeTruthy();
+    // closest_goi is never surfaced (gotcha #45).
+    expect(screen.queryByText('Hidden GoI Label')).toBeNull();
+  });
+
+  test('Support tab exposes the class × party heatmaps', async () => {
+    parties.set(baseParties);
+    pops.set({ classes: [] });
+
+    render(Parties);
+
+    await fireEvent.click(screen.getByRole('tab', { name: 'Support' }));
+
     expect(screen.getByText('Class × Party Support')).toBeTruthy();
+    // The class×party heatmaps share a tabbed card; default is "Supporters"
+    // (authoritative per gotcha #44) and the "% of Class" tab is present.
     expect(screen.getByText('% of Class')).toBeTruthy();
     expect(screen.getAllByText('4,237').length).toBeGreaterThan(0);
-    expect(screen.getByText('50% class')).toBeTruthy();
-    expect(screen.queryByText('Hidden GoI Label')).toBeNull();
   });
 });

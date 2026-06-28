@@ -51,7 +51,7 @@ describe('FederationChamber', () => {
       c.getAttribute('fill')
     );
     // First wedge: Industrial Production = LSL 2 then SRF 2.
-    expect(dotFills.slice(0, 4)).toEqual(['#95a5a6', '#95a5a6', '#e74c3c', '#e74c3c']);
+    expect(dotFills.slice(0, 4)).toEqual(['#95a5a6', '#95a5a6', '#960202', '#960202']);
     // Independent has no pinned party colour — theme accent fallback.
     expect(dotFills[4]).toBe('var(--accent)');
     const arcStrokes = [...container.querySelectorAll('.parliament-svg path')].map((p) =>

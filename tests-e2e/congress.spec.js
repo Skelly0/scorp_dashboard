@@ -126,39 +126,46 @@ async function gotoWithTheme(page, theme, path) {
 }
 
 for (const theme of THEMES) {
-  test(`Congress page renders party totals + federation delegations (${theme})`, async ({ page }) => {
+  test(`Congress Chamber + Federations tabs render (${theme})`, async ({ page }) => {
     await mockCongressData(page);
     await gotoWithTheme(page, theme, '/#/congress');
 
+    // Chamber tab (default): party-totals hemicycle + Banzhaf voting-power roster.
     await expect(page.getByRole('heading', { name: 'All-Worker Congress' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Trade Federation Delegations' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Party Roster' })).toBeVisible();
+    await expect(page.locator('.hemicycle-seat')).toHaveCount(27);
     // The Celestial Council band is retired.
     await expect(page.getByRole('heading', { name: 'Celestial Council' })).toHaveCount(0);
 
-    // Band 01: one party seat strip; rows sort seats-desc with LSL at 8.
-    await expect(page.locator('.seat-strip')).toHaveCount(1);
-    const congressRows = page.locator('.seat-rows').first().locator('.seat-row');
-    await expect(congressRows.first()).toContainText('Lunar Survival League');
-    await expect(congressRows.first()).toContainText('8');
-    await expect(page.locator('.seat-row.muted')).toHaveCount(1);
+    const rosterRows = page.locator('.roster-row');
+    await expect(rosterRows).toHaveCount(5); // Non-aligned (0 seats) excluded
+    await expect(rosterRows.first()).toContainText('Lunar Survival League');
+    await expect(rosterRows.first()).toContainText('8');
 
-    // Band 02: parliament diagram — one dot per delegate, one band per federation.
+    // Coalition builder: toggling a party updates the live seat count.
+    await page.getByRole('button', { name: /Lunar Survival League/ }).first().click();
+    await expect(page.locator('.coalition-seats')).toContainText('8');
+
+    // Federations tab: federation × party seat matrix + parliament diagram.
+    await page.getByRole('tab', { name: 'Federations' }).click();
+    await expect(page.getByRole('heading', { name: 'Federation Seat Matrix' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Trade Federation Delegations' })).toBeVisible();
+    await expect(page.locator('.fed-matrix')).toBeVisible();
     await expect(page.locator('.parliament-dot')).toHaveCount(27);
     await expect(page.locator('.parliament-svg path')).toHaveCount(8);
-    const fedRows = page.locator('.seat-rows').nth(1).locator('.seat-row');
-    await expect(fedRows).toHaveCount(8);
-    await expect(fedRows.first()).toContainText('Administration & Bureaucracy');
-    await expect(fedRows.last()).toContainText('Service & Support Workers');
   });
 
   test(`Congress page axe a11y (${theme})`, async ({ page }) => {
     await mockCongressData(page);
     await gotoWithTheme(page, theme, '/#/congress');
 
-    const results = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa'])
-      .analyze();
-    expect(results.violations).toEqual([]);
+    const chamber = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
+    expect(chamber.violations).toEqual([]);
+
+    await page.getByRole('tab', { name: 'Federations' }).click();
+    await expect(page.locator('.fed-matrix')).toBeVisible();
+    const feds = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
+    expect(feds.violations).toEqual([]);
   });
 }
 
@@ -180,8 +187,31 @@ test('Congress page falls back to a pending card when delegations are unpublishe
   });
   await gotoWithTheme(page, 'schematic', '/#/congress');
 
+  // Chamber tab still renders party totals.
   await expect(page.getByRole('heading', { name: 'All-Worker Congress' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Trade Federation Delegations' })).toBeVisible();
+  await expect(page.locator('.hemicycle-seat')).toHaveCount(27);
+
+  // Federations tab shows the pending card, no matrix or diagram.
+  await page.getByRole('tab', { name: 'Federations' }).click();
   await expect(page.getByText(/No delegation results published yet/)).toBeVisible();
   await expect(page.locator('.parliament-svg')).toHaveCount(0);
+  await expect(page.locator('.fed-matrix')).toHaveCount(0);
+});
+
+test('Congress page renders the pre-election (all-zero) chamber faithfully', async ({ page }) => {
+  await mockCongressData(page, {
+    congress: {
+      total_seats: 27,
+      parties: [
+        { name: 'Independent', seats: 0 },
+        { name: 'Lunar Survival League', seats: 0 },
+        { name: 'Non-aligned', seats: 0 },
+      ],
+    },
+    federations: { total_seats: 0, delegations: [] },
+  });
+  await gotoWithTheme(page, 'schematic', '/#/congress');
+
+  await expect(page.getByText(/No seats apportioned yet/)).toBeVisible();
+  await expect(page.locator('.hemicycle-seat')).toHaveCount(0);
 });
