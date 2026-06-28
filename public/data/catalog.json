@@ -20,9 +20,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 100.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 100.0
       },
       "workforce": {
@@ -72,9 +72,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 150.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 100.0
       },
       "workforce": {
@@ -124,9 +124,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 100.0,
-        "materials": 50.0,
+        "materials": 25.0,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 100.0
       },
       "workforce": {
@@ -176,9 +176,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 300.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 100.0
       },
       "workforce": {
@@ -228,9 +228,9 @@
       "terrain_compat": "Lava Tube, feature:Cave System, Crater Floor",
       "upkeep": {
         "energy": 50.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1325.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 70.0
       },
       "workforce": {
@@ -280,9 +280,9 @@
       "terrain_compat": "Mare Plain, Crater Rim, Regolith Plain",
       "upkeep": {
         "energy": 25.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1325.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -332,9 +332,9 @@
       "terrain_compat": "Geothermal Vent",
       "upkeep": {
         "energy": 25.0,
-        "materials": 50.0,
+        "materials": 25.0,
         "money": 1325.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -384,9 +384,9 @@
       "terrain_compat": "resource:Helium-3",
       "upkeep": {
         "energy": 25.0,
-        "materials": 250.0,
+        "materials": 125.0,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -436,9 +436,9 @@
       "terrain_compat": "Highland, Mountain, Crater Floor",
       "upkeep": {
         "energy": 25.0,
-        "materials": 125.0,
+        "materials": 62.5,
         "money": 15750.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -488,9 +488,9 @@
       "terrain_compat": "Highland, Mountain, Crater Floor",
       "upkeep": {
         "energy": 25.0,
-        "materials": 100.0,
+        "materials": 50.0,
         "money": 13125.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -540,9 +540,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 25.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1325.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -592,9 +592,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 25.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -644,9 +644,9 @@
       "terrain_compat": "Mare Plain, Regolith Plain, Highland",
       "upkeep": {
         "energy": 200.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -696,9 +696,9 @@
       "terrain_compat": "resource:Heavy Metals",
       "upkeep": {
         "energy": 300.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -748,9 +748,9 @@
       "terrain_compat": "resource:Rare Earths",
       "upkeep": {
         "energy": 350.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -800,9 +800,9 @@
       "terrain_compat": "resource:Iron Deposit, Mountain",
       "upkeep": {
         "energy": 250.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -852,9 +852,9 @@
       "terrain_compat": "resource:Aluminum Deposit",
       "upkeep": {
         "energy": 250.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1325.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 15.0
       },
       "workforce": {
@@ -904,9 +904,9 @@
       "terrain_compat": "Polar Ice Plain, feature:Buried Ice, resource:Water Ice",
       "upkeep": {
         "energy": 150.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -956,9 +956,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 750.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -1008,9 +1008,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 200.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1575.0,
-        "ore": 150.0,
+        "ore": 112.5,
         "water": 5.0
       },
       "workforce": {
@@ -1060,9 +1060,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 350.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 2625.0,
-        "ore": 200.0,
+        "ore": 150.0,
         "water": 5.0
       },
       "workforce": {
@@ -1112,9 +1112,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 100.0,
-        "materials": 50.0,
+        "materials": 25.0,
         "money": 1325.0,
-        "ore": 100.0,
+        "ore": 75.0,
         "water": 5.0
       },
       "workforce": {
@@ -1164,9 +1164,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 200.0,
-        "materials": 50.0,
+        "materials": 25.0,
         "money": 2625.0,
-        "ore": 50.0,
+        "ore": 37.5,
         "water": 25.0
       },
       "workforce": {
@@ -1216,9 +1216,9 @@
       "terrain_compat": "any_surface",
       "upkeep": {
         "energy": 100.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 25.0
       },
       "workforce": {
@@ -1268,9 +1268,9 @@
       "terrain_compat": "Lava Tube, feature:Cave System, Crater Floor",
       "upkeep": {
         "energy": 100.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 25.0
       },
       "workforce": {
@@ -1320,9 +1320,9 @@
       "terrain_compat": "Mare Plain, Crater Floor, Regolith Plain",
       "upkeep": {
         "energy": 400.0,
-        "materials": 50.0,
+        "materials": 25.0,
         "money": 1325.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 25.0
       },
       "workforce": {
@@ -1372,9 +1372,9 @@
       "terrain_compat": "Crater Floor, Lava Tube",
       "upkeep": {
         "energy": 400.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 7500.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 25.0
       },
       "workforce": {
@@ -1424,9 +1424,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 100.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 5000.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -1476,9 +1476,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 150.0,
-        "materials": 50.0,
+        "materials": 25.0,
         "money": 5000.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -1528,9 +1528,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 200.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 7875.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 25.0
       },
       "workforce": {
@@ -1580,9 +1580,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 100.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 5250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 15.0
       },
       "workforce": {
@@ -1632,9 +1632,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 150.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 7875.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -1684,9 +1684,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 100.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 2625.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -1736,9 +1736,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 50.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 2100.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -1788,9 +1788,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 250.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 7875.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -1840,9 +1840,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 150.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 5250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -1892,9 +1892,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 200.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 5000.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 10.0
       },
       "workforce": {
@@ -1944,9 +1944,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 50.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 2625.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -1996,9 +1996,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 250.0,
-        "materials": 50.0,
+        "materials": 25.0,
         "money": 52500.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 10.0
       },
       "workforce": {
@@ -2048,9 +2048,9 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 150.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 10000.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -2100,9 +2100,9 @@
       "terrain_compat": "any_surface",
       "upkeep": {
         "energy": 100.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 6300.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 25.0
       },
       "workforce": {

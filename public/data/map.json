@@ -10849,9 +10849,9 @@
       "upkeep": {
         "energy": 100.0,
         "helium3": 0.0,
-        "materials": 50.0,
+        "materials": 25.0,
         "money": 1325.0,
-        "ore": 100.0,
+        "ore": 75.0,
         "water": 5.0
       },
       "workforce": {
@@ -11893,9 +11893,9 @@
       "upkeep": {
         "energy": 25.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1325.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -11927,9 +11927,9 @@
       "upkeep": {
         "energy": 250.0,
         "helium3": 0.0,
-        "materials": 50.0,
+        "materials": 25.0,
         "money": 52500.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 10.0
       },
       "workforce": {
@@ -11967,9 +11967,9 @@
       "upkeep": {
         "energy": 150.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -12002,9 +12002,9 @@
       "upkeep": {
         "energy": 250.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1325.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 15.0
       },
       "workforce": {
@@ -13046,9 +13046,9 @@
       "upkeep": {
         "energy": 400.0,
         "helium3": 0.0,
-        "materials": 50.0,
+        "materials": 25.0,
         "money": 1325.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 25.0
       },
       "workforce": {
@@ -13081,9 +13081,9 @@
       "upkeep": {
         "energy": 400.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 7500.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 25.0
       },
       "workforce": {
@@ -13117,9 +13117,9 @@
       "upkeep": {
         "energy": 200.0,
         "helium3": 0.0,
-        "materials": 50.0,
+        "materials": 25.0,
         "money": 2625.0,
-        "ore": 50.0,
+        "ore": 37.5,
         "water": 25.0
       },
       "workforce": {
@@ -13158,9 +13158,9 @@
       "upkeep": {
         "energy": 100.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 25.0
       },
       "workforce": {
@@ -13192,9 +13192,9 @@
       "upkeep": {
         "energy": 100.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 2625.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -14207,9 +14207,9 @@
       "upkeep": {
         "energy": 150.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 10000.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -14242,9 +14242,9 @@
       "upkeep": {
         "energy": 350.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -14277,9 +14277,9 @@
       "upkeep": {
         "energy": 100.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 100.0
       },
       "workforce": {
@@ -14312,9 +14312,9 @@
       "upkeep": {
         "energy": 25.0,
         "helium3": 0.0,
-        "materials": 100.0,
+        "materials": 50.0,
         "money": 13125.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -15328,9 +15328,9 @@
       "upkeep": {
         "energy": 200.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1575.0,
-        "ore": 150.0,
+        "ore": 112.5,
         "water": 5.0
       },
       "workforce": {
@@ -15363,9 +15363,9 @@
       "upkeep": {
         "energy": 25.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1325.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -15425,9 +15425,9 @@
       "upkeep": {
         "energy": 200.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 5000.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 10.0
       },
       "workforce": {
@@ -16441,9 +16441,9 @@
       "upkeep": {
         "energy": 50.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 2625.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -16477,9 +16477,9 @@
       "upkeep": {
         "energy": 200.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 5000.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 10.0
       },
       "workforce": {
@@ -16513,9 +16513,9 @@
       "upkeep": {
         "energy": 150.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -17556,9 +17556,9 @@
       "upkeep": {
         "energy": 100.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 25.0
       },
       "workforce": {
@@ -17590,9 +17590,9 @@
       "upkeep": {
         "energy": 200.0,
         "helium3": 0.0,
-        "materials": 50.0,
+        "materials": 25.0,
         "money": 2625.0,
-        "ore": 50.0,
+        "ore": 37.5,
         "water": 25.0
       },
       "workforce": {
@@ -17631,9 +17631,9 @@
       "upkeep": {
         "energy": 250.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1325.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 15.0
       },
       "workforce": {
@@ -18703,9 +18703,9 @@
       "upkeep": {
         "energy": 100.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 6300.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 25.0
       },
       "workforce": {
@@ -18739,9 +18739,9 @@
       "upkeep": {
         "energy": 300.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 100.0
       },
       "workforce": {
@@ -18775,9 +18775,9 @@
       "upkeep": {
         "energy": 25.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1325.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {
@@ -18809,9 +18809,9 @@
       "upkeep": {
         "energy": 50.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1325.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 70.0
       },
       "workforce": {
@@ -19852,9 +19852,9 @@
       "upkeep": {
         "energy": 150.0,
         "helium3": 0.0,
-        "materials": 25.0,
+        "materials": 12.5,
         "money": 1250.0,
-        "ore": 25.0,
+        "ore": 18.75,
         "water": 5.0
       },
       "workforce": {

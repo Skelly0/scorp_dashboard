@@ -26,9 +26,9 @@
       "name": "A Return to Normalcy?"
     }
   ],
-  "crisis_factor": 0.5401419695,
+  "crisis_factor": 0.5401424153,
   "demographics": {
-    "avg_satisfaction": 0.26866835109403864,
+    "avg_satisfaction": 0.26866699801021626,
     "base_growth_rate": 0.035,
     "effective_cdr": 0.012270853,
     "effective_growth_rate": 0.011200000000000002,
@@ -39,7 +39,7 @@
     "total_births": 2622.0,
     "total_deaths": 1235.0
   },
-  "gov_approval": 0.5701074703,
+  "gov_approval": 0.5701062541,
   "overton": {
     "authority": 5.0,
     "corporate": 6.0,
@@ -59,17 +59,17 @@
     },
     {
       "current": 1165.481031,
-      "delta": 335.0620238,
+      "delta": 785.0620238,
       "income": 1543.724024,
       "name": "Materials",
-      "upkeep": 1208.662
+      "upkeep": 758.662
     },
     {
       "current": 1519.562512,
-      "delta": -164.814081,
+      "delta": 72.68591898,
       "income": 785.185919,
       "name": "Ore",
-      "upkeep": 950.0
+      "upkeep": 712.5
     },
     {
       "current": 1629.906097,
@@ -107,7 +107,7 @@
       "upkeep": 682.1582
     }
   ],
-  "stability": 0.5638742493,
+  "stability": 0.563872987,
   "treasury": {
     "delta": 69859.7684,
     "money": 48913.09755
