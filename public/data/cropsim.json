@@ -3,115 +3,115 @@
     {
       "class_name": "Bureaucrats",
       "per_cap_demand": 0.011,
-      "pop": 5142.0,
-      "share": 0.044477541051413154,
-      "total_demand": 56.562
+      "pop": 5235.0,
+      "share": 0.04463161190765361,
+      "total_demand": 57.585
     },
     {
       "class_name": "Capitalists",
       "per_cap_demand": 0.02,
-      "pop": 2049.0,
-      "share": 0.032224631948780294,
-      "total_demand": 40.98
+      "pop": 2082.0,
+      "share": 0.032273340624028764,
+      "total_demand": 41.64
     },
     {
       "class_name": "Engineers",
       "per_cap_demand": 0.011,
-      "pop": 7146.0,
-      "share": 0.061811845265149434,
-      "total_demand": 78.606
+      "pop": 7266.0,
+      "share": 0.06194714271652552,
+      "total_demand": 79.926
     },
     {
       "class_name": "Scientists",
       "per_cap_demand": 0.011,
-      "pop": 9747.0,
-      "share": 0.08431011136291794,
-      "total_demand": 107.217
+      "pop": 9917.0,
+      "share": 0.08454855688408804,
+      "total_demand": 109.087
     },
     {
       "class_name": "Security",
       "per_cap_demand": 0.011,
-      "pop": 4114.0,
-      "share": 0.035585492782091346,
-      "total_demand": 45.254
+      "pop": 4192.0,
+      "share": 0.03573939199940476,
+      "total_demand": 46.112
     },
     {
       "class_name": "Proprietors",
       "per_cap_demand": 0.011,
-      "pop": 3738.0,
-      "share": 0.03233314827891528,
-      "total_demand": 41.118
+      "pop": 3802.0,
+      "share": 0.032414400854421974,
+      "total_demand": 41.822
     },
     {
       "class_name": "Managerial",
       "per_cap_demand": 0.011,
-      "pop": 2988.0,
-      "share": 0.025845758977367274,
-      "total_demand": 32.868
+      "pop": 3044.0,
+      "share": 0.025951982167506705,
+      "total_demand": 33.484
     },
     {
       "class_name": "Botanists",
       "per_cap_demand": 0.011,
-      "pop": 7407.0,
-      "share": 0.06406945674208815,
-      "total_demand": 81.477
+      "pop": 7541.0,
+      "share": 0.06429168775465441,
+      "total_demand": 82.951
     },
     {
       "class_name": "Industrial Workers",
       "per_cap_demand": 0.015,
-      "pop": 21844.0,
-      "share": 0.2576555125509359,
-      "total_demand": 327.66
+      "pop": 22113.0,
+      "share": 0.2570822698916239,
+      "total_demand": 331.695
     },
     {
       "class_name": "Extraction Workers",
       "per_cap_demand": 0.015,
-      "pop": 18772.0,
-      "share": 0.22142049448847134,
-      "total_demand": 281.58
+      "pop": 18986.0,
+      "share": 0.2207282583169345,
+      "total_demand": 284.79
     },
     {
       "class_name": "Service Workers",
       "per_cap_demand": 0.011,
-      "pop": 16216.0,
-      "share": 0.14026600655187005,
-      "total_demand": 178.376
+      "pop": 16467.0,
+      "share": 0.14039135688315796,
+      "total_demand": 181.137
     }
   ],
   "metrics": {
-    "balance": -76.78383899999994,
+    "balance": -74.24743399999988,
     "demand_classes": 11,
-    "per_cap": 0.01205000011,
+    "per_cap": 0.01208188749,
     "production_types": 5,
-    "security_ratio": 0.9396210117,
-    "total_demand": 1271.6979999999999,
-    "total_supply": 1194.914161,
-    "variety_index": 0.03975738919
+    "security_ratio": 0.9424540652,
+    "total_demand": 1290.2289999999998,
+    "total_supply": 1215.981566,
+    "variety_index": 0.03973437158
   },
   "production": [
     {
       "calorie_mult": 1.0,
       "food_type": "Greens",
-      "share": 0.23012466056128697,
-      "total_units": 274.9792157
+      "share": 0.23011306941144863,
+      "total_units": 279.8132505
     },
     {
       "calorie_mult": 1.1,
       "food_type": "Cereal Substitutes",
-      "share": 0.2547257487895819,
-      "total_units": 304.3754044
+      "share": 0.2548188566042785,
+      "total_units": 309.8550323
     },
     {
       "calorie_mult": 1.3,
       "food_type": "Vat Protein",
-      "share": 0.3860942889101806,
-      "total_units": 461.3495333
+      "share": 0.3859366847506963,
+      "total_units": 469.2918943
     },
     {
       "calorie_mult": 1.2,
       "food_type": "Algal Paste",
-      "share": 0.1290553020737027,
-      "total_units": 154.210008
+      "share": 0.1291313893158147,
+      "total_units": 157.021389
     },
     {
       "calorie_mult": 1.0,

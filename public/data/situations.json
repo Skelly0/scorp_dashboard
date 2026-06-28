@@ -1,12 +1,12 @@
 {
   "active": [
     {
-      "crisis_factor": 0.65,
+      "crisis_factor": 0.6,
       "description": "All contact with Earth has ceased. Something ominous has happened to Earth.",
       "name": "The Lights Go Down"
     },
     {
-      "crisis_factor": 0.5,
+      "crisis_factor": 0.4,
       "description": "Tonight the Moon runs with blood.",
       "name": "Blood on the Dance Floor"
     },
