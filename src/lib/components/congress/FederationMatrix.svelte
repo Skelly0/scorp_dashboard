@@ -268,6 +268,9 @@
     align-items: center;
   }
   .fed-panel-rowmain { min-width: 0; }
+  /* `.bar` is inline by default and only sizes inside a flex parent (the roster);
+     here the parent is a block, so force block + full width for the meter. */
+  .fed-panel-rowmain .bar { display: block; width: 100%; }
   .fed-panel-rowlabel {
     font-size: 11px;
     white-space: nowrap;
