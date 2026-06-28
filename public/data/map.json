@@ -10844,7 +10844,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.5495632689,
+      "staffing": 0.6495632689,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 100.0,
@@ -10865,7 +10865,7 @@
         "energy": 0,
         "food": 0,
         "housing": 180.0,
-        "materials": 220.0753076,
+        "materials": 260.0753076,
         "ore": 0.25,
         "water": 0
       }
@@ -14237,7 +14237,7 @@
       },
       "resource": "Rare Earths",
       "slots": 2,
-      "staffing": 0.7391719034,
+      "staffing": 0.8391719034,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 350.0,
@@ -14257,7 +14257,7 @@
         "energy": 0,
         "food": 0,
         "housing": 180.0,
-        "materials": 445.753142,
+        "materials": 505.753142,
         "ore": 0.25,
         "water": 0
       }
@@ -14272,7 +14272,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.720275431,
+      "staffing": 0.920275431,
       "terrain": "Lava Tube",
       "upkeep": {
         "energy": 100.0,
@@ -14290,7 +14290,7 @@
       "y": 12,
       "yields": {
         "energy": 0,
-        "food": 378.1446013,
+        "food": 483.1446013,
         "housing": 380.0,
         "materials": 0.25,
         "ore": 0.5,
@@ -15323,7 +15323,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.5174842647,
+      "staffing": 0.7174842647,
       "terrain": "Lava Tube",
       "upkeep": {
         "energy": 200.0,
@@ -15343,7 +15343,7 @@
         "energy": 0,
         "food": 0,
         "housing": 380.0,
-        "materials": 414.2374117,
+        "materials": 574.2374117,
         "ore": 0.5,
         "water": 0
       }
@@ -18734,7 +18734,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6716908541,
+      "staffing": 0.8716908541,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 300.0,
@@ -18753,7 +18753,7 @@
       "y": 16,
       "yields": {
         "energy": 0,
-        "food": 251.8840703,
+        "food": 326.8840703,
         "housing": 180.0,
         "materials": 0.25,
         "ore": 0.25,
@@ -18804,7 +18804,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.6171491361,
+      "staffing": 0.7171491361,
       "terrain": "Lava Tube",
       "upkeep": {
         "energy": 50.0,
@@ -18822,7 +18822,7 @@
       "y": 16,
       "yields": {
         "energy": 0,
-        "food": 231.4309261,
+        "food": 268.9309261,
         "housing": 380.0,
         "materials": 0.25,
         "ore": 0.5,

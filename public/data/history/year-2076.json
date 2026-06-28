@@ -1,10 +1,10 @@
 {
-  "avg_satisfaction": 0.22798892389202396,
-  "crisis_factor": 0.7335981538,
-  "effective_cdr": 0.01511652532,
-  "gov_approval": 0.5241860768,
+  "avg_satisfaction": 0.2464093958356984,
+  "crisis_factor": 0.7275103285,
+  "effective_cdr": 0.01221221625,
+  "gov_approval": 0.5303017241,
   "housing_util": 1.065123523093448,
-  "net_delta_pct": -0.3916525319999998,
+  "net_delta_pct": -0.10122162499999979,
   "overton": {
     "authority": 5.0,
     "corporate": 6.0,
@@ -17,15 +17,15 @@
   "resources": [
     {
       "current": 804.9005384,
-      "delta": -294.2838387,
-      "income": 977.4141613,
+      "delta": -76.78383866,
+      "income": 1194.914161,
       "name": "Food",
       "upkeep": 1271.698
     },
     {
       "current": 886.691617,
-      "delta": 58.78941421,
-      "income": 1262.770414,
+      "delta": 318.7894142,
+      "income": 1522.770414,
       "name": "Materials",
       "upkeep": 1203.981
     },
@@ -72,9 +72,9 @@
       "upkeep": 680.5294
     }
   ],
-  "stability": 0.4378608318,
-  "synced_at": "2026-06-28T20:00:53Z",
-  "total_deaths": 1499.0,
+  "stability": 0.4677781008,
+  "synced_at": "2026-06-28T21:12:07Z",
+  "total_deaths": 1211.0,
   "treasury": {
     "delta": 65998.14289,
     "money": 263711.0703
