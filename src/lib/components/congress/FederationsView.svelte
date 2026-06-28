@@ -27,8 +27,10 @@
   })();
 </script>
 
-<Band num="01" title="Federation Seat Matrix" meta="Which federations each party draws delegates from" />
-<FederationMatrix {delegations} {partyColumns} />
+{#if partyColumns.length}
+  <Band num="01" title="Federation Seat Matrix" meta="Which federations each party draws delegates from" />
+  <FederationMatrix {delegations} {partyColumns} />
+{/if}
 
 <Band num="02" title="Trade Federation Delegations" meta="Art. 15 — each delegation split by party support" />
 <FederationChamber {federations} />

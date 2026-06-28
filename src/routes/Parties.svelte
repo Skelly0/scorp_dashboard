@@ -30,7 +30,8 @@
     }
   }
 
-  let view = TABS.includes(readPersist().view) ? readPersist().view : 'roster';
+  const persistedView = readPersist().view;
+  let view = TABS.includes(persistedView) ? persistedView : 'roster';
   function setView(next) {
     view = next;
     persist({ view: next });

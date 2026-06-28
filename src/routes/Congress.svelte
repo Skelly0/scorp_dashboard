@@ -25,7 +25,8 @@
     }
   }
 
-  let view = TABS.includes(readPersist().view) ? readPersist().view : 'chamber';
+  const persistedView = readPersist().view;
+  let view = TABS.includes(persistedView) ? persistedView : 'chamber';
   function setView(next) {
     view = next;
     persist({ view: next });
