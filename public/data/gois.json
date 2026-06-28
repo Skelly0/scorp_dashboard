@@ -30,7 +30,7 @@
         ]
       },
       "approach": "Centrist",
-      "approval": 0.6422265612,
+      "approval": 0.6422266017,
       "derived_influence": 0.1485445813,
       "effective_worldview": {
         "authority": 4.340538142,
@@ -45,7 +45,7 @@
       "name": "Administration",
       "sub_factions": [
         {
-          "approval": 0.6434952687,
+          "approval": 0.6434953092,
           "effective_worldview": {
             "authority": 4.7,
             "corporate": 3.45,
@@ -61,7 +61,7 @@
           "national_share": 0.07904292468
         },
         {
-          "approval": 0.6409578537,
+          "approval": 0.6409578942,
           "effective_worldview": {
             "authority": 5.4,
             "corporate": 4.85,
@@ -107,7 +107,7 @@
         ]
       },
       "approach": "Communal",
-      "approval": 0.4142699991,
+      "approval": 0.4142700098,
       "derived_influence": 0.2054698406,
       "effective_worldview": {
         "authority": 3.973403948,
@@ -122,7 +122,7 @@
       "name": "Proletariat",
       "sub_factions": [
         {
-          "approval": 0.4040204526,
+          "approval": 0.4040204634,
           "effective_worldview": {
             "authority": 4.55,
             "corporate": 6.0,
@@ -138,7 +138,7 @@
           "national_share": 0.0656002541
         },
         {
-          "approval": 0.371431337,
+          "approval": 0.3714313477,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 6.0,
@@ -154,7 +154,7 @@
           "national_share": 0.0656002541
         },
         {
-          "approval": 0.4673582077,
+          "approval": 0.4673582185,
           "effective_worldview": {
             "authority": 4.55,
             "corporate": 6.0,
@@ -200,7 +200,7 @@
         ]
       },
       "approach": "Centrist",
-      "approval": 0.4480025501,
+      "approval": 0.4480025608,
       "derived_influence": 0.263214313,
       "effective_worldview": {
         "authority": 3.913977389,
@@ -215,7 +215,7 @@
       "name": "White Collar",
       "sub_factions": [
         {
-          "approval": 0.3282083324,
+          "approval": 0.3282083431,
           "effective_worldview": {
             "authority": 3.85,
             "corporate": 4.7,
@@ -231,7 +231,7 @@
           "national_share": 0.08403630319
         },
         {
-          "approval": 0.3724175161,
+          "approval": 0.3724175268,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 4.7,
@@ -247,7 +247,7 @@
           "national_share": 0.08403630319
         },
         {
-          "approval": 0.6433818018,
+          "approval": 0.6433818125,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 4.7,
@@ -293,7 +293,7 @@
         ]
       },
       "approach": "Secular",
-      "approval": 0.5434388192,
+      "approval": 0.5434388597,
       "derived_influence": 0.1757739111,
       "effective_worldview": {
         "authority": 4.256187199,
@@ -308,7 +308,7 @@
       "name": "Research",
       "sub_factions": [
         {
-          "approval": 0.5137786151,
+          "approval": 0.5137786556,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 3.45,
@@ -324,7 +324,7 @@
           "national_share": 0.09353208238
         },
         {
-          "approval": 0.5730990232,
+          "approval": 0.5730990638,
           "effective_worldview": {
             "authority": 5.4,
             "corporate": 2.05,
@@ -372,7 +372,7 @@
         ]
       },
       "approach": "Religious",
-      "approval": 0.7947428959,
+      "approval": 0.7947429005,
       "derived_influence": 0.1213716216,
       "effective_worldview": {
         "authority": 3.069899768,
@@ -387,7 +387,7 @@
       "name": "Congregations",
       "sub_factions": [
         {
-          "approval": 0.7697428959,
+          "approval": 0.7697429005,
           "effective_worldview": {
             "authority": 3.4,
             "corporate": 4.3,
@@ -403,7 +403,7 @@
           "national_share": 0.06458376242
         },
         {
-          "approval": 0.9197428959,
+          "approval": 0.9197429005,
           "effective_worldview": {
             "authority": 3.4,
             "corporate": 5.7,
@@ -419,7 +419,7 @@
           "national_share": 0.03875025745
         },
         {
-          "approval": 0.6697428959,
+          "approval": 0.6697429005,
           "effective_worldview": {
             "authority": 1.3,
             "corporate": 2.9,
@@ -444,7 +444,7 @@
         "unlocked_list": []
       },
       "approach": "Marketist",
-      "approval": 0.370049173,
+      "approval": 0.3700491528,
       "derived_influence": 0.07213916913,
       "effective_worldview": {
         "authority": 4.881143879,
@@ -459,7 +459,7 @@
       "name": "Outcast Dissidents",
       "sub_factions": [
         {
-          "approval": 0.6157336628,
+          "approval": 0.6157336426,
           "effective_worldview": {
             "authority": 4.0,
             "corporate": 5.4,
@@ -475,7 +475,7 @@
           "national_share": 0.007677278918
         },
         {
-          "approval": 0.3348887648,
+          "approval": 0.3348887446,
           "effective_worldview": {
             "authority": 3.9,
             "corporate": 1.0,
@@ -491,7 +491,7 @@
           "national_share": 0.03838639459
         },
         {
-          "approval": 0.3525785607,
+          "approval": 0.3525785406,
           "effective_worldview": {
             "authority": 6.1,
             "corporate": 6.1,
