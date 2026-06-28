@@ -10850,7 +10850,7 @@
         "energy": 100.0,
         "helium3": 0.0,
         "materials": 25.0,
-        "money": 1325.0,
+        "money": 662.5,
         "ore": 75.0,
         "water": 5.0
       },
@@ -11894,7 +11894,7 @@
         "energy": 25.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 1325.0,
+        "money": 662.5,
         "ore": 18.75,
         "water": 5.0
       },
@@ -11928,7 +11928,7 @@
         "energy": 250.0,
         "helium3": 0.0,
         "materials": 25.0,
-        "money": 52500.0,
+        "money": 26250.0,
         "ore": 18.75,
         "water": 10.0
       },
@@ -11968,7 +11968,7 @@
         "energy": 150.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 1250.0,
+        "money": 625.0,
         "ore": 18.75,
         "water": 5.0
       },
@@ -12003,7 +12003,7 @@
         "energy": 250.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 1325.0,
+        "money": 662.5,
         "ore": 18.75,
         "water": 15.0
       },
@@ -13047,7 +13047,7 @@
         "energy": 400.0,
         "helium3": 0.0,
         "materials": 25.0,
-        "money": 1325.0,
+        "money": 662.5,
         "ore": 18.75,
         "water": 25.0
       },
@@ -13082,7 +13082,7 @@
         "energy": 400.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 7500.0,
+        "money": 3750.0,
         "ore": 18.75,
         "water": 25.0
       },
@@ -13118,7 +13118,7 @@
         "energy": 200.0,
         "helium3": 0.0,
         "materials": 25.0,
-        "money": 2625.0,
+        "money": 1312.5,
         "ore": 37.5,
         "water": 25.0
       },
@@ -13159,7 +13159,7 @@
         "energy": 100.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 1250.0,
+        "money": 625.0,
         "ore": 18.75,
         "water": 25.0
       },
@@ -13193,7 +13193,7 @@
         "energy": 100.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 2625.0,
+        "money": 1312.5,
         "ore": 18.75,
         "water": 5.0
       },
@@ -14208,7 +14208,7 @@
         "energy": 150.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 10000.0,
+        "money": 5000.0,
         "ore": 18.75,
         "water": 5.0
       },
@@ -14243,7 +14243,7 @@
         "energy": 350.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 1250.0,
+        "money": 625.0,
         "ore": 18.75,
         "water": 5.0
       },
@@ -14278,7 +14278,7 @@
         "energy": 100.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 1250.0,
+        "money": 625.0,
         "ore": 18.75,
         "water": 100.0
       },
@@ -14313,7 +14313,7 @@
         "energy": 25.0,
         "helium3": 0.0,
         "materials": 50.0,
-        "money": 13125.0,
+        "money": 6562.5,
         "ore": 18.75,
         "water": 5.0
       },
@@ -15329,7 +15329,7 @@
         "energy": 200.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 1575.0,
+        "money": 787.5,
         "ore": 112.5,
         "water": 5.0
       },
@@ -15364,7 +15364,7 @@
         "energy": 25.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 1325.0,
+        "money": 662.5,
         "ore": 18.75,
         "water": 5.0
       },
@@ -15426,7 +15426,7 @@
         "energy": 200.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 5000.0,
+        "money": 2500.0,
         "ore": 18.75,
         "water": 10.0
       },
@@ -16442,7 +16442,7 @@
         "energy": 50.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 2625.0,
+        "money": 1312.5,
         "ore": 18.75,
         "water": 5.0
       },
@@ -16478,7 +16478,7 @@
         "energy": 200.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 5000.0,
+        "money": 2500.0,
         "ore": 18.75,
         "water": 10.0
       },
@@ -16514,7 +16514,7 @@
         "energy": 150.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 1250.0,
+        "money": 625.0,
         "ore": 18.75,
         "water": 5.0
       },
@@ -17557,7 +17557,7 @@
         "energy": 100.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 1250.0,
+        "money": 625.0,
         "ore": 18.75,
         "water": 25.0
       },
@@ -17591,7 +17591,7 @@
         "energy": 200.0,
         "helium3": 0.0,
         "materials": 25.0,
-        "money": 2625.0,
+        "money": 1312.5,
         "ore": 37.5,
         "water": 25.0
       },
@@ -17632,7 +17632,7 @@
         "energy": 250.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 1325.0,
+        "money": 662.5,
         "ore": 18.75,
         "water": 15.0
       },
@@ -18704,7 +18704,7 @@
         "energy": 100.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 6300.0,
+        "money": 3150.0,
         "ore": 18.75,
         "water": 25.0
       },
@@ -18740,7 +18740,7 @@
         "energy": 300.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 1250.0,
+        "money": 625.0,
         "ore": 18.75,
         "water": 100.0
       },
@@ -18776,7 +18776,7 @@
         "energy": 25.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 1325.0,
+        "money": 662.5,
         "ore": 18.75,
         "water": 5.0
       },
@@ -18810,7 +18810,7 @@
         "energy": 50.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 1325.0,
+        "money": 662.5,
         "ore": 18.75,
         "water": 70.0
       },
@@ -19853,7 +19853,7 @@
         "energy": 150.0,
         "helium3": 0.0,
         "materials": 12.5,
-        "money": 1250.0,
+        "money": 625.0,
         "ore": 18.75,
         "water": 5.0
       },
