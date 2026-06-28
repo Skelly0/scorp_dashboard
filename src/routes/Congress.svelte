@@ -5,8 +5,31 @@
   import { pageTitle } from '../lib/page-title.js';
   import Band from '../lib/components/Band.svelte';
   import PageState from '../lib/components/PageState.svelte';
-  import SeatChamber from '../lib/components/SeatChamber.svelte';
-  import FederationChamber from '../lib/components/FederationChamber.svelte';
+  import ChamberView from '../lib/components/congress/ChamberView.svelte';
+  import FederationsView from '../lib/components/congress/FederationsView.svelte';
+
+  const TABS = ['chamber', 'federations'];
+
+  function readPersist() {
+    try {
+      return JSON.parse(localStorage.getItem('scorp.congress') || '{}');
+    } catch (e) {
+      return {};
+    }
+  }
+  function persist(patch) {
+    try {
+      localStorage.setItem('scorp.congress', JSON.stringify({ ...readPersist(), ...patch }));
+    } catch (e) {
+      /* ignore */
+    }
+  }
+
+  let view = TABS.includes(readPersist().view) ? readPersist().view : 'chamber';
+  function setView(next) {
+    view = next;
+    persist({ view: next });
+  }
 
   onMount(() => {
     pageTitle.set('Congress');
@@ -39,13 +62,29 @@
         </p>
       </div>
     {:else}
-      <Band num="01" title="All-Worker Congress" meta="Art. 15 — delegates apportioned to Trade Federations" />
-      <SeatChamber chamber={$congress.congress} />
+      <div class="cmd-tabs" role="tablist" aria-label="Congress view">
+        <button
+          type="button"
+          role="tab"
+          aria-selected={view === 'chamber'}
+          class:active={view === 'chamber'}
+          on:click={() => setView('chamber')}>Chamber</button
+        >
+        <button
+          type="button"
+          role="tab"
+          aria-selected={view === 'federations'}
+          class:active={view === 'federations'}
+          on:click={() => setView('federations')}>Federations</button
+        >
+      </div>
 
-      <Band num="02" title="Trade Federation Delegations" meta="Art. 15 — each delegation split by party support" />
-      {#if hasDelegations}
-        <FederationChamber federations={$congress.federations} />
+      {#if view === 'chamber'}
+        <ChamberView chamber={$congress.congress} />
+      {:else if hasDelegations}
+        <FederationsView federations={$congress.federations} />
       {:else}
+        <Band num="01" title="Trade Federation Delegations" meta="Art. 15 — each delegation split by party support" />
         <div class="s-card s-card-pad">
           <p class="text-muted text-sm">
             No delegation results published yet — seat splits appear here
@@ -57,3 +96,34 @@
     {/if}
   </PageState>
 </section>
+
+<style>
+  .cmd-tabs {
+    display: flex;
+    border: 1px solid var(--border-soft);
+    margin-bottom: 14px;
+    width: fit-content;
+  }
+  .cmd-tabs button {
+    background: transparent;
+    color: var(--fg-dim);
+    border: none;
+    border-right: 1px solid var(--border-soft);
+    padding: 8px 18px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .cmd-tabs button:last-child {
+    border-right: none;
+  }
+  .cmd-tabs button:hover {
+    color: var(--accent);
+  }
+  .cmd-tabs button.active {
+    background: var(--accent);
+    color: var(--alert-fg, var(--bg));
+  }
+</style>
