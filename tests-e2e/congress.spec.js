@@ -137,6 +137,9 @@ for (const theme of THEMES) {
     // The Celestial Council band is retired.
     await expect(page.getByRole('heading', { name: 'Celestial Council' })).toHaveCount(0);
 
+    // Data-driven readout strip (page-level).
+    await expect(page.getByText('Total Seats')).toBeVisible();
+
     const rosterRows = page.locator('.roster-row');
     await expect(rosterRows).toHaveCount(5); // Non-aligned (0 seats) excluded
     await expect(rosterRows.first()).toContainText('Lunar Survival League');
@@ -146,13 +149,12 @@ for (const theme of THEMES) {
     await page.getByRole('button', { name: /Lunar Survival League/ }).first().click();
     await expect(page.locator('.coalition-seats')).toContainText('8');
 
-    // Federations tab: federation × party seat matrix + parliament diagram.
+    // Federations tab: federation × party seat matrix (parliament diagram dropped
+    // to match the mockup).
     await page.getByRole('tab', { name: 'Federations' }).click();
     await expect(page.getByRole('heading', { name: 'Federation Seat Matrix' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Trade Federation Delegations' })).toBeVisible();
     await expect(page.locator('.fed-matrix')).toBeVisible();
-    await expect(page.locator('.parliament-dot')).toHaveCount(27);
-    await expect(page.locator('.parliament-svg path')).toHaveCount(8);
+    await expect(page.locator('.parliament-svg')).toHaveCount(0);
   });
 
   test(`Congress page axe a11y (${theme})`, async ({ page }) => {

@@ -117,7 +117,7 @@
             class="fmx-cell"
             class:empty={v === 0}
             class:dim={dim}
-            style={v > 0 ? `background: color-mix(in srgb, ${c.color} 26%, var(--bg-2));` : ''}
+            style={v > 0 ? `background: color-mix(in srgb, ${c.color} ${v >= 2 ? 42 : 26}%, var(--bg-2));` : ''}
             title="{d.name} × {c.name} = {v}"
           >{v > 0 ? v : '·'}</div>
         {/each}

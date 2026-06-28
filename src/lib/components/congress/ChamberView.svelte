@@ -80,14 +80,17 @@
     </p>
   </div>
 {:else}
-  <Band num="01" title="All-Worker Congress" meta="Art. 15 — {fmtInt(chamberSeats)} delegates · majority {majority}" />
   <div class="chamber-top">
-    <div class="s-card s-card-pad chamber-hemi">
-      <PartyHemicycle parties={seated} {coalition} {majority} onToggle={toggle} />
-      <p class="chamber-hemi-cap" aria-hidden="true">tap seats to add a party to the coalition</p>
+    <div class="chamber-col">
+      <Band num="01" title="All-Worker Congress" meta="Click seats to build a coalition" />
+      <div class="s-card s-card-pad chamber-hemi">
+        <PartyHemicycle parties={seated} {coalition} {majority} onToggle={toggle} />
+      </div>
     </div>
 
-    <div class="s-card s-card-pad coalition-card">
+    <div class="chamber-col">
+      <Band num="02" title="Coalition Builder" />
+      <div class="s-card s-card-pad coalition-card">
       <div class="coalition-head">
         <div>
           <div class="coalition-seats {statusTone}">
@@ -135,11 +138,12 @@
         {/each}
       </div>
 
-      <p class="coalition-note">{coalitionNote}</p>
+        <p class="coalition-note">{coalitionNote}</p>
+      </div>
     </div>
   </div>
 
-  <Band num="02" title="Party Roster" meta="Voting power = Banzhaf index" />
+  <Band num="03" title="Party Roster" meta="Voting power = Banzhaf index" />
   <div class="s-card s-card-pad">
     <div class="roster-grid roster-head">
       <span></span>
@@ -187,15 +191,9 @@
       align-items: start;
     }
   }
-  .chamber-hemi { display: flex; flex-direction: column; }
-  .chamber-hemi-cap {
-    margin: 8px 0 0;
-    text-align: center;
-    color: var(--muted);
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
+  .chamber-col { min-width: 0; display: flex; flex-direction: column; }
+  .chamber-col :global(.band) { margin-top: 0; }
+  .chamber-hemi { display: flex; flex-direction: column; flex: 1; justify-content: center; }
 
   .coalition-head {
     display: flex;

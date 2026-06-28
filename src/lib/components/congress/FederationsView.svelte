@@ -1,12 +1,10 @@
 <script>
   // Congress "Federations" tab: the federation × party seat matrix (transpose
-  // view) + the parliament hemicycle/legend kept from the prior design so no
-  // existing information is lost. Party columns are derived from the delegation
-  // data itself (sum across delegations), so the matrix is internally consistent
-  // regardless of the separate CongressPartySeats totals channel.
+  // view) + focus panel, matching the mockup. Party columns are derived from the
+  // delegation data itself (sum across delegations), so the matrix is internally
+  // consistent regardless of the separate CongressPartySeats totals channel.
   import Band from '../Band.svelte';
   import FederationMatrix from './FederationMatrix.svelte';
-  import FederationChamber from '../FederationChamber.svelte';
   import { partyColor } from '../../faction-colors.js';
 
   /** @type {{ total_seats: number, delegations: Array<{name: string, seats: number, parties: Array<{name: string, seats: number}>}> }} */
@@ -31,6 +29,3 @@
   <Band num="01" title="Federation Seat Matrix" meta="Which federations each party draws delegates from" />
   <FederationMatrix {delegations} {partyColumns} />
 {/if}
-
-<Band num="02" title="Trade Federation Delegations" meta="Art. 15 — each delegation split by party support" />
-<FederationChamber {federations} />

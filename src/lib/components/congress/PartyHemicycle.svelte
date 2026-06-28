@@ -16,8 +16,8 @@
   export let onToggle = () => {};
 
   const CX = 110;
-  const CY = 108;
-  const R = 84;
+  const CY = 110;
+  const R = 100;
 
   $: seated = parties.filter((p) => (p.seats ?? 0) > 0);
   $: dots = seated.flatMap((p) =>
@@ -40,7 +40,7 @@
 </script>
 
 <div class="hemicycle-wrap">
-  <svg class="hemicycle-svg" viewBox="0 0 220 124" role="img" aria-label={ariaLabel}>
+  <svg class="hemicycle-svg" viewBox="0 0 220 130" role="img" aria-label={ariaLabel}>
     {#each positions as pos, i}
       {@const p = dots[i]}
       {@const inC = coalition.has(p.name)}
@@ -61,14 +61,14 @@
         <title>{p.name}</title>
       </circle>
     {/each}
-    <text x={CX} y={CY - 12} text-anchor="middle" fill={centreColor} class="hemicycle-num">{centreNum}</text>
-    <text x={CX} y={CY + 4} text-anchor="middle" fill="var(--muted)" class="hemicycle-cap">{centreLabel}</text>
+    <text x={CX} y={CY - 2} text-anchor="middle" fill={centreColor} class="hemicycle-num">{centreNum}</text>
+    <text x={CX} y={CY + 16} text-anchor="middle" fill="var(--muted)" class="hemicycle-cap">{centreLabel}</text>
   </svg>
 </div>
 
 <style>
   .hemicycle-wrap {
-    max-width: 480px;
+    max-width: 660px;
     margin: 0 auto;
   }
   .hemicycle-svg {
@@ -80,12 +80,12 @@
     cursor: pointer;
   }
   .hemicycle-num {
-    font-size: 26px;
+    font-size: 30px;
     font-weight: 800;
     font-variant-numeric: tabular-nums;
   }
   .hemicycle-cap {
-    font-size: 8px;
-    letter-spacing: 0.18em;
+    font-size: 9px;
+    letter-spacing: 0.2em;
   }
 </style>

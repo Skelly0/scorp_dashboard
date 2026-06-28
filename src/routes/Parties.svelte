@@ -7,13 +7,17 @@
   import { classCompatPopMatrix, partySupportOverview } from '../lib/party-compat.js';
   import { partyIdeology } from '../lib/party-ideology.js';
   import { partyColor } from '../lib/faction-colors.js';
+  import { abbrevName } from '../lib/short-name.js';
+  import { fmtInt, fmtPct, fmtNum } from '../lib/format.js';
   import PageState from '../lib/components/PageState.svelte';
   import Band from '../lib/components/Band.svelte';
+  import ReadoutStrip from '../lib/components/ReadoutStrip.svelte';
   import RosterView from '../lib/components/parties/RosterView.svelte';
+  import AllegianceWeb from '../lib/components/parties/AllegianceWeb.svelte';
   import SpectrumView from '../lib/components/parties/SpectrumView.svelte';
   import SupportView from '../lib/components/parties/SupportView.svelte';
 
-  const TABS = ['roster', 'spectrum', 'support'];
+  const TABS = ['roster', 'web', 'spectrum', 'support'];
 
   function readPersist() {
     try {
@@ -67,6 +71,36 @@
       topClasses: support?.topClasses ?? [],
     };
   });
+
+  // At-a-glance stat strip (data-driven, mirrors the mockup header).
+  $: readoutItems = (() => {
+    if (enriched.length === 0) return [];
+    const lead = [...enriched].sort((a, b) => (b.vote_share ?? 0) - (a.vote_share ?? 0))[0];
+    const mostEst = [...enriched].sort((a, b) => (b.establishment ?? 0) - (a.establishment ?? 0))[0];
+    const enp = 1 / enriched.reduce((a, p) => a + (p.vote_share ?? 0) ** 2, 0);
+    const electorate = enriched.reduce((a, p) => a + (p.supporters ?? 0), 0);
+    return [
+      { label: 'Founded Parties', value: String(enriched.length) },
+      { label: 'Leading Party', value: `${abbrevName(lead.name)} · ${fmtPct(lead.vote_share)}` },
+      { label: 'Effective Parties', value: Number.isFinite(enp) ? fmtNum(enp, 1) : '—', tone: 'warn' },
+      { label: 'Most Established', value: `${abbrevName(mostEst.name)} · ${fmtPct(mostEst.establishment)}` },
+      { label: 'Electorate', value: fmtInt(electorate) },
+    ];
+  })();
+
+  // Allegiance Web inputs: party columns aligned to the capture matrix order,
+  // tinted from the enriched accents.
+  $: colorByName = new Map(enriched.map((p) => [p.name, p.color]));
+  $: voteByName = new Map(enriched.map((p) => [p.name, p.vote_share]));
+  $: popMatrix = $parties?.party_capture_pop_matrix;
+  $: pctMatrix = $parties?.party_capture_pct_matrix;
+  $: webReady = popMatrix?.values?.length > 0 && pctMatrix?.values?.length > 0;
+  $: webParties =
+    popMatrix?.parties?.map((name) => ({
+      name,
+      color: colorByName.get(name) ?? 'var(--accent)',
+      vote_share: voteByName.get(name) ?? 0,
+    })) ?? [];
 </script>
 
 <section class="px-3 py-4 md:px-6 md:py-5 max-w-[1600px]">
@@ -85,12 +119,29 @@
     {:else}
       <div class="cmd-tabs" role="tablist" aria-label="Parties view">
         <button type="button" role="tab" aria-selected={view === 'roster'} class:active={view === 'roster'} on:click={() => setView('roster')}>Roster</button>
+        <button type="button" role="tab" aria-selected={view === 'web'} class:active={view === 'web'} on:click={() => setView('web')}>Web</button>
         <button type="button" role="tab" aria-selected={view === 'spectrum'} class:active={view === 'spectrum'} on:click={() => setView('spectrum')}>Spectrum</button>
         <button type="button" role="tab" aria-selected={view === 'support'} class:active={view === 'support'} on:click={() => setView('support')}>Support</button>
       </div>
 
+      <ReadoutStrip items={readoutItems} />
+
       {#if view === 'roster'}
         <RosterView parties={enriched} popMatrix={$parties.party_capture_pop_matrix} />
+      {:else if view === 'web'}
+        <Band num="01" title="Allegiance Web" meta="Hover to trace · drag to explore" />
+        {#if webReady}
+          <AllegianceWeb
+            classes={popMatrix.classes}
+            parties={webParties}
+            pctValues={pctMatrix.values}
+            popValues={popMatrix.values}
+          />
+        {:else}
+          <div class="s-card s-card-pad">
+            <p class="text-muted text-sm">Class × party capture data isn't available yet, so the allegiance web can't be drawn.</p>
+          </div>
+        {/if}
       {:else if view === 'spectrum'}
         <SpectrumView parties={enriched} />
       {:else}
