@@ -11,7 +11,10 @@
   export let parties = [];
 
   const W = 1000;
-  const H = 92;
+  const BAR_Y = 30;
+  const BAR_H = 92;
+  const SVG_H = BAR_Y + BAR_H + 6;
+  const MARKER_LABEL_Y = 13;
 
   $: sorted = [...parties].sort((a, b) => (b.vote_share ?? 0) - (a.vote_share ?? 0));
   $: total = sorted.reduce((a, p) => a + (p.vote_share ?? 0), 0) || 1;
@@ -27,19 +30,19 @@
   $: summary = sorted.map((p) => `${p.name} ${fmtPct(p.vote_share, 1)}`).join(', ');
 </script>
 
-<svg class="vote-bar" viewBox="0 0 {W} {H + 18}" role="img" aria-label="Vote share: {summary}.">
+<svg class="vote-bar" viewBox="0 0 {W} {SVG_H}" role="img" aria-label="Vote share: {summary}.">
   <g>
     {#each segments as s (s.name)}
-      <rect x={s.x.toFixed(1)} y="18" width={Math.max(0, s.w - 2).toFixed(1)} height={H} fill={s.color} />
+      <rect x={s.x.toFixed(1)} y={BAR_Y} width={Math.max(0, s.w - 2).toFixed(1)} height={BAR_H} fill={s.color} />
       {#if s.wide}
-        <text x={(s.x + s.w / 2).toFixed(1)} y={18 + H / 2 - 6} text-anchor="middle" fill={s.ink} class="vote-name">{abbrevName(s.name)}</text>
-        <text x={(s.x + s.w / 2).toFixed(1)} y={18 + H / 2 + 16} text-anchor="middle" fill={s.ink} class="vote-pct">{(s.vote_share * 100).toFixed(1)}%</text>
+        <text x={(s.x + s.w / 2).toFixed(1)} y={BAR_Y + BAR_H / 2 - 6} text-anchor="middle" fill={s.ink} class="vote-name">{abbrevName(s.name)}</text>
+        <text x={(s.x + s.w / 2).toFixed(1)} y={BAR_Y + BAR_H / 2 + 16} text-anchor="middle" fill={s.ink} class="vote-pct">{(s.vote_share * 100).toFixed(1)}%</text>
       {/if}
     {/each}
   </g>
   <!-- 50% reference tick -->
-  <line x1={W / 2} y1="10" x2={W / 2} y2={18 + H + 4} stroke="var(--fg)" stroke-opacity="0.5" stroke-width="2" />
-  <text x={W / 2} y="6" text-anchor="middle" fill="var(--muted)" class="vote-tick">50% OF VOTE</text>
+  <line x1={W / 2} y1={MARKER_LABEL_Y + 5} x2={W / 2} y2={BAR_Y + BAR_H + 4} stroke="var(--fg)" stroke-opacity="0.5" stroke-width="2" />
+  <text x={W / 2} y={MARKER_LABEL_Y} text-anchor="middle" fill="var(--muted)" class="vote-tick">50% of vote</text>
 </svg>
 
 <div class="vote-legend">
@@ -58,6 +61,7 @@
     display: block;
     width: 100%;
     height: auto;
+    overflow: visible;
   }
   .vote-name {
     font-size: 18px;
