@@ -105,6 +105,8 @@ GitHub Action → openpyxl → per-page JSON in `public/data/` → git commit �
 
 57. **Social privileges are a 0-10 score, not a percentage.** `pops.json.classes[].social_privileges` comes from the Popsim social-privileges standing scale, so live values such as `5.0` must display as `5/10`. The Census Standing block and ClassDetail Living Standards card should both use this score format; do not send the field through `fmtPct`/`pct`, which would render `500%`. `src/lib/components/ClassDetail.test.js` has a regression for this.
 
+58. **Parties vote-share marker owns a reserved SVG lane.** `src/lib/components/parties/VoteShareBar.svelte` renders the roster tab's proportional vote-share strip with a 50% marker above the coloured segments; keep the `BAR_Y`/`MARKER_LABEL_Y` lane so the `50% of vote` label never clips against the card border or overlaps the strip. If the vote-share layout changes, update `src/routes/Parties.test.js` and re-run a desktop/mobile geometry check for the marker.
+
 ## Where to read more
 
 - Spec: `docs/superpowers/specs/2026-05-01-scorp-dashboard-design.md`

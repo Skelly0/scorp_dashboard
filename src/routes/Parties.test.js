@@ -88,6 +88,22 @@ describe('Parties page', () => {
     expect(screen.queryByText('Hidden GoI Label')).toBeNull();
   });
 
+  test('Roster tab renders the vote-share marker in a reserved SVG lane', () => {
+    parties.set(baseParties);
+    pops.set({ classes: [] });
+
+    render(Parties);
+
+    const bar = screen.getByRole('img', { name: /Vote share:/ });
+    const marker = screen.getByText('50% of vote');
+
+    expect(screen.getByRole('heading', { name: 'Vote Share' })).toBeTruthy();
+    expect(screen.getByText('Electorate 11,407')).toBeTruthy();
+    expect(bar.getAttribute('viewBox')).toBe('0 0 1000 128');
+    expect(marker.getAttribute('y')).toBe('13');
+    expect(bar.querySelector('rect')?.getAttribute('y')).toBe('30');
+  });
+
   test('Support tab exposes the class × party heatmaps', async () => {
     parties.set(baseParties);
     pops.set({ classes: [] });
