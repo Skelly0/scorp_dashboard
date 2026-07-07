@@ -113,7 +113,6 @@
               <span class="faction-bar" style="--bar-color: {goiColor(g.name)}"></span>
               {g.name}
             </h3>
-            <span class="meta">{g.main_class ?? '—'} · {g.approach ?? '—'}</span>
           </div>
           <div class="s-card-pad goi-card-body">
             <div class="goi-radar-frame">

@@ -107,6 +107,8 @@ GitHub Action → openpyxl → per-page JSON in `public/data/` → git commit �
 
 58. **Parties vote-share marker owns a reserved SVG lane.** `src/lib/components/parties/VoteShareBar.svelte` renders the roster tab's proportional vote-share strip with a 50% marker above the coloured segments; keep the `BAR_Y`/`MARKER_LABEL_Y` lane so the `50% of vote` label never clips against the card border or overlaps the strip. If the vote-share layout changes, update `src/routes/Parties.test.js` and re-run a desktop/mobile geometry check for the marker.
 
+59. **GoI card headers show names only.** `src/routes/GoIs.svelte` intentionally omits the `main_class · approach` metadata span from each card header, so labels like `Scientists · Secular` do not appear beside the Research GOI title. Keep class/approach data in the JSON for extractor compatibility, but do not reintroduce the player-facing header badge; `src/routes/GoIs.test.js` has a regression for this.
+
 ## Where to read more
 
 - Spec: `docs/superpowers/specs/2026-05-01-scorp-dashboard-design.md`

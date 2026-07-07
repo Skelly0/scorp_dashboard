@@ -42,6 +42,25 @@ describe('GoIs page', () => {
     expect(screen.queryByText('Pop Capture Matrix')).toBeNull();
   });
 
+  test('does not show class and approach metadata in GOI card headers', () => {
+    gois.set({
+      ...baseGois,
+      gois: [
+        {
+          ...minimalGoi,
+          name: 'Research',
+          main_class: 'Scientists',
+          approach: 'Secular',
+        },
+      ],
+    });
+
+    render(GoIs);
+
+    expect(screen.getByText('Research')).toBeTruthy();
+    expect(screen.queryByText('Scientists · Secular')).toBeNull();
+  });
+
   test('zero GoIs renders only the empty state — no heatmap or rail', () => {
     gois.set(baseGois);
 
