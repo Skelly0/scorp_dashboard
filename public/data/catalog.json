@@ -1996,23 +1996,23 @@
       "terrain_compat": "any",
       "upkeep": {
         "energy": 250.0,
-        "materials": 25.0,
-        "money": 26250.0,
-        "ore": 18.75,
+        "materials": 10.0,
+        "money": 32500.0,
+        "ore": 8.75,
         "water": 10.0
       },
       "workforce": {
-        "botanists": 0.0,
-        "bureaucrats": 500.0,
+        "botanists": 150.0,
+        "bureaucrats": 400.0,
         "capitalists": 0.0,
-        "engineers": 480.0,
+        "engineers": 780.0,
         "extraction_workers": 0.0,
-        "industrial_workers": 2600.0,
-        "managerial": 650.0,
+        "industrial_workers": 1800.0,
+        "managerial": 550.0,
         "proprietors": 0.0,
-        "scientists": 250.0,
-        "security": 750.0,
-        "service_workers": 2500.0
+        "scientists": 1000.0,
+        "security": 650.0,
+        "service_workers": 1600.0
       },
       "yields": {
         "energy": 0.0,
@@ -2020,9 +2020,9 @@
         "helium3": 0.0,
         "housing": 360.0,
         "materials": 0.0,
-        "money": 25000.0,
+        "money": 15000.0,
         "ore": 0.0,
-        "research": 5.0,
+        "research": 35.0,
         "satisfaction_all": 0.0,
         "stability": 0.05,
         "water": 0.0
