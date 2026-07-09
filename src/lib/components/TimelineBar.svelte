@@ -23,6 +23,9 @@
 
   function play() {
     if (timer || !canScrub) return;
+    if ($effectiveIdx >= maxIdx) {
+      selectYear(0);
+    }
     playing = true;
     timer = setInterval(() => {
       if ($effectiveIdx >= maxIdx) {

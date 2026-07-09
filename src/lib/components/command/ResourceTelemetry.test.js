@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen, within } from '@testing-library/svelte';
+import { render, screen, within, fireEvent } from '@testing-library/svelte';
 import ResourceTelemetry from './ResourceTelemetry.svelte';
 import { status } from '../../stores/status.js';
 import { history } from '../../stores/history.js';
@@ -59,5 +59,38 @@ describe('ResourceTelemetry (Command parity)', () => {
     const helium = rowByName('Helium-3');
     expect(within(helium).getByText(/^\+0 in\/yr$/)).toBeTruthy();
     expect(within(helium).getByText(/0 out\/yr/)).toBeTruthy();
+  });
+
+  it('updates row values when switching resource telemetry modes', async () => {
+    status.set({
+      year: 2076,
+      overton: {},
+      demographics: {},
+      resources: [{ name: 'Food', current: 100, income: 12, upkeep: 7, delta: 5 }],
+    });
+    render(ResourceTelemetry);
+
+    let food = rowByName('Food');
+    expect(
+      within(food).getByText(
+        (_, node) => node?.classList?.contains('rt-val') && node.textContent.trim() === '100',
+      ),
+    ).toBeTruthy();
+
+    await fireEvent.click(screen.getByRole('button', { name: 'Net / yr' }));
+    food = rowByName('Food');
+    expect(
+      within(food).getByText(
+        (_, node) => node?.classList?.contains('rt-val') && node.textContent.trim() === '+5',
+      ),
+    ).toBeTruthy();
+
+    await fireEvent.click(screen.getByRole('button', { name: 'Flow' }));
+    food = rowByName('Food');
+    expect(
+      within(food).getByText(
+        (_, node) => node?.classList?.contains('rt-val') && node.textContent.trim() === '12',
+      ),
+    ).toBeTruthy();
   });
 });

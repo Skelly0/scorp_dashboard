@@ -109,6 +109,8 @@ GitHub Action → openpyxl → per-page JSON in `public/data/` → git commit �
 
 59. **GoI card headers show names only.** `src/routes/GoIs.svelte` intentionally omits the `main_class · approach` metadata span from each card header, so labels like `Scientists · Secular` do not appear beside the Research GOI title. Keep class/approach data in the JSON for extractor compatibility, but do not reintroduce the player-facing header badge; `src/routes/GoIs.test.js` has a regression for this.
 
+60. **Command resource telemetry uses workbook net, not recomputed flow.** `status.resources[].delta` is the exported `Colony` table `Net/turn` value and should become frame `net`; only fall back to `income - upkeep` when `delta` is absent for legacy snapshots. `ResourceTelemetry.svelte` computes row display through a helper, so pass the selected mode (`rv`) into the helper call instead of relying on a closed-over variable that Svelte will not track from `{@const}`. The timeline Play button should restart at the first frame when clicked from the live/end frame; leaving it enabled but inert reads as a broken button.
+
 ## Where to read more
 
 - Spec: `docs/superpowers/specs/2026-05-01-scorp-dashboard-design.md`

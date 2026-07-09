@@ -74,6 +74,18 @@ describe('buildFrames', () => {
     expect(live.resources[0].net).toBe(977 - 1271);
   });
 
+  it('uses exported resource delta as net before falling back to income minus upkeep', () => {
+    const live = frameFromStatus({
+      year: 2076,
+      resources: [
+        { name: 'Food', current: 1, income: 10, upkeep: 3, delta: 99 },
+        { name: 'Materials', current: 2, income: 8, upkeep: 5 },
+      ],
+    });
+    expect(live.resourcesByName.food.net).toBe(99);
+    expect(live.resourcesByName.materials.net).toBe(3);
+  });
+
   it('prefers status over a same-year snapshot for the live frame', () => {
     const sameYearSnap = { ...SNAPSHOT_2075, year: 2076, population_total: 1 };
     const frames = buildFrames({ snapshots: [sameYearSnap] }, STATUS_2076);

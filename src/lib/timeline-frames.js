@@ -26,14 +26,15 @@ function normalizeResource(raw) {
   if (!raw) return null;
   const income = num(raw.income);
   const upkeep = num(raw.upkeep);
+  const delta = num(raw.delta);
   return {
     name: raw.name,
     color: resourceColor(raw.name),
     current: num(raw.current),
     income,
     upkeep,
-    delta: num(raw.delta),
-    net: income != null || upkeep != null ? (income ?? 0) - (upkeep ?? 0) : null,
+    delta,
+    net: delta != null ? delta : income != null || upkeep != null ? (income ?? 0) - (upkeep ?? 0) : null,
   };
 }
 

@@ -30,12 +30,12 @@
   $: maxRes = Math.max(...resources.map((r) => r.current ?? 0), 1);
   $: maxNet = Math.max(...resources.map((r) => Math.abs(r.net ?? 0)), 1);
 
-  function view(r) {
+  function view(r, mode = rv) {
     const income = r.income ?? 0;
     const upkeep = r.upkeep ?? 0;
     const net = r.net ?? 0;
     const reserve = r.current ?? 0;
-    if (rv === 'net') {
+    if (mode === 'net') {
       const pos = net >= 0;
       return {
         value: `${pos ? '+' : '−'}${fmtInt(Math.abs(net))}`,
@@ -48,7 +48,7 @@
         barColor: pos ? 'var(--good)' : 'var(--crit)',
       };
     }
-    if (rv === 'flow') {
+    if (mode === 'flow') {
       return {
         value: fmtInt(income),
         valueTone: null,
@@ -100,7 +100,7 @@
 
 <div class="rt-list">
   {#each resources as r (r.name)}
-    {@const v = view(r)}
+    {@const v = view(r, rv)}
     <div
       class="rt-row"
       role="button"
