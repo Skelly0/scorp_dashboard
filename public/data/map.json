@@ -15424,12 +15424,12 @@
       "staffing": 0.72381221,
       "terrain": "Mare Plain",
       "upkeep": {
-        "energy": 200.0,
+        "energy": 180.0,
         "helium3": 0.0,
-        "materials": 12.5,
-        "money": 2500.0,
-        "ore": 18.75,
-        "water": 10.0
+        "materials": 11.25,
+        "money": 2250.0,
+        "ore": 16.875,
+        "water": 9.0
       },
       "workforce": {
         "Botanists": 375,
@@ -15441,7 +15441,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 180.0,
+        "housing": 225.0,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0
@@ -16476,12 +16476,12 @@
       "staffing": 0.47381221,
       "terrain": "Mare Plain",
       "upkeep": {
-        "energy": 200.0,
+        "energy": 180.0,
         "helium3": 0.0,
-        "materials": 12.5,
-        "money": 2500.0,
-        "ore": 18.75,
-        "water": 10.0
+        "materials": 11.25,
+        "money": 2250.0,
+        "ore": 16.875,
+        "water": 9.0
       },
       "workforce": {
         "Botanists": 375,
@@ -16493,7 +16493,7 @@
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 180.0,
+        "housing": 225.0,
         "materials": 0.25,
         "ore": 0.25,
         "water": 0

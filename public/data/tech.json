@@ -8,7 +8,7 @@
     "Science"
   ],
   "research_points": {
-    "accrued": 375
+    "accrued": 115
   },
   "techs": [
     {
@@ -489,7 +489,7 @@
       ],
       "name": "Lab Methodology",
       "prereqs": [],
-      "researched": false,
+      "researched": true,
       "tier": 1
     },
     {
@@ -557,7 +557,7 @@
       "tier": 2
     },
     {
-      "available": false,
+      "available": true,
       "branch": "Civic",
       "cost_rp": 440,
       "description": "Modern instruments amplify financial-sector output and reduce staffing.",

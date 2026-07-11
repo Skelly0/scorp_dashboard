@@ -5,19 +5,19 @@
     "variety_index": 0.03865776628
   },
   "housing": {
-    "capacity": 111300.0,
-    "growth_mult": 1.040147115,
+    "capacity": 111390.0,
+    "growth_mult": 1.040567575,
     "overcrowding_exp": 3.0,
     "pop": 102874,
-    "ratio": 0.9242946990116802
+    "ratio": 0.9235478947840919
   },
   "totals": {
-    "avg_satisfaction": 0.2746286014914613,
+    "avg_satisfaction": 0.2746287697670994,
     "effective_cdr": 0.01177168186,
     "effective_growth_rate": 0.011200000000000002,
     "net_delta_pct": -0.05716818599999975,
     "pop": 102874,
-    "total_births": 3585.0,
+    "total_births": 3587.0,
     "total_deaths": 1211.0
   }
 }

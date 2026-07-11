@@ -1,9 +1,9 @@
 {
-  "avg_satisfaction": 0.2746286014914613,
-  "crisis_factor": 0.4102840186,
+  "avg_satisfaction": 0.2746287697670994,
+  "crisis_factor": 0.4102839631,
   "effective_cdr": 0.01177168186,
-  "gov_approval": 0.5989901379,
-  "housing_util": 0.9242946990116802,
+  "gov_approval": 0.5989903005,
+  "housing_util": 0.9235478947840919,
   "net_delta_pct": -0.05716818599999975,
   "overton": {
     "authority": 5.0,
@@ -24,38 +24,38 @@
     },
     {
       "current": 688.9866576,
-      "delta": 876.4322401,
+      "delta": 878.8072401,
       "income": 1605.31874,
       "name": "Materials",
-      "upkeep": 728.8865000000001
+      "upkeep": 726.5115000000001
     },
     {
       "current": 1449.975447,
-      "delta": 149.4118852,
+      "delta": 152.9743852,
       "income": 816.7868852,
       "name": "Ore",
-      "upkeep": 667.375
+      "upkeep": 663.8125
     },
     {
       "current": 2000.895159,
-      "delta": 644.6835638,
+      "delta": 682.6835638,
       "income": 5474.271001,
       "name": "Energy",
-      "upkeep": 4829.5874375
+      "upkeep": 4791.5874375
     },
     {
-      "current": 111300.0,
-      "delta": 8426.0,
-      "income": 111300.0,
+      "current": 111390.0,
+      "delta": 8516.0,
+      "income": 111390.0,
       "name": "Housing",
       "upkeep": 102874.0
     },
     {
       "current": -10120.12754,
-      "delta": 138184.1328,
+      "delta": 138659.1328,
       "income": 204470.3828,
       "name": "Money",
-      "upkeep": 66286.25
+      "upkeep": 65811.25
     },
     {
       "current": 0.0,
@@ -66,18 +66,18 @@
     },
     {
       "current": 506.1739703,
-      "delta": 107.9074245,
+      "delta": 109.8074245,
       "income": 764.0256245,
       "name": "Water",
-      "upkeep": 656.1182
+      "upkeep": 654.2182
     }
   ],
-  "stability": 0.6376107827,
-  "synced_at": "2026-07-11T15:18:26Z",
+  "stability": 0.6376104805,
+  "synced_at": "2026-07-11T16:12:02Z",
   "total_deaths": 1211.0,
   "treasury": {
-    "delta": 138184.1328,
-    "money": 106460.8241
+    "delta": 138659.1328,
+    "money": 106550.8241
   },
   "year": 2078
 }
