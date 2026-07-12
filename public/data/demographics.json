@@ -12,12 +12,12 @@
     "ratio": 0.9235478947840919
   },
   "totals": {
-    "avg_satisfaction": 0.27462876998109353,
+    "avg_satisfaction": 0.27611692347948774,
     "effective_cdr": 0.01177168186,
     "effective_growth_rate": 0.011200000000000002,
     "net_delta_pct": -0.05716818599999975,
     "pop": 102874,
-    "total_births": 3587.0,
+    "total_births": 3591.0,
     "total_deaths": 1211.0
   }
 }
