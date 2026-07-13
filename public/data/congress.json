@@ -15,7 +15,7 @@
       },
       {
         "name": "Selenite Rose Front",
-        "seats": 7.0
+        "seats": 8.0
       },
       {
         "name": "Education Party",
@@ -30,7 +30,7 @@
         "seats": 0.0
       }
     ],
-    "total_seats": 28
+    "total_seats": 29
   },
   "federations": {
     "delegations": [
@@ -106,11 +106,15 @@
             "seats": 1.0
           },
           {
+            "name": "Selenite Rose Front",
+            "seats": 1.0
+          },
+          {
             "name": "Education Party",
             "seats": 1.0
           }
         ],
-        "seats": 2
+        "seats": 3
       },
       {
         "name": "Industrial Production",
@@ -179,6 +183,6 @@
         "seats": 4
       }
     ],
-    "total_seats": 28
+    "total_seats": 29
   }
 }
