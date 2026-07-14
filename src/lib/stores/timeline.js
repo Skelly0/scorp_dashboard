@@ -28,8 +28,9 @@ export function persistCommand(patch) {
 }
 
 // null = "follow the live (latest) year"; an integer pins a specific frame.
-const persistedIdx = readCommandPersist().yearIdx;
-export const selectedYearIdx = writable(Number.isInteger(persistedIdx) ? persistedIdx : null);
+// Session-only: never persisted, so every fresh visit opens on the live year.
+// (A legacy yearIdx left in scorp.command by older builds is simply ignored.)
+export const selectedYearIdx = writable(null);
 
 export const frames = derived([history, status], ([$history, $status]) =>
   buildFrames($history, $status),
@@ -59,12 +60,12 @@ export const isLiveYear = derived([effectiveIdx, frames], ([$idx, $frames]) =>
 );
 
 export function selectYear(idx) {
-  const value = idx == null ? null : Math.round(idx);
-  selectedYearIdx.set(value);
-  persistCommand({ yearIdx: value });
+  selectedYearIdx.set(idx == null ? null : Math.round(idx));
 }
 
 export function loadTimeline(syncedAt) {
+  // Command calls this on every mount — reset so each visit opens live.
+  selectedYearIdx.set(null);
   loadStatus(syncedAt);
   loadHistory(syncedAt);
   loadParties(syncedAt);
