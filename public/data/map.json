@@ -10865,7 +10865,7 @@
         "energy": 0,
         "food": 0,
         "housing": 180.0,
-        "materials": 296.2158933,
+        "materials": 444.19884,
         "ore": 0.25,
         "water": 0
       }
@@ -13139,7 +13139,7 @@
         "energy": 107.2889463,
         "food": 53.64447314,
         "housing": 3600.0,
-        "materials": 107.5389463,
+        "materials": 161.1834194,
         "ore": 53.89447314,
         "water": 0
       }
@@ -14258,7 +14258,7 @@
         "energy": 0,
         "food": 0,
         "housing": 180.0,
-        "materials": 540.2918806,
+        "materials": 809.3128209,
         "ore": 0.25,
         "water": 0
       }
@@ -15344,7 +15344,7 @@
         "energy": 0,
         "food": 0,
         "housing": 380.0,
-        "materials": 633.8496229,
+        "materials": 950.6494344,
         "ore": 0.5,
         "water": 0
       }
@@ -17612,7 +17612,7 @@
         "energy": 92.28894629,
         "food": 46.14447314,
         "housing": 3600.0,
-        "materials": 92.53894629,
+        "materials": 138.6834194,
         "ore": 46.39447314,
         "water": 0
       }

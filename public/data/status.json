@@ -1,12 +1,12 @@
 {
   "active_situations": [
     {
-      "crisis_factor": 0.5,
+      "crisis_factor": 0.45,
       "description": "All contact with Earth has ceased. Something ominous has happened to Earth.",
       "name": "The Lights Go Down"
     },
     {
-      "crisis_factor": 0.25,
+      "crisis_factor": 0.2,
       "description": "Tonight the Moon runs with blood.",
       "name": "Blood on the Dance Floor"
     },
@@ -26,9 +26,9 @@
       "name": "A Return to Normalcy?"
     }
   ],
-  "crisis_factor": 0.2917914616,
+  "crisis_factor": 0.1865684976,
   "demographics": {
-    "avg_satisfaction": 0.31704325373549197,
+    "avg_satisfaction": 0.3324129845342777,
     "base_growth_rate": 0.035,
     "effective_cdr": 0.01170697316,
     "effective_growth_rate": 0.011200000000000002,
@@ -36,10 +36,10 @@
     "housing_util": 0.967761917586857,
     "net_delta_pct": -0.05069731599999985,
     "sat_elasticity": 0.32,
-    "total_births": 3802.0,
+    "total_births": 3883.0,
     "total_deaths": 1262.0
   },
-  "gov_approval": 0.6241209996,
+  "gov_approval": 0.6459228228,
   "overton": {
     "authority": 5.0,
     "corporate": 6.0,
@@ -59,8 +59,8 @@
     },
     {
       "current": 2434.988783,
-      "delta": 936.7707894,
-      "income": 1678.685289,
+      "delta": 1770.363434,
+      "income": 2512.277934,
       "name": "Materials",
       "upkeep": 741.9145
     },
@@ -87,10 +87,10 @@
     },
     {
       "current": 22536.64381,
-      "delta": 150610.5384,
+      "delta": 154074.2884,
       "income": 216421.7884,
       "name": "Money",
-      "upkeep": 65811.25
+      "upkeep": 62347.5
     },
     {
       "current": 0.0,
@@ -107,9 +107,9 @@
       "upkeep": 659.6548
     }
   ],
-  "stability": 0.7006370488,
+  "stability": 0.7546433236,
   "treasury": {
-    "delta": 150610.5384,
+    "delta": 154074.2884,
     "money": 142874.0256
   },
   "year": 2080
