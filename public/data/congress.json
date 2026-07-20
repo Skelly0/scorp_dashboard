@@ -23,14 +23,14 @@
       },
       {
         "name": "Lunar Reconstruction Association",
-        "seats": 4.0
+        "seats": 5.0
       },
       {
         "name": "Non-aligned",
         "seats": 0.0
       }
     ],
-    "total_seats": 29
+    "total_seats": 30
   },
   "federations": {
     "delegations": [
@@ -62,9 +62,13 @@
           {
             "name": "Education Party",
             "seats": 1.0
+          },
+          {
+            "name": "Lunar Reconstruction Association",
+            "seats": 1.0
           }
         ],
-        "seats": 2
+        "seats": 3
       },
       {
         "name": "Science & Research",
@@ -183,6 +187,6 @@
         "seats": 4
       }
     ],
-    "total_seats": 29
+    "total_seats": 30
   }
 }

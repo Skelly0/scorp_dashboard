@@ -1,45 +1,10 @@
 {
-  "active_situations": [
-    {
-      "crisis_factor": 0.45,
-      "description": "All contact with Earth has ceased. Something ominous has happened to Earth.",
-      "name": "The Lights Go Down"
-    },
-    {
-      "crisis_factor": 0.2,
-      "description": "Tonight the Moon runs with blood.",
-      "name": "Blood on the Dance Floor"
-    },
-    {
-      "crisis_factor": -0.05,
-      "description": "A shrine to honour the dead.",
-      "name": "Memorial Shrine"
-    },
-    {
-      "crisis_factor": -0.05,
-      "description": "Week of Mourning and annual Remembrance Day help people come to terms.",
-      "name": "Memorialization of Earth Act"
-    },
-    {
-      "crisis_factor": -0.05,
-      "description": "The civil war is over, there is hope in the air.",
-      "name": "A Return to Normalcy?"
-    }
-  ],
+  "avg_satisfaction": 0.5326789114845867,
   "crisis_factor": 0.09062703112,
-  "demographics": {
-    "avg_satisfaction": 0.5326789114845867,
-    "base_growth_rate": 0.035,
-    "effective_cdr": 0.01140787687,
-    "effective_growth_rate": 0.011200000000000002,
-    "housing_capacity": 111770.0,
-    "housing_util": 0.9881900331036951,
-    "net_delta_pct": -0.020787686999999833,
-    "sat_elasticity": 0.32,
-    "total_births": 3957.0,
-    "total_deaths": 1260.0
-  },
+  "effective_cdr": 0.01140787687,
   "gov_approval": 0.6428772164,
+  "housing_util": 0.9881900331036951,
+  "net_delta_pct": -0.020787686999999833,
   "overton": {
     "authority": 5.5,
     "corporate": 6.5,
@@ -108,6 +73,8 @@
     }
   ],
   "stability": 0.8425290193,
+  "synced_at": "2026-07-20T20:00:18Z",
+  "total_deaths": 1260.0,
   "treasury": {
     "delta": 151419.2105,
     "money": 129930.2721

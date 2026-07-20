@@ -10844,7 +10844,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.7399147333,
+      "staffing": 0.7584992194,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 100.0,
@@ -10865,7 +10865,7 @@
         "energy": 0,
         "food": 0,
         "housing": 180.0,
-        "materials": 444.19884,
+        "materials": 455.3495316,
         "ore": 0.25,
         "water": 0
       }
@@ -11888,7 +11888,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.685526057,
+      "staffing": 0.7027531957,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 25.0,
@@ -11904,7 +11904,7 @@
       "x": 21,
       "y": 10,
       "yields": {
-        "energy": 1096.841691,
+        "energy": 1124.405113,
         "food": 0,
         "housing": 180.0,
         "materials": 0.25,
@@ -11922,7 +11922,7 @@
       },
       "resource": "Iron Deposit",
       "slots": 2,
-      "staffing": 0.6503719341,
+      "staffing": 0.6296122004,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 250.0,
@@ -11963,7 +11963,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6974272999,
+      "staffing": 0.7170901522,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 150.0,
@@ -11985,7 +11985,7 @@
         "housing": 3650.0,
         "materials": 0.25,
         "ore": 0.25,
-        "water": 249.099555
+        "water": 255.9815533
       }
     },
     {
@@ -11998,7 +11998,7 @@
       },
       "resource": "Aluminum Deposit",
       "slots": 2,
-      "staffing": 0.6517178787,
+      "staffing": 0.6704610936,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 250.0,
@@ -12020,7 +12020,7 @@
         "food": 0,
         "housing": 180.0,
         "materials": 1.75,
-        "ore": 408.0736742,
+        "ore": 419.7881835,
         "water": 0
       }
     },
@@ -13042,7 +13042,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6817157997,
+      "staffing": 0.595516108,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 400.0,
@@ -13060,7 +13060,7 @@
       "y": 11,
       "yields": {
         "energy": 0,
-        "food": 34.08578999,
+        "food": 29.7758054,
         "housing": 40000.0,
         "materials": 0.25,
         "ore": 0.25,
@@ -13077,7 +13077,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.7165335998,
+      "staffing": 0.7335349528,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 400.0,
@@ -13113,7 +13113,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.7152596419,
+      "staffing": 0.7301247288,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 200.0,
@@ -13136,11 +13136,11 @@
       "x": 23,
       "y": 11,
       "yields": {
-        "energy": 107.2889463,
-        "food": 53.64447314,
+        "energy": 109.5187093,
+        "food": 54.75935466,
         "housing": 3600.0,
-        "materials": 161.1834194,
-        "ore": 53.89447314,
+        "materials": 164.528064,
+        "ore": 55.00935466,
         "water": 0
       }
     },
@@ -13154,7 +13154,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.5667943806,
+      "staffing": 0.4596784566,
       "terrain": "Lava Tube",
       "upkeep": {
         "energy": 100.0,
@@ -13188,7 +13188,7 @@
       },
       "resource": "Heavy Metals",
       "slots": 2,
-      "staffing": 0.6556896948,
+      "staffing": 0.5638941384,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 100.0,
@@ -14203,7 +14203,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.4422877299,
+      "staffing": 0.4459297849,
       "terrain": "Lava Tube",
       "upkeep": {
         "energy": 150.0,
@@ -14238,7 +14238,7 @@
       },
       "resource": "Rare Earths",
       "slots": 2,
-      "staffing": 0.8967364677,
+      "staffing": 0.9164552502,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 350.0,
@@ -14258,7 +14258,7 @@
         "energy": 0,
         "food": 0,
         "housing": 180.0,
-        "materials": 809.3128209,
+        "materials": 827.0597252,
         "ore": 0.25,
         "water": 0
       }
@@ -14273,7 +14273,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.9849390919,
+      "staffing": 0.9873754153,
       "terrain": "Lava Tube",
       "upkeep": {
         "energy": 100.0,
@@ -14291,7 +14291,7 @@
       "y": 12,
       "yields": {
         "energy": 0,
-        "food": 517.0930233,
+        "food": 518.372093,
         "housing": 380.0,
         "materials": 0.25,
         "ore": 0.5,
@@ -14308,7 +14308,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6214723677,
+      "staffing": 0.6016501299,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 25.0,
@@ -14326,7 +14326,7 @@
       "x": 24,
       "y": 12,
       "yields": {
-        "energy": 2796.625654,
+        "energy": 2707.425585,
         "food": 0,
         "housing": 180.0,
         "materials": 0.25,
@@ -15324,7 +15324,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.7919995286,
+      "staffing": 0.8097094596,
       "terrain": "Lava Tube",
       "upkeep": {
         "energy": 200.0,
@@ -15344,7 +15344,7 @@
         "energy": 0,
         "food": 0,
         "housing": 380.0,
-        "materials": 950.6494344,
+        "materials": 971.9013516,
         "ore": 0.5,
         "water": 0
       }
@@ -15359,7 +15359,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.485526057,
+      "staffing": 0.5027531957,
       "terrain": "Lava Tube",
       "upkeep": {
         "energy": 25.0,
@@ -15375,7 +15375,7 @@
       "x": 21,
       "y": 13,
       "yields": {
-        "energy": 776.8416912,
+        "energy": 804.4051131,
         "food": 0,
         "housing": 380.0,
         "materials": 0.25,
@@ -15384,28 +15384,35 @@
       }
     },
     {
-      "control": null,
+      "control": "Administration",
       "feature": null,
-      "improvement": null,
+      "improvement": {
+        "name": "School",
+        "owner": null,
+        "ownership_type": null
+      },
       "resource": null,
-      "slots": 4,
-      "staffing": null,
+      "slots": 3,
+      "staffing": 0.7039785397,
       "terrain": "Lava Tube",
       "upkeep": {
-        "energy": 0.0,
+        "energy": 100.0,
         "helium3": 0.0,
-        "materials": 0.0,
-        "money": 0.0,
-        "ore": 0.0,
-        "water": 0.0
+        "materials": 12.5,
+        "money": 2625.0,
+        "ore": 18.75,
+        "water": 15.0
       },
-      "workforce": null,
+      "workforce": {
+        "Scientists": 1875,
+        "Service Workers": 3750
+      },
       "x": 22,
       "y": 13,
       "yields": {
         "energy": 0,
         "food": 0,
-        "housing": 200.0,
+        "housing": 380.0,
         "materials": 0.25,
         "ore": 0.5,
         "water": 0
@@ -15421,7 +15428,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.7673511358,
+      "staffing": 0.6773202906,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 180.0,
@@ -16437,7 +16444,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.4273379508,
+      "staffing": 0.3802446566,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 50.0,
@@ -16473,7 +16480,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.5173511358,
+      "staffing": 0.4273202906,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 180.0,
@@ -16509,7 +16516,7 @@
       },
       "resource": "Water Ice",
       "slots": 3,
-      "staffing": 0.5974272999,
+      "staffing": 0.6170901522,
       "terrain": "Lava Tube",
       "upkeep": {
         "energy": 150.0,
@@ -16531,7 +16538,7 @@
         "housing": 3800.0,
         "materials": 0.25,
         "ore": 0.5,
-        "water": 234.099555
+        "water": 240.9815533
       }
     },
     {
@@ -17552,7 +17559,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6167943806,
+      "staffing": 0.5096784566,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 100.0,
@@ -17586,7 +17593,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.6152596419,
+      "staffing": 0.6301247288,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 200.0,
@@ -17609,11 +17616,11 @@
       "x": 19,
       "y": 15,
       "yields": {
-        "energy": 92.28894629,
-        "food": 46.14447314,
+        "energy": 94.51870932,
+        "food": 47.25935466,
         "housing": 3600.0,
-        "materials": 138.6834194,
-        "ore": 46.39447314,
+        "materials": 142.028064,
+        "ore": 47.50935466,
         "water": 0
       }
     },
@@ -17627,7 +17634,7 @@
       },
       "resource": "Heavy Metals",
       "slots": 3,
-      "staffing": 0.5517178787,
+      "staffing": 0.5704610936,
       "terrain": "Lava Tube",
       "upkeep": {
         "energy": 250.0,
@@ -17649,7 +17656,7 @@
         "food": 0,
         "housing": 380.0,
         "materials": 0.5,
-        "ore": 346.3236742,
+        "ore": 358.0381835,
         "water": 0
       }
     },
@@ -18699,7 +18706,7 @@
       },
       "resource": null,
       "slots": 0,
-      "staffing": 0.2667943806,
+      "staffing": 0.1596784566,
       "terrain": "Crater Rim",
       "upkeep": {
         "energy": 100.0,
@@ -18733,7 +18740,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.9094514976,
+      "staffing": 0.851875498,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 300.0,
@@ -18752,7 +18759,7 @@
       "y": 16,
       "yields": {
         "energy": 0,
-        "food": 341.0443116,
+        "food": 319.4533118,
         "housing": 180.0,
         "materials": 0.25,
         "ore": 0.25,
@@ -18769,7 +18776,7 @@
       },
       "resource": null,
       "slots": 2,
-      "staffing": 0.585526057,
+      "staffing": 0.6027531957,
       "terrain": "Mare Plain",
       "upkeep": {
         "energy": 25.0,
@@ -18785,7 +18792,7 @@
       "x": 20,
       "y": 16,
       "yields": {
-        "energy": 936.8416912,
+        "energy": 964.4051131,
         "food": 0,
         "housing": 180.0,
         "materials": 0.25,
@@ -18803,7 +18810,7 @@
       },
       "resource": null,
       "slots": 3,
-      "staffing": 0.8200985222,
+      "staffing": 0.7374662379,
       "terrain": "Lava Tube",
       "upkeep": {
         "energy": 50.0,
@@ -18821,7 +18828,7 @@
       "y": 16,
       "yields": {
         "energy": 0,
-        "food": 307.5369458,
+        "food": 276.5498392,
         "housing": 380.0,
         "materials": 0.25,
         "ore": 0.5,
@@ -19846,7 +19853,7 @@
       },
       "resource": null,
       "slots": 0,
-      "staffing": 0.8974272999,
+      "staffing": 0.9170901522,
       "terrain": "Crater Rim",
       "upkeep": {
         "energy": 150.0,
@@ -19868,7 +19875,7 @@
         "housing": 3650.0,
         "materials": 0.25,
         "ore": 0.5,
-        "water": 319.099555
+        "water": 325.9815533
       }
     },
     {
