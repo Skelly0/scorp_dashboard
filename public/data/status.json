@@ -26,9 +26,9 @@
       "name": "A Return to Normalcy?"
     }
   ],
-  "crisis_factor": 0.09062706443,
+  "crisis_factor": 0.09062706447,
   "demographics": {
-    "avg_satisfaction": 0.5326788558492577,
+    "avg_satisfaction": 0.5326788557450367,
     "base_growth_rate": 0.035,
     "effective_cdr": 0.01140787687,
     "effective_growth_rate": 0.011200000000000002,
@@ -39,7 +39,7 @@
     "total_births": 3957.0,
     "total_deaths": 1260.0
   },
-  "gov_approval": 0.6428770989,
+  "gov_approval": 0.6428770922,
   "overton": {
     "authority": 5.5,
     "corporate": 6.5,
@@ -107,7 +107,7 @@
       "upkeep": 676.8322000000001
     }
   ],
-  "stability": 0.8425279877,
+  "stability": 0.8425279807,
   "treasury": {
     "delta": 151419.2105,
     "money": 129930.2721
