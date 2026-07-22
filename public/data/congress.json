@@ -19,18 +19,18 @@
       },
       {
         "name": "Education Party",
-        "seats": 6.0
+        "seats": 7.0
       },
       {
         "name": "Lunar Reconstruction Association",
-        "seats": 5.0
+        "seats": 6.0
       },
       {
         "name": "Non-aligned",
         "seats": 0.0
       }
     ],
-    "total_seats": 30
+    "total_seats": 32
   },
   "federations": {
     "delegations": [
@@ -62,13 +62,9 @@
           {
             "name": "Education Party",
             "seats": 1.0
-          },
-          {
-            "name": "Lunar Reconstruction Association",
-            "seats": 1.0
           }
         ],
-        "seats": 3
+        "seats": 2
       },
       {
         "name": "Science & Research",
@@ -80,9 +76,13 @@
           {
             "name": "Education Party",
             "seats": 1.0
+          },
+          {
+            "name": "Lunar Reconstruction Association",
+            "seats": 1.0
           }
         ],
-        "seats": 3
+        "seats": 4
       },
       {
         "name": "Logistics & Transport",
@@ -180,13 +180,17 @@
             "seats": 1.0
           },
           {
-            "name": "Lunar Reconstruction Association",
+            "name": "Education Party",
             "seats": 1.0
+          },
+          {
+            "name": "Lunar Reconstruction Association",
+            "seats": 2.0
           }
         ],
-        "seats": 4
+        "seats": 6
       }
     ],
-    "total_seats": 30
+    "total_seats": 32
   }
 }

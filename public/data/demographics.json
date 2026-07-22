@@ -1,8 +1,8 @@
 {
   "food": {
-    "per_cap": 0.01128265965,
-    "security_ratio": 0.8814465628,
-    "variety_index": 0.03730232376
+    "per_cap": 0.01187252766,
+    "security_ratio": 1.0,
+    "variety_index": 0.03743139285
   },
   "housing": {
     "capacity": 111770.0,
@@ -12,12 +12,12 @@
     "ratio": 0.9881900331036951
   },
   "totals": {
-    "avg_satisfaction": 0.5326788557450367,
-    "effective_cdr": 0.01140787687,
+    "avg_satisfaction": 0.5277975886706175,
+    "effective_cdr": 0.00975101856,
     "effective_growth_rate": 0.011200000000000002,
-    "net_delta_pct": -0.020787686999999833,
+    "net_delta_pct": 0.1448981440000002,
     "pop": 110450,
-    "total_births": 3957.0,
-    "total_deaths": 1260.0
+    "total_births": 4443.0,
+    "total_deaths": 1077.0
   }
 }

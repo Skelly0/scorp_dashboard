@@ -31,22 +31,22 @@
         ]
       },
       "approach": "Centrist",
-      "approval": 0.7600511842,
-      "derived_influence": 0.1498109772,
+      "approval": 0.7258264455,
+      "derived_influence": 0.1363833235,
       "effective_worldview": {
-        "authority": 4.376056155,
-        "corporate": 4.400045689,
-        "expansion": 4.60970455,
-        "faith": 4.275978559,
-        "materialist": 4.473978687,
-        "technocratic": 4.477780614
+        "authority": 4.348197754,
+        "corporate": 4.447640659,
+        "expansion": 4.625092606,
+        "faith": 4.305938457,
+        "materialist": 4.520889602,
+        "technocratic": 4.477089106
       },
-      "mad_index": -0.045,
+      "mad_index": -0.0475,
       "main_class": "Bureaucrats",
       "name": "Administration",
       "sub_factions": [
         {
-          "approval": 0.7146570345,
+          "approval": 0.6804322958,
           "effective_worldview": {
             "authority": 4.715,
             "corporate": 3.465,
@@ -59,10 +59,10 @@
           "influence": 0.5,
           "minor_goals": [],
           "name": "Legal Professionals",
-          "national_share": 0.07968451594
+          "national_share": 0.07063653175
         },
         {
-          "approval": 0.8054453339,
+          "approval": 0.7712205952,
           "effective_worldview": {
             "authority": 5.415,
             "corporate": 4.865,
@@ -75,7 +75,7 @@
           "influence": 0.5,
           "minor_goals": [],
           "name": "Administration & Bureaucracy Federation",
-          "national_share": 0.07968451594
+          "national_share": 0.07063653175
         }
       ]
     },
@@ -108,22 +108,22 @@
         ]
       },
       "approach": "Communal",
-      "approval": 0.541337821,
-      "derived_influence": 0.2012783249,
+      "approval": 0.5087065948,
+      "derived_influence": 0.1983991412,
       "effective_worldview": {
-        "authority": 4.0090821,
-        "corporate": 5.985461642,
-        "expansion": 2.625805294,
-        "faith": 3.258115747,
-        "materialist": 4.271310004,
-        "technocratic": 5.831471512
+        "authority": 4.010589914,
+        "corporate": 5.988175118,
+        "expansion": 2.62304655,
+        "faith": 3.253415073,
+        "materialist": 4.272956498,
+        "technocratic": 5.835712109
       },
       "mad_index": -0.0275,
       "main_class": "Industrial Workers",
       "name": "Proletariat",
       "sub_factions": [
         {
-          "approval": 0.5327036214,
+          "approval": 0.5000723952,
           "effective_worldview": {
             "authority": 4.565,
             "corporate": 6.015,
@@ -136,10 +136,10 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Industrial Production Federation",
-          "national_share": 0.06423601068
+          "national_share": 0.06165369877
         },
         {
-          "approval": 0.5018882201,
+          "approval": 0.4692569938,
           "effective_worldview": {
             "authority": 4.015,
             "corporate": 6.015,
@@ -152,10 +152,10 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Extraction & Mining Federation",
-          "national_share": 0.06423601068
+          "national_share": 0.06165369877
         },
         {
-          "approval": 0.5894216214,
+          "approval": 0.5567903952,
           "effective_worldview": {
             "authority": 4.565,
             "corporate": 6.015,
@@ -168,7 +168,7 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Logistics & Transport Federation",
-          "national_share": 0.06423601068
+          "national_share": 0.06165369877
         }
       ]
     },
@@ -201,22 +201,22 @@
         ]
       },
       "approach": "Centrist",
-      "approval": 0.5294124047,
-      "derived_influence": 0.2652617781,
+      "approval": 0.4929321125,
+      "derived_influence": 0.2236442699,
       "effective_worldview": {
-        "authority": 3.949681327,
-        "corporate": 4.401747075,
-        "expansion": 4.363856064,
-        "faith": 3.877300459,
-        "materialist": 3.684042648,
-        "technocratic": 3.83469421
+        "authority": 3.902815955,
+        "corporate": 4.475222227,
+        "expansion": 4.392138721,
+        "faith": 3.911005852,
+        "materialist": 3.723063171,
+        "technocratic": 3.818057719
       },
-      "mad_index": -0.015,
+      "mad_index": -0.0175,
       "main_class": "Engineers",
       "name": "White Collar",
       "sub_factions": [
         {
-          "approval": 0.3944941054,
+          "approval": 0.3580138132,
           "effective_worldview": {
             "authority": 3.865,
             "corporate": 4.715,
@@ -229,10 +229,10 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Botany & Agriculture Federation",
-          "national_share": 0.0846557046
+          "national_share": 0.06949877084
         },
         {
-          "approval": 0.460795534,
+          "approval": 0.4243152418,
           "effective_worldview": {
             "authority": 4.015,
             "corporate": 4.715,
@@ -245,10 +245,10 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Engineering Federation",
-          "national_share": 0.0846557046
+          "national_share": 0.06949877084
         },
         {
-          "approval": 0.7329475748,
+          "approval": 0.6964672826,
           "effective_worldview": {
             "authority": 4.015,
             "corporate": 4.715,
@@ -261,7 +261,7 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Service & Support Workers Federation",
-          "national_share": 0.0846557046
+          "national_share": 0.06949877084
         }
       ]
     },
@@ -295,22 +295,22 @@
         ]
       },
       "approach": "Secular",
-      "approval": 0.6823482686,
-      "derived_influence": 0.1774319132,
+      "approval": 0.6479320554,
+      "derived_influence": 0.1522358284,
       "effective_worldview": {
-        "authority": 4.292185807,
-        "corporate": 3.797710994,
-        "expansion": 3.630189974,
-        "faith": 5.530538056,
-        "materialist": 4.584012747,
-        "technocratic": 2.535972546
+        "authority": 4.265075765,
+        "corporate": 3.84225411,
+        "expansion": 3.645492803,
+        "faith": 5.537939651,
+        "materialist": 4.604243443,
+        "technocratic": 2.540615182
       },
       "mad_index": -0.03,
       "main_class": "Scientists",
       "name": "Research",
       "sub_factions": [
         {
-          "approval": 0.63600884,
+          "approval": 0.6015926269,
           "effective_worldview": {
             "authority": 4.015,
             "corporate": 3.465,
@@ -323,10 +323,10 @@
           "influence": 0.5,
           "minor_goals": [],
           "name": "Frontier Corps",
-          "national_share": 0.09437610234
+          "national_share": 0.07884696351
         },
         {
-          "approval": 0.7286876972,
+          "approval": 0.694271484,
           "effective_worldview": {
             "authority": 5.415,
             "corporate": 2.065,
@@ -339,7 +339,7 @@
           "influence": 0.5,
           "minor_goals": [],
           "name": "Science & Research Federation",
-          "national_share": 0.09437610234
+          "national_share": 0.07884696351
         }
       ]
     },
@@ -374,22 +374,22 @@
         ]
       },
       "approach": "Religious",
-      "approval": 0.9337478129,
-      "derived_influence": 0.1203042744,
+      "approval": 0.9083191457,
+      "derived_influence": 0.1371543333,
       "effective_worldview": {
-        "authority": 3.104646868,
-        "corporate": 4.883490281,
-        "expansion": 4.604831533,
-        "faith": 2.33675216,
-        "materialist": 5.246157127,
-        "technocratic": 4.892785637
+        "authority": 3.079058279,
+        "corporate": 4.898429122,
+        "expansion": 4.628814134,
+        "faith": 2.34796585,
+        "materialist": 5.146680975,
+        "technocratic": 4.889407956
       },
-      "mad_index": -0.015,
+      "mad_index": -0.0175,
       "main_class": "Capitalists",
       "name": "Congregations",
       "sub_factions": [
         {
-          "approval": 0.9339254471,
+          "approval": 0.8975987795,
           "effective_worldview": {
             "authority": 3.415,
             "corporate": 4.315,
@@ -402,7 +402,7 @@
           "influence": 0.5,
           "minor_goals": [],
           "name": "The Concilium",
-          "national_share": 0.06398988943
+          "national_share": 0.07103585812
         },
         {
           "approval": 1.0,
@@ -418,10 +418,10 @@
           "influence": 0.3,
           "minor_goals": [],
           "name": "Redemptionists",
-          "national_share": 0.03839393366
+          "national_share": 0.04262151487
         },
         {
-          "approval": 0.8339254471,
+          "approval": 0.7975987795,
           "effective_worldview": {
             "authority": 1.315,
             "corporate": 2.915,
@@ -434,7 +434,7 @@
           "influence": 0.2,
           "minor_goals": [],
           "name": "Charismatic Leaders",
-          "national_share": 0.02559595577
+          "national_share": 0.02841434325
         }
       ]
     },
@@ -445,23 +445,23 @@
         "unlocked": 1,
         "unlocked_list": []
       },
-      "approach": "Marketist",
-      "approval": 0.5186918511,
-      "derived_influence": 0.07259238891,
+      "approach": "Expansionist",
+      "approval": 0.4917652189,
+      "derived_influence": 0.1597754678,
       "effective_worldview": {
-        "authority": 4.914968321,
-        "corporate": 2.903032547,
-        "expansion": 3.158514104,
-        "faith": 3.390227687,
-        "materialist": 5.215538261,
-        "technocratic": 3.222478229
+        "authority": 4.497550074,
+        "corporate": 3.644293971,
+        "expansion": 3.190831806,
+        "faith": 3.354912283,
+        "materialist": 4.68597578,
+        "technocratic": 3.566264369
       },
-      "mad_index": -0.005,
+      "mad_index": -0.01,
       "main_class": "Capitalists",
       "name": "Outcast Dissidents",
       "sub_factions": [
         {
-          "approval": 0.7530398511,
+          "approval": 0.7261132189,
           "effective_worldview": {
             "authority": 4.015,
             "corporate": 5.415,
@@ -474,10 +474,10 @@
           "influence": 0.1,
           "minor_goals": [],
           "name": "Rebellious Youths",
-          "national_share": 0.007722383872
+          "national_share": 0.01655038844
         },
         {
-          "approval": 0.4718782184,
+          "approval": 0.4449515862,
           "effective_worldview": {
             "authority": 3.915,
             "corporate": 1.015,
@@ -490,10 +490,10 @@
           "influence": 0.5,
           "minor_goals": [],
           "name": "Reactionaries",
-          "national_share": 0.03861191936
+          "national_share": 0.08275194221
         },
         {
-          "approval": 0.5186218919,
+          "approval": 0.4916952597,
           "effective_worldview": {
             "authority": 6.115,
             "corporate": 6.115,
@@ -506,7 +506,7 @@
           "influence": 0.4,
           "minor_goals": [],
           "name": "Sybarites",
-          "national_share": 0.03088953549
+          "national_share": 0.06620155377
         }
       ]
     }
@@ -535,20 +535,20 @@
     ],
     "values": [
       [
-        2901.0,
-        317.0,
-        1118.0,
-        921.0,
-        415.0,
-        148.0
+        2834.0,
+        310.0,
+        1092.0,
+        900.0,
+        455.0,
+        286.0
       ],
       [
         0.0,
         0.0,
-        344.0,
-        97.0,
-        268.0,
-        1579.0
+        0.0,
+        0.0,
+        0.0,
+        0.0
       ],
       [
         1655.0,
@@ -559,12 +559,12 @@
         267.0
       ],
       [
-        913.0,
-        517.0,
-        2107.0,
-        6843.0,
-        239.0,
-        376.0
+        745.0,
+        422.0,
+        1720.0,
+        5587.0,
+        612.0,
+        2935.0
       ],
       [
         984.0,
@@ -575,20 +575,20 @@
         697.0
       ],
       [
-        301.0,
         0.0,
-        729.0,
-        300.0,
-        533.0,
-        2341.0
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
       ],
       [
-        262.0,
-        292.0,
-        1582.0,
-        523.0,
         194.0,
-        538.0
+        217.0,
+        1173.0,
+        388.0,
+        417.0,
+        1606.0
       ],
       [
         1882.0,
@@ -599,12 +599,12 @@
         346.0
       ],
       [
-        1650.0,
-        14563.0,
-        1779.0,
-        992.0,
-        5028.0,
-        0.0
+        1574.0,
+        13892.0,
+        1697.0,
+        946.0,
+        5247.0,
+        1115.0
       ],
       [
         1353.0,
@@ -615,12 +615,12 @@
         0.0
       ],
       [
-        3770.0,
+        2493.0,
         0.0,
-        9836.0,
-        2292.0,
-        1583.0,
-        621.0
+        6504.0,
+        1516.0,
+        3580.0,
+        8355.0
       ]
     ]
   }

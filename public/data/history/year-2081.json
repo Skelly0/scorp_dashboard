@@ -1,10 +1,10 @@
 {
-  "avg_satisfaction": 0.5326788557450367,
-  "crisis_factor": 0.09062706447,
-  "effective_cdr": 0.01140787687,
-  "gov_approval": 0.6428770922,
+  "avg_satisfaction": 0.5277975886706175,
+  "crisis_factor": 0.149860816,
+  "effective_cdr": 0.00975101856,
+  "gov_approval": 0.6073383398,
   "housing_util": 0.9881900331036951,
-  "net_delta_pct": -0.020787686999999833,
+  "net_delta_pct": 0.1448981440000002,
   "overton": {
     "authority": 5.5,
     "corporate": 6.5,
@@ -17,31 +17,31 @@
   "resources": [
     {
       "current": 392.018,
-      "delta": -167.6082413,
-      "income": 1246.169759,
+      "delta": 6.657762674,
+      "income": 1317.978443,
       "name": "Food",
-      "upkeep": 1413.778
+      "upkeep": 1311.32068
     },
     {
       "current": 2145.352217,
-      "delta": 1807.290236,
-      "income": 2569.366736,
+      "delta": 1885.089361,
+      "income": 2635.382361,
       "name": "Materials",
-      "upkeep": 762.0765
+      "upkeep": 750.293
     },
     {
       "current": 1372.096428,
-      "delta": 210.4700763,
-      "income": 892.0950763,
+      "delta": 218.6952385,
+      "income": 900.3202385,
       "name": "Ore",
       "upkeep": 681.625
     },
     {
       "current": 4260.387417,
-      "delta": 883.4907176,
-      "income": 5804.678343,
+      "delta": 1111.088119,
+      "income": 6018.146869,
       "name": "Energy",
-      "upkeep": 4921.1876250000005
+      "upkeep": 4907.05875
     },
     {
       "current": 111770.0,
@@ -52,8 +52,8 @@
     },
     {
       "current": 9110.932182,
-      "delta": 151419.2105,
-      "income": 219724.2105,
+      "delta": 169308.9658,
+      "income": 237613.9658,
       "name": "Money",
       "upkeep": 68305.0
     },
@@ -66,17 +66,17 @@
     },
     {
       "current": 879.4858478,
-      "delta": 146.1124598,
+      "delta": 145.1514598,
       "income": 822.9446598,
       "name": "Water",
-      "upkeep": 676.8322000000001
+      "upkeep": 677.7932000000001
     }
   ],
-  "stability": 0.8425279807,
-  "synced_at": "2026-07-22T15:10:15Z",
-  "total_deaths": 1260.0,
+  "stability": 0.7020102621,
+  "synced_at": "2026-07-22T16:49:34Z",
+  "total_deaths": 1077.0,
   "treasury": {
-    "delta": 151419.2105,
+    "delta": 169308.9658,
     "money": 129930.2721
   },
   "year": 2081

@@ -3,8 +3,8 @@
     {
       "name": "Bureaucrats",
       "political_weight": 2.0,
-      "pop": 5820,
-      "share": 0.0526935264825713,
+      "pop": 5877,
+      "share": 0.05320959710276143,
       "tier": "Upper",
       "worldview": {
         "authority": 4.05,
@@ -18,8 +18,8 @@
     {
       "name": "Capitalists",
       "political_weight": 1.0,
-      "pop": 2288,
-      "share": 0.020715255771842463,
+      "pop": 0,
+      "share": 0.0,
       "tier": "Expropriated",
       "worldview": {
         "authority": 6.05,
@@ -48,8 +48,8 @@
     {
       "name": "Scientists",
       "political_weight": 2.3,
-      "pop": 10995,
-      "share": 0.09954730647351742,
+      "pop": 12021,
+      "share": 0.1088365776369398,
       "tier": "Middle",
       "worldview": {
         "authority": 4.05,
@@ -78,8 +78,8 @@
     {
       "name": "Proprietors",
       "political_weight": 1.0,
-      "pop": 4204,
-      "share": 0.038062471706654596,
+      "pop": 0,
+      "share": 0.0,
       "tier": "Expropriated",
       "worldview": {
         "authority": 6.05,
@@ -93,8 +93,8 @@
     {
       "name": "Managerial",
       "political_weight": 1.8,
-      "pop": 3391,
-      "share": 0.030701674966047986,
+      "pop": 3995,
+      "share": 0.036170212765957444,
       "tier": "Middle",
       "worldview": {
         "authority": 4.05,
@@ -123,8 +123,8 @@
     {
       "name": "Industrial Workers",
       "political_weight": 1.15,
-      "pop": 24012,
-      "share": 0.21740153915799004,
+      "pop": 24471,
+      "share": 0.22155726573110004,
       "tier": "Lower",
       "worldview": {
         "authority": 3.55,
@@ -153,8 +153,8 @@
     {
       "name": "Service Workers",
       "political_weight": 1.1,
-      "pop": 18102,
-      "share": 0.1638931643277501,
+      "pop": 22448,
+      "share": 0.20324128564961522,
       "tier": "Lower",
       "worldview": {
         "authority": 4.05,
@@ -167,8 +167,8 @@
     }
   ],
   "tier_totals": {
-    "Lower": 0.5673245812584881,
-    "Middle": 0.32120416478044367,
-    "Upper": 0.0526935264825713
+    "Lower": 0.6108284291534631,
+    "Middle": 0.33596197374377545,
+    "Upper": 0.05320959710276143
   }
 }
