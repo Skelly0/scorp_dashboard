@@ -79,39 +79,39 @@
     }
   ],
   "metrics": {
-    "balance": 6.657762999999932,
+    "balance": 112.02748199999996,
     "demand_classes": 11,
     "per_cap": 0.01187252766,
     "production_types": 5,
     "security_ratio": 1.0,
     "total_demand": 1311.32068,
-    "total_supply": 1317.978443,
-    "variety_index": 0.03743139285
+    "total_supply": 1423.348162,
+    "variety_index": 0.03652805822
   },
   "production": [
     {
       "calorie_mult": 1.0,
       "food_type": "Greens",
-      "share": 0.23228706313522005,
-      "total_units": 306.1493418
+      "share": 0.2443463378709165,
+      "total_units": 347.7899109
     },
     {
       "calorie_mult": 1.1,
       "food_type": "Cereal Substitutes",
-      "share": 0.24980127440521424,
-      "total_units": 329.2326947
+      "share": 0.2751838763395965,
+      "total_units": 391.6824646
     },
     {
       "calorie_mult": 1.3,
       "food_type": "Vat Protein",
-      "share": 0.3755509657451962,
-      "total_units": 494.9680771
+      "share": 0.34802940589317316,
+      "total_units": 495.3670152
     },
     {
       "calorie_mult": 1.2,
       "food_type": "Algal Paste",
-      "share": 0.14236069641087445,
-      "total_units": 187.628329
+      "share": 0.13244038010708442,
+      "total_units": 188.5087716
     },
     {
       "calorie_mult": 1.0,

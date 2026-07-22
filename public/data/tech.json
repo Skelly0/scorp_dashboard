@@ -32,11 +32,11 @@
       ],
       "name": "Hydroponic Optimization",
       "prereqs": [],
-      "researched": false,
+      "researched": true,
       "tier": 1
     },
     {
-      "available": false,
+      "available": true,
       "branch": "Agriculture",
       "cost_rp": 440,
       "description": "Mist-based root culture lifts tower yield and trims water/energy upkeep.",
@@ -127,11 +127,11 @@
       ],
       "name": "Standardized Tooling",
       "prereqs": [],
-      "researched": false,
+      "researched": true,
       "tier": 1
     },
     {
-      "available": false,
+      "available": true,
       "branch": "Industry",
       "cost_rp": 500,
       "description": "Stronger alloys and composites raise refinery output and lower habitat upkeep.",
@@ -493,7 +493,7 @@
       "tier": 1
     },
     {
-      "available": false,
+      "available": true,
       "branch": "Industry",
       "cost_rp": 420,
       "description": "Better seals and structural designs lift housing capacity and cut maintenance.",
@@ -525,7 +525,7 @@
       "tier": 2
     },
     {
-      "available": false,
+      "available": true,
       "branch": "Agriculture",
       "cost_rp": 380,
       "description": "Refrigeration and storage cut spoilage across food production.",

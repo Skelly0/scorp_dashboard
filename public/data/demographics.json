@@ -2,17 +2,17 @@
   "food": {
     "per_cap": 0.01187252766,
     "security_ratio": 1.0,
-    "variety_index": 0.03743139285
+    "variety_index": 0.03652805822
   },
   "housing": {
-    "capacity": 111770.0,
-    "growth_mult": 1.005957807,
+    "capacity": 111806.0,
+    "growth_mult": 1.006119798,
     "overcrowding_exp": 3.0,
     "pop": 110450,
-    "ratio": 0.9881900331036951
+    "ratio": 0.9878718494535177
   },
   "totals": {
-    "avg_satisfaction": 0.5277975886706175,
+    "avg_satisfaction": 0.5275130369015745,
     "effective_cdr": 0.00975101856,
     "effective_growth_rate": 0.011200000000000002,
     "net_delta_pct": 0.1448981440000002,
