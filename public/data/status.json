@@ -31,9 +31,9 @@
       "name": "Alcohol Production Suspension and Emergency Rationing"
     }
   ],
-  "crisis_factor": 0.1500060175,
+  "crisis_factor": 0.1500060181,
   "demographics": {
-    "avg_satisfaction": 0.5275127706706583,
+    "avg_satisfaction": 0.5275127688517166,
     "base_growth_rate": 0.035,
     "effective_cdr": 0.00975101856,
     "effective_growth_rate": 0.011200000000000002,
@@ -44,7 +44,7 @@
     "total_births": 4443.0,
     "total_deaths": 1077.0
   },
-  "gov_approval": 0.607212492,
+  "gov_approval": 0.6072124884,
   "overton": {
     "authority": 5.5,
     "corporate": 6.5,
@@ -112,7 +112,7 @@
       "upkeep": 677.3182
     }
   ],
-  "stability": 0.701391006,
+  "stability": 0.7013909839,
   "treasury": {
     "delta": 170214.2335,
     "money": 129966.2721
