@@ -3,9 +3,9 @@
     {
       "class_name": "Bureaucrats",
       "per_cap_demand": 0.01034,
-      "pop": 5877.0,
-      "share": 0.04634120465483699,
-      "total_demand": 60.76818
+      "pop": 6084.0,
+      "share": 0.04654630635543062,
+      "total_demand": 62.90856
     },
     {
       "class_name": "Capitalists",
@@ -17,23 +17,23 @@
     {
       "class_name": "Engineers",
       "per_cap_demand": 0.01034,
-      "pop": 8033.0,
-      "share": 0.06334165339327982,
-      "total_demand": 83.06122
+      "pop": 8307.0,
+      "share": 0.06355361060068411,
+      "total_demand": 85.89438
     },
     {
       "class_name": "Scientists",
       "per_cap_demand": 0.01034,
-      "pop": 12021.0,
-      "share": 0.09478775245121582,
-      "total_demand": 124.29714
+      "pop": 12447.0,
+      "share": 0.0952271326768647,
+      "total_demand": 128.70198
     },
     {
       "class_name": "Security",
       "per_cap_demand": 0.01034,
-      "pop": 4680.0,
-      "share": 0.03690264382927294,
-      "total_demand": 48.3912
+      "pop": 4847.0,
+      "share": 0.03708250277856216,
+      "total_demand": 50.11798
     },
     {
       "class_name": "Proprietors",
@@ -45,73 +45,73 @@
     {
       "class_name": "Managerial",
       "per_cap_demand": 0.01034,
-      "pop": 3995.0,
-      "share": 0.031501295320073806,
-      "total_demand": 41.3083
+      "pop": 4140.0,
+      "share": 0.0316735220761806,
+      "total_demand": 42.8076
     },
     {
       "class_name": "Botanists",
       "per_cap_demand": 0.01034,
-      "pop": 8378.0,
-      "share": 0.06606204059864289,
-      "total_demand": 86.62852
+      "pop": 8576.0,
+      "share": 0.06561162447471613,
+      "total_demand": 88.67584
     },
     {
       "class_name": "Industrial Workers",
       "per_cap_demand": 0.0141,
-      "pop": 24471.0,
-      "share": 0.2631248826183386,
-      "total_demand": 345.0411
+      "pop": 25184.0,
+      "share": 0.26273583002850204,
+      "total_demand": 355.0944
     },
     {
       "class_name": "Extraction Workers",
       "per_cap_demand": 0.0141,
-      "pop": 20547.0,
-      "share": 0.22093199963871535,
-      "total_demand": 289.7127
+      "pop": 21122.0,
+      "share": 0.22035841017558846,
+      "total_demand": 297.8202
     },
     {
       "class_name": "Service Workers",
       "per_cap_demand": 0.01034,
-      "pop": 22448.0,
-      "share": 0.17700652749562373,
-      "total_demand": 232.11232
+      "pop": 23163.0,
+      "share": 0.1772110608334713,
+      "total_demand": 239.50542
     }
   ],
   "metrics": {
-    "balance": 112.02748199999996,
+    "balance": 92.9195900000002,
     "demand_classes": 11,
-    "per_cap": 0.01187252766,
+    "per_cap": 0.01186902924,
     "production_types": 5,
     "security_ratio": 1.0,
-    "total_demand": 1311.32068,
-    "total_supply": 1423.348162,
-    "variety_index": 0.03652805822
+    "total_demand": 1351.5263599999998,
+    "total_supply": 1444.44595,
+    "variety_index": 0.03644695345
   },
   "production": [
     {
       "calorie_mult": 1.0,
       "food_type": "Greens",
-      "share": 0.2443463378709165,
-      "total_units": 347.7899109
+      "share": 0.24298428632791694,
+      "total_units": 350.9776683
     },
     {
       "calorie_mult": 1.1,
       "food_type": "Cereal Substitutes",
-      "share": 0.2751838763395965,
-      "total_units": 391.6824646
+      "share": 0.27229399320895326,
+      "total_units": 393.3139557
     },
     {
       "calorie_mult": 1.3,
       "food_type": "Vat Protein",
-      "share": 0.34802940589317316,
-      "total_units": 495.3670152
+      "share": 0.3502348563475151,
+      "total_units": 505.8953198
     },
     {
       "calorie_mult": 1.2,
       "food_type": "Algal Paste",
-      "share": 0.13244038010708442,
-      "total_units": 188.5087716
+      "share": 0.1344868642540761,
+      "total_units": 194.2590064
     },
     {
       "calorie_mult": 1.0,
