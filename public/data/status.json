@@ -26,9 +26,9 @@
       "name": "A Return to Normalcy?"
     }
   ],
-  "crisis_factor": 0.09732708106,
+  "crisis_factor": 0.09732708105,
   "demographics": {
-    "avg_satisfaction": 0.5359063090987065,
+    "avg_satisfaction": 0.5359063091208229,
     "base_growth_rate": 0.035,
     "effective_cdr": 0.009888469307,
     "effective_growth_rate": 0.011200000000000002,
@@ -107,7 +107,7 @@
       "upkeep": 681.1388
     }
   ],
-  "stability": 0.7306346185,
+  "stability": 0.7306346211,
   "treasury": {
     "delta": 178989.2778,
     "money": 146066.1324
