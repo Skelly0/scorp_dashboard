@@ -24,11 +24,6 @@
       "crisis_factor": -0.05,
       "description": "The civil war is over, there is hope in the air.",
       "name": "A Return to Normalcy?"
-    },
-    {
-      "crisis_factor": 0.05,
-      "description": "Temporary alcohol-production suspension and 6% emergency rationing during the food deficit; review after next turnover.",
-      "name": "Alcohol Production Suspension and Emergency Rationing"
     }
   ],
   "ended": [],

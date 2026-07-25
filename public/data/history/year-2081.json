@@ -1,8 +1,8 @@
 {
-  "avg_satisfaction": 0.5275127688517166,
-  "crisis_factor": 0.1500060181,
+  "avg_satisfaction": 0.5354495389481431,
+  "crisis_factor": 0.09733704659,
   "effective_cdr": 0.00975101856,
-  "gov_approval": 0.6072124884,
+  "gov_approval": 0.618459965,
   "housing_util": 0.9878718494535177,
   "net_delta_pct": 0.1448981440000002,
   "overton": {
@@ -72,8 +72,8 @@
       "upkeep": 677.3182
     }
   ],
-  "stability": 0.7013909839,
-  "synced_at": "2026-07-25T18:32:03Z",
+  "stability": 0.7305057246,
+  "synced_at": "2026-07-25T19:46:22Z",
   "total_deaths": 1077.0,
   "treasury": {
     "delta": 170214.2335,
