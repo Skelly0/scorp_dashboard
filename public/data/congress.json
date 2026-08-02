@@ -7,23 +7,23 @@
       },
       {
         "name": "The All Lunar Labor Bund",
-        "seats": 5.0
+        "seats": 6.0
       },
       {
         "name": "Novus Chrysalis Collective",
-        "seats": 6.0
+        "seats": 8.0
       },
       {
         "name": "Selenite Rose Front",
-        "seats": 10.0
-      },
-      {
-        "name": "Education Party",
         "seats": 7.0
       },
       {
+        "name": "Education Party",
+        "seats": 8.0
+      },
+      {
         "name": "Lunar Reconstruction Association",
-        "seats": 6.0
+        "seats": 5.0
       },
       {
         "name": "Non-aligned",
@@ -75,11 +75,7 @@
           },
           {
             "name": "Education Party",
-            "seats": 1.0
-          },
-          {
-            "name": "Lunar Reconstruction Association",
-            "seats": 1.0
+            "seats": 2.0
           }
         ],
         "seats": 4
@@ -92,8 +88,12 @@
             "seats": 1.0
           },
           {
+            "name": "Novus Chrysalis Collective",
+            "seats": 1.0
+          },
+          {
             "name": "Selenite Rose Front",
-            "seats": 2.0
+            "seats": 1.0
           },
           {
             "name": "Lunar Reconstruction Association",
@@ -128,8 +128,12 @@
             "seats": 2.0
           },
           {
+            "name": "Novus Chrysalis Collective",
+            "seats": 1.0
+          },
+          {
             "name": "Selenite Rose Front",
-            "seats": 3.0
+            "seats": 2.0
           },
           {
             "name": "Education Party",
@@ -147,11 +151,11 @@
         "parties": [
           {
             "name": "The All Lunar Labor Bund",
-            "seats": 1.0
+            "seats": 2.0
           },
           {
             "name": "Selenite Rose Front",
-            "seats": 2.0
+            "seats": 1.0
           },
           {
             "name": "Education Party",
